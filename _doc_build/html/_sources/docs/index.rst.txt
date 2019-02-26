@@ -1,0 +1,97 @@
+PSCodec
+========
+The codec comprises an encoder and a decoder. The former takes an array of
+samples as an input and outputs a URL. The latter performs the reverse
+operation; it takes the URL as an input and outputs an array of samples,
+in the same order as supplied to the encoder.
+
+The sample arrays are ordered from the most recent at the top (element 0) to the oldest.
+
+
+Measurands to Samples
+----------------------
+
+The length of the URL is configurable. It should be fairly long (1 KB) to hold
+a large number of samples. The codec can be configured so that each sample
+contains either one or two 12-bit measurands. For Plotsensor, these are
+temperature and relative humidity.
+
+
+Samples to Chunks
+------------------
+
+The encoder starts at the oldest sample and groups input data into 6 byte chunks.
+Byte 0 of the chunk contains the oldest data and Byte 5 contains the newest.
+Each chunk contains two samples, assuming there are two measurands per sample.
+
+The chunk containing the most recent data can be partially full.
+In this case it is padded with samples that contain '0'. The number of samples
+is written to the Length field in the endstop of the URL.
+With this information the decoder discards the samples used for padding.
+
+
+Chunks to Octets
+-----------------
+
+Chunks are base64 encoded using only URL-safe characters.
+This produces a list of 8-byte values, which are named Octets.
+
+Circular Buffer
+----------------
+
+Octets are placed onto a circular buffer.
+The end of the buffer is marked by an endstop_. Immediately to the left of
+the endstop is the Octet containing the most recent sample data.
+The octet to the right contains the oldest sample data.
+
+Timestamps
+-----------
+
+A feature of PSCodec is that each sample does not include an absolute timestamp.
+There is an RTC on the PSHardware, but it is only used to measure
+time intervals of one minute.
+
+Without the requirement for absolute time,
+the user is not burdened with setting it like they have to on a wristwatch
+or a cooker.
+
+Instead PSCodec provides all necessary information for sample timestamps
+to be reconstructed based on:
+
+* Now (UTC), the time the PSCodec URL is received by PSWebApp. This coincides
+  with the time the sensor is scanned by a phone.
+
+* Minutes elapsed. The time difference between Now (UTC) and when the most
+  recent sample was taken.
+
+* Time interval in minutes between samples. This is a constant time interval
+  between all samples in the buffer.
+
+The reconstructed timestamps will be accurate to within one minute, which is
+sufficient for most datalogging applications.
+
+Endstop
+--------
+
+The endstop is 16-bits wide. It contains 4 elements.
+
+Minutes elapsed (base64) and end marker
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The minutes elapsed counter increments by 1 every minute after the last sample
+was collected. It resets to 0 when a new sample is collected i.e. when it is
+equal to time interval.
+
+The unencoded minutes elapsed field is 16-bits wide. This is the same width
+as the unencoded time interval in minutes field.
+
+The minutes elapsed field occupies 4 bytes after base64 encoding, including one
+padding byte. By convention this is 0x61 or '='.
+
+The encoder replaces the padding byte with 0x01 or '!'.
+This is the end marker; the last byte of the end stop in the circular buffer.
+The URL-safe character will be unique in the circular buffer.
+
+Locating the end marker is the first step performed by the decoder. After it is
+found, it can be replaced with an '=' before the minutes elapsed field is
+decoded from base64 into the original 16-bit value.

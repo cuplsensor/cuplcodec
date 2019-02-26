@@ -1,0 +1,133 @@
+\hypertarget{md5_8c}{}\section{md5.\+c File Reference}
+\label{md5_8c}\index{md5.\+c@{md5.\+c}}
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}md5.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{md5_8c_a96d73bbd7af15cb1fc38c3f4a3bd82e9}{F}}(x,  y,  z)~((z) $^\wedge$ ((x) \& ((y) $^\wedge$ (z))))
+\item 
+\#define \mbox{\hyperlink{md5_8c_ad96b7cf3182ce2ba85e5a7a93b12c441}{G}}(x,  y,  z)~((y) $^\wedge$ ((z) \& ((x) $^\wedge$ (y))))
+\item 
+\#define \mbox{\hyperlink{md5_8c_ae42219072d798876e6b08e6b78614ff6}{H}}(x,  y,  z)~(((x) $^\wedge$ (y)) $^\wedge$ (z))
+\item 
+\#define \mbox{\hyperlink{md5_8c_ae9b91c8030fc9c6e383debe88f0364d7}{H2}}(x,  y,  z)~((x) $^\wedge$ ((y) $^\wedge$ (z)))
+\item 
+\#define \mbox{\hyperlink{md5_8c_ac0eafdc9ee161b71e7af98af736952fd}{I}}(x,  y,  z)~((y) $^\wedge$ ((x) $\vert$ $\sim$(z)))
+\item 
+\#define \mbox{\hyperlink{md5_8c_a642b3a091bb90dabdf2abb865fefab69}{S\+T\+EP}}(f,  a,  b,  c,  d,  x,  t,  s)
+\item 
+\#define \mbox{\hyperlink{md5_8c_a8be4bf419fd5ebe5cba399d782188517}{S\+ET}}(n)
+\item 
+\#define \mbox{\hyperlink{md5_8c_a22c5b6b56a260ea33a06c9fdebed523e}{G\+ET}}(n)~(ctx-\/$>$block\mbox{[}(n)\mbox{]})
+\item 
+\#define \mbox{\hyperlink{md5_8c_a9735ca4832fc46955e51f593d7716cc3}{O\+UT}}(dst,  src)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{md5_8c_a3587b3aeb13e97b52d91ac79a65c2940}{M\+D5\+\_\+\+Init}} (\mbox{\hyperlink{struct_m_d5___c_t_x}{M\+D5\+\_\+\+C\+TX}} $\ast$ctx)
+\item 
+void \mbox{\hyperlink{md5_8c_a951aa68d9b7dc506718ae725f71929d9}{M\+D5\+\_\+\+Update}} (\mbox{\hyperlink{struct_m_d5___c_t_x}{M\+D5\+\_\+\+C\+TX}} $\ast$ctx, const void $\ast$data, unsigned long size)
+\item 
+void \mbox{\hyperlink{md5_8c_aeca2db0b7173b13c5debe066b8ea1116}{M\+D5\+\_\+\+Final}} (unsigned char $\ast$result, \mbox{\hyperlink{struct_m_d5___c_t_x}{M\+D5\+\_\+\+C\+TX}} $\ast$ctx)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{md5_8c_a96d73bbd7af15cb1fc38c3f4a3bd82e9}\label{md5_8c_a96d73bbd7af15cb1fc38c3f4a3bd82e9}} 
+\index{md5.\+c@{md5.\+c}!F@{F}}
+\index{F@{F}!md5.\+c@{md5.\+c}}
+\subsubsection{\texorpdfstring{F}{F}}
+{\footnotesize\ttfamily \#define F(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z }\end{DoxyParamCaption})~((z) $^\wedge$ ((x) \& ((y) $^\wedge$ (z))))}
+
+\mbox{\Hypertarget{md5_8c_ad96b7cf3182ce2ba85e5a7a93b12c441}\label{md5_8c_ad96b7cf3182ce2ba85e5a7a93b12c441}} 
+\index{md5.\+c@{md5.\+c}!G@{G}}
+\index{G@{G}!md5.\+c@{md5.\+c}}
+\subsubsection{\texorpdfstring{G}{G}}
+{\footnotesize\ttfamily \#define G(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z }\end{DoxyParamCaption})~((y) $^\wedge$ ((z) \& ((x) $^\wedge$ (y))))}
+
+\mbox{\Hypertarget{md5_8c_a22c5b6b56a260ea33a06c9fdebed523e}\label{md5_8c_a22c5b6b56a260ea33a06c9fdebed523e}} 
+\index{md5.\+c@{md5.\+c}!G\+ET@{G\+ET}}
+\index{G\+ET@{G\+ET}!md5.\+c@{md5.\+c}}
+\subsubsection{\texorpdfstring{G\+ET}{GET}}
+{\footnotesize\ttfamily \#define G\+ET(\begin{DoxyParamCaption}\item[{}]{n }\end{DoxyParamCaption})~(ctx-\/$>$block\mbox{[}(n)\mbox{]})}
+
+\mbox{\Hypertarget{md5_8c_ae42219072d798876e6b08e6b78614ff6}\label{md5_8c_ae42219072d798876e6b08e6b78614ff6}} 
+\index{md5.\+c@{md5.\+c}!H@{H}}
+\index{H@{H}!md5.\+c@{md5.\+c}}
+\subsubsection{\texorpdfstring{H}{H}}
+{\footnotesize\ttfamily \#define H(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z }\end{DoxyParamCaption})~(((x) $^\wedge$ (y)) $^\wedge$ (z))}
+
+\mbox{\Hypertarget{md5_8c_ae9b91c8030fc9c6e383debe88f0364d7}\label{md5_8c_ae9b91c8030fc9c6e383debe88f0364d7}} 
+\index{md5.\+c@{md5.\+c}!H2@{H2}}
+\index{H2@{H2}!md5.\+c@{md5.\+c}}
+\subsubsection{\texorpdfstring{H2}{H2}}
+{\footnotesize\ttfamily \#define H2(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z }\end{DoxyParamCaption})~((x) $^\wedge$ ((y) $^\wedge$ (z)))}
+
+\mbox{\Hypertarget{md5_8c_ac0eafdc9ee161b71e7af98af736952fd}\label{md5_8c_ac0eafdc9ee161b71e7af98af736952fd}} 
+\index{md5.\+c@{md5.\+c}!I@{I}}
+\index{I@{I}!md5.\+c@{md5.\+c}}
+\subsubsection{\texorpdfstring{I}{I}}
+{\footnotesize\ttfamily \#define I(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z }\end{DoxyParamCaption})~((y) $^\wedge$ ((x) $\vert$ $\sim$(z)))}
+
+\mbox{\Hypertarget{md5_8c_a9735ca4832fc46955e51f593d7716cc3}\label{md5_8c_a9735ca4832fc46955e51f593d7716cc3}} 
+\index{md5.\+c@{md5.\+c}!O\+UT@{O\+UT}}
+\index{O\+UT@{O\+UT}!md5.\+c@{md5.\+c}}
+\subsubsection{\texorpdfstring{O\+UT}{OUT}}
+{\footnotesize\ttfamily \#define O\+UT(\begin{DoxyParamCaption}\item[{}]{dst,  }\item[{}]{src }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}
+(dst)[0] = (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char})(src); \(\backslash\)
+    (dst)[1] = (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char})((src) >> 8); \(\backslash\)
+    (dst)[2] = (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char})((src) >> 16); \(\backslash\)
+    (dst)[3] = (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char})((src) >> 24);
+\end{DoxyCode}
+\mbox{\Hypertarget{md5_8c_a8be4bf419fd5ebe5cba399d782188517}\label{md5_8c_a8be4bf419fd5ebe5cba399d782188517}} 
+\index{md5.\+c@{md5.\+c}!S\+ET@{S\+ET}}
+\index{S\+ET@{S\+ET}!md5.\+c@{md5.\+c}}
+\subsubsection{\texorpdfstring{S\+ET}{SET}}
+{\footnotesize\ttfamily \#define S\+ET(\begin{DoxyParamCaption}\item[{}]{n }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}
+(ctx->block[(n)] = \(\backslash\)
+    (\mbox{\hyperlink{md5_8h_a7c9e2a59b92cd132f707337f6d940122}{MD5\_u32plus}})ptr[(n) * 4] | \(\backslash\)
+    ((\mbox{\hyperlink{md5_8h_a7c9e2a59b92cd132f707337f6d940122}{MD5\_u32plus}})ptr[(n) * 4 + 1] << 8) | \(\backslash\)
+    ((\mbox{\hyperlink{md5_8h_a7c9e2a59b92cd132f707337f6d940122}{MD5\_u32plus}})ptr[(n) * 4 + 2] << 16) | \(\backslash\)
+    ((\mbox{\hyperlink{md5_8h_a7c9e2a59b92cd132f707337f6d940122}{MD5\_u32plus}})ptr[(n) * 4 + 3] << 24))
+\end{DoxyCode}
+\mbox{\Hypertarget{md5_8c_a642b3a091bb90dabdf2abb865fefab69}\label{md5_8c_a642b3a091bb90dabdf2abb865fefab69}} 
+\index{md5.\+c@{md5.\+c}!S\+T\+EP@{S\+T\+EP}}
+\index{S\+T\+EP@{S\+T\+EP}!md5.\+c@{md5.\+c}}
+\subsubsection{\texorpdfstring{S\+T\+EP}{STEP}}
+{\footnotesize\ttfamily \#define S\+T\+EP(\begin{DoxyParamCaption}\item[{}]{f,  }\item[{}]{a,  }\item[{}]{b,  }\item[{}]{c,  }\item[{}]{d,  }\item[{}]{x,  }\item[{}]{t,  }\item[{}]{s }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}
+(a) += f((b), (c), (d)) + (x) + (t); \(\backslash\)
+    (a) = (((a) << (s)) | (((a) & 0xffffffff) >> (32 - (s)))); \(\backslash\)
+    (a) += (b);
+\end{DoxyCode}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{md5_8c_aeca2db0b7173b13c5debe066b8ea1116}\label{md5_8c_aeca2db0b7173b13c5debe066b8ea1116}} 
+\index{md5.\+c@{md5.\+c}!M\+D5\+\_\+\+Final@{M\+D5\+\_\+\+Final}}
+\index{M\+D5\+\_\+\+Final@{M\+D5\+\_\+\+Final}!md5.\+c@{md5.\+c}}
+\subsubsection{\texorpdfstring{M\+D5\+\_\+\+Final()}{MD5\_Final()}}
+{\footnotesize\ttfamily void M\+D5\+\_\+\+Final (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{result,  }\item[{\mbox{\hyperlink{struct_m_d5___c_t_x}{M\+D5\+\_\+\+C\+TX}} $\ast$}]{ctx }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{md5_8c_a3587b3aeb13e97b52d91ac79a65c2940}\label{md5_8c_a3587b3aeb13e97b52d91ac79a65c2940}} 
+\index{md5.\+c@{md5.\+c}!M\+D5\+\_\+\+Init@{M\+D5\+\_\+\+Init}}
+\index{M\+D5\+\_\+\+Init@{M\+D5\+\_\+\+Init}!md5.\+c@{md5.\+c}}
+\subsubsection{\texorpdfstring{M\+D5\+\_\+\+Init()}{MD5\_Init()}}
+{\footnotesize\ttfamily void M\+D5\+\_\+\+Init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_m_d5___c_t_x}{M\+D5\+\_\+\+C\+TX}} $\ast$}]{ctx }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{md5_8c_a951aa68d9b7dc506718ae725f71929d9}\label{md5_8c_a951aa68d9b7dc506718ae725f71929d9}} 
+\index{md5.\+c@{md5.\+c}!M\+D5\+\_\+\+Update@{M\+D5\+\_\+\+Update}}
+\index{M\+D5\+\_\+\+Update@{M\+D5\+\_\+\+Update}!md5.\+c@{md5.\+c}}
+\subsubsection{\texorpdfstring{M\+D5\+\_\+\+Update()}{MD5\_Update()}}
+{\footnotesize\ttfamily void M\+D5\+\_\+\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_m_d5___c_t_x}{M\+D5\+\_\+\+C\+TX}} $\ast$}]{ctx,  }\item[{const void $\ast$}]{data,  }\item[{unsigned long}]{size }\end{DoxyParamCaption})}
+

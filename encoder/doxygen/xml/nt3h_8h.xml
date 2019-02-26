@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="nt3h_8h" kind="file" language="C++">
+    <compoundname>nt3h.h</compoundname>
+    <includedby refid="eep_8c" local="yes">eep.c</includedby>
+    <includedby refid="nt3h_8c" local="yes">nt3h.c</includedby>
+    <invincdepgraph>
+      <node id="62">
+        <label>nt3h.c</label>
+        <link refid="nt3h_8c"/>
+      </node>
+      <node id="60">
+        <label>nt3h.h</label>
+        <link refid="nt3h_8h"/>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+      </node>
+      <node id="61">
+        <label>eep.c</label>
+        <link refid="eep_8c"/>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="nt3h_8h_1ac4551bbc9efabf8378f35498f80b4679" prot="public" static="no">
+        <name>BLKSIZE</name>
+        <initializer>0x10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nt3h.h" line="11" column="9" bodyfile="nt3h.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="nt3h_8h_1aecfb69926db9b0c804eae417a5546766" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nt3h_init</definition>
+        <argsstring>(void)</argsstring>
+        <name>nt3h_init</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Initialise PAGE0 of the NT3H2211 I2C EEPROM. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nt3h.h" line="15" column="1" bodyfile="nt3h.c" bodystart="29" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="nt3h_8h_1a8b7f3ba6ec6dce05a9c79d4b08fa17bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int nt3h_writetag</definition>
+        <argsstring>(int eepromBlock, char *blkdata)</argsstring>
+        <name>nt3h_writetag</name>
+        <param>
+          <type>int</type>
+          <declname>eepromBlock</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>blkdata</declname>
+        </param>
+        <briefdescription>
+<para>Write a 16-byte block of the NT3H2211 I2C EEPROM. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eepromBlock</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>index of the block to write </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>blkdata</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>16-byte array containing data to write </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nt3h.h" line="16" column="1" bodyfile="nt3h.c" bodystart="45" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="nt3h_8h_1a6766a3db85cd67a81ef911acff226dd8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int nt3h_readtag</definition>
+        <argsstring>(int eepromBlock, char *blkdata)</argsstring>
+        <name>nt3h_readtag</name>
+        <param>
+          <type>int</type>
+          <declname>eepromBlock</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>blkdata</declname>
+        </param>
+        <briefdescription>
+<para>Read a 16-byte block from the NT3H2211 I2C EEPROM. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eepromBlock</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>index of the block to read. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>blkdata</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>16-byte array into which the EEPROM block contents will be stored. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nt3h.h" line="17" column="1" bodyfile="nt3h.c" bodystart="60" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="nt3h_8h_1af5eae3ef1e64f9f5e399840c02f871ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int nt3h_eepromwritedone</definition>
+        <argsstring>(void)</argsstring>
+        <name>nt3h_eepromwritedone</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nt3h.h" line="18" column="1" bodyfile="nt3h.c" bodystart="67" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="nt3h_8h_1abf22006bb974c3edde8942d5a979efc2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int printint</definition>
+        <argsstring>(int myint)</argsstring>
+        <name>printint</name>
+        <param>
+          <type>int</type>
+          <declname>myint</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nt3h.h" line="19" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>nt3h.h</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/><sp/>Created<sp/>on:<sp/>12<sp/>Aug<sp/>2017</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Author:<sp/>mmackay</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_NT3H_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_NT3H_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="nt3h_8h_1ac4551bbc9efabf8378f35498f80b4679" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BLKSIZE<sp/>0x10</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="nt3h_8h_1aecfb69926db9b0c804eae417a5546766" kindref="member">nt3h_init</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="nt3h_8h_1a8b7f3ba6ec6dce05a9c79d4b08fa17bb" kindref="member">nt3h_writetag</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>eepromBlock,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>blkdata);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="nt3h_8h_1a6766a3db85cd67a81ef911acff226dd8" kindref="member">nt3h_readtag</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>eepromBlock,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>blkdata);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="nt3h_8h_1af5eae3ef1e64f9f5e399840c02f871ad" kindref="member">nt3h_eepromwritedone</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="nt3h_8h_1abf22006bb974c3edde8942d5a979efc2" kindref="member">printint</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>myint);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//_NT3H_H_</highlight></codeline>
+    </programlisting>
+    <location file="nt3h.h"/>
+  </compounddef>
+</doxygen>

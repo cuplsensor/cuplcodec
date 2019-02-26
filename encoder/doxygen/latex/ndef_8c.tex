@@ -1,0 +1,160 @@
+\hypertarget{ndef_8c}{}\section{ndef.\+c File Reference}
+\label{ndef_8c}\index{ndef.\+c@{ndef.\+c}}
+{\ttfamily \#include \char`\"{}ndef.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}base64.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}eep.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}defs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nvtype.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+union \mbox{\hyperlink{union_record_header__t}{Record\+Header\+\_\+t}}
+\item 
+union \mbox{\hyperlink{unionlen__t}{len\+\_\+t}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{ndef_8c_a0dce637212030f0bde7c5e0f68032460}{U\+R\+L\+\_\+\+R\+E\+C\+O\+R\+D\+T\+Y\+PE}}~0x55
+\item 
+\#define \mbox{\hyperlink{ndef_8c_ae4c33d17b37c135ccbd0dea622a21be2}{U\+R\+L\+\_\+\+R\+E\+C\+O\+R\+D\+T\+Y\+P\+E\+\_\+\+L\+EN}}~1
+\item 
+\#define \mbox{\hyperlink{ndef_8c_a3f2902197dc6ef9f691916b1454006ca}{T\+L\+V\+\_\+\+S\+T\+A\+RT}}~0x03
+\item 
+\#define \mbox{\hyperlink{ndef_8c_aa834bbba3ae471ca682740e350082377}{W\+E\+L\+L\+K\+N\+O\+W\+N\+\_\+\+T\+NF}}~0x01
+\item 
+\#define \mbox{\hyperlink{ndef_8c_aa8f2183ef92f096542b81c3cffc8c2b2}{A\+B\+S\+U\+R\+I\+\_\+\+T\+NF}}~0x03
+\item 
+\#define \mbox{\hyperlink{ndef_8c_a092f9a3cb8ae1e6e034bd34067bcae3f}{U\+N\+C\+H\+A\+N\+G\+E\+D\+\_\+\+T\+NF}}~0x06
+\item 
+\#define \mbox{\hyperlink{ndef_8c_a4e6ab9188d0bbc5330bc49d9d6cbd948}{U\+R\+I\+\_\+\+I\+D\+\_\+\+H\+T\+TP}}~0x03
+\item 
+\#define \mbox{\hyperlink{ndef_8c_a3822a6d884b3bef125fd186c3b769b9d}{U\+R\+I\+\_\+\+I\+D\+\_\+\+H\+T\+T\+PS}}~0x04
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ndef_8c_ac55b5f717f0851a05b88d77e69ad3567}{ndef\+\_\+writepreamble}} (int qlenblks, char $\ast$statusb64)
+\begin{DoxyCompactList}\small\item\em Write the part of the U\+RL before the circular buffer. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ndef_8c_a80c4e6a3a3e7ffaad5527adc3224c280}{ndef\+\_\+writeblankurl}} (int qlenblks, char $\ast$statusb64, int $\ast$qstartblk, char ver)
+\begin{DoxyCompactList}\small\item\em Create a U\+RL with a blank circular buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{nvtype_8h_a78682d319c0de97ea2b35f88095d6e57}{nv\+\_\+t}} \mbox{\hyperlink{ndef_8c_a6cdeaaf5e3ea4f68f2d041a6d6389a70}{nv}}
+\item 
+char \mbox{\hyperlink{ndef_8c_a52cad496a745bee49f8acf6b2c7ecb5d}{serialparam}} \mbox{[}$\,$\mbox{]} = \char`\"{}\&s=\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{ndef_8c_aa8f2183ef92f096542b81c3cffc8c2b2}\label{ndef_8c_aa8f2183ef92f096542b81c3cffc8c2b2}} 
+\index{ndef.\+c@{ndef.\+c}!A\+B\+S\+U\+R\+I\+\_\+\+T\+NF@{A\+B\+S\+U\+R\+I\+\_\+\+T\+NF}}
+\index{A\+B\+S\+U\+R\+I\+\_\+\+T\+NF@{A\+B\+S\+U\+R\+I\+\_\+\+T\+NF}!ndef.\+c@{ndef.\+c}}
+\subsubsection{\texorpdfstring{A\+B\+S\+U\+R\+I\+\_\+\+T\+NF}{ABSURI\_TNF}}
+{\footnotesize\ttfamily \#define A\+B\+S\+U\+R\+I\+\_\+\+T\+NF~0x03}
+
+\mbox{\Hypertarget{ndef_8c_a3f2902197dc6ef9f691916b1454006ca}\label{ndef_8c_a3f2902197dc6ef9f691916b1454006ca}} 
+\index{ndef.\+c@{ndef.\+c}!T\+L\+V\+\_\+\+S\+T\+A\+RT@{T\+L\+V\+\_\+\+S\+T\+A\+RT}}
+\index{T\+L\+V\+\_\+\+S\+T\+A\+RT@{T\+L\+V\+\_\+\+S\+T\+A\+RT}!ndef.\+c@{ndef.\+c}}
+\subsubsection{\texorpdfstring{T\+L\+V\+\_\+\+S\+T\+A\+RT}{TLV\_START}}
+{\footnotesize\ttfamily \#define T\+L\+V\+\_\+\+S\+T\+A\+RT~0x03}
+
+\mbox{\Hypertarget{ndef_8c_a092f9a3cb8ae1e6e034bd34067bcae3f}\label{ndef_8c_a092f9a3cb8ae1e6e034bd34067bcae3f}} 
+\index{ndef.\+c@{ndef.\+c}!U\+N\+C\+H\+A\+N\+G\+E\+D\+\_\+\+T\+NF@{U\+N\+C\+H\+A\+N\+G\+E\+D\+\_\+\+T\+NF}}
+\index{U\+N\+C\+H\+A\+N\+G\+E\+D\+\_\+\+T\+NF@{U\+N\+C\+H\+A\+N\+G\+E\+D\+\_\+\+T\+NF}!ndef.\+c@{ndef.\+c}}
+\subsubsection{\texorpdfstring{U\+N\+C\+H\+A\+N\+G\+E\+D\+\_\+\+T\+NF}{UNCHANGED\_TNF}}
+{\footnotesize\ttfamily \#define U\+N\+C\+H\+A\+N\+G\+E\+D\+\_\+\+T\+NF~0x06}
+
+\mbox{\Hypertarget{ndef_8c_a4e6ab9188d0bbc5330bc49d9d6cbd948}\label{ndef_8c_a4e6ab9188d0bbc5330bc49d9d6cbd948}} 
+\index{ndef.\+c@{ndef.\+c}!U\+R\+I\+\_\+\+I\+D\+\_\+\+H\+T\+TP@{U\+R\+I\+\_\+\+I\+D\+\_\+\+H\+T\+TP}}
+\index{U\+R\+I\+\_\+\+I\+D\+\_\+\+H\+T\+TP@{U\+R\+I\+\_\+\+I\+D\+\_\+\+H\+T\+TP}!ndef.\+c@{ndef.\+c}}
+\subsubsection{\texorpdfstring{U\+R\+I\+\_\+\+I\+D\+\_\+\+H\+T\+TP}{URI\_ID\_HTTP}}
+{\footnotesize\ttfamily \#define U\+R\+I\+\_\+\+I\+D\+\_\+\+H\+T\+TP~0x03}
+
+\mbox{\Hypertarget{ndef_8c_a3822a6d884b3bef125fd186c3b769b9d}\label{ndef_8c_a3822a6d884b3bef125fd186c3b769b9d}} 
+\index{ndef.\+c@{ndef.\+c}!U\+R\+I\+\_\+\+I\+D\+\_\+\+H\+T\+T\+PS@{U\+R\+I\+\_\+\+I\+D\+\_\+\+H\+T\+T\+PS}}
+\index{U\+R\+I\+\_\+\+I\+D\+\_\+\+H\+T\+T\+PS@{U\+R\+I\+\_\+\+I\+D\+\_\+\+H\+T\+T\+PS}!ndef.\+c@{ndef.\+c}}
+\subsubsection{\texorpdfstring{U\+R\+I\+\_\+\+I\+D\+\_\+\+H\+T\+T\+PS}{URI\_ID\_HTTPS}}
+{\footnotesize\ttfamily \#define U\+R\+I\+\_\+\+I\+D\+\_\+\+H\+T\+T\+PS~0x04}
+
+\mbox{\Hypertarget{ndef_8c_a0dce637212030f0bde7c5e0f68032460}\label{ndef_8c_a0dce637212030f0bde7c5e0f68032460}} 
+\index{ndef.\+c@{ndef.\+c}!U\+R\+L\+\_\+\+R\+E\+C\+O\+R\+D\+T\+Y\+PE@{U\+R\+L\+\_\+\+R\+E\+C\+O\+R\+D\+T\+Y\+PE}}
+\index{U\+R\+L\+\_\+\+R\+E\+C\+O\+R\+D\+T\+Y\+PE@{U\+R\+L\+\_\+\+R\+E\+C\+O\+R\+D\+T\+Y\+PE}!ndef.\+c@{ndef.\+c}}
+\subsubsection{\texorpdfstring{U\+R\+L\+\_\+\+R\+E\+C\+O\+R\+D\+T\+Y\+PE}{URL\_RECORDTYPE}}
+{\footnotesize\ttfamily \#define U\+R\+L\+\_\+\+R\+E\+C\+O\+R\+D\+T\+Y\+PE~0x55}
+
+\mbox{\Hypertarget{ndef_8c_ae4c33d17b37c135ccbd0dea622a21be2}\label{ndef_8c_ae4c33d17b37c135ccbd0dea622a21be2}} 
+\index{ndef.\+c@{ndef.\+c}!U\+R\+L\+\_\+\+R\+E\+C\+O\+R\+D\+T\+Y\+P\+E\+\_\+\+L\+EN@{U\+R\+L\+\_\+\+R\+E\+C\+O\+R\+D\+T\+Y\+P\+E\+\_\+\+L\+EN}}
+\index{U\+R\+L\+\_\+\+R\+E\+C\+O\+R\+D\+T\+Y\+P\+E\+\_\+\+L\+EN@{U\+R\+L\+\_\+\+R\+E\+C\+O\+R\+D\+T\+Y\+P\+E\+\_\+\+L\+EN}!ndef.\+c@{ndef.\+c}}
+\subsubsection{\texorpdfstring{U\+R\+L\+\_\+\+R\+E\+C\+O\+R\+D\+T\+Y\+P\+E\+\_\+\+L\+EN}{URL\_RECORDTYPE\_LEN}}
+{\footnotesize\ttfamily \#define U\+R\+L\+\_\+\+R\+E\+C\+O\+R\+D\+T\+Y\+P\+E\+\_\+\+L\+EN~1}
+
+\mbox{\Hypertarget{ndef_8c_aa834bbba3ae471ca682740e350082377}\label{ndef_8c_aa834bbba3ae471ca682740e350082377}} 
+\index{ndef.\+c@{ndef.\+c}!W\+E\+L\+L\+K\+N\+O\+W\+N\+\_\+\+T\+NF@{W\+E\+L\+L\+K\+N\+O\+W\+N\+\_\+\+T\+NF}}
+\index{W\+E\+L\+L\+K\+N\+O\+W\+N\+\_\+\+T\+NF@{W\+E\+L\+L\+K\+N\+O\+W\+N\+\_\+\+T\+NF}!ndef.\+c@{ndef.\+c}}
+\subsubsection{\texorpdfstring{W\+E\+L\+L\+K\+N\+O\+W\+N\+\_\+\+T\+NF}{WELLKNOWN\_TNF}}
+{\footnotesize\ttfamily \#define W\+E\+L\+L\+K\+N\+O\+W\+N\+\_\+\+T\+NF~0x01}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ndef_8c_a80c4e6a3a3e7ffaad5527adc3224c280}\label{ndef_8c_a80c4e6a3a3e7ffaad5527adc3224c280}} 
+\index{ndef.\+c@{ndef.\+c}!ndef\+\_\+writeblankurl@{ndef\+\_\+writeblankurl}}
+\index{ndef\+\_\+writeblankurl@{ndef\+\_\+writeblankurl}!ndef.\+c@{ndef.\+c}}
+\subsubsection{\texorpdfstring{ndef\+\_\+writeblankurl()}{ndef\_writeblankurl()}}
+{\footnotesize\ttfamily int ndef\+\_\+writeblankurl (\begin{DoxyParamCaption}\item[{int}]{qlenblks,  }\item[{char $\ast$}]{statusb64,  }\item[{int $\ast$}]{qstartblk,  }\item[{char}]{ver }\end{DoxyParamCaption})}
+
+
+
+Create a U\+RL with a blank circular buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em qlenblks} & Length of the circular buffer U\+RL parameter (q) in blocks. \\
+\hline
+{\em statusb64} & Pointer to the status field encoded in base 64. \\
+\hline
+{\em qstartblk} & Pointer to an integer into which this function writes the start block of the q U\+RL parameter. \\
+\hline
+{\em ver} & Version identifier. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if qlenblks is not even.
+\end{DoxyReturn}
+The circular buffer is zero-\/padded with a base64 octet that decodes to 0,0,0,0,0,0. \mbox{\Hypertarget{ndef_8c_ac55b5f717f0851a05b88d77e69ad3567}\label{ndef_8c_ac55b5f717f0851a05b88d77e69ad3567}} 
+\index{ndef.\+c@{ndef.\+c}!ndef\+\_\+writepreamble@{ndef\+\_\+writepreamble}}
+\index{ndef\+\_\+writepreamble@{ndef\+\_\+writepreamble}!ndef.\+c@{ndef.\+c}}
+\subsubsection{\texorpdfstring{ndef\+\_\+writepreamble()}{ndef\_writepreamble()}}
+{\footnotesize\ttfamily int ndef\+\_\+writepreamble (\begin{DoxyParamCaption}\item[{int}]{qlenblks,  }\item[{char $\ast$}]{statusb64 }\end{DoxyParamCaption})}
+
+
+
+Write the part of the U\+RL before the circular buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em qlenblks} & Length of the circular buffer in blocks. This is used to calculate the N\+D\+EF message length. \\
+\hline
+{\em statusb64} & Pointer to the status field encoded in base 64. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if qlenblks is not even. 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{ndef_8c_a6cdeaaf5e3ea4f68f2d041a6d6389a70}\label{ndef_8c_a6cdeaaf5e3ea4f68f2d041a6d6389a70}} 
+\index{ndef.\+c@{ndef.\+c}!nv@{nv}}
+\index{nv@{nv}!ndef.\+c@{ndef.\+c}}
+\subsubsection{\texorpdfstring{nv}{nv}}
+{\footnotesize\ttfamily \mbox{\hyperlink{nvtype_8h_a78682d319c0de97ea2b35f88095d6e57}{nv\+\_\+t}} nv}
+
+\mbox{\Hypertarget{ndef_8c_a52cad496a745bee49f8acf6b2c7ecb5d}\label{ndef_8c_a52cad496a745bee49f8acf6b2c7ecb5d}} 
+\index{ndef.\+c@{ndef.\+c}!serialparam@{serialparam}}
+\index{serialparam@{serialparam}!ndef.\+c@{ndef.\+c}}
+\subsubsection{\texorpdfstring{serialparam}{serialparam}}
+{\footnotesize\ttfamily char serialparam\mbox{[}$\,$\mbox{]} = \char`\"{}\&s=\char`\"{}}
+

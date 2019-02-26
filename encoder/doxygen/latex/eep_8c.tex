@@ -1,0 +1,145 @@
+\hypertarget{eep_8c}{}\section{eep.\+c File Reference}
+\label{eep_8c}\index{eep.\+c@{eep.\+c}}
+{\ttfamily \#include \char`\"{}eep.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nt3h.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{eep_8c_ab8ef3b0a4427401a76129d6b15921f46}{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+L\+KS}}~4
+\item 
+\#define \mbox{\hyperlink{eep_8c_a6e5ecf6e2d74f95a32e7f636bcbdf27f}{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+Y\+T\+ES}}~(\mbox{\hyperlink{eep_8c_ab8ef3b0a4427401a76129d6b15921f46}{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+L\+KS}} $\ast$ \mbox{\hyperlink{nt3h_8h_ac4551bbc9efabf8378f35498f80b4679}{B\+L\+K\+S\+I\+ZE}})
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{eep_8c_a9dc9545f49f34a394bf02e1a50ec94ce}{eep\+\_\+write}} (const int eepblk, const unsigned int bufblk)
+\begin{DoxyCompactList}\small\item\em Write a 16-\/byte block from the buffer to E\+E\+P\+R\+OM. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{eep_8c_a8750cd7456d517ba12af997c741bac94}{eep\+\_\+waitwritedone}} ()
+\begin{DoxyCompactList}\small\item\em Block until the E\+E\+P\+R\+OM block write has finished. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{eep_8c_a8b26a063120afe56d2938c9e4d0c9972}{eep\+\_\+read}} (const int eepblk, const unsigned int bufblk)
+\begin{DoxyCompactList}\small\item\em Read a 16-\/byte block from E\+E\+P\+R\+OM to the buffer. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{eep_8c_a8cd332f8cc6c3f1c02fd4632ea253199}{eep\+\_\+cp}} (int $\ast$indexptr, const char $\ast$dataptr, const int lenbytes)
+\begin{DoxyCompactList}\small\item\em Copy data from a pointer into the buffer. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{eep_8c_a792afc39f1a399b46b5dd4040b090184}{eep\+\_\+cpbyte}} (int $\ast$indexptr, const char bytedata)
+\begin{DoxyCompactList}\small\item\em Copy one byte into the buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{eep_8c_a75ee6794c00b84590fc80f1d36a2ad24}{\+\_\+blkbuffer}} \mbox{[}\mbox{\hyperlink{eep_8c_ab8ef3b0a4427401a76129d6b15921f46}{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+L\+KS}} $\ast$\mbox{\hyperlink{nt3h_8h_ac4551bbc9efabf8378f35498f80b4679}{B\+L\+K\+S\+I\+ZE}}\mbox{]} = \{0\}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{eep_8c_ab8ef3b0a4427401a76129d6b15921f46}\label{eep_8c_ab8ef3b0a4427401a76129d6b15921f46}} 
+\index{eep.\+c@{eep.\+c}!B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+L\+KS@{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+L\+KS}}
+\index{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+L\+KS@{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+L\+KS}!eep.\+c@{eep.\+c}}
+\subsubsection{\texorpdfstring{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+L\+KS}{BUFSIZE\_BLKS}}
+{\footnotesize\ttfamily \#define B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+L\+KS~4}
+
+\mbox{\Hypertarget{eep_8c_a6e5ecf6e2d74f95a32e7f636bcbdf27f}\label{eep_8c_a6e5ecf6e2d74f95a32e7f636bcbdf27f}} 
+\index{eep.\+c@{eep.\+c}!B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+Y\+T\+ES@{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+Y\+T\+ES}}
+\index{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+Y\+T\+ES@{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+Y\+T\+ES}!eep.\+c@{eep.\+c}}
+\subsubsection{\texorpdfstring{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+Y\+T\+ES}{BUFSIZE\_BYTES}}
+{\footnotesize\ttfamily \#define B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+Y\+T\+ES~(\mbox{\hyperlink{eep_8c_ab8ef3b0a4427401a76129d6b15921f46}{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+L\+KS}} $\ast$ \mbox{\hyperlink{nt3h_8h_ac4551bbc9efabf8378f35498f80b4679}{B\+L\+K\+S\+I\+ZE}})}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{eep_8c_a8cd332f8cc6c3f1c02fd4632ea253199}\label{eep_8c_a8cd332f8cc6c3f1c02fd4632ea253199}} 
+\index{eep.\+c@{eep.\+c}!eep\+\_\+cp@{eep\+\_\+cp}}
+\index{eep\+\_\+cp@{eep\+\_\+cp}!eep.\+c@{eep.\+c}}
+\subsubsection{\texorpdfstring{eep\+\_\+cp()}{eep\_cp()}}
+{\footnotesize\ttfamily int eep\+\_\+cp (\begin{DoxyParamCaption}\item[{int $\ast$}]{indexptr,  }\item[{const char $\ast$}]{dataptr,  }\item[{const int}]{lenbytes }\end{DoxyParamCaption})}
+
+
+
+Copy data from a pointer into the buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em indexptr} & Data are copied into the buffer starting from this index. An integer from 0 to N-\/1, where N is the size of the buffer. indexptr is overwritten by the index one greater than the last data to be written. \\
+\hline
+{\em dataptr} & Data are copied from this pointer. \\
+\hline
+{\em lenbytes} & The number of bytes to copy into the buffer from dataptr. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the data to be copied will fit entirely in the buffer. Otherwise 1. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{eep_8c_a792afc39f1a399b46b5dd4040b090184}\label{eep_8c_a792afc39f1a399b46b5dd4040b090184}} 
+\index{eep.\+c@{eep.\+c}!eep\+\_\+cpbyte@{eep\+\_\+cpbyte}}
+\index{eep\+\_\+cpbyte@{eep\+\_\+cpbyte}!eep.\+c@{eep.\+c}}
+\subsubsection{\texorpdfstring{eep\+\_\+cpbyte()}{eep\_cpbyte()}}
+{\footnotesize\ttfamily int eep\+\_\+cpbyte (\begin{DoxyParamCaption}\item[{int $\ast$}]{indexptr,  }\item[{const char}]{bytedata }\end{DoxyParamCaption})}
+
+
+
+Copy one byte into the buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em indexptr} & The byte is copied into this index of the buffer. An integer from 0 to N-\/1, where N is the size of the buffer. indexptr is overwritten by indexptr+1. \\
+\hline
+{\em bytedata} & Byte to be copied into the buffer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if indexptr is an index that will not overflow the buffer. Otherwise 1. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{eep_8c_a8b26a063120afe56d2938c9e4d0c9972}\label{eep_8c_a8b26a063120afe56d2938c9e4d0c9972}} 
+\index{eep.\+c@{eep.\+c}!eep\+\_\+read@{eep\+\_\+read}}
+\index{eep\+\_\+read@{eep\+\_\+read}!eep.\+c@{eep.\+c}}
+\subsubsection{\texorpdfstring{eep\+\_\+read()}{eep\_read()}}
+{\footnotesize\ttfamily int eep\+\_\+read (\begin{DoxyParamCaption}\item[{const int}]{eepblk,  }\item[{const unsigned int}]{bufblk }\end{DoxyParamCaption})}
+
+
+
+Read a 16-\/byte block from E\+E\+P\+R\+OM to the buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em eepblk} & E\+E\+P\+R\+OM block to read. \\
+\hline
+{\em bufblk} & Block of the buffer to copy the E\+E\+P\+R\+OM contents to. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{eep_8c_a8750cd7456d517ba12af997c741bac94}\label{eep_8c_a8750cd7456d517ba12af997c741bac94}} 
+\index{eep.\+c@{eep.\+c}!eep\+\_\+waitwritedone@{eep\+\_\+waitwritedone}}
+\index{eep\+\_\+waitwritedone@{eep\+\_\+waitwritedone}!eep.\+c@{eep.\+c}}
+\subsubsection{\texorpdfstring{eep\+\_\+waitwritedone()}{eep\_waitwritedone()}}
+{\footnotesize\ttfamily void eep\+\_\+waitwritedone (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Block until the E\+E\+P\+R\+OM block write has finished. 
+
+Writes of Flash memory take some milliseconds to complete. \mbox{\Hypertarget{eep_8c_a9dc9545f49f34a394bf02e1a50ec94ce}\label{eep_8c_a9dc9545f49f34a394bf02e1a50ec94ce}} 
+\index{eep.\+c@{eep.\+c}!eep\+\_\+write@{eep\+\_\+write}}
+\index{eep\+\_\+write@{eep\+\_\+write}!eep.\+c@{eep.\+c}}
+\subsubsection{\texorpdfstring{eep\+\_\+write()}{eep\_write()}}
+{\footnotesize\ttfamily int eep\+\_\+write (\begin{DoxyParamCaption}\item[{const int}]{eepblk,  }\item[{const unsigned int}]{bufblk }\end{DoxyParamCaption})}
+
+
+
+Write a 16-\/byte block from the buffer to E\+E\+P\+R\+OM. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em eepblk} & Block of the E\+E\+P\+R\+OM to write to. \\
+\hline
+{\em bufblk} & Block of the buffer to write from.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the block to be written greater than the buffer size. Otherwise 0. 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{eep_8c_a75ee6794c00b84590fc80f1d36a2ad24}\label{eep_8c_a75ee6794c00b84590fc80f1d36a2ad24}} 
+\index{eep.\+c@{eep.\+c}!\+\_\+blkbuffer@{\+\_\+blkbuffer}}
+\index{\+\_\+blkbuffer@{\+\_\+blkbuffer}!eep.\+c@{eep.\+c}}
+\subsubsection{\texorpdfstring{\+\_\+blkbuffer}{\_blkbuffer}}
+{\footnotesize\ttfamily char \+\_\+blkbuffer\mbox{[}\mbox{\hyperlink{eep_8c_ab8ef3b0a4427401a76129d6b15921f46}{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+L\+KS}} $\ast$\mbox{\hyperlink{nt3h_8h_ac4551bbc9efabf8378f35498f80b4679}{B\+L\+K\+S\+I\+ZE}}\mbox{]} = \{0\}}
+

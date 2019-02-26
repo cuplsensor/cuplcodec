@@ -1,0 +1,60 @@
+\hypertarget{sample_8h}{}\section{sample.\+h File Reference}
+\label{sample_8h}\index{sample.\+h@{sample.\+h}}
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{sample_8h_a2946d336b97c5fc66e054c0dac644066}{sample\+\_\+init}} (unsigned int \mbox{\hyperlink{structstatus}{status}}, bool err, bool temponly)
+\begin{DoxyCompactList}\small\item\em Initialise the sample state machine. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sample_8h_a5be5f77a339896373b1b5fff87fbfbcd}{sample\+\_\+push}} (int meas1, int meas2)
+\begin{DoxyCompactList}\small\item\em Append a sample containing up to two measurands onto the circular buffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sample_8h_a130e5805e5b411b541e60ee607185b98}{sample\+\_\+updateendstop}} (unsigned int minutes)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{sample_8h_a2946d336b97c5fc66e054c0dac644066}\label{sample_8h_a2946d336b97c5fc66e054c0dac644066}} 
+\index{sample.\+h@{sample.\+h}!sample\+\_\+init@{sample\+\_\+init}}
+\index{sample\+\_\+init@{sample\+\_\+init}!sample.\+h@{sample.\+h}}
+\subsubsection{\texorpdfstring{sample\+\_\+init()}{sample\_init()}}
+{\footnotesize\ttfamily void sample\+\_\+init (\begin{DoxyParamCaption}\item[{unsigned int}]{status,  }\item[{bool}]{err,  }\item[{bool}]{temponly }\end{DoxyParamCaption})}
+
+
+
+Initialise the sample state machine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stat} & Status \\
+\hline
+{\em err} & Error flag \\
+\hline
+{\em temponly} & Configure for temperature only in each sample. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{sample_8h_a5be5f77a339896373b1b5fff87fbfbcd}\label{sample_8h_a5be5f77a339896373b1b5fff87fbfbcd}} 
+\index{sample.\+h@{sample.\+h}!sample\+\_\+push@{sample\+\_\+push}}
+\index{sample\+\_\+push@{sample\+\_\+push}!sample.\+h@{sample.\+h}}
+\subsubsection{\texorpdfstring{sample\+\_\+push()}{sample\_push()}}
+{\footnotesize\ttfamily int sample\+\_\+push (\begin{DoxyParamCaption}\item[{int}]{meas1,  }\item[{int}]{meas2 }\end{DoxyParamCaption})}
+
+
+
+Append a sample containing up to two measurands onto the circular buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em meas1} & measurand 1 e.\+g. temperature. \\
+\hline
+{\em meas2} & measurand 2 e.\+g. relative humidity.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the cursor has moved from the end to the start and data are being overwritten. Otherwise 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sample_8h_a130e5805e5b411b541e60ee607185b98}\label{sample_8h_a130e5805e5b411b541e60ee607185b98}} 
+\index{sample.\+h@{sample.\+h}!sample\+\_\+updateendstop@{sample\+\_\+updateendstop}}
+\index{sample\+\_\+updateendstop@{sample\+\_\+updateendstop}!sample.\+h@{sample.\+h}}
+\subsubsection{\texorpdfstring{sample\+\_\+updateendstop()}{sample\_updateendstop()}}
+{\footnotesize\ttfamily void sample\+\_\+updateendstop (\begin{DoxyParamCaption}\item[{unsigned int}]{minutes }\end{DoxyParamCaption})}
+

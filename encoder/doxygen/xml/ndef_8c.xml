@@ -1,0 +1,606 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="ndef_8c" kind="file" language="C++">
+    <compoundname>ndef.c</compoundname>
+    <includes refid="ndef_8h" local="yes">ndef.h</includes>
+    <includes refid="base64_8h" local="yes">base64.h</includes>
+    <includes refid="eep_8h" local="yes">eep.h</includes>
+    <includes refid="defs_8h" local="yes">defs.h</includes>
+    <includes refid="nvtype_8h" local="yes">nvtype.h</includes>
+    <incdepgraph>
+      <node id="41">
+        <label>stdbool.h</label>
+      </node>
+      <node id="39">
+        <label>ndef.c</label>
+        <link refid="ndef_8c"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>ndef.h</label>
+        <link refid="ndef_8h"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>eep.h</label>
+        <link refid="eep_8h"/>
+      </node>
+      <node id="43">
+        <label>string.h</label>
+      </node>
+      <node id="45">
+        <label>defs.h</label>
+        <link refid="defs_8h"/>
+      </node>
+      <node id="46">
+        <label>nvtype.h</label>
+        <link refid="nvtype_8h"/>
+      </node>
+      <node id="42">
+        <label>base64.h</label>
+        <link refid="base64_8h"/>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innerclass refid="union_record_header__t" prot="public">RecordHeader_t</innerclass>
+    <innerclass refid="unionlen__t" prot="public">len_t</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="ndef_8c_1a0dce637212030f0bde7c5e0f68032460" prot="public" static="no">
+        <name>URL_RECORDTYPE</name>
+        <initializer>0x55</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="ndef.c" line="9" column="9" bodyfile="ndef.c" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ndef_8c_1ae4c33d17b37c135ccbd0dea622a21be2" prot="public" static="no">
+        <name>URL_RECORDTYPE_LEN</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="ndef.c" line="10" column="9" bodyfile="ndef.c" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ndef_8c_1a3f2902197dc6ef9f691916b1454006ca" prot="public" static="no">
+        <name>TLV_START</name>
+        <initializer>0x03</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="ndef.c" line="12" column="9" bodyfile="ndef.c" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ndef_8c_1aa834bbba3ae471ca682740e350082377" prot="public" static="no">
+        <name>WELLKNOWN_TNF</name>
+        <initializer>0x01</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="ndef.c" line="14" column="9" bodyfile="ndef.c" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ndef_8c_1aa8f2183ef92f096542b81c3cffc8c2b2" prot="public" static="no">
+        <name>ABSURI_TNF</name>
+        <initializer>0x03</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="ndef.c" line="15" column="9" bodyfile="ndef.c" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ndef_8c_1a092f9a3cb8ae1e6e034bd34067bcae3f" prot="public" static="no">
+        <name>UNCHANGED_TNF</name>
+        <initializer>0x06</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="ndef.c" line="16" column="9" bodyfile="ndef.c" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ndef_8c_1a4e6ab9188d0bbc5330bc49d9d6cbd948" prot="public" static="no">
+        <name>URI_ID_HTTP</name>
+        <initializer>0x03</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="ndef.c" line="18" column="9" bodyfile="ndef.c" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ndef_8c_1a3822a6d884b3bef125fd186c3b769b9d" prot="public" static="no">
+        <name>URI_ID_HTTPS</name>
+        <initializer>0x04</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="ndef.c" line="19" column="9" bodyfile="ndef.c" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="ndef_8c_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" prot="public" static="no" mutable="no">
+        <type><ref refid="nvtype_8h_1a78682d319c0de97ea2b35f88095d6e57" kindref="member">nv_t</ref></type>
+        <definition>nv_t nv</definition>
+        <argsstring></argsstring>
+        <name>nv</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="ndef.c" line="7" column="1" bodyfile="nvtype.c" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="ndef_8c_1a52cad496a745bee49f8acf6b2c7ecb5d" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char serialparam[]</definition>
+        <argsstring>[]</argsstring>
+        <name>serialparam</name>
+        <initializer>= &quot;&amp;s=&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="ndef.c" line="41" column="1" bodyfile="ndef.c" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="ndef_8c_1af11c09c944401931b19511e92b600055" prot="public" static="yes" mutable="no">
+        <type>const char</type>
+        <definition>const char queryparam[]</definition>
+        <argsstring>[]</argsstring>
+        <name>queryparam</name>
+        <initializer>= &quot;&amp;q=&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="ndef.c" line="42" column="1" bodyfile="ndef.c" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="ndef_8c_1a828830139077e98e2bf0476ba3f43857" prot="public" static="yes" mutable="no">
+        <type>const char</type>
+        <definition>const char verparam[]</definition>
+        <argsstring>[]</argsstring>
+        <name>verparam</name>
+        <initializer>= &quot;&amp;v=0&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="ndef.c" line="43" column="1" bodyfile="ndef.c" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="ndef_8c_1a79af3c56fefac563d474982d30deb9c9" prot="public" static="yes" mutable="no">
+        <type>char</type>
+        <definition>char _ver</definition>
+        <argsstring></argsstring>
+        <name>_ver</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="ndef.c" line="44" column="1" bodyfile="ndef.c" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="ndef_8c_1a663e15c5661d88c7b3d782a93c3cd5a8" prot="public" static="yes" mutable="no">
+        <type>const char</type>
+        <definition>const char statparam[]</definition>
+        <argsstring>[]</argsstring>
+        <name>statparam</name>
+        <initializer>= &quot;&amp;x=&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="ndef.c" line="45" column="1" bodyfile="ndef.c" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="ndef_8c_1ae808c92291cf108528c401b9accf863e" prot="public" static="yes" mutable="no">
+        <type>const char</type>
+        <definition>const char timeintparam[]</definition>
+        <argsstring>[]</argsstring>
+        <name>timeintparam</name>
+        <initializer>= &quot;t=&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="ndef.c" line="46" column="1" bodyfile="ndef.c" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="ndef_8c_1a4d2a489e718b387adcf904b2da9e704a" prot="public" static="yes" mutable="no">
+        <type>const char</type>
+        <definition>const char url[]</definition>
+        <argsstring>[]</argsstring>
+        <name>url</name>
+        <initializer>= &quot;plotsensor.com/?&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="ndef.c" line="47" column="1" bodyfile="ndef.c" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="ndef_8c_1af0f4014117b02a9bb541e620154f34b5" prot="public" static="yes" mutable="no">
+        <type>const char</type>
+        <definition>const char zeropad[]</definition>
+        <argsstring>[]</argsstring>
+        <name>zeropad</name>
+        <initializer>= &quot;MDAw&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="ndef.c" line="48" column="1" bodyfile="ndef.c" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="ndef_8c_1aec407ccd9dfe255f7ce254a6e3eb037d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ndef_createurlrecord</definition>
+        <argsstring>(int *eepindex, int msglenbytes)</argsstring>
+        <name>ndef_createurlrecord</name>
+        <param>
+          <type>int *</type>
+          <declname>eepindex</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>msglenbytes</declname>
+        </param>
+        <briefdescription>
+<para>Create a URL NDEF Record. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eepindex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Position in the 64-byte array that buffers data to be written into EEPROM. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>msglenbytes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>NDEF Message Length in bytes. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="ndef.c" line="54" column="1" bodyfile="ndef.c" bodystart="54" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="ndef_8c_1ac55b5f717f0851a05b88d77e69ad3567" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int ndef_writepreamble</definition>
+        <argsstring>(int qlenblks, char *statusb64)</argsstring>
+        <name>ndef_writepreamble</name>
+        <param>
+          <type>int</type>
+          <declname>qlenblks</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>statusb64</declname>
+        </param>
+        <briefdescription>
+<para>Write the part of the URL before the circular buffer. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>qlenblks</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Length of the circular buffer in blocks. This is used to calculate the NDEF message length. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>statusb64</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the status field encoded in base 64. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>1 if qlenblks is not even. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="ndef.c" line="101" column="1" bodyfile="ndef.c" bodystart="101" bodyend="164"/>
+      </memberdef>
+      <memberdef kind="function" id="ndef_8c_1a80c4e6a3a3e7ffaad5527adc3224c280" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int ndef_writeblankurl</definition>
+        <argsstring>(int qlenblks, char *statusb64, int *qstartblk, char ver)</argsstring>
+        <name>ndef_writeblankurl</name>
+        <param>
+          <type>int</type>
+          <declname>qlenblks</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>statusb64</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>qstartblk</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>ver</declname>
+        </param>
+        <briefdescription>
+<para>Create a URL with a blank circular buffer. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>qlenblks</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Length of the circular buffer URL parameter (q) in blocks. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>statusb64</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the status field encoded in base 64. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>qstartblk</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to an integer into which this function writes the start block of the q URL parameter. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ver</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Version identifier. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>1 if qlenblks is not even.</para></simplesect>
+The circular buffer is zero-padded with a base64 octet that decodes to 0,0,0,0,0,0. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="ndef.c" line="166" column="1" bodyfile="ndef.c" bodystart="166" bodyend="193"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="ndef_8h" kindref="compound">ndef.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="base64_8h" kindref="compound">base64.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="eep_8h" kindref="compound">eep.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="defs_8h" kindref="compound">defs.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="nvtype_8h" kindref="compound">nvtype.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="structnvstruct" kindref="compound">nv_t</ref><sp/><ref refid="ndef_8c_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" kindref="member">nv</ref>;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>URL_RECORDTYPE<sp/><sp/><sp/><sp/><sp/><sp/>0x55</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>URL_RECORDTYPE_LEN<sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TLV_START<sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x03</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>WELLKNOWN_TNF<sp/><sp/><sp/>0x01</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ABSURI_TNF<sp/><sp/><sp/><sp/><sp/><sp/>0x03</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>UNCHANGED_TNF<sp/><sp/><sp/>0x06</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>URI_ID_HTTP<sp/><sp/><sp/><sp/><sp/>0x03</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>URI_ID_HTTPS<sp/><sp/><sp/><sp/>0x04</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="union_record_header__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">union</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>all;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>tnf:3;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>idpresent:1;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>srecord:1;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>chunkflag:1;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>msgend:1;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>msgbegin:1;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/>}<sp/>byte;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">}<sp/><ref refid="union_record_header__t" kindref="compound">RecordHeader_t</ref>;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="unionlen__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">union</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>all;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>bytes[4];</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">}<sp/><ref refid="unionlen__t" kindref="compound">len_t</ref>;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="ndef_8c_1a52cad496a745bee49f8acf6b2c7ecb5d" kindref="member">serialparam</ref>[]<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&amp;s=&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>queryparam[]<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&amp;q=&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>verparam[]<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&amp;v=0&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>_ver<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>statparam[]<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&amp;x=&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>timeintparam[]<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;t=&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>url[]<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;plotsensor.com/?&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>zeropad[]<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;MDAw&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ndef_createurlrecord(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*<sp/>eepindex,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>msglenbytes)</highlight></codeline>
+<codeline lineno="55"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="union_record_header__t" kindref="compound">RecordHeader_t</ref><sp/>rheader;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="unionlen__t" kindref="compound">len_t</ref><sp/>payloadLength;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>recordType<sp/>=<sp/><ref refid="ndef_8c_1a0dce637212030f0bde7c5e0f68032460" kindref="member">URL_RECORDTYPE</ref>;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>typeLength;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idLength;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal"><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>rheader.<ref refid="union_record_header__t_1a0d1e2c9bec519d8f9faf53f732af2ef0" kindref="member">all</ref><sp/>=<sp/>0xD1;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>rheader.<ref refid="union_record_header__t_1a6c9a2f6fba6021fa942de37fdfd3027f" kindref="member">byte</ref>.<ref refid="union_record_header__t_1a0603902f88dd571aa0888ec0e826bc46" kindref="member">chunkflag</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>rheader.<ref refid="union_record_header__t_1a6c9a2f6fba6021fa942de37fdfd3027f" kindref="member">byte</ref>.<ref refid="union_record_header__t_1a20659068f23b2466db0628398fc12595" kindref="member">msgend</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>rheader.<ref refid="union_record_header__t_1a6c9a2f6fba6021fa942de37fdfd3027f" kindref="member">byte</ref>.<ref refid="union_record_header__t_1a986bb7684f9a4456350fb2f140d14a11" kindref="member">idpresent</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>rheader.<ref refid="union_record_header__t_1a6c9a2f6fba6021fa942de37fdfd3027f" kindref="member">byte</ref>.<ref refid="union_record_header__t_1a17ee86011122945c7daa15b3bbbbe7d1" kindref="member">srecord</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>rheader.<ref refid="union_record_header__t_1a6c9a2f6fba6021fa942de37fdfd3027f" kindref="member">byte</ref>.<ref refid="union_record_header__t_1ab90540d5e108e6195df15e3fad8559bb" kindref="member">msgbegin</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>rheader.<ref refid="union_record_header__t_1a6c9a2f6fba6021fa942de37fdfd3027f" kindref="member">byte</ref>.<ref refid="union_record_header__t_1ad725e8d4364cd9dd0b30d3e78efd1cf6" kindref="member">tnf</ref><sp/>=<sp/><ref refid="ndef_8c_1aa834bbba3ae471ca682740e350082377" kindref="member">WELLKNOWN_TNF</ref>;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>typeLength<sp/>=<sp/><ref refid="ndef_8c_1ae4c33d17b37c135ccbd0dea622a21be2" kindref="member">URL_RECORDTYPE_LEN</ref>;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>idLength<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>payloadLength.<ref refid="unionlen__t_1a498cc0bdfa390f211219d90fa56ff062" kindref="member">all</ref><sp/>=<sp/>msglenbytes-7;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="eep_8c_1a792afc39f1a399b46b5dd4040b090184" kindref="member">eep_cpbyte</ref>(eepindex,<sp/>rheader.<ref refid="union_record_header__t_1a0d1e2c9bec519d8f9faf53f732af2ef0" kindref="member">all</ref>);<sp/></highlight><highlight class="comment">//<sp/>Record<sp/>header</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="eep_8c_1a792afc39f1a399b46b5dd4040b090184" kindref="member">eep_cpbyte</ref>(eepindex,<sp/>typeLength);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="eep_8c_1a792afc39f1a399b46b5dd4040b090184" kindref="member">eep_cpbyte</ref>(eepindex,<sp/>payloadLength.<ref refid="unionlen__t_1a9b23cefaea8f1ce883f08a5a4f94f740" kindref="member">bytes</ref>[3]);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="eep_8c_1a792afc39f1a399b46b5dd4040b090184" kindref="member">eep_cpbyte</ref>(eepindex,<sp/>payloadLength.<ref refid="unionlen__t_1a9b23cefaea8f1ce883f08a5a4f94f740" kindref="member">bytes</ref>[2]);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="eep_8c_1a792afc39f1a399b46b5dd4040b090184" kindref="member">eep_cpbyte</ref>(eepindex,<sp/>payloadLength.<ref refid="unionlen__t_1a9b23cefaea8f1ce883f08a5a4f94f740" kindref="member">bytes</ref>[1]);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="eep_8c_1a792afc39f1a399b46b5dd4040b090184" kindref="member">eep_cpbyte</ref>(eepindex,<sp/>payloadLength.<ref refid="unionlen__t_1a9b23cefaea8f1ce883f08a5a4f94f740" kindref="member">bytes</ref>[0]);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(rheader.<ref refid="union_record_header__t_1a6c9a2f6fba6021fa942de37fdfd3027f" kindref="member">byte</ref>.<ref refid="union_record_header__t_1a986bb7684f9a4456350fb2f140d14a11" kindref="member">idpresent</ref><sp/>==<sp/>1)</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="eep_8c_1a792afc39f1a399b46b5dd4040b090184" kindref="member">eep_cpbyte</ref>(eepindex,<sp/>idLength);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(typeLength<sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="eep_8c_1a792afc39f1a399b46b5dd4040b090184" kindref="member">eep_cpbyte</ref>(eepindex,<sp/>recordType);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(rheader.<ref refid="union_record_header__t_1a6c9a2f6fba6021fa942de37fdfd3027f" kindref="member">byte</ref>.<ref refid="union_record_header__t_1a986bb7684f9a4456350fb2f140d14a11" kindref="member">idpresent</ref><sp/>==<sp/>1)</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="eep_8c_1a792afc39f1a399b46b5dd4040b090184" kindref="member">eep_cpbyte</ref>(eepindex,<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="eep_8c_1a792afc39f1a399b46b5dd4040b090184" kindref="member">eep_cpbyte</ref>(eepindex,<sp/><ref refid="ndef_8c_1a3822a6d884b3bef125fd186c3b769b9d" kindref="member">URI_ID_HTTPS</ref>);<sp/></highlight><highlight class="comment">//<sp/>WWW<sp/>or<sp/>FTP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ndef_8c_1ac55b5f717f0851a05b88d77e69ad3567" kindref="member">ndef_writepreamble</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>qlenblks,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>statusb64)</highlight></codeline>
+<codeline lineno="102"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>msglenbytes<sp/>=<sp/>((qlenblks<sp/>+<sp/><ref refid="ndef_8h_1adf9300c600f673d96063cd65a7157f7a" kindref="member">PREAMBLEN_BLKS</ref>)<sp/>*<sp/><ref refid="ndef_8h_1a185e6e8640bb4cea359dce6f32f6ca2c" kindref="member">BLKSIZE_BYTES</ref>)<sp/>-<sp/><ref refid="ndef_8h_1a8515ac56abf73a4b2c29dca739f44e99" kindref="member">TLSIZE_BYTES</ref>;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>timeintb64[5]<sp/>=<sp/>{0};</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>errflag<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>blk;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>eepindex<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>serial<sp/>=<sp/><ref refid="ndef_8c_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" kindref="member">nv</ref>.<ref refid="structnvstruct_1a8c4928cc85c5336514401eb142ea7d50" kindref="member">serial</ref>;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>timeinterval<sp/>=<sp/><ref refid="ndef_8c_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" kindref="member">nv</ref>.<ref refid="structnvstruct_1a4447bd6767bd8a45338bdeeae4cb0511" kindref="member">smplintervalmins</ref>;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>qlenblks<sp/>must<sp/>be<sp/>even<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((qlenblks<sp/>&amp;<sp/>0x01)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>errflag<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>TLV<sp/>Message<sp/>Type</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><ref refid="eep_8c_1a792afc39f1a399b46b5dd4040b090184" kindref="member">eep_cpbyte</ref>(&amp;eepindex,<sp/><ref refid="ndef_8c_1a3f2902197dc6ef9f691916b1454006ca" kindref="member">TLV_START</ref>);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>TLV<sp/>Message<sp/>Length</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><ref refid="eep_8c_1a792afc39f1a399b46b5dd4040b090184" kindref="member">eep_cpbyte</ref>(&amp;eepindex,<sp/>0xFF);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><ref refid="eep_8c_1a792afc39f1a399b46b5dd4040b090184" kindref="member">eep_cpbyte</ref>(&amp;eepindex,<sp/>((msglenbytes<sp/>&amp;<sp/>0xFF00)<sp/>&gt;&gt;<sp/>8));</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><ref refid="eep_8c_1a792afc39f1a399b46b5dd4040b090184" kindref="member">eep_cpbyte</ref>(&amp;eepindex,<sp/>(msglenbytes<sp/>&amp;<sp/>0x00FF));<sp/></highlight><highlight class="comment">//Remove<sp/>0xFE<sp/>TLV<sp/>start,<sp/>TLV<sp/>length<sp/>and<sp/>TLV<sp/>end.<sp/>That<sp/>is<sp/>3<sp/>bytes<sp/>in<sp/>all.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Start<sp/>NDEF<sp/>record</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/>ndef_createurlrecord(&amp;eepindex,<sp/>msglenbytes);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><ref refid="base64_8c_1a65618dacdde3ed7eeb15bbe7b3751cb9" kindref="member">Base64encode</ref>(timeintb64,<sp/>&amp;timeinterval,<sp/>2);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Append<sp/>URL</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><ref refid="eep_8c_1a8cd332f8cc6c3f1c02fd4632ea253199" kindref="member">eep_cp</ref>(&amp;eepindex,<sp/>url,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(url)-1);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Append<sp/>time<sp/>interval<sp/>header</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><ref refid="eep_8c_1a8cd332f8cc6c3f1c02fd4632ea253199" kindref="member">eep_cp</ref>(&amp;eepindex,<sp/>timeintparam,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(timeintparam)-1);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Append<sp/>time<sp/>interval<sp/>value</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><ref refid="eep_8c_1a8cd332f8cc6c3f1c02fd4632ea253199" kindref="member">eep_cp</ref>(&amp;eepindex,<sp/>timeintb64,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(timeintb64)-1);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Append<sp/>serial<sp/>param</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><ref refid="eep_8c_1a8cd332f8cc6c3f1c02fd4632ea253199" kindref="member">eep_cp</ref>(&amp;eepindex,<sp/><ref refid="ndef_8c_1a52cad496a745bee49f8acf6b2c7ecb5d" kindref="member">serialparam</ref>,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="ndef_8c_1a52cad496a745bee49f8acf6b2c7ecb5d" kindref="member">serialparam</ref>)-1);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Append<sp/>serial</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><ref refid="eep_8c_1a8cd332f8cc6c3f1c02fd4632ea253199" kindref="member">eep_cp</ref>(&amp;eepindex,<sp/>serial,<sp/><ref refid="nvtype_8h_1a09589b0f4cf4e32679b6dc064903edef" kindref="member">SERIAL_LENBYTES</ref>);</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Append<sp/>version<sp/>param</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><ref refid="eep_8c_1a8cd332f8cc6c3f1c02fd4632ea253199" kindref="member">eep_cp</ref>(&amp;eepindex,<sp/>verparam,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(verparam)-1);</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Append<sp/>version</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><ref refid="eep_8c_1a8cd332f8cc6c3f1c02fd4632ea253199" kindref="member">eep_cp</ref>(&amp;eepindex,<sp/>&amp;_ver,<sp/>1);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Append<sp/>status<sp/>header</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><ref refid="eep_8c_1a8cd332f8cc6c3f1c02fd4632ea253199" kindref="member">eep_cp</ref>(&amp;eepindex,<sp/>statparam,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(statparam)-1);</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Append<sp/>status<sp/>data</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><ref refid="eep_8c_1a8cd332f8cc6c3f1c02fd4632ea253199" kindref="member">eep_cp</ref>(&amp;eepindex,<sp/>statusb64,<sp/>8);</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Append<sp/>padding</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//ndef_append(&amp;blkptr,<sp/>padparam);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Append<sp/>query<sp/>string</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><ref refid="eep_8c_1a8cd332f8cc6c3f1c02fd4632ea253199" kindref="member">eep_cp</ref>(&amp;eepindex,<sp/>queryparam,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(queryparam)-1);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//ndef_pad(&amp;blkptr,<sp/>endptr);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Write<sp/>the<sp/>first<sp/>64<sp/>bytes<sp/>to<sp/>memory.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(blk=0;<sp/>blk&lt;<ref refid="ndef_8h_1adf9300c600f673d96063cd65a7157f7a" kindref="member">PREAMBLEN_BLKS</ref>;<sp/>blk++)</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="eep_8c_1a9dc9545f49f34a394bf02e1a50ec94ce" kindref="member">eep_write</ref>(blk,<sp/>blk);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><ref refid="eep_8c_1a8750cd7456d517ba12af997c741bac94" kindref="member">eep_waitwritedone</ref>();</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>errflag;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ndef_8c_1a80c4e6a3a3e7ffaad5527adc3224c280" kindref="member">ndef_writeblankurl</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>qlenblks,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>statusb64,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*<sp/>qstartblk,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>ver)</highlight></codeline>
+<codeline lineno="167"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>eepindex;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/>blk,<sp/>errflag;</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>_ver<sp/>=<sp/>ver;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/>errflag<sp/>=<sp/><ref refid="ndef_8c_1ac55b5f717f0851a05b88d77e69ad3567" kindref="member">ndef_writepreamble</ref>(qlenblks,<sp/>statusb64);</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>*qstartblk<sp/>=<sp/><ref refid="ndef_8h_1adf9300c600f673d96063cd65a7157f7a" kindref="member">PREAMBLEN_BLKS</ref>;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Write<sp/>2<sp/>blocks<sp/>of<sp/>padding.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>eepindex<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=0;<sp/>i&lt;4;<sp/>i++)</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="eep_8c_1a8cd332f8cc6c3f1c02fd4632ea253199" kindref="member">eep_cp</ref>(&amp;eepindex,<sp/>zeropad,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(zeropad)-1);</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Populate<sp/>the<sp/>q<sp/>parameter<sp/>with<sp/>padding.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(blk=0;<sp/>blk&lt;qlenblks;<sp/>blk++)</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="eep_8c_1a9dc9545f49f34a394bf02e1a50ec94ce" kindref="member">eep_write</ref>(*qstartblk<sp/>+<sp/>blk,<sp/>0);</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="eep_8c_1a8750cd7456d517ba12af997c741bac94" kindref="member">eep_waitwritedone</ref>();</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>errflag;</highlight></codeline>
+<codeline lineno="193"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="ndef.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="md5_8h" kind="file" language="C++">
+    <compoundname>md5.h</compoundname>
+    <includedby refid="md5_8c" local="yes">md5.c</includedby>
+    <includedby refid="smplhist_8c" local="yes">smplhist.c</includedby>
+    <invincdepgraph>
+      <node id="37">
+        <label>md5.c</label>
+        <link refid="md5_8c"/>
+      </node>
+      <node id="36">
+        <label>md5.h</label>
+        <link refid="md5_8h"/>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>smplhist.c</label>
+        <link refid="smplhist_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="struct_m_d5___c_t_x" prot="public">MD5_CTX</innerclass>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="md5_8h_1a7c9e2a59b92cd132f707337f6d940122" prot="public" static="no">
+        <type>unsigned long</type>
+        <definition>typedef unsigned long MD5_u32plus</definition>
+        <argsstring></argsstring>
+        <name>MD5_u32plus</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="md5.h" line="32" column="1" bodyfile="md5.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="md5_8h_1a3587b3aeb13e97b52d91ac79a65c2940" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MD5_Init</definition>
+        <argsstring>(MD5_CTX *ctx)</argsstring>
+        <name>MD5_Init</name>
+        <param>
+          <type><ref refid="struct_m_d5___c_t_x" kindref="compound">MD5_CTX</ref> *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="md5.h" line="41" column="1" bodyfile="md5.c" bodystart="212" bodyend="221"/>
+      </memberdef>
+      <memberdef kind="function" id="md5_8h_1a951aa68d9b7dc506718ae725f71929d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MD5_Update</definition>
+        <argsstring>(MD5_CTX *ctx, const void *data, unsigned long size)</argsstring>
+        <name>MD5_Update</name>
+        <param>
+          <type><ref refid="struct_m_d5___c_t_x" kindref="compound">MD5_CTX</ref> *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>const void *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="md5.h" line="42" column="1" bodyfile="md5.c" bodystart="223" bodyend="255"/>
+      </memberdef>
+      <memberdef kind="function" id="md5_8h_1aeca2db0b7173b13c5debe066b8ea1116" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MD5_Final</definition>
+        <argsstring>(unsigned char *result, MD5_CTX *ctx)</argsstring>
+        <name>MD5_Final</name>
+        <param>
+          <type>unsigned char *</type>
+          <declname>result</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_m_d5___c_t_x" kindref="compound">MD5_CTX</ref> *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="md5.h" line="43" column="1" bodyfile="md5.c" bodystart="263" bodyend="294"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>This<sp/>is<sp/>an<sp/>OpenSSL-compatible<sp/>implementation<sp/>of<sp/>the<sp/>RSA<sp/>Data<sp/>Security,<sp/>Inc.</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>MD5<sp/>Message-Digest<sp/>Algorithm<sp/>(RFC<sp/>1321).</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>Homepage:</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>http://openwall.info/wiki/people/solar/software/public-domain-source-code/md5</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>Author:</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Alexander<sp/>Peslyak,<sp/>better<sp/>known<sp/>as<sp/>Solar<sp/>Designer<sp/>&lt;solar<sp/>at<sp/>openwall.com&gt;</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/>This<sp/>software<sp/>was<sp/>written<sp/>by<sp/>Alexander<sp/>Peslyak<sp/>in<sp/>2001.<sp/><sp/>No<sp/>copyright<sp/>is</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/>claimed,<sp/>and<sp/>the<sp/>software<sp/>is<sp/>hereby<sp/>placed<sp/>in<sp/>the<sp/>public<sp/>domain.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/>In<sp/>case<sp/>this<sp/>attempt<sp/>to<sp/>disclaim<sp/>copyright<sp/>and<sp/>place<sp/>the<sp/>software<sp/>in<sp/>the</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/>public<sp/>domain<sp/>is<sp/>deemed<sp/>null<sp/>and<sp/>void,<sp/>then<sp/>the<sp/>software<sp/>is</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2001<sp/>Alexander<sp/>Peslyak<sp/>and<sp/>it<sp/>is<sp/>hereby<sp/>released<sp/>to<sp/>the</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/>general<sp/>public<sp/>under<sp/>the<sp/>following<sp/>terms:</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/>Redistribution<sp/>and<sp/>use<sp/>in<sp/>source<sp/>and<sp/>binary<sp/>forms,<sp/>with<sp/>or<sp/>without</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/>modification,<sp/>are<sp/>permitted.</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/>There&apos;s<sp/>ABSOLUTELY<sp/>NO<sp/>WARRANTY,<sp/>express<sp/>or<sp/>implied.</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*<sp/>See<sp/>md5.c<sp/>for<sp/>more<sp/>information.</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>HAVE_OPENSSL</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;openssl/md5.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#elif<sp/>!defined(_MD5_H)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_MD5_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Any<sp/>32-bit<sp/>or<sp/>wider<sp/>unsigned<sp/>integer<sp/>data<sp/>type<sp/>will<sp/>do<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="md5_8h_1a7c9e2a59b92cd132f707337f6d940122" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="md5_8h_1a7c9e2a59b92cd132f707337f6d940122" kindref="member">MD5_u32plus</ref>;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="struct_m_d5___c_t_x" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="35" refid="struct_m_d5___c_t_x_1ab6f070d5d937f16cddb2d666c32fdb8e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="md5_8h_1a7c9e2a59b92cd132f707337f6d940122" kindref="member">MD5_u32plus</ref><sp/><ref refid="struct_m_d5___c_t_x_1ab6f070d5d937f16cddb2d666c32fdb8e" kindref="member">lo</ref>,<sp/>hi;</highlight></codeline>
+<codeline lineno="36" refid="struct_m_d5___c_t_x_1a42be18d895cf7be9097073faf66734c1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="md5_8h_1a7c9e2a59b92cd132f707337f6d940122" kindref="member">MD5_u32plus</ref><sp/>a,<sp/>b,<sp/>c,<sp/><ref refid="struct_m_d5___c_t_x_1a42be18d895cf7be9097073faf66734c1" kindref="member">d</ref>;</highlight></codeline>
+<codeline lineno="37" refid="struct_m_d5___c_t_x_1a59e96eea04541ecd67c3faca41b13feb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>buffer[64];</highlight></codeline>
+<codeline lineno="38" refid="struct_m_d5___c_t_x_1ad8cb52dd70ac5316564b1e4b48b0ad7d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="md5_8h_1a7c9e2a59b92cd132f707337f6d940122" kindref="member">MD5_u32plus</ref><sp/>block[16];</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">}<sp/><ref refid="struct_m_d5___c_t_x" kindref="compound">MD5_CTX</ref>;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="md5_8h_1a3587b3aeb13e97b52d91ac79a65c2940" kindref="member">MD5_Init</ref>(<ref refid="struct_m_d5___c_t_x" kindref="compound">MD5_CTX</ref><sp/>*ctx);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="md5_8h_1a951aa68d9b7dc506718ae725f71929d9" kindref="member">MD5_Update</ref>(<ref refid="struct_m_d5___c_t_x" kindref="compound">MD5_CTX</ref><sp/>*ctx,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*data,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>size);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="md5_8h_1aeca2db0b7173b13c5debe066b8ea1116" kindref="member">MD5_Final</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*result,<sp/><ref refid="struct_m_d5___c_t_x" kindref="compound">MD5_CTX</ref><sp/>*ctx);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="md5.h"/>
+  </compounddef>
+</doxygen>

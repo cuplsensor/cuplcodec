@@ -1,0 +1,226 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="eep_8h" kind="file" language="C++">
+    <compoundname>eep.h</compoundname>
+    <includedby refid="eep_8c" local="yes">eep.c</includedby>
+    <includedby refid="ndef_8c" local="yes">ndef.c</includedby>
+    <includedby refid="octet_8c" local="yes">octet.c</includedby>
+    <invincdepgraph>
+      <node id="29">
+        <label>ndef.c</label>
+        <link refid="ndef_8c"/>
+      </node>
+      <node id="30">
+        <label>octet.c</label>
+        <link refid="octet_8c"/>
+      </node>
+      <node id="28">
+        <label>eep.c</label>
+        <link refid="eep_8c"/>
+      </node>
+      <node id="27">
+        <label>eep.h</label>
+        <link refid="eep_8h"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="eep_8h_1a9dc9545f49f34a394bf02e1a50ec94ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int eep_write</definition>
+        <argsstring>(const int eepblk, const unsigned int bufblk)</argsstring>
+        <name>eep_write</name>
+        <param>
+          <type>const int</type>
+          <declname>eepblk</declname>
+        </param>
+        <param>
+          <type>const unsigned int</type>
+          <declname>bufblk</declname>
+        </param>
+        <briefdescription>
+<para>Write a 16-byte block from the buffer to EEPROM. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eepblk</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Block of the EEPROM to write to. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bufblk</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Block of the buffer to write from.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>1 if the block to be written greater than the buffer size. Otherwise 0. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="eep.h" line="4" column="1" bodyfile="eep.c" bodystart="28" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="eep_8h_1a8b26a063120afe56d2938c9e4d0c9972" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int eep_read</definition>
+        <argsstring>(const int eepblk, const unsigned int bufblk)</argsstring>
+        <name>eep_read</name>
+        <param>
+          <type>const int</type>
+          <declname>eepblk</declname>
+        </param>
+        <param>
+          <type>const unsigned int</type>
+          <declname>bufblk</declname>
+        </param>
+        <briefdescription>
+<para>Read a 16-byte block from EEPROM to the buffer. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eepblk</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>EEPROM block to read. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bufblk</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Block of the buffer to copy the EEPROM contents to. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="eep.h" line="5" column="1" bodyfile="eep.c" bodystart="54" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="eep_8h_1a8cd332f8cc6c3f1c02fd4632ea253199" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int eep_cp</definition>
+        <argsstring>(int *indexptr, const char *dataptr, const int lenbytes)</argsstring>
+        <name>eep_cp</name>
+        <param>
+          <type>int *</type>
+          <declname>indexptr</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>dataptr</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>lenbytes</declname>
+        </param>
+        <briefdescription>
+<para>Copy data from a pointer into the buffer. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>indexptr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Data are copied into the buffer starting from this index. An integer from 0 to N-1, where N is the size of the buffer. indexptr is overwritten by the index one greater than the last data to be written. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dataptr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Data are copied from this pointer. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lenbytes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of bytes to copy into the buffer from dataptr. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 if the data to be copied will fit entirely in the buffer. Otherwise 1. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="eep.h" line="6" column="1" bodyfile="eep.c" bodystart="75" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="eep_8h_1a792afc39f1a399b46b5dd4040b090184" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int eep_cpbyte</definition>
+        <argsstring>(int *indexptr, const char bytedata)</argsstring>
+        <name>eep_cpbyte</name>
+        <param>
+          <type>int *</type>
+          <declname>indexptr</declname>
+        </param>
+        <param>
+          <type>const char</type>
+          <declname>bytedata</declname>
+        </param>
+        <briefdescription>
+<para>Copy one byte into the buffer. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>indexptr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The byte is copied into this index of the buffer. An integer from 0 to N-1, where N is the size of the buffer. indexptr is overwritten by indexptr+1. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bytedata</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Byte to be copied into the buffer. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 if indexptr is an index that will not overflow the buffer. Otherwise 1. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="eep.h" line="7" column="1" bodyfile="eep.c" bodystart="102" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="function" id="eep_8h_1ad5f7792e7dc3b034de4ee77fa8fc1c96" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void eep_waitwritedone</definition>
+        <argsstring>(void)</argsstring>
+        <name>eep_waitwritedone</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Block until the EEPROM block write has finished. </para>        </briefdescription>
+        <detaileddescription>
+<para>Writes of Flash memory take some milliseconds to complete. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="eep.h" line="8" column="1" bodyfile="eep.c" bodystart="45" bodyend="48"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>_EEP_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_EEP_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="eep_8h_1a9dc9545f49f34a394bf02e1a50ec94ce" kindref="member">eep_write</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>eepblk,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>bufblk);</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="eep_8h_1a8b26a063120afe56d2938c9e4d0c9972" kindref="member">eep_read</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>eepblk,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>bufblk);</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="eep_8h_1a8cd332f8cc6c3f1c02fd4632ea253199" kindref="member">eep_cp</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*<sp/>indexptr,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>dataptr,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>lenbytes);</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="eep_8h_1a792afc39f1a399b46b5dd4040b090184" kindref="member">eep_cpbyte</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*<sp/>indexptr,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>bytedata);</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="eep_8h_1ad5f7792e7dc3b034de4ee77fa8fc1c96" kindref="member">eep_waitwritedone</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//_BASE64_H_</highlight></codeline>
+    </programlisting>
+    <location file="eep.h"/>
+  </compounddef>
+</doxygen>

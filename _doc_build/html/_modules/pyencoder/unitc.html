@@ -1,0 +1,202 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>pyencoder.unitc &#8212; PSCodec 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for pyencoder.unitc</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">cffi</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">uuid</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">pycparser</span>
+<span class="kn">from</span> <span class="nn">pycparser</span> <span class="k">import</span> <span class="n">c_generator</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">importlib</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">weakref</span>
+
+<span class="n">ENCODER_CSOURCE_PATH</span> <span class="o">=</span> <span class="s2">&quot;../../encoder/&quot;</span>
+
+<span class="n">global_weakkeydict</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">WeakKeyDictionary</span><span class="p">()</span>
+
+<div class="viewcode-block" id="CFFIGenerator"><a class="viewcode-back" href="../../docs/reference/pyencoder.html#pyencoder.unitc.CFFIGenerator">[docs]</a><span class="k">class</span> <span class="nc">CFFIGenerator</span><span class="p">(</span><span class="n">pycparser</span><span class="o">.</span><span class="n">c_generator</span><span class="o">.</span><span class="n">CGenerator</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blacklist</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">blacklist</span> <span class="o">=</span> <span class="n">blacklist</span>
+
+    <span class="k">def</span> <span class="nf">visit_Decl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">visit_Decl</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">pycparser</span><span class="o">.</span><span class="n">c_ast</span><span class="o">.</span><span class="n">FuncDecl</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">n</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">blacklist</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s1">&#39;extern &quot;Python+C&quot; &#39;</span> <span class="o">+</span> <span class="n">result</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+<span class="k">def</span> <span class="nf">convert_function_declarations</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">blacklist</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">CFFIGenerator</span><span class="p">(</span><span class="n">blacklist</span><span class="p">)</span><span class="o">.</span><span class="n">visit</span><span class="p">(</span><span class="n">pycparser</span><span class="o">.</span><span class="n">CParser</span><span class="p">()</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">source</span><span class="p">))</span>
+
+<div class="viewcode-block" id="FunctionList"><a class="viewcode-back" href="../../docs/reference/pyencoder.html#pyencoder.unitc.FunctionList">[docs]</a><span class="k">class</span> <span class="nc">FunctionList</span><span class="p">(</span><span class="n">pycparser</span><span class="o">.</span><span class="n">c_ast</span><span class="o">.</span><span class="n">NodeVisitor</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">funcs</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">visit</span><span class="p">(</span><span class="n">pycparser</span><span class="o">.</span><span class="n">CParser</span><span class="p">()</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">source</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">otherlist</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">funcs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">otherlist</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">visit_FuncDef</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">funcs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">decl</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
+
+<span class="k">def</span> <span class="nf">preprocess</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s1">&#39;gcc&#39;</span><span class="p">,</span> <span class="s1">&#39;-E&#39;</span><span class="p">,</span> <span class="s1">&#39;-P&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;-I&#39;</span><span class="o">+</span><span class="n">ENCODER_CSOURCE_PATH</span><span class="p">,</span><span class="s1">&#39;-Ipycparser/utils/fake_libc_include&#39;</span><span class="p">],</span>
+                          <span class="nb">input</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+                          <span class="n">universal_newlines</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">stdout</span>
+
+<div class="viewcode-block" id="load"><a class="viewcode-back" href="../../docs/reference/pyencoder.html#pyencoder.unitc.load">[docs]</a><span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">depfilenames</span><span class="o">=</span><span class="nb">list</span><span class="p">()):</span>
+ <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd"> Load a file</span>
+<span class="sd"> &quot;&quot;&quot;</span>
+ <span class="c1">#if os.path.exists(&#39;encoder&#39;):</span>
+ <span class="c1">#     shutil.rmtree(&#39;encoder&#39;)</span>
+ <span class="c1">#shutil.copytree(&#39;../encoder/&#39;, &#39;encoder&#39;)</span>
+ <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;sharedobj.&#39;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s1">&#39;py&#39;</span> <span class="c1">#+ &#39;_&#39; + uuid.uuid4().hex</span>
+ <span class="c1"># load source code</span>
+ <span class="n">source</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">ENCODER_CSOURCE_PATH</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s1">&#39;.c&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+ <span class="k">for</span> <span class="n">depfilename</span> <span class="ow">in</span> <span class="n">depfilenames</span><span class="p">:</span>
+     <span class="n">depsource</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">ENCODER_CSOURCE_PATH</span> <span class="o">+</span> <span class="n">depfilename</span> <span class="o">+</span> <span class="s1">&#39;.c&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+     <span class="n">source</span> <span class="o">=</span> <span class="n">source</span> <span class="o">+</span> <span class="n">depsource</span>
+
+ <span class="c1"># preprocess all header files for CFFI</span>
+ <span class="n">includes</span> <span class="o">=</span> <span class="n">preprocess</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;\s*#include\s+.*&#39;</span><span class="p">,</span> <span class="n">source</span><span class="p">)))</span>
+
+ <span class="c1"># Obtain a list of local functions</span>
+ <span class="n">local_functions</span> <span class="o">=</span> <span class="n">FunctionList</span><span class="p">(</span><span class="n">preprocess</span><span class="p">(</span><span class="n">source</span><span class="p">))</span><span class="o">.</span><span class="n">funcs</span>
+ <span class="c1"># prefix external functions (not in the list) with extern &quot;Python+C&quot;</span>
+ <span class="n">includes</span> <span class="o">=</span> <span class="n">convert_function_declarations</span><span class="p">(</span><span class="n">includes</span><span class="p">,</span> <span class="n">local_functions</span><span class="p">)</span>
+
+ <span class="c1"># Obtain the absolute directory path of this file.</span>
+ <span class="n">abspath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
+
+ <span class="c1"># Pass source code and libraries to FFI Builder</span>
+ <span class="n">ffibuilder</span> <span class="o">=</span> <span class="n">cffi</span><span class="o">.</span><span class="n">FFI</span><span class="p">()</span>
+
+ <span class="c1"># Add all includes to the cdef attribute</span>
+ <span class="n">ffibuilder</span><span class="o">.</span><span class="n">cdef</span><span class="p">(</span><span class="n">includes</span><span class="p">,</span> <span class="n">override</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+ <span class="c1"># Add the source, library sources and include directories</span>
+ <span class="n">ffibuilder</span><span class="o">.</span><span class="n">set_source</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">include_dirs</span><span class="o">=</span><span class="p">[</span><span class="n">ENCODER_CSOURCE_PATH</span><span class="p">])</span>
+
+ <span class="n">ffibuilder</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+
+ <span class="c1"># import and return resulting module</span>
+ <span class="n">module</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+ <span class="n">module</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">nv</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="s1">&#39;serial&#39;</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;YWJjZGVm&quot;</span><span class="p">),</span>
+     <span class="s1">&#39;seckey&#39;</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;AAAACCCC&quot;</span><span class="p">),</span>
+     <span class="s1">&#39;smplintervalmins&#39;</span><span class="p">:</span> <span class="mi">12</span>
+ <span class="p">}</span>
+
+ <span class="k">return</span> <span class="n">module</span><span class="o">.</span><span class="n">lib</span><span class="p">,</span> <span class="n">module</span><span class="o">.</span><span class="n">ffi</span><span class="p">,</span> <span class="n">name</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">PSCodec</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/tutorial/index.html">PSCodec</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/tutorial/encoder.html">Encoder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/tutorial/decoder.html">Decoder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/tutorial/test.html">Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/reference/urldecoder.html">URL Decoder Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/reference/encoder.html">URL Encoder Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/reference/pyencoder.html">Python Wrapped Encoder (PyEncoder) Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Malcolm Mackay.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

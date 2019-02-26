@@ -1,0 +1,89 @@
+\hypertarget{octet_8c}{}\section{octet.\+c File Reference}
+\label{octet_8c}\index{octet.\+c@{octet.\+c}}
+{\ttfamily \#include \char`\"{}eep.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}octet.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}defs.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{octet_8c_a2b1e67d8529695393016ce1acd68ba19}{O\+C\+T\+E\+T\+\_\+\+T\+O\+\_\+\+B\+LK}}(octet)~(\+\_\+startblk + (octet $>$$>$ 1))
+\item 
+\#define \mbox{\hyperlink{octet_8c_adf67afe7bc714d56dd6c19c92a0a7e4a}{M\+A\+X\+\_\+\+C\+U\+R\+S\+O\+R\+O\+C\+T\+ET}}~(\+\_\+lenoctets -\/ 1)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{octet_8c_aa35e20df25ff426a3a0f1b36cf14d376}{octet\+\_\+restore}} (void)
+\item 
+int \mbox{\hyperlink{octet_8c_a0104a90b7774008e8a9976ca77a0a4f3}{octet\+\_\+init}} (const int startblk, const int lenblks)
+\item 
+int \mbox{\hyperlink{octet_8c_a356b1274922f88575947b2db44f20634}{octet\+\_\+commit4}} (void)
+\item 
+int \mbox{\hyperlink{octet_8c_af95f1c1da472de7c7a167779b51ef284}{octet\+\_\+commit2}} (void)
+\item 
+int \mbox{\hyperlink{octet_8c_ac2fc0ce5139ec19f357ebf68c88b54e1}{octet\+\_\+write}} (\mbox{\hyperlink{octet_8h_ad77dd7123b032e7d802173633e84cd92}{Oct\+Ind\+\_\+t}} octetindex, char $\ast$octetdata)
+\item 
+int \mbox{\hyperlink{octet_8c_ac943c19926037180241f1e97a11b7567}{octet\+\_\+movecursor}} (void)
+\item 
+\mbox{\hyperlink{octet_8h_a91d594c2716b872bf8b1b59a87567516}{Oct\+State\+\_\+t}} \mbox{\hyperlink{octet_8c_af7d3b29522962f2be3eb543a9f66bdef}{octet\+\_\+getstate}} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{octet_8c_adf67afe7bc714d56dd6c19c92a0a7e4a}\label{octet_8c_adf67afe7bc714d56dd6c19c92a0a7e4a}} 
+\index{octet.\+c@{octet.\+c}!M\+A\+X\+\_\+\+C\+U\+R\+S\+O\+R\+O\+C\+T\+ET@{M\+A\+X\+\_\+\+C\+U\+R\+S\+O\+R\+O\+C\+T\+ET}}
+\index{M\+A\+X\+\_\+\+C\+U\+R\+S\+O\+R\+O\+C\+T\+ET@{M\+A\+X\+\_\+\+C\+U\+R\+S\+O\+R\+O\+C\+T\+ET}!octet.\+c@{octet.\+c}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+C\+U\+R\+S\+O\+R\+O\+C\+T\+ET}{MAX\_CURSOROCTET}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+C\+U\+R\+S\+O\+R\+O\+C\+T\+ET~(\+\_\+lenoctets -\/ 1)}
+
+\mbox{\Hypertarget{octet_8c_a2b1e67d8529695393016ce1acd68ba19}\label{octet_8c_a2b1e67d8529695393016ce1acd68ba19}} 
+\index{octet.\+c@{octet.\+c}!O\+C\+T\+E\+T\+\_\+\+T\+O\+\_\+\+B\+LK@{O\+C\+T\+E\+T\+\_\+\+T\+O\+\_\+\+B\+LK}}
+\index{O\+C\+T\+E\+T\+\_\+\+T\+O\+\_\+\+B\+LK@{O\+C\+T\+E\+T\+\_\+\+T\+O\+\_\+\+B\+LK}!octet.\+c@{octet.\+c}}
+\subsubsection{\texorpdfstring{O\+C\+T\+E\+T\+\_\+\+T\+O\+\_\+\+B\+LK}{OCTET\_TO\_BLK}}
+{\footnotesize\ttfamily \#define O\+C\+T\+E\+T\+\_\+\+T\+O\+\_\+\+B\+LK(\begin{DoxyParamCaption}\item[{}]{octet }\end{DoxyParamCaption})~(\+\_\+startblk + (octet $>$$>$ 1))}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{octet_8c_af95f1c1da472de7c7a167779b51ef284}\label{octet_8c_af95f1c1da472de7c7a167779b51ef284}} 
+\index{octet.\+c@{octet.\+c}!octet\+\_\+commit2@{octet\+\_\+commit2}}
+\index{octet\+\_\+commit2@{octet\+\_\+commit2}!octet.\+c@{octet.\+c}}
+\subsubsection{\texorpdfstring{octet\+\_\+commit2()}{octet\_commit2()}}
+{\footnotesize\ttfamily int octet\+\_\+commit2 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{octet_8c_a356b1274922f88575947b2db44f20634}\label{octet_8c_a356b1274922f88575947b2db44f20634}} 
+\index{octet.\+c@{octet.\+c}!octet\+\_\+commit4@{octet\+\_\+commit4}}
+\index{octet\+\_\+commit4@{octet\+\_\+commit4}!octet.\+c@{octet.\+c}}
+\subsubsection{\texorpdfstring{octet\+\_\+commit4()}{octet\_commit4()}}
+{\footnotesize\ttfamily int octet\+\_\+commit4 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{octet_8c_af7d3b29522962f2be3eb543a9f66bdef}\label{octet_8c_af7d3b29522962f2be3eb543a9f66bdef}} 
+\index{octet.\+c@{octet.\+c}!octet\+\_\+getstate@{octet\+\_\+getstate}}
+\index{octet\+\_\+getstate@{octet\+\_\+getstate}!octet.\+c@{octet.\+c}}
+\subsubsection{\texorpdfstring{octet\+\_\+getstate()}{octet\_getstate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{octet_8h_a91d594c2716b872bf8b1b59a87567516}{Oct\+State\+\_\+t}} octet\+\_\+getstate (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{octet_8c_a0104a90b7774008e8a9976ca77a0a4f3}\label{octet_8c_a0104a90b7774008e8a9976ca77a0a4f3}} 
+\index{octet.\+c@{octet.\+c}!octet\+\_\+init@{octet\+\_\+init}}
+\index{octet\+\_\+init@{octet\+\_\+init}!octet.\+c@{octet.\+c}}
+\subsubsection{\texorpdfstring{octet\+\_\+init()}{octet\_init()}}
+{\footnotesize\ttfamily int octet\+\_\+init (\begin{DoxyParamCaption}\item[{const int}]{startblk,  }\item[{const int}]{lenblks }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{octet_8c_ac943c19926037180241f1e97a11b7567}\label{octet_8c_ac943c19926037180241f1e97a11b7567}} 
+\index{octet.\+c@{octet.\+c}!octet\+\_\+movecursor@{octet\+\_\+movecursor}}
+\index{octet\+\_\+movecursor@{octet\+\_\+movecursor}!octet.\+c@{octet.\+c}}
+\subsubsection{\texorpdfstring{octet\+\_\+movecursor()}{octet\_movecursor()}}
+{\footnotesize\ttfamily int octet\+\_\+movecursor (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{octet_8c_aa35e20df25ff426a3a0f1b36cf14d376}\label{octet_8c_aa35e20df25ff426a3a0f1b36cf14d376}} 
+\index{octet.\+c@{octet.\+c}!octet\+\_\+restore@{octet\+\_\+restore}}
+\index{octet\+\_\+restore@{octet\+\_\+restore}!octet.\+c@{octet.\+c}}
+\subsubsection{\texorpdfstring{octet\+\_\+restore()}{octet\_restore()}}
+{\footnotesize\ttfamily void octet\+\_\+restore (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{octet_8c_ac2fc0ce5139ec19f357ebf68c88b54e1}\label{octet_8c_ac2fc0ce5139ec19f357ebf68c88b54e1}} 
+\index{octet.\+c@{octet.\+c}!octet\+\_\+write@{octet\+\_\+write}}
+\index{octet\+\_\+write@{octet\+\_\+write}!octet.\+c@{octet.\+c}}
+\subsubsection{\texorpdfstring{octet\+\_\+write()}{octet\_write()}}
+{\footnotesize\ttfamily int octet\+\_\+write (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{octet_8h_ad77dd7123b032e7d802173633e84cd92}{Oct\+Ind\+\_\+t}}}]{octetindex,  }\item[{char $\ast$}]{octetdata }\end{DoxyParamCaption})}
+

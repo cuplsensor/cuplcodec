@@ -1,0 +1,434 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="smplhist_8c" kind="file" language="C++">
+    <compoundname>smplhist.c</compoundname>
+    <includes refid="smplhist_8h" local="yes">smplhist.h</includes>
+    <includes refid="defs_8h" local="yes">defs.h</includes>
+    <includes refid="md5_8h" local="yes">md5.h</includes>
+    <includes refid="nvtype_8h" local="yes">nvtype.h</includes>
+    <incdepgraph>
+      <node id="106">
+        <label>stdbool.h</label>
+      </node>
+      <node id="108">
+        <label>md5.h</label>
+        <link refid="md5_8h"/>
+      </node>
+      <node id="104">
+        <label>smplhist.c</label>
+        <link refid="smplhist_8c"/>
+        <childnode refid="105" relation="include">
+        </childnode>
+        <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="108" relation="include">
+        </childnode>
+        <childnode refid="109" relation="include">
+        </childnode>
+      </node>
+      <node id="105">
+        <label>smplhist.h</label>
+        <link refid="smplhist_8h"/>
+        <childnode refid="106" relation="include">
+        </childnode>
+      </node>
+      <node id="107">
+        <label>defs.h</label>
+        <link refid="defs_8h"/>
+      </node>
+      <node id="109">
+        <label>nvtype.h</label>
+        <link refid="nvtype_8h"/>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="smplhist_8c_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" prot="public" static="no" mutable="no">
+        <type><ref refid="nvtype_8h_1a78682d319c0de97ea2b35f88095d6e57" kindref="member">nv_t</ref></type>
+        <definition>nv_t nv</definition>
+        <argsstring></argsstring>
+        <name>nv</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="smplhist.c" line="6" column="1" bodyfile="nvtype.c" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="smplhist_8c_1a7f6bde1248a37ef8f419e7d8903a34b4" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int buflensamples</definition>
+        <argsstring></argsstring>
+        <name>buflensamples</name>
+        <initializer>= <ref refid="defs_8h_1a14c667ffecb19b066f43257c7361ff79" kindref="member">BUFLEN_SAMPLES</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="smplhist.c" line="8" column="1" bodyfile="smplhist.c" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="smplhist_8c_1a8aedd58352278eb408f36d088ed8f4aa" prot="public" static="yes" mutable="no">
+        <type><ref refid="smplhist_8h_1a6aed6c376195d183573501f3a8a77ca3" kindref="member">sdchars_t</ref></type>
+        <definition>sdchars_t samplehistory[BUFLEN_SAMPLES]</definition>
+        <argsstring>[BUFLEN_SAMPLES]</argsstring>
+        <name>samplehistory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="smplhist.c" line="9" column="1" bodyfile="smplhist.c" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="smplhist_8c_1a63cb38868474918fb01a197c2662c0ce" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int histpos</definition>
+        <argsstring></argsstring>
+        <name>histpos</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="smplhist.c" line="10" column="1" bodyfile="smplhist.c" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="smplhist_8c_1a0c84fb6f20b71986993b740a847ee98a" prot="public" static="yes" mutable="no">
+        <type>unsigned char</type>
+        <definition>unsigned char md5block[64]</definition>
+        <argsstring>[64]</argsstring>
+        <name>md5block</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="smplhist.c" line="11" column="1" bodyfile="smplhist.c" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="smplhist_8c_1a5ed58599732db2dc2dc9720d3b0f9677" prot="public" static="yes" mutable="no">
+        <type>const char</type>
+        <definition>const char ipadchar</definition>
+        <argsstring></argsstring>
+        <name>ipadchar</name>
+        <initializer>= 0x36</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="smplhist.c" line="13" column="1" bodyfile="smplhist.c" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="smplhist_8c_1a6bb1a6ddf23925c90b5d8b2219731f3c" prot="public" static="yes" mutable="no">
+        <type>const char</type>
+        <definition>const char opadchar</definition>
+        <argsstring></argsstring>
+        <name>opadchar</name>
+        <initializer>= 0x5C</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="smplhist.c" line="14" column="1" bodyfile="smplhist.c" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="smplhist_8c_1abb4f0f09c8d00116fc06d4ddd98b7e4e" prot="public" static="yes" mutable="no">
+        <type><ref refid="struct_m_d5___c_t_x" kindref="compound">MD5_CTX</ref></type>
+        <definition>MD5_CTX ctx</definition>
+        <argsstring></argsstring>
+        <name>ctx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="smplhist.c" line="15" column="1" bodyfile="smplhist.c" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="smplhist_8c_1ac0a11776eab3faf04d27a1c212a7a60e" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int prevhistpos</definition>
+        <argsstring></argsstring>
+        <name>prevhistpos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="smplhist.c" line="16" column="1" bodyfile="smplhist.c" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="smplhist_8c_1affe400f90c858c88868d0ee6a1a9d3df" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int smplhist_ovr</definition>
+        <argsstring>(sdchars_t sample)</argsstring>
+        <name>smplhist_ovr</name>
+        <param>
+          <type><ref refid="smplhist_8h_1a6aed6c376195d183573501f3a8a77ca3" kindref="member">sdchars_t</ref></type>
+          <declname>sample</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="smplhist.c" line="18" column="1" bodyfile="smplhist.c" bodystart="18" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="smplhist_8c_1a8b601164eab6ef2ea4d6643970a760f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int smplhist_push</definition>
+        <argsstring>(sdchars_t sample)</argsstring>
+        <name>smplhist_push</name>
+        <param>
+          <type><ref refid="smplhist_8h_1a6aed6c376195d183573501f3a8a77ca3" kindref="member">sdchars_t</ref></type>
+          <declname>sample</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="smplhist.c" line="25" column="1" bodyfile="smplhist.c" bodystart="25" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="smplhist_8c_1a795461eee0cdd59fced4cdd31c30dd44" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="smplhist_8h_1a6aed6c376195d183573501f3a8a77ca3" kindref="member">sdchars_t</ref></type>
+        <definition>static sdchars_t smplhist_read</definition>
+        <argsstring>(unsigned int index, int *error)</argsstring>
+        <name>smplhist_read</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>error</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="smplhist.c" line="42" column="1" bodyfile="smplhist.c" bodystart="42" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="smplhist_8c_1a92c0645dcea2976bba0b05556472e211" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="smplhist_8h_1acc281e4cc90073d250cb40e8e91897c9" kindref="member">md5len_t</ref></type>
+        <definition>md5len_t smplhist_md5</definition>
+        <argsstring>(int lensmpls, bool usehmac)</argsstring>
+        <name>smplhist_md5</name>
+        <param>
+          <type>int</type>
+          <declname>lensmpls</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>usehmac</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="smplhist.c" line="73" column="1" bodyfile="smplhist.c" bodystart="73" bodyend="181"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="smplhist_8h" kindref="compound">smplhist.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="defs_8h" kindref="compound">defs.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="md5_8h" kindref="compound">md5.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="nvtype_8h" kindref="compound">nvtype.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="structnvstruct" kindref="compound">nv_t</ref><sp/><ref refid="smplhist_8c_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" kindref="member">nv</ref>;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="smplhist_8c_1a7f6bde1248a37ef8f419e7d8903a34b4" kindref="member">buflensamples</ref><sp/>=<sp/><ref refid="defs_8h_1a14c667ffecb19b066f43257c7361ff79" kindref="member">BUFLEN_SAMPLES</ref>;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structsensordatachars" kindref="compound">sdchars_t</ref><sp/>samplehistory[<ref refid="defs_8h_1a14c667ffecb19b066f43257c7361ff79" kindref="member">BUFLEN_SAMPLES</ref>];</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>histpos<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>md5block[64];</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//char<sp/>secretkey[]<sp/>=<sp/>&quot;AAAACCCC&quot;;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>ipadchar<sp/>=<sp/>0x36;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>opadchar<sp/>=<sp/>0x5C;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="struct_m_d5___c_t_x" kindref="compound">MD5_CTX</ref><sp/>ctx;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>prevhistpos;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="smplhist_8c_1affe400f90c858c88868d0ee6a1a9d3df" kindref="member">smplhist_ovr</ref>(<ref refid="structsensordatachars" kindref="compound">sdchars_t</ref><sp/>sample)</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/>samplehistory[prevhistpos]<sp/>=<sp/>sample;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="smplhist_8c_1a8b601164eab6ef2ea4d6643970a760f6" kindref="member">smplhist_push</ref>(<ref refid="structsensordatachars" kindref="compound">sdchars_t</ref><sp/>sample)</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/>samplehistory[histpos]<sp/>=<sp/>sample;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/>prevhistpos<sp/>=<sp/>histpos;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(histpos<sp/>==<sp/><ref refid="defs_8h_1a14c667ffecb19b066f43257c7361ff79" kindref="member">BUFLEN_SAMPLES</ref>-1)</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>histpos<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>histpos++;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structsensordatachars" kindref="compound">sdchars_t</ref><sp/>smplhist_read(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*<sp/>error)</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>readpos;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structsensordatachars" kindref="compound">sdchars_t</ref><sp/>sample;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>*error<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>readpos<sp/>=<sp/>(histpos<sp/>-<sp/>1)<sp/>-<sp/>index;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(readpos<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>readpos<sp/>+=<sp/>(<ref refid="defs_8h_1a14c667ffecb19b066f43257c7361ff79" kindref="member">BUFLEN_SAMPLES</ref>);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(readpos<sp/>&gt;=<sp/>histpos)</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sample<sp/>=<sp/>samplehistory[readpos];</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sample.<ref refid="structsensordatachars_1a978b1d72dd059ccd2323ee66bea4d654" kindref="member">m1Msb</ref><sp/>=<sp/>0;<sp/></highlight><highlight class="comment">//<sp/>Not<sp/>allowed<sp/>to<sp/>loop<sp/>around<sp/>the<sp/>buffer<sp/>more<sp/>than<sp/>once.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sample.<ref refid="structsensordatachars_1a030c938f5a438a3556f1887dfe72466f" kindref="member">m2Msb</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sample.<ref refid="structsensordatachars_1afbfc01b26f853a9c35003e1c065db84f" kindref="member">Lsb</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*error<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sample<sp/>=<sp/>samplehistory[readpos];</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>sample;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><ref refid="structmd5len" kindref="compound">md5len_t</ref><sp/><ref refid="smplhist_8c_1a92c0645dcea2976bba0b05556472e211" kindref="member">smplhist_md5</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>lensmpls,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>usehmac)</highlight></codeline>
+<codeline lineno="74"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structsensordatachars" kindref="compound">sdchars_t</ref><sp/>prevsmpl;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>error<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>smplindex<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structmd5len" kindref="compound">md5len_t</ref><sp/>md5length;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>md5result[16];</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>secretkey<sp/>=<sp/><ref refid="smplhist_8c_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" kindref="member">nv</ref>.<ref refid="structnvstruct_1a680c038327bbd20d30beade8d0ef1dd4" kindref="member">seckey</ref>;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="md5_8c_1a3587b3aeb13e97b52d91ac79a65c2940" kindref="member">MD5_Init</ref>(&amp;ctx);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(usehmac)</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Append<sp/>inner<sp/>key.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=0;<sp/>i&lt;</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(md5block);<sp/>i++)</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(i&lt;<ref refid="nvtype_8h_1ae32c9007f59a1d55426d7fd63e10d589" kindref="member">SECKEY_LENBYTES</ref>)</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>md5block[i]<sp/>=<sp/>secretkey[i]<sp/>^<sp/>ipadchar;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>md5block[i]<sp/>=<sp/>ipadchar;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="md5_8c_1a951aa68d9b7dc506718ae725f71929d9" kindref="member">MD5_Update</ref>(&amp;ctx,<sp/>md5block,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(md5block));</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Seperate<sp/>sample<sp/>history<sp/>into<sp/>64<sp/>byte<sp/>blocks<sp/>and<sp/>a<sp/>partial<sp/>block.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>i=0;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Start<sp/>to<sp/>take<sp/>MD5<sp/>of<sp/>the<sp/>message.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(smplindex&lt;lensmpls)</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>prevsmpl<sp/>=<sp/>smplhist_read(smplindex++,<sp/>&amp;error);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(error<sp/>==<sp/>1)</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(md5length.<ref refid="structmd5len_1a4c66fedccd3b4737bd953f53dccc3c8a" kindref="member">md5</ref>);<sp/>i++)</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>md5length.<ref refid="structmd5len_1a4c66fedccd3b4737bd953f53dccc3c8a" kindref="member">md5</ref>[i]<sp/>=<sp/>9;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>md5length;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>md5block[i++]<sp/>=<sp/>prevsmpl.<ref refid="structsensordatachars_1a978b1d72dd059ccd2323ee66bea4d654" kindref="member">m1Msb</ref>;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>md5block[i++]<sp/>=<sp/>prevsmpl.<ref refid="structsensordatachars_1a030c938f5a438a3556f1887dfe72466f" kindref="member">m2Msb</ref>;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>md5block[i++]<sp/>=<sp/>prevsmpl.<ref refid="structsensordatachars_1afbfc01b26f853a9c35003e1c065db84f" kindref="member">Lsb</ref>;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>When<sp/>i<sp/>is<sp/>a<sp/>multiple<sp/>of<sp/>63<sp/>samples,<sp/>the<sp/>maximum<sp/>number<sp/>that<sp/>can<sp/>be<sp/>store<sp/>in<sp/>a<sp/>64<sp/>byte<sp/>block.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(i<sp/>==<sp/>63)</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="md5_8c_1a951aa68d9b7dc506718ae725f71929d9" kindref="member">MD5_Update</ref>(&amp;ctx,<sp/>md5block,<sp/>i);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(i<sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Calculate<sp/>MD5<sp/>checksum<sp/>from<sp/>sample<sp/>history.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="md5_8c_1a951aa68d9b7dc506718ae725f71929d9" kindref="member">MD5_Update</ref>(&amp;ctx,<sp/>md5block,<sp/>i);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(usehmac)</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Obtain<sp/>MD5<sp/>digest.<sp/>Hash<sp/>sum<sp/>1.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="md5_8c_1aeca2db0b7173b13c5debe066b8ea1116" kindref="member">MD5_Final</ref>(md5result,<sp/>&amp;ctx);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Copy<sp/>hash<sp/>sum<sp/>1<sp/>to<sp/>the<sp/>start<sp/>of<sp/>a<sp/>new<sp/>MD5<sp/>block.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Reinitialise<sp/>MD5.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="md5_8c_1a3587b3aeb13e97b52d91ac79a65c2940" kindref="member">MD5_Init</ref>(&amp;ctx);</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Append<sp/>outer<sp/>key.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=0;<sp/>i&lt;</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(md5block);<sp/>i++)</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(i&lt;<ref refid="nvtype_8h_1ae32c9007f59a1d55426d7fd63e10d589" kindref="member">SECKEY_LENBYTES</ref>)</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>md5block[i]<sp/>=<sp/>secretkey[i]<sp/>^<sp/>opadchar;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>md5block[i]<sp/>=<sp/>opadchar;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="md5_8c_1a951aa68d9b7dc506718ae725f71929d9" kindref="member">MD5_Update</ref>(&amp;ctx,<sp/>md5block,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(md5block));</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=0;<sp/>i&lt;</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(md5result);<sp/>i++)</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>md5block[i]<sp/>=<sp/>md5result[i];</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="md5_8c_1a951aa68d9b7dc506718ae725f71929d9" kindref="member">MD5_Update</ref>(&amp;ctx,<sp/>md5block,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(md5result));</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Obtain<sp/>MD5<sp/>digest.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="md5_8c_1aeca2db0b7173b13c5debe066b8ea1116" kindref="member">MD5_Final</ref>(md5result,<sp/>&amp;ctx);</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Place<sp/>lower<sp/>6<sp/>bytes<sp/>into<sp/>md5length<sp/>structure.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(md5length.<ref refid="structmd5len_1a4c66fedccd3b4737bd953f53dccc3c8a" kindref="member">md5</ref>);<sp/>i++)</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>md5length.<ref refid="structmd5len_1a4c66fedccd3b4737bd953f53dccc3c8a" kindref="member">md5</ref>[i]<sp/>=<sp/>md5result[i];</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>md5length.<ref refid="structmd5len_1a0f1659d851e4200abf60643049dd9e9a" kindref="member">lensmplsbytes</ref>[0]<sp/>=<sp/>(lensmpls<sp/>&amp;<sp/>0xFF00)<sp/>&gt;&gt;<sp/>8;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>md5length.<ref refid="structmd5len_1a0f1659d851e4200abf60643049dd9e9a" kindref="member">lensmplsbytes</ref>[1]<sp/>=<sp/>(lensmpls<sp/>&amp;<sp/>0x00FF);</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>md5length;</highlight></codeline>
+<codeline lineno="181"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="smplhist.c"/>
+  </compounddef>
+</doxygen>

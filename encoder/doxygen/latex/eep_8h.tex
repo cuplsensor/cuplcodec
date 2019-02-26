@@ -1,0 +1,107 @@
+\hypertarget{eep_8h}{}\section{eep.\+h File Reference}
+\label{eep_8h}\index{eep.\+h@{eep.\+h}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{eep_8h_a9dc9545f49f34a394bf02e1a50ec94ce}{eep\+\_\+write}} (const int eepblk, const unsigned int bufblk)
+\begin{DoxyCompactList}\small\item\em Write a 16-\/byte block from the buffer to E\+E\+P\+R\+OM. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{eep_8h_a8b26a063120afe56d2938c9e4d0c9972}{eep\+\_\+read}} (const int eepblk, const unsigned int bufblk)
+\begin{DoxyCompactList}\small\item\em Read a 16-\/byte block from E\+E\+P\+R\+OM to the buffer. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{eep_8h_a8cd332f8cc6c3f1c02fd4632ea253199}{eep\+\_\+cp}} (int $\ast$indexptr, const char $\ast$dataptr, const int lenbytes)
+\begin{DoxyCompactList}\small\item\em Copy data from a pointer into the buffer. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{eep_8h_a792afc39f1a399b46b5dd4040b090184}{eep\+\_\+cpbyte}} (int $\ast$indexptr, const char bytedata)
+\begin{DoxyCompactList}\small\item\em Copy one byte into the buffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{eep_8h_ad5f7792e7dc3b034de4ee77fa8fc1c96}{eep\+\_\+waitwritedone}} (void)
+\begin{DoxyCompactList}\small\item\em Block until the E\+E\+P\+R\+OM block write has finished. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{eep_8h_a8cd332f8cc6c3f1c02fd4632ea253199}\label{eep_8h_a8cd332f8cc6c3f1c02fd4632ea253199}} 
+\index{eep.\+h@{eep.\+h}!eep\+\_\+cp@{eep\+\_\+cp}}
+\index{eep\+\_\+cp@{eep\+\_\+cp}!eep.\+h@{eep.\+h}}
+\subsubsection{\texorpdfstring{eep\+\_\+cp()}{eep\_cp()}}
+{\footnotesize\ttfamily int eep\+\_\+cp (\begin{DoxyParamCaption}\item[{int $\ast$}]{indexptr,  }\item[{const char $\ast$}]{dataptr,  }\item[{const int}]{lenbytes }\end{DoxyParamCaption})}
+
+
+
+Copy data from a pointer into the buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em indexptr} & Data are copied into the buffer starting from this index. An integer from 0 to N-\/1, where N is the size of the buffer. indexptr is overwritten by the index one greater than the last data to be written. \\
+\hline
+{\em dataptr} & Data are copied from this pointer. \\
+\hline
+{\em lenbytes} & The number of bytes to copy into the buffer from dataptr. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the data to be copied will fit entirely in the buffer. Otherwise 1. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{eep_8h_a792afc39f1a399b46b5dd4040b090184}\label{eep_8h_a792afc39f1a399b46b5dd4040b090184}} 
+\index{eep.\+h@{eep.\+h}!eep\+\_\+cpbyte@{eep\+\_\+cpbyte}}
+\index{eep\+\_\+cpbyte@{eep\+\_\+cpbyte}!eep.\+h@{eep.\+h}}
+\subsubsection{\texorpdfstring{eep\+\_\+cpbyte()}{eep\_cpbyte()}}
+{\footnotesize\ttfamily int eep\+\_\+cpbyte (\begin{DoxyParamCaption}\item[{int $\ast$}]{indexptr,  }\item[{const char}]{bytedata }\end{DoxyParamCaption})}
+
+
+
+Copy one byte into the buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em indexptr} & The byte is copied into this index of the buffer. An integer from 0 to N-\/1, where N is the size of the buffer. indexptr is overwritten by indexptr+1. \\
+\hline
+{\em bytedata} & Byte to be copied into the buffer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if indexptr is an index that will not overflow the buffer. Otherwise 1. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{eep_8h_a8b26a063120afe56d2938c9e4d0c9972}\label{eep_8h_a8b26a063120afe56d2938c9e4d0c9972}} 
+\index{eep.\+h@{eep.\+h}!eep\+\_\+read@{eep\+\_\+read}}
+\index{eep\+\_\+read@{eep\+\_\+read}!eep.\+h@{eep.\+h}}
+\subsubsection{\texorpdfstring{eep\+\_\+read()}{eep\_read()}}
+{\footnotesize\ttfamily int eep\+\_\+read (\begin{DoxyParamCaption}\item[{const int}]{eepblk,  }\item[{const unsigned int}]{bufblk }\end{DoxyParamCaption})}
+
+
+
+Read a 16-\/byte block from E\+E\+P\+R\+OM to the buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em eepblk} & E\+E\+P\+R\+OM block to read. \\
+\hline
+{\em bufblk} & Block of the buffer to copy the E\+E\+P\+R\+OM contents to. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{eep_8h_ad5f7792e7dc3b034de4ee77fa8fc1c96}\label{eep_8h_ad5f7792e7dc3b034de4ee77fa8fc1c96}} 
+\index{eep.\+h@{eep.\+h}!eep\+\_\+waitwritedone@{eep\+\_\+waitwritedone}}
+\index{eep\+\_\+waitwritedone@{eep\+\_\+waitwritedone}!eep.\+h@{eep.\+h}}
+\subsubsection{\texorpdfstring{eep\+\_\+waitwritedone()}{eep\_waitwritedone()}}
+{\footnotesize\ttfamily void eep\+\_\+waitwritedone (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Block until the E\+E\+P\+R\+OM block write has finished. 
+
+Writes of Flash memory take some milliseconds to complete. \mbox{\Hypertarget{eep_8h_a9dc9545f49f34a394bf02e1a50ec94ce}\label{eep_8h_a9dc9545f49f34a394bf02e1a50ec94ce}} 
+\index{eep.\+h@{eep.\+h}!eep\+\_\+write@{eep\+\_\+write}}
+\index{eep\+\_\+write@{eep\+\_\+write}!eep.\+h@{eep.\+h}}
+\subsubsection{\texorpdfstring{eep\+\_\+write()}{eep\_write()}}
+{\footnotesize\ttfamily int eep\+\_\+write (\begin{DoxyParamCaption}\item[{const int}]{eepblk,  }\item[{const unsigned int}]{bufblk }\end{DoxyParamCaption})}
+
+
+
+Write a 16-\/byte block from the buffer to E\+E\+P\+R\+OM. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em eepblk} & Block of the E\+E\+P\+R\+OM to write to. \\
+\hline
+{\em bufblk} & Block of the buffer to write from.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the block to be written greater than the buffer size. Otherwise 0. 
+\end{DoxyReturn}

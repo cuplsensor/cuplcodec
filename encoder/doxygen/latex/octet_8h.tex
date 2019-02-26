@@ -1,0 +1,142 @@
+\hypertarget{octet_8h}{}\section{octet.\+h File Reference}
+\label{octet_8h}\index{octet.\+h@{octet.\+h}}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \mbox{\hyperlink{octet_8h_a4d73229613f72b4dc2cf993e2329923d}{Oct\+Ind}} \mbox{\hyperlink{octet_8h_ad77dd7123b032e7d802173633e84cd92}{Oct\+Ind\+\_\+t}}
+\item 
+typedef enum \mbox{\hyperlink{octet_8h_aefad8516abbfca6d626941e525872611}{Oct\+State}} \mbox{\hyperlink{octet_8h_a91d594c2716b872bf8b1b59a87567516}{Oct\+State\+\_\+t}}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{octet_8h_a4d73229613f72b4dc2cf993e2329923d}{Oct\+Ind}} \{ \mbox{\hyperlink{octet_8h_a4d73229613f72b4dc2cf993e2329923dabb49f2e8ded70fd8058b3e5298f2e99f}{Octet0}} = 0, 
+\mbox{\hyperlink{octet_8h_a4d73229613f72b4dc2cf993e2329923da8cac7c070f12ed9c9ad443ebf7aca553}{Octet1}} = 1, 
+\mbox{\hyperlink{octet_8h_a4d73229613f72b4dc2cf993e2329923daf8c1af96ea2609525686923985022522}{Octet2}} = 2
+ \}
+\item 
+enum \mbox{\hyperlink{octet_8h_aefad8516abbfca6d626941e525872611}{Oct\+State}} \{ \mbox{\hyperlink{octet_8h_aefad8516abbfca6d626941e525872611a57fa0bc21fa59477d4dc142308115c82}{firstloop}}, 
+\mbox{\hyperlink{octet_8h_aefad8516abbfca6d626941e525872611a4e74c26fa00eaaa19f02e1bd09231012}{loopingaround}}, 
+\mbox{\hyperlink{octet_8h_aefad8516abbfca6d626941e525872611a8b6cceb27f9c53b65ddc715f8bf6c29c}{overwriting}}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{octet_8h_a0104a90b7774008e8a9976ca77a0a4f3}{octet\+\_\+init}} (const int startblk, const int lenblks)
+\item 
+int \mbox{\hyperlink{octet_8h_a356b1274922f88575947b2db44f20634}{octet\+\_\+commit4}} (void)
+\item 
+int \mbox{\hyperlink{octet_8h_af95f1c1da472de7c7a167779b51ef284}{octet\+\_\+commit2}} (void)
+\item 
+int \mbox{\hyperlink{octet_8h_ac2fc0ce5139ec19f357ebf68c88b54e1}{octet\+\_\+write}} (\mbox{\hyperlink{octet_8h_ad77dd7123b032e7d802173633e84cd92}{Oct\+Ind\+\_\+t}} octetindex, char $\ast$octetdata)
+\item 
+int \mbox{\hyperlink{octet_8h_ac943c19926037180241f1e97a11b7567}{octet\+\_\+movecursor}} (void)
+\item 
+void \mbox{\hyperlink{octet_8h_aa35e20df25ff426a3a0f1b36cf14d376}{octet\+\_\+restore}} (void)
+\item 
+\mbox{\hyperlink{octet_8h_a91d594c2716b872bf8b1b59a87567516}{Oct\+State\+\_\+t}} \mbox{\hyperlink{octet_8h_af7d3b29522962f2be3eb543a9f66bdef}{octet\+\_\+getstate}} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{octet_8h_ad77dd7123b032e7d802173633e84cd92}\label{octet_8h_ad77dd7123b032e7d802173633e84cd92}} 
+\index{octet.\+h@{octet.\+h}!Oct\+Ind\+\_\+t@{Oct\+Ind\+\_\+t}}
+\index{Oct\+Ind\+\_\+t@{Oct\+Ind\+\_\+t}!octet.\+h@{octet.\+h}}
+\subsubsection{\texorpdfstring{Oct\+Ind\+\_\+t}{OctInd\_t}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{octet_8h_a4d73229613f72b4dc2cf993e2329923d}{Oct\+Ind}}  \mbox{\hyperlink{octet_8h_ad77dd7123b032e7d802173633e84cd92}{Oct\+Ind\+\_\+t}}}
+
+\mbox{\Hypertarget{octet_8h_a91d594c2716b872bf8b1b59a87567516}\label{octet_8h_a91d594c2716b872bf8b1b59a87567516}} 
+\index{octet.\+h@{octet.\+h}!Oct\+State\+\_\+t@{Oct\+State\+\_\+t}}
+\index{Oct\+State\+\_\+t@{Oct\+State\+\_\+t}!octet.\+h@{octet.\+h}}
+\subsubsection{\texorpdfstring{Oct\+State\+\_\+t}{OctState\_t}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{octet_8h_aefad8516abbfca6d626941e525872611}{Oct\+State}}  \mbox{\hyperlink{octet_8h_a91d594c2716b872bf8b1b59a87567516}{Oct\+State\+\_\+t}}}
+
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{octet_8h_a4d73229613f72b4dc2cf993e2329923d}\label{octet_8h_a4d73229613f72b4dc2cf993e2329923d}} 
+\index{octet.\+h@{octet.\+h}!Oct\+Ind@{Oct\+Ind}}
+\index{Oct\+Ind@{Oct\+Ind}!octet.\+h@{octet.\+h}}
+\subsubsection{\texorpdfstring{Oct\+Ind}{OctInd}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{octet_8h_a4d73229613f72b4dc2cf993e2329923d}{Oct\+Ind}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Octet0@{Octet0}!octet.\+h@{octet.\+h}}\index{octet.\+h@{octet.\+h}!Octet0@{Octet0}}}\mbox{\Hypertarget{octet_8h_a4d73229613f72b4dc2cf993e2329923dabb49f2e8ded70fd8058b3e5298f2e99f}\label{octet_8h_a4d73229613f72b4dc2cf993e2329923dabb49f2e8ded70fd8058b3e5298f2e99f}} 
+Octet0&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Octet1@{Octet1}!octet.\+h@{octet.\+h}}\index{octet.\+h@{octet.\+h}!Octet1@{Octet1}}}\mbox{\Hypertarget{octet_8h_a4d73229613f72b4dc2cf993e2329923da8cac7c070f12ed9c9ad443ebf7aca553}\label{octet_8h_a4d73229613f72b4dc2cf993e2329923da8cac7c070f12ed9c9ad443ebf7aca553}} 
+Octet1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Octet2@{Octet2}!octet.\+h@{octet.\+h}}\index{octet.\+h@{octet.\+h}!Octet2@{Octet2}}}\mbox{\Hypertarget{octet_8h_a4d73229613f72b4dc2cf993e2329923daf8c1af96ea2609525686923985022522}\label{octet_8h_a4d73229613f72b4dc2cf993e2329923daf8c1af96ea2609525686923985022522}} 
+Octet2&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{octet_8h_aefad8516abbfca6d626941e525872611}\label{octet_8h_aefad8516abbfca6d626941e525872611}} 
+\index{octet.\+h@{octet.\+h}!Oct\+State@{Oct\+State}}
+\index{Oct\+State@{Oct\+State}!octet.\+h@{octet.\+h}}
+\subsubsection{\texorpdfstring{Oct\+State}{OctState}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{octet_8h_aefad8516abbfca6d626941e525872611}{Oct\+State}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{firstloop@{firstloop}!octet.\+h@{octet.\+h}}\index{octet.\+h@{octet.\+h}!firstloop@{firstloop}}}\mbox{\Hypertarget{octet_8h_aefad8516abbfca6d626941e525872611a57fa0bc21fa59477d4dc142308115c82}\label{octet_8h_aefad8516abbfca6d626941e525872611a57fa0bc21fa59477d4dc142308115c82}} 
+firstloop&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{loopingaround@{loopingaround}!octet.\+h@{octet.\+h}}\index{octet.\+h@{octet.\+h}!loopingaround@{loopingaround}}}\mbox{\Hypertarget{octet_8h_aefad8516abbfca6d626941e525872611a4e74c26fa00eaaa19f02e1bd09231012}\label{octet_8h_aefad8516abbfca6d626941e525872611a4e74c26fa00eaaa19f02e1bd09231012}} 
+loopingaround&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{overwriting@{overwriting}!octet.\+h@{octet.\+h}}\index{octet.\+h@{octet.\+h}!overwriting@{overwriting}}}\mbox{\Hypertarget{octet_8h_aefad8516abbfca6d626941e525872611a8b6cceb27f9c53b65ddc715f8bf6c29c}\label{octet_8h_aefad8516abbfca6d626941e525872611a8b6cceb27f9c53b65ddc715f8bf6c29c}} 
+overwriting&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{octet_8h_af95f1c1da472de7c7a167779b51ef284}\label{octet_8h_af95f1c1da472de7c7a167779b51ef284}} 
+\index{octet.\+h@{octet.\+h}!octet\+\_\+commit2@{octet\+\_\+commit2}}
+\index{octet\+\_\+commit2@{octet\+\_\+commit2}!octet.\+h@{octet.\+h}}
+\subsubsection{\texorpdfstring{octet\+\_\+commit2()}{octet\_commit2()}}
+{\footnotesize\ttfamily int octet\+\_\+commit2 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{octet_8h_a356b1274922f88575947b2db44f20634}\label{octet_8h_a356b1274922f88575947b2db44f20634}} 
+\index{octet.\+h@{octet.\+h}!octet\+\_\+commit4@{octet\+\_\+commit4}}
+\index{octet\+\_\+commit4@{octet\+\_\+commit4}!octet.\+h@{octet.\+h}}
+\subsubsection{\texorpdfstring{octet\+\_\+commit4()}{octet\_commit4()}}
+{\footnotesize\ttfamily int octet\+\_\+commit4 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{octet_8h_af7d3b29522962f2be3eb543a9f66bdef}\label{octet_8h_af7d3b29522962f2be3eb543a9f66bdef}} 
+\index{octet.\+h@{octet.\+h}!octet\+\_\+getstate@{octet\+\_\+getstate}}
+\index{octet\+\_\+getstate@{octet\+\_\+getstate}!octet.\+h@{octet.\+h}}
+\subsubsection{\texorpdfstring{octet\+\_\+getstate()}{octet\_getstate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{octet_8h_a91d594c2716b872bf8b1b59a87567516}{Oct\+State\+\_\+t}} octet\+\_\+getstate (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{octet_8h_a0104a90b7774008e8a9976ca77a0a4f3}\label{octet_8h_a0104a90b7774008e8a9976ca77a0a4f3}} 
+\index{octet.\+h@{octet.\+h}!octet\+\_\+init@{octet\+\_\+init}}
+\index{octet\+\_\+init@{octet\+\_\+init}!octet.\+h@{octet.\+h}}
+\subsubsection{\texorpdfstring{octet\+\_\+init()}{octet\_init()}}
+{\footnotesize\ttfamily int octet\+\_\+init (\begin{DoxyParamCaption}\item[{const int}]{startblk,  }\item[{const int}]{lenblks }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{octet_8h_ac943c19926037180241f1e97a11b7567}\label{octet_8h_ac943c19926037180241f1e97a11b7567}} 
+\index{octet.\+h@{octet.\+h}!octet\+\_\+movecursor@{octet\+\_\+movecursor}}
+\index{octet\+\_\+movecursor@{octet\+\_\+movecursor}!octet.\+h@{octet.\+h}}
+\subsubsection{\texorpdfstring{octet\+\_\+movecursor()}{octet\_movecursor()}}
+{\footnotesize\ttfamily int octet\+\_\+movecursor (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{octet_8h_aa35e20df25ff426a3a0f1b36cf14d376}\label{octet_8h_aa35e20df25ff426a3a0f1b36cf14d376}} 
+\index{octet.\+h@{octet.\+h}!octet\+\_\+restore@{octet\+\_\+restore}}
+\index{octet\+\_\+restore@{octet\+\_\+restore}!octet.\+h@{octet.\+h}}
+\subsubsection{\texorpdfstring{octet\+\_\+restore()}{octet\_restore()}}
+{\footnotesize\ttfamily void octet\+\_\+restore (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{octet_8h_ac2fc0ce5139ec19f357ebf68c88b54e1}\label{octet_8h_ac2fc0ce5139ec19f357ebf68c88b54e1}} 
+\index{octet.\+h@{octet.\+h}!octet\+\_\+write@{octet\+\_\+write}}
+\index{octet\+\_\+write@{octet\+\_\+write}!octet.\+h@{octet.\+h}}
+\subsubsection{\texorpdfstring{octet\+\_\+write()}{octet\_write()}}
+{\footnotesize\ttfamily int octet\+\_\+write (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{octet_8h_ad77dd7123b032e7d802173633e84cd92}{Oct\+Ind\+\_\+t}}}]{octetindex,  }\item[{char $\ast$}]{octetdata }\end{DoxyParamCaption})}
+

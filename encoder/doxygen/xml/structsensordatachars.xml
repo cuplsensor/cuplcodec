@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="structsensordatachars" kind="struct" language="C++" prot="public">
+    <compoundname>sensordatachars</compoundname>
+    <includes refid="smplhist_8h" local="no">smplhist.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structsensordatachars_1a978b1d72dd059ccd2323ee66bea4d654" prot="public" static="no" mutable="no">
+        <type>unsigned char</type>
+        <definition>unsigned char m1Msb</definition>
+        <argsstring></argsstring>
+        <name>m1Msb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="smplhist.h" line="9" column="1" bodyfile="smplhist.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsensordatachars_1a030c938f5a438a3556f1887dfe72466f" prot="public" static="no" mutable="no">
+        <type>unsigned char</type>
+        <definition>unsigned char m2Msb</definition>
+        <argsstring></argsstring>
+        <name>m2Msb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="smplhist.h" line="10" column="1" bodyfile="smplhist.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsensordatachars_1afbfc01b26f853a9c35003e1c065db84f" prot="public" static="no" mutable="no">
+        <type>unsigned char</type>
+        <definition>unsigned char Lsb</definition>
+        <argsstring></argsstring>
+        <name>Lsb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="smplhist.h" line="11" column="1" bodyfile="smplhist.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="smplhist.h" line="8" column="1" bodyfile="smplhist.h" bodystart="7" bodyend="12"/>
+    <listofallmembers>
+      <member refid="structsensordatachars_1afbfc01b26f853a9c35003e1c065db84f" prot="public" virt="non-virtual"><scope>sensordatachars</scope><name>Lsb</name></member>
+      <member refid="structsensordatachars_1a978b1d72dd059ccd2323ee66bea4d654" prot="public" virt="non-virtual"><scope>sensordatachars</scope><name>m1Msb</name></member>
+      <member refid="structsensordatachars_1a030c938f5a438a3556f1887dfe72466f" prot="public" virt="non-virtual"><scope>sensordatachars</scope><name>m2Msb</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="struct_m_d5___c_t_x" kind="struct" language="C++" prot="public">
+    <compoundname>MD5_CTX</compoundname>
+    <includes refid="md5_8h" local="no">md5.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_m_d5___c_t_x_1ab6f070d5d937f16cddb2d666c32fdb8e" prot="public" static="no" mutable="no">
+        <type><ref refid="md5_8h_1a7c9e2a59b92cd132f707337f6d940122" kindref="member">MD5_u32plus</ref></type>
+        <definition>MD5_u32plus lo</definition>
+        <argsstring></argsstring>
+        <name>lo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="md5.h" line="35" column="1" bodyfile="md5.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_d5___c_t_x_1ad674a11709e105451f48b99b9fe54792" prot="public" static="no" mutable="no">
+        <type><ref refid="md5_8h_1a7c9e2a59b92cd132f707337f6d940122" kindref="member">MD5_u32plus</ref></type>
+        <definition>MD5_u32plus hi</definition>
+        <argsstring></argsstring>
+        <name>hi</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="md5.h" line="35" column="1" bodyfile="md5.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_d5___c_t_x_1ac5629798efe5fb7cbd33911a77672275" prot="public" static="no" mutable="no">
+        <type><ref refid="md5_8h_1a7c9e2a59b92cd132f707337f6d940122" kindref="member">MD5_u32plus</ref></type>
+        <definition>MD5_u32plus a</definition>
+        <argsstring></argsstring>
+        <name>a</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="md5.h" line="36" column="1" bodyfile="md5.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_d5___c_t_x_1ae7735a3daa065dc9dfab9dd1a512d557" prot="public" static="no" mutable="no">
+        <type><ref refid="md5_8h_1a7c9e2a59b92cd132f707337f6d940122" kindref="member">MD5_u32plus</ref></type>
+        <definition>MD5_u32plus b</definition>
+        <argsstring></argsstring>
+        <name>b</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="md5.h" line="36" column="1" bodyfile="md5.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_d5___c_t_x_1a1f90d3ede1c4253a90685d1260482dfc" prot="public" static="no" mutable="no">
+        <type><ref refid="md5_8h_1a7c9e2a59b92cd132f707337f6d940122" kindref="member">MD5_u32plus</ref></type>
+        <definition>MD5_u32plus c</definition>
+        <argsstring></argsstring>
+        <name>c</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="md5.h" line="36" column="1" bodyfile="md5.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_d5___c_t_x_1a42be18d895cf7be9097073faf66734c1" prot="public" static="no" mutable="no">
+        <type><ref refid="md5_8h_1a7c9e2a59b92cd132f707337f6d940122" kindref="member">MD5_u32plus</ref></type>
+        <definition>MD5_u32plus d</definition>
+        <argsstring></argsstring>
+        <name>d</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="md5.h" line="36" column="1" bodyfile="md5.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_d5___c_t_x_1a59e96eea04541ecd67c3faca41b13feb" prot="public" static="no" mutable="no">
+        <type>unsigned char</type>
+        <definition>unsigned char buffer[64]</definition>
+        <argsstring>[64]</argsstring>
+        <name>buffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="md5.h" line="37" column="1" bodyfile="md5.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_m_d5___c_t_x_1ad8cb52dd70ac5316564b1e4b48b0ad7d" prot="public" static="no" mutable="no">
+        <type><ref refid="md5_8h_1a7c9e2a59b92cd132f707337f6d940122" kindref="member">MD5_u32plus</ref></type>
+        <definition>MD5_u32plus block[16]</definition>
+        <argsstring>[16]</argsstring>
+        <name>block</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="md5.h" line="38" column="1" bodyfile="md5.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="md5.h" line="34" column="1" bodyfile="md5.h" bodystart="34" bodyend="39"/>
+    <listofallmembers>
+      <member refid="struct_m_d5___c_t_x_1ac5629798efe5fb7cbd33911a77672275" prot="public" virt="non-virtual"><scope>MD5_CTX</scope><name>a</name></member>
+      <member refid="struct_m_d5___c_t_x_1ae7735a3daa065dc9dfab9dd1a512d557" prot="public" virt="non-virtual"><scope>MD5_CTX</scope><name>b</name></member>
+      <member refid="struct_m_d5___c_t_x_1ad8cb52dd70ac5316564b1e4b48b0ad7d" prot="public" virt="non-virtual"><scope>MD5_CTX</scope><name>block</name></member>
+      <member refid="struct_m_d5___c_t_x_1a59e96eea04541ecd67c3faca41b13feb" prot="public" virt="non-virtual"><scope>MD5_CTX</scope><name>buffer</name></member>
+      <member refid="struct_m_d5___c_t_x_1a1f90d3ede1c4253a90685d1260482dfc" prot="public" virt="non-virtual"><scope>MD5_CTX</scope><name>c</name></member>
+      <member refid="struct_m_d5___c_t_x_1a42be18d895cf7be9097073faf66734c1" prot="public" virt="non-virtual"><scope>MD5_CTX</scope><name>d</name></member>
+      <member refid="struct_m_d5___c_t_x_1ad674a11709e105451f48b99b9fe54792" prot="public" virt="non-virtual"><scope>MD5_CTX</scope><name>hi</name></member>
+      <member refid="struct_m_d5___c_t_x_1ab6f070d5d937f16cddb2d666c32fdb8e" prot="public" virt="non-virtual"><scope>MD5_CTX</scope><name>lo</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

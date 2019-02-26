@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="prng_8h" kind="file" language="C++">
+    <compoundname>prng.h</compoundname>
+    <includedby refid="prng_8c" local="yes">prng.c</includedby>
+    <includedby refid="sample_8c" local="yes">sample.c</includedby>
+    <invincdepgraph>
+      <node id="85">
+        <label>sample.c</label>
+        <link refid="sample_8c"/>
+      </node>
+      <node id="84">
+        <label>prng.c</label>
+        <link refid="prng_8c"/>
+      </node>
+      <node id="83">
+        <label>prng.h</label>
+        <link refid="prng_8h"/>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="prng_8h_1a7743b02470e6a9781b6df16ebec41134" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void prng_init</definition>
+        <argsstring>(unsigned int initialrstate)</argsstring>
+        <name>prng_init</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>initialrstate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="prng.h" line="11" column="1" bodyfile="prng.c" bodystart="36" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="prng_8h_1a61e8a382fb806cd4137ba53caa72d08d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned int</type>
+        <definition>unsigned int prng_getrandom</definition>
+        <argsstring>(unsigned int lenbits)</argsstring>
+        <name>prng_getrandom</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>lenbits</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="prng.h" line="12" column="1" bodyfile="prng.c" bodystart="41" bodyend="53"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>prng.h</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/><sp/>Created<sp/>on:<sp/>29<sp/>Jun<sp/>2018</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Author:<sp/>malcolm</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>URLENCODER_PRNG_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>URLENCODER_PRNG_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="prng_8h_1a7743b02470e6a9781b6df16ebec41134" kindref="member">prng_init</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>initialrstate);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="prng_8h_1a61e8a382fb806cd4137ba53caa72d08d" kindref="member">prng_getrandom</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>lenbits);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>URLENCODER_PRNG_H_<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="prng.h"/>
+  </compounddef>
+</doxygen>

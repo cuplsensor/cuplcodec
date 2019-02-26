@@ -1,0 +1,299 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.14">
+  <compound refid="structendstop" kind="struct"><name>endstop</name>
+    <member refid="structendstop_1ae5f29c2e1b08176f604e6a4255147883" kind="variable"><name>md5lenb64</name></member>
+    <member refid="structendstop_1a45d0b3c1f88901a3d92d905bd044672d" kind="variable"><name>markerb64</name></member>
+  </compound>
+  <compound refid="unionlen__t" kind="union"><name>len_t</name>
+    <member refid="unionlen__t_1a498cc0bdfa390f211219d90fa56ff062" kind="variable"><name>all</name></member>
+    <member refid="unionlen__t_1a9b23cefaea8f1ce883f08a5a4f94f740" kind="variable"><name>bytes</name></member>
+  </compound>
+  <compound refid="struct_m_d5___c_t_x" kind="struct"><name>MD5_CTX</name>
+    <member refid="struct_m_d5___c_t_x_1ab6f070d5d937f16cddb2d666c32fdb8e" kind="variable"><name>lo</name></member>
+    <member refid="struct_m_d5___c_t_x_1ad674a11709e105451f48b99b9fe54792" kind="variable"><name>hi</name></member>
+    <member refid="struct_m_d5___c_t_x_1ac5629798efe5fb7cbd33911a77672275" kind="variable"><name>a</name></member>
+    <member refid="struct_m_d5___c_t_x_1ae7735a3daa065dc9dfab9dd1a512d557" kind="variable"><name>b</name></member>
+    <member refid="struct_m_d5___c_t_x_1a1f90d3ede1c4253a90685d1260482dfc" kind="variable"><name>c</name></member>
+    <member refid="struct_m_d5___c_t_x_1a42be18d895cf7be9097073faf66734c1" kind="variable"><name>d</name></member>
+    <member refid="struct_m_d5___c_t_x_1a59e96eea04541ecd67c3faca41b13feb" kind="variable"><name>buffer</name></member>
+    <member refid="struct_m_d5___c_t_x_1ad8cb52dd70ac5316564b1e4b48b0ad7d" kind="variable"><name>block</name></member>
+  </compound>
+  <compound refid="structmd5len" kind="struct"><name>md5len</name>
+    <member refid="structmd5len_1a4c66fedccd3b4737bd953f53dccc3c8a" kind="variable"><name>md5</name></member>
+    <member refid="structmd5len_1a0f1659d851e4200abf60643049dd9e9a" kind="variable"><name>lensmplsbytes</name></member>
+  </compound>
+  <compound refid="structnvstruct" kind="struct"><name>nvstruct</name>
+    <member refid="structnvstruct_1a8c4928cc85c5336514401eb142ea7d50" kind="variable"><name>serial</name></member>
+    <member refid="structnvstruct_1a680c038327bbd20d30beade8d0ef1dd4" kind="variable"><name>seckey</name></member>
+    <member refid="structnvstruct_1aec7e67f64e6ee88dda940f1b837f9351" kind="variable"><name>randstate</name></member>
+    <member refid="structnvstruct_1a4447bd6767bd8a45338bdeeae4cb0511" kind="variable"><name>smplintervalmins</name></member>
+    <member refid="structnvstruct_1afd55ea1fa18fbe9ef04251bbf4948e7b" kind="variable"><name>sleepintervaldays</name></member>
+    <member refid="structnvstruct_1a8132fd6a69b2f8b51c2e9241f29de2ba" kind="variable"><name>allwritten</name></member>
+    <member refid="structnvstruct_1a05c6c8c50f3add0b2ba801d67177d0a5" kind="variable"><name>resetsperloop</name></member>
+    <member refid="structnvstruct_1a296b1120c7c1a2be3bdb81ef5d02d1b5" kind="variable"><name>resetsalltime</name></member>
+  </compound>
+  <compound refid="union_record_header__t" kind="union"><name>RecordHeader_t</name>
+    <member refid="union_record_header__t_1a0d1e2c9bec519d8f9faf53f732af2ef0" kind="variable"><name>all</name></member>
+    <member refid="union_record_header__t_1ad725e8d4364cd9dd0b30d3e78efd1cf6" kind="variable"><name>tnf</name></member>
+    <member refid="union_record_header__t_1a986bb7684f9a4456350fb2f140d14a11" kind="variable"><name>idpresent</name></member>
+    <member refid="union_record_header__t_1a17ee86011122945c7daa15b3bbbbe7d1" kind="variable"><name>srecord</name></member>
+    <member refid="union_record_header__t_1a0603902f88dd571aa0888ec0e826bc46" kind="variable"><name>chunkflag</name></member>
+    <member refid="union_record_header__t_1a20659068f23b2466db0628398fc12595" kind="variable"><name>msgend</name></member>
+    <member refid="union_record_header__t_1ab90540d5e108e6195df15e3fad8559bb" kind="variable"><name>msgbegin</name></member>
+    <member refid="union_record_header__t_1a6c9a2f6fba6021fa942de37fdfd3027f" kind="variable"><name>byte</name></member>
+  </compound>
+  <compound refid="structsensordatachars" kind="struct"><name>sensordatachars</name>
+    <member refid="structsensordatachars_1a978b1d72dd059ccd2323ee66bea4d654" kind="variable"><name>m1Msb</name></member>
+    <member refid="structsensordatachars_1a030c938f5a438a3556f1887dfe72466f" kind="variable"><name>m2Msb</name></member>
+    <member refid="structsensordatachars_1afbfc01b26f853a9c35003e1c065db84f" kind="variable"><name>Lsb</name></member>
+  </compound>
+  <compound refid="structstatus" kind="struct"><name>status</name>
+    <member refid="structstatus_1ad6771c066dbc9a3f9c97f67d183dafe4" kind="variable"><name>loopcount</name></member>
+    <member refid="structstatus_1a5393c99e246925076b1dfd69a64177ef" kind="variable"><name>status</name></member>
+    <member refid="structstatus_1a64bf6569e5dcde7c63303ca7557c4ce9" kind="variable"><name>batvoltage</name></member>
+  </compound>
+  <compound refid="base64_8c" kind="file"><name>base64.c</name>
+    <member refid="base64_8c_1af341fd6a080f023febc767f74ce23f96" kind="variable"><name>pr2six</name></member>
+    <member refid="base64_8c_1a21ccd9b495f89bc74ce84137936db6ae" kind="variable"><name>basis_64</name></member>
+    <member refid="base64_8c_1a68fc27e3ee8f51bb44eedcdd6b98a053" kind="function"><name>Base64decode_len</name></member>
+    <member refid="base64_8c_1a9083c3c6074f11ba2570cf982f17b36b" kind="function"><name>Base64decode</name></member>
+    <member refid="base64_8c_1a5896f98ad1925da7d56a6940d4c99ba2" kind="function"><name>Base64encode_len</name></member>
+    <member refid="base64_8c_1a65618dacdde3ed7eeb15bbe7b3751cb9" kind="function"><name>Base64encode</name></member>
+  </compound>
+  <compound refid="base64_8h" kind="file"><name>base64.h</name>
+    <member refid="base64_8h_1a5896f98ad1925da7d56a6940d4c99ba2" kind="function"><name>Base64encode_len</name></member>
+    <member refid="base64_8h_1a7b3abb5758f53897f20d92e30d0b0776" kind="function"><name>Base64encode</name></member>
+    <member refid="base64_8h_1a7484080fa00f8223e24bd5453e9d836b" kind="function"><name>Base64decode_len</name></member>
+    <member refid="base64_8h_1a5a56c39f989f7c789c7e86d990de5fd0" kind="function"><name>Base64decode</name></member>
+  </compound>
+  <compound refid="batv_8c" kind="file"><name>batv.c</name>
+    <member refid="batv_8c_1af57e5937c7388a9f5148150a43b2c509" kind="variable"><name>adcvoltage</name></member>
+    <member refid="batv_8c_1a784bc45b7a6c027672c3491ee3d68cba" kind="function"><name>adc_enable</name></member>
+    <member refid="batv_8c_1a179c7c9e6f3c3f60f9cc45669be88f94" kind="function"><name>adc_disable</name></member>
+    <member refid="batv_8c_1a5995d869f98d751c9f0f31850a088584" kind="function"><name>batv_measure</name></member>
+    <member refid="batv_8c_1a6ed0a222ba29d6365791b9cc27d9af14" kind="function"><name>ADC_ISR</name></member>
+  </compound>
+  <compound refid="batv_8h" kind="file"><name>batv.h</name>
+    <member refid="batv_8h_1af14d9d712b27f641006cfed3c09040b4" kind="function"><name>batv_measure</name></member>
+  </compound>
+  <compound refid="defs_8h" kind="file"><name>defs.h</name>
+    <member refid="defs_8h_1a223fea805ee21e3b6b05a631b7af7a63" kind="define"><name>BYTES_PER_OCTET</name></member>
+    <member refid="defs_8h_1a5c3744c850e32cd5437aa8ab26f5077f" kind="define"><name>OCTETS_PER_BLK</name></member>
+    <member refid="defs_8h_1a3440475701aa9d74140519db14a08e65" kind="define"><name>SAMPLES_PER_OCTET</name></member>
+    <member refid="defs_8h_1a25065cd833bcfecfb404093aed3edaca" kind="define"><name>BYTES_PER_SAMPLE</name></member>
+    <member refid="defs_8h_1a96171b1fd0df68266c8208e01cf7b7c0" kind="define"><name>BUFLEN_BLKS</name></member>
+    <member refid="defs_8h_1a34364711a08f6ea9de1f2c5a5ae56f88" kind="define"><name>ENDSTOP_BLKS</name></member>
+    <member refid="defs_8h_1a14c667ffecb19b066f43257c7361ff79" kind="define"><name>BUFLEN_SAMPLES</name></member>
+  </compound>
+  <compound refid="eep_8c" kind="file"><name>eep.c</name>
+    <member refid="eep_8c_1ab8ef3b0a4427401a76129d6b15921f46" kind="define"><name>BUFSIZE_BLKS</name></member>
+    <member refid="eep_8c_1a6e5ecf6e2d74f95a32e7f636bcbdf27f" kind="define"><name>BUFSIZE_BYTES</name></member>
+    <member refid="eep_8c_1a75ee6794c00b84590fc80f1d36a2ad24" kind="variable"><name>_blkbuffer</name></member>
+    <member refid="eep_8c_1a9f348aacb30d157e4f44c462bec60cfe" kind="function"><name>inbounds</name></member>
+    <member refid="eep_8c_1a9dc9545f49f34a394bf02e1a50ec94ce" kind="function"><name>eep_write</name></member>
+    <member refid="eep_8c_1a8750cd7456d517ba12af997c741bac94" kind="function"><name>eep_waitwritedone</name></member>
+    <member refid="eep_8c_1a8b26a063120afe56d2938c9e4d0c9972" kind="function"><name>eep_read</name></member>
+    <member refid="eep_8c_1a8cd332f8cc6c3f1c02fd4632ea253199" kind="function"><name>eep_cp</name></member>
+    <member refid="eep_8c_1a792afc39f1a399b46b5dd4040b090184" kind="function"><name>eep_cpbyte</name></member>
+  </compound>
+  <compound refid="eep_8h" kind="file"><name>eep.h</name>
+    <member refid="eep_8h_1a9dc9545f49f34a394bf02e1a50ec94ce" kind="function"><name>eep_write</name></member>
+    <member refid="eep_8h_1a8b26a063120afe56d2938c9e4d0c9972" kind="function"><name>eep_read</name></member>
+    <member refid="eep_8h_1a8cd332f8cc6c3f1c02fd4632ea253199" kind="function"><name>eep_cp</name></member>
+    <member refid="eep_8h_1a792afc39f1a399b46b5dd4040b090184" kind="function"><name>eep_cpbyte</name></member>
+    <member refid="eep_8h_1ad5f7792e7dc3b034de4ee77fa8fc1c96" kind="function"><name>eep_waitwritedone</name></member>
+  </compound>
+  <compound refid="md5_8c" kind="file"><name>md5.c</name>
+    <member refid="md5_8c_1a96d73bbd7af15cb1fc38c3f4a3bd82e9" kind="define"><name>F</name></member>
+    <member refid="md5_8c_1ad96b7cf3182ce2ba85e5a7a93b12c441" kind="define"><name>G</name></member>
+    <member refid="md5_8c_1ae42219072d798876e6b08e6b78614ff6" kind="define"><name>H</name></member>
+    <member refid="md5_8c_1ae9b91c8030fc9c6e383debe88f0364d7" kind="define"><name>H2</name></member>
+    <member refid="md5_8c_1ac0eafdc9ee161b71e7af98af736952fd" kind="define"><name>I</name></member>
+    <member refid="md5_8c_1a642b3a091bb90dabdf2abb865fefab69" kind="define"><name>STEP</name></member>
+    <member refid="md5_8c_1a8be4bf419fd5ebe5cba399d782188517" kind="define"><name>SET</name></member>
+    <member refid="md5_8c_1a22c5b6b56a260ea33a06c9fdebed523e" kind="define"><name>GET</name></member>
+    <member refid="md5_8c_1a9735ca4832fc46955e51f593d7716cc3" kind="define"><name>OUT</name></member>
+    <member refid="md5_8c_1a1ba2a84b3ba56124949531c235a82db1" kind="function"><name>set</name></member>
+    <member refid="md5_8c_1a5132ce5672d2bfd6c11bc233a7479f7c" kind="function"><name>body</name></member>
+    <member refid="md5_8c_1a3587b3aeb13e97b52d91ac79a65c2940" kind="function"><name>MD5_Init</name></member>
+    <member refid="md5_8c_1a951aa68d9b7dc506718ae725f71929d9" kind="function"><name>MD5_Update</name></member>
+    <member refid="md5_8c_1aeca2db0b7173b13c5debe066b8ea1116" kind="function"><name>MD5_Final</name></member>
+  </compound>
+  <compound refid="md5_8h" kind="file"><name>md5.h</name>
+    <member refid="md5_8h_1a7c9e2a59b92cd132f707337f6d940122" kind="typedef"><name>MD5_u32plus</name></member>
+    <member refid="md5_8h_1a3587b3aeb13e97b52d91ac79a65c2940" kind="function"><name>MD5_Init</name></member>
+    <member refid="md5_8h_1a951aa68d9b7dc506718ae725f71929d9" kind="function"><name>MD5_Update</name></member>
+    <member refid="md5_8h_1aeca2db0b7173b13c5debe066b8ea1116" kind="function"><name>MD5_Final</name></member>
+  </compound>
+  <compound refid="ndef_8c" kind="file"><name>ndef.c</name>
+    <member refid="ndef_8c_1a0dce637212030f0bde7c5e0f68032460" kind="define"><name>URL_RECORDTYPE</name></member>
+    <member refid="ndef_8c_1ae4c33d17b37c135ccbd0dea622a21be2" kind="define"><name>URL_RECORDTYPE_LEN</name></member>
+    <member refid="ndef_8c_1a3f2902197dc6ef9f691916b1454006ca" kind="define"><name>TLV_START</name></member>
+    <member refid="ndef_8c_1aa834bbba3ae471ca682740e350082377" kind="define"><name>WELLKNOWN_TNF</name></member>
+    <member refid="ndef_8c_1aa8f2183ef92f096542b81c3cffc8c2b2" kind="define"><name>ABSURI_TNF</name></member>
+    <member refid="ndef_8c_1a092f9a3cb8ae1e6e034bd34067bcae3f" kind="define"><name>UNCHANGED_TNF</name></member>
+    <member refid="ndef_8c_1a4e6ab9188d0bbc5330bc49d9d6cbd948" kind="define"><name>URI_ID_HTTP</name></member>
+    <member refid="ndef_8c_1a3822a6d884b3bef125fd186c3b769b9d" kind="define"><name>URI_ID_HTTPS</name></member>
+    <member refid="ndef_8c_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" kind="variable"><name>nv</name></member>
+    <member refid="ndef_8c_1a52cad496a745bee49f8acf6b2c7ecb5d" kind="variable"><name>serialparam</name></member>
+    <member refid="ndef_8c_1af11c09c944401931b19511e92b600055" kind="variable"><name>queryparam</name></member>
+    <member refid="ndef_8c_1a828830139077e98e2bf0476ba3f43857" kind="variable"><name>verparam</name></member>
+    <member refid="ndef_8c_1a79af3c56fefac563d474982d30deb9c9" kind="variable"><name>_ver</name></member>
+    <member refid="ndef_8c_1a663e15c5661d88c7b3d782a93c3cd5a8" kind="variable"><name>statparam</name></member>
+    <member refid="ndef_8c_1ae808c92291cf108528c401b9accf863e" kind="variable"><name>timeintparam</name></member>
+    <member refid="ndef_8c_1a4d2a489e718b387adcf904b2da9e704a" kind="variable"><name>url</name></member>
+    <member refid="ndef_8c_1af0f4014117b02a9bb541e620154f34b5" kind="variable"><name>zeropad</name></member>
+    <member refid="ndef_8c_1aec407ccd9dfe255f7ce254a6e3eb037d" kind="function"><name>ndef_createurlrecord</name></member>
+    <member refid="ndef_8c_1ac55b5f717f0851a05b88d77e69ad3567" kind="function"><name>ndef_writepreamble</name></member>
+    <member refid="ndef_8c_1a80c4e6a3a3e7ffaad5527adc3224c280" kind="function"><name>ndef_writeblankurl</name></member>
+  </compound>
+  <compound refid="ndef_8h" kind="file"><name>ndef.h</name>
+    <member refid="ndef_8h_1a185e6e8640bb4cea359dce6f32f6ca2c" kind="define"><name>BLKSIZE_BYTES</name></member>
+    <member refid="ndef_8h_1ada1a1409a6e2a0c6a1112b781a7bc8b8" kind="define"><name>BLKSIZE_POW2</name></member>
+    <member refid="ndef_8h_1a8515ac56abf73a4b2c29dca739f44e99" kind="define"><name>TLSIZE_BYTES</name></member>
+    <member refid="ndef_8h_1adf9300c600f673d96063cd65a7157f7a" kind="define"><name>PREAMBLEN_BLKS</name></member>
+    <member refid="ndef_8h_1a80c4e6a3a3e7ffaad5527adc3224c280" kind="function"><name>ndef_writeblankurl</name></member>
+    <member refid="ndef_8h_1ac55b5f717f0851a05b88d77e69ad3567" kind="function"><name>ndef_writepreamble</name></member>
+  </compound>
+  <compound refid="nt3h_8c" kind="file"><name>nt3h.c</name>
+    <member refid="nt3h_8c_1a8265d1afd96aa969d5bd110ee9e2c0ff" kind="define"><name>DEVADDR</name></member>
+    <member refid="nt3h_8c_1a2a04f7bf0fe13871f7d1c220e4b78acf" kind="define"><name>PAGE0</name></member>
+    <member refid="nt3h_8c_1a0054e7ec4043853d2e5c47395aadd65e" kind="define"><name>CC_REGADDR</name></member>
+    <member refid="nt3h_8c_1afcf795f5a96fd55561abe69f56224630" kind="define"><name>BLOCKSIZE</name></member>
+    <member refid="nt3h_8c_1a613f9f68b28316222001d7168366e358" kind="variable"><name>rxData</name></member>
+    <member refid="nt3h_8c_1a22e5c365139f0ad8a990af342ea3fdc4" kind="variable"><name>txData</name></member>
+    <member refid="nt3h_8c_1a842d1a1b6b3a07d1067b582fd66d16ae" kind="variable"><name>chunk1Data</name></member>
+    <member refid="nt3h_8c_1af5d4c86e43867111ff77946580b2732c" kind="variable"><name>chunk2Data</name></member>
+    <member refid="nt3h_8c_1aecfb69926db9b0c804eae417a5546766" kind="function"><name>nt3h_init</name></member>
+    <member refid="nt3h_8c_1a8b7f3ba6ec6dce05a9c79d4b08fa17bb" kind="function"><name>nt3h_writetag</name></member>
+    <member refid="nt3h_8c_1a6766a3db85cd67a81ef911acff226dd8" kind="function"><name>nt3h_readtag</name></member>
+    <member refid="nt3h_8c_1af5eae3ef1e64f9f5e399840c02f871ad" kind="function"><name>nt3h_eepromwritedone</name></member>
+  </compound>
+  <compound refid="nt3h_8h" kind="file"><name>nt3h.h</name>
+    <member refid="nt3h_8h_1ac4551bbc9efabf8378f35498f80b4679" kind="define"><name>BLKSIZE</name></member>
+    <member refid="nt3h_8h_1aecfb69926db9b0c804eae417a5546766" kind="function"><name>nt3h_init</name></member>
+    <member refid="nt3h_8h_1a8b7f3ba6ec6dce05a9c79d4b08fa17bb" kind="function"><name>nt3h_writetag</name></member>
+    <member refid="nt3h_8h_1a6766a3db85cd67a81ef911acff226dd8" kind="function"><name>nt3h_readtag</name></member>
+    <member refid="nt3h_8h_1af5eae3ef1e64f9f5e399840c02f871ad" kind="function"><name>nt3h_eepromwritedone</name></member>
+    <member refid="nt3h_8h_1abf22006bb974c3edde8942d5a979efc2" kind="function"><name>printint</name></member>
+  </compound>
+  <compound refid="nvtype_8c" kind="file"><name>nvtype.c</name>
+    <member refid="nvtype_8c_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" kind="variable"><name>nv</name></member>
+  </compound>
+  <compound refid="nvtype_8h" kind="file"><name>nvtype.h</name>
+    <member refid="nvtype_8h_1a09589b0f4cf4e32679b6dc064903edef" kind="define"><name>SERIAL_LENBYTES</name></member>
+    <member refid="nvtype_8h_1ae32c9007f59a1d55426d7fd63e10d589" kind="define"><name>SECKEY_LENBYTES</name></member>
+    <member refid="nvtype_8h_1a30653e2266913b20202fbfdaf8719acf" kind="define"><name>RANDSTATE_LENBYTES</name></member>
+    <member refid="nvtype_8h_1a85e0c8e71ac12b688919da40fbc873cd" kind="define"><name>INTEGERFIELD_LENBYTES</name></member>
+    <member refid="nvtype_8h_1a78682d319c0de97ea2b35f88095d6e57" kind="typedef"><name>nv_t</name></member>
+    <member refid="nvtype_8h_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" kind="variable"><name>nv</name></member>
+  </compound>
+  <compound refid="octet_8c" kind="file"><name>octet.c</name>
+    <member refid="octet_8c_1a2b1e67d8529695393016ce1acd68ba19" kind="define"><name>OCTET_TO_BLK</name></member>
+    <member refid="octet_8c_1adf67afe7bc714d56dd6c19c92a0a7e4a" kind="define"><name>MAX_CURSOROCTET</name></member>
+    <member refid="octet_8c_1afca5e587f1757e061b03b87e35cd1922" kind="variable"><name>_endblk</name></member>
+    <member refid="octet_8c_1a79f0592c6e968df58b571e02a1f299d0" kind="variable"><name>_startblk</name></member>
+    <member refid="octet_8c_1aa91ab6d242da1df7de521959ea6c5612" kind="variable"><name>_cursorblk</name></member>
+    <member refid="octet_8c_1ad2949e5f83ffe5074df7969f3639d5a2" kind="variable"><name>_nextblk</name></member>
+    <member refid="octet_8c_1ad388e3ba8efe4e70b67fb40ac22acb73" kind="variable"><name>_lenoctets</name></member>
+    <member refid="octet_8c_1a7d7753bed6af90f45e8f2cc31abde6f5" kind="variable"><name>_cursoroctet</name></member>
+    <member refid="octet_8c_1aa543933e23141a72cb0e1e1b8483e96c" kind="variable"><name>_octetstate</name></member>
+    <member refid="octet_8c_1a7d63f49aee356cfb5f502d929c2d3cfc" kind="function"><name>octet_read4</name></member>
+    <member refid="octet_8c_1aa35e20df25ff426a3a0f1b36cf14d376" kind="function"><name>octet_restore</name></member>
+    <member refid="octet_8c_1a0104a90b7774008e8a9976ca77a0a4f3" kind="function"><name>octet_init</name></member>
+    <member refid="octet_8c_1a356b1274922f88575947b2db44f20634" kind="function"><name>octet_commit4</name></member>
+    <member refid="octet_8c_1af95f1c1da472de7c7a167779b51ef284" kind="function"><name>octet_commit2</name></member>
+    <member refid="octet_8c_1ac2fc0ce5139ec19f357ebf68c88b54e1" kind="function"><name>octet_write</name></member>
+    <member refid="octet_8c_1ac943c19926037180241f1e97a11b7567" kind="function"><name>octet_movecursor</name></member>
+    <member refid="octet_8c_1af7d3b29522962f2be3eb543a9f66bdef" kind="function"><name>octet_getstate</name></member>
+  </compound>
+  <compound refid="octet_8h" kind="file"><name>octet.h</name>
+    <member refid="octet_8h_1a4d73229613f72b4dc2cf993e2329923d" kind="enum"><name>OctInd</name></member>
+    <member refid="octet_8h_1a4d73229613f72b4dc2cf993e2329923dabb49f2e8ded70fd8058b3e5298f2e99f" kind="enumvalue"><name>Octet0</name></member>
+    <member refid="octet_8h_1a4d73229613f72b4dc2cf993e2329923da8cac7c070f12ed9c9ad443ebf7aca553" kind="enumvalue"><name>Octet1</name></member>
+    <member refid="octet_8h_1a4d73229613f72b4dc2cf993e2329923daf8c1af96ea2609525686923985022522" kind="enumvalue"><name>Octet2</name></member>
+    <member refid="octet_8h_1aefad8516abbfca6d626941e525872611" kind="enum"><name>OctState</name></member>
+    <member refid="octet_8h_1aefad8516abbfca6d626941e525872611a57fa0bc21fa59477d4dc142308115c82" kind="enumvalue"><name>firstloop</name></member>
+    <member refid="octet_8h_1aefad8516abbfca6d626941e525872611a4e74c26fa00eaaa19f02e1bd09231012" kind="enumvalue"><name>loopingaround</name></member>
+    <member refid="octet_8h_1aefad8516abbfca6d626941e525872611a8b6cceb27f9c53b65ddc715f8bf6c29c" kind="enumvalue"><name>overwriting</name></member>
+    <member refid="octet_8h_1ad77dd7123b032e7d802173633e84cd92" kind="typedef"><name>OctInd_t</name></member>
+    <member refid="octet_8h_1a91d594c2716b872bf8b1b59a87567516" kind="typedef"><name>OctState_t</name></member>
+    <member refid="octet_8h_1a0104a90b7774008e8a9976ca77a0a4f3" kind="function"><name>octet_init</name></member>
+    <member refid="octet_8h_1a356b1274922f88575947b2db44f20634" kind="function"><name>octet_commit4</name></member>
+    <member refid="octet_8h_1af95f1c1da472de7c7a167779b51ef284" kind="function"><name>octet_commit2</name></member>
+    <member refid="octet_8h_1ac2fc0ce5139ec19f357ebf68c88b54e1" kind="function"><name>octet_write</name></member>
+    <member refid="octet_8h_1ac943c19926037180241f1e97a11b7567" kind="function"><name>octet_movecursor</name></member>
+    <member refid="octet_8h_1aa35e20df25ff426a3a0f1b36cf14d376" kind="function"><name>octet_restore</name></member>
+    <member refid="octet_8h_1af7d3b29522962f2be3eb543a9f66bdef" kind="function"><name>octet_getstate</name></member>
+  </compound>
+  <compound refid="prng_8c" kind="file"><name>prng.c</name>
+    <member refid="prng_8c_1a95824b37b27945dc6d1c900ed24dc64d" kind="define"><name>WORDLENBITS</name></member>
+    <member refid="prng_8c_1a52037c938e3c1b126c6277da5ca689d0" kind="define"><name>M</name></member>
+    <member refid="prng_8c_1a60ef6e1bcfabb95cfeb300e1d03ce470" kind="define"><name>I</name></member>
+    <member refid="prng_8c_1aec7e67f64e6ee88dda940f1b837f9351" kind="variable"><name>randstate</name></member>
+    <member refid="prng_8c_1a55de47ad753c27b53ccd7db51c1b1da7" kind="function"><name>prand</name></member>
+    <member refid="prng_8c_1acdaecff5b3494df1b4f8bb19b0094987" kind="function"><name>prandMSB</name></member>
+    <member refid="prng_8c_1a7743b02470e6a9781b6df16ebec41134" kind="function"><name>prng_init</name></member>
+    <member refid="prng_8c_1a61e8a382fb806cd4137ba53caa72d08d" kind="function"><name>prng_getrandom</name></member>
+  </compound>
+  <compound refid="prng_8h" kind="file"><name>prng.h</name>
+    <member refid="prng_8h_1a7743b02470e6a9781b6df16ebec41134" kind="function"><name>prng_init</name></member>
+    <member refid="prng_8h_1a61e8a382fb806cd4137ba53caa72d08d" kind="function"><name>prng_getrandom</name></member>
+  </compound>
+  <compound refid="sample_8c" kind="file"><name>sample.c</name>
+    <member refid="sample_8c_1a63c84ae63245baa8355d8a264d51a1ea" kind="define"><name>LOWBAT_BIT</name></member>
+    <member refid="sample_8c_1adb693270705ca6601a30df31a39a9d59" kind="define"><name>SCANTIMEOUT_BIT</name></member>
+    <member refid="sample_8c_1a649a882141d51724d0851c5637ae9b52" kind="define"><name>TEMPRH</name></member>
+    <member refid="sample_8c_1ae8b2d876f1eb3087a5859e78688c5169" kind="define"><name>TEMPONLY</name></member>
+    <member refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8" kind="enum"><name>urlstate</name></member>
+    <member refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8a335559f3d0770f8905099143d5fdfc68" kind="enumvalue"><name>first_tick</name></member>
+    <member refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8ae4aa5da2d1ebb43ca39a9ecf8e0adf80" kind="enumvalue"><name>first_tock</name></member>
+    <member refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8abe4c377a0e72bf9ac494563b516341c6" kind="enumvalue"><name>final_tick</name></member>
+    <member refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8a00bd38fad6dca592789a78004554929e" kind="enumvalue"><name>final_tock</name></member>
+    <member refid="sample_8c_1a5da5b85f337f4f42a9a64c2ce881fc33" kind="typedef"><name>stat_t</name></member>
+    <member refid="sample_8c_1ae17bc26975847c791058e10b0c376dfa" kind="typedef"><name>endstop_t</name></member>
+    <member refid="sample_8c_1abf81593fd753830ee4bc1b86550ac189" kind="variable"><name>encodedoctet</name></member>
+    <member refid="sample_8c_1a537f229dc2f7bd4976c24a88da1f3312" kind="variable"><name>samplebuf</name></member>
+    <member refid="sample_8c_1a1d75b7269242a544f5e80f66f18ce064" kind="variable"><name>lensmpls</name></member>
+    <member refid="sample_8c_1a933befd99719afeb506beee220361f01" kind="variable"><name>state</name></member>
+    <member refid="sample_8c_1a66de00a65de740789c7bdd5c673efcb7" kind="variable"><name>urlstatus</name></member>
+    <member refid="sample_8c_1a76f4d25fbde464a6f20c01983869c134" kind="variable"><name>endstop</name></member>
+    <member refid="sample_8c_1a0734ae63bc16c45337b0501caf459126" kind="variable"><name>_temponly</name></member>
+    <member refid="sample_8c_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" kind="variable"><name>nv</name></member>
+    <member refid="sample_8c_1a80e54f51851c6880b55a8462e74a4aa0" kind="function"><name>sample_updatelc</name></member>
+    <member refid="sample_8c_1ac206e7a316f283a09d11da98380e6f58" kind="function"><name>sample_init</name></member>
+    <member refid="sample_8c_1a0ccd842a9eae8758ecf1b8c6ebd37eaa" kind="function"><name>makemarker</name></member>
+    <member refid="sample_8c_1af03ea00a573c4bbe024b2ae03764e58a" kind="function"><name>makeendstop</name></member>
+    <member refid="sample_8c_1a130e5805e5b411b541e60ee607185b98" kind="function"><name>sample_updateendstop</name></member>
+    <member refid="sample_8c_1a16a16e777dfba7eddcd73fd2b472d91b" kind="function"><name>loadboth</name></member>
+    <member refid="sample_8c_1a5cf0405daf296e4fb016d0766c7ec5de" kind="function"><name>loadm2</name></member>
+    <member refid="sample_8c_1a5be5f77a339896373b1b5fff87fbfbcd" kind="function"><name>sample_push</name></member>
+  </compound>
+  <compound refid="sample_8h" kind="file"><name>sample.h</name>
+    <member refid="sample_8h_1a2946d336b97c5fc66e054c0dac644066" kind="function"><name>sample_init</name></member>
+    <member refid="sample_8h_1a5be5f77a339896373b1b5fff87fbfbcd" kind="function"><name>sample_push</name></member>
+    <member refid="sample_8h_1a130e5805e5b411b541e60ee607185b98" kind="function"><name>sample_updateendstop</name></member>
+  </compound>
+  <compound refid="smplhist_8c" kind="file"><name>smplhist.c</name>
+    <member refid="smplhist_8c_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" kind="variable"><name>nv</name></member>
+    <member refid="smplhist_8c_1a7f6bde1248a37ef8f419e7d8903a34b4" kind="variable"><name>buflensamples</name></member>
+    <member refid="smplhist_8c_1a8aedd58352278eb408f36d088ed8f4aa" kind="variable"><name>samplehistory</name></member>
+    <member refid="smplhist_8c_1a63cb38868474918fb01a197c2662c0ce" kind="variable"><name>histpos</name></member>
+    <member refid="smplhist_8c_1a0c84fb6f20b71986993b740a847ee98a" kind="variable"><name>md5block</name></member>
+    <member refid="smplhist_8c_1a5ed58599732db2dc2dc9720d3b0f9677" kind="variable"><name>ipadchar</name></member>
+    <member refid="smplhist_8c_1a6bb1a6ddf23925c90b5d8b2219731f3c" kind="variable"><name>opadchar</name></member>
+    <member refid="smplhist_8c_1abb4f0f09c8d00116fc06d4ddd98b7e4e" kind="variable"><name>ctx</name></member>
+    <member refid="smplhist_8c_1ac0a11776eab3faf04d27a1c212a7a60e" kind="variable"><name>prevhistpos</name></member>
+    <member refid="smplhist_8c_1affe400f90c858c88868d0ee6a1a9d3df" kind="function"><name>smplhist_ovr</name></member>
+    <member refid="smplhist_8c_1a8b601164eab6ef2ea4d6643970a760f6" kind="function"><name>smplhist_push</name></member>
+    <member refid="smplhist_8c_1a795461eee0cdd59fced4cdd31c30dd44" kind="function"><name>smplhist_read</name></member>
+    <member refid="smplhist_8c_1a92c0645dcea2976bba0b05556472e211" kind="function"><name>smplhist_md5</name></member>
+  </compound>
+  <compound refid="smplhist_8h" kind="file"><name>smplhist.h</name>
+    <member refid="smplhist_8h_1a6aed6c376195d183573501f3a8a77ca3" kind="typedef"><name>sdchars_t</name></member>
+    <member refid="smplhist_8h_1acc281e4cc90073d250cb40e8e91897c9" kind="typedef"><name>md5len_t</name></member>
+    <member refid="smplhist_8h_1affe400f90c858c88868d0ee6a1a9d3df" kind="function"><name>smplhist_ovr</name></member>
+    <member refid="smplhist_8h_1a8b601164eab6ef2ea4d6643970a760f6" kind="function"><name>smplhist_push</name></member>
+    <member refid="smplhist_8h_1a92c0645dcea2976bba0b05556472e211" kind="function"><name>smplhist_md5</name></member>
+  </compound>
+</doxygenindex>

@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="defs_8h" kind="file" language="C++">
+    <compoundname>defs.h</compoundname>
+    <includedby refid="ndef_8c" local="yes">ndef.c</includedby>
+    <includedby refid="octet_8c" local="yes">octet.c</includedby>
+    <includedby refid="sample_8c" local="yes">sample.c</includedby>
+    <includedby refid="smplhist_8c" local="yes">smplhist.c</includedby>
+    <invincdepgraph>
+      <node id="18">
+        <label>ndef.c</label>
+        <link refid="ndef_8c"/>
+      </node>
+      <node id="20">
+        <label>sample.c</label>
+        <link refid="sample_8c"/>
+      </node>
+      <node id="19">
+        <label>octet.c</label>
+        <link refid="octet_8c"/>
+      </node>
+      <node id="21">
+        <label>smplhist.c</label>
+        <link refid="smplhist_8c"/>
+      </node>
+      <node id="17">
+        <label>defs.h</label>
+        <link refid="defs_8h"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="defs_8h_1a223fea805ee21e3b6b05a631b7af7a63" prot="public" static="no">
+        <name>BYTES_PER_OCTET</name>
+        <initializer>8</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="defs.h" line="1" column="9" bodyfile="defs.h" bodystart="1" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="defs_8h_1a5c3744c850e32cd5437aa8ab26f5077f" prot="public" static="no">
+        <name>OCTETS_PER_BLK</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="defs.h" line="2" column="9" bodyfile="defs.h" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="defs_8h_1a3440475701aa9d74140519db14a08e65" prot="public" static="no">
+        <name>SAMPLES_PER_OCTET</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="defs.h" line="3" column="9" bodyfile="defs.h" bodystart="3" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="defs_8h_1a25065cd833bcfecfb404093aed3edaca" prot="public" static="no">
+        <name>BYTES_PER_SAMPLE</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="defs.h" line="4" column="9" bodyfile="defs.h" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="defs_8h_1a96171b1fd0df68266c8208e01cf7b7c0" prot="public" static="no">
+        <name>BUFLEN_BLKS</name>
+        <initializer>32</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="defs.h" line="5" column="9" bodyfile="defs.h" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="defs_8h_1a34364711a08f6ea9de1f2c5a5ae56f88" prot="public" static="no">
+        <name>ENDSTOP_BLKS</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="defs.h" line="6" column="9" bodyfile="defs.h" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="defs_8h_1a14c667ffecb19b066f43257c7361ff79" prot="public" static="no">
+        <name>BUFLEN_SAMPLES</name>
+        <initializer>(<ref refid="defs_8h_1a3440475701aa9d74140519db14a08e65" kindref="member">SAMPLES_PER_OCTET</ref> * <ref refid="defs_8h_1a5c3744c850e32cd5437aa8ab26f5077f" kindref="member">OCTETS_PER_BLK</ref> * (<ref refid="defs_8h_1a96171b1fd0df68266c8208e01cf7b7c0" kindref="member">BUFLEN_BLKS</ref> - <ref refid="defs_8h_1a34364711a08f6ea9de1f2c5a5ae56f88" kindref="member">ENDSTOP_BLKS</ref>))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="defs.h" line="9" column="9" bodyfile="defs.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="defs_8h_1a223fea805ee21e3b6b05a631b7af7a63" refkind="member"><highlight class="preprocessor">#define<sp/>BYTES_PER_OCTET<sp/><sp/><sp/><sp/><sp/>8</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2" refid="defs_8h_1a5c3744c850e32cd5437aa8ab26f5077f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OCTETS_PER_BLK<sp/><sp/><sp/><sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="defs_8h_1a3440475701aa9d74140519db14a08e65" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SAMPLES_PER_OCTET<sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="defs_8h_1a25065cd833bcfecfb404093aed3edaca" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BYTES_PER_SAMPLE<sp/><sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="defs_8h_1a96171b1fd0df68266c8208e01cf7b7c0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BUFLEN_BLKS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>32</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="defs_8h_1a34364711a08f6ea9de1f2c5a5ae56f88" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ENDSTOP_BLKS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="defs_8h_1a14c667ffecb19b066f43257c7361ff79" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BUFLEN_SAMPLES<sp/>(SAMPLES_PER_OCTET<sp/>*<sp/>OCTETS_PER_BLK<sp/>*<sp/>(BUFLEN_BLKS<sp/>-<sp/>ENDSTOP_BLKS))</highlight></codeline>
+    </programlisting>
+    <location file="defs.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,16 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+cffi = "*"
+ndeflib = "*"
+"8bddfad" = {path = "./urldecoder/dist/urldecoder-0.0.1.tar.gz"}
+pylint = "*"
+pytest = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.6"

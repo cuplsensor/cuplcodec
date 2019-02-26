@@ -1,0 +1,146 @@
+\hypertarget{nt3h_8c}{}\section{nt3h.\+c File Reference}
+\label{nt3h_8c}\index{nt3h.\+c@{nt3h.\+c}}
+{\ttfamily \#include \char`\"{}nt3h.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}i2c.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{nt3h_8c_a8265d1afd96aa969d5bd110ee9e2c0ff}{D\+E\+V\+A\+D\+DR}}~0x55
+\item 
+\#define \mbox{\hyperlink{nt3h_8c_a2a04f7bf0fe13871f7d1c220e4b78acf}{P\+A\+G\+E0}}~0
+\item 
+\#define \mbox{\hyperlink{nt3h_8c_a0054e7ec4043853d2e5c47395aadd65e}{C\+C\+\_\+\+R\+E\+G\+A\+D\+DR}}~0x0C
+\item 
+\#define \mbox{\hyperlink{nt3h_8c_afcf795f5a96fd55561abe69f56224630}{B\+L\+O\+C\+K\+S\+I\+ZE}}~16
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{nt3h_8c_aecfb69926db9b0c804eae417a5546766}{nt3h\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialise P\+A\+G\+E0 of the N\+T3\+H2211 I2C E\+E\+P\+R\+OM. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{nt3h_8c_a8b7f3ba6ec6dce05a9c79d4b08fa17bb}{nt3h\+\_\+writetag}} (int eeprom\+Block, char $\ast$blkdata)
+\begin{DoxyCompactList}\small\item\em Write a 16-\/byte block of the N\+T3\+H2211 I2C E\+E\+P\+R\+OM. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{nt3h_8c_a6766a3db85cd67a81ef911acff226dd8}{nt3h\+\_\+readtag}} (int eeprom\+Block, char $\ast$blkdata)
+\begin{DoxyCompactList}\small\item\em Read a 16-\/byte block from the N\+T3\+H2211 I2C E\+E\+P\+R\+OM. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{nt3h_8c_af5eae3ef1e64f9f5e399840c02f871ad}{nt3h\+\_\+eepromwritedone}} (void)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+unsigned char \mbox{\hyperlink{nt3h_8c_a613f9f68b28316222001d7168366e358}{rx\+Data}} \mbox{[}16\mbox{]} = \{0\}
+\item 
+unsigned char \mbox{\hyperlink{nt3h_8c_a22e5c365139f0ad8a990af342ea3fdc4}{tx\+Data}} \mbox{[}16\mbox{]} = \{0\}
+\item 
+unsigned char \mbox{\hyperlink{nt3h_8c_a842d1a1b6b3a07d1067b582fd66d16ae}{chunk1\+Data}} \mbox{[}50\mbox{]} = \{0\}
+\item 
+unsigned char \mbox{\hyperlink{nt3h_8c_af5d4c86e43867111ff77946580b2732c}{chunk2\+Data}} \mbox{[}50\mbox{]} = \{0\}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{nt3h_8c_afcf795f5a96fd55561abe69f56224630}\label{nt3h_8c_afcf795f5a96fd55561abe69f56224630}} 
+\index{nt3h.\+c@{nt3h.\+c}!B\+L\+O\+C\+K\+S\+I\+ZE@{B\+L\+O\+C\+K\+S\+I\+ZE}}
+\index{B\+L\+O\+C\+K\+S\+I\+ZE@{B\+L\+O\+C\+K\+S\+I\+ZE}!nt3h.\+c@{nt3h.\+c}}
+\subsubsection{\texorpdfstring{B\+L\+O\+C\+K\+S\+I\+ZE}{BLOCKSIZE}}
+{\footnotesize\ttfamily \#define B\+L\+O\+C\+K\+S\+I\+ZE~16}
+
+\mbox{\Hypertarget{nt3h_8c_a0054e7ec4043853d2e5c47395aadd65e}\label{nt3h_8c_a0054e7ec4043853d2e5c47395aadd65e}} 
+\index{nt3h.\+c@{nt3h.\+c}!C\+C\+\_\+\+R\+E\+G\+A\+D\+DR@{C\+C\+\_\+\+R\+E\+G\+A\+D\+DR}}
+\index{C\+C\+\_\+\+R\+E\+G\+A\+D\+DR@{C\+C\+\_\+\+R\+E\+G\+A\+D\+DR}!nt3h.\+c@{nt3h.\+c}}
+\subsubsection{\texorpdfstring{C\+C\+\_\+\+R\+E\+G\+A\+D\+DR}{CC\_REGADDR}}
+{\footnotesize\ttfamily \#define C\+C\+\_\+\+R\+E\+G\+A\+D\+DR~0x0C}
+
+\mbox{\Hypertarget{nt3h_8c_a8265d1afd96aa969d5bd110ee9e2c0ff}\label{nt3h_8c_a8265d1afd96aa969d5bd110ee9e2c0ff}} 
+\index{nt3h.\+c@{nt3h.\+c}!D\+E\+V\+A\+D\+DR@{D\+E\+V\+A\+D\+DR}}
+\index{D\+E\+V\+A\+D\+DR@{D\+E\+V\+A\+D\+DR}!nt3h.\+c@{nt3h.\+c}}
+\subsubsection{\texorpdfstring{D\+E\+V\+A\+D\+DR}{DEVADDR}}
+{\footnotesize\ttfamily \#define D\+E\+V\+A\+D\+DR~0x55}
+
+\mbox{\Hypertarget{nt3h_8c_a2a04f7bf0fe13871f7d1c220e4b78acf}\label{nt3h_8c_a2a04f7bf0fe13871f7d1c220e4b78acf}} 
+\index{nt3h.\+c@{nt3h.\+c}!P\+A\+G\+E0@{P\+A\+G\+E0}}
+\index{P\+A\+G\+E0@{P\+A\+G\+E0}!nt3h.\+c@{nt3h.\+c}}
+\subsubsection{\texorpdfstring{P\+A\+G\+E0}{PAGE0}}
+{\footnotesize\ttfamily \#define P\+A\+G\+E0~0}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{nt3h_8c_af5eae3ef1e64f9f5e399840c02f871ad}\label{nt3h_8c_af5eae3ef1e64f9f5e399840c02f871ad}} 
+\index{nt3h.\+c@{nt3h.\+c}!nt3h\+\_\+eepromwritedone@{nt3h\+\_\+eepromwritedone}}
+\index{nt3h\+\_\+eepromwritedone@{nt3h\+\_\+eepromwritedone}!nt3h.\+c@{nt3h.\+c}}
+\subsubsection{\texorpdfstring{nt3h\+\_\+eepromwritedone()}{nt3h\_eepromwritedone()}}
+{\footnotesize\ttfamily int nt3h\+\_\+eepromwritedone (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{nt3h_8c_aecfb69926db9b0c804eae417a5546766}\label{nt3h_8c_aecfb69926db9b0c804eae417a5546766}} 
+\index{nt3h.\+c@{nt3h.\+c}!nt3h\+\_\+init@{nt3h\+\_\+init}}
+\index{nt3h\+\_\+init@{nt3h\+\_\+init}!nt3h.\+c@{nt3h.\+c}}
+\subsubsection{\texorpdfstring{nt3h\+\_\+init()}{nt3h\_init()}}
+{\footnotesize\ttfamily void nt3h\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Initialise P\+A\+G\+E0 of the N\+T3\+H2211 I2C E\+E\+P\+R\+OM. 
+
+\mbox{\Hypertarget{nt3h_8c_a6766a3db85cd67a81ef911acff226dd8}\label{nt3h_8c_a6766a3db85cd67a81ef911acff226dd8}} 
+\index{nt3h.\+c@{nt3h.\+c}!nt3h\+\_\+readtag@{nt3h\+\_\+readtag}}
+\index{nt3h\+\_\+readtag@{nt3h\+\_\+readtag}!nt3h.\+c@{nt3h.\+c}}
+\subsubsection{\texorpdfstring{nt3h\+\_\+readtag()}{nt3h\_readtag()}}
+{\footnotesize\ttfamily int nt3h\+\_\+readtag (\begin{DoxyParamCaption}\item[{int}]{eeprom\+Block,  }\item[{char $\ast$}]{blkdata }\end{DoxyParamCaption})}
+
+
+
+Read a 16-\/byte block from the N\+T3\+H2211 I2C E\+E\+P\+R\+OM. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em eeprom\+Block} & index of the block to read. \\
+\hline
+{\em blkdata} & 16-\/byte array into which the E\+E\+P\+R\+OM block contents will be stored. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{nt3h_8c_a8b7f3ba6ec6dce05a9c79d4b08fa17bb}\label{nt3h_8c_a8b7f3ba6ec6dce05a9c79d4b08fa17bb}} 
+\index{nt3h.\+c@{nt3h.\+c}!nt3h\+\_\+writetag@{nt3h\+\_\+writetag}}
+\index{nt3h\+\_\+writetag@{nt3h\+\_\+writetag}!nt3h.\+c@{nt3h.\+c}}
+\subsubsection{\texorpdfstring{nt3h\+\_\+writetag()}{nt3h\_writetag()}}
+{\footnotesize\ttfamily int nt3h\+\_\+writetag (\begin{DoxyParamCaption}\item[{int}]{eeprom\+Block,  }\item[{char $\ast$}]{blkdata }\end{DoxyParamCaption})}
+
+
+
+Write a 16-\/byte block of the N\+T3\+H2211 I2C E\+E\+P\+R\+OM. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em eeprom\+Block} & index of the block to write \\
+\hline
+{\em blkdata} & 16-\/byte array containing data to write \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{nt3h_8c_a842d1a1b6b3a07d1067b582fd66d16ae}\label{nt3h_8c_a842d1a1b6b3a07d1067b582fd66d16ae}} 
+\index{nt3h.\+c@{nt3h.\+c}!chunk1\+Data@{chunk1\+Data}}
+\index{chunk1\+Data@{chunk1\+Data}!nt3h.\+c@{nt3h.\+c}}
+\subsubsection{\texorpdfstring{chunk1\+Data}{chunk1Data}}
+{\footnotesize\ttfamily unsigned char chunk1\+Data\mbox{[}50\mbox{]} = \{0\}}
+
+\mbox{\Hypertarget{nt3h_8c_af5d4c86e43867111ff77946580b2732c}\label{nt3h_8c_af5d4c86e43867111ff77946580b2732c}} 
+\index{nt3h.\+c@{nt3h.\+c}!chunk2\+Data@{chunk2\+Data}}
+\index{chunk2\+Data@{chunk2\+Data}!nt3h.\+c@{nt3h.\+c}}
+\subsubsection{\texorpdfstring{chunk2\+Data}{chunk2Data}}
+{\footnotesize\ttfamily unsigned char chunk2\+Data\mbox{[}50\mbox{]} = \{0\}}
+
+\mbox{\Hypertarget{nt3h_8c_a613f9f68b28316222001d7168366e358}\label{nt3h_8c_a613f9f68b28316222001d7168366e358}} 
+\index{nt3h.\+c@{nt3h.\+c}!rx\+Data@{rx\+Data}}
+\index{rx\+Data@{rx\+Data}!nt3h.\+c@{nt3h.\+c}}
+\subsubsection{\texorpdfstring{rx\+Data}{rxData}}
+{\footnotesize\ttfamily unsigned char rx\+Data\mbox{[}16\mbox{]} = \{0\}}
+
+\mbox{\Hypertarget{nt3h_8c_a22e5c365139f0ad8a990af342ea3fdc4}\label{nt3h_8c_a22e5c365139f0ad8a990af342ea3fdc4}} 
+\index{nt3h.\+c@{nt3h.\+c}!tx\+Data@{tx\+Data}}
+\index{tx\+Data@{tx\+Data}!nt3h.\+c@{nt3h.\+c}}
+\subsubsection{\texorpdfstring{tx\+Data}{txData}}
+{\footnotesize\ttfamily unsigned char tx\+Data\mbox{[}16\mbox{]} = \{0\}}
+
