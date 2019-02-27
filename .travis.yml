@@ -21,4 +21,4 @@ install:
   - pipenv run python -m encodertb.pyencoder.builder
 
 # command to run tests
-script: python -m pytest
+script: pipenv run python -m pytest
