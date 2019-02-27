@@ -7,7 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e2a5e9f0-49cc-45a8-97b9-be9933b2b17b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/encodertb/pyencoder/unitc.py" beforeDir="false" afterPath="$PROJECT_DIR$/encodertb/pyencoder/unitc.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,14 +19,14 @@
     <SUITE FILE_PATH="coverage/PSCodec$pytest_in_tests.coverage" NAME="pytest in encodertb Coverage Results" MODIFIED="1551225257143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encodertb" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_ndef_test_decode_raises_indexerrror.coverage" NAME="pytest for test_ndef.test_decode_raises_indexerrror Coverage Results" MODIFIED="1551225456718" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encodertb" />
     <SUITE FILE_PATH="coverage/PSCodec$Unittests_for_tests_sampletest_SampleTest.coverage" NAME="Unittests for tests.sampletest.SampleTest Coverage Results" MODIFIED="1551223376162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
-    <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_ndef_test_serial.coverage" NAME="pytest in PSCodec Coverage Results" MODIFIED="1551229085307" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_ndef_test_serial.coverage" NAME="pytest in PSCodec Coverage Results" MODIFIED="1551229998294" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_ndef_test_timeinterval.coverage" NAME="pytest for test_ndef.test_timeinterval Coverage Results" MODIFIED="1551225390823" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encodertb" />
     <SUITE FILE_PATH="coverage/PSCodec$test_ndef.coverage" NAME="test_ndef Coverage Results" MODIFIED="1551225174403" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encodertb" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_ndef_test_circbuf_length.coverage" NAME="pytest for test_ndef.test_circbuf_length Coverage Results" MODIFIED="1551225404712" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encodertb" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.travis.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
@@ -72,11 +71,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/encodertb/pyencoder/unitc.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="472">
-              <caret line="50" column="4" selection-start-line="50" selection-start-column="4" selection-end-line="50" selection-end-column="4" />
+            <state relative-caret-position="64">
+              <caret line="54" column="38" selection-start-line="54" selection-start-column="38" selection-end-line="54" selection-end-column="38" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -136,8 +135,8 @@
         <option value="$PROJECT_DIR$/pytest.ini" />
         <option value="$PROJECT_DIR$/encodertb/__init__.py" />
         <option value="$PROJECT_DIR$/encodertb/test_ndef.py" />
-        <option value="$PROJECT_DIR$/encodertb/pyencoder/unitc.py" />
         <option value="$PROJECT_DIR$/.travis.yml" />
+        <option value="$PROJECT_DIR$/encodertb/pyencoder/unitc.py" />
       </list>
     </option>
   </component>
@@ -196,6 +195,13 @@
               <item name="PSCodec" type="462c0819:PsiDirectoryNode" />
               <item name="encodertb" type="462c0819:PsiDirectoryNode" />
               <item name="pyencoder" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PSCodec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PSCodec" type="462c0819:PsiDirectoryNode" />
+              <item name="encodertb" type="462c0819:PsiDirectoryNode" />
+              <item name="pyencoder" type="462c0819:PsiDirectoryNode" />
+              <item name="sharedobj" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -282,44 +288,44 @@
       <option name="presentableId" value="Default" />
       <updated>1551220874720</updated>
       <workItem from="1551220882124" duration="1619000" />
-      <workItem from="1551222684246" duration="6238000" />
+      <workItem from="1551222684246" duration="6987000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="pytest_in_PSCodec - 2019.02.27 at 00h 50m 33s.xml">
+    <history-entry file="pytest_in_PSCodec - 2019.02.27 at 01h 06m 10s.xml">
       <configuration name="pytest in PSCodec" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_in_PSCodec - 2019.02.27 at 00h 50m 42s.xml">
+    <history-entry file="pytest_in_PSCodec - 2019.02.27 at 01h 06m 38s.xml">
       <configuration name="pytest in PSCodec" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_in_PSCodec - 2019.02.27 at 00h 50m 49s.xml">
+    <history-entry file="pytest_in_PSCodec - 2019.02.27 at 01h 06m 45s.xml">
       <configuration name="pytest in PSCodec" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_in_PSCodec - 2019.02.27 at 00h 51m 25s.xml">
+    <history-entry file="pytest_in_PSCodec - 2019.02.27 at 01h 06m 50s.xml">
       <configuration name="pytest in PSCodec" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_in_PSCodec - 2019.02.27 at 00h 51m 42s.xml">
+    <history-entry file="pytest_in_PSCodec - 2019.02.27 at 01h 06m 54s.xml">
       <configuration name="pytest in PSCodec" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_in_PSCodec - 2019.02.27 at 00h 54m 30s.xml">
+    <history-entry file="pytest_in_PSCodec - 2019.02.27 at 01h 07m 18s.xml">
       <configuration name="pytest in PSCodec" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_in_PSCodec - 2019.02.27 at 00h 55m 08s.xml">
+    <history-entry file="pytest_in_PSCodec - 2019.02.27 at 01h 12m 21s.xml">
       <configuration name="pytest in PSCodec" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_in_PSCodec - 2019.02.27 at 00h 55m 39s.xml">
+    <history-entry file="pytest_in_PSCodec - 2019.02.27 at 01h 12m 28s.xml">
       <configuration name="pytest in PSCodec" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_in_PSCodec - 2019.02.27 at 00h 55m 47s.xml">
+    <history-entry file="pytest_in_PSCodec - 2019.02.27 at 01h 12m 46s.xml">
       <configuration name="pytest in PSCodec" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_in_PSCodec - 2019.02.27 at 00h 56m 57s.xml">
+    <history-entry file="pytest_in_PSCodec - 2019.02.27 at 01h 13m 13s.xml">
       <configuration name="pytest in PSCodec" configurationId="tests" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7857000" />
+    <option name="totallyTimeSpent" value="8606000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="23" width="1920" height="1001" extended-state="0" />
@@ -626,6 +632,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="14" lean-forward="true" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/encodertb/pyencoder/builder.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -637,18 +650,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/encodertb/pyencoder/unitc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
-          <caret line="50" column="4" selection-start-line="50" selection-start-column="4" selection-end-line="50" selection-end-column="4" />
+        <state relative-caret-position="64">
+          <caret line="54" column="38" selection-start-line="54" selection-start-column="38" selection-end-line="54" selection-end-column="38" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.travis.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="14" lean-forward="true" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
         </state>
       </provider>
     </entry>

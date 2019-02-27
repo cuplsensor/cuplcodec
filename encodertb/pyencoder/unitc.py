@@ -13,6 +13,7 @@ import weakref
 basepath = os.path.dirname(__file__)
 ENCODER_CSOURCE_PATH = os.path.join(os.path.join(basepath, "..", "..", "encoder"), "")
 PYCPARSER_PATH = os.path.join(os.path.join(basepath, "pycparser"), "")
+SHAREDOBJ_PATH = os.path.join(os.path.join(basepath, "sharedobj"), "")
 
 global_weakkeydict = weakref.WeakKeyDictionary()
 
@@ -51,10 +52,7 @@ def load(filename, depfilenames=list()):
  """
  Load a file
  """
- #if os.path.exists('encoder'):
- #     shutil.rmtree('encoder')
- #shutil.copytree('../encoder/', 'encoder')
- name = 'sharedobj.' + filename + 'py' #+ '_' + uuid.uuid4().hex
+ name = 'encodertb.pyencoder.sharedobj.' + filename + 'py'
  # load source code
  source = open(ENCODER_CSOURCE_PATH + filename + '.c').read()
 
