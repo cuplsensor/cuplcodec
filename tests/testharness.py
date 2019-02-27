@@ -1,7 +1,6 @@
 import unittest
-from struct import *
-import collections
 import weakref
+
 
 class NDEFTest(unittest.TestCase):
     def setUp(self):

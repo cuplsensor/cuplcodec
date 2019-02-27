@@ -1,9 +1,5 @@
-from testharness import *
-import sys
-
-sys.path.insert(0, '../../web/charityapp')
-
-from urldecoder import UrlDecoder
+from .testharness import *
+from ..urldecoder.urldecoder import UrlDecoder
 
 class SampleTest(unittest.TestCase):
     def setUp(self, secretkey):

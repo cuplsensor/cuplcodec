@@ -1,4 +1,4 @@
-from sampletest import *
+from .sampletest import *
 
 class TRHSampleTest(SampleTest):
     def setUp(self):
