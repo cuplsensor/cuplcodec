@@ -8,5 +8,5 @@
 #include "nvtype.h"
 
 #ifndef NOT_CFFI
-nv_t nv = {.serial="AAAACCCC", .seckey="AAAACCCC"};
+nv_t nv = {.serial="AAAACCCC", .seckey="AAAACCCC", .smplintervalmins=12};
 #endif

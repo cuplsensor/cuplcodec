@@ -1,19 +1,10 @@
 language: python
+python: 3.6
+dist: xenial
 cache:
   - ccache
   - pip
 
-matrix:
-  include:
-    - os: linux
-      compiler: gcc
-      addons: &gcc49
-        apt:
-          sources: ['ubuntu-toolchain-r-test']
-          packages: ['gcc-4.9']
-      env:
-        - CC='gcc-4.9'
-      python: 3.6
 
 # command to install dependencies
 install:
