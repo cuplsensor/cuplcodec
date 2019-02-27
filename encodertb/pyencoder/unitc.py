@@ -52,7 +52,7 @@ def load(filename, depfilenames=list()):
  """
  Load a file
  """
- name = 'encodertb.pyencoder.sharedobj.' + filename + 'py'
+ name = 'sharedobj.' + filename + 'py'
  # load source code
  source = open(ENCODER_CSOURCE_PATH + filename + '.c').read()
 
