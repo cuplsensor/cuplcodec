@@ -3,6 +3,7 @@ python:
   - "3.6"
 # command to install dependencies
 install:
-  - pip install -p
+  - pip install pipenv
+  - pipenv install
 # command to run tests
 script: pytest
