@@ -7,7 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e2a5e9f0-49cc-45a8-97b9-be9933b2b17b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/encoder/nvtype.c" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/nvtype.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/encoder/nvtype.h" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/nvtype.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/encodertb/pyencoder/unitc.py" beforeDir="false" afterPath="$PROJECT_DIR$/encodertb/pyencoder/unitc.py" afterDir="false" />
     </list>
@@ -19,10 +19,12 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/PSCodec$pytest_in_tests.coverage" NAME="pytest in encodertb Coverage Results" MODIFIED="1551225257143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encodertb" />
+    <SUITE FILE_PATH="coverage/PSCodec$pytest_for_encodertb_test_ndef_test_serial.coverage" NAME="pytest for encodertb.test_ndef.test_serial Coverage Results" MODIFIED="1551293908559" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_ndef_test_decode_raises_indexerrror.coverage" NAME="pytest for test_ndef.test_decode_raises_indexerrror Coverage Results" MODIFIED="1551225456718" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encodertb" />
     <SUITE FILE_PATH="coverage/PSCodec$Unittests_for_tests_sampletest_SampleTest.coverage" NAME="Unittests for tests.sampletest.SampleTest Coverage Results" MODIFIED="1551223376162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
-    <SUITE FILE_PATH="coverage/PSCodec$pytest_for_encodertb_test_ndef_test_check.coverage" NAME="pytest for encodertb.test_ndef.test_check Coverage Results" MODIFIED="1551291799642" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
+    <SUITE FILE_PATH="coverage/PSCodec$pytest_for_encodertb_test_ndef_test_check.coverage" NAME="pytest for encodertb.test_ndef.test_check Coverage Results" MODIFIED="1551292270825" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_ndef_test_serial.coverage" NAME="pytest in PSCodec Coverage Results" MODIFIED="1551233087232" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PSCodec$pytest_for_encodertb_test_ndef_test_statusbytes.coverage" NAME="pytest for encodertb.test_ndef.test_statusbytes Coverage Results" MODIFIED="1551293688281" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_ndef_test_timeinterval.coverage" NAME="pytest for test_ndef.test_timeinterval Coverage Results" MODIFIED="1551225390823" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encodertb" />
     <SUITE FILE_PATH="coverage/PSCodec$test_ndef.coverage" NAME="test_ndef Coverage Results" MODIFIED="1551225174403" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encodertb" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_ndef_test_circbuf_length.coverage" NAME="pytest for test_ndef.test_circbuf_length Coverage Results" MODIFIED="1551225404712" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encodertb" />
@@ -42,8 +44,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/encodertb/test_ndef.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-97">
-              <caret line="48" column="48" selection-start-line="48" selection-start-column="48" selection-end-line="48" selection-end-column="48" />
+            <state relative-caret-position="412">
+              <caret line="62" column="4" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="4" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -71,11 +73,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/encodertb/pyencoder/unitc.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="77" column="53" selection-start-line="77" selection-start-column="53" selection-end-line="77" selection-end-column="53" />
+            <state relative-caret-position="492">
+              <caret line="77" column="52" selection-start-line="77" selection-start-column="52" selection-end-line="77" selection-end-column="52" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -103,17 +105,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/encoder/nvtype.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="135">
+              <caret line="9" selection-start-line="9" selection-end-line="9" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/encoder/nvtype.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="30" selection-end-column="6" />
+            <state relative-caret-position="375">
+              <caret line="25" column="33" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -131,6 +133,8 @@
     <findStrings>
       <find>urldecoder</find>
       <find>c</find>
+      <find>override</find>
+      <find>__attribute__((packed))</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -152,9 +156,9 @@
         <option value="$PROJECT_DIR$/encodertb/pyencoder/instrumented.py" />
         <option value="$PROJECT_DIR$/encodertb/test_ndef.py" />
         <option value="$PROJECT_DIR$/encodertb/pyencoder/builder.py" />
-        <option value="$PROJECT_DIR$/encodertb/pyencoder/unitc.py" />
         <option value="$PROJECT_DIR$/encoder/nvtype.c" />
         <option value="$PROJECT_DIR$/encoder/nvtype.h" />
+        <option value="$PROJECT_DIR$/encodertb/pyencoder/unitc.py" />
       </list>
     </option>
   </component>
@@ -250,7 +254,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.pytest for encodertb.test_ndef.test_check">
+  <component name="RunManager" selected="Python tests.pytest for encodertb.test_ndef.test_serial">
     <configuration name="pytest for encodertb.test_ndef.test_check" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="PSCodec" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -264,6 +268,38 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;encodertb.test_ndef.test_check&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for encodertb.test_ndef.test_serial" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="PSCodec" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/.." />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;encodertb.test_ndef.test_serial&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for encodertb.test_ndef.test_statusbytes" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="PSCodec" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/.." />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;encodertb.test_ndef.test_statusbytes&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -320,9 +356,13 @@
       <item itemvalue="Python tests.pytest in PSCodec" />
       <item itemvalue="Python tests.pytest for encodertb.test_ndef.test_timeinterval" />
       <item itemvalue="Python tests.pytest for encodertb.test_ndef.test_check" />
+      <item itemvalue="Python tests.pytest for encodertb.test_ndef.test_statusbytes" />
+      <item itemvalue="Python tests.pytest for encodertb.test_ndef.test_serial" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.pytest for encodertb.test_ndef.test_serial" />
+        <item itemvalue="Python tests.pytest for encodertb.test_ndef.test_statusbytes" />
         <item itemvalue="Python tests.pytest for encodertb.test_ndef.test_check" />
         <item itemvalue="Python tests.pytest for encodertb.test_ndef.test_timeinterval" />
         <item itemvalue="Python tests.pytest in PSCodec" />
@@ -340,32 +380,11 @@
       <option name="presentableId" value="Default" />
       <updated>1551220874720</updated>
       <workItem from="1551220882124" duration="1619000" />
-      <workItem from="1551222684246" duration="13773000" />
+      <workItem from="1551222684246" duration="15797000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="pytest_for_encodertb_test_ndef_test_timeinterval - 2019.02.27 at 02h 28m 49s.xml">
-      <configuration name="pytest for encodertb.test_ndef.test_timeinterval" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_for_encodertb_test_ndef_test_timeinterval - 2019.02.27 at 02h 28m 50s.xml">
-      <configuration name="pytest for encodertb.test_ndef.test_timeinterval" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_for_encodertb_test_ndef_test_timeinterval - 2019.02.27 at 02h 29m 04s.xml">
-      <configuration name="pytest for encodertb.test_ndef.test_timeinterval" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_for_encodertb_test_ndef_test_timeinterval - 2019.02.27 at 02h 29m 10s.xml">
-      <configuration name="pytest for encodertb.test_ndef.test_timeinterval" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_for_encodertb_test_ndef_test_check - 2019.02.27 at 08h 40m 53s.xml">
-      <configuration name="pytest for encodertb.test_ndef.test_check" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_for_encodertb_test_ndef_test_check - 2019.02.27 at 08h 41m 48s.xml">
-      <configuration name="pytest for encodertb.test_ndef.test_check" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_for_encodertb_test_ndef_test_check - 2019.02.27 at 08h 42m 10s.xml">
-      <configuration name="pytest for encodertb.test_ndef.test_check" configurationId="tests" />
-    </history-entry>
     <history-entry file="pytest_for_encodertb_test_ndef_test_check - 2019.02.27 at 08h 58m 33s.xml">
       <configuration name="pytest for encodertb.test_ndef.test_check" configurationId="tests" />
     </history-entry>
@@ -375,9 +394,39 @@
     <history-entry file="pytest_for_encodertb_test_ndef_test_check - 2019.02.27 at 09h 05m 40s.xml">
       <configuration name="pytest for encodertb.test_ndef.test_check" configurationId="tests" />
     </history-entry>
+    <history-entry file="pytest_for_encodertb_test_ndef_test_check - 2019.02.27 at 18h 23m 20s.xml">
+      <configuration name="pytest for encodertb.test_ndef.test_check" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_encodertb_test_ndef_test_check - 2019.02.27 at 18h 31m 11s.xml">
+      <configuration name="pytest for encodertb.test_ndef.test_check" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_encodertb_test_ndef_test_statusbytes - 2019.02.27 at 18h 32m 25s.xml">
+      <configuration name="pytest for encodertb.test_ndef.test_statusbytes" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_encodertb_test_ndef_test_statusbytes - 2019.02.27 at 18h 37m 57s.xml">
+      <configuration name="pytest for encodertb.test_ndef.test_statusbytes" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_encodertb_test_ndef_test_statusbytes - 2019.02.27 at 18h 52m 03s.xml">
+      <configuration name="pytest for encodertb.test_ndef.test_statusbytes" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_encodertb_test_ndef_test_statusbytes - 2019.02.27 at 18h 54m 49s.xml">
+      <configuration name="pytest for encodertb.test_ndef.test_statusbytes" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_encodertb_test_ndef_test_serial - 2019.02.27 at 18h 57m 45s.xml">
+      <configuration name="pytest for encodertb.test_ndef.test_serial" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15392000" />
+    <option name="totallyTimeSpent" value="17416000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="23" width="1920" height="1001" extended-state="0" />
@@ -392,7 +441,7 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39933994" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32893288" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
@@ -677,13 +726,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/encodertb/test_ndef.py">
+    <entry file="file://$PROJECT_DIR$/encodertb/pyencoder/builder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-97">
-          <caret line="48" column="48" selection-start-line="48" selection-start-column="48" selection-end-line="48" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="150">
+          <caret line="10" column="22" lean-forward="true" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -697,41 +743,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/encodertb/pyencoder/builder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="22" lean-forward="true" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.virtualenvs/PSCodec/lib/python3.6/site-packages/cffi/api.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="100" column="8" selection-start-line="100" selection-start-column="8" selection-end-line="100" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/encodertb/pyencoder/unitc.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="77" column="53" selection-start-line="77" selection-start-column="53" selection-end-line="77" selection-end-column="53" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="173">
+          <caret line="125" column="48" selection-start-line="125" selection-start-column="40" selection-end-line="125" selection-end-column="48" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/encoder/nvtype.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="135">
+          <caret line="9" selection-start-line="9" selection-end-line="9" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/encoder/nvtype.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="30" selection-end-column="6" />
+        <state relative-caret-position="375">
+          <caret line="25" column="33" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/encodertb/test_ndef.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="62" column="4" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/encodertb/pyencoder/unitc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="492">
+          <caret line="77" column="52" selection-start-line="77" selection-start-column="52" selection-end-line="77" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

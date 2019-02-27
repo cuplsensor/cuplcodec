@@ -26,8 +26,4 @@ typedef struct nvstruct {
     char seckey[SECKEY_LENBYTES];
 } nv_t;
 
-#ifndef NOT_CFFI
-nv_t nv;
-#endif
-
 #endif /* COMMS_NVTYPE_H_ */
