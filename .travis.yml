@@ -18,6 +18,7 @@ matrix:
 install:
   - pip install pipenv
   - pipenv install
-  - pipenv run python encodertb/pyencoder/builder.py
+  - pipenv run python -m encodertb.pyencoder.builder
+
 # command to run tests
 script: pytest

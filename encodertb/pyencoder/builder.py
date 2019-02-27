@@ -1,5 +1,5 @@
-import unitc
-import eeprom
+from . import unitc
+
 
 class Testbench(object):
     def __init__(self,
