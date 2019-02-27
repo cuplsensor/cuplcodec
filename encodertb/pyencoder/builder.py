@@ -15,11 +15,11 @@ class NDEF(Testbench):
 class Octet(Testbench):
     def __init__(self):
         super(Octet, self).__init__('octet',
-                                    ['ndef', 'eep', 'base64'])
+                                    ['ndef', 'eep', 'base64', 'nvtype'])
 class SmplHist(Testbench):
     def __init__(self):
         super(SmplHist, self).__init__('smplhist',
-                                       ['md5'])
+                                       ['md5', 'nvtype'])
 class Sample(Testbench):
     def __init__(self):
         super(Sample, self).__init__('sample',
