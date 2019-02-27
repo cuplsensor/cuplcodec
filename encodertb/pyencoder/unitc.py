@@ -9,7 +9,10 @@ import importlib
 import shutil
 import weakref
 
-ENCODER_CSOURCE_PATH = "../../encoder/"
+
+basepath = os.path.dirname(__file__)
+ENCODER_CSOURCE_PATH = os.path.join(os.path.join(basepath, "..", "..", "encoder"), "")
+PYCPARSER_PATH = os.path.join(os.path.join(basepath, "pycparser"), "")
 
 global_weakkeydict = weakref.WeakKeyDictionary()
 
@@ -40,7 +43,7 @@ class FunctionList(pycparser.c_ast.NodeVisitor):
         self.funcs.add(node.decl.name)
 
 def preprocess(source):
-    return subprocess.run(['gcc', '-E', '-P', '-', '-I'+ENCODER_CSOURCE_PATH,'-Ipycparser/utils/fake_libc_include'],
+    return subprocess.run(['gcc', '-E', '-P', '-', '-I'+ENCODER_CSOURCE_PATH, '-I'+PYCPARSER_PATH+'/utils/fake_libc_include'],
                           input=source, stdout=subprocess.PIPE,
                           universal_newlines=True, check=True).stdout
 
