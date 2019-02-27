@@ -16,14 +16,14 @@
 
 
 typedef struct nvstruct {
-    unsigned int randstate;
-    int smplintervalmins;
-    int sleepintervaldays;
-    int allwritten;
-    int resetsperloop;
-    int resetsalltime;
     char serial[SERIAL_LENBYTES];
     char seckey[SECKEY_LENBYTES];
+    unsigned int randstate;
+    unsigned int smplintervalmins;
+    unsigned int sleepintervaldays;
+    unsigned int allwritten;
+    unsigned int resetsperloop;
+    unsigned int resetsalltime;
 } nv_t;
 
 #endif /* COMMS_NVTYPE_H_ */

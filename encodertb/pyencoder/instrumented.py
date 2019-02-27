@@ -15,7 +15,7 @@ class InstrumentedBase(object):
         self.ffimodule = ffimodule
         self.ffimodule.lib.nv.serial = serial.encode('ascii')
         self.ffimodule.lib.nv.seckey = secretkey.encode('ascii')
-        self.ffimodule.lib.nv.smplintervalmins = self.ffimodule.ffi.cast("int", smplintervalmins)
+        #self.ffimodule.lib.nv.smplintervalmins = self.ffimodule.ffi.cast("int", smplintervalmins)
         self.eepromba = eeprom.Eeprom(64)
 
         @self.ffimodule.ffi.def_extern()
