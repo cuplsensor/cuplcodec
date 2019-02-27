@@ -11,6 +11,7 @@
 
 #define SERIAL_LENBYTES     8
 #define SECKEY_LENBYTES     8
+#define SMPLINT_LENBYTES     2
 #define RANDSTATE_LENBYTES      4
 #define INTEGERFIELD_LENBYTES   4
 
@@ -18,8 +19,8 @@
 typedef struct nvstruct {
     char serial[SERIAL_LENBYTES];
     char seckey[SECKEY_LENBYTES];
+    char smplintervalmins[SMPLINT_LENBYTES];
     unsigned int randstate;
-    unsigned int smplintervalmins;
     unsigned int sleepintervaldays;
     unsigned int allwritten;
     unsigned int resetsperloop;

@@ -106,7 +106,7 @@ int ndef_writepreamble(int qlenblks, char * statusb64)
   int blk;
   int eepindex = 0;
   char * serial = nv.serial;
-  char * timeinterval = &nv.smplintervalmins;
+  char * timeinterval = nv.smplintervalmins;
 
   /* qlenblks must be even */
   if ((qlenblks & 0x01) != 0)
@@ -125,7 +125,7 @@ int ndef_writepreamble(int qlenblks, char * statusb64)
   // Start NDEF record
   ndef_createurlrecord(&eepindex, msglenbytes);
 
-  Base64encode(timeintb64, timeinterval, 2);
+  Base64encode(timeintb64, timeinterval, SMPLINT_LENBYTES);
 
   // Append URL
   eep_cp(&eepindex, url, sizeof(url)-1);
