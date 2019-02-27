@@ -1,4 +1,4 @@
-from .sharedobj import ndefpy, octetpy, smplhistpy, samplepy
+from sharedobj import ndefpy, octetpy, smplhistpy, samplepy
 from . import eeprom as eeprom
 
 class InstrumentedBase(object):
