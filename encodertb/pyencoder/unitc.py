@@ -75,7 +75,7 @@ def load(filename, depfilenames=list()):
  ffibuilder = cffi.FFI()
 
  # Add all includes to the cdef attribute
- ffibuilder.cdef(includes, override=True)
+ ffibuilder.cdef(includes, override=True, packed=True)
 
  # Add the source, library sources and include directories
  ffibuilder.set_source(name, source, include_dirs=[ENCODER_CSOURCE_PATH])

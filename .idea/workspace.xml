@@ -8,6 +8,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e2a5e9f0-49cc-45a8-97b9-be9933b2b17b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/encoder/nvtype.c" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/nvtype.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/encoder/nvtype.h" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/nvtype.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/encodertb/pyencoder/unitc.py" beforeDir="false" afterPath="$PROJECT_DIR$/encodertb/pyencoder/unitc.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,7 +21,7 @@
     <SUITE FILE_PATH="coverage/PSCodec$pytest_in_tests.coverage" NAME="pytest in encodertb Coverage Results" MODIFIED="1551225257143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encodertb" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_ndef_test_decode_raises_indexerrror.coverage" NAME="pytest for test_ndef.test_decode_raises_indexerrror Coverage Results" MODIFIED="1551225456718" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encodertb" />
     <SUITE FILE_PATH="coverage/PSCodec$Unittests_for_tests_sampletest_SampleTest.coverage" NAME="Unittests for tests.sampletest.SampleTest Coverage Results" MODIFIED="1551223376162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
-    <SUITE FILE_PATH="coverage/PSCodec$pytest_for_encodertb_test_ndef_test_check.coverage" NAME="pytest for encodertb.test_ndef.test_check Coverage Results" MODIFIED="1551258339666" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
+    <SUITE FILE_PATH="coverage/PSCodec$pytest_for_encodertb_test_ndef_test_check.coverage" NAME="pytest for encodertb.test_ndef.test_check Coverage Results" MODIFIED="1551291799642" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_ndef_test_serial.coverage" NAME="pytest in PSCodec Coverage Results" MODIFIED="1551233087232" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_ndef_test_timeinterval.coverage" NAME="pytest for test_ndef.test_timeinterval Coverage Results" MODIFIED="1551225390823" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encodertb" />
     <SUITE FILE_PATH="coverage/PSCodec$test_ndef.coverage" NAME="test_ndef Coverage Results" MODIFIED="1551225174403" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encodertb" />
@@ -50,15 +52,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pytest.ini">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="26" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/encodertb/pyencoder/eeprom.py">
           <provider selected="true" editor-type-id="text-editor">
             <state>
@@ -69,11 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/encodertb/pyencoder/builder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="59" lean-forward="true" selection-start-line="13" selection-start-column="59" selection-end-line="13" selection-end-column="59" />
+            <state relative-caret-position="150">
+              <caret line="10" column="22" lean-forward="true" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -81,8 +74,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/encodertb/pyencoder/unitc.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1048">
-              <caret line="86" column="39" selection-start-line="86" selection-start-column="39" selection-end-line="86" selection-end-column="39" />
+            <state relative-caret-position="411">
+              <caret line="77" column="53" selection-start-line="77" selection-start-column="53" selection-end-line="77" selection-end-column="53" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -110,17 +103,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/encoder/nvtype.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+            <state relative-caret-position="120">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/encoder/nvtype.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="7" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
+            <state relative-caret-position="405">
+              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="30" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -158,10 +151,10 @@
         <option value="$PROJECT_DIR$/.travis.yml" />
         <option value="$PROJECT_DIR$/encodertb/pyencoder/instrumented.py" />
         <option value="$PROJECT_DIR$/encodertb/test_ndef.py" />
-        <option value="$PROJECT_DIR$/encodertb/pyencoder/unitc.py" />
-        <option value="$PROJECT_DIR$/encoder/nvtype.h" />
         <option value="$PROJECT_DIR$/encodertb/pyencoder/builder.py" />
+        <option value="$PROJECT_DIR$/encodertb/pyencoder/unitc.py" />
         <option value="$PROJECT_DIR$/encoder/nvtype.c" />
+        <option value="$PROJECT_DIR$/encoder/nvtype.h" />
       </list>
     </option>
   </component>
@@ -347,7 +340,7 @@
       <option name="presentableId" value="Default" />
       <updated>1551220874720</updated>
       <workItem from="1551220882124" duration="1619000" />
-      <workItem from="1551222684246" duration="13587000" />
+      <workItem from="1551222684246" duration="13773000" />
     </task>
     <servers />
   </component>
@@ -384,7 +377,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15206000" />
+    <option name="totallyTimeSpent" value="15392000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="23" width="1920" height="1001" extended-state="0" />
@@ -694,20 +687,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/encoder/nvtype.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="7" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/encoder/nvtype.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/encodertb/pyencoder/instrumented.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -718,20 +697,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/encodertb/pyencoder/builder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="22" lean-forward="true" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.virtualenvs/PSCodec/lib/python3.6/site-packages/cffi/api.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="100" column="8" selection-start-line="100" selection-start-column="8" selection-end-line="100" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/encodertb/pyencoder/unitc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1048">
-          <caret line="86" column="39" selection-start-line="86" selection-start-column="39" selection-end-line="86" selection-end-column="39" />
+        <state relative-caret-position="411">
+          <caret line="77" column="53" selection-start-line="77" selection-start-column="53" selection-end-line="77" selection-end-column="53" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/encodertb/pyencoder/builder.py">
+    <entry file="file://$PROJECT_DIR$/encoder/nvtype.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="59" lean-forward="true" selection-start-line="13" selection-start-column="59" selection-end-line="13" selection-end-column="59" />
+        <state relative-caret-position="120">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/encoder/nvtype.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="30" selection-end-column="6" />
         </state>
       </provider>
     </entry>

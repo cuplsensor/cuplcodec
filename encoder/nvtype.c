@@ -7,5 +7,6 @@
 
 #include "nvtype.h"
 
-
-nv_t nv;
+#ifndef NOT_CFFI
+nv_t nv = {.serial="AAAACCCC", .seckey="AAAACCCC"};
+#endif
