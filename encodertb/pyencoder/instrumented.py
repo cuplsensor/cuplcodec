@@ -1,5 +1,6 @@
 from sharedobj import ndefpy, octetpy, smplhistpy, samplepy
 from . import eeprom as eeprom
+from struct import pack
 
 
 class InstrumentedBase(object):
@@ -15,7 +16,8 @@ class InstrumentedBase(object):
         self.ffimodule = ffimodule
         self.ffimodule.lib.nv.serial = serial.encode('ascii')
         self.ffimodule.lib.nv.seckey = secretkey.encode('ascii')
-        self.ffimodule.lib.nv.smplintervalmins = self.ffimodule.ffi.cast("int", smplintervalmins)
+        smplintbytes = pack("<H", smplintervalmins)
+        self.ffimodule.lib.nv.smplintervalmins = smplintbytes
         self.eepromba = eeprom.Eeprom(64)
 
         @self.ffimodule.ffi.def_extern()
