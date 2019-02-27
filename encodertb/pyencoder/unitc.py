@@ -86,10 +86,4 @@ def load(filename, depfilenames=list()):
  importlib.invalidate_caches()
  module = importlib.import_module(name)
 
- module.lib.nv = {
-     'serial': bytes(b"YWJjZGVm"),
-     'seckey': bytes(b"AAAACCCC"),
-     'smplintervalmins': 12
- }
-
  return module.lib, module.ffi, name
