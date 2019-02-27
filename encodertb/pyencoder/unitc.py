@@ -83,6 +83,7 @@ def load(filename, depfilenames=list()):
  ffibuilder.compile()
 
  # import and return resulting module
+ importlib.invalidate_caches()
  module = importlib.import_module(name)
 
  module.lib.nv = {
