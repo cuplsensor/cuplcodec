@@ -125,7 +125,7 @@ int ndef_writepreamble(int qlenblks, char * statusb64)
   // Start NDEF record
   ndef_createurlrecord(&eepindex, msglenbytes);
 
-  Base64encode(timeintb64, timeinterval, 1);
+  Base64encode(timeintb64, timeinterval, 2);
 
   // Append URL
   eep_cp(&eepindex, url, sizeof(url)-1);

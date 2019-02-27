@@ -8,7 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e2a5e9f0-49cc-45a8-97b9-be9933b2b17b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/encoder/ndef.c" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/ndef.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encodertb/pyencoder/instrumented.py" beforeDir="false" afterPath="$PROJECT_DIR$/encodertb/pyencoder/instrumented.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -385,7 +384,7 @@
       <option name="presentableId" value="Default" />
       <updated>1551220874720</updated>
       <workItem from="1551220882124" duration="1619000" />
-      <workItem from="1551222684246" duration="17875000" />
+      <workItem from="1551222684246" duration="18005000" />
     </task>
     <servers />
   </component>
@@ -422,7 +421,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19494000" />
+    <option name="totallyTimeSpent" value="19624000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
