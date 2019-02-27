@@ -1,63 +1,78 @@
 from sharedobj import ndefpy, octetpy, smplhistpy, samplepy
 from . import eeprom as eeprom
 
+
 class InstrumentedBase(object):
     """
     Put some documentation here
     """
-    def __init__(self, \
-                ffimodule, \
-                serial, \
-                secretkey, \
-                smplintervalmins):
+
+    def __init__(self,
+                 ffimodule,
+                 serial,
+                 secretkey,
+                 smplintervalmins):
         self.ffimodule = ffimodule
         self.ffimodule.lib.nv.serial = serial.encode('ascii')
         self.ffimodule.lib.nv.seckey = secretkey.encode('ascii')
         self.ffimodule.lib.nv.smplintervalmins = self.ffimodule.ffi.cast("int", smplintervalmins)
         self.eepromba = eeprom.Eeprom(64)
+
         @self.ffimodule.ffi.def_extern()
         def nt3h_writetag(eepromblk, blkdata):
             self.eepromba.write_block(eepromblk, blkdata)
             return 0
+
         @self.ffimodule.ffi.def_extern()
         def nt3h_readtag(eepromblk, blkdata):
             self.eepromba.read_block(eepromblk, blkdata)
             return 0
+
         @self.ffimodule.ffi.def_extern()
         def nt3h_eepromwritedone():
             return 0
+
         @self.ffimodule.ffi.def_extern()
         def printint(myint):
             print("printint " + str(myint))
             return 0
 
+    def check(self):
+        return self.ffimodule.ffi.cast("int", 12)
+
+
 class InstrumentedNDEF(InstrumentedBase):
     def __init__(self,
-                serial='AAAACCCC',
-                secretkey='AAAACCCC',
-                smplintervalmins=12):
+                 serial='AAAACCCC',
+                 secretkey='AAAACCCC',
+                 smplintervalmins=12):
         super(InstrumentedNDEF, self).__init__(ndefpy, serial, secretkey, smplintervalmins)
+
 
 class InstrumentedOctet(InstrumentedBase):
     def __init__(self,
-                serial='AAAACCCC',
-                secretkey='AAAACCCC',
-                smplintervalmins=12):
+                 serial='AAAACCCC',
+                 secretkey='AAAACCCC',
+                 smplintervalmins=12):
         super(InstrumentedOctet, self).__init__(octetpy, serial, secretkey, smplintervalmins)
+
 
 class InstrumentedSmplHist(InstrumentedBase):
     def __init__(self,
-                serial='AAAACCCC',
-                secretkey='AAAACCCC',
-                smplintervalmins=12):
+                 serial='AAAACCCC',
+                 secretkey='AAAACCCC',
+                 smplintervalmins=12):
         super(InstrumentedSmplHist, self).__init__(smplhistpy, serial, secretkey, smplintervalmins)
+
 
 class InstrumentedSample(InstrumentedBase):
     def __init__(self, serial, secretkey='AAAACCCC', smplintervalmins=12):
         super(InstrumentedSample, self).__init__(samplepy, serial, secretkey, smplintervalmins)
+
         @self.ffimodule.ffi.def_extern()
         def prng_getrandom(lenbits):
             return 16
+
         @self.ffimodule.ffi.def_extern()
         def batv_measure():
             return 2500
@@ -68,7 +83,7 @@ class InstrumentedSample(InstrumentedBase):
             counter += counterstep
             counter = counter % countermax
             rawtemp = int((counter + 40) * 4096 / 165)
-            yield {'adc':rawtemp, 'ref':counter}
+            yield {'adc': rawtemp, 'ref': counter}
 
     def rhsample(self, countermax, counterstep):
         counter = 0
@@ -76,7 +91,8 @@ class InstrumentedSample(InstrumentedBase):
             counter += counterstep
             counter = counter % countermax
             rawrh = int((counter * 4096) / 100)
-            yield {'adc':rawrh, 'ref':counter}
+            yield {'adc': rawrh, 'ref': counter}
+
 
 class InstrumentedSampleT(InstrumentedSample):
     def __init__(self,
@@ -93,9 +109,10 @@ class InstrumentedSampleT(InstrumentedSample):
         tempgen = self.tempsample(100, 0.3)
         for i in range(0, num):
             tempsmpl = next(tempgen)
-            inlist.insert(0, {'temp':tempsmpl['ref']})
+            inlist.insert(0, {'temp': tempsmpl['ref']})
             self.ffimodule.lib.sample_push(tempsmpl['adc'], 0)
         return inlist
+
 
 class InstrumentedSampleTRH(InstrumentedSample):
     def __init__(self,
@@ -115,7 +132,7 @@ class InstrumentedSampleTRH(InstrumentedSample):
         for i in range(0, num):
             tempsmpl = next(tempgen)
             rhsmpl = next(rhgen)
-            inlist.insert(0, {'temp':tempsmpl['ref'], 'rh':rhsmpl['ref']})
+            inlist.insert(0, {'temp': tempsmpl['ref'], 'rh': rhsmpl['ref']})
             self.ffimodule.lib.sample_push(tempsmpl['adc'], rhsmpl['adc'])
         return inlist
 

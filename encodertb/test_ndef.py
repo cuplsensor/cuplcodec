@@ -19,6 +19,9 @@ def makeblankurl():
     retval = ndefobj.ffimodule.lib.ndef_writeblankurl(cbuflenblks, statusb64chars, startblkptr, b'1')
     return ndefobj
 
+@pytest.fixture
+def checkfixture():
+    return makeblankurl()
 
 @pytest.fixture
 def blankurlqs():
@@ -42,6 +45,8 @@ def blankurlraw():
     # Obtain the URL parameters dictionary from the Mock EEPROM
     return ndefobj.eepromba.get_message()
 
+def test_check(checkfixture):
+    assert checkfixture.check() == INPUT_TIMEINT
 
 def test_serial(blankurlqs):
     serial = blankurlqs['s'][0]
