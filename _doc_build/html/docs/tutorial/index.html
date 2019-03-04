@@ -13,6 +13,7 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Encoder" href="encoder.html" />
@@ -37,38 +38,7 @@
 <h1>PSCodec<a class="headerlink" href="#pscodec" title="Permalink to this headline">¶</a></h1>
 <p>The codec comprises an encoder and a decoder. The former takes an array of
 samples as an input and outputs a URL. The latter performs the reverse
-operation; it takes the URL as an input and outputs an array of samples,
-in the same order as supplied to the encoder.</p>
-<p>The sample arrays are ordered from the most recent at the top (element 0) to the oldest.</p>
-<div class="section" id="measurands-to-samples">
-<h2>Measurands to Samples<a class="headerlink" href="#measurands-to-samples" title="Permalink to this headline">¶</a></h2>
-<p>The length of the URL is configurable. It should be fairly long (1 KB) to hold
-a large number of samples. The codec can be configured so that each sample
-contains either one or two 12-bit measurands. For Plotsensor, these are
-temperature and relative humidity.</p>
-</div>
-<div class="section" id="samples-to-chunks">
-<h2>Samples to Chunks<a class="headerlink" href="#samples-to-chunks" title="Permalink to this headline">¶</a></h2>
-<p>The encoder starts at the oldest sample and groups input data into 6 byte chunks.
-Byte 0 of the chunk contains the oldest data and Byte 5 contains the newest.
-Each chunk contains two samples, assuming there are two measurands per sample.</p>
-<p>The chunk containing the most recent data can be partially full.
-In this case it is padded with samples that contain ‘0’. The number of samples
-is written to the Length field in the endstop of the URL.
-With this information the decoder discards the samples used for padding.</p>
-</div>
-<div class="section" id="chunks-to-octets">
-<h2>Chunks to Octets<a class="headerlink" href="#chunks-to-octets" title="Permalink to this headline">¶</a></h2>
-<p>Chunks are base64 encoded using only URL-safe characters.
-This produces a list of 8-byte values, which are named Octets.</p>
-</div>
-<div class="section" id="circular-buffer">
-<h2>Circular Buffer<a class="headerlink" href="#circular-buffer" title="Permalink to this headline">¶</a></h2>
-<p>Octets are placed onto a circular buffer.
-The end of the buffer is marked by an <a class="reference internal" href="#endstop">endstop</a>. Immediately to the left of
-the endstop is the Octet containing the most recent sample data.
-The octet to the right contains the oldest sample data.</p>
-</div>
+operation; it takes the URL as an input and outputs an array of samples.</p>
 <div class="section" id="timestamps">
 <h2>Timestamps<a class="headerlink" href="#timestamps" title="Permalink to this headline">¶</a></h2>
 <p>A feature of PSCodec is that each sample does not include an absolute timestamp.
@@ -82,41 +52,490 @@ to be reconstructed based on:</p>
 <ul class="simple">
 <li>Now (UTC), the time the PSCodec URL is received by PSWebApp. This coincides
 with the time the sensor is scanned by a phone.</li>
-<li>Minutes elapsed. The time difference between Now (UTC) and when the most
+<li><a class="reference external" href="Elapsed">Minutes elapsed</a>. The time difference between Now (UTC) and when the most
 recent sample was taken.</li>
-<li>Time interval in minutes between samples. This is a constant time interval
+<li><a class="reference internal" href="#time-interval">Time interval</a> in minutes between samples. This is a constant time interval
 between all samples in the buffer.</li>
 </ul>
 <p>The reconstructed timestamps will be accurate to within one minute, which is
 sufficient for most datalogging applications.</p>
 </div>
+<div class="section" id="ndef-preamble">
+<h2>NDEF Preamble<a class="headerlink" href="#ndef-preamble" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="6%" />
+<col width="6%" />
+<col width="5%" />
+<col width="5%" />
+<col width="8%" />
+<col width="10%" />
+<col width="3%" />
+<col width="3%" />
+<col width="3%" />
+<col width="3%" />
+<col width="7%" />
+<col width="8%" />
+<col width="11%" />
+<col width="12%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>NDEF Msg.</td>
+<td>Type</td>
+<td colspan="3">Length</td>
+<td colspan="10">Value</td>
+</tr>
+<tr class="row-even"><td>NDEF Rec.</td>
+<td colspan="4">&#160;</td>
+<td colspan="9">Header</td>
+<td>Payload</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>Rec Hdr</td>
+<td>Type Len</td>
+<td colspan="6">Payload Length</td>
+<td>Rec. Type</td>
+<td>URL Prefix</td>
+</tr>
+<tr class="row-even"><td>Byte</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td colspan="2">6</td>
+<td colspan="2">7</td>
+<td>8</td>
+<td>9</td>
+<td>10</td>
+<td>11</td>
+</tr>
+<tr class="row-odd"><td>Data</td>
+<td>0x03</td>
+<td>0xFF</td>
+<td>MSB</td>
+<td>LSB</td>
+<td>&#160;</td>
+<td>0x01</td>
+<td colspan="2">PL[3]</td>
+<td colspan="2">PL[2]</td>
+<td>PL[1]</td>
+<td>PL[0]</td>
+<td>0x55</td>
+<td>0x03</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="url-header">
+<h2>URL Header<a class="headerlink" href="#url-header" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="4%" />
+<col width="13%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+<col width="19%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>NDEF Msg.</td>
+<td colspan="9">Value</td>
+</tr>
+<tr class="row-even"><td>NDEF Rec.</td>
+<td colspan="9">Payload</td>
+</tr>
+<tr class="row-odd"><td>Desc.</td>
+<td colspan="3">Base URL</td>
+<td colspan="2"><a class="reference internal" href="#time-interval">Time interval</a></td>
+<td><a class="reference internal" href="#serial">Serial</a></td>
+<td><a class="reference internal" href="#version">Version</a></td>
+<td>Status</td>
+<td>CircBufferStart</td>
+</tr>
+<tr class="row-even"><td>Data</td>
+<td colspan="3">t.plotsensor.com/</td>
+<td colspan="2">?t=AWg*</td>
+<td>&amp;s=YWJjZGVm</td>
+<td>&amp;v=01</td>
+<td>&amp;x=AAABALEK</td>
+<td>&amp;q=</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="serial">
+<h3>Serial<a class="headerlink" href="#serial" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="time-interval">
+<h3>Time interval<a class="headerlink" href="#time-interval" title="Permalink to this headline">¶</a></h3>
+<p>Time interval between samples in minutes base64 encoded.</p>
+</div>
+<div class="section" id="version">
+<h3>Version<a class="headerlink" href="#version" title="Permalink to this headline">¶</a></h3>
+<p>The version parameter determines which decoder shall be used by <a class="reference internal" href="../reference/urldecoder.html#urldecoder.urldecoder.UrlDecoder" title="urldecoder.urldecoder.UrlDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">UrlDecoder</span></code></a>:</p>
+<ul class="simple">
+<li><a class="reference internal" href="../reference/sample.html#c.TEMPONLY" title="TEMPONLY"><code class="xref c c-macro docutils literal notranslate"><span class="pre">TEMPONLY</span></code></a> <a class="reference internal" href="../reference/urldecoder.html#urldecoder.urldecoder.TDecoder" title="urldecoder.urldecoder.TDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">TDecoder</span></code></a> Two temperature measurands per sample seperated by <a class="reference internal" href="#time-interval">Time interval</a>.</li>
+<li><a class="reference internal" href="../reference/sample.html#c.TEMPRH" title="TEMPRH"><code class="xref c c-macro docutils literal notranslate"><span class="pre">TEMPRH</span></code></a> <a class="reference internal" href="../reference/urldecoder.html#urldecoder.urldecoder.HTDecoder" title="urldecoder.urldecoder.HTDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">HTDecoder</span></code></a> Temperature and relative humidity measurands in a sample.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="url-circular-buffer">
+<h2>URL Circular Buffer<a class="headerlink" href="#url-circular-buffer" title="Permalink to this headline">¶</a></h2>
+<p>The sample arrays are ordered from the most recent at the top (element 0) to the oldest.</p>
+<p>Octets are placed onto a circular buffer.
+The end of the buffer is marked by an <a class="reference internal" href="#endstop">endstop</a>. Immediately to the left of
+the endstop is the Octet containing the most recent sample data.
+The octet to the right contains the oldest sample data.</p>
+<div class="section" id="samples">
+<h3>Samples<a class="headerlink" href="#samples" title="Permalink to this headline">¶</a></h3>
+<p>Each sample contains two 12-bit measurands. These are organised as follows</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="47%" />
+<col width="19%" />
+<col width="19%" />
+<col width="14%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Byte</strong></td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>M1MSB</td>
+<td>M2MSB</td>
+<td>LSB</td>
+</tr>
+</tbody>
+</table>
+<p>The encoder stores samples using the <a class="reference internal" href="../reference/samplehist.html#_CPPv49sdchars_t" title="sdchars_t"><code class="xref cpp cpp-type docutils literal notranslate"><span class="pre">sdchars_t</span></code></a> type.</p>
+<div class="section" id="m1msb">
+<h4>M1MSB<a class="headerlink" href="#m1msb" title="Permalink to this headline">¶</a></h4>
+<p>Measurand 1 Most significant 8-bits (see <a class="reference internal" href="../reference/samplehist.html#_CPPv45m1Msb" title="m1Msb"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">m1Msb</span></code></a>).</p>
+</div>
+<div class="section" id="m2msb">
+<h4>M2MSB<a class="headerlink" href="#m2msb" title="Permalink to this headline">¶</a></h4>
+<p>Measurand 2 Most significant 8-bits (see <a class="reference internal" href="../reference/samplehist.html#_CPPv45m2Msb" title="m2Msb"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">m2Msb</span></code></a>).</p>
+</div>
+<div class="section" id="lsb">
+<h4>LSB<a class="headerlink" href="#lsb" title="Permalink to this headline">¶</a></h4>
+<p>The least signficant 4-bit nibbles of M1 and M2 (see <a class="reference internal" href="../reference/samplehist.html#_CPPv43Lsb" title="Lsb"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">Lsb</span></code></a>).</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="35%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Bit</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+</tr>
+<tr class="row-even"><td>Description</td>
+<td colspan="4">M1[3:0]</td>
+<td colspan="4">M2[3:0]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="chunks">
+<h3>Chunks<a class="headerlink" href="#chunks" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="13%" />
+<col width="13%" />
+<col width="9%" />
+<col width="13%" />
+<col width="13%" />
+<col width="9%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Chunk</strong></td>
+<td colspan="6">0</td>
+</tr>
+<tr class="row-even"><td><strong>Sample</strong></td>
+<td colspan="3">0</td>
+<td colspan="3">1</td>
+</tr>
+<tr class="row-odd"><td><strong>Byte</strong></td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>M1MSB</td>
+<td>M2MSB</td>
+<td>LSB</td>
+<td>M1MSB</td>
+<td>M2MSB</td>
+<td>LSB</td>
+</tr>
+</tbody>
+</table>
+<p>Each 6-byte chunk contains two <a class="reference internal" href="#samples">samples</a>.</p>
+<p>The encoder starts at the oldest sample and groups input data into 6 byte chunks.
+Byte 0 of the chunk contains the oldest data and Byte 5 contains the newest.
+Each chunk contains two samples.</p>
+<p>The chunk containing the most recent data can be partially full.
+In this case it is padded with samples that contain ‘0’. The number of samples
+is written to the Length field in the endstop of the URL.
+With this information the decoder discards the samples used for padding.</p>
+</div>
+<div class="section" id="octets">
+<h3>Octets<a class="headerlink" href="#octets" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="9%" />
+<col width="11%" />
+<col width="11%" />
+<col width="9%" />
+<col width="9%" />
+<col width="11%" />
+<col width="11%" />
+<col width="9%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Octet</td>
+<td colspan="8">0</td>
+</tr>
+<tr class="row-even"><td>SampleB64</td>
+<td colspan="4">0</td>
+<td colspan="4">1</td>
+</tr>
+<tr class="row-odd"><td>Byte</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+<p>6-byte chunks are base64 encoded into 8-byte octets. This is done using only URL-safe characters.</p>
+</div>
+<div class="section" id="blocks">
+<h3>Blocks<a class="headerlink" href="#blocks" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="35%" />
+<col width="15%" />
+<col width="18%" />
+<col width="18%" />
+<col width="15%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Block</td>
+<td colspan="4">0</td>
+</tr>
+<tr class="row-even"><td>Octet</td>
+<td colspan="2">0</td>
+<td colspan="2">1</td>
+</tr>
+<tr class="row-odd"><td>SampleB64</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>Each 16-byte block contains two <a class="reference internal" href="#octets">octets</a>.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="13%" />
+<col width="11%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Block</td>
+<td colspan="2">0</td>
+<td colspan="2">1</td>
+<td colspan="2">…</td>
+<td colspan="2">MSGLEN-1</td>
+</tr>
+<tr class="row-even"><td>Octet</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>2*MSGLEN-1</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="section" id="endstop">
-<h2>Endstop<a class="headerlink" href="#endstop" title="Permalink to this headline">¶</a></h2>
-<p>The endstop is 16-bits wide. It contains 4 elements.</p>
-<div class="section" id="minutes-elapsed-base64-and-end-marker">
-<h3>Minutes elapsed (base64) and end marker<a class="headerlink" href="#minutes-elapsed-base64-and-end-marker" title="Permalink to this headline">¶</a></h3>
-<p>The minutes elapsed counter increments by 1 every minute after the last sample
-was collected. It resets to 0 when a new sample is collected i.e. when it is
-equal to time interval.</p>
+<h3>Endstop<a class="headerlink" href="#endstop" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="21%" />
+<col width="21%" />
+<col width="30%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td colspan="2">Cursor Block</td>
+<td colspan="2">Next Block</td>
+</tr>
+<tr class="row-even"><td>Newest Octet</td>
+<td>Endstop 1</td>
+<td>Endstop 2</td>
+<td>Oldest Octet</td>
+</tr>
+</tbody>
+</table>
+<p>The endstop marks the end of the circular buffer. It is 16-bytes wide and it can span 2 blocks as shown above.</p>
+<p>Immediately to the left of the endstop is the Octet containing the most recent sample data.</p>
+<p>The octet to the right contains the oldest sample data or zero padding if the buffer is not full.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="7%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Octet</td>
+<td colspan="8">Endstop 0</td>
+<td colspan="8">Endstop 1</td>
+</tr>
+<tr class="row-even"><td>Byte</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+<td>8</td>
+<td>9</td>
+<td>10</td>
+<td>11</td>
+<td>12</td>
+<td>13</td>
+<td>14</td>
+<td>15</td>
+</tr>
+<tr class="row-odd"><td>Description</td>
+<td colspan="12"><a class="reference internal" href="#md5length">MD5Length</a> b64</td>
+<td colspan="3"><a class="reference internal" href="#elapsed">Elapsed</a> b64</td>
+<td>)</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="elapsed-base64-and-end-marker">
+<h4><span class="target" id="elapsed">Elapsed</span> (base64) and end marker<a class="headerlink" href="#elapsed-base64-and-end-marker" title="Permalink to this headline">¶</a></h4>
+<p>The minutes elapsed counter increments by 1 every minute after the previous sample
+was collected. It resets to 0 when a new sample is collected.</p>
+<p>The decoder uses it to determine to the nearest minute when samples were collected.</p>
 <p>The unencoded minutes elapsed field is 16-bits wide. This is the same width
 as the unencoded time interval in minutes field.</p>
 <p>The minutes elapsed field occupies 4 bytes after base64 encoding, including one
 padding byte. By convention this is 0x61 or ‘=’.</p>
-<p>The encoder replaces the padding byte with 0x01 or ‘!’.
-This is the end marker; the last byte of the end stop in the circular buffer.
-The URL-safe character will be unique in the circular buffer.</p>
-<p>Locating the end marker is the first step performed by the decoder. After it is
+<p>The encoder replaces the padding byte with <a class="reference internal" href="../reference/sample.html#c.ENDSTOP_BYTE" title="ENDSTOP_BYTE"><code class="xref c c-macro docutils literal notranslate"><span class="pre">ENDSTOP_BYTE</span></code></a>. This marks the last byte of the end stop.</p>
+<p>The first step performed by the decoder is to locate <a class="reference internal" href="../reference/sample.html#c.ENDSTOP_BYTE" title="ENDSTOP_BYTE"><code class="xref c c-macro docutils literal notranslate"><span class="pre">ENDSTOP_BYTE</span></code></a>. After it is
 found, it can be replaced with an ‘=’ before the minutes elapsed field is
-decoded from base64 into the original 16-bit value.</p>
+decoded from base64 into its original 16-bit value.</p>
+</div>
+<div class="section" id="id1">
+<h4><span class="target" id="md5length">MD5Length</span><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p>This is 9 bytes long unencoded and 12 bytes long encoded. The C structure to hold these data
+<a class="reference internal" href="../reference/samplehist.html#_CPPv48md5len_t" title="md5len_t"><code class="xref cpp cpp-type docutils literal notranslate"><span class="pre">md5len_t</span></code></a> is shown below:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="10%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Byte</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+<td>8</td>
+</tr>
+<tr class="row-even"><td>Description</td>
+<td colspan="7"><a class="reference internal" href="#md5">MD5</a></td>
+<td colspan="2">Length</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="md5">
+<h5>MD5<a class="headerlink" href="#md5" title="Permalink to this headline">¶</a></h5>
+<p>Least significant 7 bytes of the MD5 checksum taken of all samples in the buffer.</p>
+</div>
+<div class="section" id="length">
+<h5>Length<a class="headerlink" href="#length" title="Permalink to this headline">¶</a></h5>
+<p>The number of valid samples in the circular buffer. This is populated from <a class="reference internal" href="../reference/sample.html#_CPPv48lensmpls" title="lensmpls"><code class="xref cpp cpp-var docutils literal notranslate"><span class="pre">lensmpls</span></code></a>.</p>
 </div>
 </div>
-<div class="section" id="version">
-<h2>Version<a class="headerlink" href="#version" title="Permalink to this headline">¶</a></h2>
-<p>The version parameter determines which decoder shall be used by <a class="reference internal" href="../reference/urldecoder.html#urldecoder.urldecoder.UrlDecoder" title="urldecoder.urldecoder.UrlDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">UrlDecoder</span></code></a>:</p>
-<ul class="simple">
-<li><a class="reference internal" href="../reference/urldecoder.html#urldecoder.urldecoder.TDecoder" title="urldecoder.urldecoder.TDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">TDecoder</span></code></a> One temperature measurand per sample.</li>
-<li><a class="reference internal" href="../reference/urldecoder.html#urldecoder.urldecoder.HTDecoder" title="urldecoder.urldecoder.HTDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">HTDecoder</span></code></a> Temperature and relative humidity measurands in a sample.</li>
-</ul>
+</div>
 </div>
 </div>
 
@@ -139,13 +558,10 @@ decoded from base64 into the original 16-bit value.</p>
 <h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">PSCodec</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#measurands-to-samples">Measurands to Samples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#samples-to-chunks">Samples to Chunks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#chunks-to-octets">Chunks to Octets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#circular-buffer">Circular Buffer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#timestamps">Timestamps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#endstop">Endstop</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#version">Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ndef-preamble">NDEF Preamble</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-header">URL Header</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#url-circular-buffer">URL Circular Buffer</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="encoder.html">Encoder</a></li>
@@ -193,7 +609,7 @@ decoded from base64 into the original 16-bit value.</p>
       &copy;2018, Malcolm Mackay.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

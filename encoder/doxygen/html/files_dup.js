@@ -22,5 +22,6 @@ var files_dup =
     [ "sample.c", "sample_8c.html", "sample_8c" ],
     [ "sample.h", "sample_8h.html", "sample_8h" ],
     [ "smplhist.c", "smplhist_8c.html", "smplhist_8c" ],
-    [ "smplhist.h", "smplhist_8h.html", "smplhist_8h" ]
+    [ "smplhist.h", "smplhist_8h.html", "smplhist_8h" ],
+    [ "stat_bits.h", "stat__bits_8h.html", "stat__bits_8h" ]
 ];

@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="smplhist.h" line="16" column="1" bodyfile="smplhist.h" bodystart="16" bodyend="-1"/>
+        <location file="smplhist.h" line="21" column="1" bodyfile="smplhist.h" bodystart="21" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structmd5len_1a0f1659d851e4200abf60643049dd9e9a" prot="public" static="no" mutable="no">
         <type>unsigned char</type>
@@ -28,14 +28,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="smplhist.h" line="17" column="1" bodyfile="smplhist.h" bodystart="17" bodyend="-1"/>
+        <location file="smplhist.h" line="22" column="1" bodyfile="smplhist.h" bodystart="22" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="smplhist.h" line="15" column="1" bodyfile="smplhist.h" bodystart="14" bodyend="18"/>
+    <location file="smplhist.h" line="20" column="1" bodyfile="smplhist.h" bodystart="19" bodyend="23"/>
     <listofallmembers>
       <member refid="structmd5len_1a0f1659d851e4200abf60643049dd9e9a" prot="public" virt="non-virtual"><scope>md5len</scope><name>lensmplsbytes</name></member>
       <member refid="structmd5len_1a4c66fedccd3b4737bd953f53dccc3c8a" prot="public" virt="non-virtual"><scope>md5len</scope><name>md5</name></member>

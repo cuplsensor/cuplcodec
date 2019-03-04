@@ -1,4 +1,6 @@
 URL Encoder Reference
 =====================
 
-.. doxygenindex::
+:ref:`sample-c-reference`
+
+:ref:`samplehist-c-reference`

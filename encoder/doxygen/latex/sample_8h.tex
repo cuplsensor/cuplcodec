@@ -9,7 +9,7 @@ void \mbox{\hyperlink{sample_8h_a2946d336b97c5fc66e054c0dac644066}{sample\+\_\+i
 int \mbox{\hyperlink{sample_8h_a5be5f77a339896373b1b5fff87fbfbcd}{sample\+\_\+push}} (int meas1, int meas2)
 \begin{DoxyCompactList}\small\item\em Append a sample containing up to two measurands onto the circular buffer. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{sample_8h_a130e5805e5b411b541e60ee607185b98}{sample\+\_\+updateendstop}} (unsigned int minutes)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Update the base64 encoded endstop and write it to the tag. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Function Documentation}
@@ -17,7 +17,7 @@ void \mbox{\hyperlink{sample_8h_a130e5805e5b411b541e60ee607185b98}{sample\+\_\+u
 \index{sample.\+h@{sample.\+h}!sample\+\_\+init@{sample\+\_\+init}}
 \index{sample\+\_\+init@{sample\+\_\+init}!sample.\+h@{sample.\+h}}
 \subsubsection{\texorpdfstring{sample\+\_\+init()}{sample\_init()}}
-{\footnotesize\ttfamily void sample\+\_\+init (\begin{DoxyParamCaption}\item[{unsigned int}]{status,  }\item[{bool}]{err,  }\item[{bool}]{temponly }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void sample\+\_\+init (\begin{DoxyParamCaption}\item[{unsigned int}]{stat,  }\item[{bool}]{err,  }\item[{bool}]{temponly }\end{DoxyParamCaption})}
 
 
 
@@ -25,11 +25,11 @@ Initialise the sample state machine.
 
 
 \begin{DoxyParams}{Parameters}
-{\em stat} & Status \\
+{\em stat} & 16-\/bit status value. \\
 \hline
-{\em err} & Error flag \\
+{\em err} & Sets an error condition where data will not be logged to the U\+RL circular buffer. \\
 \hline
-{\em temponly} & Configure for temperature only in each sample. \\
+{\em temponly} & When true only temperature measurands will be recorded to the circular buffer on each call of \mbox{\hyperlink{sample_8c_a5be5f77a339896373b1b5fff87fbfbcd}{sample\+\_\+push()}}. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{sample_8h_a5be5f77a339896373b1b5fff87fbfbcd}\label{sample_8h_a5be5f77a339896373b1b5fff87fbfbcd}} 
@@ -44,9 +44,9 @@ Append a sample containing up to two measurands onto the circular buffer.
 
 
 \begin{DoxyParams}{Parameters}
-{\em meas1} & measurand 1 e.\+g. temperature. \\
+{\em meas1} & Measurand 1 e.\+g. temperature. \\
 \hline
-{\em meas2} & measurand 2 e.\+g. relative humidity.\\
+{\em meas2} & Measurand 2 e.\+g. relative humidity.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -58,3 +58,12 @@ Append a sample containing up to two measurands onto the circular buffer.
 \subsubsection{\texorpdfstring{sample\+\_\+updateendstop()}{sample\_updateendstop()}}
 {\footnotesize\ttfamily void sample\+\_\+updateendstop (\begin{DoxyParamCaption}\item[{unsigned int}]{minutes }\end{DoxyParamCaption})}
 
+
+
+Update the base64 encoded endstop and write it to the tag. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em minutes} & Minutes elapsed since the previous sample. \\
+\hline
+\end{DoxyParams}

@@ -13,6 +13,7 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="URL Decoder Reference" href="../reference/urldecoder.html" />
@@ -44,8 +45,8 @@ shared object (see <a class="reference internal" href="../reference/pyencoder.ht
 calls to the C functions inside.</p>
 <p>CFFI can replace C function definitions with Python.
 This is required for functions that normally depend on hardware,
-such as <a class="reference internal" href="../reference/encoder.html#_CPPv313nt3h_writetagiPc" title="nt3h_writetag"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">nt3h_writetag()</span></code></a> and <a class="reference internal" href="../reference/encoder.html#_CPPv312nt3h_readtagiPc" title="nt3h_readtag"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">nt3h_readtag()</span></code></a>.
-Objects derived from <a class="reference internal" href="../reference/pyencoder.html#pyencoder.instrumented.InstrumentedBase" title="pyencoder.instrumented.InstrumentedBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyencoder.instrumented.InstrumentedBase</span></code></a>
+such as <a class="reference internal" href="../reference/encoder.html#_CPPv413nt3h_writetagiPc" title="nt3h_writetag"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">nt3h_writetag()</span></code></a> and <a class="reference internal" href="../reference/encoder.html#_CPPv412nt3h_readtagiPc" title="nt3h_readtag"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">nt3h_readtag()</span></code></a>.
+Objects derived from <code class="xref py py-class docutils literal notranslate"><span class="pre">pyencoder.instrumented.InstrumentedBase</span></code>
 redirect the two functions above to write to and read from a mock EEPROM,
 written in Python.</p>
 <p>The mock EEPROM is a bytearray that can be accessed in 16-byte blocks. Its
@@ -53,7 +54,7 @@ contents can be read out raw or parsed as an NDEF message using the NDEF library
 </div>
 <div class="section" id="example-2">
 <h2>Example 2<a class="headerlink" href="#example-2" title="Permalink to this headline">¶</a></h2>
-<p>Call <a class="reference internal" href="../reference/encoder.html#_CPPv318ndef_writeblankurliPcPic" title="ndef_writeblankurl"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">ndef_writeblankurl()</span></code></a> to write a
+<p>Call <a class="reference internal" href="../reference/encoder.html#_CPPv418ndef_writeblankurliPcPic" title="ndef_writeblankurl"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">ndef_writeblankurl()</span></code></a> to write a
 URL within a URI record inside an NDEF message to EEPROM.</p>
 <p>To return the URL from the mock EEPROM as a string use.
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">pyencoder.eeprom.get_url()</span></code></p>
@@ -152,7 +153,7 @@ for your platform. The <a href="#id1"><span class="problematic" id="id2">*</span
       &copy;2018, Malcolm Mackay.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

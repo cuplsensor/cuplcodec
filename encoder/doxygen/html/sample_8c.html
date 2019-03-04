@@ -118,14 +118,12 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a63c84ae63245baa8355d8a264d51a1ea"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8c.html#a63c84ae63245baa8355d8a264d51a1ea">LOWBAT_BIT</a>&#160;&#160;&#160;0x01</td></tr>
-<tr class="separator:a63c84ae63245baa8355d8a264d51a1ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb693270705ca6601a30df31a39a9d59"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8c.html#adb693270705ca6601a30df31a39a9d59">SCANTIMEOUT_BIT</a>&#160;&#160;&#160;0x02</td></tr>
-<tr class="separator:adb693270705ca6601a30df31a39a9d59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a649a882141d51724d0851c5637ae9b52"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8c.html#a649a882141d51724d0851c5637ae9b52">TEMPRH</a>&#160;&#160;&#160;'1'</td></tr>
 <tr class="separator:a649a882141d51724d0851c5637ae9b52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8b2d876f1eb3087a5859e78688c5169"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8c.html#ae8b2d876f1eb3087a5859e78688c5169">TEMPONLY</a>&#160;&#160;&#160;'2'</td></tr>
 <tr class="separator:ae8b2d876f1eb3087a5859e78688c5169"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a639bc14d5477eb6e1bbbdaec7ea6fd8c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8c.html#a639bc14d5477eb6e1bbbdaec7ea6fd8c">ENDSTOP_BYTE</a>&#160;&#160;&#160;'~'</td></tr>
+<tr class="separator:a639bc14d5477eb6e1bbbdaec7ea6fd8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -149,6 +147,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:ac206e7a316f283a09d11da98380e6f58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise the sample state machine.  <a href="#ac206e7a316f283a09d11da98380e6f58">More...</a><br /></td></tr>
 <tr class="separator:ac206e7a316f283a09d11da98380e6f58"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a130e5805e5b411b541e60ee607185b98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8c.html#a130e5805e5b411b541e60ee607185b98">sample_updateendstop</a> (unsigned int minutes)</td></tr>
+<tr class="memdesc:a130e5805e5b411b541e60ee607185b98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the base64 encoded endstop and write it to the tag.  <a href="#a130e5805e5b411b541e60ee607185b98">More...</a><br /></td></tr>
 <tr class="separator:a130e5805e5b411b541e60ee607185b98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5be5f77a339896373b1b5fff87fbfbcd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8c.html#a5be5f77a339896373b1b5fff87fbfbcd">sample_push</a> (int meas1, int meas2)</td></tr>
 <tr class="memdesc:a5be5f77a339896373b1b5fff87fbfbcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a sample containing up to two measurands onto the circular buffer.  <a href="#a5be5f77a339896373b1b5fff87fbfbcd">More...</a><br /></td></tr>
@@ -160,31 +159,18 @@ Variables</h2></td></tr>
 <tr class="separator:a6cdeaaf5e3ea4f68f2d041a6d6389a70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="a63c84ae63245baa8355d8a264d51a1ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a63c84ae63245baa8355d8a264d51a1ea">&#9670;&nbsp;</a></span>LOWBAT_BIT</h2>
+<a id="a639bc14d5477eb6e1bbbdaec7ea6fd8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a639bc14d5477eb6e1bbbdaec7ea6fd8c">&#9670;&nbsp;</a></span>ENDSTOP_BYTE</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define LOWBAT_BIT&#160;&#160;&#160;0x01</td>
+          <td class="memname">#define ENDSTOP_BYTE&#160;&#160;&#160;'~'</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a id="adb693270705ca6601a30df31a39a9d59"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adb693270705ca6601a30df31a39a9d59">&#9670;&nbsp;</a></span>SCANTIMEOUT_BIT</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define SCANTIMEOUT_BIT&#160;&#160;&#160;0x02</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>Last character of the endstop. Must be URL safe according to RFC 1738. </p>
 
 </div>
 </div>
@@ -199,6 +185,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Last character of the URL version string if the URL contains only temperature measurands. </p>
 
 </div>
 </div>
@@ -213,6 +200,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Last character of the URL version string if the URL contains both temperature and relative humidity measurands. </p>
 
 </div>
 </div>
@@ -258,10 +246,14 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a330856ff01a76092fb302f70696dcaa8a335559f3d0770f8905099143d5fdfc68"></a>first_tick&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a330856ff01a76092fb302f70696dcaa8ae4aa5da2d1ebb43ca39a9ecf8e0adf80"></a>first_tock&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a330856ff01a76092fb302f70696dcaa8abe4c377a0e72bf9ac494563b516341c6"></a>final_tick&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a330856ff01a76092fb302f70696dcaa8a00bd38fad6dca592789a78004554929e"></a>final_tock&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a330856ff01a76092fb302f70696dcaa8a335559f3d0770f8905099143d5fdfc68"></a>first_tick&#160;</td><td class="fielddoc"><p>Write both meaurands in the first sample of ::samplebuf </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a330856ff01a76092fb302f70696dcaa8ae4aa5da2d1ebb43ca39a9ecf8e0adf80"></a>first_tock&#160;</td><td class="fielddoc"><p>Overwrite measurand 2 in the first sample of samplebuf. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a330856ff01a76092fb302f70696dcaa8abe4c377a0e72bf9ac494563b516341c6"></a>final_tick&#160;</td><td class="fielddoc"><p>Write both measurands in the second sample of samplebuf. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a330856ff01a76092fb302f70696dcaa8a00bd38fad6dca592789a78004554929e"></a>final_tock&#160;</td><td class="fielddoc"><p>Overwrite measurand 2 in the second sample of samplebuf. </p>
+</td></tr>
 </table>
 
 </div>
@@ -277,7 +269,7 @@ Variables</h2></td></tr>
           <td class="memname">void sample_init </td>
           <td>(</td>
           <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>status</em>, </td>
+          <td class="paramname"><em>stat</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -302,9 +294,9 @@ Variables</h2></td></tr>
 <p>Initialise the sample state machine. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">stat</td><td>Status </td></tr>
-    <tr><td class="paramname">err</td><td>Error flag </td></tr>
-    <tr><td class="paramname">temponly</td><td>Configure for temperature only in each sample. </td></tr>
+    <tr><td class="paramname">stat</td><td>16-bit status value. </td></tr>
+    <tr><td class="paramname">err</td><td>Sets an error condition where data will not be logged to the URL circular buffer. </td></tr>
+    <tr><td class="paramname">temponly</td><td>When true only temperature measurands will be recorded to the circular buffer on each call of <a class="el" href="sample_8c.html#a5be5f77a339896373b1b5fff87fbfbcd">sample_push()</a>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -340,8 +332,8 @@ Variables</h2></td></tr>
 <p>Append a sample containing up to two measurands onto the circular buffer. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">meas1</td><td>measurand 1 e.g. temperature. </td></tr>
-    <tr><td class="paramname">meas2</td><td>measurand 2 e.g. relative humidity.</td></tr>
+    <tr><td class="paramname">meas1</td><td>Measurand 1 e.g. temperature. </td></tr>
+    <tr><td class="paramname">meas2</td><td>Measurand 2 e.g. relative humidity.</td></tr>
   </table>
   </dd>
 </dl>
@@ -365,6 +357,14 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Update the base64 encoded endstop and write it to the tag. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">minutes</td><td>Minutes elapsed since the previous sample. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
@@ -379,6 +379,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Externally defined parameters stored in non-volatile memory. </p>
 
 </div>
 </div>

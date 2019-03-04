@@ -11,6 +11,17 @@
       <node id="41">
         <label>stdbool.h</label>
       </node>
+      <node id="44">
+        <label>eep.h</label>
+        <link refid="eep_8h"/>
+      </node>
+      <node id="46">
+        <label>nvtype.h</label>
+        <link refid="nvtype_8h"/>
+      </node>
+      <node id="43">
+        <label>string.h</label>
+      </node>
       <node id="39">
         <label>ndef.c</label>
         <link refid="ndef_8c"/>
@@ -31,20 +42,9 @@
         <childnode refid="41" relation="include">
         </childnode>
       </node>
-      <node id="44">
-        <label>eep.h</label>
-        <link refid="eep_8h"/>
-      </node>
-      <node id="43">
-        <label>string.h</label>
-      </node>
       <node id="45">
         <label>defs.h</label>
         <link refid="defs_8h"/>
-      </node>
-      <node id="46">
-        <label>nvtype.h</label>
-        <link refid="nvtype_8h"/>
       </node>
       <node id="42">
         <label>base64.h</label>
@@ -157,7 +157,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="ndef.c" line="7" column="1" bodyfile="nvtype.c" bodystart="9" bodyend="-1"/>
+        <location file="ndef.c" line="7" column="1" bodyfile="nvtype.c" bodystart="11" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="ndef_8c_1a52cad496a745bee49f8acf6b2c7ecb5d" prot="public" static="no" mutable="no">
         <type>char</type>
@@ -515,7 +515,7 @@ The circular buffer is zero-padded with a base64 octet that decodes to 0,0,0,0,0
 <codeline lineno="106"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>blk;</highlight></codeline>
 <codeline lineno="107"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>eepindex<sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="108"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>serial<sp/>=<sp/><ref refid="ndef_8c_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" kindref="member">nv</ref>.<ref refid="structnvstruct_1a8c4928cc85c5336514401eb142ea7d50" kindref="member">serial</ref>;</highlight></codeline>
-<codeline lineno="109"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>timeinterval<sp/>=<sp/><ref refid="ndef_8c_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" kindref="member">nv</ref>.<ref refid="structnvstruct_1a4447bd6767bd8a45338bdeeae4cb0511" kindref="member">smplintervalmins</ref>;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>timeinterval<sp/>=<sp/><ref refid="ndef_8c_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" kindref="member">nv</ref>.<ref refid="structnvstruct_1a34de27bbd20aa5f15e4e4482ce5a0309" kindref="member">smplintervalmins</ref>;</highlight></codeline>
 <codeline lineno="110"><highlight class="normal"></highlight></codeline>
 <codeline lineno="111"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>qlenblks<sp/>must<sp/>be<sp/>even<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="112"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((qlenblks<sp/>&amp;<sp/>0x01)<sp/>!=<sp/>0)</highlight></codeline>
@@ -534,7 +534,7 @@ The circular buffer is zero-padded with a base64 octet that decodes to 0,0,0,0,0
 <codeline lineno="125"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Start<sp/>NDEF<sp/>record</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="126"><highlight class="normal"><sp/><sp/>ndef_createurlrecord(&amp;eepindex,<sp/>msglenbytes);</highlight></codeline>
 <codeline lineno="127"><highlight class="normal"></highlight></codeline>
-<codeline lineno="128"><highlight class="normal"><sp/><sp/><ref refid="base64_8c_1a65618dacdde3ed7eeb15bbe7b3751cb9" kindref="member">Base64encode</ref>(timeintb64,<sp/>&amp;timeinterval,<sp/>2);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><ref refid="base64_8c_1a65618dacdde3ed7eeb15bbe7b3751cb9" kindref="member">Base64encode</ref>(timeintb64,<sp/>timeinterval,<sp/><ref refid="nvtype_8h_1a44d3fb460b6c9383a2b3248544aa13d0" kindref="member">SMPLINT_LENBYTES</ref>);</highlight></codeline>
 <codeline lineno="129"><highlight class="normal"></highlight></codeline>
 <codeline lineno="130"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Append<sp/>URL</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="131"><highlight class="normal"><sp/><sp/><ref refid="eep_8c_1a8cd332f8cc6c3f1c02fd4632ea253199" kindref="member">eep_cp</ref>(&amp;eepindex,<sp/>url,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(url)-1);</highlight></codeline>

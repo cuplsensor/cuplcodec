@@ -11,10 +11,10 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Number of times the last octet in the circular buffer endstop has wrapped from the end of the buffer to the beginning. </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="sample.c" line="28" column="1" bodyfile="sample.c" bodystart="28" bodyend="-1"/>
+        <location file="sample.c" line="26" column="1" bodyfile="sample.c" bodystart="26" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structstatus_1a5393c99e246925076b1dfd69a64177ef" prot="public" static="no" mutable="no">
         <type>uint16_t</type>
@@ -24,10 +24,10 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>2-byte status. Bits are set according to <ref refid="stat__bits_8h" kindref="compound">stat_bits.h</ref> </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="sample.c" line="29" column="1" bodyfile="sample.c" bodystart="29" bodyend="-1"/>
+        <location file="sample.c" line="27" column="1" bodyfile="sample.c" bodystart="27" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structstatus_1a64bf6569e5dcde7c63303ca7557c4ce9" prot="public" static="no" mutable="no">
         <type>uint16_t</type>
@@ -37,17 +37,17 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Battery voltage in mV </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="sample.c" line="30" column="1" bodyfile="sample.c" bodystart="30" bodyend="-1"/>
+        <location file="sample.c" line="28" column="1" bodyfile="sample.c" bodystart="28" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="sample.c" line="27" column="1" bodyfile="sample.c" bodystart="26" bodyend="31"/>
+    <location file="sample.c" line="25" column="1" bodyfile="sample.c" bodystart="24" bodyend="29"/>
     <listofallmembers>
       <member refid="structstatus_1a64bf6569e5dcde7c63303ca7557c4ce9" prot="public" virt="non-virtual"><scope>status</scope><name>batvoltage</name></member>
       <member refid="structstatus_1ad6771c066dbc9a3f9c97f67d183dafe4" prot="public" virt="non-virtual"><scope>status</scope><name>loopcount</name></member>

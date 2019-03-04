@@ -5,6 +5,9 @@
     <includes local="no">string.h</includes>
     <includes refid="md5_8h" local="yes">md5.h</includes>
     <incdepgraph>
+      <node id="32">
+        <label>string.h</label>
+      </node>
       <node id="31">
         <label>md5.c</label>
         <link refid="md5_8c"/>
@@ -16,9 +19,6 @@
       <node id="33">
         <label>md5.h</label>
         <link refid="md5_8h"/>
-      </node>
-      <node id="32">
-        <label>string.h</label>
       </node>
     </incdepgraph>
       <sectiondef kind="define">

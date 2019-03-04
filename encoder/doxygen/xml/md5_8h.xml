@@ -5,6 +5,10 @@
     <includedby refid="md5_8c" local="yes">md5.c</includedby>
     <includedby refid="smplhist_8c" local="yes">smplhist.c</includedby>
     <invincdepgraph>
+      <node id="38">
+        <label>smplhist.c</label>
+        <link refid="smplhist_8c"/>
+      </node>
       <node id="37">
         <label>md5.c</label>
         <link refid="md5_8c"/>
@@ -16,10 +20,6 @@
         </childnode>
         <childnode refid="38" relation="include">
         </childnode>
-      </node>
-      <node id="38">
-        <label>smplhist.c</label>
-        <link refid="smplhist_8c"/>
       </node>
     </invincdepgraph>
     <innerclass refid="struct_m_d5___c_t_x" prot="public">MD5_CTX</innerclass>

@@ -20,13 +20,11 @@ struct \mbox{\hyperlink{structendstop}{endstop}}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \mbox{\hyperlink{sample_8c_a63c84ae63245baa8355d8a264d51a1ea}{L\+O\+W\+B\+A\+T\+\_\+\+B\+IT}}~0x01
-\item 
-\#define \mbox{\hyperlink{sample_8c_adb693270705ca6601a30df31a39a9d59}{S\+C\+A\+N\+T\+I\+M\+E\+O\+U\+T\+\_\+\+B\+IT}}~0x02
-\item 
 \#define \mbox{\hyperlink{sample_8c_a649a882141d51724d0851c5637ae9b52}{T\+E\+M\+P\+RH}}~\textquotesingle{}1\textquotesingle{}
 \item 
 \#define \mbox{\hyperlink{sample_8c_ae8b2d876f1eb3087a5859e78688c5169}{T\+E\+M\+P\+O\+N\+LY}}~\textquotesingle{}2\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{sample_8c_a639bc14d5477eb6e1bbbdaec7ea6fd8c}{E\+N\+D\+S\+T\+O\+P\+\_\+\+B\+Y\+TE}}~\textquotesingle{}$\sim$\textquotesingle{}
 \end{DoxyCompactItemize}
 \subsection*{Typedefs}
 \begin{DoxyCompactItemize}
@@ -50,7 +48,7 @@ enum \mbox{\hyperlink{sample_8c_a330856ff01a76092fb302f70696dcaa8}{urlstate}} \{
 void \mbox{\hyperlink{sample_8c_ac206e7a316f283a09d11da98380e6f58}{sample\+\_\+init}} (unsigned int stat, bool err, bool temponly)
 \begin{DoxyCompactList}\small\item\em Initialise the sample state machine. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{sample_8c_a130e5805e5b411b541e60ee607185b98}{sample\+\_\+updateendstop}} (unsigned int minutes)
-\item 
+\begin{DoxyCompactList}\small\item\em Update the base64 encoded endstop and write it to the tag. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{sample_8c_a5be5f77a339896373b1b5fff87fbfbcd}{sample\+\_\+push}} (int meas1, int meas2)
 \begin{DoxyCompactList}\small\item\em Append a sample containing up to two measurands onto the circular buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
@@ -61,31 +59,25 @@ int \mbox{\hyperlink{sample_8c_a5be5f77a339896373b1b5fff87fbfbcd}{sample\+\_\+pu
 
 
 \subsection{Macro Definition Documentation}
-\mbox{\Hypertarget{sample_8c_a63c84ae63245baa8355d8a264d51a1ea}\label{sample_8c_a63c84ae63245baa8355d8a264d51a1ea}} 
-\index{sample.\+c@{sample.\+c}!L\+O\+W\+B\+A\+T\+\_\+\+B\+IT@{L\+O\+W\+B\+A\+T\+\_\+\+B\+IT}}
-\index{L\+O\+W\+B\+A\+T\+\_\+\+B\+IT@{L\+O\+W\+B\+A\+T\+\_\+\+B\+IT}!sample.\+c@{sample.\+c}}
-\subsubsection{\texorpdfstring{L\+O\+W\+B\+A\+T\+\_\+\+B\+IT}{LOWBAT\_BIT}}
-{\footnotesize\ttfamily \#define L\+O\+W\+B\+A\+T\+\_\+\+B\+IT~0x01}
+\mbox{\Hypertarget{sample_8c_a639bc14d5477eb6e1bbbdaec7ea6fd8c}\label{sample_8c_a639bc14d5477eb6e1bbbdaec7ea6fd8c}} 
+\index{sample.\+c@{sample.\+c}!E\+N\+D\+S\+T\+O\+P\+\_\+\+B\+Y\+TE@{E\+N\+D\+S\+T\+O\+P\+\_\+\+B\+Y\+TE}}
+\index{E\+N\+D\+S\+T\+O\+P\+\_\+\+B\+Y\+TE@{E\+N\+D\+S\+T\+O\+P\+\_\+\+B\+Y\+TE}!sample.\+c@{sample.\+c}}
+\subsubsection{\texorpdfstring{E\+N\+D\+S\+T\+O\+P\+\_\+\+B\+Y\+TE}{ENDSTOP\_BYTE}}
+{\footnotesize\ttfamily \#define E\+N\+D\+S\+T\+O\+P\+\_\+\+B\+Y\+TE~\textquotesingle{}$\sim$\textquotesingle{}}
 
-\mbox{\Hypertarget{sample_8c_adb693270705ca6601a30df31a39a9d59}\label{sample_8c_adb693270705ca6601a30df31a39a9d59}} 
-\index{sample.\+c@{sample.\+c}!S\+C\+A\+N\+T\+I\+M\+E\+O\+U\+T\+\_\+\+B\+IT@{S\+C\+A\+N\+T\+I\+M\+E\+O\+U\+T\+\_\+\+B\+IT}}
-\index{S\+C\+A\+N\+T\+I\+M\+E\+O\+U\+T\+\_\+\+B\+IT@{S\+C\+A\+N\+T\+I\+M\+E\+O\+U\+T\+\_\+\+B\+IT}!sample.\+c@{sample.\+c}}
-\subsubsection{\texorpdfstring{S\+C\+A\+N\+T\+I\+M\+E\+O\+U\+T\+\_\+\+B\+IT}{SCANTIMEOUT\_BIT}}
-{\footnotesize\ttfamily \#define S\+C\+A\+N\+T\+I\+M\+E\+O\+U\+T\+\_\+\+B\+IT~0x02}
-
-\mbox{\Hypertarget{sample_8c_ae8b2d876f1eb3087a5859e78688c5169}\label{sample_8c_ae8b2d876f1eb3087a5859e78688c5169}} 
+Last character of the endstop. Must be U\+RL safe according to R\+FC 1738. \mbox{\Hypertarget{sample_8c_ae8b2d876f1eb3087a5859e78688c5169}\label{sample_8c_ae8b2d876f1eb3087a5859e78688c5169}} 
 \index{sample.\+c@{sample.\+c}!T\+E\+M\+P\+O\+N\+LY@{T\+E\+M\+P\+O\+N\+LY}}
 \index{T\+E\+M\+P\+O\+N\+LY@{T\+E\+M\+P\+O\+N\+LY}!sample.\+c@{sample.\+c}}
 \subsubsection{\texorpdfstring{T\+E\+M\+P\+O\+N\+LY}{TEMPONLY}}
 {\footnotesize\ttfamily \#define T\+E\+M\+P\+O\+N\+LY~\textquotesingle{}2\textquotesingle{}}
 
-\mbox{\Hypertarget{sample_8c_a649a882141d51724d0851c5637ae9b52}\label{sample_8c_a649a882141d51724d0851c5637ae9b52}} 
+Last character of the U\+RL version string if the U\+RL contains only temperature measurands. \mbox{\Hypertarget{sample_8c_a649a882141d51724d0851c5637ae9b52}\label{sample_8c_a649a882141d51724d0851c5637ae9b52}} 
 \index{sample.\+c@{sample.\+c}!T\+E\+M\+P\+RH@{T\+E\+M\+P\+RH}}
 \index{T\+E\+M\+P\+RH@{T\+E\+M\+P\+RH}!sample.\+c@{sample.\+c}}
 \subsubsection{\texorpdfstring{T\+E\+M\+P\+RH}{TEMPRH}}
 {\footnotesize\ttfamily \#define T\+E\+M\+P\+RH~\textquotesingle{}1\textquotesingle{}}
 
-
+Last character of the U\+RL version string if the U\+RL contains both temperature and relative humidity measurands. 
 
 \subsection{Typedef Documentation}
 \mbox{\Hypertarget{sample_8c_ae17bc26975847c791058e10b0c376dfa}\label{sample_8c_ae17bc26975847c791058e10b0c376dfa}} 
@@ -111,19 +103,19 @@ int \mbox{\hyperlink{sample_8c_a5be5f77a339896373b1b5fff87fbfbcd}{sample\+\_\+pu
 
 \begin{DoxyEnumFields}{Enumerator}
 \raisebox{\heightof{T}}[0pt][0pt]{\index{first\+\_\+tick@{first\+\_\+tick}!sample.\+c@{sample.\+c}}\index{sample.\+c@{sample.\+c}!first\+\_\+tick@{first\+\_\+tick}}}\mbox{\Hypertarget{sample_8c_a330856ff01a76092fb302f70696dcaa8a335559f3d0770f8905099143d5fdfc68}\label{sample_8c_a330856ff01a76092fb302f70696dcaa8a335559f3d0770f8905099143d5fdfc68}} 
-first\+\_\+tick&\\
+first\+\_\+tick&Write both meaurands in the first sample of \+::samplebuf \\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{first\+\_\+tock@{first\+\_\+tock}!sample.\+c@{sample.\+c}}\index{sample.\+c@{sample.\+c}!first\+\_\+tock@{first\+\_\+tock}}}\mbox{\Hypertarget{sample_8c_a330856ff01a76092fb302f70696dcaa8ae4aa5da2d1ebb43ca39a9ecf8e0adf80}\label{sample_8c_a330856ff01a76092fb302f70696dcaa8ae4aa5da2d1ebb43ca39a9ecf8e0adf80}} 
-first\+\_\+tock&\\
+first\+\_\+tock&Overwrite measurand 2 in the first sample of samplebuf. \\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{final\+\_\+tick@{final\+\_\+tick}!sample.\+c@{sample.\+c}}\index{sample.\+c@{sample.\+c}!final\+\_\+tick@{final\+\_\+tick}}}\mbox{\Hypertarget{sample_8c_a330856ff01a76092fb302f70696dcaa8abe4c377a0e72bf9ac494563b516341c6}\label{sample_8c_a330856ff01a76092fb302f70696dcaa8abe4c377a0e72bf9ac494563b516341c6}} 
-final\+\_\+tick&\\
+final\+\_\+tick&Write both measurands in the second sample of samplebuf. \\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{final\+\_\+tock@{final\+\_\+tock}!sample.\+c@{sample.\+c}}\index{sample.\+c@{sample.\+c}!final\+\_\+tock@{final\+\_\+tock}}}\mbox{\Hypertarget{sample_8c_a330856ff01a76092fb302f70696dcaa8a00bd38fad6dca592789a78004554929e}\label{sample_8c_a330856ff01a76092fb302f70696dcaa8a00bd38fad6dca592789a78004554929e}} 
-final\+\_\+tock&\\
+final\+\_\+tock&Overwrite measurand 2 in the second sample of samplebuf. \\
 \hline
 
 \end{DoxyEnumFields}
@@ -134,7 +126,7 @@ final\+\_\+tock&\\
 \index{sample.\+c@{sample.\+c}!sample\+\_\+init@{sample\+\_\+init}}
 \index{sample\+\_\+init@{sample\+\_\+init}!sample.\+c@{sample.\+c}}
 \subsubsection{\texorpdfstring{sample\+\_\+init()}{sample\_init()}}
-{\footnotesize\ttfamily void sample\+\_\+init (\begin{DoxyParamCaption}\item[{unsigned int}]{status,  }\item[{bool}]{err,  }\item[{bool}]{temponly }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void sample\+\_\+init (\begin{DoxyParamCaption}\item[{unsigned int}]{stat,  }\item[{bool}]{err,  }\item[{bool}]{temponly }\end{DoxyParamCaption})}
 
 
 
@@ -142,11 +134,11 @@ Initialise the sample state machine.
 
 
 \begin{DoxyParams}{Parameters}
-{\em stat} & Status \\
+{\em stat} & 16-\/bit status value. \\
 \hline
-{\em err} & Error flag \\
+{\em err} & Sets an error condition where data will not be logged to the U\+RL circular buffer. \\
 \hline
-{\em temponly} & Configure for temperature only in each sample. \\
+{\em temponly} & When true only temperature measurands will be recorded to the circular buffer on each call of \mbox{\hyperlink{sample_8c_a5be5f77a339896373b1b5fff87fbfbcd}{sample\+\_\+push()}}. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{sample_8c_a5be5f77a339896373b1b5fff87fbfbcd}\label{sample_8c_a5be5f77a339896373b1b5fff87fbfbcd}} 
@@ -161,9 +153,9 @@ Append a sample containing up to two measurands onto the circular buffer.
 
 
 \begin{DoxyParams}{Parameters}
-{\em meas1} & measurand 1 e.\+g. temperature. \\
+{\em meas1} & Measurand 1 e.\+g. temperature. \\
 \hline
-{\em meas2} & measurand 2 e.\+g. relative humidity.\\
+{\em meas2} & Measurand 2 e.\+g. relative humidity.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -177,6 +169,15 @@ Append a sample containing up to two measurands onto the circular buffer.
 
 
 
+Update the base64 encoded endstop and write it to the tag. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em minutes} & Minutes elapsed since the previous sample. \\
+\hline
+\end{DoxyParams}
+
+
 \subsection{Variable Documentation}
 \mbox{\Hypertarget{sample_8c_a6cdeaaf5e3ea4f68f2d041a6d6389a70}\label{sample_8c_a6cdeaaf5e3ea4f68f2d041a6d6389a70}} 
 \index{sample.\+c@{sample.\+c}!nv@{nv}}
@@ -184,3 +185,4 @@ Append a sample containing up to two measurands onto the circular buffer.
 \subsubsection{\texorpdfstring{nv}{nv}}
 {\footnotesize\ttfamily \mbox{\hyperlink{nvtype_8h_a78682d319c0de97ea2b35f88095d6e57}{nv\+\_\+t}} nv}
 
+Externally defined parameters stored in non-\/volatile memory. 

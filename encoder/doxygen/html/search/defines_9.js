@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lowbat_5fbit',['LOWBAT_BIT',['../sample_8c.html#a63c84ae63245baa8355d8a264d51a1ea',1,'sample.c']]]
+  ['lpm5wu_5fbit',['LPM5WU_BIT',['../stat__bits_8h.html#a721a0b5834287b17bf76cbcf3aba2401',1,'stat_bits.h']]]
 ];

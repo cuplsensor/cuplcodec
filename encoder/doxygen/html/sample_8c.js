@@ -2,8 +2,7 @@ var sample_8c =
 [
     [ "status", "structstatus.html", "structstatus" ],
     [ "endstop", "structendstop.html", "structendstop" ],
-    [ "LOWBAT_BIT", "sample_8c.html#a63c84ae63245baa8355d8a264d51a1ea", null ],
-    [ "SCANTIMEOUT_BIT", "sample_8c.html#adb693270705ca6601a30df31a39a9d59", null ],
+    [ "ENDSTOP_BYTE", "sample_8c.html#a639bc14d5477eb6e1bbbdaec7ea6fd8c", null ],
     [ "TEMPONLY", "sample_8c.html#ae8b2d876f1eb3087a5859e78688c5169", null ],
     [ "TEMPRH", "sample_8c.html#a649a882141d51724d0851c5637ae9b52", null ],
     [ "endstop_t", "sample_8c.html#ae17bc26975847c791058e10b0c376dfa", null ],

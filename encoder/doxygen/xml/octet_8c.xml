@@ -6,25 +6,25 @@
     <includes refid="octet_8h" local="yes">octet.h</includes>
     <includes refid="defs_8h" local="yes">defs.h</includes>
     <incdepgraph>
-      <node id="70">
+      <node id="72">
         <label>octet.c</label>
         <link refid="octet_8c"/>
-        <childnode refid="71" relation="include">
-        </childnode>
-        <childnode refid="72" relation="include">
-        </childnode>
         <childnode refid="73" relation="include">
         </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
       </node>
-      <node id="72">
+      <node id="74">
         <label>octet.h</label>
         <link refid="octet_8h"/>
       </node>
-      <node id="71">
+      <node id="73">
         <label>eep.h</label>
         <link refid="eep_8h"/>
       </node>
-      <node id="73">
+      <node id="75">
         <label>defs.h</label>
         <link refid="defs_8h"/>
       </node>

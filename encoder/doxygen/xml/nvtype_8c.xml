@@ -2,6 +2,19 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
   <compounddef id="nvtype_8c" kind="file" language="C++">
     <compoundname>nvtype.c</compoundname>
+    <includes refid="nvtype_8h" local="yes">nvtype.h</includes>
+    <incdepgraph>
+      <node id="63">
+        <label>nvtype.c</label>
+        <link refid="nvtype_8c"/>
+        <childnode refid="64" relation="include">
+        </childnode>
+      </node>
+      <node id="64">
+        <label>nvtype.h</label>
+        <link refid="nvtype_8h"/>
+      </node>
+    </incdepgraph>
       <sectiondef kind="var">
       <memberdef kind="variable" id="nvtype_8c_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" prot="public" static="no" mutable="no">
         <type><ref refid="nvtype_8h_1a78682d319c0de97ea2b35f88095d6e57" kindref="member">nv_t</ref></type>
@@ -12,10 +25,10 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Externally defined parameters stored in non-volatile memory. </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nvtype.c" line="9" column="1" bodyfile="nvtype.c" bodystart="9" bodyend="-1"/>
+        <location file="nvtype.c" line="11" column="1" bodyfile="nvtype.c" bodystart="11" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -30,8 +43,11 @@
 <codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Author:<sp/>malcolm</highlight></codeline>
 <codeline lineno="6"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal"><ref refid="structnvstruct" kindref="compound">nv_t</ref><sp/><ref refid="nvtype_8c_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" kindref="member">nv</ref><sp/>=<sp/>{.<ref refid="structnvstruct_1a8c4928cc85c5336514401eb142ea7d50" kindref="member">serial</ref>=</highlight><highlight class="stringliteral">&quot;AAAACCCC&quot;</highlight><highlight class="normal">,<sp/>.seckey=</highlight><highlight class="stringliteral">&quot;AAAACCCC&quot;</highlight><highlight class="normal">};</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="nvtype_8h" kindref="compound">nvtype.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>NOT_CFFI</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><ref refid="structnvstruct" kindref="compound">nv_t</ref><sp/><ref refid="nvtype_8c_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" kindref="member">nv</ref><sp/>=<sp/>{.<ref refid="structnvstruct_1a8c4928cc85c5336514401eb142ea7d50" kindref="member">serial</ref>=</highlight><highlight class="stringliteral">&quot;AAAACCCC&quot;</highlight><highlight class="normal">,<sp/>.seckey=</highlight><highlight class="stringliteral">&quot;AAAACCCC&quot;</highlight><highlight class="normal">};</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
     <location file="nvtype.c"/>
   </compounddef>

@@ -18,13 +18,13 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="8">
-        <label>ndef.c</label>
-        <link refid="ndef_8c"/>
-      </node>
       <node id="9">
         <label>sample.c</label>
         <link refid="sample_8c"/>
+      </node>
+      <node id="8">
+        <label>ndef.c</label>
+        <link refid="ndef_8c"/>
       </node>
       <node id="7">
         <label>base64.c</label>
@@ -57,7 +57,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="base64.h" line="93" column="1" bodyfile="base64.c" bodystart="174" bodyend="177"/>
+        <location file="base64.h" line="93" column="1" bodyfile="base64.c" bodystart="175" bodyend="178"/>
       </memberdef>
       <memberdef kind="function" id="base64_8h_1a7b3abb5758f53897f20d92e30d0b0776" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -82,7 +82,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="base64.h" line="94" column="1" bodyfile="base64.c" bodystart="179" bodyend="209"/>
+        <location file="base64.h" line="94" column="1" bodyfile="base64.c" bodystart="180" bodyend="210"/>
       </memberdef>
       <memberdef kind="function" id="base64_8h_1a7484080fa00f8223e24bd5453e9d836b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -99,7 +99,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="base64.h" line="96" column="1" bodyfile="base64.c" bodystart="111" bodyend="124"/>
+        <location file="base64.h" line="96" column="1" bodyfile="base64.c" bodystart="112" bodyend="125"/>
       </memberdef>
       <memberdef kind="function" id="base64_8h_1a5a56c39f989f7c789c7e86d990de5fd0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -120,7 +120,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="base64.h" line="97" column="1" bodyfile="base64.c" bodystart="126" bodyend="169"/>
+        <location file="base64.h" line="97" column="1" bodyfile="base64.c" bodystart="127" bodyend="170"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

@@ -3,30 +3,37 @@
   <compounddef id="nvtype_8h" kind="file" language="C++">
     <compoundname>nvtype.h</compoundname>
     <includedby refid="ndef_8c" local="yes">ndef.c</includedby>
+    <includedby refid="nvtype_8c" local="yes">nvtype.c</includedby>
     <includedby refid="sample_8c" local="yes">sample.c</includedby>
     <includedby refid="smplhist_8c" local="yes">smplhist.c</includedby>
     <invincdepgraph>
-      <node id="67">
-        <label>ndef.c</label>
-        <link refid="ndef_8c"/>
-      </node>
-      <node id="68">
+      <node id="70">
         <label>sample.c</label>
         <link refid="sample_8c"/>
       </node>
       <node id="69">
-        <label>smplhist.c</label>
-        <link refid="smplhist_8c"/>
+        <label>nvtype.c</label>
+        <link refid="nvtype_8c"/>
       </node>
-      <node id="66">
+      <node id="67">
         <label>nvtype.h</label>
         <link refid="nvtype_8h"/>
-        <childnode refid="67" relation="include">
-        </childnode>
         <childnode refid="68" relation="include">
         </childnode>
         <childnode refid="69" relation="include">
         </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+      </node>
+      <node id="71">
+        <label>smplhist.c</label>
+        <link refid="smplhist_8c"/>
+      </node>
+      <node id="68">
+        <label>ndef.c</label>
+        <link refid="ndef_8c"/>
       </node>
     </invincdepgraph>
     <innerclass refid="structnvstruct" prot="public">nvstruct</innerclass>
@@ -53,6 +60,17 @@
         </inbodydescription>
         <location file="nvtype.h" line="13" column="9" bodyfile="nvtype.h" bodystart="13" bodyend="-1"/>
       </memberdef>
+      <memberdef kind="define" id="nvtype_8h_1a44d3fb460b6c9383a2b3248544aa13d0" prot="public" static="no">
+        <name>SMPLINT_LENBYTES</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nvtype.h" line="14" column="9" bodyfile="nvtype.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
       <memberdef kind="define" id="nvtype_8h_1a30653e2266913b20202fbfdaf8719acf" prot="public" static="no">
         <name>RANDSTATE_LENBYTES</name>
         <initializer>4</initializer>
@@ -62,7 +80,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nvtype.h" line="14" column="9" bodyfile="nvtype.h" bodystart="14" bodyend="-1"/>
+        <location file="nvtype.h" line="15" column="9" bodyfile="nvtype.h" bodystart="15" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="nvtype_8h_1a85e0c8e71ac12b688919da40fbc873cd" prot="public" static="no">
         <name>INTEGERFIELD_LENBYTES</name>
@@ -73,7 +91,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nvtype.h" line="15" column="9" bodyfile="nvtype.h" bodystart="15" bodyend="-1"/>
+        <location file="nvtype.h" line="16" column="9" bodyfile="nvtype.h" bodystart="16" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="typedef">
@@ -88,22 +106,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nvtype.h" line="27" column="1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="var">
-      <memberdef kind="variable" id="nvtype_8h_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" prot="public" static="no" mutable="no">
-        <type><ref refid="nvtype_8h_1a78682d319c0de97ea2b35f88095d6e57" kindref="member">nv_t</ref></type>
-        <definition>nv_t nv</definition>
-        <argsstring></argsstring>
-        <name>nv</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="nvtype.h" line="30" column="1" bodyfile="nvtype.h" bodystart="30" bodyend="-1"/>
+        <location file="nvtype.h" line="28" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -124,26 +127,23 @@
 <codeline lineno="11"><highlight class="normal"></highlight></codeline>
 <codeline lineno="12" refid="nvtype_8h_1a09589b0f4cf4e32679b6dc064903edef" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SERIAL_LENBYTES<sp/><sp/><sp/><sp/><sp/>8</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="13" refid="nvtype_8h_1ae32c9007f59a1d55426d7fd63e10d589" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SECKEY_LENBYTES<sp/><sp/><sp/><sp/><sp/>8</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="14" refid="nvtype_8h_1a30653e2266913b20202fbfdaf8719acf" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RANDSTATE_LENBYTES<sp/><sp/><sp/><sp/><sp/><sp/>4</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="15" refid="nvtype_8h_1a85e0c8e71ac12b688919da40fbc873cd" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTEGERFIELD_LENBYTES<sp/><sp/><sp/>4</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="nvtype_8h_1a44d3fb460b6c9383a2b3248544aa13d0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SMPLINT_LENBYTES<sp/><sp/><sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="nvtype_8h_1a30653e2266913b20202fbfdaf8719acf" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RANDSTATE_LENBYTES<sp/><sp/><sp/><sp/><sp/><sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="nvtype_8h_1a85e0c8e71ac12b688919da40fbc873cd" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTEGERFIELD_LENBYTES<sp/><sp/><sp/>4</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="17"><highlight class="normal"></highlight></codeline>
-<codeline lineno="18" refid="structnvstruct" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnvstruct" kindref="compound">nvstruct</ref><sp/>{</highlight></codeline>
-<codeline lineno="19" refid="structnvstruct_1a8c4928cc85c5336514401eb142ea7d50" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structnvstruct_1a8c4928cc85c5336514401eb142ea7d50" kindref="member">serial</ref>[<ref refid="nvtype_8h_1a09589b0f4cf4e32679b6dc064903edef" kindref="member">SERIAL_LENBYTES</ref>];</highlight></codeline>
-<codeline lineno="20" refid="structnvstruct_1a680c038327bbd20d30beade8d0ef1dd4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structnvstruct_1a680c038327bbd20d30beade8d0ef1dd4" kindref="member">seckey</ref>[<ref refid="nvtype_8h_1ae32c9007f59a1d55426d7fd63e10d589" kindref="member">SECKEY_LENBYTES</ref>];</highlight></codeline>
-<codeline lineno="21" refid="structnvstruct_1aec7e67f64e6ee88dda940f1b837f9351" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structnvstruct_1aec7e67f64e6ee88dda940f1b837f9351" kindref="member">randstate</ref>;</highlight></codeline>
-<codeline lineno="22" refid="structnvstruct_1a4447bd6767bd8a45338bdeeae4cb0511" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structnvstruct_1a4447bd6767bd8a45338bdeeae4cb0511" kindref="member">smplintervalmins</ref>;</highlight></codeline>
-<codeline lineno="23" refid="structnvstruct_1afd55ea1fa18fbe9ef04251bbf4948e7b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structnvstruct_1afd55ea1fa18fbe9ef04251bbf4948e7b" kindref="member">sleepintervaldays</ref>;</highlight></codeline>
-<codeline lineno="24" refid="structnvstruct_1a8132fd6a69b2f8b51c2e9241f29de2ba" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structnvstruct_1a8132fd6a69b2f8b51c2e9241f29de2ba" kindref="member">allwritten</ref>;</highlight></codeline>
-<codeline lineno="25" refid="structnvstruct_1a05c6c8c50f3add0b2ba801d67177d0a5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structnvstruct_1a05c6c8c50f3add0b2ba801d67177d0a5" kindref="member">resetsperloop</ref>;</highlight></codeline>
-<codeline lineno="26" refid="structnvstruct_1a296b1120c7c1a2be3bdb81ef5d02d1b5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structnvstruct_1a296b1120c7c1a2be3bdb81ef5d02d1b5" kindref="member">resetsalltime</ref>;</highlight></codeline>
-<codeline lineno="27"><highlight class="normal">}<sp/><ref refid="nvtype_8h_1a78682d319c0de97ea2b35f88095d6e57" kindref="member">nv_t</ref>;</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>NOT_CFFI</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="30" refid="nvtype_8h_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" refkind="member"><highlight class="normal"><ref refid="structnvstruct" kindref="compound">nv_t</ref><sp/><ref refid="nvtype_8h_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" kindref="member">nv</ref>;</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight></codeline>
-<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>COMMS_NVTYPE_H_<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="structnvstruct" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structnvstruct" kindref="compound">nvstruct</ref><sp/>{</highlight></codeline>
+<codeline lineno="20" refid="structnvstruct_1a8c4928cc85c5336514401eb142ea7d50" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structnvstruct_1a8c4928cc85c5336514401eb142ea7d50" kindref="member">serial</ref>[<ref refid="nvtype_8h_1a09589b0f4cf4e32679b6dc064903edef" kindref="member">SERIAL_LENBYTES</ref>];</highlight></codeline>
+<codeline lineno="21" refid="structnvstruct_1a680c038327bbd20d30beade8d0ef1dd4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structnvstruct_1a680c038327bbd20d30beade8d0ef1dd4" kindref="member">seckey</ref>[<ref refid="nvtype_8h_1ae32c9007f59a1d55426d7fd63e10d589" kindref="member">SECKEY_LENBYTES</ref>];</highlight></codeline>
+<codeline lineno="22" refid="structnvstruct_1a34de27bbd20aa5f15e4e4482ce5a0309" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structnvstruct_1a34de27bbd20aa5f15e4e4482ce5a0309" kindref="member">smplintervalmins</ref>[<ref refid="nvtype_8h_1a44d3fb460b6c9383a2b3248544aa13d0" kindref="member">SMPLINT_LENBYTES</ref>];</highlight></codeline>
+<codeline lineno="23" refid="structnvstruct_1aec7e67f64e6ee88dda940f1b837f9351" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structnvstruct_1aec7e67f64e6ee88dda940f1b837f9351" kindref="member">randstate</ref>;</highlight></codeline>
+<codeline lineno="24" refid="structnvstruct_1a7535c524cca52dcf1e60b1e6762fea4c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structnvstruct_1a7535c524cca52dcf1e60b1e6762fea4c" kindref="member">sleepintervaldays</ref>;</highlight></codeline>
+<codeline lineno="25" refid="structnvstruct_1a3fee61ddd1d863385c81b1d53599191a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structnvstruct_1a3fee61ddd1d863385c81b1d53599191a" kindref="member">allwritten</ref>;</highlight></codeline>
+<codeline lineno="26" refid="structnvstruct_1a48f727b15838a972aff7c7d7397ff641" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structnvstruct_1a48f727b15838a972aff7c7d7397ff641" kindref="member">resetsperloop</ref>;</highlight></codeline>
+<codeline lineno="27" refid="structnvstruct_1a045498ec4eca300d51f030a958ed5ee1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structnvstruct_1a045498ec4eca300d51f030a958ed5ee1" kindref="member">resetsalltime</ref>;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal">}<sp/><ref refid="nvtype_8h_1a78682d319c0de97ea2b35f88095d6e57" kindref="member">nv_t</ref>;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>COMMS_NVTYPE_H_<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
     </programlisting>
     <location file="nvtype.h"/>
   </compounddef>

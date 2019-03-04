@@ -4,11 +4,16 @@
 #include <stdbool.h>
 
 
+
+
+/**
+ *  Structure to hold one sample consisting of two 12-bit measurands.
+ */
 typedef struct sensordatachars
 {
-        unsigned char m1Msb;
-        unsigned char m2Msb;
-        unsigned char Lsb;
+        unsigned char m1Msb;    /*!< Measurand 1 Most significant byte.*/
+        unsigned char m2Msb;    /*!< Measurand 2 Most significant byte.*/
+        unsigned char Lsb;      /*!< Least significant 4-bit nibbles of measurand 1 and measurand 2. */
 } sdchars_t;
 
 typedef struct md5len

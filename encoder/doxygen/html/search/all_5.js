@@ -9,5 +9,7 @@ var searchData=
   ['eep_5fwrite',['eep_write',['../eep_8c.html#a9dc9545f49f34a394bf02e1a50ec94ce',1,'eep_write(const int eepblk, const unsigned int bufblk):&#160;eep.c'],['../eep_8h.html#a9dc9545f49f34a394bf02e1a50ec94ce',1,'eep_write(const int eepblk, const unsigned int bufblk):&#160;eep.c']]],
   ['endstop',['endstop',['../structendstop.html',1,'']]],
   ['endstop_5fblks',['ENDSTOP_BLKS',['../defs_8h.html#a34364711a08f6ea9de1f2c5a5ae56f88',1,'defs.h']]],
-  ['endstop_5ft',['endstop_t',['../sample_8c.html#ae17bc26975847c791058e10b0c376dfa',1,'sample.c']]]
+  ['endstop_5fbyte',['ENDSTOP_BYTE',['../sample_8c.html#a639bc14d5477eb6e1bbbdaec7ea6fd8c',1,'sample.c']]],
+  ['endstop_5ft',['endstop_t',['../sample_8c.html#ae17bc26975847c791058e10b0c376dfa',1,'sample.c']]],
+  ['err_5fbits',['ERR_BITS',['../stat__bits_8h.html#aec28e3d7a139661a699f619152d8d222',1,'stat_bits.h']]]
 ];

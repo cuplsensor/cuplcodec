@@ -9,42 +9,43 @@
 #include "nvtype.h"
 #include <stdint.h>
 
-#define LOWBAT_BIT       0x01
-#define SCANTIMEOUT_BIT  0x02
-
-#define TEMPRH          '1'
-#define TEMPONLY        '2'
+#define TEMPRH          '1' /*!< Last character of the URL version string if the URL contains both temperature and relative humidity measurands. */
+#define TEMPONLY        '2' /*!< Last character of the URL version string if the URL contains only temperature measurands. */
+#define ENDSTOP_BYTE    '~' /*!< Last character of the endstop. Must be URL safe according to RFC 1738. */
 
 typedef enum {
-    first_tick,
-    first_tock,
-    final_tick,
-    final_tock
+    first_tick,     /*!< Write both meaurands in the first sample of samplebuf  */
+    first_tock,     /*!< Overwrite measurand 2 in the first sample of samplebuf. */
+    final_tick,     /*!< Write both measurands in the second sample of samplebuf. */
+    final_tock      /*!< Overwrite measurand 2 in the second sample of samplebuf. */
 } urlstate;
 
 
 typedef struct status
 {
-    uint16_t loopcount;
-    uint16_t status;
-    uint16_t batvoltage;
+    uint16_t loopcount;  /*!< Number of times the last octet in the circular buffer endstop has wrapped from the end of the buffer to the beginning. */
+    uint16_t status;     /*!< 2-byte status. Bits are set according to stat_bits.h */
+    uint16_t batvoltage; /*!< Battery voltage in mV */
 } stat_t;
 
 typedef struct endstop
 {
-  char md5lenb64[12];
-  char markerb64[4];
+  char md5lenb64[12];   /*!< MD5 length field containing a base64 encoded ::md5len_t. */
+  char markerb64[4];    /*!< End-stop marker comprised of base64 encoded minutes since the previous sample and ::ENDSTOP_BYTE */
 } endstop_t;
 
-static char encodedoctet[8];
-static sdchars_t samplebuf[2];
-static unsigned int lensmpls = 0;
+static char encodedoctet[8];        /*!< Stores the base64 encoded \link samplebuf. */
+static sdchars_t samplebuf[2];      /*!< Stores two 3-byte samples. */
+static unsigned int lensmpls = 0;   /*!< Number of valid samples in the circular buffer, starting from the endstop and counting backwards. */
 static urlstate state;
 static stat_t urlstatus = {0};
-static endstop_t endstop;
-static bool _temponly;
-extern nv_t nv;
+static endstop_t endstop;           /*!< The 16 byte end stop. */
+static bool _temponly;              /*!< Internal flag to mark if only temperature data are being written on each call call of sample_push(int,int) */
+extern nv_t nv;                     /*!< Externally defined parameters stored in non-volatile memory. */
 
+/*!
+ * @brief Update loop counter and battery voltage in the preamble status field.
+ */
 static void sample_updatelc(void)
 {
   char statusb64[9];
@@ -58,6 +59,13 @@ static void sample_updatelc(void)
   octet_restore();
 }
 
+/*!
+ * @brief Initialise the sample state machine.
+ *
+ * @param stat 16-bit status value.
+ * @param err Sets an error condition where data will not be logged to the URL circular buffer.
+ * @param temponly When true only temperature measurands will be recorded to the circular buffer on each call of {@link sample_push()}.
+ */
 void sample_init(unsigned int stat, bool err, bool temponly)
 {
   char statusb64[9];
@@ -99,6 +107,12 @@ void sample_init(unsigned int stat, bool err, bool temponly)
 
 }
 
+/**
+ * @brief Write the endstop.
+ *
+ * @param minutes: Minutes elapsed since the previous sample.
+ * @param endmarker: Pointer to the end marker byte array.
+ */
 static void makemarker(unsigned int minutes, char * endmarker)
 {
     unsigned int minutesixb;
@@ -111,15 +125,25 @@ static void makemarker(unsigned int minutes, char * endmarker)
     *(endmarker + 1) = randomtenb >> 2;
 }
 
+/**
+ * @brief Update the endstop and encode it as base64.
+ *
+ * @param minutes: Minutes elapsed since the previous sample.
+ */
 static void makeendstop(unsigned int minutes)
 {
     char endmarker[2];
     makemarker(minutes, endmarker);
     Base64encode(endstop.markerb64, endmarker, sizeof(endmarker));
     // Change padding byte.
-    endstop.markerb64[3] = '~';
+    endstop.markerb64[3] = ENDSTOP_BYTE;
 }
 
+/**
+ * @brief Update the base64 encoded endstop and write it to the tag.
+ *
+ * @param minutes: Minutes elapsed since the previous sample.
+ */
 void sample_updateendstop(unsigned int minutes)
 {
     makeendstop(minutes);
@@ -127,6 +151,13 @@ void sample_updateendstop(unsigned int minutes)
     octet_commit2();
 }
 
+/**
+ * @brief Write both measurands of a sample.
+ *
+ * @param sample: Pointer to the sample that will be modified.
+ * @param meas1: Measurand 1. Only the 12 least sigificant bits will be used.
+ * @param meas2: Measurand 2. Only the 12 least sigificant bits will be used.
+ */
 static void loadboth(sdchars_t *sample, int meas1, int meas2)
 {
     sample->m1Msb = ((meas1 >> 4) & 0xFF);
@@ -134,6 +165,12 @@ static void loadboth(sdchars_t *sample, int meas1, int meas2)
     sample->Lsb = ((meas1 & 0xF) << 4) | (meas2 & 0xF);
 }
 
+/**
+ * @brief Write measurand 2 of a sample
+ *
+ * @param sample: Pointer to the sample that will be modified.
+ * @param meas2: Measurand 2. Only the 12 least sigificant bits will be used.
+ */
 static void loadm2(sdchars_t *sample, int meas2)
 {
     sample->m2Msb = ((meas2 >> 4) & 0xFF);
@@ -141,14 +178,13 @@ static void loadm2(sdchars_t *sample, int meas2)
     sample->Lsb |= (meas2 & 0xF); // Set low nibble of LSB.
 }
 
-/*!
- * \fn sample_push
- * \brief Append a sample containing up to two measurands onto the circular buffer.
+/**
+ * @brief  Append a sample containing up to two measurands onto the circular buffer.
  *
- * \param meas1 measurand 1 e.g. temperature.
- * \param meas2 measurand 2 e.g. relative humidity.
+ * @param meas1 Measurand 1 e.g. temperature.
+ * @param meas2 Measurand 2 e.g. relative humidity.
  *
- * \returns 1 if the cursor has moved from the end to the start and data are being overwritten.
+ * @returns 1 if the cursor has moved from the end to the start and data are being overwritten.
  * Otherwise 0.
  */
 int sample_push(int meas1, int meas2)

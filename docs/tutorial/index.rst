@@ -3,47 +3,7 @@ PSCodec
 
 The codec comprises an encoder and a decoder. The former takes an array of
 samples as an input and outputs a URL. The latter performs the reverse
-operation; it takes the URL as an input and outputs an array of samples,
-in the same order as supplied to the encoder.
-
-The sample arrays are ordered from the most recent at the top (element 0) to the oldest.
-
-
-Measurands to Samples
-----------------------
-
-The length of the URL is configurable. It should be fairly long (1 KB) to hold
-a large number of samples. The codec can be configured so that each sample
-contains either one or two 12-bit measurands. For Plotsensor, these are
-temperature and relative humidity.
-
-
-Samples to Chunks
-------------------
-
-The encoder starts at the oldest sample and groups input data into 6 byte chunks.
-Byte 0 of the chunk contains the oldest data and Byte 5 contains the newest.
-Each chunk contains two samples, assuming there are two measurands per sample.
-
-The chunk containing the most recent data can be partially full.
-In this case it is padded with samples that contain '0'. The number of samples
-is written to the Length field in the endstop of the URL.
-With this information the decoder discards the samples used for padding.
-
-
-Chunks to Octets
------------------
-
-Chunks are base64 encoded using only URL-safe characters.
-This produces a list of 8-byte values, which are named Octets.
-
-Circular Buffer
-----------------
-
-Octets are placed onto a circular buffer.
-The end of the buffer is marked by an endstop_. Immediately to the left of
-the endstop is the Octet containing the most recent sample data.
-The octet to the right contains the oldest sample data.
+operation; it takes the URL as an input and outputs an array of samples.
 
 Timestamps
 -----------
@@ -62,26 +22,195 @@ to be reconstructed based on:
 * Now (UTC), the time the PSCodec URL is received by PSWebApp. This coincides
   with the time the sensor is scanned by a phone.
 
-* Minutes elapsed. The time difference between Now (UTC) and when the most
+* `Minutes elapsed <Elapsed>`_. The time difference between Now (UTC) and when the most
   recent sample was taken.
 
-* Time interval in minutes between samples. This is a constant time interval
+* `Time interval`_ in minutes between samples. This is a constant time interval
   between all samples in the buffer.
 
 The reconstructed timestamps will be accurate to within one minute, which is
 sufficient for most datalogging applications.
 
+
+NDEF Preamble
+--------------
+
++-----------+------+------------------+-----------------------------------------------------------------------------+
+| NDEF Msg. | Type | Length           | Value                                                                       |
++-----------+------+------------------+----------------------------------------------------------------+------------+
+| NDEF Rec. |                         | Header                                                         | Payload    |
++-----------+------+------+-----+-----+--------+----------+---------------+----------------+-----------+------------+
+|           |      |      |     |     | Rec Hdr| Type Len | Payload Length                 | Rec. Type | URL Prefix |
++-----------+------+------+-----+-----+--------+----------+-------+-------+-------+--------+-----------+------------+
+| Byte      | 0    | 1    | 2   | 3   | 4      | 5        | 6     | 7     | 8     | 9      | 10        | 11         |
++-----------+------+------+-----+-----+--------+----------+-------+-------+-------+--------+-----------+------------+
+| Data      | 0x03 | 0xFF | MSB | LSB |        | 0x01     | PL[3] | PL[2] | PL[1] | PL[0]  | 0x55      | 0x03       |
++-----------+------+------+-----+-----+--------+----------+---+---+---+---+-------+--------+-----------+------------+
+
+URL Header
+-----------
+
++-----------+------+------------------+-----------------------------------------------------------------------------+
+| NDEF Msg. |  Value                                                                                                |
++-----------+------+------------------+-----------------------------------------------------------------------------+
+| NDEF Rec. |  Payload                                                                                              |
++-----------+------+------+------+-------------------+-------------+-------------+-------------+--------------------+
+| Desc.     | Base URL           |  `Time interval`_ | `Serial`_   | `Version`_  | Status      | CircBufferStart    |
++-----------+------+------+------+-------------------+-------------+-------------+-------------+--------------------+
+| Data      | t.plotsensor.com/  |  ?t=AWg*          | &s=YWJjZGVm | &v=01       | &x=AAABALEK | &q=                |
++-----------+------+------+------+-------------------+-------------+-------------+-------------+--------------------+
+
+Serial
+~~~~~~~
+
+Time interval
+~~~~~~~~~~~~~~
+Time interval between samples in minutes base64 encoded.
+
+Version
+~~~~~~~~
+The version parameter determines which decoder shall be used by :class:`.UrlDecoder`:
+
+* :c:macro:`TEMPONLY` :class:`.TDecoder` Two temperature measurands per sample seperated by `Time interval`_.
+* :c:macro:`TEMPRH` :class:`.HTDecoder` Temperature and relative humidity measurands in a sample.
+
+
+URL Circular Buffer
+--------------------
+
+The sample arrays are ordered from the most recent at the top (element 0) to the oldest.
+
+Octets are placed onto a circular buffer.
+The end of the buffer is marked by an endstop_. Immediately to the left of
+the endstop is the Octet containing the most recent sample data.
+The octet to the right contains the oldest sample data.
+
+
+Samples
+~~~~~~~~
+
+Each sample contains two 12-bit measurands. These are organised as follows
+
++-----------------+-------+-------+-----+
+| **Byte**        | 0     | 1     | 2   |
++-----------------+-------+-------+-----+
+| **Description** | M1MSB | M2MSB | LSB |
++-----------------+-------+-------+-----+
+
+The encoder stores samples using the :cpp:type:`sdchars_t` type.
+
+M1MSB
+^^^^^^
+
+Measurand 1 Most significant 8-bits (see :cpp:member:`m1Msb`).
+
+M2MSB
+^^^^^^
+
+Measurand 2 Most significant 8-bits (see :cpp:member:`m2Msb`).
+
+LSB
+^^^^
+
+The least signficant 4-bit nibbles of M1 and M2 (see :cpp:member:`Lsb`).
+
+
++-------------+---+---+---+---+---+---+---+---+
+| Bit         | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
++-------------+---+---+---+---+---+---+---+---+
+| Description | M1[3:0]       | M2[3:0]       |
++-------------+---------------+---------------+
+
+
+Chunks
+~~~~~~~
+
++-----------------+-------------------------------------------+
+| **Chunk**       | 0                                         |
++-----------------+---------------------+---------------------+
+| **Sample**      | 0                   | 1                   |
++-----------------+-------+-------+-----+-------+-------+-----+
+| **Byte**        | 0     | 1     | 2   | 3     | 4     | 5   |
++-----------------+-------+-------+-----+-------+-------+-----+
+| **Description** | M1MSB | M2MSB | LSB | M1MSB | M2MSB | LSB |
++-----------------+-------+-------+-----+-------+-------+-----+
+
+Each 6-byte chunk contains two samples_.
+
+The encoder starts at the oldest sample and groups input data into 6 byte chunks.
+Byte 0 of the chunk contains the oldest data and Byte 5 contains the newest.
+Each chunk contains two samples.
+
+The chunk containing the most recent data can be partially full.
+In this case it is padded with samples that contain '0'. The number of samples
+is written to the Length field in the endstop of the URL.
+With this information the decoder discards the samples used for padding.
+
+
+Octets
+~~~~~~~
+
++------------+---------------------------------------------------+
+| Octet      | 0                                                 |
++------------+-------------------------+-------------------------+
+| SampleB64  | 0                       | 1                       |
++------------+-----+------+------+-----+-----+------+------+-----+
+| Byte       | 0   | 1    | 2    |  3  | 4   | 5    | 6    |  7  |
++------------+-----+------+------+-----+-----+------+------+-----+
+
+6-byte chunks are base64 encoded into 8-byte octets. This is done using only URL-safe characters.
+
+Blocks
+~~~~~~~
+
++------------+-------------------------+
+| Block      | 0                       |
++------------+------------+------------+
+| Octet      | 0          | 1          |
++------------+-----+------+------+-----+
+| SampleB64  | 0   | 1    | 2    |  3  |
++------------+-----+------+------+-----+
+
+Each 16-byte block contains two octets_.
+
++------------+-------------------------+-------------------------+-------------------------+---------------------------+
+| Block      | 0                       | 1                       | ...                     | MSGLEN-1                  |
++------------+------------+------------+------------+------------+------------+------------+--------------+------------+
+| Octet      | 0          | 1          | 2          | 3          | ...        | ...        | ...          | 2*MSGLEN-1 |
++------------+------------+------------+------------+------------+------------+------------+--------------+------------+
+
+
 Endstop
---------
+~~~~~~~~
 
-The endstop is 16-bits wide. It contains 4 elements.
++----------------------------+------------------------------+
+| Cursor Block               | Next Block                   |
++---------------+------------+------------+-----------------+
+| Newest Octet  | Endstop 1  | Endstop 2  | Oldest Octet    |
++---------------+------------+------------+-----------------+
 
-Minutes elapsed (base64) and end marker
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The minutes elapsed counter increments by 1 every minute after the last sample
-was collected. It resets to 0 when a new sample is collected i.e. when it is
-equal to time interval.
+The endstop marks the end of the circular buffer. It is 16-bytes wide and it can span 2 blocks as shown above.
+
+Immediately to the left of the endstop is the Octet containing the most recent sample data.
+
+The octet to the right contains the oldest sample data or zero padding if the buffer is not full.
+
++-------------+-------------------------------+--------------------------------------+
+| Octet       | Endstop 0                     | Endstop 1                            |
++-------------+---+---+---+---+---+---+---+---+---+---+----+----+----+----+----+-----+
+| Byte        | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15  |
++-------------+---+---+---+---+---+---+---+---+---+---+----+----+----+----+----+-----+
+| Description | MD5Length_ b64                                  | Elapsed_ b64 | )   |
++-------------+-------------------------------------------------+--------------+-----+
+
+_`Elapsed` (base64) and end marker
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The minutes elapsed counter increments by 1 every minute after the previous sample
+was collected. It resets to 0 when a new sample is collected.
+
+The decoder uses it to determine to the nearest minute when samples were collected.
 
 The unencoded minutes elapsed field is 16-bits wide. This is the same width
 as the unencoded time interval in minutes field.
@@ -89,17 +218,34 @@ as the unencoded time interval in minutes field.
 The minutes elapsed field occupies 4 bytes after base64 encoding, including one
 padding byte. By convention this is 0x61 or '='.
 
-The encoder replaces the padding byte with 0x01 or '!'.
-This is the end marker; the last byte of the end stop in the circular buffer.
-The URL-safe character will be unique in the circular buffer.
+The encoder replaces the padding byte with :c:macro:`ENDSTOP_BYTE`. This marks the last byte of the end stop.
 
-Locating the end marker is the first step performed by the decoder. After it is
+The first step performed by the decoder is to locate :c:macro:`ENDSTOP_BYTE`. After it is
 found, it can be replaced with an '=' before the minutes elapsed field is
-decoded from base64 into the original 16-bit value.
+decoded from base64 into its original 16-bit value.
 
-Version
---------
-The version parameter determines which decoder shall be used by :class:`.UrlDecoder`:
+_`MD5Length`
+^^^^^^^^^^^^^
 
-* :class:`.TDecoder` One temperature measurand per sample.
-* :class:`.HTDecoder` Temperature and relative humidity measurands in a sample.
+This is 9 bytes long unencoded and 12 bytes long encoded. The C structure to hold these data
+:cpp:type:`md5len_t` is shown below:
+
++-------------+---+---+---+---+---+---+---+---+----+
+| Byte        | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8  |
++-------------+---+---+---+---+---+---+---+---+----+
+| Description | MD5_                      | Length |
++-------------+---------------------------+--------+
+
+MD5
+____
+
+Least significant 7 bytes of the MD5 checksum taken of all samples in the buffer.
+
+
+Length
+_______
+
+The number of valid samples in the circular buffer. This is populated from :cpp:var:`lensmpls`.
+
+
+

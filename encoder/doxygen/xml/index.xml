@@ -25,12 +25,12 @@
   <compound refid="structnvstruct" kind="struct"><name>nvstruct</name>
     <member refid="structnvstruct_1a8c4928cc85c5336514401eb142ea7d50" kind="variable"><name>serial</name></member>
     <member refid="structnvstruct_1a680c038327bbd20d30beade8d0ef1dd4" kind="variable"><name>seckey</name></member>
+    <member refid="structnvstruct_1a34de27bbd20aa5f15e4e4482ce5a0309" kind="variable"><name>smplintervalmins</name></member>
     <member refid="structnvstruct_1aec7e67f64e6ee88dda940f1b837f9351" kind="variable"><name>randstate</name></member>
-    <member refid="structnvstruct_1a4447bd6767bd8a45338bdeeae4cb0511" kind="variable"><name>smplintervalmins</name></member>
-    <member refid="structnvstruct_1afd55ea1fa18fbe9ef04251bbf4948e7b" kind="variable"><name>sleepintervaldays</name></member>
-    <member refid="structnvstruct_1a8132fd6a69b2f8b51c2e9241f29de2ba" kind="variable"><name>allwritten</name></member>
-    <member refid="structnvstruct_1a05c6c8c50f3add0b2ba801d67177d0a5" kind="variable"><name>resetsperloop</name></member>
-    <member refid="structnvstruct_1a296b1120c7c1a2be3bdb81ef5d02d1b5" kind="variable"><name>resetsalltime</name></member>
+    <member refid="structnvstruct_1a7535c524cca52dcf1e60b1e6762fea4c" kind="variable"><name>sleepintervaldays</name></member>
+    <member refid="structnvstruct_1a3fee61ddd1d863385c81b1d53599191a" kind="variable"><name>allwritten</name></member>
+    <member refid="structnvstruct_1a48f727b15838a972aff7c7d7397ff641" kind="variable"><name>resetsperloop</name></member>
+    <member refid="structnvstruct_1a045498ec4eca300d51f030a958ed5ee1" kind="variable"><name>resetsalltime</name></member>
   </compound>
   <compound refid="union_record_header__t" kind="union"><name>RecordHeader_t</name>
     <member refid="union_record_header__t_1a0d1e2c9bec519d8f9faf53f732af2ef0" kind="variable"><name>all</name></member>
@@ -53,6 +53,7 @@
     <member refid="structstatus_1a64bf6569e5dcde7c63303ca7557c4ce9" kind="variable"><name>batvoltage</name></member>
   </compound>
   <compound refid="base64_8c" kind="file"><name>base64.c</name>
+    <member refid="base64_8c_1a72317da28f7d9c235ffb341210b9f5f1" kind="define"><name>PADDING_CHAR</name></member>
     <member refid="base64_8c_1af341fd6a080f023febc767f74ce23f96" kind="variable"><name>pr2six</name></member>
     <member refid="base64_8c_1a21ccd9b495f89bc74ce84137936db6ae" kind="variable"><name>basis_64</name></member>
     <member refid="base64_8c_1a68fc27e3ee8f51bb44eedcdd6b98a053" kind="function"><name>Base64decode_len</name></member>
@@ -183,10 +184,10 @@
   <compound refid="nvtype_8h" kind="file"><name>nvtype.h</name>
     <member refid="nvtype_8h_1a09589b0f4cf4e32679b6dc064903edef" kind="define"><name>SERIAL_LENBYTES</name></member>
     <member refid="nvtype_8h_1ae32c9007f59a1d55426d7fd63e10d589" kind="define"><name>SECKEY_LENBYTES</name></member>
+    <member refid="nvtype_8h_1a44d3fb460b6c9383a2b3248544aa13d0" kind="define"><name>SMPLINT_LENBYTES</name></member>
     <member refid="nvtype_8h_1a30653e2266913b20202fbfdaf8719acf" kind="define"><name>RANDSTATE_LENBYTES</name></member>
     <member refid="nvtype_8h_1a85e0c8e71ac12b688919da40fbc873cd" kind="define"><name>INTEGERFIELD_LENBYTES</name></member>
     <member refid="nvtype_8h_1a78682d319c0de97ea2b35f88095d6e57" kind="typedef"><name>nv_t</name></member>
-    <member refid="nvtype_8h_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" kind="variable"><name>nv</name></member>
   </compound>
   <compound refid="octet_8c" kind="file"><name>octet.c</name>
     <member refid="octet_8c_1a2b1e67d8529695393016ce1acd68ba19" kind="define"><name>OCTET_TO_BLK</name></member>
@@ -241,10 +242,9 @@
     <member refid="prng_8h_1a61e8a382fb806cd4137ba53caa72d08d" kind="function"><name>prng_getrandom</name></member>
   </compound>
   <compound refid="sample_8c" kind="file"><name>sample.c</name>
-    <member refid="sample_8c_1a63c84ae63245baa8355d8a264d51a1ea" kind="define"><name>LOWBAT_BIT</name></member>
-    <member refid="sample_8c_1adb693270705ca6601a30df31a39a9d59" kind="define"><name>SCANTIMEOUT_BIT</name></member>
     <member refid="sample_8c_1a649a882141d51724d0851c5637ae9b52" kind="define"><name>TEMPRH</name></member>
     <member refid="sample_8c_1ae8b2d876f1eb3087a5859e78688c5169" kind="define"><name>TEMPONLY</name></member>
+    <member refid="sample_8c_1a639bc14d5477eb6e1bbbdaec7ea6fd8c" kind="define"><name>ENDSTOP_BYTE</name></member>
     <member refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8" kind="enum"><name>urlstate</name></member>
     <member refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8a335559f3d0770f8905099143d5fdfc68" kind="enumvalue"><name>first_tick</name></member>
     <member refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8ae4aa5da2d1ebb43ca39a9ecf8e0adf80" kind="enumvalue"><name>first_tock</name></member>
@@ -295,5 +295,31 @@
     <member refid="smplhist_8h_1affe400f90c858c88868d0ee6a1a9d3df" kind="function"><name>smplhist_ovr</name></member>
     <member refid="smplhist_8h_1a8b601164eab6ef2ea4d6643970a760f6" kind="function"><name>smplhist_push</name></member>
     <member refid="smplhist_8h_1a92c0645dcea2976bba0b05556472e211" kind="function"><name>smplhist_md5</name></member>
+  </compound>
+  <compound refid="stat__bits_8h" kind="file"><name>stat_bits.h</name>
+    <member refid="stat__bits_8h_1ad4d43f8748b542bce39e18790f845ecc" kind="define"><name>BIT0</name></member>
+    <member refid="stat__bits_8h_1a601923eba46784638244c1ebf2622a2a" kind="define"><name>BIT1</name></member>
+    <member refid="stat__bits_8h_1a9c9560bccccb00174801c728f1ed1399" kind="define"><name>BIT2</name></member>
+    <member refid="stat__bits_8h_1a8e44574a8a8becc885b05f3bc367ef6a" kind="define"><name>BIT3</name></member>
+    <member refid="stat__bits_8h_1aa731e0b6cf75f4e637ee88959315f5e4" kind="define"><name>BIT4</name></member>
+    <member refid="stat__bits_8h_1ae692bc3df48028ceb1ddc2534a993bb8" kind="define"><name>BIT5</name></member>
+    <member refid="stat__bits_8h_1acc2d074401e2b6322ee8f03476c24677" kind="define"><name>BIT6</name></member>
+    <member refid="stat__bits_8h_1aa6b8f3261ae9e2e1043380c192f7b5f0" kind="define"><name>BIT7</name></member>
+    <member refid="stat__bits_8h_1a0e80e65237843fa1ff15c68cd78066f8" kind="define"><name>BIT8</name></member>
+    <member refid="stat__bits_8h_1a3aa20ab5eb33383fa31b0e94f4401cdf" kind="define"><name>BIT9</name></member>
+    <member refid="stat__bits_8h_1afb13aa9f7ebc9baba968e346029972de" kind="define"><name>BITA</name></member>
+    <member refid="stat__bits_8h_1a3f98eadb57d7d0fc2687a55cefa0a3ef" kind="define"><name>BITB</name></member>
+    <member refid="stat__bits_8h_1a8c52e5fc182b1bff3088ccfbefe20c96" kind="define"><name>BITC</name></member>
+    <member refid="stat__bits_8h_1a661469a4e8ce6126c54a3b864516842c" kind="define"><name>BITD</name></member>
+    <member refid="stat__bits_8h_1a2c52871d737790ece753991c6fcafebc" kind="define"><name>BITE</name></member>
+    <member refid="stat__bits_8h_1aab6a537fff60ab22bd575f17d68ee3e4" kind="define"><name>BITF</name></member>
+    <member refid="stat__bits_8h_1a600da19fc752176351b1737d110a67e0" kind="define"><name>BOR_BIT</name></member>
+    <member refid="stat__bits_8h_1aa140014594ce0e5868e9ef6eff7c0811" kind="define"><name>SVSH_BIT</name></member>
+    <member refid="stat__bits_8h_1a4beca9a1c9dfeac1494af30c8a6c42fa" kind="define"><name>WDT_BIT</name></member>
+    <member refid="stat__bits_8h_1afdfc2c4ab6decf7f29730341d7980ab6" kind="define"><name>MISC_BIT</name></member>
+    <member refid="stat__bits_8h_1a721a0b5834287b17bf76cbcf3aba2401" kind="define"><name>LPM5WU_BIT</name></member>
+    <member refid="stat__bits_8h_1a57a05a1d73102c8ea4150b964a610349" kind="define"><name>CLOCKFAIL_BIT</name></member>
+    <member refid="stat__bits_8h_1adb693270705ca6601a30df31a39a9d59" kind="define"><name>SCANTIMEOUT_BIT</name></member>
+    <member refid="stat__bits_8h_1aec28e3d7a139661a699f619152d8d222" kind="define"><name>ERR_BITS</name></member>
   </compound>
 </doxygenindex>

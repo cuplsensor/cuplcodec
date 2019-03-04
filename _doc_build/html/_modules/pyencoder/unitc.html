@@ -13,6 +13,7 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
    
@@ -43,7 +44,11 @@
 <span class="kn">import</span> <span class="nn">shutil</span>
 <span class="kn">import</span> <span class="nn">weakref</span>
 
-<span class="n">ENCODER_CSOURCE_PATH</span> <span class="o">=</span> <span class="s2">&quot;../../encoder/&quot;</span>
+
+<span class="n">basepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
+<span class="n">ENCODER_CSOURCE_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">basepath</span><span class="p">,</span> <span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;encoder&quot;</span><span class="p">),</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="n">PYCPARSER_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">basepath</span><span class="p">,</span> <span class="s2">&quot;pycparser&quot;</span><span class="p">),</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="n">SHAREDOBJ_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">basepath</span><span class="p">,</span> <span class="s2">&quot;sharedobj&quot;</span><span class="p">),</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
 
 <span class="n">global_weakkeydict</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">WeakKeyDictionary</span><span class="p">()</span>
 
@@ -74,7 +79,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">funcs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">decl</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
 
 <span class="k">def</span> <span class="nf">preprocess</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s1">&#39;gcc&#39;</span><span class="p">,</span> <span class="s1">&#39;-E&#39;</span><span class="p">,</span> <span class="s1">&#39;-P&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;-I&#39;</span><span class="o">+</span><span class="n">ENCODER_CSOURCE_PATH</span><span class="p">,</span><span class="s1">&#39;-Ipycparser/utils/fake_libc_include&#39;</span><span class="p">],</span>
+    <span class="k">return</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s1">&#39;gcc&#39;</span><span class="p">,</span> <span class="s1">&#39;-E&#39;</span><span class="p">,</span> <span class="s1">&#39;-P&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;-I&#39;</span><span class="o">+</span><span class="n">ENCODER_CSOURCE_PATH</span><span class="p">,</span> <span class="s1">&#39;-I&#39;</span><span class="o">+</span><span class="n">PYCPARSER_PATH</span><span class="o">+</span><span class="s1">&#39;/utils/fake_libc_include&#39;</span><span class="p">],</span>
                           <span class="nb">input</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
                           <span class="n">universal_newlines</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">stdout</span>
 
@@ -82,10 +87,7 @@
  <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd"> Load a file</span>
 <span class="sd"> &quot;&quot;&quot;</span>
- <span class="c1">#if os.path.exists(&#39;encoder&#39;):</span>
- <span class="c1">#     shutil.rmtree(&#39;encoder&#39;)</span>
- <span class="c1">#shutil.copytree(&#39;../encoder/&#39;, &#39;encoder&#39;)</span>
- <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;sharedobj.&#39;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s1">&#39;py&#39;</span> <span class="c1">#+ &#39;_&#39; + uuid.uuid4().hex</span>
+ <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;sharedobj.&#39;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s1">&#39;py&#39;</span>
  <span class="c1"># load source code</span>
  <span class="n">source</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">ENCODER_CSOURCE_PATH</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s1">&#39;.c&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
@@ -108,7 +110,7 @@
  <span class="n">ffibuilder</span> <span class="o">=</span> <span class="n">cffi</span><span class="o">.</span><span class="n">FFI</span><span class="p">()</span>
 
  <span class="c1"># Add all includes to the cdef attribute</span>
- <span class="n">ffibuilder</span><span class="o">.</span><span class="n">cdef</span><span class="p">(</span><span class="n">includes</span><span class="p">,</span> <span class="n">override</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+ <span class="n">ffibuilder</span><span class="o">.</span><span class="n">cdef</span><span class="p">(</span><span class="n">includes</span> <span class="o">+</span> <span class="s2">&quot;nv_t nv;&quot;</span><span class="p">,</span> <span class="n">packed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
  <span class="c1"># Add the source, library sources and include directories</span>
  <span class="n">ffibuilder</span><span class="o">.</span><span class="n">set_source</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">include_dirs</span><span class="o">=</span><span class="p">[</span><span class="n">ENCODER_CSOURCE_PATH</span><span class="p">])</span>
@@ -116,13 +118,8 @@
  <span class="n">ffibuilder</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
 
  <span class="c1"># import and return resulting module</span>
+ <span class="n">importlib</span><span class="o">.</span><span class="n">invalidate_caches</span><span class="p">()</span>
  <span class="n">module</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-
- <span class="n">module</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">nv</span> <span class="o">=</span> <span class="p">{</span>
-     <span class="s1">&#39;serial&#39;</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;YWJjZGVm&quot;</span><span class="p">),</span>
-     <span class="s1">&#39;seckey&#39;</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;AAAACCCC&quot;</span><span class="p">),</span>
-     <span class="s1">&#39;smplintervalmins&#39;</span><span class="p">:</span> <span class="mi">12</span>
- <span class="p">}</span>
 
  <span class="k">return</span> <span class="n">module</span><span class="o">.</span><span class="n">lib</span><span class="p">,</span> <span class="n">module</span><span class="o">.</span><span class="n">ffi</span><span class="p">,</span> <span class="n">name</span></div>
 </pre></div>
@@ -190,7 +187,7 @@
       &copy;2018, Malcolm Mackay.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>

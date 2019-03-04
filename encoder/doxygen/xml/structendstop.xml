@@ -11,10 +11,10 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>MD5 length field containing a base64 encoded <ref refid="smplhist_8h_1acc281e4cc90073d250cb40e8e91897c9" kindref="member">md5len_t</ref>. </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="sample.c" line="35" column="1" bodyfile="sample.c" bodystart="35" bodyend="-1"/>
+        <location file="sample.c" line="33" column="1" bodyfile="sample.c" bodystart="33" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structendstop_1a45d0b3c1f88901a3d92d905bd044672d" prot="public" static="no" mutable="no">
         <type>char</type>
@@ -24,17 +24,17 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>End-stop marker comprised of base64 encoded minutes since the previous sample and <ref refid="sample_8c_1a639bc14d5477eb6e1bbbdaec7ea6fd8c" kindref="member">ENDSTOP_BYTE</ref> </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="sample.c" line="36" column="1" bodyfile="sample.c" bodystart="36" bodyend="-1"/>
+        <location file="sample.c" line="34" column="1" bodyfile="sample.c" bodystart="34" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="sample.c" line="34" column="1" bodyfile="sample.c" bodystart="33" bodyend="37"/>
+    <location file="sample.c" line="32" column="1" bodyfile="sample.c" bodystart="31" bodyend="35"/>
     <listofallmembers>
       <member refid="structendstop_1a45d0b3c1f88901a3d92d905bd044672d" prot="public" virt="non-virtual"><scope>endstop</scope><name>markerb64</name></member>
       <member refid="structendstop_1ae5f29c2e1b08176f604e6a4255147883" prot="public" virt="non-virtual"><scope>endstop</scope><name>md5lenb64</name></member>

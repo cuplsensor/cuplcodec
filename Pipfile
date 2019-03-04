@@ -8,6 +8,7 @@ cffi = "*"
 ndeflib = "*"
 pylint = "*"
 pytest = "*"
+sphinx = "*"
 
 [dev-packages]
 

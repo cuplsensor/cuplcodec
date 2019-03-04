@@ -5,25 +5,25 @@
     <includes local="no">stdbool.h</includes>
     <includedby refid="sample_8c" local="yes">sample.c</includedby>
     <incdepgraph>
-      <node id="101">
-        <label>stdbool.h</label>
-      </node>
-      <node id="100">
-        <label>sample.h</label>
-        <link refid="sample_8h"/>
-        <childnode refid="101" relation="include">
-        </childnode>
-      </node>
-    </incdepgraph>
-    <invincdepgraph>
       <node id="103">
-        <label>sample.c</label>
-        <link refid="sample_8c"/>
+        <label>stdbool.h</label>
       </node>
       <node id="102">
         <label>sample.h</label>
         <link refid="sample_8h"/>
         <childnode refid="103" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="105">
+        <label>sample.c</label>
+        <link refid="sample_8c"/>
+      </node>
+      <node id="104">
+        <label>sample.h</label>
+        <link refid="sample_8h"/>
+        <childnode refid="105" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -36,6 +36,7 @@
         <param>
           <type>unsigned int</type>
           <declname>status</declname>
+          <defname>stat</defname>
         </param>
         <param>
           <type>bool</type>
@@ -53,27 +54,27 @@
 <parametername>stat</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>Status </para></parameterdescription>
+<para>16-bit status value. </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>err</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>Error flag </para></parameterdescription>
+<para>Sets an error condition where data will not be logged to the URL circular buffer. </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>temponly</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>Configure for temperature only in each sample. </para></parameterdescription>
+<para>When true only temperature measurands will be recorded to the circular buffer on each call of <ref refid="sample_8c_1a5be5f77a339896373b1b5fff87fbfbcd" kindref="member">sample_push()</ref>. </para></parameterdescription>
 </parameteritem>
 </parameterlist>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="sample.h" line="14" column="1" bodyfile="sample.c" bodystart="61" bodyend="100"/>
+        <location file="sample.h" line="7" column="1" bodyfile="sample.c" bodystart="69" bodyend="108"/>
       </memberdef>
       <memberdef kind="function" id="sample_8h_1a5be5f77a339896373b1b5fff87fbfbcd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -96,21 +97,21 @@
 <parametername>meas1</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>measurand 1 e.g. temperature. </para></parameterdescription>
+<para>Measurand 1 e.g. temperature. </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>meas2</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>measurand 2 e.g. relative humidity.</para></parameterdescription>
+<para>Measurand 2 e.g. relative humidity.</para></parameterdescription>
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>1 if the cursor has moved from the end to the start and data are being overwritten. Otherwise 0. </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="sample.h" line="25" column="1" bodyfile="sample.c" bodystart="154" bodyend="244"/>
+        <location file="sample.h" line="8" column="1" bodyfile="sample.c" bodystart="190" bodyend="280"/>
       </memberdef>
       <memberdef kind="function" id="sample_8h_1a130e5805e5b411b541e60ee607185b98" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -122,12 +123,20 @@
           <declname>minutes</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Update the base64 encoded endstop and write it to the tag. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>minutes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Minutes elapsed since the previous sample. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="sample.h" line="26" column="1" bodyfile="sample.c" bodystart="123" bodyend="128"/>
+        <location file="sample.h" line="9" column="1" bodyfile="sample.c" bodystart="147" bodyend="152"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -141,12 +150,11 @@
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight></codeline>
-<codeline lineno="14"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="sample_8h_1a2946d336b97c5fc66e054c0dac644066" kindref="member">sample_init</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structstatus" kindref="compound">status</ref>,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>err,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>temponly);</highlight></codeline>
-<codeline lineno="15"><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="sample_8h_1a5be5f77a339896373b1b5fff87fbfbcd" kindref="member">sample_push</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>meas1,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>meas2);</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="sample_8h_1a130e5805e5b411b541e60ee607185b98" kindref="member">sample_updateendstop</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>minutes);</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//_SAMPLE_H_</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="sample_8h_1a2946d336b97c5fc66e054c0dac644066" kindref="member">sample_init</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structstatus" kindref="compound">status</ref>,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>err,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>temponly);</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="sample_8h_1a5be5f77a339896373b1b5fff87fbfbcd" kindref="member">sample_push</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>meas1,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>meas2);</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="sample_8h_1a130e5805e5b411b541e60ee607185b98" kindref="member">sample_updateendstop</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>minutes);</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//_SAMPLE_H_</highlight></codeline>
     </programlisting>
     <location file="sample.h"/>
   </compounddef>

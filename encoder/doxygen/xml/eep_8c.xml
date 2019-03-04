@@ -5,10 +5,6 @@
     <includes refid="eep_8h" local="yes">eep.h</includes>
     <includes refid="nt3h_8h" local="yes">nt3h.h</includes>
     <incdepgraph>
-      <node id="24">
-        <label>nt3h.h</label>
-        <link refid="nt3h_8h"/>
-      </node>
       <node id="22">
         <label>eep.c</label>
         <link refid="eep_8c"/>
@@ -20,6 +16,10 @@
       <node id="23">
         <label>eep.h</label>
         <link refid="eep_8h"/>
+      </node>
+      <node id="24">
+        <label>nt3h.h</label>
+        <link refid="nt3h_8h"/>
       </node>
     </incdepgraph>
       <sectiondef kind="define">

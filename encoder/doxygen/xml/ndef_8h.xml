@@ -17,6 +17,10 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
+      <node id="52">
+        <label>sample.c</label>
+        <link refid="sample_8c"/>
+      </node>
       <node id="51">
         <label>ndef.c</label>
         <link refid="ndef_8c"/>
@@ -28,10 +32,6 @@
         </childnode>
         <childnode refid="52" relation="include">
         </childnode>
-      </node>
-      <node id="52">
-        <label>sample.c</label>
-        <link refid="sample_8c"/>
       </node>
     </invincdepgraph>
       <sectiondef kind="define">

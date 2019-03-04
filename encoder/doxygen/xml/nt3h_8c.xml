@@ -10,6 +10,9 @@
       <node id="57">
         <label>stdbool.h</label>
       </node>
+      <node id="55">
+        <label>string.h</label>
+      </node>
       <node id="53">
         <label>nt3h.c</label>
         <link refid="nt3h_8c"/>
@@ -25,9 +28,6 @@
       <node id="54">
         <label>nt3h.h</label>
         <link refid="nt3h_8h"/>
-      </node>
-      <node id="55">
-        <label>string.h</label>
       </node>
       <node id="56">
         <label>i2c.h</label>
