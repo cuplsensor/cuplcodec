@@ -1,4 +1,4 @@
-Welcome to PSCodec's documentation!
+Plotsensor Codec Documentation
 ===================================
 
 .. _index:
