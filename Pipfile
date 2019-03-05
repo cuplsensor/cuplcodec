@@ -9,6 +9,7 @@ ndeflib = "*"
 pylint = "*"
 pytest = "*"
 sphinx = "*"
+"9d8586d" = {path = "./dist/PSCodec-0.0.4.tar.gz"}
 
 [dev-packages]
 

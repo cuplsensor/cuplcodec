@@ -1,19 +1,22 @@
 import cffi
 import subprocess
-import uuid
 import re
 import pycparser
 from pycparser import c_generator
-import os, glob
+import os
 import importlib
-import shutil
 import weakref
+import pkg_resources
 
+resource_package = __package__
+print(__package__)
+c_encoder_path = '/'.join(('', 'c_encoder', ''))
+pycparser_path = '/'.join(('', 'pycparser', ''))
+sharedobj_path = '/'.join(('', 'sharedobj', ''))
 
-basepath = os.path.dirname(__file__)
-ENCODER_CSOURCE_PATH = os.path.join(os.path.join(basepath, "..", "..", "encoder"), "")
-PYCPARSER_PATH = os.path.join(os.path.join(basepath, "pycparser"), "")
-SHAREDOBJ_PATH = os.path.join(os.path.join(basepath, "sharedobj"), "")
+ENCODER_CSOURCE_PATH = pkg_resources.resource_filename(resource_package, c_encoder_path)
+PYCPARSER_PATH = pkg_resources.resource_filename(resource_package, pycparser_path)
+SHAREDOBJ_PATH = pkg_resources.resource_filename(resource_package, sharedobj_path)
 
 global_weakkeydict = weakref.WeakKeyDictionary()
 
@@ -52,7 +55,7 @@ def load(filename, depfilenames=list()):
  """
  Load a file
  """
- name = 'sharedobj.' + filename + 'py'
+ name = __package__ + '.sharedobj.' + filename + 'py'
  # load source code
  source = open(ENCODER_CSOURCE_PATH + filename + '.c').read()
 
@@ -77,13 +80,17 @@ def load(filename, depfilenames=list()):
  # Add all includes to the cdef attribute
  ffibuilder.cdef(includes + "nv_t nv;", packed=False)
 
+ print("SOURCE " + source)
+
  # Add the source, library sources and include directories
  ffibuilder.set_source(name, source, include_dirs=[ENCODER_CSOURCE_PATH])
 
- ffibuilder.compile()
+ return ffibuilder
 
- # import and return resulting module
- importlib.invalidate_caches()
- module = importlib.import_module(name)
+ #ffibuilder.compile()
 
- return module.lib, module.ffi, name
+ ## import and return resulting module
+ #importlib.invalidate_caches()
+ #module = importlib.import_module(name)
+
+ #return module.lib, module.ffi, name
