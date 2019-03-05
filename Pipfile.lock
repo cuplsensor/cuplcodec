@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f5543fee54ca3ca1e0bc9daa4ee0bba4d0bad70a715e21d13e837ea675da3858"
+            "sha256": "2b1c9e003e2e9427a79000eaa6545cebbe16a14cda8bc019340f6d0cea656d21"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,6 +16,9 @@
         ]
     },
     "default": {
+        "9d8586d": {
+            "path": "./dist/PSCodec-0.0.4.tar.gz"
+        },
         "alabaster": {
             "hashes": [
                 "sha256:446438bdcca0e05bd45ea2de1668c1d9b032e1a9154c2c259092d77031ddd359",
@@ -25,10 +28,10 @@
         },
         "astroid": {
             "hashes": [
-                "sha256:bfa089d8ebeccc44c35fb06cc9ebf951d9b47b371d25dc14be85b30fef46267f",
-                "sha256:d76f540795deb23b2f4ca6d3e40ab4ff543fdb5c82c083664b8651a4cb129ac7"
+                "sha256:8a8d8f610ab3646f89f4c1b89385446e2675c3b7139a577116fa966d33a81d6d",
+                "sha256:91f52b4e4645ee610a82841aacc7ecd0202f695375cc7b34bae43ab4ab359099"
             ],
-            "version": "==2.2.2"
+            "version": "==2.2.3"
         },
         "atomicwrites": {
             "hashes": [

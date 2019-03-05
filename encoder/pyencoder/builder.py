@@ -1,5 +1,4 @@
-from . import unitc
-
+from encoder.pyencoder import unitc
 
 class Testbench(object):
     def __init__(self,

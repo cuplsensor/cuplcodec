@@ -1,7 +1,7 @@
 import pytest
 from base64 import urlsafe_b64decode
-from .pyencoder.instrumented import InstrumentedNDEF
-from ..urldecoder.urldecoder import UrlDecoder
+from encoder.pyencoder.instrumented import InstrumentedNDEF
+from urldecoder.urldecoder import UrlDecoder
 
 INPUT_SERIAL = 'abcdabcd'
 INPUT_TIMEINT = 12
