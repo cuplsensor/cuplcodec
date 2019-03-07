@@ -37,23 +37,59 @@
   <div class="section" id="python-wrapped-encoder-pyencoder-reference">
 <h1>Python Wrapped Encoder (PyEncoder) Reference<a class="headerlink" href="#python-wrapped-encoder-pyencoder-reference" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="pyencoder.eeprom.Eeprom">
-<em class="property">class </em><code class="descclassname">pyencoder.eeprom.</code><code class="descname">Eeprom</code><span class="sig-paren">(</span><em>sizeblocks</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyencoder/eeprom.html#Eeprom"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyencoder.eeprom.Eeprom" title="Permalink to this definition">¶</a></dt>
+<dt id="encoder.pyencoder.eeprom.Eeprom">
+<em class="property">class </em><code class="descclassname">encoder.pyencoder.eeprom.</code><code class="descname">Eeprom</code><span class="sig-paren">(</span><em>sizeblocks</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/encoder/pyencoder/eeprom.html#Eeprom"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoder.pyencoder.eeprom.Eeprom" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<span class="target" id="module-pyencoder.unitc"></span><dl class="class">
-<dt id="pyencoder.unitc.CFFIGenerator">
-<em class="property">class </em><code class="descclassname">pyencoder.unitc.</code><code class="descname">CFFIGenerator</code><span class="sig-paren">(</span><em>blacklist</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyencoder/unitc.html#CFFIGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyencoder.unitc.CFFIGenerator" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="module-encoder.pyencoder.instrumented"></span><dl class="class">
+<dt id="encoder.pyencoder.instrumented.InstrumentedBase">
+<em class="property">class </em><code class="descclassname">encoder.pyencoder.instrumented.</code><code class="descname">InstrumentedBase</code><span class="sig-paren">(</span><em>ffimodule</em>, <em>serial</em>, <em>secretkey</em>, <em>smplintervalmins</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/encoder/pyencoder/instrumented.html#InstrumentedBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoder.pyencoder.instrumented.InstrumentedBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Put some documentation here</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="encoder.pyencoder.instrumented.InstrumentedNDEF">
+<em class="property">class </em><code class="descclassname">encoder.pyencoder.instrumented.</code><code class="descname">InstrumentedNDEF</code><span class="sig-paren">(</span><em>serial='AAAACCCC'</em>, <em>secretkey='AAAACCCC'</em>, <em>smplintervalmins=12</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/encoder/pyencoder/instrumented.html#InstrumentedNDEF"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoder.pyencoder.instrumented.InstrumentedNDEF" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="class">
-<dt id="pyencoder.unitc.FunctionList">
-<em class="property">class </em><code class="descclassname">pyencoder.unitc.</code><code class="descname">FunctionList</code><span class="sig-paren">(</span><em>source</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyencoder/unitc.html#FunctionList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyencoder.unitc.FunctionList" title="Permalink to this definition">¶</a></dt>
+<dt id="encoder.pyencoder.instrumented.InstrumentedOctet">
+<em class="property">class </em><code class="descclassname">encoder.pyencoder.instrumented.</code><code class="descname">InstrumentedOctet</code><span class="sig-paren">(</span><em>serial='AAAACCCC'</em>, <em>secretkey='AAAACCCC'</em>, <em>smplintervalmins=12</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/encoder/pyencoder/instrumented.html#InstrumentedOctet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoder.pyencoder.instrumented.InstrumentedOctet" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="encoder.pyencoder.instrumented.InstrumentedSample">
+<em class="property">class </em><code class="descclassname">encoder.pyencoder.instrumented.</code><code class="descname">InstrumentedSample</code><span class="sig-paren">(</span><em>serial</em>, <em>secretkey='AAAACCCC'</em>, <em>smplintervalmins=12</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/encoder/pyencoder/instrumented.html#InstrumentedSample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoder.pyencoder.instrumented.InstrumentedSample" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="encoder.pyencoder.instrumented.InstrumentedSampleT">
+<em class="property">class </em><code class="descclassname">encoder.pyencoder.instrumented.</code><code class="descname">InstrumentedSampleT</code><span class="sig-paren">(</span><em>serial='ABCDEFGH'</em>, <em>secretkey='AAAACCCC'</em>, <em>baseurl='plotsensor.com'</em>, <em>smplintervalmins=12</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/encoder/pyencoder/instrumented.html#InstrumentedSampleT"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoder.pyencoder.instrumented.InstrumentedSampleT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="encoder.pyencoder.instrumented.InstrumentedSampleTRH">
+<em class="property">class </em><code class="descclassname">encoder.pyencoder.instrumented.</code><code class="descname">InstrumentedSampleTRH</code><span class="sig-paren">(</span><em>serial='ABCDEFGH'</em>, <em>secretkey='AAAACCCC'</em>, <em>baseurl='plotsensor.com'</em>, <em>smplintervalmins=12</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/encoder/pyencoder/instrumented.html#InstrumentedSampleTRH"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoder.pyencoder.instrumented.InstrumentedSampleTRH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="encoder.pyencoder.instrumented.InstrumentedSmplHist">
+<em class="property">class </em><code class="descclassname">encoder.pyencoder.instrumented.</code><code class="descname">InstrumentedSmplHist</code><span class="sig-paren">(</span><em>serial='AAAACCCC'</em>, <em>secretkey='AAAACCCC'</em>, <em>smplintervalmins=12</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/encoder/pyencoder/instrumented.html#InstrumentedSmplHist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoder.pyencoder.instrumented.InstrumentedSmplHist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<span class="target" id="module-encoder.pyencoder.unitc"></span><dl class="class">
+<dt id="encoder.pyencoder.unitc.CFFIGenerator">
+<em class="property">class </em><code class="descclassname">encoder.pyencoder.unitc.</code><code class="descname">CFFIGenerator</code><span class="sig-paren">(</span><em>blacklist</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/encoder/pyencoder/unitc.html#CFFIGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoder.pyencoder.unitc.CFFIGenerator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="encoder.pyencoder.unitc.FunctionList">
+<em class="property">class </em><code class="descclassname">encoder.pyencoder.unitc.</code><code class="descname">FunctionList</code><span class="sig-paren">(</span><em>source</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/encoder/pyencoder/unitc.html#FunctionList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoder.pyencoder.unitc.FunctionList" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
-<dt id="pyencoder.unitc.load">
-<code class="descclassname">pyencoder.unitc.</code><code class="descname">load</code><span class="sig-paren">(</span><em>filename</em>, <em>depfilenames=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyencoder/unitc.html#load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyencoder.unitc.load" title="Permalink to this definition">¶</a></dt>
+<dt id="encoder.pyencoder.unitc.load">
+<code class="descclassname">encoder.pyencoder.unitc.</code><code class="descname">load</code><span class="sig-paren">(</span><em>filename</em>, <em>depfilenames=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/encoder/pyencoder/unitc.html#load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoder.pyencoder.unitc.load" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load a file</p>
 </dd></dl>
 

@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="../../_static/pslogo.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Test" href="test.html" />
+    <link rel="next" title="Install" href="test.html" />
     <link rel="prev" title="Encoder" href="encoder.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
@@ -40,29 +40,6 @@
 <div class="section" id="decode-a-url">
 <h2>Decode a URL<a class="headerlink" href="#decode-a-url" title="Permalink to this headline">¶</a></h2>
 <p>Use the <a class="reference internal" href="../reference/urldecoder.html#urldecoder.urldecoder.UrlDecoder" title="urldecoder.urldecoder.UrlDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">urldecoder.urldecoder.UrlDecoder</span></code></a> class</p>
-</div>
-<div class="section" id="create-and-install-the-python-package">
-<h2>Create and install the Python Package<a class="headerlink" href="#create-and-install-the-python-package" title="Permalink to this headline">¶</a></h2>
-<p>A Python package is created so that the urldecoder can
-be used easily by other applications such as PSWebApp.</p>
-<p>This is based on the instructions at
-<a class="reference external" href="https://packaging.python.org/tutorials/packaging-projects/">https://packaging.python.org/tutorials/packaging-projects/</a></p>
-<ol class="arabic">
-<li><p class="first">In the command line navigate to PSCodec/urldecoder</p>
-</li>
-<li><p class="first">Increase the version number in setup.py</p>
-</li>
-<li><p class="first">Generate the tar.gz source archive and .whl built distribution:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">sdist</span> <span class="n">bdist_wheel</span>
-</pre></div>
-</div>
-</li>
-<li><p class="first">Install the urldecoder module:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pipenv</span> <span class="n">install</span> <span class="o">--</span><span class="n">find</span><span class="o">-</span><span class="n">links</span><span class="o">=./</span><span class="n">dist</span> <span class="n">urldecoder</span>
-</pre></div>
-</div>
-</li>
-</ol>
 </div>
 </div>
 
@@ -91,10 +68,9 @@ be used easily by other applications such as PSWebApp.</p>
 <li class="toctree-l1"><a class="reference internal" href="encoder.html">Encoder</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Decoder</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#decode-a-url">Decode a URL</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#create-and-install-the-python-package">Create and install the Python Package</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="test.html">Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/urldecoder.html">URL Decoder Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/encoder.html">URL Encoder Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/pyencoder.html">Python Wrapped Encoder (PyEncoder) Reference</a></li>
@@ -105,7 +81,7 @@ be used easily by other applications such as PSWebApp.</p>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
       <li>Previous: <a href="encoder.html" title="previous chapter">Encoder</a></li>
-      <li>Next: <a href="test.html" title="next chapter">Test</a></li>
+      <li>Next: <a href="test.html" title="next chapter">Install</a></li>
   </ul></li>
 </ul>
 </div>

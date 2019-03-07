@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Test &#8212; PSCodec 0.0.1 documentation</title>
+    <title>Install &#8212; PSCodec 0.0.1 documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -35,13 +35,70 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="test">
-<h1>Test<a class="headerlink" href="#test" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="install">
+<h1>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="create-the-python-package-distributions">
+<h2>Create the Python Package Distributions<a class="headerlink" href="#create-the-python-package-distributions" title="Permalink to this headline">¶</a></h2>
+<p>A Python package is created so that the urldecoder can
+be used easily by other applications such as PSWebApp.</p>
+<p>This is based on the instructions at
+<a class="reference external" href="https://packaging.python.org/tutorials/packaging-projects/">https://packaging.python.org/tutorials/packaging-projects/</a></p>
+<ol class="arabic">
+<li><p class="first">In the command line navigate to PSCodec/urldecoder</p>
+</li>
+<li><p class="first">Increase the version number in setup.py</p>
+</li>
+<li><p class="first">Generate the tar.gz source archive and .whl built distribution:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">sdist</span> <span class="n">bdist_wheel</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Generating bdist_wheel will invoke GCC, to call the compile() method on the ffibuilder objects defined in build scripts
+such as ndef_builder.py The result is a sharedobject binary for each script, which can later be imported.
+All build scripts and links to the ffibuilder objects within are inside the cffi_modules field of setup.py</p>
+<p>I used <a class="reference external" href="https://dmerej.info/blog/post/chuck-norris-part-5-python-cffi/">Building_Chuck_Norris_Part_5</a> and <a class="reference external" href="https://setuptools.readthedocs.io/en/latest/setuptools.html">Building_and_distributing_packages_with_setuptools</a>
+and <a class="reference external" href="https://cffi.readthedocs.io/en/latest/cdef.html">Preparing_and_distributing_cffi_modules</a> as guidance.</p>
+<p>Installing from source requires the GCC compiler. If the person installing is using a platform compatible with a wheel,
+(same OS, same Python version and compatible C libraries) then they can used the precompiled binaries inside that.</p>
+</div>
+<div class="section" id="install-the-python-package-in-a-pipenv">
+<h2>Install the Python package in a pipenv<a class="headerlink" href="#install-the-python-package-in-a-pipenv" title="Permalink to this headline">¶</a></h2>
+<p>Install the pscodec module from a source file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pipenv</span> <span class="n">install</span> <span class="n">dist</span><span class="o">/</span><span class="n">PSCodec</span><span class="o">-</span><span class="mf">0.0</span><span class="o">.</span><span class="mf">4.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+</div>
+<p>Install the pscodec from a wheel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pipenv</span> <span class="n">install</span> <span class="n">dist</span><span class="o">/</span><span class="n">PSCodec</span><span class="o">-</span><span class="mf">0.0</span><span class="o">.</span><span class="mi">4</span><span class="o">-</span><span class="n">cp36</span><span class="o">-</span><span class="n">cp36m</span><span class="o">-</span><span class="n">macosx_10_13_x86_64</span><span class="o">.</span><span class="n">whl</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="develop-c-and-run-tests-from-the-latest-source-code">
+<h2>Develop C and run tests from the latest source code<a class="headerlink" href="#develop-c-and-run-tests-from-the-latest-source-code" title="Permalink to this headline">¶</a></h2>
+<p>This installs the package in place and compiles any sharedobject modules for c_encoder:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">develop</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="build-documentation">
+<h2>Build Documentation<a class="headerlink" href="#build-documentation" title="Permalink to this headline">¶</a></h2>
+<p>Edit restructuredtext files inside the docs folder. Then run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">run</span> <span class="n">make</span> <span class="n">html</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="test">
+<h2>Test<a class="headerlink" href="#test" title="Permalink to this headline">¶</a></h2>
+<p>To run tests invoke pytest:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pipenv</span> <span class="n">run</span> <span class="n">pytest</span> <span class="n">encoder</span><span class="o">/</span><span class="n">test_ndef</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>The encoder is written in C. The C Foreign Function Interface (CFFI) compiles
 selected encoder modules and their dependencies into a Python
-shared object (see <a class="reference internal" href="../reference/pyencoder.html#pyencoder.unitc.load" title="pyencoder.unitc.load"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pyencoder.unitc.load()</span></code></a>).</p>
+shared object (see <code class="xref py py-meth docutils literal notranslate"><span class="pre">pyencoder.unitc.load()</span></code>).</p>
 <p>The shared object is imported into another Python script, which makes
 calls to the C functions inside.</p>
 <p>CFFI can replace C function definitions with Python.
@@ -75,12 +132,6 @@ for your platform. The <a href="#id1"><span class="problematic" id="id2">*</span
 </pre></div>
 </div>
 </div>
-<div class="section" id="low-level-tests">
-<h2>Low level tests<a class="headerlink" href="#low-level-tests" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="high-level-tests">
-<h2>High level tests<a class="headerlink" href="#high-level-tests" title="Permalink to this headline">¶</a></h2>
-</div>
 </div>
 
 
@@ -107,12 +158,15 @@ for your platform. The <a href="#id1"><span class="problematic" id="id2">*</span
 <li class="toctree-l1"><a class="reference internal" href="index.html">PSCodec</a></li>
 <li class="toctree-l1"><a class="reference internal" href="encoder.html">Encoder</a></li>
 <li class="toctree-l1"><a class="reference internal" href="decoder.html">Decoder</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Test</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Install</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-the-python-package-distributions">Create the Python Package Distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-the-python-package-in-a-pipenv">Install the Python package in a pipenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#develop-c-and-run-tests-from-the-latest-source-code">Develop C and run tests from the latest source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-documentation">Build Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#test">Test</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#example-2">Example 2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#low-level-tests">Low level tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#high-level-tests">High level tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/urldecoder.html">URL Decoder Reference</a></li>
