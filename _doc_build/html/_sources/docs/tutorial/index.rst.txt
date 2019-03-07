@@ -31,6 +31,18 @@ to be reconstructed based on:
 The reconstructed timestamps will be accurate to within one minute, which is
 sufficient for most datalogging applications.
 
+Message Authentication
+------------------------
+
+The URL contains a Hash-Based-Message-Authentication-Code or HMAC. This is made by taking the MD5 checksum of some data,
+concatenating this with a secret key and then taking the MD5 of the result.
+
+At the provisioning stage, a random secret key is generated that is unique to each sensor. This is a shared secret:
+it is stored both by the web application and in the sensor.
+
+The encoder computes the HMAC every time a new sample is collected (i.e. for each call of sample_push).
+When PSCodec decodes a capture, it verifies the HMAC. If this fails, an error is raised. the web application can
+respond to this by not storing the capture data and notifying the user.
 
 NDEF Preamble
 --------------

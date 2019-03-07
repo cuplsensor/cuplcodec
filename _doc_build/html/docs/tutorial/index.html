@@ -18,7 +18,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Encoder" href="encoder.html" />
-    <link rel="prev" title="Welcome to PSCodec’s documentation!" href="../../index.html" />
+    <link rel="prev" title="Plotsensor Codec Documentation" href="../../index.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -60,6 +60,16 @@ between all samples in the buffer.</li>
 </ul>
 <p>The reconstructed timestamps will be accurate to within one minute, which is
 sufficient for most datalogging applications.</p>
+</div>
+<div class="section" id="message-authentication">
+<h2>Message Authentication<a class="headerlink" href="#message-authentication" title="Permalink to this headline">¶</a></h2>
+<p>The URL contains a Hash-Based-Message-Authentication-Code or HMAC. This is made by taking the MD5 checksum of some data,
+concatenating this with a secret key and then taking the MD5 of the result.</p>
+<p>At the provisioning stage, a random secret key is generated that is unique to each sensor. This is a shared secret:
+it is stored both by the web application and in the sensor.</p>
+<p>The encoder computes the HMAC every time a new sample is collected (i.e. for each call of sample_push).
+When PSCodec decodes a capture, it verifies the HMAC. If this fails, an error is raised. the web application can
+respond to this by not storing the capture data and notifying the user.</p>
 </div>
 <div class="section" id="ndef-preamble">
 <h2>NDEF Preamble<a class="headerlink" href="#ndef-preamble" title="Permalink to this headline">¶</a></h2>
@@ -563,6 +573,7 @@ decoded from base64 into its original 16-bit value.</p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">PSCodec</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#timestamps">Timestamps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#message-authentication">Message Authentication</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ndef-preamble">NDEF Preamble</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#url-header">URL Header</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#url-circular-buffer">URL Circular Buffer</a></li>
@@ -580,7 +591,7 @@ decoded from base64 into its original 16-bit value.</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="../../index.html" title="previous chapter">Welcome to PSCodec’s documentation!</a></li>
+      <li>Previous: <a href="../../index.html" title="previous chapter">Plotsensor Codec Documentation</a></li>
       <li>Next: <a href="encoder.html" title="next chapter">Encoder</a></li>
   </ul></li>
 </ul>
