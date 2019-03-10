@@ -25,6 +25,9 @@ unsigned int \mbox{\hyperlink{structnvstruct_a045498ec4eca300d51f030a958ed5ee1}{
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+Structure to hold configuration data held in non-\/volatile memory. 
+
 \subsection{Field Documentation}
 \mbox{\Hypertarget{structnvstruct_a3fee61ddd1d863385c81b1d53599191a}\label{structnvstruct_a3fee61ddd1d863385c81b1d53599191a}} 
 \index{nvstruct@{nvstruct}!allwritten@{allwritten}}
@@ -32,7 +35,7 @@ unsigned int \mbox{\hyperlink{structnvstruct_a045498ec4eca300d51f030a958ed5ee1}{
 \subsubsection{\texorpdfstring{allwritten}{allwritten}}
 {\footnotesize\ttfamily unsigned int allwritten}
 
-\mbox{\Hypertarget{structnvstruct_aec7e67f64e6ee88dda940f1b837f9351}\label{structnvstruct_aec7e67f64e6ee88dda940f1b837f9351}} 
+Indicates that all required NV parameters have been set. \mbox{\Hypertarget{structnvstruct_aec7e67f64e6ee88dda940f1b837f9351}\label{structnvstruct_aec7e67f64e6ee88dda940f1b837f9351}} 
 \index{nvstruct@{nvstruct}!randstate@{randstate}}
 \index{randstate@{randstate}!nvstruct@{nvstruct}}
 \subsubsection{\texorpdfstring{randstate}{randstate}}
@@ -44,37 +47,37 @@ unsigned int \mbox{\hyperlink{structnvstruct_a045498ec4eca300d51f030a958ed5ee1}{
 \subsubsection{\texorpdfstring{resetsalltime}{resetsalltime}}
 {\footnotesize\ttfamily unsigned int resetsalltime}
 
-\mbox{\Hypertarget{structnvstruct_a48f727b15838a972aff7c7d7397ff641}\label{structnvstruct_a48f727b15838a972aff7c7d7397ff641}} 
+Incremented each time the microcontroller resets. Never set to zero. \mbox{\Hypertarget{structnvstruct_a48f727b15838a972aff7c7d7397ff641}\label{structnvstruct_a48f727b15838a972aff7c7d7397ff641}} 
 \index{nvstruct@{nvstruct}!resetsperloop@{resetsperloop}}
 \index{resetsperloop@{resetsperloop}!nvstruct@{nvstruct}}
 \subsubsection{\texorpdfstring{resetsperloop}{resetsperloop}}
 {\footnotesize\ttfamily unsigned int resetsperloop}
 
-\mbox{\Hypertarget{structnvstruct_a680c038327bbd20d30beade8d0ef1dd4}\label{structnvstruct_a680c038327bbd20d30beade8d0ef1dd4}} 
+Incremented each time the microcontroller resets. Zeroed when the circular buffer has wraps from the end back to the beginning. \mbox{\Hypertarget{structnvstruct_a680c038327bbd20d30beade8d0ef1dd4}\label{structnvstruct_a680c038327bbd20d30beade8d0ef1dd4}} 
 \index{nvstruct@{nvstruct}!seckey@{seckey}}
 \index{seckey@{seckey}!nvstruct@{nvstruct}}
 \subsubsection{\texorpdfstring{seckey}{seckey}}
 {\footnotesize\ttfamily char seckey\mbox{[}\mbox{\hyperlink{nvtype_8h_ae32c9007f59a1d55426d7fd63e10d589}{S\+E\+C\+K\+E\+Y\+\_\+\+L\+E\+N\+B\+Y\+T\+ES}}\mbox{]}}
 
-\mbox{\Hypertarget{structnvstruct_a8c4928cc85c5336514401eb142ea7d50}\label{structnvstruct_a8c4928cc85c5336514401eb142ea7d50}} 
+Secret key array. This is used to generate the H\+M\+AC. \mbox{\Hypertarget{structnvstruct_a8c4928cc85c5336514401eb142ea7d50}\label{structnvstruct_a8c4928cc85c5336514401eb142ea7d50}} 
 \index{nvstruct@{nvstruct}!serial@{serial}}
 \index{serial@{serial}!nvstruct@{nvstruct}}
 \subsubsection{\texorpdfstring{serial}{serial}}
 {\footnotesize\ttfamily char serial\mbox{[}\mbox{\hyperlink{nvtype_8h_a09589b0f4cf4e32679b6dc064903edef}{S\+E\+R\+I\+A\+L\+\_\+\+L\+E\+N\+B\+Y\+T\+ES}}\mbox{]}}
 
-\mbox{\Hypertarget{structnvstruct_a7535c524cca52dcf1e60b1e6762fea4c}\label{structnvstruct_a7535c524cca52dcf1e60b1e6762fea4c}} 
+Unique box serial array. \mbox{\Hypertarget{structnvstruct_a7535c524cca52dcf1e60b1e6762fea4c}\label{structnvstruct_a7535c524cca52dcf1e60b1e6762fea4c}} 
 \index{nvstruct@{nvstruct}!sleepintervaldays@{sleepintervaldays}}
 \index{sleepintervaldays@{sleepintervaldays}!nvstruct@{nvstruct}}
 \subsubsection{\texorpdfstring{sleepintervaldays}{sleepintervaldays}}
 {\footnotesize\ttfamily unsigned int sleepintervaldays}
 
-\mbox{\Hypertarget{structnvstruct_a34de27bbd20aa5f15e4e4482ce5a0309}\label{structnvstruct_a34de27bbd20aa5f15e4e4482ce5a0309}} 
+The number of days to wait without scans before putting the sensor into deep sleep mode. \mbox{\Hypertarget{structnvstruct_a34de27bbd20aa5f15e4e4482ce5a0309}\label{structnvstruct_a34de27bbd20aa5f15e4e4482ce5a0309}} 
 \index{nvstruct@{nvstruct}!smplintervalmins@{smplintervalmins}}
 \index{smplintervalmins@{smplintervalmins}!nvstruct@{nvstruct}}
 \subsubsection{\texorpdfstring{smplintervalmins}{smplintervalmins}}
 {\footnotesize\ttfamily char smplintervalmins\mbox{[}\mbox{\hyperlink{nvtype_8h_a44d3fb460b6c9383a2b3248544aa13d0}{S\+M\+P\+L\+I\+N\+T\+\_\+\+L\+E\+N\+B\+Y\+T\+ES}}\mbox{]}}
 
-
+Time interval betweeen samples in minutes. This is b64 encoded so it is easier to store it as an array. 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

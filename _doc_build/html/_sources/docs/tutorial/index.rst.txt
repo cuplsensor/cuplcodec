@@ -67,17 +67,24 @@ URL Header
 +-----------+------+------------------+-----------------------------------------------------------------------------+
 | NDEF Rec. |  Payload                                                                                              |
 +-----------+------+------+------+-------------------+-------------+-------------+-------------+--------------------+
-| Desc.     | Base URL           |  `Time interval`_ | `Serial`_   | `Version`_  | Status      | CircBufferStart    |
+| Desc.     | `Base URL`_        |  `Time interval`_ | `Serial`_   | `Version`_  | Status      | CircBufferStart    |
 +-----------+------+------+------+-------------------+-------------+-------------+-------------+--------------------+
 | Data      | t.plotsensor.com/  |  ?t=AWg*          | &s=YWJjZGVm | &v=01       | &x=AAABALEK | &q=                |
 +-----------+------+------+------+-------------------+-------------+-------------+-------------+--------------------+
+
+Base URL
+~~~~~~~~~
+
+.. _serial:
 
 Serial
 ~~~~~~~
 
 Time interval
 ~~~~~~~~~~~~~~
-Time interval between samples in minutes base64 encoded.
+Time interval between samples in minutes is base64 encoded. Whilst the encoded string is 4 bytes long, the last character
+must always be a padding byte (an URL safe replacement for '='). Therefore the unencoded time interval can only be 2 bytes long.
+This is to match with the format of the minutes Elapsed_ field.
 
 Version
 ~~~~~~~~

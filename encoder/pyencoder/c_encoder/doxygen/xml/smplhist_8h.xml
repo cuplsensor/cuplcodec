@@ -17,10 +17,6 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="116">
-        <label>sample.c</label>
-        <link refid="sample_8c"/>
-      </node>
       <node id="117">
         <label>smplhist.c</label>
         <link refid="smplhist_8c"/>
@@ -32,6 +28,10 @@
         </childnode>
         <childnode refid="117" relation="include">
         </childnode>
+      </node>
+      <node id="116">
+        <label>sample.c</label>
+        <link refid="sample_8c"/>
       </node>
     </invincdepgraph>
     <innerclass refid="structsensordatachars" prot="public">sensordatachars</innerclass>

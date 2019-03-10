@@ -6,10 +6,6 @@
     <includedby refid="ndef_8c" local="yes">ndef.c</includedby>
     <includedby refid="octet_8c" local="yes">octet.c</includedby>
     <invincdepgraph>
-      <node id="30">
-        <label>octet.c</label>
-        <link refid="octet_8c"/>
-      </node>
       <node id="28">
         <label>eep.c</label>
         <link refid="eep_8c"/>
@@ -27,6 +23,10 @@
       <node id="29">
         <label>ndef.c</label>
         <link refid="ndef_8c"/>
+      </node>
+      <node id="30">
+        <label>octet.c</label>
+        <link refid="octet_8c"/>
       </node>
     </invincdepgraph>
       <sectiondef kind="func">

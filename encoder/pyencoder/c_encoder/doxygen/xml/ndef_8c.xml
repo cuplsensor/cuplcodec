@@ -11,16 +11,15 @@
       <node id="41">
         <label>stdbool.h</label>
       </node>
+      <node id="42">
+        <label>base64.h</label>
+        <link refid="base64_8h"/>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
       <node id="44">
         <label>eep.h</label>
         <link refid="eep_8h"/>
-      </node>
-      <node id="46">
-        <label>nvtype.h</label>
-        <link refid="nvtype_8h"/>
-      </node>
-      <node id="43">
-        <label>string.h</label>
       </node>
       <node id="39">
         <label>ndef.c</label>
@@ -42,15 +41,16 @@
         <childnode refid="41" relation="include">
         </childnode>
       </node>
+      <node id="43">
+        <label>string.h</label>
+      </node>
+      <node id="46">
+        <label>nvtype.h</label>
+        <link refid="nvtype_8h"/>
+      </node>
       <node id="45">
         <label>defs.h</label>
         <link refid="defs_8h"/>
-      </node>
-      <node id="42">
-        <label>base64.h</label>
-        <link refid="base64_8h"/>
-        <childnode refid="43" relation="include">
-        </childnode>
       </node>
     </incdepgraph>
     <innerclass refid="union_record_header__t" prot="public">RecordHeader_t</innerclass>

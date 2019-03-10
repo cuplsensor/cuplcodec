@@ -167,7 +167,7 @@ respond to this by not storing the capture data and notifying the user.</p>
 <td colspan="9">Payload</td>
 </tr>
 <tr class="row-odd"><td>Desc.</td>
-<td colspan="3">Base URL</td>
+<td colspan="3"><a class="reference internal" href="#base-url">Base URL</a></td>
 <td colspan="2"><a class="reference internal" href="#time-interval">Time interval</a></td>
 <td><a class="reference internal" href="#serial">Serial</a></td>
 <td><a class="reference internal" href="#version">Version</a></td>
@@ -184,12 +184,17 @@ respond to this by not storing the capture data and notifying the user.</p>
 </tr>
 </tbody>
 </table>
+<div class="section" id="base-url">
+<h3>Base URL<a class="headerlink" href="#base-url" title="Permalink to this headline">¶</a></h3>
+</div>
 <div class="section" id="serial">
-<h3>Serial<a class="headerlink" href="#serial" title="Permalink to this headline">¶</a></h3>
+<span id="id1"></span><h3>Serial<a class="headerlink" href="#serial" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="time-interval">
 <h3>Time interval<a class="headerlink" href="#time-interval" title="Permalink to this headline">¶</a></h3>
-<p>Time interval between samples in minutes base64 encoded.</p>
+<p>Time interval between samples in minutes is base64 encoded. Whilst the encoded string is 4 bytes long, the last character
+must always be a padding byte (an URL safe replacement for ‘=’). Therefore the unencoded time interval can only be 2 bytes long.
+This is to match with the format of the minutes <a class="reference internal" href="#elapsed">Elapsed</a> field.</p>
 </div>
 <div class="section" id="version">
 <h3>Version<a class="headerlink" href="#version" title="Permalink to this headline">¶</a></h3>
@@ -502,8 +507,8 @@ padding byte. By convention this is 0x61 or ‘=’.</p>
 found, it can be replaced with an ‘=’ before the minutes elapsed field is
 decoded from base64 into its original 16-bit value.</p>
 </div>
-<div class="section" id="id1">
-<h4><span class="target" id="md5length">MD5Length</span><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id2">
+<h4><span class="target" id="md5length">MD5Length</span><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <p>This is 9 bytes long unencoded and 12 bytes long encoded. The C structure to hold these data
 <a class="reference internal" href="../reference/samplehist.html#_CPPv48md5len_t" title="md5len_t"><code class="xref cpp cpp-type docutils literal notranslate"><span class="pre">md5len_t</span></code></a> is shown below:</p>
 <table border="1" class="docutils">
@@ -581,7 +586,7 @@ decoded from base64 into its original 16-bit value.</p>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="encoder.html">Encoder</a></li>
 <li class="toctree-l1"><a class="reference internal" href="decoder.html">Decoder</a></li>
-<li class="toctree-l1"><a class="reference internal" href="test.html">Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/urldecoder.html">URL Decoder Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/encoder.html">URL Encoder Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/pyencoder.html">Python Wrapped Encoder (PyEncoder) Reference</a></li>

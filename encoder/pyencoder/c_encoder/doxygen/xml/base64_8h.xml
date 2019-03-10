@@ -7,25 +7,17 @@
     <includedby refid="ndef_8c" local="yes">ndef.c</includedby>
     <includedby refid="sample_8c" local="yes">sample.c</includedby>
     <incdepgraph>
-      <node id="5">
-        <label>string.h</label>
-      </node>
       <node id="4">
         <label>base64.h</label>
         <link refid="base64_8h"/>
         <childnode refid="5" relation="include">
         </childnode>
       </node>
+      <node id="5">
+        <label>string.h</label>
+      </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="9">
-        <label>sample.c</label>
-        <link refid="sample_8c"/>
-      </node>
-      <node id="8">
-        <label>ndef.c</label>
-        <link refid="ndef_8c"/>
-      </node>
       <node id="7">
         <label>base64.c</label>
         <link refid="base64_8c"/>
@@ -39,6 +31,14 @@
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
+      </node>
+      <node id="8">
+        <label>ndef.c</label>
+        <link refid="ndef_8c"/>
+      </node>
+      <node id="9">
+        <label>sample.c</label>
+        <link refid="sample_8c"/>
       </node>
     </invincdepgraph>
       <sectiondef kind="func">

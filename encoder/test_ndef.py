@@ -52,13 +52,11 @@ def test_serial(blankurlqs):
     serial = blankurlqs['s'][0]
     assert serial == INPUT_SERIAL
 
-
 def test_timeinterval(blankurlqs):
     timeintb64 = blankurlqs['t'][0]
     timeintbytes = urlsafe_b64decode(timeintb64)
     timeint = int.from_bytes(timeintbytes, byteorder='little')
     assert timeint == INPUT_TIMEINT
-
 
 def test_statusbytes(blankurlqs):
     statb64 = blankurlqs['x'][0]

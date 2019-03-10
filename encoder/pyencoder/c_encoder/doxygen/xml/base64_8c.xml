@@ -5,9 +5,6 @@
     <includes local="no">string.h</includes>
     <includes refid="base64_8h" local="yes">base64.h</includes>
     <incdepgraph>
-      <node id="1">
-        <label>string.h</label>
-      </node>
       <node id="0">
         <label>base64.c</label>
         <link refid="base64_8c"/>
@@ -21,6 +18,9 @@
         <link refid="base64_8h"/>
         <childnode refid="1" relation="include">
         </childnode>
+      </node>
+      <node id="1">
+        <label>string.h</label>
       </node>
     </incdepgraph>
       <sectiondef kind="define">
