@@ -10,9 +10,9 @@
       <node id="108">
         <label>stdbool.h</label>
       </node>
-      <node id="111">
-        <label>nvtype.h</label>
-        <link refid="nvtype_8h"/>
+      <node id="110">
+        <label>md5.h</label>
+        <link refid="md5_8h"/>
       </node>
       <node id="106">
         <label>smplhist.c</label>
@@ -32,9 +32,9 @@
         <childnode refid="108" relation="include">
         </childnode>
       </node>
-      <node id="110">
-        <label>md5.h</label>
-        <link refid="md5_8h"/>
+      <node id="111">
+        <label>nvtype.h</label>
+        <link refid="nvtype_8h"/>
       </node>
       <node id="109">
         <label>defs.h</label>

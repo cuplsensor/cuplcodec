@@ -16,9 +16,41 @@
       <node id="90">
         <label>stdbool.h</label>
       </node>
+      <node id="97">
+        <label>base64.h</label>
+        <link refid="base64_8h"/>
+        <childnode refid="98" relation="include">
+        </childnode>
+      </node>
+      <node id="100">
+        <label>stdint.h</label>
+      </node>
+      <node id="92">
+        <label>ndef.h</label>
+        <link refid="ndef_8h"/>
+        <childnode refid="90" relation="include">
+        </childnode>
+      </node>
+      <node id="98">
+        <label>string.h</label>
+      </node>
+      <node id="93">
+        <label>smplhist.h</label>
+        <link refid="smplhist_8h"/>
+        <childnode refid="90" relation="include">
+        </childnode>
+      </node>
+      <node id="94">
+        <label>prng.h</label>
+        <link refid="prng_8h"/>
+      </node>
       <node id="91">
         <label>octet.h</label>
         <link refid="octet_8h"/>
+      </node>
+      <node id="99">
+        <label>nvtype.h</label>
+        <link refid="nvtype_8h"/>
       </node>
       <node id="88">
         <label>sample.c</label>
@@ -50,45 +82,13 @@
         <childnode refid="90" relation="include">
         </childnode>
       </node>
-      <node id="100">
-        <label>stdint.h</label>
-      </node>
-      <node id="94">
-        <label>prng.h</label>
-        <link refid="prng_8h"/>
-      </node>
-      <node id="99">
-        <label>nvtype.h</label>
-        <link refid="nvtype_8h"/>
-      </node>
-      <node id="93">
-        <label>smplhist.h</label>
-        <link refid="smplhist_8h"/>
-        <childnode refid="90" relation="include">
-        </childnode>
-      </node>
-      <node id="98">
-        <label>string.h</label>
-      </node>
-      <node id="92">
-        <label>ndef.h</label>
-        <link refid="ndef_8h"/>
-        <childnode refid="90" relation="include">
-        </childnode>
+      <node id="96">
+        <label>batv.h</label>
+        <link refid="batv_8h"/>
       </node>
       <node id="95">
         <label>defs.h</label>
         <link refid="defs_8h"/>
-      </node>
-      <node id="97">
-        <label>base64.h</label>
-        <link refid="base64_8h"/>
-        <childnode refid="98" relation="include">
-        </childnode>
-      </node>
-      <node id="96">
-        <label>batv.h</label>
-        <link refid="batv_8h"/>
       </node>
     </incdepgraph>
     <innerclass refid="structstatus" prot="public">status</innerclass>
@@ -137,7 +137,7 @@
           <briefdescription>
           </briefdescription>
           <detaileddescription>
-<para>Write both meaurands in the first sample of ::samplebuf </para>          </detaileddescription>
+<para>Write both meaurands in the first sample of samplebuf </para>          </detaileddescription>
         </enumvalue>
         <enumvalue id="sample_8c_1a330856ff01a76092fb302f70696dcaa8ae4aa5da2d1ebb43ca39a9ecf8e0adf80" prot="public">
           <name>first_tock</name>
@@ -219,7 +219,7 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Stores 2x 3-byte samples. </para>        </detaileddescription>
+<para>Stores two 3-byte samples. </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
         <location file="sample.c" line="38" column="1" bodyfile="sample.c" bodystart="38" bodyend="-1"/>

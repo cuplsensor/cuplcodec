@@ -115,7 +115,9 @@ Data Fields</h2></td></tr>
 <tr class="memitem:a045498ec4eca300d51f030a958ed5ee1"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnvstruct.html#a045498ec4eca300d51f030a958ed5ee1">resetsalltime</a></td></tr>
 <tr class="separator:a045498ec4eca300d51f030a958ed5ee1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Field Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Structure to hold configuration data held in non-volatile memory. </p>
+</div><h2 class="groupheader">Field Documentation</h2>
 <a id="a3fee61ddd1d863385c81b1d53599191a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3fee61ddd1d863385c81b1d53599191a">&#9670;&nbsp;</a></span>allwritten</h2>
 
@@ -127,6 +129,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Indicates that all required NV parameters have been set. </p>
 
 </div>
 </div>
@@ -155,6 +158,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Incremented each time the microcontroller resets. Never set to zero. </p>
 
 </div>
 </div>
@@ -169,6 +173,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Incremented each time the microcontroller resets. Zeroed when the circular buffer has wraps from the end back to the beginning. </p>
 
 </div>
 </div>
@@ -183,6 +188,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Secret key array. This is used to generate the HMAC. </p>
 
 </div>
 </div>
@@ -197,6 +203,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Unique box serial array. </p>
 
 </div>
 </div>
@@ -211,6 +218,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>The number of days to wait without scans before putting the sensor into deep sleep mode. </p>
 
 </div>
 </div>
@@ -225,6 +233,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Time interval betweeen samples in minutes. This is b64 encoded so it is easier to store it as an array. </p>
 
 </div>
 </div>
