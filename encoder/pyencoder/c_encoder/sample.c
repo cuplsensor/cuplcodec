@@ -103,8 +103,6 @@ void sample_init(unsigned int stat, bool err, bool temponly)
 
   ndef_writeblankurl(buflenblks, statusb64, &startblk, ver);
   octet_init(startblk, buflenblks);
-  prng_init(nv.randstate);
-
 }
 
 /**

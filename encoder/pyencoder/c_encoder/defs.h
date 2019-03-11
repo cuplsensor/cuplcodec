@@ -4,6 +4,7 @@
 #define BYTES_PER_SAMPLE    2
 #define BUFLEN_BLKS         32
 #define ENDSTOP_BLKS        1
+#define BLKSIZE 0x10
 
 
 #define BUFLEN_SAMPLES (SAMPLES_PER_OCTET * OCTETS_PER_BLK * (BUFLEN_BLKS - ENDSTOP_BLKS))

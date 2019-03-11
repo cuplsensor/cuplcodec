@@ -7,74 +7,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e2a5e9f0-49cc-45a8-97b9-be9933b2b17b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/docs/reference/nvtype.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_doc_build/doctrees/docs/reference/encoder.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/_doc_build/doctrees/docs/reference/encoder.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_doc_build/doctrees/docs/reference/sample.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/_doc_build/doctrees/docs/reference/sample.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_doc_build/doctrees/docs/reference/samplehist.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/_doc_build/doctrees/docs/reference/samplehist.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_doc_build/doctrees/docs/tutorial/encoder.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/_doc_build/doctrees/docs/tutorial/encoder.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_doc_build/doctrees/docs/tutorial/index.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/_doc_build/doctrees/docs/tutorial/index.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_doc_build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/_doc_build/doctrees/environment.pickle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_doc_build/html/_sources/docs/reference/encoder.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/_doc_build/html/_sources/docs/reference/encoder.rst.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_doc_build/html/_sources/docs/tutorial/encoder.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/_doc_build/html/_sources/docs/tutorial/encoder.rst.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_doc_build/html/_sources/docs/tutorial/index.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/_doc_build/html/_sources/docs/tutorial/index.rst.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_doc_build/html/docs/reference/encoder.html" beforeDir="false" afterPath="$PROJECT_DIR$/_doc_build/html/docs/reference/encoder.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_doc_build/html/docs/reference/sample.html" beforeDir="false" afterPath="$PROJECT_DIR$/_doc_build/html/docs/reference/sample.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_doc_build/html/docs/reference/samplehist.html" beforeDir="false" afterPath="$PROJECT_DIR$/_doc_build/html/docs/reference/samplehist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_doc_build/html/docs/tutorial/encoder.html" beforeDir="false" afterPath="$PROJECT_DIR$/_doc_build/html/docs/tutorial/encoder.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_doc_build/html/docs/tutorial/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_doc_build/html/docs/tutorial/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_doc_build/html/genindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/_doc_build/html/genindex.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_doc_build/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_doc_build/html/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_doc_build/html/objects.inv" beforeDir="false" afterPath="$PROJECT_DIR$/_doc_build/html/objects.inv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_doc_build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/_doc_build/html/searchindex.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/reference/encoder.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/reference/encoder.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/tutorial/encoder.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tutorial/encoder.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/tutorial/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tutorial/index.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/Doxyfile" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/Doxyfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/nvtype_8h.html" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/nvtype_8h.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/nvtype_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/nvtype_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/sample_8c.html" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/sample_8c.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/structnvstruct.html" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/structnvstruct.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/nvtype_8h.tex" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/nvtype_8h.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/sample_8c.tex" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/sample_8c.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/structnvstruct.tex" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/structnvstruct.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/base64_8c.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/base64_8h.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/batv_8c.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/batv_8h.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/combine.xslt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/compound.xsd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/defs_8h.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/eep_8c.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/eep_8h.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/index.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/index.xsd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/md5_8c.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/md5_8h.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/ndef_8c.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/ndef_8h.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/nt3h_8c.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/nt3h_8h.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/nvtype_8c.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/nvtype_8h.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/octet_8c.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/octet_8h.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/prng_8c.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/prng_8h.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/sample_8c.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/sample_8h.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/smplhist_8c.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/smplhist_8h.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/stat__bits_8h.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/struct_m_d5___c_t_x.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/structendstop.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/structmd5len.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/structnvstruct.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/structsensordatachars.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/structstatus.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/union_record_header__t.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/unionlen__t.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/defs.h" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/defs.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/eep.c" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/eep.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/ndef.c" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/ndef.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/ndef.h" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/ndef.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/nt3h.c" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/nt3h.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/nt3h.h" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/nt3h.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/nvtype.h" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/nvtype.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/sample.c" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/sample.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/instrumented.py" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/pyencoder/instrumented.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/encoder/test_ndef.py" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/test_ndef.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -99,24 +40,24 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/encoder/pyencoder/c_encoder/sample.c">
+        <entry file="file://$PROJECT_DIR$/docs/reference/nvtype.rst">
+          <provider selected="true" editor-type-id="restructured-text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/encoder/pyencoder/c_encoder/nvtype.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="94" selection-start-line="13" selection-start-column="94" selection-end-line="13" selection-end-column="102" />
+            <state relative-caret-position="375">
+              <caret line="25" column="52" selection-start-line="25" selection-start-column="52" selection-end-line="25" selection-end-column="52" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/reference/nvtype.rst">
-          <provider selected="true" editor-type-id="restructured-text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/encoder/pyencoder/c_encoder/nvtype.h">
+        <entry file="file://$PROJECT_DIR$/encoder/pyencoder/ndef_builder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="44" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
+            <state relative-caret-position="30">
+              <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -130,11 +71,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/encoder/test_ndef.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-392">
-              <caret line="13" column="21" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+            <state relative-caret-position="282">
+              <caret line="29" column="40" selection-start-line="29" selection-start-column="40" selection-end-line="29" selection-end-column="40" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -151,7 +92,7 @@
         <entry file="file://$PROJECT_DIR$/encoder/pyencoder/c_encoder/octet.c">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="487">
-              <caret line="62" column="11" lean-forward="true" selection-start-line="62" selection-start-column="11" selection-end-line="62" selection-end-column="11" />
+              <caret line="62" column="11" selection-start-line="62" selection-start-column="11" selection-end-line="62" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -159,8 +100,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/encoder/pyencoder/instrumented.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-737">
-              <caret line="13" column="27" lean-forward="true" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
+            <state relative-caret-position="-392">
+              <caret line="19" column="37" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -250,7 +191,6 @@
         <option value="$PROJECT_DIR$/encoder/pyencoder/sample.py" />
         <option value="$PROJECT_DIR$/encoder/pyencoder/unitc.py" />
         <option value="$PROJECT_DIR$/encoder/pyencoder/ndef_builder.py" />
-        <option value="$PROJECT_DIR$/encoder/pyencoder/instrumented.py" />
         <option value="$PROJECT_DIR$/encoder/pyencoder/octet_builder.py" />
         <option value="$PROJECT_DIR$/encoder/pyencoder/smplhist_builder.py" />
         <option value="$PROJECT_DIR$/setup.py" />
@@ -262,13 +202,14 @@
         <option value="$PROJECT_DIR$/docs/tutorial/encoder.rst" />
         <option value="$PROJECT_DIR$/docs/reference/encoder.rst" />
         <option value="$PROJECT_DIR$/docs/reference/nvtype.rst" />
-        <option value="$PROJECT_DIR$/encoder/test_ndef.py" />
         <option value="$PROJECT_DIR$/encoder/pyencoder/c_encoder/nvtype.h" />
+        <option value="$PROJECT_DIR$/encoder/pyencoder/instrumented.py" />
+        <option value="$PROJECT_DIR$/encoder/test_ndef.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1914" />
+    <option name="x" value="1920" />
     <option name="y" value="23" />
     <option name="width" value="1920" />
     <option name="height" value="1001" />
@@ -290,19 +231,6 @@
               <item name="PSCodec" type="b2602c69:ProjectViewProjectNode" />
               <item name="PSCodec" type="462c0819:PsiDirectoryNode" />
               <item name="encoder" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PSCodec" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PSCodec" type="462c0819:PsiDirectoryNode" />
-              <item name="encoder" type="462c0819:PsiDirectoryNode" />
-              <item name="pyencoder" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PSCodec" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PSCodec" type="462c0819:PsiDirectoryNode" />
-              <item name="encoder" type="462c0819:PsiDirectoryNode" />
-              <item name="pyencoder" type="462c0819:PsiDirectoryNode" />
-              <item name="c_encoder" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="PSCodec" type="b2602c69:ProjectViewProjectNode" />
@@ -500,7 +428,7 @@
       <updated>1551220874720</updated>
       <workItem from="1551220882124" duration="1619000" />
       <workItem from="1551222684246" duration="40890000" />
-      <workItem from="1551705049784" duration="17507000" />
+      <workItem from="1551705049784" duration="18607000" />
     </task>
     <servers />
   </component>
@@ -537,7 +465,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60016000" />
+    <option name="totallyTimeSpent" value="61116000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -549,7 +477,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1914" y="23" width="1920" height="1001" extended-state="0" />
+    <frame x="1920" y="23" width="1920" height="1001" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2550586" />
@@ -770,13 +698,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/encoder/pyencoder/ndef_builder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/reference/pyencoder.rst">
       <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
@@ -835,37 +756,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/encoder/pyencoder/instrumented.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-737">
-          <caret line="13" column="27" lean-forward="true" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/encoder/test_ndef.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-392">
-          <caret line="13" column="21" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/encoder/pyencoder/c_encoder/octet.h">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/encoder/pyencoder/c_encoder/octet.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="487">
-          <caret line="62" column="11" lean-forward="true" selection-start-line="62" selection-start-column="11" selection-end-line="62" selection-end-column="11" />
+          <caret line="62" column="11" selection-start-line="62" selection-start-column="11" selection-end-line="62" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/encoder/pyencoder/c_encoder/nvtype.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="44" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
+        <state relative-caret-position="375">
+          <caret line="25" column="52" selection-start-line="25" selection-start-column="52" selection-end-line="25" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/encoder/pyencoder/ndef_builder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/encoder/pyencoder/instrumented.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-392">
+          <caret line="19" column="37" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/encoder/test_ndef.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="29" column="40" selection-start-line="29" selection-start-column="40" selection-end-line="29" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
