@@ -10,12 +10,14 @@ class InstrumentedBase(object):
 
     def __init__(self,
                  ffimodule,
+                 baseurl,
                  serial,
                  secretkey,
                  smplintervalmins):
         self.ffimodule = ffimodule
         self.ffimodule.lib.nv.serial = serial.encode('ascii')
         self.ffimodule.lib.nv.seckey = secretkey.encode('ascii')
+        self.ffimodule.lib.nv.baseurl = baseurl.encode('ascii')
         smplintbytes = pack("<H", smplintervalmins)
         self.ffimodule.lib.nv.smplintervalmins = smplintbytes
         self.eepromba = eeprom.Eeprom(64)
@@ -45,31 +47,38 @@ class InstrumentedBase(object):
 
 class InstrumentedNDEF(InstrumentedBase):
     def __init__(self,
+                 baseurl='plotsensor.com',
                  serial='AAAACCCC',
                  secretkey='AAAACCCC',
                  smplintervalmins=12):
-        super(InstrumentedNDEF, self).__init__(ndefpy, serial, secretkey, smplintervalmins)
+        super(InstrumentedNDEF, self).__init__(ndefpy, baseurl, serial, secretkey, smplintervalmins)
 
 
 class InstrumentedOctet(InstrumentedBase):
     def __init__(self,
+                 baseurl='plotsensor.com',
                  serial='AAAACCCC',
                  secretkey='AAAACCCC',
                  smplintervalmins=12):
-        super(InstrumentedOctet, self).__init__(octetpy, serial, secretkey, smplintervalmins)
+        super(InstrumentedOctet, self).__init__(octetpy, baseurl, serial, secretkey, smplintervalmins)
 
 
 class InstrumentedSmplHist(InstrumentedBase):
     def __init__(self,
+                 baseurl='plotsensor.com',
                  serial='AAAACCCC',
                  secretkey='AAAACCCC',
                  smplintervalmins=12):
-        super(InstrumentedSmplHist, self).__init__(smplhistpy, serial, secretkey, smplintervalmins)
+        super(InstrumentedSmplHist, self).__init__(smplhistpy, baseurl, serial, secretkey, smplintervalmins)
 
 
 class InstrumentedSample(InstrumentedBase):
-    def __init__(self, serial, secretkey='AAAACCCC', smplintervalmins=12):
-        super(InstrumentedSample, self).__init__(samplepy, serial, secretkey, smplintervalmins)
+    def __init__(self,
+                 baseurl='plotsensor.com',
+                 serial='AAAACCCC',
+                 secretkey='AAAACCCC',
+                 smplintervalmins=12):
+        super(InstrumentedSample, self).__init__(samplepy, baseurl, serial, secretkey, smplintervalmins)
 
         @self.ffimodule.ffi.def_extern()
         def prng_getrandom(lenbits):
@@ -102,7 +111,7 @@ class InstrumentedSampleT(InstrumentedSample):
                  secretkey='AAAACCCC',
                  baseurl='plotsensor.com',
                  smplintervalmins=12):
-        super(InstrumentedSampleT, self).__init__(serial, secretkey, smplintervalmins)
+        super(InstrumentedSampleT, self).__init__(baseurl, serial, secretkey, smplintervalmins)
         temponly = True
         self.ffimodule.lib.sample_init(0, False, temponly)
 
@@ -123,7 +132,7 @@ class InstrumentedSampleTRH(InstrumentedSample):
                  baseurl='plotsensor.com',
                  smplintervalmins=12
                  ):
-        super(InstrumentedSampleTRH, self).__init__(serial, secretkey, smplintervalmins)
+        super(InstrumentedSampleTRH, self).__init__(baseurl, serial, secretkey, smplintervalmins)
         temponly = False
         self.ffimodule.lib.sample_init(0, False, temponly);
 

@@ -4,7 +4,6 @@
 #define BLKSIZE_BYTES   0x10
 #define BLKSIZE_POW2    4
 #define TLSIZE_BYTES    4
-#define PREAMBLEN_BLKS  4
 
 #include <stdbool.h>
 

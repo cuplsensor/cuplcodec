@@ -1,5 +1,6 @@
 #include "eep.h"
 #include "nt3h.h"
+#include "defs.h"
 
 #define BUFSIZE_BLKS  4
 #define BUFSIZE_BYTES (BUFSIZE_BLKS * BLKSIZE)

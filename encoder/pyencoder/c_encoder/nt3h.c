@@ -9,6 +9,7 @@
 #include <string.h>
 #include "i2c.h"
 #include <stdbool.h>
+#include "defs.h"
 
 unsigned char rxData[16] = {0};
 unsigned char txData[16] = {0};

@@ -27,6 +27,7 @@ def checkfixture():
 def blankurlqs():
     ndefobj = makeblankurl()
     # Obtain the URL parameters dictionary from the Mock EEPROM
+    print(ndefobj.eepromba.get_message())
     parsedqs = ndefobj.eepromba.get_url_parsedqs()
     return parsedqs
 
