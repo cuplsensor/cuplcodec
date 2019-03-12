@@ -9,9 +9,17 @@ INPUT_SECKEY = 'AAAABBBB'
 INPUT_STATUSB64 = 'MDAwMDAw'
 INPUT_CBUFLENBLKS = 32
 
+@pytest.fixture(scope="function",
+                params=["plotsensor.com", "toastersrg.plotsensor.com"])
+def instr_ndef(request):
+    print(request.param)
+    ndefobj = InstrumentedNDEF(baseurl=request.param, serial=INPUT_SERIAL, secretkey=INPUT_SECKEY, smplintervalmins=INPUT_TIMEINT)
+    ndefobj.baseurl = request.param
+    return ndefobj
 
-def makeblankurl():
-    ndefobj = InstrumentedNDEF(serial=INPUT_SERIAL, secretkey=INPUT_SECKEY, smplintervalmins=INPUT_TIMEINT)
+@pytest.fixture
+def makeblankurl(instr_ndef):
+    ndefobj = instr_ndef
     cbuflenblks = INPUT_CBUFLENBLKS
     statusb64bytes = INPUT_STATUSB64.encode('ascii')
     statusb64chars = ndefobj.ffimodule.ffi.new("char[]", statusb64bytes)
@@ -20,12 +28,12 @@ def makeblankurl():
     return ndefobj
 
 @pytest.fixture
-def checkfixture():
-    return makeblankurl()
+def checkfixture(makeblankurl):
+    return makeblankurl
 
 @pytest.fixture
-def blankurlqs():
-    ndefobj = makeblankurl()
+def blankurlqs(makeblankurl):
+    ndefobj = makeblankurl
     # Obtain the URL parameters dictionary from the Mock EEPROM
     print(ndefobj.eepromba.get_message())
     parsedqs = ndefobj.eepromba.get_url_parsedqs()
@@ -33,18 +41,31 @@ def blankurlqs():
 
 
 @pytest.fixture
-def blankurl():
-    ndefobj = makeblankurl()
+def blankurl(makeblankurl):
+    ndefobj = makeblankurl
     # Obtain the URL parameters dictionary from the Mock EEPROM
     urlstr = ndefobj.eepromba.get_url()
     return urlstr
 
 
 @pytest.fixture
-def blankurlraw():
-    ndefobj = makeblankurl()
+def blankurlraw(makeblankurl):
+    ndefobj = makeblankurl
     # Obtain the URL parameters dictionary from the Mock EEPROM
     return ndefobj.eepromba.get_message()
+
+
+def test_calclen(instr_ndef):
+    ndefobj = instr_ndef
+    paddinglen = ndefobj.ffimodule.ffi.new("int *")
+    preamblenbytes = ndefobj.ffimodule.ffi.new("int *")
+    urllen = ndefobj.ffimodule.ffi.new("int *")
+    paddinglen[0] = 0
+    preamblenbytes[0] = 0
+    urllen[0] = len(ndefobj.baseurl)
+    ndefobj.ffimodule.lib.ndef_calclen(paddinglen, preamblenbytes, urllen)
+    x = preamblenbytes[0]
+    assert (x) % 16 == 0
 
 def test_check(checkfixture):
     assert checkfixture.check() == INPUT_TIMEINT
