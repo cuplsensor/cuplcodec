@@ -27,4 +27,6 @@ int ndef_writeblankurl(int qlenblks, char * statusb64, int * qstartblk, char ver
   */
 int ndef_writepreamble(int qlenblks, char * statusb64);
 
+void ndef_calclen(int * paddinglen, int * preamblenbytes, int * urllen);
+
 #endif //_NDEF_H_
