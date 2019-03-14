@@ -12,13 +12,12 @@
   * \param qlenblks Length of the circular buffer URL parameter (q) in blocks.
   * \param statusb64 Pointer to the status field encoded in base 64.
   * \param qstartblk Pointer to an integer into which this function writes the start block of the q URL parameter.
-  * \param ver Version identifier.
   * \returns 1 if qlenblks is not even.
   *
   * The circular buffer is zero-padded with a base64 octet
   * that decodes to 0,0,0,0,0,0.
   */
-int ndef_writeblankurl(int qlenblks, char * statusb64, int * qstartblk, char ver);
+int ndef_writeblankurl(int qlenblks, char * statusb64, int * qstartblk);
 
 /** \brief Write the part of the URL before the circular buffer.
   * \param qlenblks Length of the circular buffer in blocks. This is used to calculate the NDEF message length.
