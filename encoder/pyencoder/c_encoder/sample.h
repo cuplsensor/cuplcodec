@@ -4,7 +4,7 @@
 #include <stdbool.h>
 
 
-void sample_init(unsigned int status, bool err, bool temponly);
+void sample_init(unsigned int status, bool err);
 int sample_push(int meas1, int meas2);
 void sample_updateendstop(unsigned int minutes);
 

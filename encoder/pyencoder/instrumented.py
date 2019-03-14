@@ -18,6 +18,7 @@ class InstrumentedBase(object):
         self.ffimodule.lib.nv.serial = serial.encode('ascii')
         self.ffimodule.lib.nv.seckey = secretkey.encode('ascii')
         self.ffimodule.lib.nv.baseurl = baseurl.encode('ascii')
+        self.ffimodule.lib.nv.version = '1'.encode('ascii')
         smplintbytes = pack("<H", smplintervalmins)
         self.ffimodule.lib.nv.smplintervalmins = smplintbytes
         self.eepromba = eeprom.Eeprom(64)

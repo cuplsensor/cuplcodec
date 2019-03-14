@@ -53,7 +53,6 @@ typedef union
 char serialparam[] = "&s=";
 static const char queryparam[] = "&q=";
 static const char verparam[] = "&v=";
-static char _ver = 0;
 static const char statparam[] = "&x=";
 static const char timeintparam[] = "/?t=";
 static const char zeropad[] = "MDAw";
@@ -193,7 +192,7 @@ int ndef_writepreamble(int qlenblks, char * statusb64)
       padding_remaining--;
   }
   // Append version
-  eep_cp(&eepindex, &_ver, VERCHAR_LEN);
+  eep_cp(&eepindex, &nv.version, VERCHAR_LEN);
   // Append status header
   eep_cp(&eepindex, statparam, STATPARAM_LEN);
   // Append status data
@@ -213,13 +212,11 @@ int ndef_writepreamble(int qlenblks, char * statusb64)
   return preamblelenblks;
 }
 
-int ndef_writeblankurl(int qlenblks, char * statusb64, int * qstartblk, char ver)
+int ndef_writeblankurl(int qlenblks, char * statusb64, int * qstartblk)
 {
     int preamblelenblks;
     int eepindex;
     int i, blk, errflag;
-
-    _ver = ver;
 
     preamblelenblks = ndef_writepreamble(qlenblks, statusb64);
 

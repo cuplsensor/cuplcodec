@@ -2,6 +2,7 @@ import pytest
 from base64 import urlsafe_b64decode
 from encoder.pyencoder.instrumented import InstrumentedNDEF
 from urldecoder.urldecoder import UrlDecoder
+from urllib.parse import urlparse
 
 INPUT_SERIAL = 'abcdabcd'
 INPUT_TIMEINT = 12
@@ -24,7 +25,7 @@ def makeblankurl(instr_ndef):
     statusb64bytes = INPUT_STATUSB64.encode('ascii')
     statusb64chars = ndefobj.ffimodule.ffi.new("char[]", statusb64bytes)
     startblkptr = ndefobj.ffimodule.ffi.new("int *", 0)
-    retval = ndefobj.ffimodule.lib.ndef_writeblankurl(cbuflenblks, statusb64chars, startblkptr, b'1')
+    retval = ndefobj.ffimodule.lib.ndef_writeblankurl(cbuflenblks, statusb64chars, startblkptr)
     return ndefobj
 
 @pytest.fixture
@@ -49,7 +50,7 @@ def blankurl(makeblankurl):
 
 
 @pytest.fixture
-def blankurlraw(makeblankurl):
+def blankurlraw(blankurl):
     ndefobj = makeblankurl
     # Obtain the URL parameters dictionary from the Mock EEPROM
     return ndefobj.eepromba.get_message()
@@ -66,6 +67,13 @@ def test_calclen(instr_ndef):
     ndefobj.ffimodule.lib.ndef_calclen(paddinglen, preamblenbytes, urllen)
     x = preamblenbytes[0]
     assert (x) % 16 == 0
+
+def test_baseurl(makeblankurl):
+    urlstr = makeblankurl.eepromba.get_url()
+    baseurl = urlparse(urlstr).netloc
+    assert baseurl == makeblankurl.baseurl
+
+
 
 def test_check(checkfixture):
     assert checkfixture.check() == INPUT_TIMEINT

@@ -40,7 +40,6 @@ static unsigned int lensmpls = 0;   /*!< Number of valid samples in the circular
 static urlstate state;
 static stat_t urlstatus = {0};
 static endstop_t endstop;           /*!< The 16 byte end stop. */
-static bool _temponly;              /*!< Internal flag to mark if only temperature data are being written on each call call of sample_push(int,int) */
 extern nv_t nv;                     /*!< Externally defined parameters stored in non-volatile memory. */
 
 /*!
@@ -66,12 +65,11 @@ static void sample_updatelc(void)
  * @param err Sets an error condition where data will not be logged to the URL circular buffer.
  * @param temponly When true only temperature measurands will be recorded to the circular buffer on each call of {@link sample_push()}.
  */
-void sample_init(unsigned int stat, bool err, bool temponly)
+void sample_init(unsigned int stat, bool err)
 {
   char statusb64[9];
   int startblk;
   int buflenblks;
-  char ver;
 
   urlstatus.loopcount = 0;
   urlstatus.status = stat;
@@ -90,18 +88,7 @@ void sample_init(unsigned int stat, bool err, bool temponly)
       buflenblks = BUFLEN_BLKS;
   }
 
-  _temponly = temponly;
-
-  if (_temponly == true)
-  {
-    ver = TEMPONLY;
-  }
-  else
-  {
-    ver = TEMPRH;
-  }
-
-  ndef_writeblankurl(buflenblks, statusb64, &startblk, ver);
+  ndef_writeblankurl(buflenblks, statusb64, &startblk);
   octet_init(startblk, buflenblks);
 }
 
@@ -190,7 +177,7 @@ int sample_push(int meas1, int meas2)
   urlstate nextstate;
   md5len_t md5length;
 
-  if (_temponly == true)
+  if (nv.version == TEMPONLY)
   {
       meas2 = -1;
   }
@@ -219,7 +206,7 @@ int sample_push(int meas1, int meas2)
 
           smplhist_push(samplebuf[0]);
 
-          if (_temponly)
+          if (nv.version == TEMPONLY)
           {
               nextstate = first_tock;
           }
@@ -241,7 +228,7 @@ int sample_push(int meas1, int meas2)
 
           smplhist_push(samplebuf[1]);
 
-          if (_temponly)
+          if (nv.version == TEMPONLY)
           {
               nextstate = final_tock;
           }
