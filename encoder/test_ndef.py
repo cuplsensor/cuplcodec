@@ -13,7 +13,6 @@ INPUT_CBUFLENBLKS = 32
 @pytest.fixture(scope="function",
                 params=["plotsensor.com", "toastersrg.plotsensor.com"])
 def instr_ndef(request):
-    print(request.param)
     ndefobj = InstrumentedNDEF(baseurl=request.param, serial=INPUT_SERIAL, secretkey=INPUT_SECKEY, smplintervalmins=INPUT_TIMEINT)
     ndefobj.baseurl = request.param
     return ndefobj
@@ -25,35 +24,18 @@ def makeblankurl(instr_ndef):
     statusb64bytes = INPUT_STATUSB64.encode('ascii')
     statusb64chars = ndefobj.ffimodule.ffi.new("char[]", statusb64bytes)
     startblkptr = ndefobj.ffimodule.ffi.new("int *", 0)
-    retval = ndefobj.ffimodule.lib.ndef_writeblankurl(cbuflenblks, statusb64chars, startblkptr)
+    ndefobj.ffimodule.lib.ndef_writeblankurl(cbuflenblks, statusb64chars, startblkptr)
     return ndefobj
 
 @pytest.fixture
-def checkfixture(makeblankurl):
-    return makeblankurl
-
-@pytest.fixture
 def blankurlqs(makeblankurl):
-    ndefobj = makeblankurl
     # Obtain the URL parameters dictionary from the Mock EEPROM
-    print(ndefobj.eepromba.get_message())
-    parsedqs = ndefobj.eepromba.get_url_parsedqs()
-    return parsedqs
-
+    return makeblankurl.eepromba.get_url_parsedqs()
 
 @pytest.fixture
-def blankurl(makeblankurl):
-    ndefobj = makeblankurl
+def blankurlraw(makeblankurl):
     # Obtain the URL parameters dictionary from the Mock EEPROM
-    urlstr = ndefobj.eepromba.get_url()
-    return urlstr
-
-
-@pytest.fixture
-def blankurlraw(blankurl):
-    ndefobj = makeblankurl
-    # Obtain the URL parameters dictionary from the Mock EEPROM
-    return ndefobj.eepromba.get_message()
+    return makeblankurl.eepromba.get_message()
 
 
 def test_calclen(instr_ndef):
@@ -68,25 +50,24 @@ def test_calclen(instr_ndef):
     x = preamblenbytes[0]
     assert (x) % 16 == 0
 
+
 def test_baseurl(makeblankurl):
-    urlstr = makeblankurl.eepromba.get_url()
-    baseurl = urlparse(urlstr).netloc
+    blankurl = makeblankurl.eepromba.get_url()
+    baseurl = urlparse(blankurl).netloc
     assert baseurl == makeblankurl.baseurl
 
-
-
-def test_check(checkfixture):
-    assert checkfixture.check() == INPUT_TIMEINT
 
 def test_serial(blankurlqs):
     serial = blankurlqs['s'][0]
     assert serial == INPUT_SERIAL
+
 
 def test_timeinterval(blankurlqs):
     timeintb64 = blankurlqs['t'][0]
     timeintbytes = urlsafe_b64decode(timeintb64)
     timeint = int.from_bytes(timeintbytes, byteorder='little')
     assert timeint == INPUT_TIMEINT
+
 
 def test_statusbytes(blankurlqs):
     statb64 = blankurlqs['x'][0]

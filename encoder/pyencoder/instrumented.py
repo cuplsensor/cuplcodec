@@ -14,6 +14,7 @@ class InstrumentedBase(object):
                  serial,
                  secretkey,
                  smplintervalmins):
+        self.secretkey = secretkey
         self.ffimodule = ffimodule
         self.ffimodule.lib.nv.serial = serial.encode('ascii')
         self.ffimodule.lib.nv.seckey = secretkey.encode('ascii')
