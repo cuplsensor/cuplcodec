@@ -2,13 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2a5e9f0-49cc-45a8-97b9-be9933b2b17b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/encoder/test_smplhist.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/encoder/conftest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/encoder/test_trhsample.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/encoder/test_tsample.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/smplhist.c" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/smplhist.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/smplhist.h" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/smplhist.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/builder.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/encoder/pyencoder/instrumented.py" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/pyencoder/instrumented.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/smplhist_builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/pyencoder/smplhist_builder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/encoder/test_ndef.py" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/test_ndef.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/histtest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/sampletest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/sampletest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/urldecoder/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/urldecoder/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/decoder/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/urldecoder/urldecoder/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/decoder/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/urldecoder/urldecoder/decoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/decoder/decoder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/urldecoder/urldecoder/exceptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/decoder/exceptions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/urldecoder/urldecoder/htdecoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/decoder/htdecoder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/urldecoder/urldecoder/msgauth.py" beforeDir="false" afterPath="$PROJECT_DIR$/decoder/msgauth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/urldecoder/urldecoder/statdecoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/decoder/statdecoder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/urldecoder/urldecoder/tdecoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/decoder/tdecoder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/urldecoder/urldecoder/urldecoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/decoder/urldecoder.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,34 +30,55 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/PSCodec$pytest_in_tests.coverage" NAME="pytest in encodertb Coverage Results" MODIFIED="1551225257143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encodertb" />
-    <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_ndef_test_decode_raises_indexerrror.coverage" NAME="pytest for test_ndef.test_decode_raises_indexerrror Coverage Results" MODIFIED="1551225456718" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encodertb" />
+    <SUITE FILE_PATH="coverage/PSCodec$pytest_in_encoder.coverage" NAME="pytest in encoder Coverage Results" MODIFIED="1552774730562" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_smplhist_test_one_sample.coverage" NAME="pytest for test_smplhist.test_one_sample Coverage Results" MODIFIED="1552740081949" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
-    <SUITE FILE_PATH="coverage/PSCodec$pytest_in_test_smplhist_py.coverage" NAME="pytest in test_smplhist.py Coverage Results" MODIFIED="1552765254406" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
+    <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_sample_test_lists_equal.coverage" NAME="pytest for test_sample.test_lists_equal Coverage Results" MODIFIED="1552772092265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_encodertb_test_ndef_test_statusbytes.coverage" NAME="pytest for encodertb.test_ndef.test_statusbytes Coverage Results" MODIFIED="1551293688281" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
+    <SUITE FILE_PATH="coverage/PSCodec$pytest_in_test_tsample_py.coverage" NAME="pytest in test_tsample.py Coverage Results" MODIFIED="1552774805124" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
+    <SUITE FILE_PATH="coverage/PSCodec$Unittests_for_tests_sampletest_SampleTest.coverage" NAME="Unittests for tests.sampletest.SampleTest Coverage Results" MODIFIED="1551223376162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
+    <SUITE FILE_PATH="coverage/PSCodec$pytest_for_encodertb_test_ndef_test_check.coverage" NAME="pytest for encodertb.test_ndef.test_check Coverage Results" MODIFIED="1551298963337" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
+    <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_ndef_test_calclen.coverage" NAME="pytest for test_ndef.test_calclen Coverage Results" MODIFIED="1552351142097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
+    <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_tsample_test_lists_equal.coverage" NAME="pytest for test_tsample.test_lists_equal Coverage Results" MODIFIED="1552774707545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
+    <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_sample_test_one.coverage" NAME="pytest for test_sample.test_one Coverage Results" MODIFIED="1552770513028" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
+    <SUITE FILE_PATH="coverage/PSCodec$pytest_in_test_ndef_py.coverage" NAME="pytest in test_ndef.py Coverage Results" MODIFIED="1552774752907" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
+    <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_smplhist_test_buffer_load.coverage" NAME="pytest for test_smplhist.test_buffer_load Coverage Results" MODIFIED="1552748809307" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
+    <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_ndef_test_circbuf_length.coverage" NAME="pytest for test_ndef.test_circbuf_length Coverage Results" MODIFIED="1551225404712" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encodertb" />
+    <SUITE FILE_PATH="coverage/PSCodec$pytest_for_encodertb_test_ndef_test_timeinterval.coverage" NAME="pytest for encodertb.test_ndef.test_timeinterval Coverage Results" MODIFIED="1551298426325" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
+    <SUITE FILE_PATH="coverage/PSCodec$pytest_in_tests.coverage" NAME="pytest in encodertb Coverage Results" MODIFIED="1551225257143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encodertb" />
+    <SUITE FILE_PATH="coverage/PSCodec$pytest_in_test_sample_py.coverage" NAME="pytest in test_sample.py Coverage Results" MODIFIED="1552774756162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
+    <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_ndef_test_decode_raises_indexerrror.coverage" NAME="pytest for test_ndef.test_decode_raises_indexerrror Coverage Results" MODIFIED="1551225456718" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encodertb" />
+    <SUITE FILE_PATH="coverage/PSCodec$pytest_in_test_smplhist_py.coverage" NAME="pytest in test_smplhist.py Coverage Results" MODIFIED="1552774759893" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_ndef_test_serial.coverage" NAME="pytest for test_ndef.test_serial Coverage Results" MODIFIED="1552340952134" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_smplhist_test_hmac.coverage" NAME="pytest for test_smplhist.test_hmac Coverage Results" MODIFIED="1552764115523" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_ndef_test_timeinterval.coverage" NAME="pytest for test_ndef.test_timeinterval Coverage Results" MODIFIED="1551225390823" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encodertb" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_encodertb_test_ndef_test_serial.coverage" NAME="pytest for encodertb.test_ndef.test_serial Coverage Results" MODIFIED="1551294603501" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
-    <SUITE FILE_PATH="coverage/PSCodec$Unittests_for_tests_sampletest_SampleTest.coverage" NAME="Unittests for tests.sampletest.SampleTest Coverage Results" MODIFIED="1551223376162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
-    <SUITE FILE_PATH="coverage/PSCodec$pytest_for_encodertb_test_ndef_test_check.coverage" NAME="pytest for encodertb.test_ndef.test_check Coverage Results" MODIFIED="1551298963337" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
-    <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_ndef_test_calclen.coverage" NAME="pytest for test_ndef.test_calclen Coverage Results" MODIFIED="1552351142097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_smplhist_test_md5.coverage" NAME="pytest for test_smplhist.test_md5 Coverage Results" MODIFIED="1552764112533" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
-    <SUITE FILE_PATH="coverage/PSCodec$pytest_in_test_ndef_py.coverage" NAME="pytest in test_ndef.py Coverage Results" MODIFIED="1552765227546" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_ndef_test_baseurl.coverage" NAME="pytest for test_ndef.test_baseurl Coverage Results" MODIFIED="1552765000446" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
-    <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_smplhist_test_buffer_load.coverage" NAME="pytest for test_smplhist.test_buffer_load Coverage Results" MODIFIED="1552748809307" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
     <SUITE FILE_PATH="coverage/PSCodec$test_ndef.coverage" NAME="test_ndef Coverage Results" MODIFIED="1551225174403" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encodertb" />
-    <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_ndef_test_circbuf_length.coverage" NAME="pytest for test_ndef.test_circbuf_length Coverage Results" MODIFIED="1551225404712" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encodertb" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_smplhist_test_hmac_fail.coverage" NAME="pytest for test_smplhist.test_hmac_fail Coverage Results" MODIFIED="1552764380520" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
-    <SUITE FILE_PATH="coverage/PSCodec$pytest_for_encodertb_test_ndef_test_timeinterval.coverage" NAME="pytest for encodertb.test_ndef.test_timeinterval Coverage Results" MODIFIED="1551298426325" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/encoder/pyencoder/c_encoder/sample.c">
+        <entry file="file://$PROJECT_DIR$/encoder/test_ndef.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-903">
-              <caret line="13" column="94" selection-start-line="13" selection-start-column="94" selection-end-line="13" selection-end-column="102" />
+            <state relative-caret-position="-123">
+              <caret line="56" column="42" lean-forward="true" selection-start-line="56" selection-start-column="42" selection-end-line="56" selection-end-column="42" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/encoder/test_trhsample.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -52,17 +86,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/encoder/test_smplhist.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1387">
+            <state relative-caret-position="15">
               <caret line="1" selection-start-line="1" selection-end-line="1" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/encoder/test_ndef.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/encoder/test_tsample.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-140">
-              <caret line="56" column="42" lean-forward="true" selection-start-line="56" selection-start-column="42" selection-end-line="56" selection-end-column="42" />
+            <state relative-caret-position="345">
+              <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -73,65 +107,62 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/encoder/pyencoder/instrumented.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+            <state relative-caret-position="372">
+              <caret line="126" column="61" selection-start-line="126" selection-start-column="61" selection-end-line="126" selection-end-column="61" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/histtest.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/encoder/conftest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="67" column="27" selection-start-line="67" selection-start-column="27" selection-end-line="67" selection-end-column="27" />
+            <state relative-caret-position="45">
+              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
               <folding>
-                <element signature="e#0#12#0" expanded="true" />
+                <element signature="e#0#13#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/encoder/pyencoder/c_encoder/defs.h">
+        <entry file="file://$PROJECT_DIR$/decoder/urldecoder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="22" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="22" />
+            <state relative-caret-position="213">
+              <caret line="43" column="23" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/encoder/pyencoder/c_encoder/smplhist.h">
+        <entry file="file://$PROJECT_DIR$/decoder/tdecoder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
+            <state relative-caret-position="399">
+              <caret line="37" selection-start-line="37" selection-end-line="37" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/encoder/pyencoder/c_encoder/smplhist.c">
+        <entry file="file://$PROJECT_DIR$/decoder/decoder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-492">
-              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="173">
+              <caret line="129" column="34" selection-start-line="129" selection-start-column="32" selection-end-line="129" selection-end-column="34" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/encoder/pyencoder/smplhist_builder.py">
+        <entry file="file://$PROJECT_DIR$/tests/sampletest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="44" selection-start-line="2" selection-start-column="44" selection-end-line="2" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/encoder/pyencoder/c_encoder/sample.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="225">
+              <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -166,7 +197,10 @@
       <find>'='</find>
       <find>populate_buffer</find>
       <find>qlenblks</find>
+      <find>push</find>
       <find>checkfixture</find>
+      <find>-1</find>
+      <find>print</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -175,11 +209,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Pipfile" />
-        <option value="$PROJECT_DIR$/tests/sampletest.py" />
-        <option value="$PROJECT_DIR$/tests/trhsampletest.py" />
-        <option value="$PROJECT_DIR$/tests/testharness.py" />
-        <option value="$PROJECT_DIR$/encodertb/pytest.ini" />
         <option value="$PROJECT_DIR$/encodertb/pyencoder/pytest.ini" />
         <option value="$PROJECT_DIR$/pytest.ini" />
         <option value="$PROJECT_DIR$/encodertb/__init__.py" />
@@ -222,14 +251,20 @@
         <option value="$PROJECT_DIR$/encoder/pyencoder/c_encoder/ndef.h" />
         <option value="$PROJECT_DIR$/encoder/pyencoder/c_encoder/ndef.c" />
         <option value="$PROJECT_DIR$/encoder/pyencoder/c_encoder/smplhist.c" />
-        <option value="$PROJECT_DIR$/encoder/pyencoder/instrumented.py" />
         <option value="$PROJECT_DIR$/encoder/test_smplhist.py" />
         <option value="$PROJECT_DIR$/encoder/test_ndef.py" />
+        <option value="$PROJECT_DIR$/encoder/conf.py" />
+        <option value="$PROJECT_DIR$/encoder/util.py" />
+        <option value="$PROJECT_DIR$/encoder/test_sample.py" />
+        <option value="$PROJECT_DIR$/encoder/pyencoder/instrumented.py" />
+        <option value="$PROJECT_DIR$/decoder/tdecoder.py" />
+        <option value="$PROJECT_DIR$/encoder/test_tsample.py" />
+        <option value="$PROJECT_DIR$/encoder/conftest.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1985" />
+    <option name="x" value="1925" />
     <option name="y" value="23" />
     <option name="width" value="1920" />
     <option name="height" value="1001" />
@@ -250,20 +285,12 @@
             <path>
               <item name="PSCodec" type="b2602c69:ProjectViewProjectNode" />
               <item name="PSCodec" type="462c0819:PsiDirectoryNode" />
-              <item name="encoder" type="462c0819:PsiDirectoryNode" />
+              <item name="decoder" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="PSCodec" type="b2602c69:ProjectViewProjectNode" />
               <item name="PSCodec" type="462c0819:PsiDirectoryNode" />
               <item name="encoder" type="462c0819:PsiDirectoryNode" />
-              <item name="pyencoder" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PSCodec" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PSCodec" type="462c0819:PsiDirectoryNode" />
-              <item name="encoder" type="462c0819:PsiDirectoryNode" />
-              <item name="pyencoder" type="462c0819:PsiDirectoryNode" />
-              <item name="c_encoder" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="PSCodec" type="b2602c69:ProjectViewProjectNode" />
@@ -307,10 +334,12 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/urldecoder" />
       <recent name="$PROJECT_DIR$/encoder/pyencoder" />
       <recent name="$PROJECT_DIR$/encoder" />
       <recent name="$PROJECT_DIR$/encodertb/pyencoder" />
@@ -335,8 +364,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.pytest in test_smplhist.py">
-    <configuration name="pytest for test_ndef.test_baseurl" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.pytest in test_tsample.py">
+    <configuration name="pytest for test_tsample.test_lists_equal" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="PSCodec" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -348,39 +377,7 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_ndef.test_baseurl&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest for test_smplhist.test_hmac" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="PSCodec" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/encoder" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_smplhist.test_hmac&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest for test_smplhist.test_hmac_fail" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="PSCodec" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/encoder" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_smplhist.test_hmac_fail&quot;" />
+      <option name="_new_target" value="&quot;test_tsample.test_lists_equal&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -432,21 +429,53 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="pytest in test_trhsample.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="PSCodec" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/encoder" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/encoder/test_trhsample.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in test_tsample.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="PSCodec" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/encoder" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/encoder/test_tsample.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python tests.pytest in encodertb" />
+      <item itemvalue="Python tests.pytest for test_tsample.test_lists_equal" />
+      <item itemvalue="Python tests.pytest in test_tsample.py" />
       <item itemvalue="Python tests.pytest in test_ndef.py" />
+      <item itemvalue="Python tests.pytest in test_trhsample.py" />
       <item itemvalue="Python tests.pytest in test_smplhist.py" />
-      <item itemvalue="Python tests.pytest for test_smplhist.test_hmac" />
-      <item itemvalue="Python tests.pytest for test_smplhist.test_hmac_fail" />
-      <item itemvalue="Python tests.pytest for test_ndef.test_baseurl" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.pytest in test_tsample.py" />
         <item itemvalue="Python tests.pytest in test_smplhist.py" />
+        <item itemvalue="Python tests.pytest in test_trhsample.py" />
         <item itemvalue="Python tests.pytest in test_ndef.py" />
-        <item itemvalue="Python tests.pytest for test_ndef.test_baseurl" />
-        <item itemvalue="Python tests.pytest for test_smplhist.test_hmac_fail" />
-        <item itemvalue="Python tests.pytest for test_smplhist.test_hmac" />
+        <item itemvalue="Python tests.pytest for test_tsample.test_lists_equal" />
       </list>
     </recent_temporary>
   </component>
@@ -462,44 +491,44 @@
       <updated>1551220874720</updated>
       <workItem from="1551220882124" duration="1619000" />
       <workItem from="1551222684246" duration="40890000" />
-      <workItem from="1551705049784" duration="45948000" />
+      <workItem from="1551705049784" duration="55073000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="pytest_for_test_ndef_test_baseurl - 2019.03.16 at 19h 35m 20s.xml">
-      <configuration name="pytest for test_ndef.test_baseurl" configurationId="tests" />
+    <history-entry file="pytest_for_test_tsample_test_lists_equal - 2019.03.16 at 22h 17m 50s.xml">
+      <configuration name="pytest for test_tsample.test_lists_equal" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_ndef_test_baseurl - 2019.03.16 at 19h 35m 33s.xml">
-      <configuration name="pytest for test_ndef.test_baseurl" configurationId="tests" />
+    <history-entry file="pytest_for_test_tsample_test_lists_equal - 2019.03.16 at 22h 18m 28s.xml">
+      <configuration name="pytest for test_tsample.test_lists_equal" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_ndef_test_baseurl - 2019.03.16 at 19h 36m 38s.xml">
-      <configuration name="pytest for test_ndef.test_baseurl" configurationId="tests" />
+    <history-entry file="pytest_in_encoder - 2019.03.16 at 22h 18m 37s.xml">
+      <configuration name="pytest in encoder" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_ndef_test_baseurl - 2019.03.16 at 19h 36m 39s.xml">
-      <configuration name="pytest for test_ndef.test_baseurl" configurationId="tests" />
+    <history-entry file="pytest_in_encoder - 2019.03.16 at 22h 18m 52s.xml">
+      <configuration name="pytest in encoder" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_for_test_ndef_test_baseurl - 2019.03.16 at 19h 36m 41s.xml">
-      <configuration name="pytest for test_ndef.test_baseurl" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_in_test_ndef_py - 2019.03.16 at 19h 36m 43s.xml">
+    <history-entry file="pytest_in_test_ndef_py - 2019.03.16 at 22h 19m 13s.xml">
       <configuration name="pytest in test_ndef.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_in_test_ndef_py - 2019.03.16 at 19h 40m 28s.xml">
-      <configuration name="pytest in test_ndef.py" configurationId="tests" />
+    <history-entry file="pytest_in_test_sample_py - 2019.03.16 at 22h 19m 17s.xml">
+      <configuration name="pytest in test_sample.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_in_test_smplhist_py - 2019.03.16 at 19h 40m 33s.xml">
+    <history-entry file="pytest_in_test_smplhist_py - 2019.03.16 at 22h 19m 20s.xml">
       <configuration name="pytest in test_smplhist.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_in_test_smplhist_py - 2019.03.16 at 19h 40m 39s.xml">
-      <configuration name="pytest in test_smplhist.py" configurationId="tests" />
+    <history-entry file="pytest_in_test_tsample_py - 2019.03.16 at 22h 19m 23s.xml">
+      <configuration name="pytest in test_tsample.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="pytest_in_test_smplhist_py - 2019.03.16 at 19h 40m 55s.xml">
-      <configuration name="pytest in test_smplhist.py" configurationId="tests" />
+    <history-entry file="pytest_in_test_tsample_py - 2019.03.16 at 22h 20m 03s.xml">
+      <configuration name="pytest in test_tsample.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_test_tsample_py - 2019.03.16 at 22h 20m 05s.xml">
+      <configuration name="pytest in test_tsample.py" configurationId="tests" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88457000" />
+    <option name="totallyTimeSpent" value="97582000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -511,15 +540,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1985" y="23" width="1920" height="1001" extended-state="0" />
-    <editor active="true" />
+    <frame x="1925" y="23" width="1920" height="1001" extended-state="0" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2550586" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32893288" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32893288" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32893288" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39933994" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -528,7 +556,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32893288" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32893288" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32893288" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -541,47 +569,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/_fake_defines.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2520" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/_fake_typedefs.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="29" lean-forward="true" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/encoder/pyencoder/c_encoder/nvtype.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/encoder/pyencoder/c_encoder/md5.h">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_doc_build/html/docs/reference/encoder.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yacctab.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/reference/urldecoder.rst">
-      <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.rst">
-      <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MANIFEST.in">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="49" selection-start-line="1" selection-start-column="49" selection-end-line="1" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.virtualenvs/PSCodec/lib/python3.6/site-packages/cffi/api.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
@@ -681,36 +668,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/encoder/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/encoder/pyencoder/eeprom.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="51" column="8" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/trhsampletest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="45" selection-start-line="14" selection-start-column="45" selection-end-line="14" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/testharness.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1545">
-          <caret line="103" column="37" selection-start-line="103" selection-start-column="37" selection-end-line="103" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/encoder/pyencoder/ndef_builder.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -718,33 +675,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/encoder/pyencoder/sample_builder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="5" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/encoder/pyencoder/octet_builder.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/encoder/pyencoder/builder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="50" lean-forward="true" selection-start-line="19" selection-start-column="50" selection-end-line="19" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/sampletest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -779,13 +713,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/encoder/pyencoder/smplhist_builder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="44" selection-start-line="2" selection-start-column="44" selection-end-line="2" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/encoder/pyencoder/c_encoder/defs.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -807,13 +734,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/encoder/pyencoder/instrumented.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/histtest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="248">
@@ -824,17 +744,156 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/encoder/test_smplhist.py">
+    <entry file="file://$PROJECT_DIR$/encoder/pyencoder/builder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1387">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        <state relative-caret-position="285">
+          <caret line="19" column="50" lean-forward="true" selection-start-line="19" selection-start-column="50" selection-end-line="19" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/testharness.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/encoder/pyencoder/smplhist_builder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="44" selection-start-line="2" selection-start-column="44" selection-end-line="2" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/encoder/pyencoder/sample_builder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="5" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/trhsampletest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="4" lean-forward="true" selection-start-line="6" selection-start-column="4" selection-end-line="10" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/urldecoder/LICENSE">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file:///usr/local/Cellar/python/3.6.5/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/case.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="839" column="8" selection-start-line="839" selection-start-column="8" selection-end-line="839" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/encoder/pyencoder/eeprom.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="554">
+          <caret line="59" column="8" selection-start-line="59" selection-start-column="8" selection-end-line="59" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/encoder/util.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/encoder/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/decoder/urldecoder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="43" column="23" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/sampletest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/encoder/test_ndef.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-140">
+        <state relative-caret-position="-123">
           <caret line="56" column="42" lean-forward="true" selection-start-line="56" selection-start-column="42" selection-end-line="56" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/encoder/pyencoder/instrumented.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="126" column="61" selection-start-line="126" selection-start-column="61" selection-end-line="126" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/decoder/decoder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="129" column="34" selection-start-line="129" selection-start-column="32" selection-end-line="129" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/decoder/tdecoder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/encoder/test_tsample.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/encoder/test_smplhist.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/encoder/test_trhsample.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/encoder/conftest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>

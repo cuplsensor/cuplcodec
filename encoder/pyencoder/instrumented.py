@@ -13,13 +13,14 @@ class InstrumentedBase(object):
                  baseurl,
                  serial,
                  secretkey,
-                 smplintervalmins):
+                 smplintervalmins,
+                 version='1'):
         self.secretkey = secretkey
         self.ffimodule = ffimodule
         self.ffimodule.lib.nv.serial = serial.encode('ascii')
         self.ffimodule.lib.nv.seckey = secretkey.encode('ascii')
         self.ffimodule.lib.nv.baseurl = baseurl.encode('ascii')
-        self.ffimodule.lib.nv.version = '1'.encode('ascii')
+        self.ffimodule.lib.nv.version = version.encode('ascii')
         smplintbytes = pack("<H", smplintervalmins)
         self.ffimodule.lib.nv.smplintervalmins = smplintbytes
         self.eepromba = eeprom.Eeprom(64)
@@ -79,8 +80,9 @@ class InstrumentedSample(InstrumentedBase):
                  baseurl='plotsensor.com',
                  serial='AAAACCCC',
                  secretkey='AAAACCCC',
-                 smplintervalmins=12):
-        super(InstrumentedSample, self).__init__(samplepy, baseurl, serial, secretkey, smplintervalmins)
+                 smplintervalmins=12,
+                 version='1'):
+        super(InstrumentedSample, self).__init__(samplepy, baseurl, serial, secretkey, smplintervalmins, version)
 
         @self.ffimodule.ffi.def_extern()
         def prng_getrandom(lenbits):
@@ -113,9 +115,8 @@ class InstrumentedSampleT(InstrumentedSample):
                  secretkey='AAAACCCC',
                  baseurl='plotsensor.com',
                  smplintervalmins=12):
-        super(InstrumentedSampleT, self).__init__(baseurl, serial, secretkey, smplintervalmins)
-        temponly = True
-        self.ffimodule.lib.sample_init(0, False, temponly)
+        super(InstrumentedSampleT, self).__init__(baseurl, serial, secretkey, smplintervalmins, version='2')
+        self.ffimodule.lib.sample_init(0, False)
 
     def pushsamples(self, num):
         inlist = list()
@@ -135,8 +136,7 @@ class InstrumentedSampleTRH(InstrumentedSample):
                  smplintervalmins=12
                  ):
         super(InstrumentedSampleTRH, self).__init__(baseurl, serial, secretkey, smplintervalmins)
-        temponly = False
-        self.ffimodule.lib.sample_init(0, False, temponly);
+        self.ffimodule.lib.sample_init(0, False);
 
     def pushsamples(self, num):
         inlist = list()
