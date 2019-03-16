@@ -1,7 +1,7 @@
 import pytest
 from base64 import urlsafe_b64decode
 from encoder.pyencoder.instrumented import InstrumentedNDEF
-from urldecoder.urldecoder import UrlDecoder
+from decoder.urldecoder import UrlDecoder
 from urllib.parse import urlparse
 
 INPUT_SERIAL = 'abcdabcd'

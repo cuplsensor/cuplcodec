@@ -1,5 +1,5 @@
 from .testharness import *
-from ..urldecoder.urldecoder import UrlDecoder
+from ..decoder.urldecoder import UrlDecoder
 
 class SampleTest(unittest.TestCase):
     def setUp(self, secretkey):

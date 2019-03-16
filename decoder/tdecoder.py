@@ -35,7 +35,7 @@ class TDecoder(Decoder):
             temp = ((tempMsb << 4) | tempLsb)
             rh = ((rhMsb << 4) | rhLsb)
 
-            if (rh != -1):
+            if rh != 4095:
                 temp2 = (rh * 165)/4096 - 40
                 decsmpls.append({'temp':temp2})
 
