@@ -25,5 +25,10 @@ typedef struct md5len
 int smplhist_ovr(sdchars_t sample);
 int smplhist_push(sdchars_t sample);
 md5len_t smplhist_md5(int lensmpls, bool usehmac);
+sdchars_t smplhist_read(unsigned int index, int * error);
+
+#ifndef NOT_CFFI
+const int buflensamples;
+#endif
 
 #endif //_SMPLHIST_H_

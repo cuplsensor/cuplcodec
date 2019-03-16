@@ -5,15 +5,15 @@
 
 extern nv_t nv;
 
-int buflensamples = BUFLEN_SAMPLES;
+const int buflensamples = BUFLEN_SAMPLES;
 static sdchars_t samplehistory[BUFLEN_SAMPLES];
 static int histpos = 0;
 static unsigned char md5block[64];
-//char secretkey[] = "AAAACCCC";
 static const char ipadchar = 0x36;
 static const char opadchar = 0x5C;
 static MD5_CTX ctx;
 static int prevhistpos;
+
 
 int smplhist_ovr(sdchars_t sample)
 {
@@ -39,7 +39,7 @@ int smplhist_push(sdchars_t sample)
   return 0;
 }
 
-static sdchars_t smplhist_read(unsigned int index, int * error)
+sdchars_t smplhist_read(unsigned int index, int * error)
 {
     int readpos;
     sdchars_t sample;
