@@ -26,6 +26,7 @@ int octet_write(OctInd_t octetindex, char * octetdata); // Octet pos is 0, 1, 2,
 int octet_movecursor(void);
 void octet_restore(void);
 OctState_t octet_getstate(void);
+int octet_getcursorpos(void);
 
 // write, write, write, commit4, getnext
 // read4, write, write, write, commit4, write, write, write, commit4,

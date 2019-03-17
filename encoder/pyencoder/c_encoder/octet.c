@@ -151,6 +151,11 @@ int octet_movecursor(void)
   return 0;
 }
 
+int octet_getcursorpos(void)
+{
+    return _nextblk;
+}
+
 OctState_t octet_getstate(void)
 {
   return _octetstate;

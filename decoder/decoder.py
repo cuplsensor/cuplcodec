@@ -69,8 +69,7 @@ class Decoder(MsgAuth):
 
         decmarkerbytes = base64.urlsafe_b64decode(endmarker)
         decmarker = int.from_bytes(decmarkerbytes, byteorder='little')
-        prnumber = decmarker >> 6 # Select upper 10 bits.
-        minuteoffset = decmarker & 0x003F # Select lower 6 bits.
+        minuteoffset = decmarker
 
         smplcounter = 0
         smplcount = 0;
@@ -81,8 +80,8 @@ class Decoder(MsgAuth):
         linbuf8 = list()
 
         # Linearise the circular buffer.
-        circbufstart = list(self.chunkstring(splitend[0],4))
-        circbufend = list(self.chunkstring(splitend[1],4))
+        circbufstart = list(self.chunkstring(splitend[0], 4))
+        circbufend = list(self.chunkstring(splitend[1], 4))
 
         cursorpos = len(circbufstart)
 
@@ -154,7 +153,6 @@ class Decoder(MsgAuth):
         self.rawsmpls = samplelist
         self.rawsmplcount = smplcount
         self.cursorpos = cursorpos
-        self.prn = prnumber
         self.minuteoffset = minuteoffset
         self.timestamp = datetime.utcnow() - timedelta(minutes=self.minuteoffset)
 
