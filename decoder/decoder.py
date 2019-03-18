@@ -61,6 +61,8 @@ class Decoder(MsgAuth):
         # Split query string at the end of the endstop marker.
         splitend = encstr.split('~')
 
+        endmarkerpos = len(splitend[0])
+
         # Extract the rest of the 4 byte endstop marker xxx~. Replace the marker with '='
         # to make this valid base64.
         # https://stackoverflow.com/questions/7983820/get-the-last-4-characters-of-a-string
@@ -72,7 +74,7 @@ class Decoder(MsgAuth):
         minuteoffset = decmarker
 
         smplcounter = 0
-        smplcount = 0;
+        smplcount = 0
 
         endbuf = list()
         declist = list()
@@ -82,8 +84,6 @@ class Decoder(MsgAuth):
         # Linearise the circular buffer.
         circbufstart = list(self.chunkstring(splitend[0], 4))
         circbufend = list(self.chunkstring(splitend[1], 4))
-
-        cursorpos = len(circbufstart)
 
         linbuf = circbufend + circbufstart
 
@@ -152,7 +152,7 @@ class Decoder(MsgAuth):
 
         self.rawsmpls = samplelist
         self.rawsmplcount = smplcount
-        self.cursorpos = cursorpos
+        self.endmarkerpos = endmarkerpos
         self.minuteoffset = minuteoffset
         self.timestamp = datetime.utcnow() - timedelta(minutes=self.minuteoffset)
 

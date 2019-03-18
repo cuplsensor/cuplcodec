@@ -6,12 +6,14 @@ from urllib.parse import urlparse
 
 INPUT_SERIAL = 'abcdabcd'
 INPUT_TIMEINT = 12
-INPUT_SECKEY = 'AAAABBBB'
+INPUT_SECKEY = 'AAAABBBBCCCCDDDD'
 INPUT_STATUSB64 = 'MDAwMDAw'
 INPUT_CBUFLENBLKS = 32
 
 @pytest.fixture(scope="function",
-                params=["plotsensor.com", "toastersrg.plotsensor.com"])
+                params=["plotsensor.com",
+                        "toastersrg.plotsensor.com",
+                        "0202u390ur2309323232223233232u20392039209302.plotsensor.com"])
 def instr_ndef(request):
     ndefobj = InstrumentedNDEF(baseurl=request.param, serial=INPUT_SERIAL, secretkey=INPUT_SECKEY, smplintervalmins=INPUT_TIMEINT)
     ndefobj.baseurl = request.param

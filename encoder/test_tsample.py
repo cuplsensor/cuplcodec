@@ -3,7 +3,7 @@ from encoder.pyencoder.instrumented import InstrumentedSampleT
 
 INPUT_SERIAL = 'abcdabcd'
 INPUT_TIMEINT = 12
-INPUT_SECKEY = 'AAAACCCC'
+INPUT_SECKEY = 'AAAABBBBCCCCDDDD'
 INPUT_STATUSB64 = 'MDAwMDAw'
 INPUT_CBUFLENBLKS = 32
 
@@ -11,7 +11,7 @@ PADDING = 2
 
 
 @pytest.fixture(scope="function",
-                params=[{'baseurl': "plotsensor.com", 'secretkey': "AAAACCCC"}
+                params=[{'baseurl': "plotsensor.com", 'secretkey': INPUT_SECKEY}
                         ])
 def instr_sample(request):
     return InstrumentedSampleT(baseurl=request.param['baseurl'],

@@ -18,7 +18,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="URL Encoder Reference" href="encoder.html" />
-    <link rel="prev" title="Test" href="../tutorial/test.html" />
+    <link rel="prev" title="Install" href="../tutorial/test.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -38,8 +38,8 @@
   <div class="section" id="url-decoder-reference">
 <h1>URL Decoder Reference<a class="headerlink" href="#url-decoder-reference" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="urldecoder.urldecoder.UrlDecoder">
-<em class="property">class </em><code class="descclassname">urldecoder.urldecoder.</code><code class="descname">UrlDecoder</code><span class="sig-paren">(</span><em>secretkey</em>, <em>statb64</em>, <em>timeintb64</em>, <em>circb64</em>, <em>ver</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/urldecoder/urldecoder.html#UrlDecoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#urldecoder.urldecoder.UrlDecoder" title="Permalink to this definition">¶</a></dt>
+<dt id="decoder.urldecoder.UrlDecoder">
+<em class="property">class </em><code class="descclassname">decoder.urldecoder.</code><code class="descname">UrlDecoder</code><span class="sig-paren">(</span><em>secretkey</em>, <em>statb64</em>, <em>timeintb64</em>, <em>circb64</em>, <em>ver</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/decoder/urldecoder.html#UrlDecoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#decoder.urldecoder.UrlDecoder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct a UrlDecoder object</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -54,8 +54,8 @@
 </tbody>
 </table>
 <dl class="method">
-<dt id="urldecoder.urldecoder.UrlDecoder.getarg">
-<code class="descname">getarg</code><span class="sig-paren">(</span><em>arg</em>, <em>reqargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/urldecoder/urldecoder.html#UrlDecoder.getarg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#urldecoder.urldecoder.UrlDecoder.getarg" title="Permalink to this definition">¶</a></dt>
+<dt id="decoder.urldecoder.UrlDecoder.getarg">
+<code class="descname">getarg</code><span class="sig-paren">(</span><em>arg</em>, <em>reqargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/decoder/urldecoder.html#UrlDecoder.getarg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#decoder.urldecoder.UrlDecoder.getarg" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a parameter by name from a list of query string parameters.</p>
 <p>Raises an error if no key is found.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -79,8 +79,8 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="urldecoder.urldecoder.UrlDecoder.timeinterval">
-<code class="descname">timeinterval</code><span class="sig-paren">(</span><em>enctimeint</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/urldecoder/urldecoder.html#UrlDecoder.timeinterval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#urldecoder.urldecoder.UrlDecoder.timeinterval" title="Permalink to this definition">¶</a></dt>
+<dt id="decoder.urldecoder.UrlDecoder.timeinterval">
+<code class="descname">timeinterval</code><span class="sig-paren">(</span><em>enctimeint</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/decoder/urldecoder.html#UrlDecoder.timeinterval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#decoder.urldecoder.UrlDecoder.timeinterval" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the time interval in minutes from a URL parameter.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -99,8 +99,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="urldecoder.urldecoder.TDecoder">
-<em class="property">class </em><code class="descclassname">urldecoder.urldecoder.</code><code class="descname">TDecoder</code><span class="sig-paren">(</span><em>encstr</em>, <em>timestamped</em>, <em>timeintminutes</em>, <em>secretkey</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/urldecoder/tdecoder.html#TDecoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#urldecoder.urldecoder.TDecoder" title="Permalink to this definition">¶</a></dt>
+<dt id="decoder.tdecoder.TDecoder">
+<em class="property">class </em><code class="descclassname">decoder.tdecoder.</code><code class="descname">TDecoder</code><span class="sig-paren">(</span><em>encstr</em>, <em>timestamped</em>, <em>timeintminutes</em>, <em>secretkey</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/decoder/tdecoder.html#TDecoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#decoder.tdecoder.TDecoder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extracts temperature samples from the circular buffer.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -119,8 +119,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="urldecoder.urldecoder.HTDecoder">
-<em class="property">class </em><code class="descclassname">urldecoder.urldecoder.</code><code class="descname">HTDecoder</code><span class="sig-paren">(</span><em>encstr</em>, <em>timestamped</em>, <em>timeintminutes</em>, <em>secretkey</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/urldecoder/htdecoder.html#HTDecoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#urldecoder.urldecoder.HTDecoder" title="Permalink to this definition">¶</a></dt>
+<dt id="decoder.htdecoder.HTDecoder">
+<em class="property">class </em><code class="descclassname">decoder.htdecoder.</code><code class="descname">HTDecoder</code><span class="sig-paren">(</span><em>encstr</em>, <em>timestamped</em>, <em>timeintminutes</em>, <em>secretkey</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/decoder/htdecoder.html#HTDecoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#decoder.htdecoder.HTDecoder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extracts samples containing 2 measurands (temperature and humidity) from the circular buffer.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -139,8 +139,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="urldecoder.decoder.Decoder">
-<em class="property">class </em><code class="descclassname">urldecoder.decoder.</code><code class="descname">Decoder</code><span class="sig-paren">(</span><em>encstr</em>, <em>secretkey</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/urldecoder/decoder.html#Decoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#urldecoder.decoder.Decoder" title="Permalink to this definition">¶</a></dt>
+<dt id="decoder.decoder.Decoder">
+<em class="property">class </em><code class="descclassname">decoder.decoder.</code><code class="descname">Decoder</code><span class="sig-paren">(</span><em>encstr</em>, <em>secretkey</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/decoder/decoder.html#Decoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#decoder.decoder.Decoder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extract raw sample data from the circular buffer</p>
 <p>First the endstop marker is found, which is the character ‘~’.</p>
 <p>Next the marker is replaced with ‘=’ and combined with the 3 bytes preceeding it.
@@ -199,7 +199,7 @@ that whatever generated the encoded list of samples must have the secret key.</p
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">PSCodec</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/encoder.html">Encoder</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/decoder.html">Decoder</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorial/test.html">Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/test.html">Install</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">URL Decoder Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="encoder.html">URL Encoder Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pyencoder.html">Python Wrapped Encoder (PyEncoder) Reference</a></li>
@@ -209,7 +209,7 @@ that whatever generated the encoded list of samples must have the secret key.</p
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="../tutorial/test.html" title="previous chapter">Test</a></li>
+      <li>Previous: <a href="../tutorial/test.html" title="previous chapter">Install</a></li>
       <li>Next: <a href="encoder.html" title="next chapter">URL Encoder Reference</a></li>
   </ul></li>
 </ul>

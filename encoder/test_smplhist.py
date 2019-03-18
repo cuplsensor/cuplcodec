@@ -6,7 +6,7 @@ import hashlib
 
 INPUT_SERIAL = 'abcdabcd'
 INPUT_TIMEINT = 12
-INPUT_SECKEY = 'AAAACCCC'
+INPUT_SECKEY = 'AAAABBBBCCCCDDDD'
 INPUT_STATUSB64 = 'MDAwMDAw'
 INPUT_CBUFLENBLKS = 32
 
@@ -14,10 +14,10 @@ PADDING = 2
 
 
 @pytest.fixture(scope="function",
-                params=[{'baseurl': "plotsensor.com", 'secretkey': "AAAACCCC"},
-                        {'baseurl': "toastersrg.plotsensor.com", 'secretkey': "AAAABBBB"},
-                        {'baseurl': "plotsensor.com", 'secretkey': "masf3492"},
-                        {'baseurl': "plotsensor.com", 'secretkey': "42r32234"}
+                params=[{'baseurl': "plotsensor.com", 'secretkey': "AAAACCCCDDDDEEEE"},
+                        {'baseurl': "toastersrg.plotsensor.com", 'secretkey': "AAAABBBBCCCCDEDE"},
+                        {'baseurl': "plotsensor.com", 'secretkey': "masf349212345678"},
+                        {'baseurl': "plotsensor.com", 'secretkey': "42r3223355778899"}
                         ])
 def instr_smplhist(request):
     return InstrumentedSmplHist(baseurl=request.param['baseurl'],

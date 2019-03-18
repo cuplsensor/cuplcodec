@@ -10,8 +10,8 @@
 
 
 #define SERIAL_LENBYTES     8  /*!< Length of unique box serial. */
-#define SECKEY_LENBYTES     8
-#define BASEURL_LENBYTES    32
+#define SECKEY_LENBYTES     16
+#define BASEURL_LENBYTES    64
 #define SMPLINT_LENBYTES     2
 #define VERSION_LENBYTES      1
 #define INTEGERFIELD_LENBYTES   4

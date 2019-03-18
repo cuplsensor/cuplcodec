@@ -151,9 +151,10 @@ int octet_movecursor(void)
   return 0;
 }
 
-int octet_getcursorpos(void)
+int octet_getendmarkerpos(void)
 {
-    return _nextblk;
+    // When cursoroctet is ODD, the end marker byte is 8 bytes further back.
+    return (_nextblk - _startblk)*OCTETS_PER_BLK*BYTES_PER_OCTET + ENDMARKER_OFFSET_IN_ENDSTOP_1 + (_cursoroctet & 0x01)*BYTES_PER_OCTET;
 }
 
 OctState_t octet_getstate(void)

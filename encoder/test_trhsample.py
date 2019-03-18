@@ -3,7 +3,7 @@ from encoder.pyencoder.instrumented import InstrumentedSampleTRH
 
 INPUT_SERIAL = 'abcdabcd'
 INPUT_TIMEINT = 12
-INPUT_SECKEY = 'AAAACCCC'
+INPUT_SECKEY = 'AAAABBBBCCCCDDDD'
 INPUT_STATUSB64 = 'MDAwMDAw'
 INPUT_CBUFLENBLKS = 32
 
