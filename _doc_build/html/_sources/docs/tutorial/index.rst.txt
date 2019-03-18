@@ -41,8 +41,10 @@ At the provisioning stage, a random secret key is generated that is unique to ea
 it is stored both by the web application and in the sensor.
 
 The encoder computes the HMAC every time a new sample is collected (i.e. for each call of sample_push).
-When PSCodec decodes a capture, it verifies the HMAC. If this fails, an error is raised. the web application can
-respond to this by not storing the capture data and notifying the user.
+When PSCodec decodes a capture, it verifies the HMAC. If this fails an error is raised. The web application can
+respond by not storing the capture data and notifying the user with error 409.
+
+
 
 NDEF Preamble
 --------------
@@ -67,18 +69,22 @@ URL Header
 +-----------+------+------------------+-----------------------------------------------------------------------------+
 | NDEF Rec. |  Payload                                                                                              |
 +-----------+------+------+------+-------------------+-------------+-------------+-------------+--------------------+
-| Desc.     | `Base URL`_        |  `Time interval`_ | `Serial`_   | `Version`_  | Status      | CircBufferStart    |
+| Desc.     | `Base URL`_        |  `Time interval`_ | `Serial`_   | `Version`_  | `Status`_   | CircBufferStart    |
 +-----------+------+------+------+-------------------+-------------+-------------+-------------+--------------------+
-| Data      | t.plotsensor.com/  |  ?t=AWg*          | &s=YWJjZGVm | &v=01       | &x=AAABALEK | &q=                |
+| Data      | t.plotsensor.com   |  /?t=AWg*         | &s=YWJjZGVm | &v=01       | &x=AAABALEK | &q=                |
 +-----------+------+------+------+-------------------+-------------+-------------+-------------+--------------------+
 
 Base URL
 ~~~~~~~~~
 
+The URL or IP address of the web application running PSWebApp. This can be up to 64 bytes long.
+
 .. _serial:
 
 Serial
 ~~~~~~~
+
+Unique serial of the sensor. This must be 8 bytes long.
 
 Time interval
 ~~~~~~~~~~~~~~
@@ -93,6 +99,16 @@ The version parameter determines which decoder shall be used by :class:`.UrlDeco
 * :c:macro:`TEMPONLY` :class:`.TDecoder` Two temperature measurands per sample seperated by `Time interval`_.
 * :c:macro:`TEMPRH` :class:`.HTDecoder` Temperature and relative humidity measurands in a sample.
 
+Status
+~~~~~~~
+
++-------------+--------+--------+--------+--------+--------+--------+
+| Byte        | 0      | 1      | 2      | 3      | 4      | 5      |
++-------------+--------+--------+--------+--------+--------+--------+
+| Description | LoopCount       | ResetsAllTime   | BatV   | RstC   |
++-------------+-----------------+-----------------+-----------------+
+
+The status field is 6 bytes long unencoded and 8 bytes long after base64 encoding.
 
 URL Circular Buffer
 --------------------

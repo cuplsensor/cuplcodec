@@ -4,6 +4,7 @@
 #define BYTES_PER_SAMPLE    2
 #define BUFLEN_BLKS         32
 #define ENDSTOP_BLKS        1
+#define ENDMARKER_OFFSET_IN_ENDSTOP_1 7
 #define BLKSIZE 0x10
 
 

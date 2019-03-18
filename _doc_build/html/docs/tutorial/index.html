@@ -68,8 +68,8 @@ concatenating this with a secret key and then taking the MD5 of the result.</p>
 <p>At the provisioning stage, a random secret key is generated that is unique to each sensor. This is a shared secret:
 it is stored both by the web application and in the sensor.</p>
 <p>The encoder computes the HMAC every time a new sample is collected (i.e. for each call of sample_push).
-When PSCodec decodes a capture, it verifies the HMAC. If this fails, an error is raised. the web application can
-respond to this by not storing the capture data and notifying the user.</p>
+When PSCodec decodes a capture, it verifies the HMAC. If this fails an error is raised. The web application can
+respond by not storing the capture data and notifying the user with error 409.</p>
 </div>
 <div class="section" id="ndef-preamble">
 <h2>NDEF Preamble<a class="headerlink" href="#ndef-preamble" title="Permalink to this headline">¶</a></h2>
@@ -171,12 +171,12 @@ respond to this by not storing the capture data and notifying the user.</p>
 <td colspan="2"><a class="reference internal" href="#time-interval">Time interval</a></td>
 <td><a class="reference internal" href="#serial">Serial</a></td>
 <td><a class="reference internal" href="#version">Version</a></td>
-<td>Status</td>
+<td><a class="reference internal" href="#status">Status</a></td>
 <td>CircBufferStart</td>
 </tr>
 <tr class="row-even"><td>Data</td>
-<td colspan="3">t.plotsensor.com/</td>
-<td colspan="2">?t=AWg*</td>
+<td colspan="3">t.plotsensor.com</td>
+<td colspan="2">/?t=AWg*</td>
 <td>&amp;s=YWJjZGVm</td>
 <td>&amp;v=01</td>
 <td>&amp;x=AAABALEK</td>
@@ -186,9 +186,11 @@ respond to this by not storing the capture data and notifying the user.</p>
 </table>
 <div class="section" id="base-url">
 <h3>Base URL<a class="headerlink" href="#base-url" title="Permalink to this headline">¶</a></h3>
+<p>The URL or IP address of the web application running PSWebApp. This can be up to 64 bytes long.</p>
 </div>
 <div class="section" id="serial">
 <span id="id1"></span><h3>Serial<a class="headerlink" href="#serial" title="Permalink to this headline">¶</a></h3>
+<p>Unique serial of the sensor. This must be 8 bytes long.</p>
 </div>
 <div class="section" id="time-interval">
 <h3>Time interval<a class="headerlink" href="#time-interval" title="Permalink to this headline">¶</a></h3>
@@ -198,11 +200,41 @@ This is to match with the format of the minutes <a class="reference internal" hr
 </div>
 <div class="section" id="version">
 <h3>Version<a class="headerlink" href="#version" title="Permalink to this headline">¶</a></h3>
-<p>The version parameter determines which decoder shall be used by <a class="reference internal" href="../reference/urldecoder.html#urldecoder.urldecoder.UrlDecoder" title="urldecoder.urldecoder.UrlDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">UrlDecoder</span></code></a>:</p>
+<p>The version parameter determines which decoder shall be used by <a class="reference internal" href="../reference/urldecoder.html#decoder.urldecoder.UrlDecoder" title="decoder.urldecoder.UrlDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">UrlDecoder</span></code></a>:</p>
 <ul class="simple">
-<li><a class="reference internal" href="../reference/sample.html#c.TEMPONLY" title="TEMPONLY"><code class="xref c c-macro docutils literal notranslate"><span class="pre">TEMPONLY</span></code></a> <a class="reference internal" href="../reference/urldecoder.html#urldecoder.urldecoder.TDecoder" title="urldecoder.urldecoder.TDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">TDecoder</span></code></a> Two temperature measurands per sample seperated by <a class="reference internal" href="#time-interval">Time interval</a>.</li>
-<li><a class="reference internal" href="../reference/sample.html#c.TEMPRH" title="TEMPRH"><code class="xref c c-macro docutils literal notranslate"><span class="pre">TEMPRH</span></code></a> <a class="reference internal" href="../reference/urldecoder.html#urldecoder.urldecoder.HTDecoder" title="urldecoder.urldecoder.HTDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">HTDecoder</span></code></a> Temperature and relative humidity measurands in a sample.</li>
+<li><a class="reference internal" href="../reference/sample.html#c.TEMPONLY" title="TEMPONLY"><code class="xref c c-macro docutils literal notranslate"><span class="pre">TEMPONLY</span></code></a> <a class="reference internal" href="../reference/urldecoder.html#decoder.tdecoder.TDecoder" title="decoder.tdecoder.TDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">TDecoder</span></code></a> Two temperature measurands per sample seperated by <a class="reference internal" href="#time-interval">Time interval</a>.</li>
+<li><a class="reference internal" href="../reference/sample.html#c.TEMPRH" title="TEMPRH"><code class="xref c c-macro docutils literal notranslate"><span class="pre">TEMPRH</span></code></a> <a class="reference internal" href="../reference/urldecoder.html#decoder.htdecoder.HTDecoder" title="decoder.htdecoder.HTDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">HTDecoder</span></code></a> Temperature and relative humidity measurands in a sample.</li>
 </ul>
+</div>
+<div class="section" id="status">
+<h3>Status<a class="headerlink" href="#status" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Byte</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr class="row-even"><td>Description</td>
+<td colspan="2">LoopCount</td>
+<td colspan="2">ResetsAllTime</td>
+<td colspan="2">BatV   | RstC</td>
+</tr>
+</tbody>
+</table>
+<p>The status field is 6 bytes long unencoded and 8 bytes long after base64 encoding.</p>
 </div>
 </div>
 <div class="section" id="url-circular-buffer">

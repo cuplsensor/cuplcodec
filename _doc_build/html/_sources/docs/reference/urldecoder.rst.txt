@@ -1,14 +1,14 @@
 URL Decoder Reference
 ======================
 
-.. autoclass:: urldecoder.urldecoder.UrlDecoder
+.. autoclass:: decoder.urldecoder.UrlDecoder
     :members:
 
-.. autoclass:: urldecoder.urldecoder.TDecoder
+.. autoclass:: decoder.tdecoder.TDecoder
     :members:
 
-.. autoclass:: urldecoder.urldecoder.HTDecoder
+.. autoclass:: decoder.htdecoder.HTDecoder
     :members:
 
-.. autoclass:: urldecoder.decoder.Decoder
+.. autoclass:: decoder.decoder.Decoder
     :members:
