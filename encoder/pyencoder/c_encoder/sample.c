@@ -100,14 +100,14 @@ void sample_init(unsigned int stat, bool err)
  */
 static void makemarker(unsigned int minutes, char * endmarker)
 {
-    unsigned int minutesixb;
-    unsigned int randomtenb;
+    unsigned int minutesLsb;
+    unsigned int minutesMsb;
 
-    minutesixb = minutes & 0x3F; // Select lower 6 bits of the minutes field.
-    randomtenb = 5; //prng_getrandom(10);
+    minutesLsb = minutes & 0xFF; // Select lower 6 bits of the minutes field.
+    minutesMsb = minutes >> 8; //prng_getrandom(10);
 
-    *(endmarker) = minutesixb + ((randomtenb & 0x03)<<6);
-    *(endmarker + 1) = randomtenb >> 2;
+    *(endmarker) = minutesLsb;
+    *(endmarker + 1) = minutesMsb;
 }
 
 /**
