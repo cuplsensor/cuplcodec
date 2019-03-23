@@ -191,20 +191,24 @@ respond by not storing the capture data and notifying the user with error 409.</
 <div class="section" id="serial">
 <span id="id1"></span><h3>Serial<a class="headerlink" href="#serial" title="Permalink to this headline">¶</a></h3>
 <p>Unique serial of the sensor. This must be 8 bytes long.</p>
+<p>Encoder input <a class="reference internal" href="../reference/nvtype.html#_CPPv46serial" title="serial"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">serial</span></code></a></p>
 </div>
 <div class="section" id="time-interval">
 <h3>Time interval<a class="headerlink" href="#time-interval" title="Permalink to this headline">¶</a></h3>
 <p>Time interval between samples in minutes is base64 encoded. Whilst the encoded string is 4 bytes long, the last character
 must always be a padding byte (an URL safe replacement for ‘=’). Therefore the unencoded time interval can only be 2 bytes long.
 This is to match with the format of the minutes <a class="reference internal" href="#elapsed">Elapsed</a> field.</p>
+<p>Decoder output <a class="reference internal" href="../reference/urldecoder.html#decoder.v1.paramdecoder.ParamDecoder" title="decoder.v1.paramdecoder.ParamDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">paramdecoder.ParamDecoder</span></code></a>:</p>
+<p>Encoder input <a class="reference internal" href="../reference/nvtype.html#_CPPv416smplintervalmins" title="smplintervalmins"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">smplintervalmins</span></code></a></p>
 </div>
 <div class="section" id="version">
 <h3>Version<a class="headerlink" href="#version" title="Permalink to this headline">¶</a></h3>
-<p>The version parameter determines which decoder shall be used by <a class="reference internal" href="../reference/urldecoder.html#decoder.urldecoder.UrlDecoder" title="decoder.urldecoder.UrlDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">UrlDecoder</span></code></a>:</p>
+<p>The version parameter determines which <a class="reference internal" href="../reference/urldecoder.html#decoder.v1.paramdecoder.ParamDecoder" title="decoder.v1.paramdecoder.ParamDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParamDecoder</span></code></a> shall be used by <a class="reference internal" href="../reference/urldecoder.html#decoder.decoder.Decoder" title="decoder.decoder.Decoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">Decoder</span></code></a>:</p>
 <ul class="simple">
-<li><a class="reference internal" href="../reference/sample.html#c.TEMPONLY" title="TEMPONLY"><code class="xref c c-macro docutils literal notranslate"><span class="pre">TEMPONLY</span></code></a> <a class="reference internal" href="../reference/urldecoder.html#decoder.tdecoder.TDecoder" title="decoder.tdecoder.TDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">TDecoder</span></code></a> Two temperature measurands per sample seperated by <a class="reference internal" href="#time-interval">Time interval</a>.</li>
-<li><a class="reference internal" href="../reference/sample.html#c.TEMPRH" title="TEMPRH"><code class="xref c c-macro docutils literal notranslate"><span class="pre">TEMPRH</span></code></a> <a class="reference internal" href="../reference/urldecoder.html#decoder.htdecoder.HTDecoder" title="decoder.htdecoder.HTDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">HTDecoder</span></code></a> Temperature and relative humidity measurands in a sample.</li>
+<li><a class="reference internal" href="../reference/sample.html#c.TEMPONLY" title="TEMPONLY"><code class="xref c c-macro docutils literal notranslate"><span class="pre">TEMPONLY</span></code></a> <code class="xref py py-class docutils literal notranslate"><span class="pre">TDecoder</span></code> Two temperature measurands per sample seperated by <a class="reference internal" href="#time-interval">Time interval</a>.</li>
+<li><a class="reference internal" href="../reference/sample.html#c.TEMPRH" title="TEMPRH"><code class="xref c c-macro docutils literal notranslate"><span class="pre">TEMPRH</span></code></a> <code class="xref py py-class docutils literal notranslate"><span class="pre">HTDecoder</span></code> Temperature and relative humidity measurands in a sample.</li>
 </ul>
+<p>This is programmed as non-volatile parameter <code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">version</span></code>.</p>
 </div>
 <div class="section" id="status">
 <h3>Status<a class="headerlink" href="#status" title="Permalink to this headline">¶</a></h3>

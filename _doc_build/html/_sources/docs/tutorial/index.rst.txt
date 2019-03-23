@@ -86,18 +86,27 @@ Serial
 
 Unique serial of the sensor. This must be 8 bytes long.
 
+Encoder input :cpp:member:`serial`
+
 Time interval
 ~~~~~~~~~~~~~~
+
 Time interval between samples in minutes is base64 encoded. Whilst the encoded string is 4 bytes long, the last character
 must always be a padding byte (an URL safe replacement for '='). Therefore the unencoded time interval can only be 2 bytes long.
 This is to match with the format of the minutes Elapsed_ field.
 
+Decoder output :class:`.paramdecoder.ParamDecoder`:
+
+Encoder input :cpp:member:`smplintervalmins`
+
 Version
 ~~~~~~~~
-The version parameter determines which decoder shall be used by :class:`.UrlDecoder`:
+The version parameter determines which :class:`.ParamDecoder` shall be used by :class:`.Decoder`:
 
 * :c:macro:`TEMPONLY` :class:`.TDecoder` Two temperature measurands per sample seperated by `Time interval`_.
 * :c:macro:`TEMPRH` :class:`.HTDecoder` Temperature and relative humidity measurands in a sample.
+
+This is programmed as non-volatile parameter :cpp:member:`version`.
 
 Status
 ~~~~~~~

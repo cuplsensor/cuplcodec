@@ -1,6 +1,6 @@
-from .decoder import Decoder
+from .bufferdecoder import BufferDecoder
 
-class HTDecoder(Decoder):
+class HTBufferDecoder(BufferDecoder):
     """
     Extracts samples containing 2 measurands (temperature and humidity) from the circular buffer.
 
@@ -9,9 +9,6 @@ class HTDecoder(Decoder):
     encstr : str
         Circular buffer string containing samples encoded in base64.
 
-    timestamped : bool
-        Indicates whether or not to timestamp the returned samples.
-
     timeintminutes : int
         Time interval between samples in minutes.
 
@@ -19,7 +16,7 @@ class HTDecoder(Decoder):
         Secret key used to verify the source of the samples.
 
     """
-    def __init__(self, encstr, timestamped, timeintminutes, secretkey):
+    def __init__(self, encstr, timeintminutes, secretkey):
         super().__init__(encstr, secretkey)
 
         decsmpls = list()

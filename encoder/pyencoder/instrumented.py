@@ -14,7 +14,7 @@ class InstrumentedBase(object):
                  serial,
                  secretkey,
                  smplintervalmins,
-                 version='1'):
+                 version='11'):
         self.secretkey = secretkey
         self.ffimodule = ffimodule
         self.ffimodule.lib.nv.serial = serial.encode('ascii')
@@ -81,7 +81,7 @@ class InstrumentedSample(InstrumentedBase):
                  serial='AAAACCCC',
                  secretkey='AAAACCCC',
                  smplintervalmins=12,
-                 version='1'):
+                 version='11'):
         super(InstrumentedSample, self).__init__(samplepy, baseurl, serial, secretkey, smplintervalmins, version)
 
         @self.ffimodule.ffi.def_extern()
@@ -115,7 +115,7 @@ class InstrumentedSampleT(InstrumentedSample):
                  secretkey='AAAACCCC',
                  baseurl='plotsensor.com',
                  smplintervalmins=12):
-        super(InstrumentedSampleT, self).__init__(baseurl, serial, secretkey, smplintervalmins, version='2')
+        super(InstrumentedSampleT, self).__init__(baseurl, serial, secretkey, smplintervalmins, version='12')
         self.ffimodule.lib.sample_init(0, False)
 
     def pushsamples(self, num):
@@ -135,7 +135,7 @@ class InstrumentedSampleTRH(InstrumentedSample):
                  baseurl='plotsensor.com',
                  smplintervalmins=12
                  ):
-        super(InstrumentedSampleTRH, self).__init__(baseurl, serial, secretkey, smplintervalmins)
+        super(InstrumentedSampleTRH, self).__init__(baseurl, serial, secretkey, smplintervalmins, version='11')
         self.ffimodule.lib.sample_init(0, False);
 
     def pushsamples(self, num):

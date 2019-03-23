@@ -50,7 +50,7 @@
                  <span class="n">serial</span><span class="p">,</span>
                  <span class="n">secretkey</span><span class="p">,</span>
                  <span class="n">smplintervalmins</span><span class="p">,</span>
-                 <span class="n">version</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">):</span>
+                 <span class="n">version</span><span class="o">=</span><span class="s1">&#39;11&#39;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">secretkey</span> <span class="o">=</span> <span class="n">secretkey</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ffimodule</span> <span class="o">=</span> <span class="n">ffimodule</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ffimodule</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">nv</span><span class="o">.</span><span class="n">serial</span> <span class="o">=</span> <span class="n">serial</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
@@ -117,7 +117,7 @@
                  <span class="n">serial</span><span class="o">=</span><span class="s1">&#39;AAAACCCC&#39;</span><span class="p">,</span>
                  <span class="n">secretkey</span><span class="o">=</span><span class="s1">&#39;AAAACCCC&#39;</span><span class="p">,</span>
                  <span class="n">smplintervalmins</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
-                 <span class="n">version</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">):</span>
+                 <span class="n">version</span><span class="o">=</span><span class="s1">&#39;11&#39;</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">InstrumentedSample</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">samplepy</span><span class="p">,</span> <span class="n">baseurl</span><span class="p">,</span> <span class="n">serial</span><span class="p">,</span> <span class="n">secretkey</span><span class="p">,</span> <span class="n">smplintervalmins</span><span class="p">,</span> <span class="n">version</span><span class="p">)</span>
 
         <span class="nd">@self</span><span class="o">.</span><span class="n">ffimodule</span><span class="o">.</span><span class="n">ffi</span><span class="o">.</span><span class="n">def_extern</span><span class="p">()</span>
@@ -151,7 +151,7 @@
                  <span class="n">secretkey</span><span class="o">=</span><span class="s1">&#39;AAAACCCC&#39;</span><span class="p">,</span>
                  <span class="n">baseurl</span><span class="o">=</span><span class="s1">&#39;plotsensor.com&#39;</span><span class="p">,</span>
                  <span class="n">smplintervalmins</span><span class="o">=</span><span class="mi">12</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">InstrumentedSampleT</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">baseurl</span><span class="p">,</span> <span class="n">serial</span><span class="p">,</span> <span class="n">secretkey</span><span class="p">,</span> <span class="n">smplintervalmins</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">InstrumentedSampleT</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">baseurl</span><span class="p">,</span> <span class="n">serial</span><span class="p">,</span> <span class="n">secretkey</span><span class="p">,</span> <span class="n">smplintervalmins</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s1">&#39;12&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ffimodule</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">sample_init</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">pushsamples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
@@ -171,7 +171,7 @@
                  <span class="n">baseurl</span><span class="o">=</span><span class="s1">&#39;plotsensor.com&#39;</span><span class="p">,</span>
                  <span class="n">smplintervalmins</span><span class="o">=</span><span class="mi">12</span>
                  <span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">InstrumentedSampleTRH</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">baseurl</span><span class="p">,</span> <span class="n">serial</span><span class="p">,</span> <span class="n">secretkey</span><span class="p">,</span> <span class="n">smplintervalmins</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">InstrumentedSampleTRH</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">baseurl</span><span class="p">,</span> <span class="n">serial</span><span class="p">,</span> <span class="n">secretkey</span><span class="p">,</span> <span class="n">smplintervalmins</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s1">&#39;11&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ffimodule</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">sample_init</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">False</span><span class="p">);</span>
 
     <span class="k">def</span> <span class="nf">pushsamples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
