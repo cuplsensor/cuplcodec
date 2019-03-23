@@ -34,211 +34,38 @@
           <div class="body" role="main">
             
   <h1>Source code for decoder.decoder</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">base64</span>
-<span class="kn">import</span> <span class="nn">struct</span>
-<span class="kn">from</span> <span class="nn">.msgauth</span> <span class="k">import</span> <span class="n">MsgAuth</span>
-<span class="kn">from</span> <span class="nn">.exceptions</span> <span class="k">import</span> <span class="n">UrlDecoderError</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span></span><span class="kn">from</span> <span class="nn">.v1</span> <span class="k">import</span> <span class="n">ParamDecoder</span> <span class="k">as</span> <span class="n">v1ParamDecoder</span>
+<span class="kn">from</span> <span class="nn">.exceptions</span> <span class="k">import</span> <span class="n">InvalidMajorVersionError</span>
 
-<span class="k">class</span> <span class="nc">MessageIntegrityError</span><span class="p">(</span><span class="n">UrlDecoderError</span><span class="p">):</span>
-    <span class="n">errormsg</span> <span class="o">=</span> <span class="s2">&quot;MD5 checksum mismatch. Calculated MD5 = </span><span class="si">{}</span><span class="s2">, URL MD5 = </span><span class="si">{}</span><span class="s2">&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calcmd5</span><span class="p">,</span> <span class="n">urlmd5</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">calcmd5</span> <span class="o">=</span> <span class="n">calcmd5</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">urlmd5</span> <span class="o">=</span> <span class="n">urlmd5</span>
-
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">errormsg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calcmd5</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">urlmd5</span><span class="p">)</span>
-
-<div class="viewcode-block" id="Decoder"><a class="viewcode-back" href="../../docs/reference/urldecoder.html#decoder.decoder.Decoder">[docs]</a><span class="k">class</span> <span class="nc">Decoder</span><span class="p">(</span><span class="n">MsgAuth</span><span class="p">):</span>
+<div class="viewcode-block" id="Decoder"><a class="viewcode-back" href="../../docs/reference/urldecoder.html#decoder.decoder.Decoder">[docs]</a><span class="k">class</span> <span class="nc">Decoder</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Extract raw sample data from the circular buffer</span>
+<span class="sd">    Construct a Decoder object</span>
 
-<span class="sd">    First the endstop marker is found, which is the character &#39;~&#39;.</span>
-
-<span class="sd">    Next the marker is replaced with &#39;=&#39; and combined with the 3 bytes preceeding it.</span>
-<span class="sd">    These are base64 decoded to yield the minutes elapsed since the</span>
-<span class="sd">    previous sample and a psuedorandom number.</span>
-
-<span class="sd">    The circular buffer is made linear by concatenating the two parts of the buffer</span>
-<span class="sd">    either side of the end stop.</span>
-
-<span class="sd">    3 bytes are popped from the end of the linear buffer. These contain information</span>
-<span class="sd">    such as the HMAC and the number of valid samples.</span>
-
-<span class="sd">    The remaining data in the linear buffer are shaped into a list of 8 byte chunks</span>
-<span class="sd">    (these should be renamed to Octets).</span>
-
-<span class="sd">    Starting from the newest octet, each is decoded into a 6 byte chunk.</span>
-
-<span class="sd">    Either 1 or 2 (3 byte) samples are extracted from every chunk and these</span>
-<span class="sd">    are written to a list.</span>
-
-<span class="sd">    When the complete list of samples have been obtained, the HMAC checksum is</span>
-<span class="sd">    calculated. This is compared to the HMAC supplied in the URL. These two</span>
-<span class="sd">    values must match for the decoded data to be valid. If they are, it confirms</span>
-<span class="sd">    that whatever generated the encoded list of samples must have the secret key.</span>
+<span class="sd">    :ivar majorversion: initial value: par2</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    -----------</span>
-<span class="sd">    encstr</span>
-<span class="sd">        Circular buffer string containing samples and an endstop encoded as base64.</span>
-
 <span class="sd">    secretkey</span>
-<span class="sd">        Secret key used to verify that the circular buffer has originated from a trusted source.</span>
+<span class="sd">        Secret Key string.</span>
+
+<span class="sd">    **reqargs</span>
+<span class="sd">        A list of query string parameters</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">BYTES_PER_SAMPLE</span> <span class="o">=</span> <span class="mi">3</span>
-    <span class="n">SAMPLES_PER_OCTET</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">secretkey</span><span class="p">,</span> <span class="n">statb64</span><span class="p">,</span> <span class="n">timeintb64</span><span class="p">,</span> <span class="n">circb64</span><span class="p">,</span> <span class="n">ver</span><span class="p">):</span>
+        <span class="n">majorversion</span> <span class="o">=</span> <span class="n">ver</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">circformat</span> <span class="o">=</span> <span class="n">ver</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">encstr</span><span class="p">,</span> <span class="n">secretkey</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="c1"># Split query string at the end of the endstop marker.</span>
-        <span class="n">splitend</span> <span class="o">=</span> <span class="n">encstr</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;~&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">majorversion</span> <span class="o">=</span> <span class="n">majorversion</span>
 
-        <span class="n">endmarkerpos</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">splitend</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-
-        <span class="c1"># Extract the rest of the 4 byte endstop marker xxx~. Replace the marker with &#39;=&#39;</span>
-        <span class="c1"># to make this valid base64.</span>
-        <span class="c1"># https://stackoverflow.com/questions/7983820/get-the-last-4-characters-of-a-string</span>
-        <span class="n">endmarker</span> <span class="o">=</span> <span class="n">splitend</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span> <span class="o">+</span> <span class="s1">&#39;=&#39;</span>
-        <span class="n">splitend</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">splitend</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>
-
-        <span class="n">decmarkerbytes</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">urlsafe_b64decode</span><span class="p">(</span><span class="n">endmarker</span><span class="p">)</span>
-        <span class="n">decmarker</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">decmarkerbytes</span><span class="p">,</span> <span class="n">byteorder</span><span class="o">=</span><span class="s1">&#39;little&#39;</span><span class="p">)</span>
-        <span class="n">minuteoffset</span> <span class="o">=</span> <span class="n">decmarker</span>
-
-        <span class="n">smplcounter</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">smplcount</span> <span class="o">=</span> <span class="mi">0</span>
-
-        <span class="n">endbuf</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-        <span class="n">declist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-        <span class="n">samplelist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-        <span class="n">linbuf8</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-
-        <span class="c1"># Linearise the circular buffer.</span>
-        <span class="n">circbufstart</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chunkstring</span><span class="p">(</span><span class="n">splitend</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">4</span><span class="p">))</span>
-        <span class="n">circbufend</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chunkstring</span><span class="p">(</span><span class="n">splitend</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">4</span><span class="p">))</span>
-
-        <span class="n">linbuf</span> <span class="o">=</span> <span class="n">circbufend</span> <span class="o">+</span> <span class="n">circbufstart</span>
-
-        <span class="c1"># Pop the 3 bytes from the end of the buffer.</span>
-        <span class="c1"># These contain the MD5 hash and the number of valid samples</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span>
-            <span class="n">endbuf</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">linbuf</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
-        <span class="n">endbuf</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
-
-        <span class="c1"># Decode the endstop 4 bytes at a time.</span>
-        <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">endbuf</span><span class="p">:</span>
-            <span class="n">decodedchunk</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">urlsafe_b64decode</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
-            <span class="n">declist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">decodedchunk</span><span class="p">)</span>
-
-        <span class="c1"># Concatenate the decoded endstop bytes.</span>
-        <span class="n">endbytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">dec</span> <span class="k">for</span> <span class="n">dec</span> <span class="ow">in</span> <span class="n">declist</span><span class="p">])</span>
-
-        <span class="c1"># Extract the number of samples and the HMAC/MD5 checksum from the endstop.</span>
-        <span class="n">smplcountbytes</span> <span class="o">=</span> <span class="n">endbytes</span><span class="p">[</span><span class="mi">7</span><span class="p">:</span><span class="mi">9</span><span class="p">]</span>
-        <span class="n">md5bytes</span> <span class="o">=</span> <span class="n">endbytes</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span>
-        <span class="n">urlMD5</span> <span class="o">=</span> <span class="n">md5bytes</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span>
-        <span class="n">smplcount</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">&quot;&gt;H&quot;</span><span class="p">,</span> <span class="n">smplcountbytes</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-
-        <span class="c1"># Convert 4 byte chunks into 8 byte chunks.</span>
-        <span class="c1"># There should not be any 4 byte chunks left over,</span>
-        <span class="c1"># but these should be discarded.</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">linbuf</span><span class="p">)</span><span class="o">%</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">linbuf</span><span class="p">),</span> <span class="mi">2</span><span class="p">):</span>
-            <span class="n">x</span> <span class="o">=</span> <span class="n">linbuf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">linbuf</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
-            <span class="n">linbuf8</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-
-        <span class="c1"># The newest 8 byte chunk might only contain</span>
-        <span class="c1"># 1 valid sample. If so, this is a</span>
-        <span class="c1"># partial packet and it is processed first.</span>
-        <span class="n">rem</span> <span class="o">=</span> <span class="n">smplcount</span> <span class="o">%</span> <span class="n">Decoder</span><span class="o">.</span><span class="n">SAMPLES_PER_OCTET</span>
-        <span class="n">full</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">smplcount</span> <span class="o">/</span> <span class="n">Decoder</span><span class="o">.</span><span class="n">SAMPLES_PER_OCTET</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">rem</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">chunk</span> <span class="o">=</span> <span class="n">linbuf8</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-            <span class="n">smpls</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">samplesfromchunk</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">rem</span><span class="p">)</span>
-            <span class="n">samplelist</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">smpls</span><span class="p">)</span>
-
-        <span class="c1"># Process remaining full packets. These all contain 3 samples.</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">full</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-            <span class="n">chunk</span> <span class="o">=</span> <span class="n">linbuf8</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
-            <span class="n">smpls</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">samplesfromchunk</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-            <span class="n">samplelist</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">smpls</span><span class="p">)</span>
-
-        <span class="n">frame</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">()</span>
-
-        <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">samplelist</span><span class="p">:</span>
-            <span class="n">frame</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="s1">&#39;tempMsb&#39;</span><span class="p">])</span>
-            <span class="n">frame</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="s1">&#39;rhMsb&#39;</span><span class="p">])</span>
-            <span class="n">frame</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="s1">&#39;Lsb&#39;</span><span class="p">])</span>
-
-        <span class="c1"># Perform message authentication.</span>
-        <span class="n">calcMD5</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">gethash</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">secretkey</span><span class="p">,</span> <span class="s1">&#39;utf8&#39;</span><span class="p">))</span>
-
-        <span class="c1"># Truncate calculated MD5 to the same length as the URL MD5.</span>
-        <span class="n">calcMD5</span> <span class="o">=</span> <span class="n">calcMD5</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">urlMD5</span><span class="p">)]</span>
-
-        <span class="k">if</span> <span class="n">urlMD5</span> <span class="o">==</span> <span class="n">calcMD5</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">md5</span> <span class="o">=</span> <span class="n">urlMD5</span>
+        <span class="k">if</span> <span class="n">majorversion</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">v1ParamDecoder</span><span class="p">(</span><span class="n">circformat</span><span class="p">,</span> <span class="n">timeintb64</span><span class="p">,</span> <span class="n">statb64</span><span class="p">,</span> <span class="n">circb64</span><span class="p">,</span> <span class="n">secretkey</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">MessageIntegrityError</span><span class="p">(</span><span class="n">calcMD5</span><span class="p">,</span> <span class="n">urlMD5</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">rawsmpls</span> <span class="o">=</span> <span class="n">samplelist</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rawsmplcount</span> <span class="o">=</span> <span class="n">smplcount</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">endmarkerpos</span> <span class="o">=</span> <span class="n">endmarkerpos</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">minuteoffset</span> <span class="o">=</span> <span class="n">minuteoffset</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">minuteoffset</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">applytimestamp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">smpls</span><span class="p">,</span> <span class="n">timeintminutes</span><span class="p">):</span>
-        <span class="c1"># Append timestamps to each sample.</span>
-        <span class="c1"># Start by ordering samples from newest to oldest.</span>
-        <span class="c1"># The newest sample has the timestamp for now.</span>
-        <span class="c1"># Each consecutive timestamp decrements the timestamp by the</span>
-        <span class="c1"># time interval contained inside the URL.</span>
-        <span class="n">intervalminutes</span> <span class="o">=</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="n">timeintminutes</span><span class="p">)</span>   <span class="c1"># Time between samples in seconds</span>
-        <span class="n">sampleindex</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">smpl</span> <span class="ow">in</span> <span class="n">smpls</span><span class="p">:</span>
-            <span class="n">smpl</span><span class="p">[</span><span class="s1">&#39;ts&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">-</span> <span class="n">sampleindex</span> <span class="o">*</span> <span class="n">intervalminutes</span>
-            <span class="n">sampleindex</span> <span class="o">=</span> <span class="n">sampleindex</span> <span class="o">+</span> <span class="mi">1</span>
-        <span class="k">return</span> <span class="n">smpls</span>
-
-    <span class="k">def</span> <span class="nf">chunkstring</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">length</span><span class="p">):</span>
-        <span class="n">substrs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">)</span><span class="o">/</span><span class="n">length</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">string</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">length</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">),</span> <span class="n">length</span><span class="p">))</span>
-
-    <span class="c1"># Obtain samples from a 4 byte base64 chunk. Chunk should be renamed to octet here.</span>
-    <span class="k">def</span> <span class="nf">samplesfromchunk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chunk</span><span class="p">,</span> <span class="n">samplecount</span><span class="p">):</span>
-        <span class="n">chunksamples</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-        <span class="n">decodedchunk</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">urlsafe_b64decode</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">samplecount</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">Decoder</span><span class="o">.</span><span class="n">BYTES_PER_SAMPLE</span><span class="p">):</span>
-            <span class="n">tempMsb</span> <span class="o">=</span> <span class="n">decodedchunk</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-            <span class="n">rhMsb</span> <span class="o">=</span> <span class="n">decodedchunk</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
-            <span class="n">Lsb</span> <span class="o">=</span> <span class="n">decodedchunk</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span>
-
-            <span class="n">smpl</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;tempMsb&#39;</span><span class="p">:</span><span class="n">tempMsb</span><span class="p">,</span> <span class="s1">&#39;rhMsb&#39;</span><span class="p">:</span><span class="n">rhMsb</span><span class="p">,</span> <span class="s1">&#39;Lsb&#39;</span><span class="p">:</span><span class="n">Lsb</span><span class="p">}</span>
-            <span class="n">chunksamples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">smpl</span><span class="p">)</span>
-        <span class="c1"># Return newest sample first.</span>
-        <span class="n">chunksamples</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">chunksamples</span></div>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">teststr</span><span class="o">=</span><span class="s2">&quot;dxx4HHcddh12HXUddRx0HHQddB1zHHMdcxxzHXIdchxxHnEecR1xHnEfcB5wHnAdcB5vH28ebx9vH24fbh5uH24ebh5uH24gbSBuHm0gbSBtIW0gbSBtIG0hbSBsIGwhbCFtIGwgbCBsIGwgbB9sIGwfbCBsIWwhbCBsIWwfbCBsIGwgbB9sH2wfbCBsH2webSBsIGwfbCBsH2wfbCBsIGwhbCFrIGsgayBrIWsgax9qIWohaiBqIGohaiBqIGohaiFpImkhaSBpIWkhaiBuH3Iecx11HXYcdxx4Gnkaehl7GXwYfRh9GH4XfxiAF4EYgReBF4EWgRZ-F3wYexh6GXkZeRp5G3gbeBp4GXcbdxp3Gncbdxt3Gncbdxt3G3cbdxt3G3cbdxt2G3Ybdht2G3Yadht2G3YcdRx1HHUcdRt1G3UbdRt1G3UbdRt0G3QcdBt0HHQcdBx0G3QcdBt0G3QadBt0HHQadBt0HHQcdBt0G3MbcxxzHHMbcxxzHHMbcxxzHHMccxxzHHMccxtzG3MccxtzHHMccxtzHHMccxxyHHMccxxyHHIcchtyHHMbcxx0HXQddR12HXcddxx4HXgceRx6HHocexx7HHwbfBt8G30afRx8HHgbcBtwH3Qddht3G3cbdxp3Gncadxp4GngZeBl4GXgZeBh4GHgZeBkAAAAAwO5Mg9VXLgEA____MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAw&quot;</span>
-    <span class="k">def</span> <span class="nf">test</span><span class="p">():</span>
-        <span class="n">samples</span> <span class="o">=</span> <span class="n">HTDecoder</span><span class="p">()</span><span class="o">.</span><span class="n">getsamples</span><span class="p">(</span><span class="n">teststr</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">testtime</span><span class="p">():</span>
-        <span class="n">timeintb64</span> <span class="o">=</span> <span class="s2">&quot;ZZZ=&quot;</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">HTDecoder</span><span class="p">()</span><span class="o">.</span><span class="n">timeinterval</span><span class="p">(</span><span class="n">timeintb64</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="n">InvalidMajorVersionError</span></div>
 
 
 
-
-    <span class="n">test</span><span class="p">()</span>
 </pre></div>
 
           </div>

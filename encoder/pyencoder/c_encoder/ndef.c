@@ -13,7 +13,6 @@ extern nv_t nv;
 #define TIMEINTB64_LEN  4
 #define SERIALPARAM_LEN sizeof(serialparam)-1
 #define VERPARAM_LEN    sizeof(verparam)-1
-#define VERCHAR_LEN     1
 #define STATPARAM_LEN   sizeof(statparam)-1
 #define STATB64_LEN     8
 #define QPARAM_LEN      sizeof(queryparam)-1
@@ -68,7 +67,6 @@ static void ndef_createurlrecord(int * eepindex, int msglenbytes)
 
     int recordType = URL_RECORDTYPE;
     int typeLength;
-    int idLength;
 
     rheader.all = 0xD1;
     rheader.byte.chunkflag = 0;
@@ -78,7 +76,6 @@ static void ndef_createurlrecord(int * eepindex, int msglenbytes)
     rheader.byte.msgbegin = 1;
     rheader.byte.tnf = WELLKNOWN_TNF;
     typeLength = URL_RECORDTYPE_LEN;
-    idLength = 1;
 
     payloadLength.all = msglenbytes-7;
 
@@ -95,7 +92,7 @@ static void ndef_createurlrecord(int * eepindex, int msglenbytes)
 void ndef_calclen(int * paddinglen, int * preamblenbytes, int * urllen)
 {
     const int preurllen = URL_RECORD_HEADER_LEN + TLV_TYPE_LEN_LEN;
-    const int posturllen_nopadding = TIMEINTPARAM_LEN + TIMEINTB64_LEN + SERIALPARAM_LEN + SERIAL_LENBYTES + VERPARAM_LEN + VERCHAR_LEN + STATPARAM_LEN + STATB64_LEN + QPARAM_LEN;
+    const int posturllen_nopadding = TIMEINTPARAM_LEN + TIMEINTB64_LEN + SERIALPARAM_LEN + SERIAL_LENBYTES + VERPARAM_LEN + VERSION_LENBYTES + STATPARAM_LEN + STATB64_LEN + QPARAM_LEN;
 
 //    printint(*urllen);
 //    printint(*preamblenbytes);
@@ -192,7 +189,7 @@ int ndef_writepreamble(int qlenblks, char * statusb64)
       padding_remaining--;
   }
   // Append version
-  eep_cp(&eepindex, &nv.version, VERCHAR_LEN);
+  eep_cp(&eepindex, nv.version, VERSION_LENBYTES);
   // Append status header
   eep_cp(&eepindex, statparam, STATPARAM_LEN);
   // Append status data

@@ -1,5 +1,5 @@
 from .testharness import *
-from ..decoder.urldecoder import UrlDecoder
+from ..decoder.decoder import Decoder
 
 class SampleTest(unittest.TestCase):
     def setUp(self, secretkey):
@@ -8,13 +8,13 @@ class SampleTest(unittest.TestCase):
 
     def getdecodedurl(self):
         par = self.eepromba.get_url_parsedqs()
-        decodedurl = UrlDecoder(secretkey=self.secretkey, **par)
+        decodedurl = Decoder(secretkey=self.secretkey, **par)
         return decodedurl
 
     def geturllist(self):
         par = self.eepromba.get_url_parsedqs()
-        decodedurl = UrlDecoder(secretkey=self.secretkey, **par)
-        urllist = decodedurl.decoded.smpls
+        decodedurl = Decoder(secretkey=self.secretkey, **par)
+        urllist = decodedurl.buffer.smpls
         for d in urllist:
             del d['ts']
         return urllist

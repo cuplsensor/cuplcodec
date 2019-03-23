@@ -1,7 +1,7 @@
-from .decoder import Decoder
+from .bufferdecoder import BufferDecoder
 from datetime import datetime, timedelta
 
-class TDecoder(Decoder):
+class TBufferDecoder(BufferDecoder):
     """
     Extracts temperature samples from the circular buffer.
 
@@ -10,9 +10,6 @@ class TDecoder(Decoder):
     encstr : str
         Circular buffer string containing temperature samples encoded in base64.
 
-    timestamped : bool
-        Indicates whether or not to timestamp the returned samples.
-
     timeintminutes : int
         Time interval between samples in minutes.
 
@@ -20,7 +17,7 @@ class TDecoder(Decoder):
         Secret key used to verify the source of the samples.
 
     """
-    def __init__(self, encstr, timestamped, timeintminutes, secretkey):
+    def __init__(self, encstr, timeintminutes, secretkey):
         super().__init__(encstr, secretkey)
 
         decsmpls = list()

@@ -38,14 +38,55 @@
   <div class="section" id="url-decoder-reference">
 <h1>URL Decoder Reference<a class="headerlink" href="#url-decoder-reference" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="decoder.urldecoder.UrlDecoder">
-<em class="property">class </em><code class="descclassname">decoder.urldecoder.</code><code class="descname">UrlDecoder</code><span class="sig-paren">(</span><em>secretkey</em>, <em>statb64</em>, <em>timeintb64</em>, <em>circb64</em>, <em>ver</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/decoder/urldecoder.html#UrlDecoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#decoder.urldecoder.UrlDecoder" title="Permalink to this definition">¶</a></dt>
-<dd><p>Construct a UrlDecoder object</p>
+<dt id="decoder.v1.tbufferdecoder.TBufferDecoder">
+<em class="property">class </em><code class="descclassname">decoder.v1.tbufferdecoder.</code><code class="descname">TBufferDecoder</code><span class="sig-paren">(</span><em>encstr</em>, <em>timeintminutes</em>, <em>secretkey</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/decoder/v1/tbufferdecoder.html#TBufferDecoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#decoder.v1.tbufferdecoder.TBufferDecoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extracts temperature samples from the circular buffer.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>encstr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Circular buffer string containing temperature samples encoded in base64.</li>
+<li><strong>timeintminutes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Time interval between samples in minutes.</li>
+<li><strong>secretkey</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Secret key used to verify the source of the samples.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="decoder.v1.htbufferdecoder.HTBufferDecoder">
+<em class="property">class </em><code class="descclassname">decoder.v1.htbufferdecoder.</code><code class="descname">HTBufferDecoder</code><span class="sig-paren">(</span><em>encstr</em>, <em>timeintminutes</em>, <em>secretkey</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/decoder/v1/htbufferdecoder.html#HTBufferDecoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#decoder.v1.htbufferdecoder.HTBufferDecoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extracts samples containing 2 measurands (temperature and humidity) from the circular buffer.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>encstr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Circular buffer string containing samples encoded in base64.</li>
+<li><strong>timeintminutes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Time interval between samples in minutes.</li>
+<li><strong>secretkey</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Secret key used to verify the source of the samples.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="decoder.decoder.Decoder">
+<em class="property">class </em><code class="descclassname">decoder.decoder.</code><code class="descname">Decoder</code><span class="sig-paren">(</span><em>secretkey</em>, <em>statb64</em>, <em>timeintb64</em>, <em>circb64</em>, <em>ver</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/decoder/decoder.html#Decoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#decoder.decoder.Decoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a Decoder object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><p class="first"><strong>majorversion</strong> – initial value: par2</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>secretkey</strong> – Secret Key string.</li>
 <li><strong>**reqargs</strong> – A list of query string parameters</li>
 </ul>
@@ -53,34 +94,29 @@
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="decoder.urldecoder.UrlDecoder.getarg">
-<code class="descname">getarg</code><span class="sig-paren">(</span><em>arg</em>, <em>reqargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/decoder/urldecoder.html#UrlDecoder.getarg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#decoder.urldecoder.UrlDecoder.getarg" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get a parameter by name from a list of query string parameters.</p>
-<p>Raises an error if no key is found.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="decoder.v1.paramdecoder.ParamDecoder">
+<em class="property">class </em><code class="descclassname">decoder.v1.paramdecoder.</code><code class="descname">ParamDecoder</code><span class="sig-paren">(</span><em>circformat</em>, <em>timeintb64</em>, <em>statb64</em>, <em>circb64</em>, <em>secretkey</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/decoder/v1/paramdecoder.html#ParamDecoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#decoder.v1.paramdecoder.ParamDecoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description for class</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>arg</strong> – Name of the parameter to find.</li>
-<li><strong>reqargs</strong> – List of parameters.</li>
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>circformat</strong> – initial value: par1</li>
+<li><strong>timeintervalmins</strong> – initial value: par2</li>
+<li><strong>status</strong> – initial value: par2</li>
+<li><strong>buffer</strong> – initial value: par2</li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Value of the parameter from the list.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></p>
 </td>
 </tr>
 </tbody>
 </table>
-</dd></dl>
-
-<dl class="method">
-<dt id="decoder.urldecoder.UrlDecoder.timeinterval">
-<code class="descname">timeinterval</code><span class="sig-paren">(</span><em>enctimeint</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/decoder/urldecoder.html#UrlDecoder.timeinterval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#decoder.urldecoder.UrlDecoder.timeinterval" title="Permalink to this definition">¶</a></dt>
+<dl class="staticmethod">
+<dt id="decoder.v1.paramdecoder.ParamDecoder.decode_timeinterval">
+<em class="property">static </em><code class="descname">decode_timeinterval</code><span class="sig-paren">(</span><em>enctimeint</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/decoder/v1/paramdecoder.html#ParamDecoder.decode_timeinterval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#decoder.v1.paramdecoder.ParamDecoder.decode_timeinterval" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the time interval in minutes from a URL parameter.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -96,81 +132,6 @@
 </table>
 </dd></dl>
 
-</dd></dl>
-
-<dl class="class">
-<dt id="decoder.tdecoder.TDecoder">
-<em class="property">class </em><code class="descclassname">decoder.tdecoder.</code><code class="descname">TDecoder</code><span class="sig-paren">(</span><em>encstr</em>, <em>timestamped</em>, <em>timeintminutes</em>, <em>secretkey</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/decoder/tdecoder.html#TDecoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#decoder.tdecoder.TDecoder" title="Permalink to this definition">¶</a></dt>
-<dd><p>Extracts temperature samples from the circular buffer.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>encstr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Circular buffer string containing temperature samples encoded in base64.</li>
-<li><strong>timestamped</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – Indicates whether or not to timestamp the returned samples.</li>
-<li><strong>timeintminutes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Time interval between samples in minutes.</li>
-<li><strong>secretkey</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Secret key used to verify the source of the samples.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="class">
-<dt id="decoder.htdecoder.HTDecoder">
-<em class="property">class </em><code class="descclassname">decoder.htdecoder.</code><code class="descname">HTDecoder</code><span class="sig-paren">(</span><em>encstr</em>, <em>timestamped</em>, <em>timeintminutes</em>, <em>secretkey</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/decoder/htdecoder.html#HTDecoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#decoder.htdecoder.HTDecoder" title="Permalink to this definition">¶</a></dt>
-<dd><p>Extracts samples containing 2 measurands (temperature and humidity) from the circular buffer.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>encstr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Circular buffer string containing samples encoded in base64.</li>
-<li><strong>timestamped</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – Indicates whether or not to timestamp the returned samples.</li>
-<li><strong>timeintminutes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Time interval between samples in minutes.</li>
-<li><strong>secretkey</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Secret key used to verify the source of the samples.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="class">
-<dt id="decoder.decoder.Decoder">
-<em class="property">class </em><code class="descclassname">decoder.decoder.</code><code class="descname">Decoder</code><span class="sig-paren">(</span><em>encstr</em>, <em>secretkey</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/decoder/decoder.html#Decoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#decoder.decoder.Decoder" title="Permalink to this definition">¶</a></dt>
-<dd><p>Extract raw sample data from the circular buffer</p>
-<p>First the endstop marker is found, which is the character ‘~’.</p>
-<p>Next the marker is replaced with ‘=’ and combined with the 3 bytes preceeding it.
-These are base64 decoded to yield the minutes elapsed since the
-previous sample and a psuedorandom number.</p>
-<p>The circular buffer is made linear by concatenating the two parts of the buffer
-either side of the end stop.</p>
-<p>3 bytes are popped from the end of the linear buffer. These contain information
-such as the HMAC and the number of valid samples.</p>
-<p>The remaining data in the linear buffer are shaped into a list of 8 byte chunks
-(these should be renamed to Octets).</p>
-<p>Starting from the newest octet, each is decoded into a 6 byte chunk.</p>
-<p>Either 1 or 2 (3 byte) samples are extracted from every chunk and these
-are written to a list.</p>
-<p>When the complete list of samples have been obtained, the HMAC checksum is
-calculated. This is compared to the HMAC supplied in the URL. These two
-values must match for the decoded data to be valid. If they are, it confirms
-that whatever generated the encoded list of samples must have the secret key.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>encstr</strong> – Circular buffer string containing samples and an endstop encoded as base64.</li>
-<li><strong>secretkey</strong> – Secret key used to verify that the circular buffer has originated from a trusted source.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
 </dd></dl>
 
 </div>

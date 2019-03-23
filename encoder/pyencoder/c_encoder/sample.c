@@ -177,7 +177,7 @@ int sample_push(int meas1, int meas2)
   urlstate nextstate;
   md5len_t md5length;
 
-  if (nv.version == TEMPONLY)
+  if (nv.version[1] == TEMPONLY)
   {
       meas2 = -1;
   }
@@ -206,7 +206,7 @@ int sample_push(int meas1, int meas2)
 
           smplhist_push(samplebuf[0]);
 
-          if (nv.version == TEMPONLY)
+          if (nv.version[1] == TEMPONLY)
           {
               nextstate = first_tock;
           }
@@ -228,7 +228,7 @@ int sample_push(int meas1, int meas2)
 
           smplhist_push(samplebuf[1]);
 
-          if (nv.version == TEMPONLY)
+          if (nv.version[1] == TEMPONLY)
           {
               nextstate = final_tock;
           }

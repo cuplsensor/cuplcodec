@@ -1,6 +1,6 @@
 import pytest
 from encoder.pyencoder.instrumented import InstrumentedSampleTRH
-from decoder import UrlDecoder
+from decoder import Decoder
 
 INPUT_SERIAL = 'abcdabcd'
 INPUT_TIMEINT = 65535 # Maximum time interval
@@ -30,10 +30,10 @@ def test_minuteoffset(instr_sample):
 
         # Decode the URL
         par = instr_sample.eepromba.get_url_parsedqs()
-        decodedurl = UrlDecoder(secretkey=instr_sample.secretkey, statb64=par['x'][0], timeintb64=par['t'][0],
-                            circb64=par['q'][0], ver=par['v'][0])
+        decodedurl = Decoder(secretkey=instr_sample.secretkey, statb64=par['x'][0], timeintb64=par['t'][0],
+                             circb64=par['q'][0], ver=par['v'][0])
 
-        assert i == decodedurl.decoded.minuteoffset
+        assert i == decodedurl.params.buffer.minuteoffset
 
 
 

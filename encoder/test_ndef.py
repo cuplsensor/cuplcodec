@@ -1,7 +1,7 @@
 import pytest
 from base64 import urlsafe_b64decode
 from encoder.pyencoder.instrumented import InstrumentedNDEF
-from decoder.urldecoder import UrlDecoder
+from decoder.decoder import Decoder
 from urllib.parse import urlparse
 
 INPUT_SERIAL = 'abcdabcd'
@@ -83,15 +83,14 @@ def test_circbuf_length(blankurlqs):
 
 
 def test_decode_raises_indexerrror(blankurlqs):
-    serial = blankurlqs['s'][0]
     timeintb64 = blankurlqs['t'][0]
     statb64 = blankurlqs['x'][0]
     circb64 = blankurlqs['q'][0]
     ver = blankurlqs['v'][0]
     with pytest.raises(IndexError):
         # Attempt to decode the parameters
-        decoded = UrlDecoder(secretkey=INPUT_SECKEY,
-                             timeintb64=timeintb64,
-                             statb64=statb64,
-                             circb64=circb64,
-                             ver=ver)
+        decoded = Decoder(secretkey=INPUT_SECKEY,
+                          timeintb64=timeintb64,
+                          statb64=statb64,
+                          circb64=circb64,
+                          ver=ver)

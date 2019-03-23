@@ -11,10 +11,10 @@ PADDING = 2
 
 
 @pytest.fixture(scope="function",
-                params=[{'baseurl': "plotsensor.com", 'secretkey': "AAAACCCC"},
-                        {'baseurl': "toastersrg.plotsensor.com", 'secretkey': "AAAABBBB"},
-                        {'baseurl': "plotsensor.com", 'secretkey': "masf3492"},
-                        {'baseurl': "plotsensor.com", 'secretkey': "42r32234"}
+                params=[{'baseurl': "plotsensor.com", 'secretkey': "AAAABBBBCCCCDDDE"},
+                        {'baseurl': "toastersrg.plotsensor.com", 'secretkey': "AAAABBBBCCCCDDDF"},
+                        {'baseurl': "plotsensor.com", 'secretkey': "AAAABBBBCCCCDDDG"},
+                        {'baseurl': "plotsensor.com", 'secretkey': "AAAABBBBCCCCDDDX"}
                         ])
 def instr_sample(request):
     return InstrumentedSampleTRH(baseurl=request.param['baseurl'],

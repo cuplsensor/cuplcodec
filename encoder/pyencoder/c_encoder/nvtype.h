@@ -13,7 +13,7 @@
 #define SECKEY_LENBYTES     16
 #define BASEURL_LENBYTES    64
 #define SMPLINT_LENBYTES     2
-#define VERSION_LENBYTES      1
+#define VERSION_LENBYTES      2
 #define INTEGERFIELD_LENBYTES   4
 
 /**
@@ -24,7 +24,7 @@ typedef struct nvstruct {
     char seckey[SECKEY_LENBYTES];   /*!< Secret key array. This is used to generate the HMAC. */
     char smplintervalmins[SMPLINT_LENBYTES]; /*!< Time interval betweeen samples in minutes. This is b64 encoded so it is easier to store it as an array. */
     char baseurl[BASEURL_LENBYTES]; /*!< Base URL. */
-    char version;                   /*!< Version. */
+    char version[VERSION_LENBYTES];                   /*!< Version. */
     unsigned int sleepintervaldays; /*!< The number of days to wait without scans before putting the sensor into deep sleep mode. */
     unsigned int allwritten;        /*!< Indicates that all required NV parameters have been set. */
     unsigned int resetsperloop;     /*!< Incremented each time the microcontroller resets. Zeroed when the circular buffer has wraps from the end back to the beginning. */
