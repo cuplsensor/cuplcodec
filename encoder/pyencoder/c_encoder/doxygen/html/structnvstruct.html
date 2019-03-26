@@ -104,8 +104,10 @@ Data Fields</h2></td></tr>
 <tr class="separator:a680c038327bbd20d30beade8d0ef1dd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34de27bbd20aa5f15e4e4482ce5a0309"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnvstruct.html#a34de27bbd20aa5f15e4e4482ce5a0309">smplintervalmins</a> [<a class="el" href="nvtype_8h.html#a44d3fb460b6c9383a2b3248544aa13d0">SMPLINT_LENBYTES</a>]</td></tr>
 <tr class="separator:a34de27bbd20aa5f15e4e4482ce5a0309"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec7e67f64e6ee88dda940f1b837f9351"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnvstruct.html#aec7e67f64e6ee88dda940f1b837f9351">randstate</a></td></tr>
-<tr class="separator:aec7e67f64e6ee88dda940f1b837f9351"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a727d0685583daae50e80c9eea7b16c15"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnvstruct.html#a727d0685583daae50e80c9eea7b16c15">baseurl</a> [<a class="el" href="nvtype_8h.html#a2d582ce7be27d531cfcc211e0bf24c0f">BASEURL_LENBYTES</a>]</td></tr>
+<tr class="separator:a727d0685583daae50e80c9eea7b16c15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfbbcb0a2e866121b24841f5494ac34b"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnvstruct.html#abfbbcb0a2e866121b24841f5494ac34b">version</a> [<a class="el" href="nvtype_8h.html#ada79ed8a19f38854ae92032efcd9051b">VERSION_LENBYTES</a>]</td></tr>
+<tr class="separator:abfbbcb0a2e866121b24841f5494ac34b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7535c524cca52dcf1e60b1e6762fea4c"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnvstruct.html#a7535c524cca52dcf1e60b1e6762fea4c">sleepintervaldays</a></td></tr>
 <tr class="separator:a7535c524cca52dcf1e60b1e6762fea4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fee61ddd1d863385c81b1d53599191a"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnvstruct.html#a3fee61ddd1d863385c81b1d53599191a">allwritten</a></td></tr>
@@ -133,17 +135,18 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
-<a id="aec7e67f64e6ee88dda940f1b837f9351"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aec7e67f64e6ee88dda940f1b837f9351">&#9670;&nbsp;</a></span>randstate</h2>
+<a id="a727d0685583daae50e80c9eea7b16c15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a727d0685583daae50e80c9eea7b16c15">&#9670;&nbsp;</a></span>baseurl</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned int randstate</td>
+          <td class="memname">char baseurl[<a class="el" href="nvtype_8h.html#a2d582ce7be27d531cfcc211e0bf24c0f">BASEURL_LENBYTES</a>]</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>The URL or IP address of the web application running PSWebApp. This can be up to BASEURL_LENBYTES bytes long. </p>
 
 </div>
 </div>
@@ -158,7 +161,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Incremented each time the microcontroller resets. Never set to zero. </p>
+<p>Incremented each time the microcontroller resets. </p>
 
 </div>
 </div>
@@ -188,7 +191,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Secret key array. This is used to generate the HMAC. </p>
+<p>Secret key array. This must be SECKEY_LENBYTES long. This is used to generate the HMAC. </p>
 
 </div>
 </div>
@@ -203,7 +206,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Unique box serial array. </p>
+<p>Unique serial of the sensor. This must be SERIAL_LENBYTES bytes long. </p>
 
 </div>
 </div>
@@ -234,6 +237,21 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Time interval betweeen samples in minutes. This is b64 encoded so it is easier to store it as an array. </p>
+
+</div>
+</div>
+<a id="abfbbcb0a2e866121b24841f5494ac34b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfbbcb0a2e866121b24841f5494ac34b">&#9670;&nbsp;</a></span>version</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char version[<a class="el" href="nvtype_8h.html#ada79ed8a19f38854ae92032efcd9051b">VERSION_LENBYTES</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Version. </p>
 
 </div>
 </div>

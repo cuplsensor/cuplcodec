@@ -7,36 +7,36 @@
     <includes refid="md5_8h" local="yes">md5.h</includes>
     <includes refid="nvtype_8h" local="yes">nvtype.h</includes>
     <incdepgraph>
-      <node id="108">
+      <node id="112">
         <label>stdbool.h</label>
       </node>
-      <node id="110">
+      <node id="114">
         <label>md5.h</label>
         <link refid="md5_8h"/>
       </node>
-      <node id="106">
+      <node id="110">
         <label>smplhist.c</label>
         <link refid="smplhist_8c"/>
-        <childnode refid="107" relation="include">
-        </childnode>
-        <childnode refid="109" relation="include">
-        </childnode>
-        <childnode refid="110" relation="include">
-        </childnode>
         <childnode refid="111" relation="include">
         </childnode>
-      </node>
-      <node id="107">
-        <label>smplhist.h</label>
-        <link refid="smplhist_8h"/>
-        <childnode refid="108" relation="include">
+        <childnode refid="113" relation="include">
+        </childnode>
+        <childnode refid="114" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
         </childnode>
       </node>
       <node id="111">
+        <label>smplhist.h</label>
+        <link refid="smplhist_8h"/>
+        <childnode refid="112" relation="include">
+        </childnode>
+      </node>
+      <node id="115">
         <label>nvtype.h</label>
         <link refid="nvtype_8h"/>
       </node>
-      <node id="109">
+      <node id="113">
         <label>defs.h</label>
         <link refid="defs_8h"/>
       </node>
@@ -55,9 +55,9 @@
         </inbodydescription>
         <location file="smplhist.c" line="6" column="1" bodyfile="nvtype.c" bodystart="11" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="smplhist_8c_1a7f6bde1248a37ef8f419e7d8903a34b4" prot="public" static="no" mutable="no">
-        <type>int</type>
-        <definition>int buflensamples</definition>
+      <memberdef kind="variable" id="smplhist_8c_1ae273bd28ec168f04a70cbc3cc33525d6" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int buflensamples</definition>
         <argsstring></argsstring>
         <name>buflensamples</name>
         <initializer>= <ref refid="defs_8h_1a14c667ffecb19b066f43257c7361ff79" kindref="member">BUFLEN_SAMPLES</ref></initializer>
@@ -121,7 +121,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="smplhist.c" line="13" column="1" bodyfile="smplhist.c" bodystart="13" bodyend="-1"/>
+        <location file="smplhist.c" line="12" column="1" bodyfile="smplhist.c" bodystart="12" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="smplhist_8c_1a6bb1a6ddf23925c90b5d8b2219731f3c" prot="public" static="yes" mutable="no">
         <type>const char</type>
@@ -135,7 +135,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="smplhist.c" line="14" column="1" bodyfile="smplhist.c" bodystart="14" bodyend="-1"/>
+        <location file="smplhist.c" line="13" column="1" bodyfile="smplhist.c" bodystart="13" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="smplhist_8c_1abb4f0f09c8d00116fc06d4ddd98b7e4e" prot="public" static="yes" mutable="no">
         <type><ref refid="struct_m_d5___c_t_x" kindref="compound">MD5_CTX</ref></type>
@@ -148,7 +148,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="smplhist.c" line="15" column="1" bodyfile="smplhist.c" bodystart="15" bodyend="-1"/>
+        <location file="smplhist.c" line="14" column="1" bodyfile="smplhist.c" bodystart="14" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="smplhist_8c_1ac0a11776eab3faf04d27a1c212a7a60e" prot="public" static="yes" mutable="no">
         <type>int</type>
@@ -161,7 +161,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="smplhist.c" line="16" column="1" bodyfile="smplhist.c" bodystart="16" bodyend="-1"/>
+        <location file="smplhist.c" line="15" column="1" bodyfile="smplhist.c" bodystart="15" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="func">
@@ -199,9 +199,9 @@
         </inbodydescription>
         <location file="smplhist.c" line="25" column="1" bodyfile="smplhist.c" bodystart="25" bodyend="40"/>
       </memberdef>
-      <memberdef kind="function" id="smplhist_8c_1a795461eee0cdd59fced4cdd31c30dd44" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="smplhist_8c_1acaa1441a54c225ac6914ada471623cdc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="smplhist_8h_1a6aed6c376195d183573501f3a8a77ca3" kindref="member">sdchars_t</ref></type>
-        <definition>static sdchars_t smplhist_read</definition>
+        <definition>sdchars_t smplhist_read</definition>
         <argsstring>(unsigned int index, int *error)</argsstring>
         <name>smplhist_read</name>
         <param>
@@ -254,15 +254,15 @@
 <codeline lineno="5"><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="structnvstruct" kindref="compound">nv_t</ref><sp/><ref refid="smplhist_8c_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" kindref="member">nv</ref>;</highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="smplhist_8c_1a7f6bde1248a37ef8f419e7d8903a34b4" kindref="member">buflensamples</ref><sp/>=<sp/><ref refid="defs_8h_1a14c667ffecb19b066f43257c7361ff79" kindref="member">BUFLEN_SAMPLES</ref>;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="smplhist_8c_1ae273bd28ec168f04a70cbc3cc33525d6" kindref="member">buflensamples</ref><sp/>=<sp/><ref refid="defs_8h_1a14c667ffecb19b066f43257c7361ff79" kindref="member">BUFLEN_SAMPLES</ref>;</highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structsensordatachars" kindref="compound">sdchars_t</ref><sp/>samplehistory[<ref refid="defs_8h_1a14c667ffecb19b066f43257c7361ff79" kindref="member">BUFLEN_SAMPLES</ref>];</highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>histpos<sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>md5block[64];</highlight></codeline>
-<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//char<sp/>secretkey[]<sp/>=<sp/>&quot;AAAACCCC&quot;;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>ipadchar<sp/>=<sp/>0x36;</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>opadchar<sp/>=<sp/>0x5C;</highlight></codeline>
-<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="struct_m_d5___c_t_x" kindref="compound">MD5_CTX</ref><sp/>ctx;</highlight></codeline>
-<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>prevhistpos;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>ipadchar<sp/>=<sp/>0x36;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>opadchar<sp/>=<sp/>0x5C;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="struct_m_d5___c_t_x" kindref="compound">MD5_CTX</ref><sp/>ctx;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>prevhistpos;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
 <codeline lineno="17"><highlight class="normal"></highlight></codeline>
 <codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="smplhist_8c_1affe400f90c858c88868d0ee6a1a9d3df" kindref="member">smplhist_ovr</ref>(<ref refid="structsensordatachars" kindref="compound">sdchars_t</ref><sp/>sample)</highlight></codeline>
 <codeline lineno="19"><highlight class="normal">{</highlight></codeline>
@@ -288,7 +288,7 @@
 <codeline lineno="39"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
 <codeline lineno="40"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight></codeline>
-<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structsensordatachars" kindref="compound">sdchars_t</ref><sp/>smplhist_read(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*<sp/>error)</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><ref refid="structsensordatachars" kindref="compound">sdchars_t</ref><sp/><ref refid="smplhist_8c_1acaa1441a54c225ac6914ada471623cdc" kindref="member">smplhist_read</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*<sp/>error)</highlight></codeline>
 <codeline lineno="43"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>readpos;</highlight></codeline>
 <codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structsensordatachars" kindref="compound">sdchars_t</ref><sp/>sample;</highlight></codeline>
@@ -355,7 +355,7 @@
 <codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Start<sp/>to<sp/>take<sp/>MD5<sp/>of<sp/>the<sp/>message.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(smplindex&lt;lensmpls)</highlight></codeline>
 <codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>prevsmpl<sp/>=<sp/>smplhist_read(smplindex++,<sp/>&amp;error);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>prevsmpl<sp/>=<sp/><ref refid="smplhist_8c_1acaa1441a54c225ac6914ada471623cdc" kindref="member">smplhist_read</ref>(smplindex++,<sp/>&amp;error);</highlight></codeline>
 <codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(error<sp/>==<sp/>1)</highlight></codeline>
 <codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(md5length.<ref refid="structmd5len_1a4c66fedccd3b4737bd953f53dccc3c8a" kindref="member">md5</ref>);<sp/>i++)</highlight></codeline>

@@ -4,13 +4,13 @@
     <compoundname>nvtype.c</compoundname>
     <includes refid="nvtype_8h" local="yes">nvtype.h</includes>
     <incdepgraph>
-      <node id="63">
+      <node id="67">
         <label>nvtype.c</label>
         <link refid="nvtype_8c"/>
-        <childnode refid="64" relation="include">
+        <childnode refid="68" relation="include">
         </childnode>
       </node>
-      <node id="64">
+      <node id="68">
         <label>nvtype.h</label>
         <link refid="nvtype_8h"/>
       </node>

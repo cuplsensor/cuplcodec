@@ -2,24 +2,34 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
   <compounddef id="defs_8h" kind="file" language="C++">
     <compoundname>defs.h</compoundname>
+    <includedby refid="eep_8c" local="yes">eep.c</includedby>
     <includedby refid="ndef_8c" local="yes">ndef.c</includedby>
+    <includedby refid="nt3h_8c" local="yes">nt3h.c</includedby>
     <includedby refid="octet_8c" local="yes">octet.c</includedby>
     <includedby refid="sample_8c" local="yes">sample.c</includedby>
     <includedby refid="smplhist_8c" local="yes">smplhist.c</includedby>
     <invincdepgraph>
       <node id="18">
+        <label>eep.c</label>
+        <link refid="eep_8c"/>
+      </node>
+      <node id="19">
         <label>ndef.c</label>
         <link refid="ndef_8c"/>
       </node>
-      <node id="21">
+      <node id="20">
+        <label>nt3h.c</label>
+        <link refid="nt3h_8c"/>
+      </node>
+      <node id="23">
         <label>smplhist.c</label>
         <link refid="smplhist_8c"/>
       </node>
-      <node id="19">
+      <node id="21">
         <label>octet.c</label>
         <link refid="octet_8c"/>
       </node>
-      <node id="20">
+      <node id="22">
         <label>sample.c</label>
         <link refid="sample_8c"/>
       </node>
@@ -33,6 +43,10 @@
         <childnode refid="20" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -103,6 +117,28 @@
         </inbodydescription>
         <location file="defs.h" line="6" column="9" bodyfile="defs.h" bodystart="6" bodyend="-1"/>
       </memberdef>
+      <memberdef kind="define" id="defs_8h_1a5b481c24c164167dc05cc376551cf0d3" prot="public" static="no">
+        <name>ENDMARKER_OFFSET_IN_ENDSTOP_1</name>
+        <initializer>7</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="defs.h" line="7" column="9" bodyfile="defs.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="defs_8h_1ac4551bbc9efabf8378f35498f80b4679" prot="public" static="no">
+        <name>BLKSIZE</name>
+        <initializer>0x10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="defs.h" line="8" column="9" bodyfile="defs.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
       <memberdef kind="define" id="defs_8h_1a14c667ffecb19b066f43257c7361ff79" prot="public" static="no">
         <name>BUFLEN_SAMPLES</name>
         <initializer>(<ref refid="defs_8h_1a3440475701aa9d74140519db14a08e65" kindref="member">SAMPLES_PER_OCTET</ref> * <ref refid="defs_8h_1a5c3744c850e32cd5437aa8ab26f5077f" kindref="member">OCTETS_PER_BLK</ref> * (<ref refid="defs_8h_1a96171b1fd0df68266c8208e01cf7b7c0" kindref="member">BUFLEN_BLKS</ref> - <ref refid="defs_8h_1a34364711a08f6ea9de1f2c5a5ae56f88" kindref="member">ENDSTOP_BLKS</ref>))</initializer>
@@ -112,7 +148,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="defs.h" line="9" column="9" bodyfile="defs.h" bodystart="9" bodyend="-1"/>
+        <location file="defs.h" line="11" column="9" bodyfile="defs.h" bodystart="11" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -126,9 +162,11 @@
 <codeline lineno="4" refid="defs_8h_1a25065cd833bcfecfb404093aed3edaca" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BYTES_PER_SAMPLE<sp/><sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="5" refid="defs_8h_1a96171b1fd0df68266c8208e01cf7b7c0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BUFLEN_BLKS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>32</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="6" refid="defs_8h_1a34364711a08f6ea9de1f2c5a5ae56f88" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ENDSTOP_BLKS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal"></highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight></codeline>
-<codeline lineno="9" refid="defs_8h_1a14c667ffecb19b066f43257c7361ff79" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BUFLEN_SAMPLES<sp/>(SAMPLES_PER_OCTET<sp/>*<sp/>OCTETS_PER_BLK<sp/>*<sp/>(BUFLEN_BLKS<sp/>-<sp/>ENDSTOP_BLKS))</highlight></codeline>
+<codeline lineno="7" refid="defs_8h_1a5b481c24c164167dc05cc376551cf0d3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ENDMARKER_OFFSET_IN_ENDSTOP_1<sp/>7</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="defs_8h_1ac4551bbc9efabf8378f35498f80b4679" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BLKSIZE<sp/>0x10</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="defs_8h_1a14c667ffecb19b066f43257c7361ff79" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BUFLEN_SAMPLES<sp/>(SAMPLES_PER_OCTET<sp/>*<sp/>OCTETS_PER_BLK<sp/>*<sp/>(BUFLEN_BLKS<sp/>-<sp/>ENDSTOP_BLKS))</highlight></codeline>
     </programlisting>
     <location file="defs.h"/>
   </compounddef>

@@ -13,6 +13,8 @@
 #define TEMPONLY        '2' /*!< Last character of the URL version string if the URL contains only temperature measurands. */
 #define ENDSTOP_BYTE    '~' /*!< Last character of the endstop. Must be URL safe according to RFC 1738. */
 
+#define BATV_RESETCAUSE(BATV, RSTC) ((BATV << 8) | (RSTC & 0xFF))
+
 typedef enum {
     first_tick,     /*!< Write both meaurands in the first sample of samplebuf  */
     first_tock,     /*!< Overwrite measurand 2 in the first sample of samplebuf. */
@@ -24,8 +26,8 @@ typedef enum {
 typedef struct status
 {
     uint16_t loopcount;  /*!< Number of times the last octet in the circular buffer endstop has wrapped from the end of the buffer to the beginning. */
-    uint16_t status;     /*!< 2-byte status. Bits are set according to stat_bits.h */
-    uint16_t batvoltage; /*!< Battery voltage in mV */
+    uint16_t resetsalltime;     /*!< 2-byte status. Bits are set according to stat_bits.h */
+    uint16_t batv_resetcause;   /*!< Battery voltage in mV */
 } stat_t;
 
 typedef struct endstop
@@ -42,16 +44,18 @@ static stat_t urlstatus = {0};
 static endstop_t endstop;           /*!< The 16 byte end stop. */
 extern nv_t nv;                     /*!< Externally defined parameters stored in non-volatile memory. */
 
+
 /*!
  * @brief Update loop counter and battery voltage in the preamble status field.
  */
 static void sample_updatelc(void)
 {
   char statusb64[9];
+  uint16_t batv = batv_measure();
 
   urlstatus.loopcount += 1;
   //urlstatus.status = stat_get(&err);
-  urlstatus.batvoltage = batv_measure();
+  urlstatus.batv_resetcause = BATV_RESETCAUSE(batv, 0);
 
   Base64encode(statusb64, (const char *)&urlstatus, sizeof(urlstatus));
   ndef_writepreamble(BUFLEN_BLKS, statusb64);
@@ -65,15 +69,16 @@ static void sample_updatelc(void)
  * @param err Sets an error condition where data will not be logged to the URL circular buffer.
  * @param temponly When true only temperature measurands will be recorded to the circular buffer on each call of {@link sample_push()}.
  */
-void sample_init(unsigned int stat, bool err)
+void sample_init(unsigned int resetcause, bool err)
 {
   char statusb64[9];
   int startblk;
   int buflenblks;
+  uint16_t batv = batv_measure();
 
   urlstatus.loopcount = 0;
-  urlstatus.status = stat;
-  urlstatus.batvoltage = batv_measure();
+  urlstatus.resetsalltime = nv.resetsalltime;
+  urlstatus.batv_resetcause = BATV_RESETCAUSE(batv, resetcause);
   Base64encode(statusb64, (const char *)&urlstatus, sizeof(urlstatus));
 
   lensmpls = 0;
@@ -176,6 +181,7 @@ int sample_push(int meas1, int meas2)
 {
   urlstate nextstate;
   md5len_t md5length;
+  int cursorpos;
 
   if (nv.version[1] == TEMPONLY)
   {
@@ -245,7 +251,8 @@ int sample_push(int meas1, int meas2)
           break;
       }
 
-      md5length = smplhist_md5(lensmpls, true);
+      cursorpos = octet_getendmarkerpos();
+      md5length = smplhist_md5(lensmpls, true, urlstatus.loopcount, urlstatus.resetsalltime, urlstatus.batv_resetcause, cursorpos);
 
       // 3 samples (6 bytes) per 8 base64 bytes.
       Base64encode(encodedoctet, (char *)samplebuf, sizeof(samplebuf));

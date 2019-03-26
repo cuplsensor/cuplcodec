@@ -5,19 +5,19 @@
     <includedby refid="prng_8c" local="yes">prng.c</includedby>
     <includedby refid="sample_8c" local="yes">sample.c</includedby>
     <invincdepgraph>
-      <node id="86">
+      <node id="90">
         <label>prng.c</label>
         <link refid="prng_8c"/>
       </node>
-      <node id="85">
+      <node id="89">
         <label>prng.h</label>
         <link refid="prng_8h"/>
-        <childnode refid="86" relation="include">
+        <childnode refid="90" relation="include">
         </childnode>
-        <childnode refid="87" relation="include">
+        <childnode refid="91" relation="include">
         </childnode>
       </node>
-      <node id="87">
+      <node id="91">
         <label>sample.c</label>
         <link refid="sample_8c"/>
       </node>

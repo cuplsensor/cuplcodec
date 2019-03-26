@@ -4,13 +4,13 @@
     <compoundname>prng.c</compoundname>
     <includes refid="prng_8h" local="yes">prng.h</includes>
     <incdepgraph>
-      <node id="81">
+      <node id="85">
         <label>prng.c</label>
         <link refid="prng_8c"/>
-        <childnode refid="82" relation="include">
+        <childnode refid="86" relation="include">
         </childnode>
       </node>
-      <node id="82">
+      <node id="86">
         <label>prng.h</label>
         <link refid="prng_8h"/>
       </node>

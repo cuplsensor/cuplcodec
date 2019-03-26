@@ -11,6 +11,8 @@ int \mbox{\hyperlink{smplhist_8c_affe400f90c858c88868d0ee6a1a9d3df}{smplhist\+\_
 \item 
 int \mbox{\hyperlink{smplhist_8c_a8b601164eab6ef2ea4d6643970a760f6}{smplhist\+\_\+push}} (\mbox{\hyperlink{smplhist_8h_a6aed6c376195d183573501f3a8a77ca3}{sdchars\+\_\+t}} sample)
 \item 
+\mbox{\hyperlink{smplhist_8h_a6aed6c376195d183573501f3a8a77ca3}{sdchars\+\_\+t}} \mbox{\hyperlink{smplhist_8c_acaa1441a54c225ac6914ada471623cdc}{smplhist\+\_\+read}} (unsigned int index, int $\ast$error)
+\item 
 \mbox{\hyperlink{smplhist_8h_acc281e4cc90073d250cb40e8e91897c9}{md5len\+\_\+t}} \mbox{\hyperlink{smplhist_8c_a92c0645dcea2976bba0b05556472e211}{smplhist\+\_\+md5}} (int lensmpls, bool usehmac)
 \end{DoxyCompactItemize}
 \subsection*{Variables}
@@ -18,7 +20,7 @@ int \mbox{\hyperlink{smplhist_8c_a8b601164eab6ef2ea4d6643970a760f6}{smplhist\+\_
 \item 
 \mbox{\hyperlink{nvtype_8h_a78682d319c0de97ea2b35f88095d6e57}{nv\+\_\+t}} \mbox{\hyperlink{smplhist_8c_a6cdeaaf5e3ea4f68f2d041a6d6389a70}{nv}}
 \item 
-int \mbox{\hyperlink{smplhist_8c_a7f6bde1248a37ef8f419e7d8903a34b4}{buflensamples}} = \mbox{\hyperlink{defs_8h_a14c667ffecb19b066f43257c7361ff79}{B\+U\+F\+L\+E\+N\+\_\+\+S\+A\+M\+P\+L\+ES}}
+const int \mbox{\hyperlink{smplhist_8c_ae273bd28ec168f04a70cbc3cc33525d6}{buflensamples}} = \mbox{\hyperlink{defs_8h_a14c667ffecb19b066f43257c7361ff79}{B\+U\+F\+L\+E\+N\+\_\+\+S\+A\+M\+P\+L\+ES}}
 \end{DoxyCompactItemize}
 
 
@@ -41,14 +43,20 @@ int \mbox{\hyperlink{smplhist_8c_a7f6bde1248a37ef8f419e7d8903a34b4}{buflensample
 \subsubsection{\texorpdfstring{smplhist\+\_\+push()}{smplhist\_push()}}
 {\footnotesize\ttfamily int smplhist\+\_\+push (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{smplhist_8h_a6aed6c376195d183573501f3a8a77ca3}{sdchars\+\_\+t}}}]{sample }\end{DoxyParamCaption})}
 
+\mbox{\Hypertarget{smplhist_8c_acaa1441a54c225ac6914ada471623cdc}\label{smplhist_8c_acaa1441a54c225ac6914ada471623cdc}} 
+\index{smplhist.\+c@{smplhist.\+c}!smplhist\+\_\+read@{smplhist\+\_\+read}}
+\index{smplhist\+\_\+read@{smplhist\+\_\+read}!smplhist.\+c@{smplhist.\+c}}
+\subsubsection{\texorpdfstring{smplhist\+\_\+read()}{smplhist\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{smplhist_8h_a6aed6c376195d183573501f3a8a77ca3}{sdchars\+\_\+t}} smplhist\+\_\+read (\begin{DoxyParamCaption}\item[{unsigned int}]{index,  }\item[{int $\ast$}]{error }\end{DoxyParamCaption})}
+
 
 
 \subsection{Variable Documentation}
-\mbox{\Hypertarget{smplhist_8c_a7f6bde1248a37ef8f419e7d8903a34b4}\label{smplhist_8c_a7f6bde1248a37ef8f419e7d8903a34b4}} 
+\mbox{\Hypertarget{smplhist_8c_ae273bd28ec168f04a70cbc3cc33525d6}\label{smplhist_8c_ae273bd28ec168f04a70cbc3cc33525d6}} 
 \index{smplhist.\+c@{smplhist.\+c}!buflensamples@{buflensamples}}
 \index{buflensamples@{buflensamples}!smplhist.\+c@{smplhist.\+c}}
 \subsubsection{\texorpdfstring{buflensamples}{buflensamples}}
-{\footnotesize\ttfamily int buflensamples = \mbox{\hyperlink{defs_8h_a14c667ffecb19b066f43257c7361ff79}{B\+U\+F\+L\+E\+N\+\_\+\+S\+A\+M\+P\+L\+ES}}}
+{\footnotesize\ttfamily const int buflensamples = \mbox{\hyperlink{defs_8h_a14c667ffecb19b066f43257c7361ff79}{B\+U\+F\+L\+E\+N\+\_\+\+S\+A\+M\+P\+L\+ES}}}
 
 \mbox{\Hypertarget{smplhist_8c_a6cdeaaf5e3ea4f68f2d041a6d6389a70}\label{smplhist_8c_a6cdeaaf5e3ea4f68f2d041a6d6389a70}} 
 \index{smplhist.\+c@{smplhist.\+c}!nv@{nv}}

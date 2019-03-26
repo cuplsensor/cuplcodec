@@ -2,12 +2,13 @@
 \label{eep_8c}\index{eep.\+c@{eep.\+c}}
 {\ttfamily \#include \char`\"{}eep.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}nt3h.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}defs.\+h\char`\"{}}\newline
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
 \#define \mbox{\hyperlink{eep_8c_ab8ef3b0a4427401a76129d6b15921f46}{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+L\+KS}}~4
 \item 
-\#define \mbox{\hyperlink{eep_8c_a6e5ecf6e2d74f95a32e7f636bcbdf27f}{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+Y\+T\+ES}}~(\mbox{\hyperlink{eep_8c_ab8ef3b0a4427401a76129d6b15921f46}{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+L\+KS}} $\ast$ \mbox{\hyperlink{nt3h_8h_ac4551bbc9efabf8378f35498f80b4679}{B\+L\+K\+S\+I\+ZE}})
+\#define \mbox{\hyperlink{eep_8c_a6e5ecf6e2d74f95a32e7f636bcbdf27f}{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+Y\+T\+ES}}~(\mbox{\hyperlink{eep_8c_ab8ef3b0a4427401a76129d6b15921f46}{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+L\+KS}} $\ast$ \mbox{\hyperlink{defs_8h_ac4551bbc9efabf8378f35498f80b4679}{B\+L\+K\+S\+I\+ZE}})
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -25,7 +26,7 @@ int \mbox{\hyperlink{eep_8c_a792afc39f1a399b46b5dd4040b090184}{eep\+\_\+cpbyte}}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-char \mbox{\hyperlink{eep_8c_a75ee6794c00b84590fc80f1d36a2ad24}{\+\_\+blkbuffer}} \mbox{[}\mbox{\hyperlink{eep_8c_ab8ef3b0a4427401a76129d6b15921f46}{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+L\+KS}} $\ast$\mbox{\hyperlink{nt3h_8h_ac4551bbc9efabf8378f35498f80b4679}{B\+L\+K\+S\+I\+ZE}}\mbox{]} = \{0\}
+char \mbox{\hyperlink{eep_8c_a75ee6794c00b84590fc80f1d36a2ad24}{\+\_\+blkbuffer}} \mbox{[}\mbox{\hyperlink{eep_8c_ab8ef3b0a4427401a76129d6b15921f46}{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+L\+KS}} $\ast$\mbox{\hyperlink{defs_8h_ac4551bbc9efabf8378f35498f80b4679}{B\+L\+K\+S\+I\+ZE}}\mbox{]} = \{0\}
 \end{DoxyCompactItemize}
 
 
@@ -40,7 +41,7 @@ char \mbox{\hyperlink{eep_8c_a75ee6794c00b84590fc80f1d36a2ad24}{\+\_\+blkbuffer}
 \index{eep.\+c@{eep.\+c}!B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+Y\+T\+ES@{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+Y\+T\+ES}}
 \index{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+Y\+T\+ES@{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+Y\+T\+ES}!eep.\+c@{eep.\+c}}
 \subsubsection{\texorpdfstring{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+Y\+T\+ES}{BUFSIZE\_BYTES}}
-{\footnotesize\ttfamily \#define B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+Y\+T\+ES~(\mbox{\hyperlink{eep_8c_ab8ef3b0a4427401a76129d6b15921f46}{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+L\+KS}} $\ast$ \mbox{\hyperlink{nt3h_8h_ac4551bbc9efabf8378f35498f80b4679}{B\+L\+K\+S\+I\+ZE}})}
+{\footnotesize\ttfamily \#define B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+Y\+T\+ES~(\mbox{\hyperlink{eep_8c_ab8ef3b0a4427401a76129d6b15921f46}{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+L\+KS}} $\ast$ \mbox{\hyperlink{defs_8h_ac4551bbc9efabf8378f35498f80b4679}{B\+L\+K\+S\+I\+ZE}})}
 
 
 
@@ -141,5 +142,5 @@ Write a 16-\/byte block from the buffer to E\+E\+P\+R\+OM.
 \index{eep.\+c@{eep.\+c}!\+\_\+blkbuffer@{\+\_\+blkbuffer}}
 \index{\+\_\+blkbuffer@{\+\_\+blkbuffer}!eep.\+c@{eep.\+c}}
 \subsubsection{\texorpdfstring{\+\_\+blkbuffer}{\_blkbuffer}}
-{\footnotesize\ttfamily char \+\_\+blkbuffer\mbox{[}\mbox{\hyperlink{eep_8c_ab8ef3b0a4427401a76129d6b15921f46}{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+L\+KS}} $\ast$\mbox{\hyperlink{nt3h_8h_ac4551bbc9efabf8378f35498f80b4679}{B\+L\+K\+S\+I\+ZE}}\mbox{]} = \{0\}}
+{\footnotesize\ttfamily char \+\_\+blkbuffer\mbox{[}\mbox{\hyperlink{eep_8c_ab8ef3b0a4427401a76129d6b15921f46}{B\+U\+F\+S\+I\+Z\+E\+\_\+\+B\+L\+KS}} $\ast$\mbox{\hyperlink{defs_8h_ac4551bbc9efabf8378f35498f80b4679}{B\+L\+K\+S\+I\+ZE}}\mbox{]} = \{0\}}
 

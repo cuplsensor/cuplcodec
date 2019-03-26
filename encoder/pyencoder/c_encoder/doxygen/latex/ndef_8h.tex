@@ -9,16 +9,16 @@
 \#define \mbox{\hyperlink{ndef_8h_ada1a1409a6e2a0c6a1112b781a7bc8b8}{B\+L\+K\+S\+I\+Z\+E\+\_\+\+P\+O\+W2}}~4
 \item 
 \#define \mbox{\hyperlink{ndef_8h_a8515ac56abf73a4b2c29dca739f44e99}{T\+L\+S\+I\+Z\+E\+\_\+\+B\+Y\+T\+ES}}~4
-\item 
-\#define \mbox{\hyperlink{ndef_8h_adf9300c600f673d96063cd65a7157f7a}{P\+R\+E\+A\+M\+B\+L\+E\+N\+\_\+\+B\+L\+KS}}~4
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \mbox{\hyperlink{ndef_8h_a80c4e6a3a3e7ffaad5527adc3224c280}{ndef\+\_\+writeblankurl}} (int qlenblks, char $\ast$statusb64, int $\ast$qstartblk, char ver)
+int \mbox{\hyperlink{ndef_8h_a2042acb925b04e54eadc1feb53c0b1e9}{ndef\+\_\+writeblankurl}} (int qlenblks, char $\ast$statusb64, int $\ast$qstartblk)
 \begin{DoxyCompactList}\small\item\em Create a U\+RL with a blank circular buffer. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{ndef_8h_ac55b5f717f0851a05b88d77e69ad3567}{ndef\+\_\+writepreamble}} (int qlenblks, char $\ast$statusb64)
-\begin{DoxyCompactList}\small\item\em Write the part of the U\+RL before the circular buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Write the part of the U\+RL before the circular buffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ndef_8h_a2c9b22cb5010801ed7dcb536b5c8939e}{ndef\+\_\+calclen}} (int $\ast$paddinglen, int $\ast$preamblenbytes, int $\ast$urllen)
+\end{DoxyCompactItemize}
 
 
 \subsection{Macro Definition Documentation}
@@ -34,12 +34,6 @@ int \mbox{\hyperlink{ndef_8h_ac55b5f717f0851a05b88d77e69ad3567}{ndef\+\_\+writep
 \subsubsection{\texorpdfstring{B\+L\+K\+S\+I\+Z\+E\+\_\+\+P\+O\+W2}{BLKSIZE\_POW2}}
 {\footnotesize\ttfamily \#define B\+L\+K\+S\+I\+Z\+E\+\_\+\+P\+O\+W2~4}
 
-\mbox{\Hypertarget{ndef_8h_adf9300c600f673d96063cd65a7157f7a}\label{ndef_8h_adf9300c600f673d96063cd65a7157f7a}} 
-\index{ndef.\+h@{ndef.\+h}!P\+R\+E\+A\+M\+B\+L\+E\+N\+\_\+\+B\+L\+KS@{P\+R\+E\+A\+M\+B\+L\+E\+N\+\_\+\+B\+L\+KS}}
-\index{P\+R\+E\+A\+M\+B\+L\+E\+N\+\_\+\+B\+L\+KS@{P\+R\+E\+A\+M\+B\+L\+E\+N\+\_\+\+B\+L\+KS}!ndef.\+h@{ndef.\+h}}
-\subsubsection{\texorpdfstring{P\+R\+E\+A\+M\+B\+L\+E\+N\+\_\+\+B\+L\+KS}{PREAMBLEN\_BLKS}}
-{\footnotesize\ttfamily \#define P\+R\+E\+A\+M\+B\+L\+E\+N\+\_\+\+B\+L\+KS~4}
-
 \mbox{\Hypertarget{ndef_8h_a8515ac56abf73a4b2c29dca739f44e99}\label{ndef_8h_a8515ac56abf73a4b2c29dca739f44e99}} 
 \index{ndef.\+h@{ndef.\+h}!T\+L\+S\+I\+Z\+E\+\_\+\+B\+Y\+T\+ES@{T\+L\+S\+I\+Z\+E\+\_\+\+B\+Y\+T\+ES}}
 \index{T\+L\+S\+I\+Z\+E\+\_\+\+B\+Y\+T\+ES@{T\+L\+S\+I\+Z\+E\+\_\+\+B\+Y\+T\+ES}!ndef.\+h@{ndef.\+h}}
@@ -49,11 +43,17 @@ int \mbox{\hyperlink{ndef_8h_ac55b5f717f0851a05b88d77e69ad3567}{ndef\+\_\+writep
 
 
 \subsection{Function Documentation}
-\mbox{\Hypertarget{ndef_8h_a80c4e6a3a3e7ffaad5527adc3224c280}\label{ndef_8h_a80c4e6a3a3e7ffaad5527adc3224c280}} 
+\mbox{\Hypertarget{ndef_8h_a2c9b22cb5010801ed7dcb536b5c8939e}\label{ndef_8h_a2c9b22cb5010801ed7dcb536b5c8939e}} 
+\index{ndef.\+h@{ndef.\+h}!ndef\+\_\+calclen@{ndef\+\_\+calclen}}
+\index{ndef\+\_\+calclen@{ndef\+\_\+calclen}!ndef.\+h@{ndef.\+h}}
+\subsubsection{\texorpdfstring{ndef\+\_\+calclen()}{ndef\_calclen()}}
+{\footnotesize\ttfamily void ndef\+\_\+calclen (\begin{DoxyParamCaption}\item[{int $\ast$}]{paddinglen,  }\item[{int $\ast$}]{preamblenbytes,  }\item[{int $\ast$}]{urllen }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ndef_8h_a2042acb925b04e54eadc1feb53c0b1e9}\label{ndef_8h_a2042acb925b04e54eadc1feb53c0b1e9}} 
 \index{ndef.\+h@{ndef.\+h}!ndef\+\_\+writeblankurl@{ndef\+\_\+writeblankurl}}
 \index{ndef\+\_\+writeblankurl@{ndef\+\_\+writeblankurl}!ndef.\+h@{ndef.\+h}}
 \subsubsection{\texorpdfstring{ndef\+\_\+writeblankurl()}{ndef\_writeblankurl()}}
-{\footnotesize\ttfamily int ndef\+\_\+writeblankurl (\begin{DoxyParamCaption}\item[{int}]{qlenblks,  }\item[{char $\ast$}]{statusb64,  }\item[{int $\ast$}]{qstartblk,  }\item[{char}]{ver }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int ndef\+\_\+writeblankurl (\begin{DoxyParamCaption}\item[{int}]{qlenblks,  }\item[{char $\ast$}]{statusb64,  }\item[{int $\ast$}]{qstartblk }\end{DoxyParamCaption})}
 
 
 
@@ -66,8 +66,6 @@ Create a U\+RL with a blank circular buffer.
 {\em statusb64} & Pointer to the status field encoded in base 64. \\
 \hline
 {\em qstartblk} & Pointer to an integer into which this function writes the start block of the q U\+RL parameter. \\
-\hline
-{\em ver} & Version identifier. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

@@ -6,30 +6,30 @@
     <includedby refid="ndef_8c" local="yes">ndef.c</includedby>
     <includedby refid="sample_8c" local="yes">sample.c</includedby>
     <incdepgraph>
-      <node id="49">
+      <node id="52">
         <label>stdbool.h</label>
       </node>
-      <node id="48">
+      <node id="51">
         <label>ndef.h</label>
         <link refid="ndef_8h"/>
-        <childnode refid="49" relation="include">
+        <childnode refid="52" relation="include">
         </childnode>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="51">
+      <node id="54">
         <label>ndef.c</label>
         <link refid="ndef_8c"/>
       </node>
-      <node id="50">
+      <node id="53">
         <label>ndef.h</label>
         <link refid="ndef_8h"/>
-        <childnode refid="51" relation="include">
+        <childnode refid="54" relation="include">
         </childnode>
-        <childnode refid="52" relation="include">
+        <childnode refid="55" relation="include">
         </childnode>
       </node>
-      <node id="52">
+      <node id="55">
         <label>sample.c</label>
         <link refid="sample_8c"/>
       </node>
@@ -68,23 +68,12 @@
         </inbodydescription>
         <location file="ndef.h" line="6" column="9" bodyfile="ndef.h" bodystart="6" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="define" id="ndef_8h_1adf9300c600f673d96063cd65a7157f7a" prot="public" static="no">
-        <name>PREAMBLEN_BLKS</name>
-        <initializer>4</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="ndef.h" line="7" column="9" bodyfile="ndef.h" bodystart="7" bodyend="-1"/>
-      </memberdef>
       </sectiondef>
       <sectiondef kind="func">
-      <memberdef kind="function" id="ndef_8h_1a80c4e6a3a3e7ffaad5527adc3224c280" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="ndef_8h_1a2042acb925b04e54eadc1feb53c0b1e9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
         <definition>int ndef_writeblankurl</definition>
-        <argsstring>(int qlenblks, char *statusb64, int *qstartblk, char ver)</argsstring>
+        <argsstring>(int qlenblks, char *statusb64, int *qstartblk)</argsstring>
         <name>ndef_writeblankurl</name>
         <param>
           <type>int</type>
@@ -97,10 +86,6 @@
         <param>
           <type>int *</type>
           <declname>qstartblk</declname>
-        </param>
-        <param>
-          <type>char</type>
-          <declname>ver</declname>
         </param>
         <briefdescription>
 <para>Create a URL with a blank circular buffer. </para>        </briefdescription>
@@ -126,19 +111,12 @@
 <parameterdescription>
 <para>Pointer to an integer into which this function writes the start block of the q URL parameter. </para></parameterdescription>
 </parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>ver</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Version identifier. </para></parameterdescription>
-</parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>1 if qlenblks is not even.</para></simplesect>
 The circular buffer is zero-padded with a base64 octet that decodes to 0,0,0,0,0,0. </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="ndef.h" line="22" column="1" bodyfile="ndef.c" bodystart="166" bodyend="193"/>
+        <location file="ndef.h" line="20" column="1" bodyfile="ndef.c" bodystart="212" bodyend="243"/>
       </memberdef>
       <memberdef kind="function" id="ndef_8h_1ac55b5f717f0851a05b88d77e69ad3567" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -175,7 +153,32 @@ The circular buffer is zero-padded with a base64 octet that decodes to 0,0,0,0,0
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="ndef.h" line="29" column="1" bodyfile="ndef.c" bodystart="101" bodyend="164"/>
+        <location file="ndef.h" line="27" column="1" bodyfile="ndef.c" bodystart="109" bodyend="210"/>
+      </memberdef>
+      <memberdef kind="function" id="ndef_8h_1a2c9b22cb5010801ed7dcb536b5c8939e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ndef_calclen</definition>
+        <argsstring>(int *paddinglen, int *preamblenbytes, int *urllen)</argsstring>
+        <name>ndef_calclen</name>
+        <param>
+          <type>int *</type>
+          <declname>paddinglen</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>preamblenbytes</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>urllen</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="ndef.h" line="29" column="1" bodyfile="ndef.c" bodystart="92" bodyend="107"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -189,14 +192,15 @@ The circular buffer is zero-padded with a base64 octet that decodes to 0,0,0,0,0
 <codeline lineno="4" refid="ndef_8h_1a185e6e8640bb4cea359dce6f32f6ca2c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BLKSIZE_BYTES<sp/><sp/><sp/>0x10</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="5" refid="ndef_8h_1ada1a1409a6e2a0c6a1112b781a7bc8b8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BLKSIZE_POW2<sp/><sp/><sp/><sp/>4</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="6" refid="ndef_8h_1a8515ac56abf73a4b2c29dca739f44e99" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TLSIZE_BYTES<sp/><sp/><sp/><sp/>4</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="7" refid="ndef_8h_1adf9300c600f673d96063cd65a7157f7a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PREAMBLEN_BLKS<sp/><sp/>4</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal"></highlight></codeline>
-<codeline lineno="22"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ndef_8h_1a80c4e6a3a3e7ffaad5527adc3224c280" kindref="member">ndef_writeblankurl</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>qlenblks,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>statusb64,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*<sp/>qstartblk,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>ver);</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ndef_8h_1ac55b5f717f0851a05b88d77e69ad3567" kindref="member">ndef_writepreamble</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>qlenblks,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>statusb64);</highlight></codeline>
+<codeline lineno="20"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ndef_8h_1a2042acb925b04e54eadc1feb53c0b1e9" kindref="member">ndef_writeblankurl</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>qlenblks,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>statusb64,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*<sp/>qstartblk);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ndef_8h_1ac55b5f717f0851a05b88d77e69ad3567" kindref="member">ndef_writepreamble</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>qlenblks,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>statusb64);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="ndef_8h_1a2c9b22cb5010801ed7dcb536b5c8939e" kindref="member">ndef_calclen</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*<sp/>paddinglen,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*<sp/>preamblenbytes,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*<sp/>urllen);</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//_NDEF_H_</highlight></codeline>
     </programlisting>

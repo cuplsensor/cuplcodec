@@ -6,25 +6,25 @@
     <includes refid="octet_8h" local="yes">octet.h</includes>
     <includes refid="defs_8h" local="yes">defs.h</includes>
     <incdepgraph>
-      <node id="73">
+      <node id="77">
         <label>eep.h</label>
         <link refid="eep_8h"/>
       </node>
-      <node id="72">
+      <node id="76">
         <label>octet.c</label>
         <link refid="octet_8c"/>
-        <childnode refid="73" relation="include">
+        <childnode refid="77" relation="include">
         </childnode>
-        <childnode refid="74" relation="include">
+        <childnode refid="78" relation="include">
         </childnode>
-        <childnode refid="75" relation="include">
+        <childnode refid="79" relation="include">
         </childnode>
       </node>
-      <node id="74">
+      <node id="78">
         <label>octet.h</label>
         <link refid="octet_8h"/>
       </node>
-      <node id="75">
+      <node id="79">
         <label>defs.h</label>
         <link refid="defs_8h"/>
       </node>
@@ -276,6 +276,22 @@
         </inbodydescription>
         <location file="octet.c" line="107" column="1" bodyfile="octet.c" bodystart="107" bodyend="152"/>
       </memberdef>
+      <memberdef kind="function" id="octet_8c_1a94d5ddc09c135160eafdc7fd5a5caac9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int octet_getendmarkerpos</definition>
+        <argsstring>(void)</argsstring>
+        <name>octet_getendmarkerpos</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="octet.c" line="154" column="1" bodyfile="octet.c" bodystart="154" bodyend="158"/>
+      </memberdef>
       <memberdef kind="function" id="octet_8c_1af7d3b29522962f2be3eb543a9f66bdef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="octet_8h_1a91d594c2716b872bf8b1b59a87567516" kindref="member">OctState_t</ref></type>
         <definition>OctState_t octet_getstate</definition>
@@ -290,7 +306,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="octet.c" line="154" column="1" bodyfile="octet.c" bodystart="154" bodyend="157"/>
+        <location file="octet.c" line="160" column="1" bodyfile="octet.c" bodystart="160" bodyend="163"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -451,10 +467,16 @@
 <codeline lineno="151"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
 <codeline lineno="152"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="153"><highlight class="normal"></highlight></codeline>
-<codeline lineno="154"><highlight class="normal"><ref refid="octet_8h_1a91d594c2716b872bf8b1b59a87567516" kindref="member">OctState_t</ref><sp/><ref refid="octet_8c_1af7d3b29522962f2be3eb543a9f66bdef" kindref="member">octet_getstate</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="octet_8c_1a94d5ddc09c135160eafdc7fd5a5caac9" kindref="member">octet_getendmarkerpos</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="155"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="156"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_octetstate;</highlight></codeline>
-<codeline lineno="157"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>When<sp/>cursoroctet<sp/>is<sp/>ODD,<sp/>the<sp/>end<sp/>marker<sp/>byte<sp/>is<sp/>8<sp/>bytes<sp/>further<sp/>back.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(_nextblk<sp/>-<sp/>_startblk)*<ref refid="defs_8h_1a5c3744c850e32cd5437aa8ab26f5077f" kindref="member">OCTETS_PER_BLK</ref>*<ref refid="defs_8h_1a223fea805ee21e3b6b05a631b7af7a63" kindref="member">BYTES_PER_OCTET</ref><sp/>+<sp/><ref refid="defs_8h_1a5b481c24c164167dc05cc376551cf0d3" kindref="member">ENDMARKER_OFFSET_IN_ENDSTOP_1</ref><sp/>+<sp/>(_cursoroctet<sp/>&amp;<sp/>0x01)*<ref refid="defs_8h_1a223fea805ee21e3b6b05a631b7af7a63" kindref="member">BYTES_PER_OCTET</ref>;</highlight></codeline>
+<codeline lineno="158"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><ref refid="octet_8h_1a91d594c2716b872bf8b1b59a87567516" kindref="member">OctState_t</ref><sp/><ref refid="octet_8c_1af7d3b29522962f2be3eb543a9f66bdef" kindref="member">octet_getstate</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="161"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_octetstate;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="octet.c"/>
   </compounddef>

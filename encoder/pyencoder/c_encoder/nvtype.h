@@ -20,11 +20,11 @@
  *  Structure to hold configuration data held in non-volatile memory.
  */
 typedef struct nvstruct {
-    char serial[SERIAL_LENBYTES];   /*!< Unique box serial array. */
-    char seckey[SECKEY_LENBYTES];   /*!< Secret key array. This is used to generate the HMAC. */
+    char serial[SERIAL_LENBYTES];   /*!< Unique serial of the sensor. This must be SERIAL_LENBYTES bytes long.  */
+    char seckey[SECKEY_LENBYTES];   /*!< Secret key array. This must be SECKEY_LENBYTES long. This is used to generate the HMAC. */
     char smplintervalmins[SMPLINT_LENBYTES]; /*!< Time interval betweeen samples in minutes. This is b64 encoded so it is easier to store it as an array. */
-    char baseurl[BASEURL_LENBYTES]; /*!< Base URL. */
-    char version[VERSION_LENBYTES];                   /*!< Version. */
+    char baseurl[BASEURL_LENBYTES]; /*!< The URL or IP address of the web application running PSWebApp. This can be up to BASEURL_LENBYTES bytes long. */
+    char version[VERSION_LENBYTES];  /*!< Version. */
     unsigned int sleepintervaldays; /*!< The number of days to wait without scans before putting the sensor into deep sleep mode. */
     unsigned int allwritten;        /*!< Indicates that all required NV parameters have been set. */
     unsigned int resetsperloop;     /*!< Incremented each time the microcontroller resets. Zeroed when the circular buffer has wraps from the end back to the beginning. */

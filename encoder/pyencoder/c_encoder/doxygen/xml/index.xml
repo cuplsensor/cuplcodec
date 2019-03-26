@@ -26,7 +26,8 @@
     <member refid="structnvstruct_1a8c4928cc85c5336514401eb142ea7d50" kind="variable"><name>serial</name></member>
     <member refid="structnvstruct_1a680c038327bbd20d30beade8d0ef1dd4" kind="variable"><name>seckey</name></member>
     <member refid="structnvstruct_1a34de27bbd20aa5f15e4e4482ce5a0309" kind="variable"><name>smplintervalmins</name></member>
-    <member refid="structnvstruct_1aec7e67f64e6ee88dda940f1b837f9351" kind="variable"><name>randstate</name></member>
+    <member refid="structnvstruct_1a727d0685583daae50e80c9eea7b16c15" kind="variable"><name>baseurl</name></member>
+    <member refid="structnvstruct_1abfbbcb0a2e866121b24841f5494ac34b" kind="variable"><name>version</name></member>
     <member refid="structnvstruct_1a7535c524cca52dcf1e60b1e6762fea4c" kind="variable"><name>sleepintervaldays</name></member>
     <member refid="structnvstruct_1a3fee61ddd1d863385c81b1d53599191a" kind="variable"><name>allwritten</name></member>
     <member refid="structnvstruct_1a48f727b15838a972aff7c7d7397ff641" kind="variable"><name>resetsperloop</name></member>
@@ -84,6 +85,8 @@
     <member refid="defs_8h_1a25065cd833bcfecfb404093aed3edaca" kind="define"><name>BYTES_PER_SAMPLE</name></member>
     <member refid="defs_8h_1a96171b1fd0df68266c8208e01cf7b7c0" kind="define"><name>BUFLEN_BLKS</name></member>
     <member refid="defs_8h_1a34364711a08f6ea9de1f2c5a5ae56f88" kind="define"><name>ENDSTOP_BLKS</name></member>
+    <member refid="defs_8h_1a5b481c24c164167dc05cc376551cf0d3" kind="define"><name>ENDMARKER_OFFSET_IN_ENDSTOP_1</name></member>
+    <member refid="defs_8h_1ac4551bbc9efabf8378f35498f80b4679" kind="define"><name>BLKSIZE</name></member>
     <member refid="defs_8h_1a14c667ffecb19b066f43257c7361ff79" kind="define"><name>BUFLEN_SAMPLES</name></member>
   </compound>
   <compound refid="eep_8c" kind="file"><name>eep.c</name>
@@ -129,6 +132,15 @@
   <compound refid="ndef_8c" kind="file"><name>ndef.c</name>
     <member refid="ndef_8c_1a0dce637212030f0bde7c5e0f68032460" kind="define"><name>URL_RECORDTYPE</name></member>
     <member refid="ndef_8c_1ae4c33d17b37c135ccbd0dea622a21be2" kind="define"><name>URL_RECORDTYPE_LEN</name></member>
+    <member refid="ndef_8c_1a249d9c101b0742c2d82db627d71deca8" kind="define"><name>TIMEINTPARAM_LEN</name></member>
+    <member refid="ndef_8c_1ad0e0d47b86ef9b7e31592233428f1d74" kind="define"><name>TIMEINTB64_LEN</name></member>
+    <member refid="ndef_8c_1a0cadb46eb1041867ec1672bc493ed863" kind="define"><name>SERIALPARAM_LEN</name></member>
+    <member refid="ndef_8c_1acea516da0314dff3eef0fda0f12bfad5" kind="define"><name>VERPARAM_LEN</name></member>
+    <member refid="ndef_8c_1a81d59d436d24848e6312fd80b5eb374d" kind="define"><name>STATPARAM_LEN</name></member>
+    <member refid="ndef_8c_1a25e1f943036e9f64078ba6dc5183f343" kind="define"><name>STATB64_LEN</name></member>
+    <member refid="ndef_8c_1a6a41863935e2241a93a436cf3b178e84" kind="define"><name>QPARAM_LEN</name></member>
+    <member refid="ndef_8c_1a07ec40237783a751f56e825528217486" kind="define"><name>URL_RECORD_HEADER_LEN</name></member>
+    <member refid="ndef_8c_1ab4e3ce79fe491f1774d116c37b028e9e" kind="define"><name>TLV_TYPE_LEN_LEN</name></member>
     <member refid="ndef_8c_1a3f2902197dc6ef9f691916b1454006ca" kind="define"><name>TLV_START</name></member>
     <member refid="ndef_8c_1aa834bbba3ae471ca682740e350082377" kind="define"><name>WELLKNOWN_TNF</name></member>
     <member refid="ndef_8c_1aa8f2183ef92f096542b81c3cffc8c2b2" kind="define"><name>ABSURI_TNF</name></member>
@@ -139,22 +151,21 @@
     <member refid="ndef_8c_1a52cad496a745bee49f8acf6b2c7ecb5d" kind="variable"><name>serialparam</name></member>
     <member refid="ndef_8c_1af11c09c944401931b19511e92b600055" kind="variable"><name>queryparam</name></member>
     <member refid="ndef_8c_1a828830139077e98e2bf0476ba3f43857" kind="variable"><name>verparam</name></member>
-    <member refid="ndef_8c_1a79af3c56fefac563d474982d30deb9c9" kind="variable"><name>_ver</name></member>
     <member refid="ndef_8c_1a663e15c5661d88c7b3d782a93c3cd5a8" kind="variable"><name>statparam</name></member>
     <member refid="ndef_8c_1ae808c92291cf108528c401b9accf863e" kind="variable"><name>timeintparam</name></member>
-    <member refid="ndef_8c_1a4d2a489e718b387adcf904b2da9e704a" kind="variable"><name>url</name></member>
     <member refid="ndef_8c_1af0f4014117b02a9bb541e620154f34b5" kind="variable"><name>zeropad</name></member>
     <member refid="ndef_8c_1aec407ccd9dfe255f7ce254a6e3eb037d" kind="function"><name>ndef_createurlrecord</name></member>
+    <member refid="ndef_8c_1a2c9b22cb5010801ed7dcb536b5c8939e" kind="function"><name>ndef_calclen</name></member>
     <member refid="ndef_8c_1ac55b5f717f0851a05b88d77e69ad3567" kind="function"><name>ndef_writepreamble</name></member>
-    <member refid="ndef_8c_1a80c4e6a3a3e7ffaad5527adc3224c280" kind="function"><name>ndef_writeblankurl</name></member>
+    <member refid="ndef_8c_1a2042acb925b04e54eadc1feb53c0b1e9" kind="function"><name>ndef_writeblankurl</name></member>
   </compound>
   <compound refid="ndef_8h" kind="file"><name>ndef.h</name>
     <member refid="ndef_8h_1a185e6e8640bb4cea359dce6f32f6ca2c" kind="define"><name>BLKSIZE_BYTES</name></member>
     <member refid="ndef_8h_1ada1a1409a6e2a0c6a1112b781a7bc8b8" kind="define"><name>BLKSIZE_POW2</name></member>
     <member refid="ndef_8h_1a8515ac56abf73a4b2c29dca739f44e99" kind="define"><name>TLSIZE_BYTES</name></member>
-    <member refid="ndef_8h_1adf9300c600f673d96063cd65a7157f7a" kind="define"><name>PREAMBLEN_BLKS</name></member>
-    <member refid="ndef_8h_1a80c4e6a3a3e7ffaad5527adc3224c280" kind="function"><name>ndef_writeblankurl</name></member>
+    <member refid="ndef_8h_1a2042acb925b04e54eadc1feb53c0b1e9" kind="function"><name>ndef_writeblankurl</name></member>
     <member refid="ndef_8h_1ac55b5f717f0851a05b88d77e69ad3567" kind="function"><name>ndef_writepreamble</name></member>
+    <member refid="ndef_8h_1a2c9b22cb5010801ed7dcb536b5c8939e" kind="function"><name>ndef_calclen</name></member>
   </compound>
   <compound refid="nt3h_8c" kind="file"><name>nt3h.c</name>
     <member refid="nt3h_8c_1a8265d1afd96aa969d5bd110ee9e2c0ff" kind="define"><name>DEVADDR</name></member>
@@ -171,7 +182,6 @@
     <member refid="nt3h_8c_1af5eae3ef1e64f9f5e399840c02f871ad" kind="function"><name>nt3h_eepromwritedone</name></member>
   </compound>
   <compound refid="nt3h_8h" kind="file"><name>nt3h.h</name>
-    <member refid="nt3h_8h_1ac4551bbc9efabf8378f35498f80b4679" kind="define"><name>BLKSIZE</name></member>
     <member refid="nt3h_8h_1aecfb69926db9b0c804eae417a5546766" kind="function"><name>nt3h_init</name></member>
     <member refid="nt3h_8h_1a8b7f3ba6ec6dce05a9c79d4b08fa17bb" kind="function"><name>nt3h_writetag</name></member>
     <member refid="nt3h_8h_1a6766a3db85cd67a81ef911acff226dd8" kind="function"><name>nt3h_readtag</name></member>
@@ -184,8 +194,9 @@
   <compound refid="nvtype_8h" kind="file"><name>nvtype.h</name>
     <member refid="nvtype_8h_1a09589b0f4cf4e32679b6dc064903edef" kind="define"><name>SERIAL_LENBYTES</name></member>
     <member refid="nvtype_8h_1ae32c9007f59a1d55426d7fd63e10d589" kind="define"><name>SECKEY_LENBYTES</name></member>
+    <member refid="nvtype_8h_1a2d582ce7be27d531cfcc211e0bf24c0f" kind="define"><name>BASEURL_LENBYTES</name></member>
     <member refid="nvtype_8h_1a44d3fb460b6c9383a2b3248544aa13d0" kind="define"><name>SMPLINT_LENBYTES</name></member>
-    <member refid="nvtype_8h_1a30653e2266913b20202fbfdaf8719acf" kind="define"><name>RANDSTATE_LENBYTES</name></member>
+    <member refid="nvtype_8h_1ada79ed8a19f38854ae92032efcd9051b" kind="define"><name>VERSION_LENBYTES</name></member>
     <member refid="nvtype_8h_1a85e0c8e71ac12b688919da40fbc873cd" kind="define"><name>INTEGERFIELD_LENBYTES</name></member>
     <member refid="nvtype_8h_1a78682d319c0de97ea2b35f88095d6e57" kind="typedef"><name>nv_t</name></member>
   </compound>
@@ -206,6 +217,7 @@
     <member refid="octet_8c_1af95f1c1da472de7c7a167779b51ef284" kind="function"><name>octet_commit2</name></member>
     <member refid="octet_8c_1ac2fc0ce5139ec19f357ebf68c88b54e1" kind="function"><name>octet_write</name></member>
     <member refid="octet_8c_1ac943c19926037180241f1e97a11b7567" kind="function"><name>octet_movecursor</name></member>
+    <member refid="octet_8c_1a94d5ddc09c135160eafdc7fd5a5caac9" kind="function"><name>octet_getendmarkerpos</name></member>
     <member refid="octet_8c_1af7d3b29522962f2be3eb543a9f66bdef" kind="function"><name>octet_getstate</name></member>
   </compound>
   <compound refid="octet_8h" kind="file"><name>octet.h</name>
@@ -226,6 +238,7 @@
     <member refid="octet_8h_1ac943c19926037180241f1e97a11b7567" kind="function"><name>octet_movecursor</name></member>
     <member refid="octet_8h_1aa35e20df25ff426a3a0f1b36cf14d376" kind="function"><name>octet_restore</name></member>
     <member refid="octet_8h_1af7d3b29522962f2be3eb543a9f66bdef" kind="function"><name>octet_getstate</name></member>
+    <member refid="octet_8h_1a94d5ddc09c135160eafdc7fd5a5caac9" kind="function"><name>octet_getendmarkerpos</name></member>
   </compound>
   <compound refid="prng_8c" kind="file"><name>prng.c</name>
     <member refid="prng_8c_1a95824b37b27945dc6d1c900ed24dc64d" kind="define"><name>WORDLENBITS</name></member>
@@ -258,10 +271,9 @@
     <member refid="sample_8c_1a933befd99719afeb506beee220361f01" kind="variable"><name>state</name></member>
     <member refid="sample_8c_1a66de00a65de740789c7bdd5c673efcb7" kind="variable"><name>urlstatus</name></member>
     <member refid="sample_8c_1a76f4d25fbde464a6f20c01983869c134" kind="variable"><name>endstop</name></member>
-    <member refid="sample_8c_1a0734ae63bc16c45337b0501caf459126" kind="variable"><name>_temponly</name></member>
     <member refid="sample_8c_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" kind="variable"><name>nv</name></member>
     <member refid="sample_8c_1a80e54f51851c6880b55a8462e74a4aa0" kind="function"><name>sample_updatelc</name></member>
-    <member refid="sample_8c_1ac206e7a316f283a09d11da98380e6f58" kind="function"><name>sample_init</name></member>
+    <member refid="sample_8c_1a5151eadd9598643455abc107fb73f083" kind="function"><name>sample_init</name></member>
     <member refid="sample_8c_1a0ccd842a9eae8758ecf1b8c6ebd37eaa" kind="function"><name>makemarker</name></member>
     <member refid="sample_8c_1af03ea00a573c4bbe024b2ae03764e58a" kind="function"><name>makeendstop</name></member>
     <member refid="sample_8c_1a130e5805e5b411b541e60ee607185b98" kind="function"><name>sample_updateendstop</name></member>
@@ -270,13 +282,13 @@
     <member refid="sample_8c_1a5be5f77a339896373b1b5fff87fbfbcd" kind="function"><name>sample_push</name></member>
   </compound>
   <compound refid="sample_8h" kind="file"><name>sample.h</name>
-    <member refid="sample_8h_1a2946d336b97c5fc66e054c0dac644066" kind="function"><name>sample_init</name></member>
+    <member refid="sample_8h_1a9bca97751f2d9c20da42670c8a83b67d" kind="function"><name>sample_init</name></member>
     <member refid="sample_8h_1a5be5f77a339896373b1b5fff87fbfbcd" kind="function"><name>sample_push</name></member>
     <member refid="sample_8h_1a130e5805e5b411b541e60ee607185b98" kind="function"><name>sample_updateendstop</name></member>
   </compound>
   <compound refid="smplhist_8c" kind="file"><name>smplhist.c</name>
     <member refid="smplhist_8c_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" kind="variable"><name>nv</name></member>
-    <member refid="smplhist_8c_1a7f6bde1248a37ef8f419e7d8903a34b4" kind="variable"><name>buflensamples</name></member>
+    <member refid="smplhist_8c_1ae273bd28ec168f04a70cbc3cc33525d6" kind="variable"><name>buflensamples</name></member>
     <member refid="smplhist_8c_1a8aedd58352278eb408f36d088ed8f4aa" kind="variable"><name>samplehistory</name></member>
     <member refid="smplhist_8c_1a63cb38868474918fb01a197c2662c0ce" kind="variable"><name>histpos</name></member>
     <member refid="smplhist_8c_1a0c84fb6f20b71986993b740a847ee98a" kind="variable"><name>md5block</name></member>
@@ -286,15 +298,17 @@
     <member refid="smplhist_8c_1ac0a11776eab3faf04d27a1c212a7a60e" kind="variable"><name>prevhistpos</name></member>
     <member refid="smplhist_8c_1affe400f90c858c88868d0ee6a1a9d3df" kind="function"><name>smplhist_ovr</name></member>
     <member refid="smplhist_8c_1a8b601164eab6ef2ea4d6643970a760f6" kind="function"><name>smplhist_push</name></member>
-    <member refid="smplhist_8c_1a795461eee0cdd59fced4cdd31c30dd44" kind="function"><name>smplhist_read</name></member>
+    <member refid="smplhist_8c_1acaa1441a54c225ac6914ada471623cdc" kind="function"><name>smplhist_read</name></member>
     <member refid="smplhist_8c_1a92c0645dcea2976bba0b05556472e211" kind="function"><name>smplhist_md5</name></member>
   </compound>
   <compound refid="smplhist_8h" kind="file"><name>smplhist.h</name>
     <member refid="smplhist_8h_1a6aed6c376195d183573501f3a8a77ca3" kind="typedef"><name>sdchars_t</name></member>
     <member refid="smplhist_8h_1acc281e4cc90073d250cb40e8e91897c9" kind="typedef"><name>md5len_t</name></member>
+    <member refid="smplhist_8h_1ae273bd28ec168f04a70cbc3cc33525d6" kind="variable"><name>buflensamples</name></member>
     <member refid="smplhist_8h_1affe400f90c858c88868d0ee6a1a9d3df" kind="function"><name>smplhist_ovr</name></member>
     <member refid="smplhist_8h_1a8b601164eab6ef2ea4d6643970a760f6" kind="function"><name>smplhist_push</name></member>
     <member refid="smplhist_8h_1a92c0645dcea2976bba0b05556472e211" kind="function"><name>smplhist_md5</name></member>
+    <member refid="smplhist_8h_1acaa1441a54c225ac6914ada471623cdc" kind="function"><name>smplhist_read</name></member>
   </compound>
   <compound refid="stat__bits_8h" kind="file"><name>stat_bits.h</name>
     <member refid="stat__bits_8h_1ad4d43f8748b542bce39e18790f845ecc" kind="define"><name>BIT0</name></member>

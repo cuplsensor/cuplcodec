@@ -97,12 +97,13 @@ $(document).ready(function(){initNavTree('eep_8c.html','');});
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="eep_8h_source.html">eep.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="nt3h_8h_source.html">nt3h.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="defs_8h_source.html">defs.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:ab8ef3b0a4427401a76129d6b15921f46"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eep_8c.html#ab8ef3b0a4427401a76129d6b15921f46">BUFSIZE_BLKS</a>&#160;&#160;&#160;4</td></tr>
 <tr class="separator:ab8ef3b0a4427401a76129d6b15921f46"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e5ecf6e2d74f95a32e7f636bcbdf27f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eep_8c.html#a6e5ecf6e2d74f95a32e7f636bcbdf27f">BUFSIZE_BYTES</a>&#160;&#160;&#160;(<a class="el" href="eep_8c.html#ab8ef3b0a4427401a76129d6b15921f46">BUFSIZE_BLKS</a> * <a class="el" href="nt3h_8h.html#ac4551bbc9efabf8378f35498f80b4679">BLKSIZE</a>)</td></tr>
+<tr class="memitem:a6e5ecf6e2d74f95a32e7f636bcbdf27f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eep_8c.html#a6e5ecf6e2d74f95a32e7f636bcbdf27f">BUFSIZE_BYTES</a>&#160;&#160;&#160;(<a class="el" href="eep_8c.html#ab8ef3b0a4427401a76129d6b15921f46">BUFSIZE_BLKS</a> * <a class="el" href="defs_8h.html#ac4551bbc9efabf8378f35498f80b4679">BLKSIZE</a>)</td></tr>
 <tr class="separator:a6e5ecf6e2d74f95a32e7f636bcbdf27f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -125,7 +126,7 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a75ee6794c00b84590fc80f1d36a2ad24"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eep_8c.html#a75ee6794c00b84590fc80f1d36a2ad24">_blkbuffer</a> [<a class="el" href="eep_8c.html#ab8ef3b0a4427401a76129d6b15921f46">BUFSIZE_BLKS</a> *<a class="el" href="nt3h_8h.html#ac4551bbc9efabf8378f35498f80b4679">BLKSIZE</a>] = {0}</td></tr>
+<tr class="memitem:a75ee6794c00b84590fc80f1d36a2ad24"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eep_8c.html#a75ee6794c00b84590fc80f1d36a2ad24">_blkbuffer</a> [<a class="el" href="eep_8c.html#ab8ef3b0a4427401a76129d6b15921f46">BUFSIZE_BLKS</a> *<a class="el" href="defs_8h.html#ac4551bbc9efabf8378f35498f80b4679">BLKSIZE</a>] = {0}</td></tr>
 <tr class="separator:a75ee6794c00b84590fc80f1d36a2ad24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
@@ -150,7 +151,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define BUFSIZE_BYTES&#160;&#160;&#160;(<a class="el" href="eep_8c.html#ab8ef3b0a4427401a76129d6b15921f46">BUFSIZE_BLKS</a> * <a class="el" href="nt3h_8h.html#ac4551bbc9efabf8378f35498f80b4679">BLKSIZE</a>)</td>
+          <td class="memname">#define BUFSIZE_BYTES&#160;&#160;&#160;(<a class="el" href="eep_8c.html#ab8ef3b0a4427401a76129d6b15921f46">BUFSIZE_BLKS</a> * <a class="el" href="defs_8h.html#ac4551bbc9efabf8378f35498f80b4679">BLKSIZE</a>)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -345,7 +346,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char _blkbuffer[<a class="el" href="eep_8c.html#ab8ef3b0a4427401a76129d6b15921f46">BUFSIZE_BLKS</a> *<a class="el" href="nt3h_8h.html#ac4551bbc9efabf8378f35498f80b4679">BLKSIZE</a>] = {0}</td>
+          <td class="memname">char _blkbuffer[<a class="el" href="eep_8c.html#ab8ef3b0a4427401a76129d6b15921f46">BUFSIZE_BLKS</a> *<a class="el" href="defs_8h.html#ac4551bbc9efabf8378f35498f80b4679">BLKSIZE</a>] = {0}</td>
         </tr>
       </table>
 </div><div class="memdoc">

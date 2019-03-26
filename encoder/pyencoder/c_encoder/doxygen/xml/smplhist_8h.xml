@@ -6,30 +6,30 @@
     <includedby refid="sample_8c" local="yes">sample.c</includedby>
     <includedby refid="smplhist_8c" local="yes">smplhist.c</includedby>
     <incdepgraph>
-      <node id="114">
+      <node id="118">
         <label>stdbool.h</label>
       </node>
-      <node id="113">
+      <node id="117">
         <label>smplhist.h</label>
         <link refid="smplhist_8h"/>
-        <childnode refid="114" relation="include">
+        <childnode refid="118" relation="include">
         </childnode>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="117">
+      <node id="121">
         <label>smplhist.c</label>
         <link refid="smplhist_8c"/>
       </node>
-      <node id="115">
+      <node id="119">
         <label>smplhist.h</label>
         <link refid="smplhist_8h"/>
-        <childnode refid="116" relation="include">
+        <childnode refid="120" relation="include">
         </childnode>
-        <childnode refid="117" relation="include">
+        <childnode refid="121" relation="include">
         </childnode>
       </node>
-      <node id="116">
+      <node id="120">
         <label>sample.c</label>
         <link refid="sample_8c"/>
       </node>
@@ -62,6 +62,21 @@
         <inbodydescription>
         </inbodydescription>
         <location file="smplhist.h" line="23" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="smplhist_8h_1ae273bd28ec168f04a70cbc3cc33525d6" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int buflensamples</definition>
+        <argsstring></argsstring>
+        <name>buflensamples</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="smplhist.h" line="31" column="1" bodyfile="smplhist.h" bodystart="31" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="func">
@@ -120,6 +135,27 @@
         </inbodydescription>
         <location file="smplhist.h" line="27" column="1" bodyfile="smplhist.c" bodystart="73" bodyend="181"/>
       </memberdef>
+      <memberdef kind="function" id="smplhist_8h_1acaa1441a54c225ac6914ada471623cdc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="smplhist_8h_1a6aed6c376195d183573501f3a8a77ca3" kindref="member">sdchars_t</ref></type>
+        <definition>sdchars_t smplhist_read</definition>
+        <argsstring>(unsigned int index, int *error)</argsstring>
+        <name>smplhist_read</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>error</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="smplhist.h" line="28" column="1" bodyfile="smplhist.c" bodystart="42" bodyend="71"/>
+      </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
@@ -150,8 +186,13 @@
 <codeline lineno="25"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="smplhist_8h_1affe400f90c858c88868d0ee6a1a9d3df" kindref="member">smplhist_ovr</ref>(<ref refid="structsensordatachars" kindref="compound">sdchars_t</ref><sp/>sample);</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="smplhist_8h_1a8b601164eab6ef2ea4d6643970a760f6" kindref="member">smplhist_push</ref>(<ref refid="structsensordatachars" kindref="compound">sdchars_t</ref><sp/>sample);</highlight></codeline>
 <codeline lineno="27"><highlight class="normal"><ref refid="structmd5len" kindref="compound">md5len_t</ref><sp/><ref refid="smplhist_8h_1a92c0645dcea2976bba0b05556472e211" kindref="member">smplhist_md5</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>lensmpls,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>usehmac);</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//_SMPLHIST_H_</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><ref refid="structsensordatachars" kindref="compound">sdchars_t</ref><sp/><ref refid="smplhist_8h_1acaa1441a54c225ac6914ada471623cdc" kindref="member">smplhist_read</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*<sp/>error);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>NOT_CFFI</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="smplhist_8h_1ae273bd28ec168f04a70cbc3cc33525d6" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="smplhist_8h_1ae273bd28ec168f04a70cbc3cc33525d6" kindref="member">buflensamples</ref>;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//_SMPLHIST_H_</highlight></codeline>
     </programlisting>
     <location file="smplhist.h"/>
   </compounddef>

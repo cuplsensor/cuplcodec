@@ -13,57 +13,49 @@
     <includes refid="nvtype_8h" local="yes">nvtype.h</includes>
     <includes local="no">stdint.h</includes>
     <incdepgraph>
-      <node id="90">
+      <node id="94">
         <label>stdbool.h</label>
       </node>
-      <node id="97">
+      <node id="101">
         <label>base64.h</label>
         <link refid="base64_8h"/>
-        <childnode refid="98" relation="include">
+        <childnode refid="102" relation="include">
         </childnode>
       </node>
-      <node id="100">
+      <node id="104">
         <label>stdint.h</label>
       </node>
-      <node id="92">
+      <node id="96">
         <label>ndef.h</label>
         <link refid="ndef_8h"/>
-        <childnode refid="90" relation="include">
+        <childnode refid="94" relation="include">
+        </childnode>
+      </node>
+      <node id="102">
+        <label>string.h</label>
+      </node>
+      <node id="97">
+        <label>smplhist.h</label>
+        <link refid="smplhist_8h"/>
+        <childnode refid="94" relation="include">
         </childnode>
       </node>
       <node id="98">
-        <label>string.h</label>
-      </node>
-      <node id="93">
-        <label>smplhist.h</label>
-        <link refid="smplhist_8h"/>
-        <childnode refid="90" relation="include">
-        </childnode>
-      </node>
-      <node id="94">
         <label>prng.h</label>
         <link refid="prng_8h"/>
       </node>
-      <node id="91">
+      <node id="95">
         <label>octet.h</label>
         <link refid="octet_8h"/>
       </node>
-      <node id="99">
+      <node id="103">
         <label>nvtype.h</label>
         <link refid="nvtype_8h"/>
       </node>
-      <node id="88">
+      <node id="92">
         <label>sample.c</label>
         <link refid="sample_8c"/>
-        <childnode refid="89" relation="include">
-        </childnode>
-        <childnode refid="91" relation="include">
-        </childnode>
-        <childnode refid="92" relation="include">
-        </childnode>
         <childnode refid="93" relation="include">
-        </childnode>
-        <childnode refid="94" relation="include">
         </childnode>
         <childnode refid="95" relation="include">
         </childnode>
@@ -71,22 +63,30 @@
         </childnode>
         <childnode refid="97" relation="include">
         </childnode>
+        <childnode refid="98" relation="include">
+        </childnode>
         <childnode refid="99" relation="include">
         </childnode>
         <childnode refid="100" relation="include">
         </childnode>
-      </node>
-      <node id="89">
-        <label>sample.h</label>
-        <link refid="sample_8h"/>
-        <childnode refid="90" relation="include">
+        <childnode refid="101" relation="include">
+        </childnode>
+        <childnode refid="103" relation="include">
+        </childnode>
+        <childnode refid="104" relation="include">
         </childnode>
       </node>
-      <node id="96">
+      <node id="93">
+        <label>sample.h</label>
+        <link refid="sample_8h"/>
+        <childnode refid="94" relation="include">
+        </childnode>
+      </node>
+      <node id="100">
         <label>batv.h</label>
         <link refid="batv_8h"/>
       </node>
-      <node id="95">
+      <node id="99">
         <label>defs.h</label>
         <link refid="defs_8h"/>
       </node>
@@ -278,19 +278,6 @@
         </inbodydescription>
         <location file="sample.c" line="42" column="1" bodyfile="sample.c" bodystart="42" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="sample_8c_1a0734ae63bc16c45337b0501caf459126" prot="public" static="yes" mutable="no">
-        <type>bool</type>
-        <definition>bool _temponly</definition>
-        <argsstring></argsstring>
-        <name>_temponly</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para>Internal flag to mark if only temperature data are being written on each call call of <ref refid="sample_8c_1a5be5f77a339896373b1b5fff87fbfbcd" kindref="member">sample_push(int,int)</ref> </para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="sample.c" line="43" column="1" bodyfile="sample.c" bodystart="43" bodyend="-1"/>
-      </memberdef>
       <memberdef kind="variable" id="sample_8c_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" prot="public" static="no" mutable="no">
         <type><ref refid="nvtype_8h_1a78682d319c0de97ea2b35f88095d6e57" kindref="member">nv_t</ref></type>
         <definition>nv_t nv</definition>
@@ -302,7 +289,7 @@
 <para>Externally defined parameters stored in non-volatile memory. </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="sample.c" line="44" column="1" bodyfile="nvtype.c" bodystart="11" bodyend="-1"/>
+        <location file="sample.c" line="43" column="1" bodyfile="nvtype.c" bodystart="11" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="func">
@@ -320,12 +307,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="sample.c" line="49" column="1" bodyfile="sample.c" bodystart="49" bodyend="60"/>
+        <location file="sample.c" line="48" column="1" bodyfile="sample.c" bodystart="48" bodyend="59"/>
       </memberdef>
-      <memberdef kind="function" id="sample_8c_1ac206e7a316f283a09d11da98380e6f58" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="sample_8c_1a5151eadd9598643455abc107fb73f083" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void sample_init</definition>
-        <argsstring>(unsigned int stat, bool err, bool temponly)</argsstring>
+        <argsstring>(unsigned int stat, bool err)</argsstring>
         <name>sample_init</name>
         <param>
           <type>unsigned int</type>
@@ -334,10 +321,6 @@
         <param>
           <type>bool</type>
           <declname>err</declname>
-        </param>
-        <param>
-          <type>bool</type>
-          <declname>temponly</declname>
         </param>
         <briefdescription>
 <para>Initialise the sample state machine. </para>        </briefdescription>
@@ -367,7 +350,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="sample.c" line="69" column="1" bodyfile="sample.c" bodystart="69" bodyend="108"/>
+        <location file="sample.c" line="68" column="1" bodyfile="sample.c" bodystart="68" bodyend="93"/>
       </memberdef>
       <memberdef kind="function" id="sample_8c_1a0ccd842a9eae8758ecf1b8c6ebd37eaa" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -403,7 +386,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="sample.c" line="116" column="1" bodyfile="sample.c" bodystart="116" bodyend="126"/>
+        <location file="sample.c" line="101" column="1" bodyfile="sample.c" bodystart="101" bodyend="111"/>
       </memberdef>
       <memberdef kind="function" id="sample_8c_1af03ea00a573c4bbe024b2ae03764e58a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -428,7 +411,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="sample.c" line="133" column="1" bodyfile="sample.c" bodystart="133" bodyend="140"/>
+        <location file="sample.c" line="118" column="1" bodyfile="sample.c" bodystart="118" bodyend="125"/>
       </memberdef>
       <memberdef kind="function" id="sample_8c_1a130e5805e5b411b541e60ee607185b98" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -453,7 +436,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="sample.c" line="147" column="1" bodyfile="sample.c" bodystart="147" bodyend="152"/>
+        <location file="sample.c" line="132" column="1" bodyfile="sample.c" bodystart="132" bodyend="137"/>
       </memberdef>
       <memberdef kind="function" id="sample_8c_1a16a16e777dfba7eddcd73fd2b472d91b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -500,7 +483,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="sample.c" line="161" column="1" bodyfile="sample.c" bodystart="161" bodyend="166"/>
+        <location file="sample.c" line="146" column="1" bodyfile="sample.c" bodystart="146" bodyend="151"/>
       </memberdef>
       <memberdef kind="function" id="sample_8c_1a5cf0405daf296e4fb016d0766c7ec5de" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -536,7 +519,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="sample.c" line="174" column="1" bodyfile="sample.c" bodystart="174" bodyend="179"/>
+        <location file="sample.c" line="159" column="1" bodyfile="sample.c" bodystart="159" bodyend="164"/>
       </memberdef>
       <memberdef kind="function" id="sample_8c_1a5be5f77a339896373b1b5fff87fbfbcd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -573,7 +556,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="sample.c" line="190" column="1" bodyfile="sample.c" bodystart="190" bodyend="280"/>
+        <location file="sample.c" line="175" column="1" bodyfile="sample.c" bodystart="175" bodyend="265"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -622,195 +605,180 @@
 <codeline lineno="40"><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8" kindref="member">urlstate</ref><sp/>state;</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structstatus" kindref="compound">stat_t</ref><sp/>urlstatus<sp/>=<sp/>{0};</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structendstop" kindref="compound">endstop_t</ref><sp/><ref refid="structendstop" kindref="compound">endstop</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="43"><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>_temponly;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="44"><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="structnvstruct" kindref="compound">nv_t</ref><sp/><ref refid="sample_8c_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" kindref="member">nv</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="49"><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>sample_updatelc(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
-<codeline lineno="50"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>statusb64[9];</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"></highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/>urlstatus.<ref refid="structstatus_1ad6771c066dbc9a3f9c97f67d183dafe4" kindref="member">loopcount</ref><sp/>+=<sp/>1;</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//urlstatus.status<sp/>=<sp/>stat_get(&amp;err);</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/>urlstatus.<ref refid="structstatus_1a64bf6569e5dcde7c63303ca7557c4ce9" kindref="member">batvoltage</ref><sp/>=<sp/><ref refid="batv_8c_1a5995d869f98d751c9f0f31850a088584" kindref="member">batv_measure</ref>();</highlight></codeline>
-<codeline lineno="56"><highlight class="normal"></highlight></codeline>
-<codeline lineno="57"><highlight class="normal"><sp/><sp/><ref refid="base64_8c_1a65618dacdde3ed7eeb15bbe7b3751cb9" kindref="member">Base64encode</ref>(statusb64,<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*)&amp;urlstatus,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(urlstatus));</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"><sp/><sp/><ref refid="ndef_8c_1ac55b5f717f0851a05b88d77e69ad3567" kindref="member">ndef_writepreamble</ref>(<ref refid="defs_8h_1a96171b1fd0df68266c8208e01cf7b7c0" kindref="member">BUFLEN_BLKS</ref>,<sp/>statusb64);</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><ref refid="octet_8c_1aa35e20df25ff426a3a0f1b36cf14d376" kindref="member">octet_restore</ref>();</highlight></codeline>
-<codeline lineno="60"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"></highlight></codeline>
-<codeline lineno="69"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="sample_8c_1ac206e7a316f283a09d11da98380e6f58" kindref="member">sample_init</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>stat,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>err,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>temponly)</highlight></codeline>
-<codeline lineno="70"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>statusb64[9];</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>startblk;</highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>buflenblks;</highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>ver;</highlight></codeline>
-<codeline lineno="75"><highlight class="normal"></highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/>urlstatus.<ref refid="structstatus_1ad6771c066dbc9a3f9c97f67d183dafe4" kindref="member">loopcount</ref><sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/>urlstatus.<ref refid="structstatus_1a5393c99e246925076b1dfd69a64177ef" kindref="member">status</ref><sp/>=<sp/>stat;</highlight></codeline>
-<codeline lineno="78"><highlight class="normal"><sp/><sp/>urlstatus.<ref refid="structstatus_1a64bf6569e5dcde7c63303ca7557c4ce9" kindref="member">batvoltage</ref><sp/>=<sp/><ref refid="batv_8c_1a5995d869f98d751c9f0f31850a088584" kindref="member">batv_measure</ref>();</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/><ref refid="base64_8c_1a65618dacdde3ed7eeb15bbe7b3751cb9" kindref="member">Base64encode</ref>(statusb64,<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*)&amp;urlstatus,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(urlstatus));</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"></highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/>lensmpls<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/>state<sp/>=<sp/><ref refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8a335559f3d0770f8905099143d5fdfc68" kindref="member">first_tick</ref>;</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"></highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(err<sp/>==<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">)</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>buflenblks<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="88"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>buflenblks<sp/>=<sp/><ref refid="defs_8h_1a96171b1fd0df68266c8208e01cf7b7c0" kindref="member">BUFLEN_BLKS</ref>;</highlight></codeline>
-<codeline lineno="91"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="92"><highlight class="normal"></highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/>_temponly<sp/>=<sp/>temponly;</highlight></codeline>
+<codeline lineno="43"><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="structnvstruct" kindref="compound">nv_t</ref><sp/><ref refid="sample_8c_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" kindref="member">nv</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="48"><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>sample_updatelc(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="49"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>statusb64[9];</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/>urlstatus.<ref refid="structstatus_1ad6771c066dbc9a3f9c97f67d183dafe4" kindref="member">loopcount</ref><sp/>+=<sp/>1;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//urlstatus.status<sp/>=<sp/>stat_get(&amp;err);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/>urlstatus.<ref refid="structstatus_1a64bf6569e5dcde7c63303ca7557c4ce9" kindref="member">batvoltage</ref><sp/>=<sp/><ref refid="batv_8c_1a5995d869f98d751c9f0f31850a088584" kindref="member">batv_measure</ref>();</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><ref refid="base64_8c_1a65618dacdde3ed7eeb15bbe7b3751cb9" kindref="member">Base64encode</ref>(statusb64,<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*)&amp;urlstatus,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(urlstatus));</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><ref refid="ndef_8c_1ac55b5f717f0851a05b88d77e69ad3567" kindref="member">ndef_writepreamble</ref>(<ref refid="defs_8h_1a96171b1fd0df68266c8208e01cf7b7c0" kindref="member">BUFLEN_BLKS</ref>,<sp/>statusb64);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><ref refid="octet_8c_1aa35e20df25ff426a3a0f1b36cf14d376" kindref="member">octet_restore</ref>();</highlight></codeline>
+<codeline lineno="59"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="sample_8c_1a5151eadd9598643455abc107fb73f083" kindref="member">sample_init</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>stat,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>err)</highlight></codeline>
+<codeline lineno="69"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>statusb64[9];</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>startblk;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>buflenblks;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/>urlstatus.<ref refid="structstatus_1ad6771c066dbc9a3f9c97f67d183dafe4" kindref="member">loopcount</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/>urlstatus.<ref refid="structstatus_1a5393c99e246925076b1dfd69a64177ef" kindref="member">status</ref><sp/>=<sp/>stat;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/>urlstatus.<ref refid="structstatus_1a64bf6569e5dcde7c63303ca7557c4ce9" kindref="member">batvoltage</ref><sp/>=<sp/><ref refid="batv_8c_1a5995d869f98d751c9f0f31850a088584" kindref="member">batv_measure</ref>();</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><ref refid="base64_8c_1a65618dacdde3ed7eeb15bbe7b3751cb9" kindref="member">Base64encode</ref>(statusb64,<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*)&amp;urlstatus,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(urlstatus));</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/>lensmpls<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/>state<sp/>=<sp/><ref refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8a335559f3d0770f8905099143d5fdfc68" kindref="member">first_tick</ref>;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(err<sp/>==<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>buflenblks<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>buflenblks<sp/>=<sp/><ref refid="defs_8h_1a96171b1fd0df68266c8208e01cf7b7c0" kindref="member">BUFLEN_BLKS</ref>;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><ref refid="ndef_8c_1a2042acb925b04e54eadc1feb53c0b1e9" kindref="member">ndef_writeblankurl</ref>(buflenblks,<sp/>statusb64,<sp/>&amp;startblk);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><ref refid="octet_8c_1a0104a90b7774008e8a9976ca77a0a4f3" kindref="member">octet_init</ref>(startblk,<sp/>buflenblks);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="94"><highlight class="normal"></highlight></codeline>
-<codeline lineno="95"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(_temponly<sp/>==<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">)</highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>ver<sp/>=<sp/><ref refid="sample_8c_1ae8b2d876f1eb3087a5859e78688c5169" kindref="member">TEMPONLY</ref>;</highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>ver<sp/>=<sp/><ref refid="sample_8c_1a649a882141d51724d0851c5637ae9b52" kindref="member">TEMPRH</ref>;</highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="103"><highlight class="normal"></highlight></codeline>
-<codeline lineno="104"><highlight class="normal"><sp/><sp/><ref refid="ndef_8c_1a80c4e6a3a3e7ffaad5527adc3224c280" kindref="member">ndef_writeblankurl</ref>(buflenblks,<sp/>statusb64,<sp/>&amp;startblk,<sp/>ver);</highlight></codeline>
-<codeline lineno="105"><highlight class="normal"><sp/><sp/><ref refid="octet_8c_1a0104a90b7774008e8a9976ca77a0a4f3" kindref="member">octet_init</ref>(startblk,<sp/>buflenblks);</highlight></codeline>
-<codeline lineno="106"><highlight class="normal"><sp/><sp/><ref refid="prng_8c_1a7743b02470e6a9781b6df16ebec41134" kindref="member">prng_init</ref>(<ref refid="sample_8c_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" kindref="member">nv</ref>.<ref refid="structnvstruct_1aec7e67f64e6ee88dda940f1b837f9351" kindref="member">randstate</ref>);</highlight></codeline>
-<codeline lineno="107"><highlight class="normal"></highlight></codeline>
-<codeline lineno="108"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="109"><highlight class="normal"></highlight></codeline>
-<codeline lineno="116"><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>makemarker(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>minutes,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>endmarker)</highlight></codeline>
-<codeline lineno="117"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>minutesixb;</highlight></codeline>
-<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>randomtenb;</highlight></codeline>
-<codeline lineno="120"><highlight class="normal"></highlight></codeline>
-<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>minutesixb<sp/>=<sp/>minutes<sp/>&amp;<sp/>0x3F;<sp/></highlight><highlight class="comment">//<sp/>Select<sp/>lower<sp/>6<sp/>bits<sp/>of<sp/>the<sp/>minutes<sp/>field.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>randomtenb<sp/>=<sp/>5;<sp/></highlight><highlight class="comment">//prng_getrandom(10);</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="123"><highlight class="normal"></highlight></codeline>
-<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>*(endmarker)<sp/>=<sp/>minutesixb<sp/>+<sp/>((randomtenb<sp/>&amp;<sp/>0x03)&lt;&lt;6);</highlight></codeline>
-<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>*(endmarker<sp/>+<sp/>1)<sp/>=<sp/>randomtenb<sp/>&gt;&gt;<sp/>2;</highlight></codeline>
-<codeline lineno="126"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="127"><highlight class="normal"></highlight></codeline>
-<codeline lineno="133"><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>makeendstop(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>minutes)</highlight></codeline>
-<codeline lineno="134"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>endmarker[2];</highlight></codeline>
-<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>makemarker(minutes,<sp/>endmarker);</highlight></codeline>
-<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="base64_8c_1a65618dacdde3ed7eeb15bbe7b3751cb9" kindref="member">Base64encode</ref>(<ref refid="structendstop" kindref="compound">endstop</ref>.<ref refid="structendstop_1a45d0b3c1f88901a3d92d905bd044672d" kindref="member">markerb64</ref>,<sp/>endmarker,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(endmarker));</highlight></codeline>
-<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Change<sp/>padding<sp/>byte.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structendstop" kindref="compound">endstop</ref>.<ref refid="structendstop_1a45d0b3c1f88901a3d92d905bd044672d" kindref="member">markerb64</ref>[3]<sp/>=<sp/><ref refid="sample_8c_1a639bc14d5477eb6e1bbbdaec7ea6fd8c" kindref="member">ENDSTOP_BYTE</ref>;</highlight></codeline>
-<codeline lineno="140"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="141"><highlight class="normal"></highlight></codeline>
-<codeline lineno="147"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="sample_8c_1a130e5805e5b411b541e60ee607185b98" kindref="member">sample_updateendstop</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>minutes)</highlight></codeline>
-<codeline lineno="148"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>makeendstop(minutes);</highlight></codeline>
-<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="octet_8c_1ac2fc0ce5139ec19f357ebf68c88b54e1" kindref="member">octet_write</ref>(<ref refid="octet_8h_1a4d73229613f72b4dc2cf993e2329923daf8c1af96ea2609525686923985022522" kindref="member">Octet2</ref>,<sp/>&amp;<ref refid="structendstop" kindref="compound">endstop</ref>.<ref refid="structendstop_1ae5f29c2e1b08176f604e6a4255147883" kindref="member">md5lenb64</ref>[8]);</highlight></codeline>
-<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="octet_8c_1af95f1c1da472de7c7a167779b51ef284" kindref="member">octet_commit2</ref>();</highlight></codeline>
-<codeline lineno="152"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="153"><highlight class="normal"></highlight></codeline>
-<codeline lineno="161"><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>loadboth(<ref refid="structsensordatachars" kindref="compound">sdchars_t</ref><sp/>*sample,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>meas1,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>meas2)</highlight></codeline>
-<codeline lineno="162"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>sample-&gt;<ref refid="structsensordatachars_1a978b1d72dd059ccd2323ee66bea4d654" kindref="member">m1Msb</ref><sp/>=<sp/>((meas1<sp/>&gt;&gt;<sp/>4)<sp/>&amp;<sp/>0xFF);</highlight></codeline>
-<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>sample-&gt;<ref refid="structsensordatachars_1a030c938f5a438a3556f1887dfe72466f" kindref="member">m2Msb</ref><sp/>=<sp/>((meas2<sp/>&gt;&gt;<sp/>4)<sp/>&amp;<sp/>0xFF);</highlight></codeline>
-<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>sample-&gt;<ref refid="structsensordatachars_1afbfc01b26f853a9c35003e1c065db84f" kindref="member">Lsb</ref><sp/>=<sp/>((meas1<sp/>&amp;<sp/>0xF)<sp/>&lt;&lt;<sp/>4)<sp/>|<sp/>(meas2<sp/>&amp;<sp/>0xF);</highlight></codeline>
-<codeline lineno="166"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="167"><highlight class="normal"></highlight></codeline>
-<codeline lineno="174"><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>loadm2(<ref refid="structsensordatachars" kindref="compound">sdchars_t</ref><sp/>*sample,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>meas2)</highlight></codeline>
-<codeline lineno="175"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/>sample-&gt;<ref refid="structsensordatachars_1a030c938f5a438a3556f1887dfe72466f" kindref="member">m2Msb</ref><sp/>=<sp/>((meas2<sp/>&gt;&gt;<sp/>4)<sp/>&amp;<sp/>0xFF);</highlight></codeline>
-<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>sample-&gt;<ref refid="structsensordatachars_1afbfc01b26f853a9c35003e1c065db84f" kindref="member">Lsb</ref><sp/>&amp;=<sp/>~0x0F;<sp/></highlight><highlight class="comment">//<sp/>Clear<sp/>low<sp/>nibble<sp/>of<sp/>LSB.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>sample-&gt;<ref refid="structsensordatachars_1afbfc01b26f853a9c35003e1c065db84f" kindref="member">Lsb</ref><sp/>|=<sp/>(meas2<sp/>&amp;<sp/>0xF);<sp/></highlight><highlight class="comment">//<sp/>Set<sp/>low<sp/>nibble<sp/>of<sp/>LSB.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="179"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="180"><highlight class="normal"></highlight></codeline>
-<codeline lineno="190"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="sample_8c_1a5be5f77a339896373b1b5fff87fbfbcd" kindref="member">sample_push</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>meas1,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>meas2)</highlight></codeline>
-<codeline lineno="191"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="192"><highlight class="normal"><sp/><sp/><ref refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8" kindref="member">urlstate</ref><sp/>nextstate;</highlight></codeline>
-<codeline lineno="193"><highlight class="normal"><sp/><sp/><ref refid="structmd5len" kindref="compound">md5len_t</ref><sp/>md5length;</highlight></codeline>
-<codeline lineno="194"><highlight class="normal"></highlight></codeline>
-<codeline lineno="195"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(_temponly<sp/>==<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">)</highlight></codeline>
-<codeline lineno="196"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>meas2<sp/>=<sp/>-1;</highlight></codeline>
-<codeline lineno="198"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="199"><highlight class="normal"></highlight></codeline>
-<codeline lineno="200"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((state<sp/>==<sp/><ref refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8a335559f3d0770f8905099143d5fdfc68" kindref="member">first_tick</ref>)<sp/>&amp;&amp;<sp/>(lensmpls<sp/>!=<sp/>0))</highlight></codeline>
-<codeline lineno="201"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="octet_8c_1ac943c19926037180241f1e97a11b7567" kindref="member">octet_movecursor</ref>();</highlight></codeline>
-<codeline lineno="203"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="204"><highlight class="normal"></highlight></codeline>
-<codeline lineno="205"><highlight class="normal"><sp/><sp/><ref refid="octet_8h_1a91d594c2716b872bf8b1b59a87567516" kindref="member">OctState_t</ref><sp/>octetstate<sp/>=<sp/><ref refid="octet_8c_1af7d3b29522962f2be3eb543a9f66bdef" kindref="member">octet_getstate</ref>();</highlight></codeline>
+<codeline lineno="101"><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>makemarker(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>minutes,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>endmarker)</highlight></codeline>
+<codeline lineno="102"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>minutesLsb;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>minutesMsb;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>minutesLsb<sp/>=<sp/>minutes<sp/>&amp;<sp/>0xFF;<sp/></highlight><highlight class="comment">//<sp/>Select<sp/>lower<sp/>6<sp/>bits<sp/>of<sp/>the<sp/>minutes<sp/>field.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>minutesMsb<sp/>=<sp/>minutes<sp/>&gt;&gt;<sp/>8;<sp/></highlight><highlight class="comment">//prng_getrandom(10);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>*(endmarker)<sp/>=<sp/>minutesLsb;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>*(endmarker<sp/>+<sp/>1)<sp/>=<sp/>minutesMsb;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>makeendstop(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>minutes)</highlight></codeline>
+<codeline lineno="119"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>endmarker[2];</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>makemarker(minutes,<sp/>endmarker);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="base64_8c_1a65618dacdde3ed7eeb15bbe7b3751cb9" kindref="member">Base64encode</ref>(<ref refid="structendstop" kindref="compound">endstop</ref>.<ref refid="structendstop_1a45d0b3c1f88901a3d92d905bd044672d" kindref="member">markerb64</ref>,<sp/>endmarker,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(endmarker));</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Change<sp/>padding<sp/>byte.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structendstop" kindref="compound">endstop</ref>.<ref refid="structendstop_1a45d0b3c1f88901a3d92d905bd044672d" kindref="member">markerb64</ref>[3]<sp/>=<sp/><ref refid="sample_8c_1a639bc14d5477eb6e1bbbdaec7ea6fd8c" kindref="member">ENDSTOP_BYTE</ref>;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="sample_8c_1a130e5805e5b411b541e60ee607185b98" kindref="member">sample_updateendstop</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>minutes)</highlight></codeline>
+<codeline lineno="133"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>makeendstop(minutes);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="octet_8c_1ac2fc0ce5139ec19f357ebf68c88b54e1" kindref="member">octet_write</ref>(<ref refid="octet_8h_1a4d73229613f72b4dc2cf993e2329923daf8c1af96ea2609525686923985022522" kindref="member">Octet2</ref>,<sp/>&amp;<ref refid="structendstop" kindref="compound">endstop</ref>.<ref refid="structendstop_1ae5f29c2e1b08176f604e6a4255147883" kindref="member">md5lenb64</ref>[8]);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="octet_8c_1af95f1c1da472de7c7a167779b51ef284" kindref="member">octet_commit2</ref>();</highlight></codeline>
+<codeline lineno="137"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>loadboth(<ref refid="structsensordatachars" kindref="compound">sdchars_t</ref><sp/>*sample,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>meas1,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>meas2)</highlight></codeline>
+<codeline lineno="147"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>sample-&gt;<ref refid="structsensordatachars_1a978b1d72dd059ccd2323ee66bea4d654" kindref="member">m1Msb</ref><sp/>=<sp/>((meas1<sp/>&gt;&gt;<sp/>4)<sp/>&amp;<sp/>0xFF);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>sample-&gt;<ref refid="structsensordatachars_1a030c938f5a438a3556f1887dfe72466f" kindref="member">m2Msb</ref><sp/>=<sp/>((meas2<sp/>&gt;&gt;<sp/>4)<sp/>&amp;<sp/>0xFF);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>sample-&gt;<ref refid="structsensordatachars_1afbfc01b26f853a9c35003e1c065db84f" kindref="member">Lsb</ref><sp/>=<sp/>((meas1<sp/>&amp;<sp/>0xF)<sp/>&lt;&lt;<sp/>4)<sp/>|<sp/>(meas2<sp/>&amp;<sp/>0xF);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>loadm2(<ref refid="structsensordatachars" kindref="compound">sdchars_t</ref><sp/>*sample,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>meas2)</highlight></codeline>
+<codeline lineno="160"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>sample-&gt;<ref refid="structsensordatachars_1a030c938f5a438a3556f1887dfe72466f" kindref="member">m2Msb</ref><sp/>=<sp/>((meas2<sp/>&gt;&gt;<sp/>4)<sp/>&amp;<sp/>0xFF);</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>sample-&gt;<ref refid="structsensordatachars_1afbfc01b26f853a9c35003e1c065db84f" kindref="member">Lsb</ref><sp/>&amp;=<sp/>~0x0F;<sp/></highlight><highlight class="comment">//<sp/>Clear<sp/>low<sp/>nibble<sp/>of<sp/>LSB.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>sample-&gt;<ref refid="structsensordatachars_1afbfc01b26f853a9c35003e1c065db84f" kindref="member">Lsb</ref><sp/>|=<sp/>(meas2<sp/>&amp;<sp/>0xF);<sp/></highlight><highlight class="comment">//<sp/>Set<sp/>low<sp/>nibble<sp/>of<sp/>LSB.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="sample_8c_1a5be5f77a339896373b1b5fff87fbfbcd" kindref="member">sample_push</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>meas1,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>meas2)</highlight></codeline>
+<codeline lineno="176"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><ref refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8" kindref="member">urlstate</ref><sp/>nextstate;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><ref refid="structmd5len" kindref="compound">md5len_t</ref><sp/>md5length;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="sample_8c_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" kindref="member">nv</ref>.<ref refid="structnvstruct_1abfbbcb0a2e866121b24841f5494ac34b" kindref="member">version</ref>[1]<sp/>==<sp/><ref refid="sample_8c_1ae8b2d876f1eb3087a5859e78688c5169" kindref="member">TEMPONLY</ref>)</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>meas2<sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((state<sp/>==<sp/><ref refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8a335559f3d0770f8905099143d5fdfc68" kindref="member">first_tick</ref>)<sp/>&amp;&amp;<sp/>(lensmpls<sp/>!=<sp/>0))</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="octet_8c_1ac943c19926037180241f1e97a11b7567" kindref="member">octet_movecursor</ref>();</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><ref refid="octet_8h_1a91d594c2716b872bf8b1b59a87567516" kindref="member">OctState_t</ref><sp/>octetstate<sp/>=<sp/><ref refid="octet_8c_1af7d3b29522962f2be3eb543a9f66bdef" kindref="member">octet_getstate</ref>();</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal">(state)</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8a335559f3d0770f8905099143d5fdfc68" kindref="member">first_tick</ref>:</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>loadboth(&amp;samplebuf[0],<sp/>meas1,<sp/>meas2);</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>loadboth(&amp;samplebuf[1],<sp/>0,<sp/>0);</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(octetstate<sp/>!=<sp/><ref refid="octet_8h_1aefad8516abbfca6d626941e525872611a57fa0bc21fa59477d4dc142308115c82" kindref="member">firstloop</ref>)</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lensmpls<sp/>-=<sp/><ref refid="defs_8h_1a3440475701aa9d74140519db14a08e65" kindref="member">SAMPLES_PER_OCTET</ref>;</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(octetstate<sp/>==<sp/><ref refid="octet_8h_1aefad8516abbfca6d626941e525872611a4e74c26fa00eaaa19f02e1bd09231012" kindref="member">loopingaround</ref>)</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sample_updatelc();</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lensmpls++;</highlight></codeline>
 <codeline lineno="206"><highlight class="normal"></highlight></codeline>
-<codeline lineno="207"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal">(state)</highlight></codeline>
-<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8a335559f3d0770f8905099143d5fdfc68" kindref="member">first_tick</ref>:</highlight></codeline>
-<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>loadboth(&amp;samplebuf[0],<sp/>meas1,<sp/>meas2);</highlight></codeline>
-<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>loadboth(&amp;samplebuf[1],<sp/>0,<sp/>0);</highlight></codeline>
-<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(octetstate<sp/>!=<sp/><ref refid="octet_8h_1aefad8516abbfca6d626941e525872611a57fa0bc21fa59477d4dc142308115c82" kindref="member">firstloop</ref>)</highlight></codeline>
-<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lensmpls<sp/>-=<sp/><ref refid="defs_8h_1a3440475701aa9d74140519db14a08e65" kindref="member">SAMPLES_PER_OCTET</ref>;</highlight></codeline>
-<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(octetstate<sp/>==<sp/><ref refid="octet_8h_1aefad8516abbfca6d626941e525872611a4e74c26fa00eaaa19f02e1bd09231012" kindref="member">loopingaround</ref>)</highlight></codeline>
-<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sample_updatelc();</highlight></codeline>
-<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lensmpls++;</highlight></codeline>
-<codeline lineno="221"><highlight class="normal"></highlight></codeline>
-<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="smplhist_8c_1a8b601164eab6ef2ea4d6643970a760f6" kindref="member">smplhist_push</ref>(samplebuf[0]);</highlight></codeline>
-<codeline lineno="223"><highlight class="normal"></highlight></codeline>
-<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(_temponly)</highlight></codeline>
-<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nextstate<sp/>=<sp/><ref refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8ae4aa5da2d1ebb43ca39a9ecf8e0adf80" kindref="member">first_tock</ref>;</highlight></codeline>
-<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nextstate<sp/>=<sp/><ref refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8abe4c377a0e72bf9ac494563b516341c6" kindref="member">final_tick</ref>;</highlight></codeline>
-<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="233"><highlight class="normal"></highlight></codeline>
-<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8ae4aa5da2d1ebb43ca39a9ecf8e0adf80" kindref="member">first_tock</ref>:</highlight></codeline>
-<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>loadm2(&amp;samplebuf[0],<sp/>meas1);</highlight></codeline>
-<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="smplhist_8c_1affe400f90c858c88868d0ee6a1a9d3df" kindref="member">smplhist_ovr</ref>(samplebuf[0]);</highlight></codeline>
-<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nextstate<sp/>=<sp/><ref refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8abe4c377a0e72bf9ac494563b516341c6" kindref="member">final_tick</ref>;</highlight></codeline>
-<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="239"><highlight class="normal"></highlight></codeline>
-<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8abe4c377a0e72bf9ac494563b516341c6" kindref="member">final_tick</ref>:</highlight></codeline>
-<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>loadboth(&amp;samplebuf[1],<sp/>meas1,<sp/>meas2);</highlight></codeline>
-<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lensmpls++;</highlight></codeline>
-<codeline lineno="243"><highlight class="normal"></highlight></codeline>
-<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="smplhist_8c_1a8b601164eab6ef2ea4d6643970a760f6" kindref="member">smplhist_push</ref>(samplebuf[1]);</highlight></codeline>
-<codeline lineno="245"><highlight class="normal"></highlight></codeline>
-<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(_temponly)</highlight></codeline>
-<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nextstate<sp/>=<sp/><ref refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8a00bd38fad6dca592789a78004554929e" kindref="member">final_tock</ref>;</highlight></codeline>
-<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nextstate<sp/>=<sp/><ref refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8a335559f3d0770f8905099143d5fdfc68" kindref="member">first_tick</ref>;</highlight></codeline>
-<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="255"><highlight class="normal"></highlight></codeline>
-<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8a00bd38fad6dca592789a78004554929e" kindref="member">final_tock</ref>:</highlight></codeline>
-<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>loadm2(&amp;samplebuf[1],<sp/>meas1);</highlight></codeline>
-<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="smplhist_8c_1affe400f90c858c88868d0ee6a1a9d3df" kindref="member">smplhist_ovr</ref>(samplebuf[1]);</highlight></codeline>
-<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nextstate<sp/>=<sp/><ref refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8a335559f3d0770f8905099143d5fdfc68" kindref="member">first_tick</ref>;</highlight></codeline>
-<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="262"><highlight class="normal"></highlight></codeline>
-<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>md5length<sp/>=<sp/><ref refid="smplhist_8c_1a92c0645dcea2976bba0b05556472e211" kindref="member">smplhist_md5</ref>(lensmpls,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="264"><highlight class="normal"></highlight></codeline>
-<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>3<sp/>samples<sp/>(6<sp/>bytes)<sp/>per<sp/>8<sp/>base64<sp/>bytes.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="base64_8c_1a65618dacdde3ed7eeb15bbe7b3751cb9" kindref="member">Base64encode</ref>(encodedoctet,<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*)samplebuf,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(samplebuf));</highlight></codeline>
-<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>9<sp/>bytes<sp/>per<sp/>12<sp/>base64<sp/>bytes.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="base64_8c_1a65618dacdde3ed7eeb15bbe7b3751cb9" kindref="member">Base64encode</ref>(<ref refid="structendstop" kindref="compound">endstop</ref>.<ref refid="structendstop_1ae5f29c2e1b08176f604e6a4255147883" kindref="member">md5lenb64</ref>,<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*)&amp;md5length,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(md5length));</highlight></codeline>
-<codeline lineno="269"><highlight class="normal"></highlight></codeline>
-<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>makeendstop(0);</highlight></codeline>
-<codeline lineno="271"><highlight class="normal"></highlight></codeline>
-<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="octet_8c_1ac2fc0ce5139ec19f357ebf68c88b54e1" kindref="member">octet_write</ref>(<ref refid="octet_8h_1a4d73229613f72b4dc2cf993e2329923dabb49f2e8ded70fd8058b3e5298f2e99f" kindref="member">Octet0</ref>,<sp/>encodedoctet);</highlight></codeline>
-<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="octet_8c_1ac2fc0ce5139ec19f357ebf68c88b54e1" kindref="member">octet_write</ref>(<ref refid="octet_8h_1a4d73229613f72b4dc2cf993e2329923da8cac7c070f12ed9c9ad443ebf7aca553" kindref="member">Octet1</ref>,<sp/>&amp;<ref refid="structendstop" kindref="compound">endstop</ref>.<ref refid="structendstop_1ae5f29c2e1b08176f604e6a4255147883" kindref="member">md5lenb64</ref>[0]);</highlight></codeline>
-<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="octet_8c_1ac2fc0ce5139ec19f357ebf68c88b54e1" kindref="member">octet_write</ref>(<ref refid="octet_8h_1a4d73229613f72b4dc2cf993e2329923daf8c1af96ea2609525686923985022522" kindref="member">Octet2</ref>,<sp/>&amp;<ref refid="structendstop" kindref="compound">endstop</ref>.<ref refid="structendstop_1ae5f29c2e1b08176f604e6a4255147883" kindref="member">md5lenb64</ref>[8]);</highlight></codeline>
-<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="octet_8c_1a356b1274922f88575947b2db44f20634" kindref="member">octet_commit4</ref>();</highlight></codeline>
-<codeline lineno="276"><highlight class="normal"></highlight></codeline>
-<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>state<sp/>=<sp/>nextstate;</highlight></codeline>
-<codeline lineno="278"><highlight class="normal"></highlight></codeline>
-<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(octetstate<sp/>==<sp/><ref refid="octet_8h_1aefad8516abbfca6d626941e525872611a4e74c26fa00eaaa19f02e1bd09231012" kindref="member">loopingaround</ref>);</highlight></codeline>
-<codeline lineno="280"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="smplhist_8c_1a8b601164eab6ef2ea4d6643970a760f6" kindref="member">smplhist_push</ref>(samplebuf[0]);</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="sample_8c_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" kindref="member">nv</ref>.<ref refid="structnvstruct_1abfbbcb0a2e866121b24841f5494ac34b" kindref="member">version</ref>[1]<sp/>==<sp/><ref refid="sample_8c_1ae8b2d876f1eb3087a5859e78688c5169" kindref="member">TEMPONLY</ref>)</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nextstate<sp/>=<sp/><ref refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8ae4aa5da2d1ebb43ca39a9ecf8e0adf80" kindref="member">first_tock</ref>;</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nextstate<sp/>=<sp/><ref refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8abe4c377a0e72bf9ac494563b516341c6" kindref="member">final_tick</ref>;</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8ae4aa5da2d1ebb43ca39a9ecf8e0adf80" kindref="member">first_tock</ref>:</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>loadm2(&amp;samplebuf[0],<sp/>meas1);</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="smplhist_8c_1affe400f90c858c88868d0ee6a1a9d3df" kindref="member">smplhist_ovr</ref>(samplebuf[0]);</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nextstate<sp/>=<sp/><ref refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8abe4c377a0e72bf9ac494563b516341c6" kindref="member">final_tick</ref>;</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8abe4c377a0e72bf9ac494563b516341c6" kindref="member">final_tick</ref>:</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>loadboth(&amp;samplebuf[1],<sp/>meas1,<sp/>meas2);</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lensmpls++;</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"></highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="smplhist_8c_1a8b601164eab6ef2ea4d6643970a760f6" kindref="member">smplhist_push</ref>(samplebuf[1]);</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"></highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="sample_8c_1a6cdeaaf5e3ea4f68f2d041a6d6389a70" kindref="member">nv</ref>.<ref refid="structnvstruct_1abfbbcb0a2e866121b24841f5494ac34b" kindref="member">version</ref>[1]<sp/>==<sp/><ref refid="sample_8c_1ae8b2d876f1eb3087a5859e78688c5169" kindref="member">TEMPONLY</ref>)</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nextstate<sp/>=<sp/><ref refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8a00bd38fad6dca592789a78004554929e" kindref="member">final_tock</ref>;</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nextstate<sp/>=<sp/><ref refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8a335559f3d0770f8905099143d5fdfc68" kindref="member">first_tick</ref>;</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"></highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8a00bd38fad6dca592789a78004554929e" kindref="member">final_tock</ref>:</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>loadm2(&amp;samplebuf[1],<sp/>meas1);</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="smplhist_8c_1affe400f90c858c88868d0ee6a1a9d3df" kindref="member">smplhist_ovr</ref>(samplebuf[1]);</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nextstate<sp/>=<sp/><ref refid="sample_8c_1a330856ff01a76092fb302f70696dcaa8a335559f3d0770f8905099143d5fdfc68" kindref="member">first_tick</ref>;</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"></highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>md5length<sp/>=<sp/><ref refid="smplhist_8c_1a92c0645dcea2976bba0b05556472e211" kindref="member">smplhist_md5</ref>(lensmpls,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"></highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>3<sp/>samples<sp/>(6<sp/>bytes)<sp/>per<sp/>8<sp/>base64<sp/>bytes.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="base64_8c_1a65618dacdde3ed7eeb15bbe7b3751cb9" kindref="member">Base64encode</ref>(encodedoctet,<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*)samplebuf,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(samplebuf));</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>9<sp/>bytes<sp/>per<sp/>12<sp/>base64<sp/>bytes.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="base64_8c_1a65618dacdde3ed7eeb15bbe7b3751cb9" kindref="member">Base64encode</ref>(<ref refid="structendstop" kindref="compound">endstop</ref>.<ref refid="structendstop_1ae5f29c2e1b08176f604e6a4255147883" kindref="member">md5lenb64</ref>,<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*)&amp;md5length,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(md5length));</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"></highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>makeendstop(0);</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"></highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="octet_8c_1ac2fc0ce5139ec19f357ebf68c88b54e1" kindref="member">octet_write</ref>(<ref refid="octet_8h_1a4d73229613f72b4dc2cf993e2329923dabb49f2e8ded70fd8058b3e5298f2e99f" kindref="member">Octet0</ref>,<sp/>encodedoctet);</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="octet_8c_1ac2fc0ce5139ec19f357ebf68c88b54e1" kindref="member">octet_write</ref>(<ref refid="octet_8h_1a4d73229613f72b4dc2cf993e2329923da8cac7c070f12ed9c9ad443ebf7aca553" kindref="member">Octet1</ref>,<sp/>&amp;<ref refid="structendstop" kindref="compound">endstop</ref>.<ref refid="structendstop_1ae5f29c2e1b08176f604e6a4255147883" kindref="member">md5lenb64</ref>[0]);</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="octet_8c_1ac2fc0ce5139ec19f357ebf68c88b54e1" kindref="member">octet_write</ref>(<ref refid="octet_8h_1a4d73229613f72b4dc2cf993e2329923daf8c1af96ea2609525686923985022522" kindref="member">Octet2</ref>,<sp/>&amp;<ref refid="structendstop" kindref="compound">endstop</ref>.<ref refid="structendstop_1ae5f29c2e1b08176f604e6a4255147883" kindref="member">md5lenb64</ref>[8]);</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="octet_8c_1a356b1274922f88575947b2db44f20634" kindref="member">octet_commit4</ref>();</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"></highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>state<sp/>=<sp/>nextstate;</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"></highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(octetstate<sp/>==<sp/><ref refid="octet_8h_1aefad8516abbfca6d626941e525872611a4e74c26fa00eaaa19f02e1bd09231012" kindref="member">loopingaround</ref>);</highlight></codeline>
+<codeline lineno="265"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="sample.c"/>
   </compounddef>
