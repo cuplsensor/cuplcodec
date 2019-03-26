@@ -24,7 +24,7 @@ class StatDecoder():
         declist = struct.unpack("HBBH", decstr)
         self.loopcount = declist[0]
 
-        resetsalltime = declist[1]
+        self.resetsalltime = declist[1]
 
         resetcause = declist[2]
         brownout = (resetcause & BOR_BIT) > 0
@@ -46,7 +46,7 @@ class StatDecoder():
             "scantimeout": scantimeout
         }
 
-        self.batvoltagemv = declist[3]
+        self.batvoltagemv = declist[3] # batvoltagerwaw
 
 
 if __name__ == '__main__':

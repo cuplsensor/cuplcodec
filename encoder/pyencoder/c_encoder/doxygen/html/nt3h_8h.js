@@ -1,6 +1,5 @@
 var nt3h_8h =
 [
-    [ "BLKSIZE", "nt3h_8h.html#ac4551bbc9efabf8378f35498f80b4679", null ],
     [ "nt3h_eepromwritedone", "nt3h_8h.html#af5eae3ef1e64f9f5e399840c02f871ad", null ],
     [ "nt3h_init", "nt3h_8h.html#aecfb69926db9b0c804eae417a5546766", null ],
     [ "nt3h_readtag", "nt3h_8h.html#a6766a3db85cd67a81ef911acff226dd8", null ],

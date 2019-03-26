@@ -64,7 +64,7 @@ sufficient for most datalogging applications.</p>
 <div class="section" id="message-authentication">
 <h2>Message Authentication<a class="headerlink" href="#message-authentication" title="Permalink to this headline">¶</a></h2>
 <p>The URL contains a Hash-Based-Message-Authentication-Code or HMAC. This is made by taking the MD5 checksum of some data,
-concatenating this with a secret key and then taking the MD5 of the result.</p>
+concatenating this with a secret key (<a class="reference internal" href="../reference/nvtype.html#_CPPv46seckey" title="seckey"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">seckey</span></code></a>) and then taking the MD5 of the result.</p>
 <p>At the provisioning stage, a random secret key is generated that is unique to each sensor. This is a shared secret:
 it is stored both by the web application and in the sensor.</p>
 <p>The encoder computes the HMAC every time a new sample is collected (i.e. for each call of sample_push).
@@ -186,20 +186,18 @@ respond by not storing the capture data and notifying the user with error 409.</
 </table>
 <div class="section" id="base-url">
 <h3>Base URL<a class="headerlink" href="#base-url" title="Permalink to this headline">¶</a></h3>
-<p>The URL or IP address of the web application running PSWebApp. This can be up to 64 bytes long.</p>
+<p>See non-volatile parameter <a class="reference internal" href="../reference/nvtype.html#_CPPv47baseurl" title="baseurl"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">baseurl</span></code></a>.</p>
 </div>
 <div class="section" id="serial">
 <span id="id1"></span><h3>Serial<a class="headerlink" href="#serial" title="Permalink to this headline">¶</a></h3>
-<p>Unique serial of the sensor. This must be 8 bytes long.</p>
-<p>Encoder input <a class="reference internal" href="../reference/nvtype.html#_CPPv46serial" title="serial"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">serial</span></code></a></p>
+<p>See non-volatile parameter <a class="reference internal" href="../reference/nvtype.html#_CPPv46serial" title="serial"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">serial</span></code></a>.</p>
 </div>
 <div class="section" id="time-interval">
 <h3>Time interval<a class="headerlink" href="#time-interval" title="Permalink to this headline">¶</a></h3>
 <p>Time interval between samples in minutes is base64 encoded. Whilst the encoded string is 4 bytes long, the last character
 must always be a padding byte (an URL safe replacement for ‘=’). Therefore the unencoded time interval can only be 2 bytes long.
 This is to match with the format of the minutes <a class="reference internal" href="#elapsed">Elapsed</a> field.</p>
-<p>Decoder output <a class="reference internal" href="../reference/urldecoder.html#decoder.v1.paramdecoder.ParamDecoder" title="decoder.v1.paramdecoder.ParamDecoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">paramdecoder.ParamDecoder</span></code></a>:</p>
-<p>Encoder input <a class="reference internal" href="../reference/nvtype.html#_CPPv416smplintervalmins" title="smplintervalmins"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">smplintervalmins</span></code></a></p>
+<p>It is programmed as non-volatile parameter <a class="reference internal" href="../reference/nvtype.html#_CPPv416smplintervalmins" title="smplintervalmins"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">smplintervalmins</span></code></a>.</p>
 </div>
 <div class="section" id="version">
 <h3>Version<a class="headerlink" href="#version" title="Permalink to this headline">¶</a></h3>
@@ -208,19 +206,19 @@ This is to match with the format of the minutes <a class="reference internal" hr
 <li><a class="reference internal" href="../reference/sample.html#c.TEMPONLY" title="TEMPONLY"><code class="xref c c-macro docutils literal notranslate"><span class="pre">TEMPONLY</span></code></a> <code class="xref py py-class docutils literal notranslate"><span class="pre">TDecoder</span></code> Two temperature measurands per sample seperated by <a class="reference internal" href="#time-interval">Time interval</a>.</li>
 <li><a class="reference internal" href="../reference/sample.html#c.TEMPRH" title="TEMPRH"><code class="xref c c-macro docutils literal notranslate"><span class="pre">TEMPRH</span></code></a> <code class="xref py py-class docutils literal notranslate"><span class="pre">HTDecoder</span></code> Temperature and relative humidity measurands in a sample.</li>
 </ul>
-<p>This is programmed as non-volatile parameter <code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">version</span></code>.</p>
+<p>This is programmed as non-volatile parameter <a class="reference internal" href="../reference/nvtype.html#_CPPv47version" title="version"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">version</span></code></a>.</p>
 </div>
 <div class="section" id="status">
 <h3>Status<a class="headerlink" href="#status" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
-<col width="21%" />
-<col width="13%" />
-<col width="13%" />
-<col width="13%" />
-<col width="13%" />
-<col width="13%" />
-<col width="13%" />
+<col width="20%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+<col width="14%" />
+<col width="17%" />
+<col width="14%" />
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>Byte</td>
@@ -232,13 +230,32 @@ This is to match with the format of the minutes <a class="reference internal" hr
 <td>5</td>
 </tr>
 <tr class="row-even"><td>Description</td>
-<td colspan="2">LoopCount</td>
-<td colspan="2">ResetsAllTime</td>
-<td colspan="2">BatV   | RstC</td>
+<td colspan="2"><a class="reference internal" href="#loopcount">LoopCount</a></td>
+<td colspan="2"><a class="reference internal" href="#resetsalltime">ResetsAllTime</a></td>
+<td><a class="reference internal" href="#batv">BatV</a></td>
+<td><a class="reference internal" href="#rstc">RstC</a></td>
 </tr>
 </tbody>
 </table>
-<p>The status field is 6 bytes long unencoded and 8 bytes long after base64 encoding.</p>
+<p>The status field is 6 bytes long unencoded. It corresponds to <a class="reference internal" href="../reference/sample.html#_CPPv46status" title="status"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">status</span></code></a>. After base64 encoding
+this becomes 8 bytes long.</p>
+<div class="section" id="loopcount">
+<h4>LoopCount<a class="headerlink" href="#loopcount" title="Permalink to this headline">¶</a></h4>
+<p>See <a class="reference internal" href="../reference/sample.html#_CPPv49loopcount" title="loopcount"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">loopcount</span></code></a>.</p>
+</div>
+<div class="section" id="resetsalltime">
+<h4>ResetsAllTime<a class="headerlink" href="#resetsalltime" title="Permalink to this headline">¶</a></h4>
+<p>Number of times the microcontroller running the encoder has reset. Each reset causes a counter to be incremented in
+non-volatile memory (<a class="reference internal" href="../reference/nvtype.html#_CPPv413resetsalltime" title="resetsalltime"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">resetsalltime</span></code></a>).</p>
+</div>
+<div class="section" id="batv">
+<h4>BatV<a class="headerlink" href="#batv" title="Permalink to this headline">¶</a></h4>
+<p>See <a class="reference internal" href="../reference/sample.html#_CPPv410batvoltage" title="batvoltage"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">batvoltage</span></code></a>.</p>
+</div>
+<div class="section" id="rstc">
+<h4>RstC<a class="headerlink" href="#rstc" title="Permalink to this headline">¶</a></h4>
+<p>Reset condition</p>
+</div>
 </div>
 </div>
 <div class="section" id="url-circular-buffer">
@@ -549,16 +566,16 @@ decoded from base64 into its original 16-bit value.</p>
 <a class="reference internal" href="../reference/samplehist.html#_CPPv48md5len_t" title="md5len_t"><code class="xref cpp cpp-type docutils literal notranslate"><span class="pre">md5len_t</span></code></a> is shown below:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="32%" />
-<col width="7%" />
-<col width="7%" />
-<col width="7%" />
-<col width="7%" />
-<col width="7%" />
-<col width="7%" />
-<col width="7%" />
-<col width="7%" />
-<col width="10%" />
+<col width="27%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="24%" />
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>Byte</td>
@@ -574,7 +591,7 @@ decoded from base64 into its original 16-bit value.</p>
 </tr>
 <tr class="row-even"><td>Description</td>
 <td colspan="7"><a class="reference internal" href="#md5">MD5</a></td>
-<td colspan="2">Length</td>
+<td colspan="2"><a class="reference internal" href="#lengthsamples">LengthSamples</a></td>
 </tr>
 </tbody>
 </table>
@@ -582,8 +599,8 @@ decoded from base64 into its original 16-bit value.</p>
 <h5>MD5<a class="headerlink" href="#md5" title="Permalink to this headline">¶</a></h5>
 <p>Least significant 7 bytes of the MD5 checksum taken of all samples in the buffer.</p>
 </div>
-<div class="section" id="length">
-<h5>Length<a class="headerlink" href="#length" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="lengthsamples">
+<h5>LengthSamples<a class="headerlink" href="#lengthsamples" title="Permalink to this headline">¶</a></h5>
 <p>The number of valid samples in the circular buffer. This is populated from <a class="reference internal" href="../reference/sample.html#_CPPv48lensmpls" title="lensmpls"><code class="xref cpp cpp-var docutils literal notranslate"><span class="pre">lensmpls</span></code></a>.</p>
 </div>
 </div>

@@ -70,7 +70,7 @@ sdchars_t smplhist_read(unsigned int index, int * error)
     return sample;
 }
 
-md5len_t smplhist_md5(int lensmpls, bool usehmac)
+md5len_t smplhist_md5(int lensmpls, bool usehmac, unsigned int loopcount, unsigned int resetsalltime, unsigned int batv_resetcause, int cursorpos)
 {
     sdchars_t prevsmpl;
     int error = 0;
@@ -127,11 +127,24 @@ md5len_t smplhist_md5(int lensmpls, bool usehmac)
         }
     }
 
-    if (i > 0)
+    if (i >= 63-8)
     {
-        // Calculate MD5 checksum from sample history.
-        MD5_Update(&ctx, md5block, i);
+       MD5_Update(&ctx, md5block, i);
+       i = 0;
     }
+
+    md5block[i++] = loopcount >> 8;
+    md5block[i++] = loopcount & 0xFF;
+    md5block[i++] = resetsalltime >> 8;
+    md5block[i++] = resetsalltime & 0xFF;
+    md5block[i++] = batv_resetcause >> 8;
+    md5block[i++] = batv_resetcause & 0xFF;
+    md5block[i++] = cursorpos >> 8;
+    md5block[i++] = cursorpos & 0xFF;
+
+    // Calculate MD5 checksum from sample history.
+    MD5_Update(&ctx, md5block, i);
+
 
 
     if (usehmac)

@@ -13,7 +13,7 @@ var sample_8c =
       [ "final_tick", "sample_8c.html#a330856ff01a76092fb302f70696dcaa8abe4c377a0e72bf9ac494563b516341c6", null ],
       [ "final_tock", "sample_8c.html#a330856ff01a76092fb302f70696dcaa8a00bd38fad6dca592789a78004554929e", null ]
     ] ],
-    [ "sample_init", "sample_8c.html#ac206e7a316f283a09d11da98380e6f58", null ],
+    [ "sample_init", "sample_8c.html#a5151eadd9598643455abc107fb73f083", null ],
     [ "sample_push", "sample_8c.html#a5be5f77a339896373b1b5fff87fbfbcd", null ],
     [ "sample_updateendstop", "sample_8c.html#a130e5805e5b411b541e60ee607185b98", null ],
     [ "nv", "sample_8c.html#a6cdeaaf5e3ea4f68f2d041a6d6389a70", null ]

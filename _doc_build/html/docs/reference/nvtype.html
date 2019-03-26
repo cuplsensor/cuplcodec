@@ -51,13 +51,18 @@
 <dd></dd></dl>
 
 <dl class="macro">
+<dt id="c.BASEURL_LENBYTES">
+<span class="target" id="nvtype_8h_1a2d582ce7be27d531cfcc211e0bf24c0f"></span><code class="descname">BASEURL_LENBYTES</code><a class="headerlink" href="#c.BASEURL_LENBYTES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
 <dt id="c.SMPLINT_LENBYTES">
 <span class="target" id="nvtype_8h_1a44d3fb460b6c9383a2b3248544aa13d0"></span><code class="descname">SMPLINT_LENBYTES</code><a class="headerlink" href="#c.SMPLINT_LENBYTES" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="macro">
-<dt id="c.RANDSTATE_LENBYTES">
-<span class="target" id="nvtype_8h_1a30653e2266913b20202fbfdaf8719acf"></span><code class="descname">RANDSTATE_LENBYTES</code><a class="headerlink" href="#c.RANDSTATE_LENBYTES" title="Permalink to this definition">¶</a></dt>
+<dt id="c.VERSION_LENBYTES">
+<span class="target" id="nvtype_8h_1ada79ed8a19f38854ae92032efcd9051b"></span><code class="descname">VERSION_LENBYTES</code><a class="headerlink" href="#c.VERSION_LENBYTES" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="macro">
@@ -84,13 +89,13 @@
 <dl class="member">
 <dt id="_CPPv46serial">
 <span id="_CPPv36serial"></span><span id="_CPPv26serial"></span><span id="serial__cA"></span><span class="target" id="structnvstruct_1a8c4928cc85c5336514401eb142ea7d50"></span>char <code class="descname">serial</code>[<code class="descname">SERIAL_LENBYTES</code>]<a class="headerlink" href="#_CPPv46serial" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Unique box serial array. </p>
+<dd><p>Unique serial of the sensor. This must be SERIAL_LENBYTES bytes long. </p>
 </dd></dl>
 
 <dl class="member">
 <dt id="_CPPv46seckey">
 <span id="_CPPv36seckey"></span><span id="_CPPv26seckey"></span><span id="seckey__cA"></span><span class="target" id="structnvstruct_1a680c038327bbd20d30beade8d0ef1dd4"></span>char <code class="descname">seckey</code>[<code class="descname">SECKEY_LENBYTES</code>]<a class="headerlink" href="#_CPPv46seckey" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Secret key array. This is used to generate the HMAC. </p>
+<dd><p>Secret key array. This must be SECKEY_LENBYTES long. This is used to generate the HMAC. </p>
 </dd></dl>
 
 <dl class="member">
@@ -100,9 +105,16 @@
 </dd></dl>
 
 <dl class="member">
-<dt id="_CPPv49randstate">
-<span id="_CPPv39randstate"></span><span id="_CPPv29randstate"></span><span id="randstate__unsigned-i"></span><span class="target" id="structnvstruct_1aec7e67f64e6ee88dda940f1b837f9351"></span>unsigned int <code class="descname">randstate</code><a class="headerlink" href="#_CPPv49randstate" title="Permalink to this definition">¶</a><br /></dt>
-<dd></dd></dl>
+<dt id="_CPPv47baseurl">
+<span id="_CPPv37baseurl"></span><span id="_CPPv27baseurl"></span><span id="baseurl__cA"></span><span class="target" id="structnvstruct_1a727d0685583daae50e80c9eea7b16c15"></span>char <code class="descname">baseurl</code>[<code class="descname">BASEURL_LENBYTES</code>]<a class="headerlink" href="#_CPPv47baseurl" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The URL or IP address of the web application running PSWebApp. This can be up to BASEURL_LENBYTES bytes long. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv47version">
+<span id="_CPPv37version"></span><span id="_CPPv27version"></span><span id="version__cA"></span><span class="target" id="structnvstruct_1abfbbcb0a2e866121b24841f5494ac34b"></span>char <code class="descname">version</code>[<code class="descname">VERSION_LENBYTES</code>]<a class="headerlink" href="#_CPPv47version" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Version. </p>
+</dd></dl>
 
 <dl class="member">
 <dt id="_CPPv417sleepintervaldays">
@@ -125,7 +137,7 @@
 <dl class="member">
 <dt id="_CPPv413resetsalltime">
 <span id="_CPPv313resetsalltime"></span><span id="_CPPv213resetsalltime"></span><span id="resetsalltime__unsigned-i"></span><span class="target" id="structnvstruct_1a045498ec4eca300d51f030a958ed5ee1"></span>unsigned int <code class="descname">resetsalltime</code><a class="headerlink" href="#_CPPv413resetsalltime" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Incremented each time the microcontroller resets. Never set to zero. </p>
+<dd><p>Incremented each time the microcontroller resets. </p>
 </dd></dl>
 
 </div>

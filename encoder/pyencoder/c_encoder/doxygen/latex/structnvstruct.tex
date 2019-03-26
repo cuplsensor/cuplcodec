@@ -13,7 +13,9 @@ char \mbox{\hyperlink{structnvstruct_a680c038327bbd20d30beade8d0ef1dd4}{seckey}}
 \item 
 char \mbox{\hyperlink{structnvstruct_a34de27bbd20aa5f15e4e4482ce5a0309}{smplintervalmins}} \mbox{[}\mbox{\hyperlink{nvtype_8h_a44d3fb460b6c9383a2b3248544aa13d0}{S\+M\+P\+L\+I\+N\+T\+\_\+\+L\+E\+N\+B\+Y\+T\+ES}}\mbox{]}
 \item 
-unsigned int \mbox{\hyperlink{structnvstruct_aec7e67f64e6ee88dda940f1b837f9351}{randstate}}
+char \mbox{\hyperlink{structnvstruct_a727d0685583daae50e80c9eea7b16c15}{baseurl}} \mbox{[}\mbox{\hyperlink{nvtype_8h_a2d582ce7be27d531cfcc211e0bf24c0f}{B\+A\+S\+E\+U\+R\+L\+\_\+\+L\+E\+N\+B\+Y\+T\+ES}}\mbox{]}
+\item 
+char \mbox{\hyperlink{structnvstruct_abfbbcb0a2e866121b24841f5494ac34b}{version}} \mbox{[}\mbox{\hyperlink{nvtype_8h_ada79ed8a19f38854ae92032efcd9051b}{V\+E\+R\+S\+I\+O\+N\+\_\+\+L\+E\+N\+B\+Y\+T\+ES}}\mbox{]}
 \item 
 unsigned int \mbox{\hyperlink{structnvstruct_a7535c524cca52dcf1e60b1e6762fea4c}{sleepintervaldays}}
 \item 
@@ -35,19 +37,19 @@ Structure to hold configuration data held in non-\/volatile memory.
 \subsubsection{\texorpdfstring{allwritten}{allwritten}}
 {\footnotesize\ttfamily unsigned int allwritten}
 
-Indicates that all required NV parameters have been set. \mbox{\Hypertarget{structnvstruct_aec7e67f64e6ee88dda940f1b837f9351}\label{structnvstruct_aec7e67f64e6ee88dda940f1b837f9351}} 
-\index{nvstruct@{nvstruct}!randstate@{randstate}}
-\index{randstate@{randstate}!nvstruct@{nvstruct}}
-\subsubsection{\texorpdfstring{randstate}{randstate}}
-{\footnotesize\ttfamily unsigned int randstate}
+Indicates that all required NV parameters have been set. \mbox{\Hypertarget{structnvstruct_a727d0685583daae50e80c9eea7b16c15}\label{structnvstruct_a727d0685583daae50e80c9eea7b16c15}} 
+\index{nvstruct@{nvstruct}!baseurl@{baseurl}}
+\index{baseurl@{baseurl}!nvstruct@{nvstruct}}
+\subsubsection{\texorpdfstring{baseurl}{baseurl}}
+{\footnotesize\ttfamily char baseurl\mbox{[}\mbox{\hyperlink{nvtype_8h_a2d582ce7be27d531cfcc211e0bf24c0f}{B\+A\+S\+E\+U\+R\+L\+\_\+\+L\+E\+N\+B\+Y\+T\+ES}}\mbox{]}}
 
-\mbox{\Hypertarget{structnvstruct_a045498ec4eca300d51f030a958ed5ee1}\label{structnvstruct_a045498ec4eca300d51f030a958ed5ee1}} 
+The U\+RL or IP address of the web application running P\+S\+Web\+App. This can be up to B\+A\+S\+E\+U\+R\+L\+\_\+\+L\+E\+N\+B\+Y\+T\+ES bytes long. \mbox{\Hypertarget{structnvstruct_a045498ec4eca300d51f030a958ed5ee1}\label{structnvstruct_a045498ec4eca300d51f030a958ed5ee1}} 
 \index{nvstruct@{nvstruct}!resetsalltime@{resetsalltime}}
 \index{resetsalltime@{resetsalltime}!nvstruct@{nvstruct}}
 \subsubsection{\texorpdfstring{resetsalltime}{resetsalltime}}
 {\footnotesize\ttfamily unsigned int resetsalltime}
 
-Incremented each time the microcontroller resets. Never set to zero. \mbox{\Hypertarget{structnvstruct_a48f727b15838a972aff7c7d7397ff641}\label{structnvstruct_a48f727b15838a972aff7c7d7397ff641}} 
+Incremented each time the microcontroller resets. \mbox{\Hypertarget{structnvstruct_a48f727b15838a972aff7c7d7397ff641}\label{structnvstruct_a48f727b15838a972aff7c7d7397ff641}} 
 \index{nvstruct@{nvstruct}!resetsperloop@{resetsperloop}}
 \index{resetsperloop@{resetsperloop}!nvstruct@{nvstruct}}
 \subsubsection{\texorpdfstring{resetsperloop}{resetsperloop}}
@@ -59,13 +61,13 @@ Incremented each time the microcontroller resets. Zeroed when the circular buffe
 \subsubsection{\texorpdfstring{seckey}{seckey}}
 {\footnotesize\ttfamily char seckey\mbox{[}\mbox{\hyperlink{nvtype_8h_ae32c9007f59a1d55426d7fd63e10d589}{S\+E\+C\+K\+E\+Y\+\_\+\+L\+E\+N\+B\+Y\+T\+ES}}\mbox{]}}
 
-Secret key array. This is used to generate the H\+M\+AC. \mbox{\Hypertarget{structnvstruct_a8c4928cc85c5336514401eb142ea7d50}\label{structnvstruct_a8c4928cc85c5336514401eb142ea7d50}} 
+Secret key array. This must be S\+E\+C\+K\+E\+Y\+\_\+\+L\+E\+N\+B\+Y\+T\+ES long. This is used to generate the H\+M\+AC. \mbox{\Hypertarget{structnvstruct_a8c4928cc85c5336514401eb142ea7d50}\label{structnvstruct_a8c4928cc85c5336514401eb142ea7d50}} 
 \index{nvstruct@{nvstruct}!serial@{serial}}
 \index{serial@{serial}!nvstruct@{nvstruct}}
 \subsubsection{\texorpdfstring{serial}{serial}}
 {\footnotesize\ttfamily char serial\mbox{[}\mbox{\hyperlink{nvtype_8h_a09589b0f4cf4e32679b6dc064903edef}{S\+E\+R\+I\+A\+L\+\_\+\+L\+E\+N\+B\+Y\+T\+ES}}\mbox{]}}
 
-Unique box serial array. \mbox{\Hypertarget{structnvstruct_a7535c524cca52dcf1e60b1e6762fea4c}\label{structnvstruct_a7535c524cca52dcf1e60b1e6762fea4c}} 
+Unique serial of the sensor. This must be S\+E\+R\+I\+A\+L\+\_\+\+L\+E\+N\+B\+Y\+T\+ES bytes long. \mbox{\Hypertarget{structnvstruct_a7535c524cca52dcf1e60b1e6762fea4c}\label{structnvstruct_a7535c524cca52dcf1e60b1e6762fea4c}} 
 \index{nvstruct@{nvstruct}!sleepintervaldays@{sleepintervaldays}}
 \index{sleepintervaldays@{sleepintervaldays}!nvstruct@{nvstruct}}
 \subsubsection{\texorpdfstring{sleepintervaldays}{sleepintervaldays}}
@@ -77,7 +79,13 @@ The number of days to wait without scans before putting the sensor into deep sle
 \subsubsection{\texorpdfstring{smplintervalmins}{smplintervalmins}}
 {\footnotesize\ttfamily char smplintervalmins\mbox{[}\mbox{\hyperlink{nvtype_8h_a44d3fb460b6c9383a2b3248544aa13d0}{S\+M\+P\+L\+I\+N\+T\+\_\+\+L\+E\+N\+B\+Y\+T\+ES}}\mbox{]}}
 
-Time interval betweeen samples in minutes. This is b64 encoded so it is easier to store it as an array. 
+Time interval betweeen samples in minutes. This is b64 encoded so it is easier to store it as an array. \mbox{\Hypertarget{structnvstruct_abfbbcb0a2e866121b24841f5494ac34b}\label{structnvstruct_abfbbcb0a2e866121b24841f5494ac34b}} 
+\index{nvstruct@{nvstruct}!version@{version}}
+\index{version@{version}!nvstruct@{nvstruct}}
+\subsubsection{\texorpdfstring{version}{version}}
+{\footnotesize\ttfamily char version\mbox{[}\mbox{\hyperlink{nvtype_8h_ada79ed8a19f38854ae92032efcd9051b}{V\+E\+R\+S\+I\+O\+N\+\_\+\+L\+E\+N\+B\+Y\+T\+ES}}\mbox{]}}
+
+Version. 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

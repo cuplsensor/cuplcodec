@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['baseurl_5flenbytes',['BASEURL_LENBYTES',['../nvtype_8h.html#a2d582ce7be27d531cfcc211e0bf24c0f',1,'nvtype.h']]],
   ['bit0',['BIT0',['../stat__bits_8h.html#ad4d43f8748b542bce39e18790f845ecc',1,'stat_bits.h']]],
   ['bit1',['BIT1',['../stat__bits_8h.html#a601923eba46784638244c1ebf2622a2a',1,'stat_bits.h']]],
   ['bit2',['BIT2',['../stat__bits_8h.html#a9c9560bccccb00174801c728f1ed1399',1,'stat_bits.h']]],
@@ -16,7 +17,7 @@ var searchData=
   ['bitd',['BITD',['../stat__bits_8h.html#a661469a4e8ce6126c54a3b864516842c',1,'stat_bits.h']]],
   ['bite',['BITE',['../stat__bits_8h.html#a2c52871d737790ece753991c6fcafebc',1,'stat_bits.h']]],
   ['bitf',['BITF',['../stat__bits_8h.html#aab6a537fff60ab22bd575f17d68ee3e4',1,'stat_bits.h']]],
-  ['blksize',['BLKSIZE',['../nt3h_8h.html#ac4551bbc9efabf8378f35498f80b4679',1,'nt3h.h']]],
+  ['blksize',['BLKSIZE',['../defs_8h.html#ac4551bbc9efabf8378f35498f80b4679',1,'defs.h']]],
   ['blksize_5fbytes',['BLKSIZE_BYTES',['../ndef_8h.html#a185e6e8640bb4cea359dce6f32f6ca2c',1,'ndef.h']]],
   ['blksize_5fpow2',['BLKSIZE_POW2',['../ndef_8h.html#ada1a1409a6e2a0c6a1112b781a7bc8b8',1,'ndef.h']]],
   ['blocksize',['BLOCKSIZE',['../nt3h_8c.html#afcf795f5a96fd55561abe69f56224630',1,'nt3h.c']]],

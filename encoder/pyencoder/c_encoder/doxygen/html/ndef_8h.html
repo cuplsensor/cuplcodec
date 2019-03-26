@@ -106,17 +106,17 @@ Macros</h2></td></tr>
 <tr class="separator:ada1a1409a6e2a0c6a1112b781a7bc8b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8515ac56abf73a4b2c29dca739f44e99"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ndef_8h.html#a8515ac56abf73a4b2c29dca739f44e99">TLSIZE_BYTES</a>&#160;&#160;&#160;4</td></tr>
 <tr class="separator:a8515ac56abf73a4b2c29dca739f44e99"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf9300c600f673d96063cd65a7157f7a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ndef_8h.html#adf9300c600f673d96063cd65a7157f7a">PREAMBLEN_BLKS</a>&#160;&#160;&#160;4</td></tr>
-<tr class="separator:adf9300c600f673d96063cd65a7157f7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a80c4e6a3a3e7ffaad5527adc3224c280"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ndef_8h.html#a80c4e6a3a3e7ffaad5527adc3224c280">ndef_writeblankurl</a> (int qlenblks, char *statusb64, int *qstartblk, char ver)</td></tr>
-<tr class="memdesc:a80c4e6a3a3e7ffaad5527adc3224c280"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a URL with a blank circular buffer.  <a href="#a80c4e6a3a3e7ffaad5527adc3224c280">More...</a><br /></td></tr>
-<tr class="separator:a80c4e6a3a3e7ffaad5527adc3224c280"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2042acb925b04e54eadc1feb53c0b1e9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ndef_8h.html#a2042acb925b04e54eadc1feb53c0b1e9">ndef_writeblankurl</a> (int qlenblks, char *statusb64, int *qstartblk)</td></tr>
+<tr class="memdesc:a2042acb925b04e54eadc1feb53c0b1e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a URL with a blank circular buffer.  <a href="#a2042acb925b04e54eadc1feb53c0b1e9">More...</a><br /></td></tr>
+<tr class="separator:a2042acb925b04e54eadc1feb53c0b1e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac55b5f717f0851a05b88d77e69ad3567"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ndef_8h.html#ac55b5f717f0851a05b88d77e69ad3567">ndef_writepreamble</a> (int qlenblks, char *statusb64)</td></tr>
 <tr class="memdesc:ac55b5f717f0851a05b88d77e69ad3567"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write the part of the URL before the circular buffer.  <a href="#ac55b5f717f0851a05b88d77e69ad3567">More...</a><br /></td></tr>
 <tr class="separator:ac55b5f717f0851a05b88d77e69ad3567"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c9b22cb5010801ed7dcb536b5c8939e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ndef_8h.html#a2c9b22cb5010801ed7dcb536b5c8939e">ndef_calclen</a> (int *paddinglen, int *preamblenbytes, int *urllen)</td></tr>
+<tr class="separator:a2c9b22cb5010801ed7dcb536b5c8939e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a185e6e8640bb4cea359dce6f32f6ca2c"></a>
@@ -147,20 +147,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="adf9300c600f673d96063cd65a7157f7a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adf9300c600f673d96063cd65a7157f7a">&#9670;&nbsp;</a></span>PREAMBLEN_BLKS</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define PREAMBLEN_BLKS&#160;&#160;&#160;4</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a8515ac56abf73a4b2c29dca739f44e99"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8515ac56abf73a4b2c29dca739f44e99">&#9670;&nbsp;</a></span>TLSIZE_BYTES</h2>
 
@@ -176,8 +162,42 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a80c4e6a3a3e7ffaad5527adc3224c280"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a80c4e6a3a3e7ffaad5527adc3224c280">&#9670;&nbsp;</a></span>ndef_writeblankurl()</h2>
+<a id="a2c9b22cb5010801ed7dcb536b5c8939e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c9b22cb5010801ed7dcb536b5c8939e">&#9670;&nbsp;</a></span>ndef_calclen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ndef_calclen </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>paddinglen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>preamblenbytes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>urllen</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2042acb925b04e54eadc1feb53c0b1e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2042acb925b04e54eadc1feb53c0b1e9">&#9670;&nbsp;</a></span>ndef_writeblankurl()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -198,13 +218,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>qstartblk</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>ver</em>&#160;</td>
+          <td class="paramname"><em>qstartblk</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -220,7 +234,6 @@ Functions</h2></td></tr>
     <tr><td class="paramname">qlenblks</td><td>Length of the circular buffer URL parameter (q) in blocks. </td></tr>
     <tr><td class="paramname">statusb64</td><td>Pointer to the status field encoded in base 64. </td></tr>
     <tr><td class="paramname">qstartblk</td><td>Pointer to an integer into which this function writes the start block of the q URL parameter. </td></tr>
-    <tr><td class="paramname">ver</td><td>Version identifier. </td></tr>
   </table>
   </dd>
 </dl>

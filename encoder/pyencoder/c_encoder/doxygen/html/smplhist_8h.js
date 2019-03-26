@@ -6,5 +6,7 @@ var smplhist_8h =
     [ "sdchars_t", "smplhist_8h.html#a6aed6c376195d183573501f3a8a77ca3", null ],
     [ "smplhist_md5", "smplhist_8h.html#a92c0645dcea2976bba0b05556472e211", null ],
     [ "smplhist_ovr", "smplhist_8h.html#affe400f90c858c88868d0ee6a1a9d3df", null ],
-    [ "smplhist_push", "smplhist_8h.html#a8b601164eab6ef2ea4d6643970a760f6", null ]
+    [ "smplhist_push", "smplhist_8h.html#a8b601164eab6ef2ea4d6643970a760f6", null ],
+    [ "smplhist_read", "smplhist_8h.html#acaa1441a54c225ac6914ada471623cdc", null ],
+    [ "buflensamples", "smplhist_8h.html#ae273bd28ec168f04a70cbc3cc33525d6", null ]
 ];

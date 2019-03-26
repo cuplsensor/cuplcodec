@@ -2,7 +2,8 @@ var searchData=
 [
   ['ndef_2ec',['ndef.c',['../ndef_8c.html',1,'']]],
   ['ndef_2eh',['ndef.h',['../ndef_8h.html',1,'']]],
-  ['ndef_5fwriteblankurl',['ndef_writeblankurl',['../ndef_8c.html#a80c4e6a3a3e7ffaad5527adc3224c280',1,'ndef_writeblankurl(int qlenblks, char *statusb64, int *qstartblk, char ver):&#160;ndef.c'],['../ndef_8h.html#a80c4e6a3a3e7ffaad5527adc3224c280',1,'ndef_writeblankurl(int qlenblks, char *statusb64, int *qstartblk, char ver):&#160;ndef.c']]],
+  ['ndef_5fcalclen',['ndef_calclen',['../ndef_8c.html#a2c9b22cb5010801ed7dcb536b5c8939e',1,'ndef_calclen(int *paddinglen, int *preamblenbytes, int *urllen):&#160;ndef.c'],['../ndef_8h.html#a2c9b22cb5010801ed7dcb536b5c8939e',1,'ndef_calclen(int *paddinglen, int *preamblenbytes, int *urllen):&#160;ndef.c']]],
+  ['ndef_5fwriteblankurl',['ndef_writeblankurl',['../ndef_8c.html#a2042acb925b04e54eadc1feb53c0b1e9',1,'ndef_writeblankurl(int qlenblks, char *statusb64, int *qstartblk):&#160;ndef.c'],['../ndef_8h.html#a2042acb925b04e54eadc1feb53c0b1e9',1,'ndef_writeblankurl(int qlenblks, char *statusb64, int *qstartblk):&#160;ndef.c']]],
   ['ndef_5fwritepreamble',['ndef_writepreamble',['../ndef_8c.html#ac55b5f717f0851a05b88d77e69ad3567',1,'ndef_writepreamble(int qlenblks, char *statusb64):&#160;ndef.c'],['../ndef_8h.html#ac55b5f717f0851a05b88d77e69ad3567',1,'ndef_writepreamble(int qlenblks, char *statusb64):&#160;ndef.c']]],
   ['nt3h_2ec',['nt3h.c',['../nt3h_8c.html',1,'']]],
   ['nt3h_2eh',['nt3h.h',['../nt3h_8h.html',1,'']]],

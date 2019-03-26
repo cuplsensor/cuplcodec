@@ -116,8 +116,8 @@ void ADC_ISR (void)
             //Automatically clears ADCIFG0 by reading memory buffer
             //ADCMEM = A0 > 0.5V?
             adcresult = ADC_getResults(ADC_BASE);
-            adcresult = ((uint32_t)1024 * (uint32_t)1500)/adcresult;
-            adcvoltage = (int)adcresult;
+            //adcresult = ((uint32_t)1024 * (uint32_t)1500)/adcresult;
+            adcvoltage = (int)adcresult >> 2; // Convert 10 bit value (1024) to 8 bits.
 
             //Clear CPUOFF bit from 0(SR)
             //Breakpoint here and watch ADC_Result

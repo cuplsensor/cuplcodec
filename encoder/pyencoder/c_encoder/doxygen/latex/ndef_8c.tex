@@ -19,6 +19,24 @@ union \mbox{\hyperlink{unionlen__t}{len\+\_\+t}}
 \item 
 \#define \mbox{\hyperlink{ndef_8c_ae4c33d17b37c135ccbd0dea622a21be2}{U\+R\+L\+\_\+\+R\+E\+C\+O\+R\+D\+T\+Y\+P\+E\+\_\+\+L\+EN}}~1
 \item 
+\#define \mbox{\hyperlink{ndef_8c_a249d9c101b0742c2d82db627d71deca8}{T\+I\+M\+E\+I\+N\+T\+P\+A\+R\+A\+M\+\_\+\+L\+EN}}~sizeof(timeintparam)-\/1
+\item 
+\#define \mbox{\hyperlink{ndef_8c_ad0e0d47b86ef9b7e31592233428f1d74}{T\+I\+M\+E\+I\+N\+T\+B64\+\_\+\+L\+EN}}~4
+\item 
+\#define \mbox{\hyperlink{ndef_8c_a0cadb46eb1041867ec1672bc493ed863}{S\+E\+R\+I\+A\+L\+P\+A\+R\+A\+M\+\_\+\+L\+EN}}~sizeof(\mbox{\hyperlink{ndef_8c_a52cad496a745bee49f8acf6b2c7ecb5d}{serialparam}})-\/1
+\item 
+\#define \mbox{\hyperlink{ndef_8c_acea516da0314dff3eef0fda0f12bfad5}{V\+E\+R\+P\+A\+R\+A\+M\+\_\+\+L\+EN}}~sizeof(verparam)-\/1
+\item 
+\#define \mbox{\hyperlink{ndef_8c_a81d59d436d24848e6312fd80b5eb374d}{S\+T\+A\+T\+P\+A\+R\+A\+M\+\_\+\+L\+EN}}~sizeof(statparam)-\/1
+\item 
+\#define \mbox{\hyperlink{ndef_8c_a25e1f943036e9f64078ba6dc5183f343}{S\+T\+A\+T\+B64\+\_\+\+L\+EN}}~8
+\item 
+\#define \mbox{\hyperlink{ndef_8c_a6a41863935e2241a93a436cf3b178e84}{Q\+P\+A\+R\+A\+M\+\_\+\+L\+EN}}~sizeof(queryparam)-\/1
+\item 
+\#define \mbox{\hyperlink{ndef_8c_a07ec40237783a751f56e825528217486}{U\+R\+L\+\_\+\+R\+E\+C\+O\+R\+D\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+L\+EN}}~8
+\item 
+\#define \mbox{\hyperlink{ndef_8c_ab4e3ce79fe491f1774d116c37b028e9e}{T\+L\+V\+\_\+\+T\+Y\+P\+E\+\_\+\+L\+E\+N\+\_\+\+L\+EN}}~4
+\item 
 \#define \mbox{\hyperlink{ndef_8c_a3f2902197dc6ef9f691916b1454006ca}{T\+L\+V\+\_\+\+S\+T\+A\+RT}}~0x03
 \item 
 \#define \mbox{\hyperlink{ndef_8c_aa834bbba3ae471ca682740e350082377}{W\+E\+L\+L\+K\+N\+O\+W\+N\+\_\+\+T\+NF}}~0x01
@@ -34,9 +52,11 @@ union \mbox{\hyperlink{unionlen__t}{len\+\_\+t}}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+void \mbox{\hyperlink{ndef_8c_a2c9b22cb5010801ed7dcb536b5c8939e}{ndef\+\_\+calclen}} (int $\ast$paddinglen, int $\ast$preamblenbytes, int $\ast$urllen)
+\item 
 int \mbox{\hyperlink{ndef_8c_ac55b5f717f0851a05b88d77e69ad3567}{ndef\+\_\+writepreamble}} (int qlenblks, char $\ast$statusb64)
 \begin{DoxyCompactList}\small\item\em Write the part of the U\+RL before the circular buffer. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{ndef_8c_a80c4e6a3a3e7ffaad5527adc3224c280}{ndef\+\_\+writeblankurl}} (int qlenblks, char $\ast$statusb64, int $\ast$qstartblk, char ver)
+int \mbox{\hyperlink{ndef_8c_a2042acb925b04e54eadc1feb53c0b1e9}{ndef\+\_\+writeblankurl}} (int qlenblks, char $\ast$statusb64, int $\ast$qstartblk)
 \begin{DoxyCompactList}\small\item\em Create a U\+RL with a blank circular buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -54,11 +74,53 @@ char \mbox{\hyperlink{ndef_8c_a52cad496a745bee49f8acf6b2c7ecb5d}{serialparam}} \
 \subsubsection{\texorpdfstring{A\+B\+S\+U\+R\+I\+\_\+\+T\+NF}{ABSURI\_TNF}}
 {\footnotesize\ttfamily \#define A\+B\+S\+U\+R\+I\+\_\+\+T\+NF~0x03}
 
+\mbox{\Hypertarget{ndef_8c_a6a41863935e2241a93a436cf3b178e84}\label{ndef_8c_a6a41863935e2241a93a436cf3b178e84}} 
+\index{ndef.\+c@{ndef.\+c}!Q\+P\+A\+R\+A\+M\+\_\+\+L\+EN@{Q\+P\+A\+R\+A\+M\+\_\+\+L\+EN}}
+\index{Q\+P\+A\+R\+A\+M\+\_\+\+L\+EN@{Q\+P\+A\+R\+A\+M\+\_\+\+L\+EN}!ndef.\+c@{ndef.\+c}}
+\subsubsection{\texorpdfstring{Q\+P\+A\+R\+A\+M\+\_\+\+L\+EN}{QPARAM\_LEN}}
+{\footnotesize\ttfamily \#define Q\+P\+A\+R\+A\+M\+\_\+\+L\+EN~sizeof(queryparam)-\/1}
+
+\mbox{\Hypertarget{ndef_8c_a0cadb46eb1041867ec1672bc493ed863}\label{ndef_8c_a0cadb46eb1041867ec1672bc493ed863}} 
+\index{ndef.\+c@{ndef.\+c}!S\+E\+R\+I\+A\+L\+P\+A\+R\+A\+M\+\_\+\+L\+EN@{S\+E\+R\+I\+A\+L\+P\+A\+R\+A\+M\+\_\+\+L\+EN}}
+\index{S\+E\+R\+I\+A\+L\+P\+A\+R\+A\+M\+\_\+\+L\+EN@{S\+E\+R\+I\+A\+L\+P\+A\+R\+A\+M\+\_\+\+L\+EN}!ndef.\+c@{ndef.\+c}}
+\subsubsection{\texorpdfstring{S\+E\+R\+I\+A\+L\+P\+A\+R\+A\+M\+\_\+\+L\+EN}{SERIALPARAM\_LEN}}
+{\footnotesize\ttfamily \#define S\+E\+R\+I\+A\+L\+P\+A\+R\+A\+M\+\_\+\+L\+EN~sizeof(\mbox{\hyperlink{ndef_8c_a52cad496a745bee49f8acf6b2c7ecb5d}{serialparam}})-\/1}
+
+\mbox{\Hypertarget{ndef_8c_a25e1f943036e9f64078ba6dc5183f343}\label{ndef_8c_a25e1f943036e9f64078ba6dc5183f343}} 
+\index{ndef.\+c@{ndef.\+c}!S\+T\+A\+T\+B64\+\_\+\+L\+EN@{S\+T\+A\+T\+B64\+\_\+\+L\+EN}}
+\index{S\+T\+A\+T\+B64\+\_\+\+L\+EN@{S\+T\+A\+T\+B64\+\_\+\+L\+EN}!ndef.\+c@{ndef.\+c}}
+\subsubsection{\texorpdfstring{S\+T\+A\+T\+B64\+\_\+\+L\+EN}{STATB64\_LEN}}
+{\footnotesize\ttfamily \#define S\+T\+A\+T\+B64\+\_\+\+L\+EN~8}
+
+\mbox{\Hypertarget{ndef_8c_a81d59d436d24848e6312fd80b5eb374d}\label{ndef_8c_a81d59d436d24848e6312fd80b5eb374d}} 
+\index{ndef.\+c@{ndef.\+c}!S\+T\+A\+T\+P\+A\+R\+A\+M\+\_\+\+L\+EN@{S\+T\+A\+T\+P\+A\+R\+A\+M\+\_\+\+L\+EN}}
+\index{S\+T\+A\+T\+P\+A\+R\+A\+M\+\_\+\+L\+EN@{S\+T\+A\+T\+P\+A\+R\+A\+M\+\_\+\+L\+EN}!ndef.\+c@{ndef.\+c}}
+\subsubsection{\texorpdfstring{S\+T\+A\+T\+P\+A\+R\+A\+M\+\_\+\+L\+EN}{STATPARAM\_LEN}}
+{\footnotesize\ttfamily \#define S\+T\+A\+T\+P\+A\+R\+A\+M\+\_\+\+L\+EN~sizeof(statparam)-\/1}
+
+\mbox{\Hypertarget{ndef_8c_ad0e0d47b86ef9b7e31592233428f1d74}\label{ndef_8c_ad0e0d47b86ef9b7e31592233428f1d74}} 
+\index{ndef.\+c@{ndef.\+c}!T\+I\+M\+E\+I\+N\+T\+B64\+\_\+\+L\+EN@{T\+I\+M\+E\+I\+N\+T\+B64\+\_\+\+L\+EN}}
+\index{T\+I\+M\+E\+I\+N\+T\+B64\+\_\+\+L\+EN@{T\+I\+M\+E\+I\+N\+T\+B64\+\_\+\+L\+EN}!ndef.\+c@{ndef.\+c}}
+\subsubsection{\texorpdfstring{T\+I\+M\+E\+I\+N\+T\+B64\+\_\+\+L\+EN}{TIMEINTB64\_LEN}}
+{\footnotesize\ttfamily \#define T\+I\+M\+E\+I\+N\+T\+B64\+\_\+\+L\+EN~4}
+
+\mbox{\Hypertarget{ndef_8c_a249d9c101b0742c2d82db627d71deca8}\label{ndef_8c_a249d9c101b0742c2d82db627d71deca8}} 
+\index{ndef.\+c@{ndef.\+c}!T\+I\+M\+E\+I\+N\+T\+P\+A\+R\+A\+M\+\_\+\+L\+EN@{T\+I\+M\+E\+I\+N\+T\+P\+A\+R\+A\+M\+\_\+\+L\+EN}}
+\index{T\+I\+M\+E\+I\+N\+T\+P\+A\+R\+A\+M\+\_\+\+L\+EN@{T\+I\+M\+E\+I\+N\+T\+P\+A\+R\+A\+M\+\_\+\+L\+EN}!ndef.\+c@{ndef.\+c}}
+\subsubsection{\texorpdfstring{T\+I\+M\+E\+I\+N\+T\+P\+A\+R\+A\+M\+\_\+\+L\+EN}{TIMEINTPARAM\_LEN}}
+{\footnotesize\ttfamily \#define T\+I\+M\+E\+I\+N\+T\+P\+A\+R\+A\+M\+\_\+\+L\+EN~sizeof(timeintparam)-\/1}
+
 \mbox{\Hypertarget{ndef_8c_a3f2902197dc6ef9f691916b1454006ca}\label{ndef_8c_a3f2902197dc6ef9f691916b1454006ca}} 
 \index{ndef.\+c@{ndef.\+c}!T\+L\+V\+\_\+\+S\+T\+A\+RT@{T\+L\+V\+\_\+\+S\+T\+A\+RT}}
 \index{T\+L\+V\+\_\+\+S\+T\+A\+RT@{T\+L\+V\+\_\+\+S\+T\+A\+RT}!ndef.\+c@{ndef.\+c}}
 \subsubsection{\texorpdfstring{T\+L\+V\+\_\+\+S\+T\+A\+RT}{TLV\_START}}
 {\footnotesize\ttfamily \#define T\+L\+V\+\_\+\+S\+T\+A\+RT~0x03}
+
+\mbox{\Hypertarget{ndef_8c_ab4e3ce79fe491f1774d116c37b028e9e}\label{ndef_8c_ab4e3ce79fe491f1774d116c37b028e9e}} 
+\index{ndef.\+c@{ndef.\+c}!T\+L\+V\+\_\+\+T\+Y\+P\+E\+\_\+\+L\+E\+N\+\_\+\+L\+EN@{T\+L\+V\+\_\+\+T\+Y\+P\+E\+\_\+\+L\+E\+N\+\_\+\+L\+EN}}
+\index{T\+L\+V\+\_\+\+T\+Y\+P\+E\+\_\+\+L\+E\+N\+\_\+\+L\+EN@{T\+L\+V\+\_\+\+T\+Y\+P\+E\+\_\+\+L\+E\+N\+\_\+\+L\+EN}!ndef.\+c@{ndef.\+c}}
+\subsubsection{\texorpdfstring{T\+L\+V\+\_\+\+T\+Y\+P\+E\+\_\+\+L\+E\+N\+\_\+\+L\+EN}{TLV\_TYPE\_LEN\_LEN}}
+{\footnotesize\ttfamily \#define T\+L\+V\+\_\+\+T\+Y\+P\+E\+\_\+\+L\+E\+N\+\_\+\+L\+EN~4}
 
 \mbox{\Hypertarget{ndef_8c_a092f9a3cb8ae1e6e034bd34067bcae3f}\label{ndef_8c_a092f9a3cb8ae1e6e034bd34067bcae3f}} 
 \index{ndef.\+c@{ndef.\+c}!U\+N\+C\+H\+A\+N\+G\+E\+D\+\_\+\+T\+NF@{U\+N\+C\+H\+A\+N\+G\+E\+D\+\_\+\+T\+NF}}
@@ -78,6 +140,12 @@ char \mbox{\hyperlink{ndef_8c_a52cad496a745bee49f8acf6b2c7ecb5d}{serialparam}} \
 \subsubsection{\texorpdfstring{U\+R\+I\+\_\+\+I\+D\+\_\+\+H\+T\+T\+PS}{URI\_ID\_HTTPS}}
 {\footnotesize\ttfamily \#define U\+R\+I\+\_\+\+I\+D\+\_\+\+H\+T\+T\+PS~0x04}
 
+\mbox{\Hypertarget{ndef_8c_a07ec40237783a751f56e825528217486}\label{ndef_8c_a07ec40237783a751f56e825528217486}} 
+\index{ndef.\+c@{ndef.\+c}!U\+R\+L\+\_\+\+R\+E\+C\+O\+R\+D\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+L\+EN@{U\+R\+L\+\_\+\+R\+E\+C\+O\+R\+D\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+L\+EN}}
+\index{U\+R\+L\+\_\+\+R\+E\+C\+O\+R\+D\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+L\+EN@{U\+R\+L\+\_\+\+R\+E\+C\+O\+R\+D\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+L\+EN}!ndef.\+c@{ndef.\+c}}
+\subsubsection{\texorpdfstring{U\+R\+L\+\_\+\+R\+E\+C\+O\+R\+D\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+L\+EN}{URL\_RECORD\_HEADER\_LEN}}
+{\footnotesize\ttfamily \#define U\+R\+L\+\_\+\+R\+E\+C\+O\+R\+D\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+L\+EN~8}
+
 \mbox{\Hypertarget{ndef_8c_a0dce637212030f0bde7c5e0f68032460}\label{ndef_8c_a0dce637212030f0bde7c5e0f68032460}} 
 \index{ndef.\+c@{ndef.\+c}!U\+R\+L\+\_\+\+R\+E\+C\+O\+R\+D\+T\+Y\+PE@{U\+R\+L\+\_\+\+R\+E\+C\+O\+R\+D\+T\+Y\+PE}}
 \index{U\+R\+L\+\_\+\+R\+E\+C\+O\+R\+D\+T\+Y\+PE@{U\+R\+L\+\_\+\+R\+E\+C\+O\+R\+D\+T\+Y\+PE}!ndef.\+c@{ndef.\+c}}
@@ -90,6 +158,12 @@ char \mbox{\hyperlink{ndef_8c_a52cad496a745bee49f8acf6b2c7ecb5d}{serialparam}} \
 \subsubsection{\texorpdfstring{U\+R\+L\+\_\+\+R\+E\+C\+O\+R\+D\+T\+Y\+P\+E\+\_\+\+L\+EN}{URL\_RECORDTYPE\_LEN}}
 {\footnotesize\ttfamily \#define U\+R\+L\+\_\+\+R\+E\+C\+O\+R\+D\+T\+Y\+P\+E\+\_\+\+L\+EN~1}
 
+\mbox{\Hypertarget{ndef_8c_acea516da0314dff3eef0fda0f12bfad5}\label{ndef_8c_acea516da0314dff3eef0fda0f12bfad5}} 
+\index{ndef.\+c@{ndef.\+c}!V\+E\+R\+P\+A\+R\+A\+M\+\_\+\+L\+EN@{V\+E\+R\+P\+A\+R\+A\+M\+\_\+\+L\+EN}}
+\index{V\+E\+R\+P\+A\+R\+A\+M\+\_\+\+L\+EN@{V\+E\+R\+P\+A\+R\+A\+M\+\_\+\+L\+EN}!ndef.\+c@{ndef.\+c}}
+\subsubsection{\texorpdfstring{V\+E\+R\+P\+A\+R\+A\+M\+\_\+\+L\+EN}{VERPARAM\_LEN}}
+{\footnotesize\ttfamily \#define V\+E\+R\+P\+A\+R\+A\+M\+\_\+\+L\+EN~sizeof(verparam)-\/1}
+
 \mbox{\Hypertarget{ndef_8c_aa834bbba3ae471ca682740e350082377}\label{ndef_8c_aa834bbba3ae471ca682740e350082377}} 
 \index{ndef.\+c@{ndef.\+c}!W\+E\+L\+L\+K\+N\+O\+W\+N\+\_\+\+T\+NF@{W\+E\+L\+L\+K\+N\+O\+W\+N\+\_\+\+T\+NF}}
 \index{W\+E\+L\+L\+K\+N\+O\+W\+N\+\_\+\+T\+NF@{W\+E\+L\+L\+K\+N\+O\+W\+N\+\_\+\+T\+NF}!ndef.\+c@{ndef.\+c}}
@@ -99,11 +173,17 @@ char \mbox{\hyperlink{ndef_8c_a52cad496a745bee49f8acf6b2c7ecb5d}{serialparam}} \
 
 
 \subsection{Function Documentation}
-\mbox{\Hypertarget{ndef_8c_a80c4e6a3a3e7ffaad5527adc3224c280}\label{ndef_8c_a80c4e6a3a3e7ffaad5527adc3224c280}} 
+\mbox{\Hypertarget{ndef_8c_a2c9b22cb5010801ed7dcb536b5c8939e}\label{ndef_8c_a2c9b22cb5010801ed7dcb536b5c8939e}} 
+\index{ndef.\+c@{ndef.\+c}!ndef\+\_\+calclen@{ndef\+\_\+calclen}}
+\index{ndef\+\_\+calclen@{ndef\+\_\+calclen}!ndef.\+c@{ndef.\+c}}
+\subsubsection{\texorpdfstring{ndef\+\_\+calclen()}{ndef\_calclen()}}
+{\footnotesize\ttfamily void ndef\+\_\+calclen (\begin{DoxyParamCaption}\item[{int $\ast$}]{paddinglen,  }\item[{int $\ast$}]{preamblenbytes,  }\item[{int $\ast$}]{urllen }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ndef_8c_a2042acb925b04e54eadc1feb53c0b1e9}\label{ndef_8c_a2042acb925b04e54eadc1feb53c0b1e9}} 
 \index{ndef.\+c@{ndef.\+c}!ndef\+\_\+writeblankurl@{ndef\+\_\+writeblankurl}}
 \index{ndef\+\_\+writeblankurl@{ndef\+\_\+writeblankurl}!ndef.\+c@{ndef.\+c}}
 \subsubsection{\texorpdfstring{ndef\+\_\+writeblankurl()}{ndef\_writeblankurl()}}
-{\footnotesize\ttfamily int ndef\+\_\+writeblankurl (\begin{DoxyParamCaption}\item[{int}]{qlenblks,  }\item[{char $\ast$}]{statusb64,  }\item[{int $\ast$}]{qstartblk,  }\item[{char}]{ver }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int ndef\+\_\+writeblankurl (\begin{DoxyParamCaption}\item[{int}]{qlenblks,  }\item[{char $\ast$}]{statusb64,  }\item[{int $\ast$}]{qstartblk }\end{DoxyParamCaption})}
 
 
 
@@ -116,8 +196,6 @@ Create a U\+RL with a blank circular buffer.
 {\em statusb64} & Pointer to the status field encoded in base 64. \\
 \hline
 {\em qstartblk} & Pointer to an integer into which this function writes the start block of the q U\+RL parameter. \\
-\hline
-{\em ver} & Version identifier. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

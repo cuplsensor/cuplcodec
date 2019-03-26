@@ -35,7 +35,7 @@ Message Authentication
 ------------------------
 
 The URL contains a Hash-Based-Message-Authentication-Code or HMAC. This is made by taking the MD5 checksum of some data,
-concatenating this with a secret key and then taking the MD5 of the result.
+concatenating this with a secret key (:cpp:member:`seckey`) and then taking the MD5 of the result.
 
 At the provisioning stage, a random secret key is generated that is unique to each sensor. This is a shared secret:
 it is stored both by the web application and in the sensor.
@@ -77,27 +77,23 @@ URL Header
 Base URL
 ~~~~~~~~~
 
-The URL or IP address of the web application running PSWebApp. This can be up to 64 bytes long.
+See non-volatile parameter :cpp:member:`baseurl`.
 
 .. _serial:
 
 Serial
 ~~~~~~~
 
-Unique serial of the sensor. This must be 8 bytes long.
-
-Encoder input :cpp:member:`serial`
+See non-volatile parameter :cpp:member:`serial`.
 
 Time interval
 ~~~~~~~~~~~~~~
 
 Time interval between samples in minutes is base64 encoded. Whilst the encoded string is 4 bytes long, the last character
 must always be a padding byte (an URL safe replacement for '='). Therefore the unencoded time interval can only be 2 bytes long.
-This is to match with the format of the minutes Elapsed_ field.
+This is to match with the format of the minutes `Elapsed`_ field.
 
-Decoder output :class:`.paramdecoder.ParamDecoder`:
-
-Encoder input :cpp:member:`smplintervalmins`
+It is programmed as non-volatile parameter :cpp:member:`smplintervalmins`.
 
 Version
 ~~~~~~~~
@@ -111,13 +107,35 @@ This is programmed as non-volatile parameter :cpp:member:`version`.
 Status
 ~~~~~~~
 
-+-------------+--------+--------+--------+--------+--------+--------+
-| Byte        | 0      | 1      | 2      | 3      | 4      | 5      |
-+-------------+--------+--------+--------+--------+--------+--------+
-| Description | LoopCount       | ResetsAllTime   | BatV   | RstC   |
-+-------------+-----------------+-----------------+-----------------+
++-------------+--------+--------+--------+---------+-----------+---------+
+| Byte        | 0      | 1      | 2      | 3       | 4         | 5       |
++-------------+--------+--------+--------+---------+-----------+---------+
+| Description | `LoopCount`_    | `ResetsAllTime`_ | `BatV`_   | `RstC`_ |
++-------------+-----------------+------------------+-----------+---------+
 
-The status field is 6 bytes long unencoded and 8 bytes long after base64 encoding.
+The status field is 6 bytes long unencoded. It corresponds to :cpp:member:`status`. After base64 encoding
+this becomes 8 bytes long.
+
+LoopCount
+^^^^^^^^^^^
+
+See :cpp:member:`loopcount`.
+
+ResetsAllTime
+^^^^^^^^^^^^^^
+
+Number of times the microcontroller running the encoder has reset. Each reset causes a counter to be incremented in
+non-volatile memory (:cpp:member:`resetsalltime`).
+
+BatV
+^^^^^
+
+See :cpp:member:`batvoltage`.
+
+RstC
+^^^^^^
+
+Reset condition
 
 URL Circular Buffer
 --------------------
@@ -274,11 +292,11 @@ _`MD5Length`
 This is 9 bytes long unencoded and 12 bytes long encoded. The C structure to hold these data
 :cpp:type:`md5len_t` is shown below:
 
-+-------------+---+---+---+---+---+---+---+---+----+
-| Byte        | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8  |
-+-------------+---+---+---+---+---+---+---+---+----+
-| Description | MD5_                      | Length |
-+-------------+---------------------------+--------+
++-------------+---+---+---+---+---+---+---+---+------------+
+| Byte        | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8          |
++-------------+---+---+---+---+---+---+---+---+------------+
+| Description | MD5_                      | LengthSamples_ |
++-------------+---------------------------+----------------+
 
 MD5
 ____
@@ -286,8 +304,8 @@ ____
 Least significant 7 bytes of the MD5 checksum taken of all samples in the buffer.
 
 
-Length
-_______
+LengthSamples
+______________
 
 The number of valid samples in the circular buffer. This is populated from :cpp:var:`lensmpls`.
 
