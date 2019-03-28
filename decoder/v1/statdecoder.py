@@ -18,25 +18,24 @@ LPM5WU_BIT = BIT4
 CLOCKFAIL_BIT = BIT5
 SCANTIMEOUT_BIT = BIT7
 
+
 class StatDecoder():
     def __init__(self, encstr):
         decstr = base64.urlsafe_b64decode(encstr)
-        declist = struct.unpack("HBBH", decstr)
+        declist = struct.unpack("HHH", decstr)
         self.loopcount = declist[0]
-
         self.resetsalltime = declist[1]
+        self.batv_resetcause = declist[2]
 
-        resetcause = declist[2]
-        brownout = (resetcause & BOR_BIT) > 0
-        supervisor = (resetcause & SVSH_BIT) > 0
-        watchdog = (resetcause & WDT_BIT) > 0
-        misc = (resetcause & MISC_BIT) > 0
-        lpm5wakeup = (resetcause & LPM5WU_BIT) > 0
-        clockfail = (resetcause & CLOCKFAIL_BIT) > 0
-        scantimeout = (resetcause & SCANTIMEOUT_BIT) > 0
+        brownout = (self.batv_resetcause & BOR_BIT) > 0
+        supervisor = (self.batv_resetcause & SVSH_BIT) > 0
+        watchdog = (self.batv_resetcause & WDT_BIT) > 0
+        misc = (self.batv_resetcause & MISC_BIT) > 0
+        lpm5wakeup = (self.batv_resetcause & LPM5WU_BIT) > 0
+        clockfail = (self.batv_resetcause & CLOCKFAIL_BIT) > 0
+        scantimeout = (self.batv_resetcause & SCANTIMEOUT_BIT) > 0
 
         self.status = {
-            "resetsalltime": resetsalltime,
             "brownout": brownout,
             "supervisor": supervisor,
             "watchdog": watchdog,
@@ -46,11 +45,12 @@ class StatDecoder():
             "scantimeout": scantimeout
         }
 
-        self.batvoltagemv = declist[3] # batvoltagerwaw
-
+    def get_batvoltagemv(self):
+        return (256 * 1500) / (self.batv_resetcause >> 8)
 
 if __name__ == '__main__':
     def x():
         print(StatDecoder("AAABAUsM").status)
+
 
     x()
