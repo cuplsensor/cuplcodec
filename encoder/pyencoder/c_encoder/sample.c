@@ -40,7 +40,11 @@ static char encodedoctet[8];        /*!< Stores the base64 encoded \link sampleb
 static sdchars_t samplebuf[2];      /*!< Stores two 3-byte samples. */
 static unsigned int lensmpls = 0;   /*!< Number of valid samples in the circular buffer, starting from the endstop and counting backwards. */
 static urlstate state;
+#ifndef NOT_CFFI
+stat_t urlstatus = {0};
+#else
 static stat_t urlstatus = {0};
+#endif
 static endstop_t endstop;           /*!< The 16 byte end stop. */
 extern nv_t nv;                     /*!< Externally defined parameters stored in non-volatile memory. */
 

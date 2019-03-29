@@ -25,7 +25,7 @@ class ParamDecoder:
         self.circformat = circformat
         self.timeintervalmins = ParamDecoder.decode_timeinterval(timeintb64)
         self.status = StatDecoder(statb64)
-        self.buffer = bufferdecoder(circb64, self.timeintervalmins, secretkey)
+        self.buffer = bufferdecoder(circb64, self.timeintervalmins, secretkey, self.status)
 
     @staticmethod
     def decode_timeinterval(enctimeint):

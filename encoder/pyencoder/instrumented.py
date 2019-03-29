@@ -3,6 +3,7 @@ from . import eeprom as eeprom
 from struct import pack
 
 
+
 class InstrumentedBase(object):
     """
     Put some documentation here
@@ -14,13 +15,16 @@ class InstrumentedBase(object):
                  serial,
                  secretkey,
                  smplintervalmins,
-                 version='11'):
+                 version='11',
+                 resetsalltime=0,
+                 ):
         self.secretkey = secretkey
         self.ffimodule = ffimodule
         self.ffimodule.lib.nv.serial = serial.encode('ascii')
         self.ffimodule.lib.nv.seckey = secretkey.encode('ascii')
         self.ffimodule.lib.nv.baseurl = baseurl.encode('ascii')
         self.ffimodule.lib.nv.version = version.encode('ascii')
+        self.ffimodule.lib.nv.resetsalltime = resetsalltime
         smplintbytes = pack("<H", smplintervalmins)
         self.ffimodule.lib.nv.smplintervalmins = smplintbytes
         self.eepromba = eeprom.Eeprom(64)
@@ -43,6 +47,9 @@ class InstrumentedBase(object):
         def printint(myint):
             print("printint " + str(myint))
             return 0
+
+    def set_battery_adc(self, batteryadc):
+        self.batteryadc = batteryadc
 
     def check(self):
         return self.ffimodule.ffi.cast("int", 12)
@@ -81,16 +88,12 @@ class InstrumentedSample(InstrumentedBase):
                  serial='AAAACCCC',
                  secretkey='AAAACCCC',
                  smplintervalmins=12,
-                 version='11'):
-        super(InstrumentedSample, self).__init__(samplepy, baseurl, serial, secretkey, smplintervalmins, version)
+                 version='11',
+                 resetsalltime=0,
+                 ):
+        super(InstrumentedSample, self).__init__(samplepy, baseurl, serial, secretkey, smplintervalmins, version, resetsalltime)
 
-        @self.ffimodule.ffi.def_extern()
-        def prng_getrandom(lenbits):
-            return 16
 
-        @self.ffimodule.ffi.def_extern()
-        def batv_measure():
-            return 2500
 
     def tempsample(self, countermax, counterstep):
         counter = 0
@@ -114,8 +117,9 @@ class InstrumentedSampleT(InstrumentedSample):
                  serial='ABCDEFGH',
                  secretkey='AAAACCCC',
                  baseurl='plotsensor.com',
-                 smplintervalmins=12):
-        super(InstrumentedSampleT, self).__init__(baseurl, serial, secretkey, smplintervalmins, version='12')
+                 smplintervalmins=12,
+                 resetsalltime=0):
+        super(InstrumentedSampleT, self).__init__(baseurl, serial, secretkey, smplintervalmins, version='12', resetsalltime=resetsalltime)
         self.ffimodule.lib.sample_init(0, False)
 
     def pushsamples(self, num):
@@ -133,10 +137,18 @@ class InstrumentedSampleTRH(InstrumentedSample):
                  serial='ABCDEFGH',
                  secretkey='AAAACCCC',
                  baseurl='plotsensor.com',
-                 smplintervalmins=12
+                 smplintervalmins=12,
+                 resetsalltime=0,
+                 batteryadc=100,
+                 resetcause=0
                  ):
-        super(InstrumentedSampleTRH, self).__init__(baseurl, serial, secretkey, smplintervalmins, version='11')
-        self.ffimodule.lib.sample_init(0, False);
+        super(InstrumentedSampleTRH, self).__init__(baseurl, serial, secretkey, smplintervalmins, version='11', resetsalltime=resetsalltime)
+        self.ffimodule.lib.sample_init(resetcause, False)
+
+
+        @self.ffimodule.ffi.def_extern()
+        def batv_measure():
+            return batteryadc
 
     def pushsamples(self, num):
         inlist = list()

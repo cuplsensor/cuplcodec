@@ -45,8 +45,14 @@ class StatDecoder():
             "scantimeout": scantimeout
         }
 
+    def get_batvoltageraw(self):
+        return self.batv_resetcause >> 8
+
+    def get_resetcause(self):
+        return self.batv_resetcause & 0xFF
+
     def get_batvoltagemv(self):
-        return (256 * 1500) / (self.batv_resetcause >> 8)
+        return (256 * 1500) / self.get_batvoltageraw()
 
 if __name__ == '__main__':
     def x():

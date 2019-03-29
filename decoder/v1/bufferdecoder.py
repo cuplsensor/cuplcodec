@@ -56,7 +56,7 @@ class BufferDecoder(MsgAuth):
     BYTES_PER_SAMPLE = 3
     SAMPLES_PER_OCTET = 2
 
-    def __init__(self, encstr, secretkey):
+    def __init__(self, encstr, secretkey, status):
         super().__init__()
         # Split query string at the end of the endstop marker.
         splitend = encstr.split('~')
@@ -138,6 +138,15 @@ class BufferDecoder(MsgAuth):
             frame.append(sample['tempMsb'])
             frame.append(sample['rhMsb'])
             frame.append(sample['Lsb'])
+
+        frame.append(status.loopcount >> 8)
+        frame.append(status.loopcount & 0xFF)
+        frame.append(status.resetsalltime >> 8)
+        frame.append(status.resetsalltime & 0xFF)
+        frame.append(status.batv_resetcause >> 8)
+        frame.append(status.batv_resetcause & 0xFF)
+        frame.append(endmarkerpos >> 8)
+        frame.append(endmarkerpos & 0xFF)
 
         # Perform message authentication.
         calcMD5 = super().gethash(frame, bytearray(secretkey, 'utf8'))
