@@ -6,6 +6,7 @@
  */
 
 #include "driverlib.h"
+#include "batv.h"
 
 volatile int adcvoltage = 0;
 

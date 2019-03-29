@@ -16,8 +16,8 @@ class HTBufferDecoder(BufferDecoder):
         Secret key used to verify the source of the samples.
 
     """
-    def __init__(self, encstr, timeintminutes, secretkey):
-        super().__init__(encstr, secretkey)
+    def __init__(self, encstr, timeintminutes, secretkey, status):
+        super().__init__(encstr, secretkey, status)
 
         decsmpls = list()
 

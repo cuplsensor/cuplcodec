@@ -11,6 +11,13 @@ INPUT_STATUSB64 = 'MDAwMDAw'
 INPUT_CBUFLENBLKS = 32
 
 PADDING = 2
+# This is for loopcount, resetsalltime, batv_resetcause and endmarkerpos.
+# Not part of the test so are set to zero.
+LOOPCOUNT = 0
+RESETSALLTIME = 0
+BATV_RESETCAUSE = 0
+ENDMARKERPOS = 0
+ZERO_STAT_AND_ENDMARKERPOS = bytearray(8)
 
 
 @pytest.fixture(scope="function",
@@ -68,7 +75,12 @@ def get_uut_digest(instr_smplhist_with_samples, hmac=False):
     instr_smplhist = instr_smplhist_with_samples['instr_smplhist']
     nsamples = instr_smplhist_with_samples['nsamples']
 
-    uutdigest = instr_smplhist.ffimodule.lib.smplhist_md5(nsamples, hmac).md5
+    uutdigest = instr_smplhist.ffimodule.lib.smplhist_md5(nsamples,
+                                                          hmac,
+                                                          LOOPCOUNT,
+                                                          RESETSALLTIME,
+                                                          BATV_RESETCAUSE,
+                                                          ENDMARKERPOS).md5
     lendigest = len(uutdigest)
 
     uutdigeststr = ""
@@ -88,7 +100,7 @@ def test_hmac(instr_smplhist_with_samples):
     secretkeyba = bytearray(secretkey.encode('utf-8'))
 
     uutdigest = get_uut_digest(instr_smplhist_with_samples, hmac=True)
-    sdba = instr_smplhist_with_samples['sdba']
+    sdba = instr_smplhist_with_samples['sdba'] + ZERO_STAT_AND_ENDMARKERPOS
 
     hmacobj = hmac.new(secretkeyba, sdba, 'md5')
     tbdigest = hmacobj.hexdigest()
@@ -116,6 +128,7 @@ def test_md5(instr_smplhist_with_samples):
 
     m = hashlib.md5()
     m.update(sdba)
+    m.update(ZERO_STAT_AND_ENDMARKERPOS) # PAD WITH 8 ZEROES
     tbdigest = m.hexdigest()
     tbdigest = tbdigest[0:len(uutdigest)]
 
