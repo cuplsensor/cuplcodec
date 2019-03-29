@@ -28,7 +28,6 @@ def test_status(instr_sample, n=1):
 
     # Decode the URL
     par = instr_sample.eepromba.get_url_parsedqs()
-    # assert par['x'][0] == 0
     decodedurl = Decoder(secretkey=instr_sample.secretkey, statb64=par['x'][0], timeintb64=par['t'][0],
                          circb64=par['q'][0], ver=par['v'][0])
 
@@ -40,7 +39,6 @@ def test_loopcount(instr_sample, n):
     instr_sample.pushsamples((instr_sample.ffimodule.lib.buflensamples + 4) * n + 1)
 
     par = instr_sample.eepromba.get_url_parsedqs()
-    # assert par['x'][0] == 0
     decodedurl = Decoder(secretkey=instr_sample.secretkey, statb64=par['x'][0], timeintb64=par['t'][0],
                          circb64=par['q'][0], ver=par['v'][0])
 
@@ -58,7 +56,6 @@ def test_resetsalltime(resetsalltime):
     instr_sample.pushsamples(1)
 
     par = instr_sample.eepromba.get_url_parsedqs()
-    # assert par['x'][0] == 0
     decodedurl = Decoder(secretkey=instr_sample.secretkey, statb64=par['x'][0], timeintb64=par['t'][0],
                          circb64=par['q'][0], ver=par['v'][0])
 
@@ -83,7 +80,6 @@ def test_batteryvoltage(resetcause, batteryadc):
     instr_sample.pushsamples(2)
 
     par = instr_sample.eepromba.get_url_parsedqs()
-    # assert par['x'][0] == 0
     decodedurl = Decoder(secretkey=instr_sample.secretkey, statb64=par['x'][0], timeintb64=par['t'][0],
                          circb64=par['q'][0], ver=par['v'][0])
 
