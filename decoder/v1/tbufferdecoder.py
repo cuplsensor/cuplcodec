@@ -17,8 +17,8 @@ class TBufferDecoder(BufferDecoder):
         Secret key used to verify the source of the samples.
 
     """
-    def __init__(self, encstr, timeintminutes, secretkey, status):
-        super().__init__(encstr, secretkey, status)
+    def __init__(self, encstr, timeintminutes, secretkey, status, usehmac):
+        super().__init__(encstr, secretkey, status, usehmac)
 
         decsmpls = list()
 

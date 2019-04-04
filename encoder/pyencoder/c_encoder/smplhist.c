@@ -70,7 +70,7 @@ sdchars_t smplhist_read(unsigned int index, int * error)
     return sample;
 }
 
-md5len_t smplhist_md5(int lensmpls, bool usehmac, unsigned int loopcount, unsigned int resetsalltime, unsigned int batv_resetcause, int cursorpos)
+md5len_t smplhist_md5(int lensmpls, int usehmac, unsigned int loopcount, unsigned int resetsalltime, unsigned int batv_resetcause, int cursorpos)
 {
     sdchars_t prevsmpl;
     int error = 0;

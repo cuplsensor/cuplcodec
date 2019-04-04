@@ -1,9 +1,18 @@
 import hashlib
 import hmac
 
+
 class MsgAuth(object):
     def __init__(self):
         super().__init__()
+
+    def gethash2(self, message, usehmac, secretkey=None):
+        if usehmac:
+            hmacobj = hmac.new(secretkey, message)
+            digest = hmacobj.hexdigest()
+        else:
+            digest = hashlib.md5(message).hexdigest()
+        return digest
 
     def gethash(self, message, secretkey=None):
         # Initialise MD5

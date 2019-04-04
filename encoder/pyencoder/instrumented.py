@@ -17,13 +17,28 @@ class InstrumentedBase(object):
                  smplintervalmins,
                  version='11',
                  resetsalltime=0,
+                 usehmac=True,
+                 httpsdisable=False
                  ):
+        # To remove ambiguity, boolean variables are stored as integers.
+        if httpsdisable:
+            httpsdisable_int = 1
+        else:
+            httpsdisable_int = 0
+
+        if usehmac:
+            usehmac_int = 1
+        else:
+            usehmac_int = 0
+
         self.secretkey = secretkey
         self.ffimodule = ffimodule
         self.ffimodule.lib.nv.serial = serial.encode('ascii')
         self.ffimodule.lib.nv.seckey = secretkey.encode('ascii')
         self.ffimodule.lib.nv.baseurl = baseurl.encode('ascii')
         self.ffimodule.lib.nv.version = version.encode('ascii')
+        self.ffimodule.lib.nv.usehmac = usehmac_int
+        self.ffimodule.lib.nv.httpsdisable = httpsdisable_int
         self.ffimodule.lib.nv.resetsalltime = resetsalltime
         smplintbytes = pack("<H", smplintervalmins)
         self.ffimodule.lib.nv.smplintervalmins = smplintbytes
@@ -90,8 +105,10 @@ class InstrumentedSample(InstrumentedBase):
                  smplintervalmins=12,
                  version='11',
                  resetsalltime=0,
+                 usehmac=True,
+                 httpsdisable=False
                  ):
-        super(InstrumentedSample, self).__init__(samplepy, baseurl, serial, secretkey, smplintervalmins, version, resetsalltime)
+        super(InstrumentedSample, self).__init__(samplepy, baseurl, serial, secretkey, smplintervalmins, version, resetsalltime, usehmac, httpsdisable)
 
 
 
@@ -140,9 +157,18 @@ class InstrumentedSampleTRH(InstrumentedSample):
                  smplintervalmins=12,
                  resetsalltime=0,
                  batteryadc=100,
-                 resetcause=0
+                 resetcause=0,
+                 usehmac=True,
+                 httpsdisable=False
                  ):
-        super(InstrumentedSampleTRH, self).__init__(baseurl, serial, secretkey, smplintervalmins, version='11', resetsalltime=resetsalltime)
+        super(InstrumentedSampleTRH, self).__init__(baseurl,
+                                                    serial,
+                                                    secretkey,
+                                                    smplintervalmins,
+                                                    version='11',
+                                                    resetsalltime=resetsalltime,
+                                                    usehmac=usehmac,
+                                                    httpsdisable=httpsdisable)
         self.ffimodule.lib.sample_init(resetcause, False)
 
 

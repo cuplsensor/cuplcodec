@@ -60,13 +60,18 @@ static const char zeropad[] = "MDAw";
  *  \param eepindex Position in the 64-byte array that buffers data to be written into EEPROM.
  *  \param msglenbytes NDEF Message Length in bytes.
  */
-static void ndef_createurlrecord(int * eepindex, int msglenbytes)
+static void ndef_createurlrecord(int * eepindex, int msglenbytes, int httpsDisable)
 {
     RecordHeader_t rheader;
     len_t payloadLength;
 
     int recordType = URL_RECORDTYPE;
     int typeLength;
+    char uriId = URI_ID_HTTPS;
+
+    if (httpsDisable) {
+        uriId = URI_ID_HTTP;
+    }
 
     rheader.all = 0xD1;
     rheader.byte.chunkflag = 0;
@@ -86,7 +91,7 @@ static void ndef_createurlrecord(int * eepindex, int msglenbytes)
     eep_cpbyte(eepindex, payloadLength.bytes[1]);
     eep_cpbyte(eepindex, payloadLength.bytes[0]);
     eep_cpbyte(eepindex, recordType);
-    eep_cpbyte(eepindex, URI_ID_HTTPS); // WWW or FTP
+    eep_cpbyte(eepindex, uriId); // WWW or FTP
 }
 
 void ndef_calclen(int * paddinglen, int * preamblenbytes, int * urllen)
@@ -151,7 +156,7 @@ int ndef_writepreamble(int qlenblks, char * statusb64)
   eep_cpbyte(&eepindex, (msglenbytes & 0x00FF)); //Remove 0xFE TLV start, TLV length and TLV end. That is 3 bytes in all.
 
   // Start NDEF record
-  ndef_createurlrecord(&eepindex, msglenbytes);
+  ndef_createurlrecord(&eepindex, msglenbytes, nv.httpsdisable);
 
   // Append URL
   while(urlbytes_remaining > 0) {
@@ -213,7 +218,7 @@ int ndef_writeblankurl(int qlenblks, char * statusb64, int * qstartblk)
 {
     int preamblelenblks;
     int eepindex;
-    int i, blk, errflag;
+    int i, blk;
 
     preamblelenblks = ndef_writepreamble(qlenblks, statusb64);
 
@@ -239,5 +244,5 @@ int ndef_writeblankurl(int qlenblks, char * statusb64, int * qstartblk)
 
     eep_waitwritedone();
 
-    return errflag;
+    return 0;
 }
