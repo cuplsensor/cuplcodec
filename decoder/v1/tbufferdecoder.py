@@ -34,9 +34,9 @@ class TBufferDecoder(BufferDecoder):
 
             if rh != 4095:
                 temp2 = (rh * 165)/4096 - 40
-                decsmpls.append({'temp':temp2})
+                decsmpls.append({'temp': temp2})
 
             temp1 = (temp * 165)/4096 - 40
-            decsmpls.append({'temp':temp1})
+            decsmpls.append({'temp': temp1})
 
         self.smpls = self.applytimestamp(decsmpls, timeintminutes)
