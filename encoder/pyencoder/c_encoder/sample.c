@@ -186,6 +186,7 @@ int sample_push(int meas1, int meas2)
   urlstate nextstate;
   md5len_t md5length;
   int cursorpos;
+  bool usehmac;
 
   if (nv.version[1] == TEMPONLY)
   {
@@ -256,7 +257,9 @@ int sample_push(int meas1, int meas2)
       }
 
       cursorpos = octet_getendmarkerpos();
-      md5length = smplhist_md5(lensmpls, true, urlstatus.loopcount, urlstatus.resetsalltime, urlstatus.batv_resetcause, cursorpos);
+
+
+      md5length = smplhist_md5(lensmpls, nv.usehmac, urlstatus.loopcount, urlstatus.resetsalltime, urlstatus.batv_resetcause, cursorpos);
 
       // 3 samples (6 bytes) per 8 base64 bytes.
       Base64encode(encodedoctet, (char *)samplebuf, sizeof(samplebuf));

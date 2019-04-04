@@ -1,5 +1,6 @@
 from .bufferdecoder import BufferDecoder
 
+
 class HTBufferDecoder(BufferDecoder):
     """
     Extracts samples containing 2 measurands (temperature and humidity) from the circular buffer.
@@ -16,8 +17,8 @@ class HTBufferDecoder(BufferDecoder):
         Secret key used to verify the source of the samples.
 
     """
-    def __init__(self, encstr, timeintminutes, secretkey, status):
-        super().__init__(encstr, secretkey, status)
+    def __init__(self, encstr, timeintminutes, secretkey, status, usehmac):
+        super().__init__(encstr, secretkey, status, usehmac)
 
         decsmpls = list()
 

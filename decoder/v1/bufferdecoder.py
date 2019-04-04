@@ -56,7 +56,7 @@ class BufferDecoder(MsgAuth):
     BYTES_PER_SAMPLE = 3
     SAMPLES_PER_OCTET = 2
 
-    def __init__(self, encstr, secretkey, status):
+    def __init__(self, encstr, secretkey, status, usehmac):
         super().__init__()
         # Split query string at the end of the endstop marker.
         splitend = encstr.split('~')
@@ -149,7 +149,7 @@ class BufferDecoder(MsgAuth):
         frame.append(endmarkerpos & 0xFF)
 
         # Perform message authentication.
-        calcMD5 = super().gethash(frame, bytearray(secretkey, 'utf8'))
+        calcMD5 = super().gethash2(frame, usehmac, bytearray(secretkey, 'utf8'))
 
         # Truncate calculated MD5 to the same length as the URL MD5.
         calcMD5 = calcMD5[0:len(urlMD5)]
@@ -164,6 +164,7 @@ class BufferDecoder(MsgAuth):
         self.endmarkerpos = endmarkerpos
         self.minuteoffset = minuteoffset
         self.timestamp = datetime.utcnow() - timedelta(minutes=self.minuteoffset)
+
 
     def applytimestamp(self, smpls, timeintminutes):
         # Append timestamps to each sample.

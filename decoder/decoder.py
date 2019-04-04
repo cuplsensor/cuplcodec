@@ -17,14 +17,14 @@ class Decoder:
         A list of query string parameters
 
     """
-    def __init__(self, secretkey, statb64, timeintb64, circb64, ver):
+    def __init__(self, secretkey, statb64, timeintb64, circb64, ver, usehmac=True):
         majorversion = ver[-2:-1]
         circformat = ver[-1:]
 
         self.majorversion = majorversion
 
         if majorversion == '1':
-            self.params = v1ParamDecoder(circformat, timeintb64, statb64, circb64, secretkey)
+            self.params = v1ParamDecoder(circformat, timeintb64, statb64, circb64, secretkey, usehmac)
         else:
             raise InvalidMajorVersionError
 
