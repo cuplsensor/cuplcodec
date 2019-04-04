@@ -1,7 +1,7 @@
 from .statdecoder import StatDecoder
 from .htbufferdecoder import HTBufferDecoder
 from .tbufferdecoder import TBufferDecoder
-import base64
+from .b64decode import b64decode
 
 
 class ParamDecoder:
@@ -44,6 +44,6 @@ class ParamDecoder:
             Time interval in minutes
 
         """
-        timeintbytes = base64.urlsafe_b64decode(enctimeint)
+        timeintbytes = b64decode(enctimeint)
         timeint = int.from_bytes(timeintbytes, byteorder='little')
         return timeint

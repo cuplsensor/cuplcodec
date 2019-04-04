@@ -186,7 +186,6 @@ int sample_push(int meas1, int meas2)
   urlstate nextstate;
   md5len_t md5length;
   int cursorpos;
-  bool usehmac;
 
   if (nv.version[1] == TEMPONLY)
   {

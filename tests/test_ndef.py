@@ -66,6 +66,7 @@ def test_serial(blankurlqs):
 
 def test_timeinterval(blankurlqs):
     timeintb64 = blankurlqs['t'][0]
+    timeintb64 = timeintb64.replace('.', '=')
     timeintbytes = urlsafe_b64decode(timeintb64)
     timeint = int.from_bytes(timeintbytes, byteorder='little')
     assert timeint == INPUT_TIMEINT

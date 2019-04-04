@@ -1,4 +1,4 @@
-import base64
+from .b64decode import b64decode
 import struct
 
 BIT0 = 0x01
@@ -21,7 +21,7 @@ SCANTIMEOUT_BIT = BIT7
 
 class StatDecoder():
     def __init__(self, encstr):
-        decstr = base64.urlsafe_b64decode(encstr)
+        decstr = b64decode(encstr)
         declist = struct.unpack("HHH", decstr)
         self.loopcount = declist[0]
         self.resetsalltime = declist[1]

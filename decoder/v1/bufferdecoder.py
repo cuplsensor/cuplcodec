@@ -1,4 +1,4 @@
-import base64
+from .b64decode import b64decode
 import struct
 from .msgauth import MsgAuth
 from ..exceptions import DecoderError
@@ -55,11 +55,12 @@ class BufferDecoder(MsgAuth):
     """
     BYTES_PER_SAMPLE = 3
     SAMPLES_PER_OCTET = 2
+    ENDSTOP_BYTE = '~'  # This must be URL Safe
 
     def __init__(self, encstr, secretkey, status, usehmac):
         super().__init__()
         # Split query string at the end of the endstop marker.
-        splitend = encstr.split('~')
+        splitend = encstr.split(BufferDecoder.ENDSTOP_BYTE)
 
         endmarkerpos = len(splitend[0])
 
@@ -69,7 +70,7 @@ class BufferDecoder(MsgAuth):
         endmarker = splitend[0][-3:] + '='
         splitend[0] = splitend[0][:-3]
 
-        decmarkerbytes = base64.urlsafe_b64decode(endmarker)
+        decmarkerbytes = b64decode(endmarker)
         decmarker = int.from_bytes(decmarkerbytes, byteorder='little')
         minuteoffset = decmarker
 
@@ -95,7 +96,7 @@ class BufferDecoder(MsgAuth):
 
         # Decode the endstop 4 bytes at a time.
         for chunk in endbuf:
-            decodedchunk = base64.urlsafe_b64decode(chunk)
+            decodedchunk = b64decode(chunk)
             declist.append(decodedchunk)
 
         # Concatenate the decoded endstop bytes.
@@ -186,7 +187,7 @@ class BufferDecoder(MsgAuth):
     # Obtain samples from a 4 byte base64 chunk. Chunk should be renamed to octet here.
     def samplesfromchunk(self, chunk, samplecount):
         chunksamples = list()
-        decodedchunk = base64.urlsafe_b64decode(chunk)
+        decodedchunk = b64decode(chunk)
         for i in range(0, (samplecount*2)-1, BufferDecoder.BYTES_PER_SAMPLE):
             tempMsb = decodedchunk[i]
             rhMsb = decodedchunk[i+1]
@@ -197,19 +198,3 @@ class BufferDecoder(MsgAuth):
         # Return newest sample first.
         chunksamples.reverse()
         return chunksamples
-
-
-if __name__ == '__main__':
-    teststr="dxx4HHcddh12HXUddRx0HHQddB1zHHMdcxxzHXIdchxxHnEecR1xHnEfcB5wHnAdcB5vH28ebx9vH24fbh5uH24ebh5uH24gbSBuHm0gbSBtIW0gbSBtIG0hbSBsIGwhbCFtIGwgbCBsIGwgbB9sIGwfbCBsIWwhbCBsIWwfbCBsIGwgbB9sH2wfbCBsH2webSBsIGwfbCBsH2wfbCBsIGwhbCFrIGsgayBrIWsgax9qIWohaiBqIGohaiBqIGohaiFpImkhaSBpIWkhaiBuH3Iecx11HXYcdxx4Gnkaehl7GXwYfRh9GH4XfxiAF4EYgReBF4EWgRZ-F3wYexh6GXkZeRp5G3gbeBp4GXcbdxp3Gncbdxt3Gncbdxt3G3cbdxt3G3cbdxt2G3Ybdht2G3Yadht2G3YcdRx1HHUcdRt1G3UbdRt1G3UbdRt0G3QcdBt0HHQcdBx0G3QcdBt0G3QadBt0HHQadBt0HHQcdBt0G3MbcxxzHHMbcxxzHHMbcxxzHHMccxxzHHMccxtzG3MccxtzHHMccxtzHHMccxxyHHMccxxyHHIcchtyHHMbcxx0HXQddR12HXcddxx4HXgceRx6HHocexx7HHwbfBt8G30afRx8HHgbcBtwH3Qddht3G3cbdxp3Gncadxp4GngZeBl4GXgZeBh4GHgZeBkAAAAAwO5Mg9VXLgEA____MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAw"
-    def test():
-        samples = HTDecoder().getsamples(teststr, True, 8)
-        print(samples)
-
-    def testtime():
-        timeintb64 = "ZZZ="
-        print(HTDecoder().decode_timeinterval(timeintb64))
-
-
-
-
-    test()
