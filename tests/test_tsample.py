@@ -1,5 +1,5 @@
 import pytest
-from encoder.pyencoder.instrumented import InstrumentedSampleT
+from pscodec.encoder.pyencoder.instrumented import InstrumentedSampleT
 
 INPUT_SERIAL = 'abcdabcd'
 INPUT_TIMEINT = 12

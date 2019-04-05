@@ -1,6 +1,6 @@
 import pytest
-from encoder.pyencoder.instrumented import InstrumentedSampleTRH
-from decoder import Decoder
+from pscodec.encoder.pyencoder.instrumented import InstrumentedSampleTRH
+from pscodec.decoder import Decoder
 
 INPUT_SERIAL = 'abcdabcd'
 INPUT_TIMEINT = 65535 # Maximum time interval

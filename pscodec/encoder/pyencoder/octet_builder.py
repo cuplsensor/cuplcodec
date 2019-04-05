@@ -1,4 +1,4 @@
-from encoder.pyencoder import unitc
+from pscodec.encoder.pyencoder import unitc
 
 ffibuilder = unitc.load('octet', ['ndef', 'eep', 'base64', 'nvtype'])
 
