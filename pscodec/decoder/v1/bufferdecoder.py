@@ -57,7 +57,7 @@ class BufferDecoder(MsgAuth):
     SAMPLES_PER_OCTET = 2
     ENDSTOP_BYTE = '~'  # This must be URL Safe
 
-    def __init__(self, encstr, secretkey, status, usehmac):
+    def __init__(self, encstr, secretkey, status, usehmac, scandatetime):
         super().__init__()
         # Split query string at the end of the endstop marker.
         splitend = encstr.split(BufferDecoder.ENDSTOP_BYTE)
@@ -150,7 +150,7 @@ class BufferDecoder(MsgAuth):
         frame.append(endmarkerpos & 0xFF)
 
         # Perform message authentication.
-        calcMD5 = super().gethash2(frame, usehmac, bytearray(secretkey, 'utf8'))
+        calcMD5 = super().gethash(frame, usehmac, bytearray(secretkey, 'utf8'))
 
         # Truncate calculated MD5 to the same length as the URL MD5.
         calcMD5 = calcMD5[0:len(urlMD5)]
@@ -164,7 +164,7 @@ class BufferDecoder(MsgAuth):
         self.rawsmplcount = smplcount
         self.endmarkerpos = endmarkerpos
         self.minuteoffset = minuteoffset
-        self.timestamp = datetime.utcnow() - timedelta(minutes=self.minuteoffset)
+        self.newestdatetime = scandatetime - timedelta(minutes=self.minuteoffset) # Timestamp of the newest sample
 
 
     def applytimestamp(self, smpls, timeintminutes):
@@ -176,7 +176,7 @@ class BufferDecoder(MsgAuth):
         intervalminutes = timedelta(minutes=timeintminutes)   # Time between samples in seconds
         sampleindex = 0
         for smpl in smpls:
-            smpl['ts'] = self.timestamp - sampleindex * intervalminutes
+            smpl['ts'] = self.newestdatetime - sampleindex * intervalminutes
             sampleindex = sampleindex + 1
         return smpls
 
@@ -193,7 +193,7 @@ class BufferDecoder(MsgAuth):
             rhMsb = decodedchunk[i+1]
             Lsb = decodedchunk[i+2]
 
-            smpl = {'tempMsb':tempMsb, 'rhMsb':rhMsb, 'Lsb':Lsb}
+            smpl = {'tempMsb': tempMsb, 'rhMsb': rhMsb, 'Lsb': Lsb}
             chunksamples.append(smpl)
         # Return newest sample first.
         chunksamples.reverse()
