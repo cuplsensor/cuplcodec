@@ -3,12 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e2a5e9f0-49cc-45a8-97b9-be9933b2b17b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pscodec/decoder/decoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/decoder/decoder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pscodec/decoder/v1/bufferdecoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/decoder/v1/bufferdecoder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pscodec/decoder/v1/htbufferdecoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/decoder/v1/htbufferdecoder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pscodec/decoder/v1/msgauth.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/decoder/v1/msgauth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pscodec/decoder/v1/paramdecoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/decoder/v1/paramdecoder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pscodec/decoder/v1/tbufferdecoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/decoder/v1/tbufferdecoder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +61,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pscodec/decoder/decoder.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="420">
@@ -140,11 +136,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/setup.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" column="53" selection-start-line="25" selection-start-column="53" selection-end-line="25" selection-end-column="53" />
+            <state relative-caret-position="225">
+              <caret line="15" column="53" selection-start-line="15" selection-start-column="53" selection-end-line="15" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -266,19 +262,19 @@
         <option value="$PROJECT_DIR$/tests/test_status.py" />
         <option value="$PROJECT_DIR$/tests/test_trhsample.py" />
         <option value="$PROJECT_DIR$/tests/test_tsample.py" />
-        <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/pscodec/decoder/decoder.py" />
         <option value="$PROJECT_DIR$/pscodec/decoder/v1/paramdecoder.py" />
         <option value="$PROJECT_DIR$/pscodec/decoder/v1/htbufferdecoder.py" />
         <option value="$PROJECT_DIR$/pscodec/decoder/v1/tbufferdecoder.py" />
         <option value="$PROJECT_DIR$/pscodec/decoder/v1/bufferdecoder.py" />
         <option value="$PROJECT_DIR$/pscodec/decoder/v1/msgauth.py" />
+        <option value="$PROJECT_DIR$/setup.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="2187" />
-    <option name="y" value="402" />
+    <option name="x" value="2005" />
+    <option name="y" value="23" />
     <option name="width" value="1920" />
     <option name="height" value="1001" />
   </component>
@@ -335,24 +331,6 @@
               <item name="PSCodec" type="b2602c69:ProjectViewProjectNode" />
               <item name="PSCodec" type="462c0819:PsiDirectoryNode" />
               <item name="pscodec" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PSCodec" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PSCodec" type="462c0819:PsiDirectoryNode" />
-              <item name="pscodec" type="462c0819:PsiDirectoryNode" />
-              <item name="decoder" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PSCodec" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PSCodec" type="462c0819:PsiDirectoryNode" />
-              <item name="pscodec" type="462c0819:PsiDirectoryNode" />
-              <item name="decoder" type="462c0819:PsiDirectoryNode" />
-              <item name="v1" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PSCodec" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PSCodec" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -539,7 +517,7 @@
       <workItem from="1554421632564" duration="181000" />
       <workItem from="1554422138150" duration="100000" />
       <workItem from="1554813603615" duration="2340000" />
-      <workItem from="1555442481635" duration="710000" />
+      <workItem from="1555442481635" duration="1343000" />
     </task>
     <servers />
   </component>
@@ -576,7 +554,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="173918000" />
+    <option name="totallyTimeSpent" value="174551000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -588,7 +566,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="2187" y="402" width="1920" height="1001" extended-state="0" />
+    <frame x="2005" y="23" width="1920" height="1001" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28168264" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -935,13 +914,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="53" selection-start-line="25" selection-start-column="53" selection-end-line="25" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_ndef.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -959,6 +931,13 @@
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="53" selection-start-line="15" selection-start-column="53" selection-end-line="15" selection-end-column="53" />
         </state>
       </provider>
     </entry>
