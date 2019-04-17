@@ -3,648 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="e2a5e9f0-49cc-45a8-97b9-be9933b2b17b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/decoder/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/decoder/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/decoder/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/decoder/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/decoder/decoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/decoder/decoder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/decoder/exceptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/decoder/exceptions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/decoder/v1/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/decoder/v1/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/decoder/v1/b64decode.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/decoder/v1/b64decode.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/decoder/v1/bufferdecoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/decoder/v1/bufferdecoder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/decoder/v1/htbufferdecoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/decoder/v1/htbufferdecoder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/decoder/v1/msgauth.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/decoder/v1/msgauth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/decoder/v1/paramdecoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/decoder/v1/paramdecoder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/decoder/v1/statdecoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/decoder/v1/statdecoder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/decoder/v1/tbufferdecoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/decoder/v1/tbufferdecoder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/Doxyfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/base64.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/base64.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/batv.c" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/batv.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/batv.h" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/batv.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/defs.h" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/defs.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/annotated.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/annotated.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/annotated_dup.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/annotated_dup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/base64_8c.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/base64_8c.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/base64_8c.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/base64_8c.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/base64_8h.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/base64_8h.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/base64_8h.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/base64_8h.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/base64_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/base64_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/batv_8c.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/batv_8c.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/batv_8c.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/batv_8c.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/batv_8h.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/batv_8h.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/batv_8h.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/batv_8h.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/batv_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/batv_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/bc_s.png" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/bc_s.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/bdwn.png" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/bdwn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/classes.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/classes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/closed.png" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/closed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/defs_8h.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/defs_8h.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/defs_8h.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/defs_8h.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/defs_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/defs_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/dir_5f95228fc65608079c80429f33364d43.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/dir_5f95228fc65608079c80429f33364d43.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/dir_d61574470ae1957bd19e3300f91dae37.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/dir_d61574470ae1957bd19e3300f91dae37.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/dir_f06b0c3d930957da9f92871d69d11f34.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/dir_f06b0c3d930957da9f92871d69d11f34.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/doc.png" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/doc.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/doxygen.css" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/doxygen.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/doxygen.png" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/doxygen.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/dynsections.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/dynsections.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/eep_8c.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/eep_8c.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/eep_8c.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/eep_8c.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/eep_8h.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/eep_8h.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/eep_8h.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/eep_8h.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/eep_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/eep_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/files.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/files.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/files_dup.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/files_dup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/folderclosed.png" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/folderclosed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/folderopen.png" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/folderopen.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/functions.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/functions.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/functions_vars.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/functions_vars.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/globals.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/globals.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/globals_defs.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/globals_defs.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/globals_enum.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/globals_enum.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/globals_eval.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/globals_eval.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/globals_func.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/globals_func.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/globals_type.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/globals_type.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/globals_vars.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/globals_vars.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/jquery.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/jquery.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/md5_8c.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/md5_8c.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/md5_8c.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/md5_8c.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/md5_8h.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/md5_8h.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/md5_8h.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/md5_8h.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/md5_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/md5_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/menudata.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/menudata.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/nav_f.png" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/nav_f.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/nav_g.png" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/nav_g.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/nav_h.png" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/nav_h.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/navtree.css" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/navtree.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/navtree.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/navtree.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/navtreedata.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/navtreedata.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/navtreeindex0.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/navtreeindex0.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/navtreeindex1.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/navtreeindex1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/ndef_8c.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/ndef_8c.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/ndef_8c.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/ndef_8c.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/ndef_8h.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/ndef_8h.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/ndef_8h.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/ndef_8h.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/ndef_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/ndef_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/nt3h_8c.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/nt3h_8c.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/nt3h_8c.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/nt3h_8c.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/nt3h_8h.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/nt3h_8h.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/nt3h_8h.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/nt3h_8h.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/nt3h_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/nt3h_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/nvtype_8c.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/nvtype_8c.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/nvtype_8c.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/nvtype_8c.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/nvtype_8h.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/nvtype_8h.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/nvtype_8h.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/nvtype_8h.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/nvtype_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/nvtype_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/octet_8c.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/octet_8c.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/octet_8c.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/octet_8c.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/octet_8h.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/octet_8h.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/octet_8h.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/octet_8h.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/octet_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/octet_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/open.png" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/open.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/prng_8c.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/prng_8c.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/prng_8c.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/prng_8c.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/prng_8h.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/prng_8h.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/prng_8h.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/prng_8h.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/prng_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/prng_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/resize.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/resize.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/sample_8c.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/sample_8c.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/sample_8c.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/sample_8c.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/sample_8h.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/sample_8h.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/sample_8h.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/sample_8h.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/sample_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/sample_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_0.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_0.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_0.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_0.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_1.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_10.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_10.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_10.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_10.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_11.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_11.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_11.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_11.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_12.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_12.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_12.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_12.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_13.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_13.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_13.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_13.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_14.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_14.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_14.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_14.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_15.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_15.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_15.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_15.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_2.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_3.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_3.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_3.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_4.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_4.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_4.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_4.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_5.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_5.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_5.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_6.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_6.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_6.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_6.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_7.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_7.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_7.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_7.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_8.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_8.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_8.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_8.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_9.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_9.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_9.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_9.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_a.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_a.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_a.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_a.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_b.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_b.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_b.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_b.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_c.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_c.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_c.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_c.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_d.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_d.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_d.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_d.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_e.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_e.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_e.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_e.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_f.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_f.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/all_f.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/all_f.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/classes_0.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/classes_0.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/classes_0.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/classes_0.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/classes_1.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/classes_1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/classes_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/classes_1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/classes_2.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/classes_2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/classes_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/classes_2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/classes_3.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/classes_3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/classes_3.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/classes_3.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/classes_4.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/classes_4.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/classes_4.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/classes_4.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/classes_5.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/classes_5.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/classes_5.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/classes_5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/close.png" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/close.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_0.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_0.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_0.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_0.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_1.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_10.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_10.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_10.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_10.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_11.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_11.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_11.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_11.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_12.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_12.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_12.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_12.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_2.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_3.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_3.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_3.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_4.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_4.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_4.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_4.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_5.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_5.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_5.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_6.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_6.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_6.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_6.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_7.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_7.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_7.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_7.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_8.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_8.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_8.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_8.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_9.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_9.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_9.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_9.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_a.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_a.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_a.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_a.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_b.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_b.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_b.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_b.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_c.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_c.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_c.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_c.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_d.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_d.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_d.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_d.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_e.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_e.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_e.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_e.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_f.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_f.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/defines_f.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/defines_f.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/enums_0.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/enums_0.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/enums_0.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/enums_0.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/enums_1.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/enums_1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/enums_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/enums_1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/enumvalues_0.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/enumvalues_0.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/enumvalues_0.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/enumvalues_0.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/enumvalues_1.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/enumvalues_1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/enumvalues_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/enumvalues_1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/enumvalues_2.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/enumvalues_2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/enumvalues_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/enumvalues_2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/files_0.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/files_0.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/files_0.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/files_0.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/files_1.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/files_1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/files_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/files_1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/files_2.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/files_2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/files_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/files_2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/files_3.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/files_3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/files_3.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/files_3.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/files_4.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/files_4.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/files_4.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/files_4.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/files_5.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/files_5.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/files_5.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/files_5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/files_6.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/files_6.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/files_6.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/files_6.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/files_7.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/files_7.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/files_7.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/files_7.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/functions_0.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/functions_0.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/functions_0.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/functions_0.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/functions_1.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/functions_1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/functions_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/functions_1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/functions_2.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/functions_2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/functions_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/functions_2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/functions_3.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/functions_3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/functions_3.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/functions_3.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/functions_4.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/functions_4.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/functions_4.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/functions_4.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/functions_5.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/functions_5.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/functions_5.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/functions_5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/functions_6.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/functions_6.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/functions_6.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/functions_6.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/functions_7.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/functions_7.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/functions_7.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/functions_7.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/mag_sel.png" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/mag_sel.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/nomatches.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/nomatches.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/search.css" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/search.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/search.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/search.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/search_l.png" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/search_l.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/search_m.png" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/search_m.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/search_r.png" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/search_r.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/searchdata.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/searchdata.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/typedefs_0.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/typedefs_0.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/typedefs_0.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/typedefs_0.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/typedefs_1.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/typedefs_1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/typedefs_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/typedefs_1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/typedefs_2.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/typedefs_2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/typedefs_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/typedefs_2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/typedefs_3.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/typedefs_3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/typedefs_3.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/typedefs_3.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/typedefs_4.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/typedefs_4.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/typedefs_4.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/typedefs_4.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/variables_0.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/variables_0.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/variables_0.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/variables_0.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/variables_1.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/variables_1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/variables_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/variables_1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/variables_2.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/variables_2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/variables_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/variables_2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/variables_3.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/variables_3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/variables_3.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/variables_3.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/variables_4.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/variables_4.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/variables_4.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/variables_4.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/variables_5.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/variables_5.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/variables_5.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/variables_5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/variables_6.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/variables_6.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/variables_6.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/variables_6.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/variables_7.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/variables_7.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/variables_7.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/variables_7.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/variables_8.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/variables_8.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/variables_8.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/variables_8.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/variables_9.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/variables_9.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/variables_9.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/variables_9.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/variables_a.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/variables_a.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/variables_a.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/variables_a.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/variables_b.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/variables_b.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/variables_b.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/variables_b.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/variables_c.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/variables_c.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/variables_c.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/variables_c.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/variables_d.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/variables_d.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/search/variables_d.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/search/variables_d.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/smplhist_8c.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/smplhist_8c.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/smplhist_8c.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/smplhist_8c.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/smplhist_8h.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/smplhist_8h.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/smplhist_8h.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/smplhist_8h.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/smplhist_8h_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/smplhist_8h_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/splitbar.png" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/splitbar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/stat__bits_8h.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/stat__bits_8h.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/stat__bits_8h.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/stat__bits_8h.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/stat__bits_8h_source.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/struct_m_d5___c_t_x-members.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/struct_m_d5___c_t_x.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/struct_m_d5___c_t_x.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/struct_m_d5___c_t_x.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/struct_m_d5___c_t_x.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/structendstop-members.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/structendstop.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/structendstop.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/structendstop.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/structendstop.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/structmd5len-members.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/structmd5len.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/structmd5len.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/structmd5len.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/structmd5len.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/structnvstruct-members.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/structnvstruct.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/structnvstruct.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/structnvstruct.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/structnvstruct.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/structsensordatachars-members.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/structsensordatachars.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/structsensordatachars.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/structsensordatachars.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/structstatus-members.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/structstatus.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/structstatus.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/structstatus.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/structstatus.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/sync_off.png" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/sync_off.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/sync_on.png" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/sync_on.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/tab_a.png" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/tab_a.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/tab_b.png" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/tab_b.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/tab_h.png" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/tab_h.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/tab_s.png" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/tab_s.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/tabs.css" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/tabs.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/union_record_header__t-members.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/union_record_header__t.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/union_record_header__t.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/unionlen__t-members.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/unionlen__t.html" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/unionlen__t.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/html/unionlen__t.js" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/html/unionlen__t.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/annotated.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/base64_8c.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/base64_8h.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/batv_8c.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/batv_8h.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/defs_8h.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/doxygen.sty" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/eep_8c.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/eep_8h.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/files.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/md5_8c.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/md5_8h.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/ndef_8c.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/ndef_8h.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/nt3h_8c.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/nt3h_8h.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/nvtype_8c.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/nvtype_8h.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/octet_8c.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/octet_8h.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/prng_8c.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/prng_8h.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/refman.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/sample_8c.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/sample_8h.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/smplhist_8c.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/smplhist_8h.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/stat__bits_8h.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/struct_m_d5___c_t_x.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/structendstop.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/structmd5len.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/structnvstruct.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/structsensordatachars.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/structstatus.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/union_record_header__t.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/latex/unionlen__t.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/base64_8c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/base64_8c.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/base64_8h.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/base64_8h.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/batv_8c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/batv_8c.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/batv_8h.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/batv_8h.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/combine.xslt" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/combine.xslt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/compound.xsd" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/compound.xsd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/defs_8h.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/defs_8h.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/eep_8c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/eep_8c.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/eep_8h.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/eep_8h.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/index.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/index.xsd" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/index.xsd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/md5_8c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/md5_8c.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/md5_8h.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/md5_8h.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/ndef_8c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/ndef_8c.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/ndef_8h.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/ndef_8h.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/nt3h_8c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/nt3h_8c.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/nt3h_8h.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/nt3h_8h.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/nvtype_8c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/nvtype_8c.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/nvtype_8h.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/nvtype_8h.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/octet_8c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/octet_8c.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/octet_8h.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/octet_8h.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/prng_8c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/prng_8c.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/prng_8h.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/prng_8h.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/sample_8c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/sample_8c.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/sample_8h.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/sample_8h.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/smplhist_8c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/smplhist_8c.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/smplhist_8h.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/smplhist_8h.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/stat__bits_8h.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/stat__bits_8h.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/struct_m_d5___c_t_x.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/struct_m_d5___c_t_x.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/structendstop.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/structendstop.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/structmd5len.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/structmd5len.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/structnvstruct.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/structnvstruct.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/structsensordatachars.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/structsensordatachars.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/structstatus.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/structstatus.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/union_record_header__t.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/union_record_header__t.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/doxygen/xml/unionlen__t.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/doxygen/xml/unionlen__t.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/eep.c" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/eep.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/eep.h" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/eep.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/md5.c" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/md5.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/md5.h" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/md5.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/ndef.c" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/ndef.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/ndef.h" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/ndef.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/nt3h.c" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/nt3h.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/nt3h.h" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/nt3h.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/nvtype.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/nvtype.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/octet.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/octet.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/prng.c" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/prng.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/prng.h" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/prng.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/sample.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/sample.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/smplhist.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/smplhist.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/c_encoder/stat_bits.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/eeprom.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/instrumented.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/ndef_builder.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/octet_builder.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/.travis.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/CHANGES" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/CONTRIBUTORS" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/MANIFEST.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/README.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/TODO.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/_clean_tables.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/appveyor.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/examples/README.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/examples/c-to-c.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/examples/c_files/funky.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/examples/c_files/hash.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/examples/c_files/memmgr.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/examples/c_files/memmgr.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/examples/c_files/year.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/examples/c_json.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/examples/cdecl.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/examples/dump_ast.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/examples/explore_ast.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/examples/func_calls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/examples/func_defs.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/examples/rewrite_ast.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/examples/serialize_ast.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/examples/using_cpp_libc.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/examples/using_gcc_E_libc.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/pycparser/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/pycparser/_ast_gen.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/pycparser/_build_tables.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/pycparser/_c_ast.cfg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/pycparser/ast_transforms.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/pycparser/c_ast.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/pycparser/c_generator.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/pycparser/c_lexer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/pycparser/c_parser.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/pycparser/ply/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/pycparser/ply/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/pycparser/ply/cpp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/pycparser/ply/ctokens.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/pycparser/ply/lex.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/pycparser/ply/yacc.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/pycparser/ply/ygen.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/pycparser/plyparser.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/setup.cfg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/setup.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/tests/README.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/tests/all_tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/tests/c_files/cppd_with_stdio_h.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/tests/c_files/empty.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/tests/c_files/example_c_file.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/tests/c_files/hdir/9/inc.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/tests/c_files/memmgr.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/tests/c_files/memmgr.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/tests/c_files/memmgr_with_h.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/tests/c_files/simplemain.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/tests/c_files/year.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/tests/test_c_ast.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/tests/test_c_generator.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/tests/test_c_lexer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/tests/test_c_parser.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/tests/test_general.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/tox.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/X11/Intrinsic.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/X11/Xlib.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/X11/_X11_fake_defines.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/X11/_X11_fake_typedefs.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/_ansi.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/_fake_defines.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/_fake_typedefs.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/_syslist.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/aio.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/alloca.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/ar.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/argz.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/arpa/inet.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/asm-generic/int-ll64.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/assert.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/complex.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/cpio.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/ctype.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/dirent.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/dlfcn.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/endian.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/envz.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/errno.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/fastmath.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/fcntl.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/features.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/fenv.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/float.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/fmtmsg.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/fnmatch.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/ftw.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/getopt.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/glob.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/grp.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/iconv.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/ieeefp.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/inttypes.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/iso646.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/langinfo.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/libgen.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/libintl.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/limits.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/linux/socket.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/linux/version.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/locale.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/malloc.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/math.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/mir_toolkit/client_types.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/monetary.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/mqueue.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/ndbm.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/net/if.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/netdb.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/netinet/in.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/netinet/tcp.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/newlib.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/nl_types.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/openssl/err.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/openssl/evp.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/openssl/hmac.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/openssl/ssl.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/openssl/x509v3.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/paths.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/poll.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/process.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/pthread.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/pwd.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/reent.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/regdef.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/regex.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/sched.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/search.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/semaphore.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/setjmp.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/signal.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/spawn.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/stdarg.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/stdbool.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/stddef.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/stdint.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/stdio.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/stdlib.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/string.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/strings.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/stropts.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/sys/ioctl.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/sys/ipc.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/sys/mman.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/sys/msg.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/sys/poll.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/sys/resource.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/sys/select.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/sys/sem.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/sys/shm.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/sys/socket.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/sys/stat.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/sys/statvfs.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/sys/sysctl.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/sys/time.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/sys/times.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/sys/types.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/sys/uio.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/sys/un.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/sys/utsname.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/sys/wait.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/syslog.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/tar.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/termios.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/tgmath.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/time.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/trace.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/ulimit.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/unctrl.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/unistd.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/utime.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/utmp.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/utmpx.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/wchar.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/wctype.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/wordexp.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/xcb/xcb.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/fake_libc_include/zlib.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/internal/constptr.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/internal/cppify.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/internal/example_c_file.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/internal/fake_includes.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/internal/make_fake_typedefs.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/internal/memprofiling.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/internal/zc.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/pycparser/utils/internal/zz_parse.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/sample_builder.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/sharedobj/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/smplhist_builder.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/encoder/pyencoder/unitc.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/unitc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_cursorpos.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_cursorpos.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_minuteoffset.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_minuteoffset.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_ndef.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_ndef.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_smplhist.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_smplhist.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_status.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_status.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_trhsample.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_trhsample.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_tsample.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_tsample.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pscodec/decoder/decoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/decoder/decoder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pscodec/decoder/v1/bufferdecoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/decoder/v1/bufferdecoder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pscodec/decoder/v1/htbufferdecoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/decoder/v1/htbufferdecoder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pscodec/decoder/v1/msgauth.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/decoder/v1/msgauth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pscodec/decoder/v1/paramdecoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/decoder/v1/paramdecoder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pscodec/decoder/v1/tbufferdecoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/decoder/v1/tbufferdecoder.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -661,7 +25,7 @@
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_sample_test_lists_equal.coverage" NAME="pytest for test_sample.test_lists_equal Coverage Results" MODIFIED="1552772092265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_encodertb_test_ndef_test_statusbytes.coverage" NAME="pytest for encodertb.test_ndef.test_statusbytes Coverage Results" MODIFIED="1551293688281" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_status_test_status.coverage" NAME="pytest for test_status.test_status Coverage Results" MODIFIED="1553803741483" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
-    <SUITE FILE_PATH="coverage/PSCodec$pytest_in_test_tsample_py.coverage" NAME="pytest in test_tsample.py Coverage Results" MODIFIED="1554411475162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/PSCodec$pytest_in_test_tsample_py.coverage" NAME="pytest in test_tsample.py Coverage Results" MODIFIED="1554968013856" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_interval_test_cursorpos.coverage" NAME="pytest for test_interval.test_cursorpos Coverage Results" MODIFIED="1552953320893" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_trhsample_test_lists_equal.coverage" NAME="pytest for test_trhsample.test_lists_equal Coverage Results" MODIFIED="1553849210482" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/PSCodec$Unittests_for_tests_sampletest_SampleTest.coverage" NAME="Unittests for tests.sampletest.SampleTest Coverage Results" MODIFIED="1551223376162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
@@ -675,12 +39,13 @@
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_smplhist_test_buffer_load.coverage" NAME="pytest for test_smplhist.test_buffer_load Coverage Results" MODIFIED="1553812605907" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_in_test_interval_py.coverage" NAME="pytest in test_interval.py Coverage Results" MODIFIED="1552951175589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_ndef_test_circbuf_length.coverage" NAME="pytest for test_ndef.test_circbuf_length Coverage Results" MODIFIED="1551225404712" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encodertb" />
+    <SUITE FILE_PATH="coverage/PSCodec$tbufferdecoder.coverage" NAME="tbufferdecoder Coverage Results" MODIFIED="1554814012563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pscodec/decoder/v1" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_encodertb_test_ndef_test_timeinterval.coverage" NAME="pytest for encodertb.test_ndef.test_timeinterval Coverage Results" MODIFIED="1551298426325" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_status_test_resetsalltime.coverage" NAME="pytest for test_status.test_resetsalltime Coverage Results" MODIFIED="1553808142238" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_in_tests.coverage" NAME="pytest in encodertb Coverage Results" MODIFIED="1551225257143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encodertb" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_in_test_sample_py.coverage" NAME="pytest in test_sample.py Coverage Results" MODIFIED="1552774756162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_ndef_test_decode_raises_indexerrror.coverage" NAME="pytest for test_ndef.test_decode_raises_indexerrror Coverage Results" MODIFIED="1551225456718" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encodertb" />
-    <SUITE FILE_PATH="coverage/PSCodec$pytest_in_test_cursorpos_py.coverage" NAME="pytest in test_cursorpos.py Coverage Results" MODIFIED="1554413557840" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/PSCodec$pytest_in_test_cursorpos_py.coverage" NAME="pytest in test_cursorpos.py Coverage Results" MODIFIED="1554814006892" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_in_test_smplhist_py.coverage" NAME="pytest in test_smplhist.py Coverage Results" MODIFIED="1554413571896" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_ndef_test_serial.coverage" NAME="pytest for test_ndef.test_serial Coverage Results" MODIFIED="1552340952134" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_smplhist_test_hmac.coverage" NAME="pytest for test_smplhist.test_hmac Coverage Results" MODIFIED="1553819761391" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
@@ -701,25 +66,34 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tests/test_status.py">
+        <entry file="file://$PROJECT_DIR$/pscodec/decoder/decoder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="757">
-              <caret line="86" selection-start-line="86" selection-end-line="86" />
+            <state relative-caret-position="420">
+              <caret line="28" column="107" selection-start-line="28" selection-start-column="107" selection-end-line="28" selection-end-column="107" />
               <folding>
-                <element signature="e#0#13#0" expanded="true" />
+                <element signature="e#0#46#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/test_trhsample.py">
+        <entry file="file://$PROJECT_DIR$/pscodec/decoder/v1/paramdecoder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="36" column="45" selection-start-line="36" selection-start-column="45" selection-end-line="36" selection-end-column="45" />
+            <state relative-caret-position="225">
+              <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
               <folding>
-                <element signature="e#0#13#0" expanded="true" />
+                <element signature="e#0#36#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pscodec/decoder/v1/tbufferdecoder.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -727,7 +101,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_tsample.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
+            <state relative-caret-position="360">
               <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
@@ -737,39 +111,31 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pscodec/encoder/pyencoder/instrumented.py">
+        <entry file="file://$PROJECT_DIR$/pscodec/decoder/v1/bufferdecoder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2460">
-              <caret line="164" column="29" selection-start-line="164" selection-start-column="29" selection-end-line="164" selection-end-column="29" />
+            <state relative-caret-position="2175">
+              <caret line="149" column="24" selection-start-line="149" selection-start-column="24" selection-end-line="149" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pscodec/decoder/v1/msgauth.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
               <folding>
-                <element signature="e#0#60#0" expanded="true" />
+                <element signature="e#0#14#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pscodec/encoder/pyencoder/__init__.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pscodec/encoder/pyencoder/eeprom.py">
+        <entry file="file://$PROJECT_DIR$/pscodec/decoder/v1/htbufferdecoder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="825">
-              <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/conf.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
+            <state relative-caret-position="165">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
             </state>
           </provider>
         </entry>
@@ -786,7 +152,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_ndef.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
+            <state relative-caret-position="210">
               <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
@@ -798,7 +164,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_smplhist.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
+            <state relative-caret-position="270">
               <caret line="22" column="33" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
@@ -856,12 +222,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/docs/tutorial/encoder.rst" />
-        <option value="$PROJECT_DIR$/docs/reference/encoder.rst" />
-        <option value="$PROJECT_DIR$/docs/reference/nvtype.rst" />
-        <option value="$PROJECT_DIR$/encoder/pyencoder/c_encoder/nvtype.h" />
-        <option value="$PROJECT_DIR$/encoder/pyencoder/smplhist_builder.py" />
-        <option value="$PROJECT_DIR$/encoder/pyencoder/builder.py" />
         <option value="$PROJECT_DIR$/encoder/pyencoder/c_encoder/smplhist.h" />
         <option value="$PROJECT_DIR$/encoder/pyencoder/c_encoder/ndef.h" />
         <option value="$PROJECT_DIR$/encoder/pyencoder/c_encoder/ndef.c" />
@@ -907,12 +267,18 @@
         <option value="$PROJECT_DIR$/tests/test_trhsample.py" />
         <option value="$PROJECT_DIR$/tests/test_tsample.py" />
         <option value="$PROJECT_DIR$/setup.py" />
+        <option value="$PROJECT_DIR$/pscodec/decoder/decoder.py" />
+        <option value="$PROJECT_DIR$/pscodec/decoder/v1/paramdecoder.py" />
+        <option value="$PROJECT_DIR$/pscodec/decoder/v1/htbufferdecoder.py" />
+        <option value="$PROJECT_DIR$/pscodec/decoder/v1/tbufferdecoder.py" />
+        <option value="$PROJECT_DIR$/pscodec/decoder/v1/bufferdecoder.py" />
+        <option value="$PROJECT_DIR$/pscodec/decoder/v1/msgauth.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1920" />
-    <option name="y" value="24" />
+    <option name="x" value="2187" />
+    <option name="y" value="402" />
     <option name="width" value="1920" />
     <option name="height" value="1001" />
   </component>
@@ -922,32 +288,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="PSCodec" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PSCodec" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PSCodec" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PSCodec" type="462c0819:PsiDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PSCodec" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PSCodec" type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PSCodec" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PSCodec" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -969,6 +309,50 @@
               <item name="PSCodec" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
               <item name="urldecoder" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="PSCodec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PSCodec" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PSCodec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PSCodec" type="462c0819:PsiDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PSCodec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PSCodec" type="462c0819:PsiDirectoryNode" />
+              <item name="dist" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PSCodec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PSCodec" type="462c0819:PsiDirectoryNode" />
+              <item name="pscodec" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PSCodec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PSCodec" type="462c0819:PsiDirectoryNode" />
+              <item name="pscodec" type="462c0819:PsiDirectoryNode" />
+              <item name="decoder" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PSCodec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PSCodec" type="462c0819:PsiDirectoryNode" />
+              <item name="pscodec" type="462c0819:PsiDirectoryNode" />
+              <item name="decoder" type="462c0819:PsiDirectoryNode" />
+              <item name="v1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PSCodec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PSCodec" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -1012,7 +396,29 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.pytest for test_status.test_batteryvoltage">
+  <component name="RunManager" selected="Python tests.pytest in test_tsample.py">
+    <configuration name="tbufferdecoder" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="PSCodec" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pscodec/decoder/v1" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pscodec/decoder/v1/tbufferdecoder.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="pytest for test_status.test_batteryvoltage" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="PSCodec" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -1077,7 +483,7 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest in test_smplhist.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest in test_tsample.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="PSCodec" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -1089,41 +495,25 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_smplhist.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest in test_trhsample.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="PSCodec" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_trhsample.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_tsample.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.tbufferdecoder" />
       <item itemvalue="Python tests.pytest in encoder" />
-      <item itemvalue="Python tests.pytest in test_smplhist.py" />
-      <item itemvalue="Python tests.pytest in test_trhsample.py" />
       <item itemvalue="Python tests.pytest in test_cursorpos.py" />
       <item itemvalue="Python tests.pytest in test_ndef.py" />
       <item itemvalue="Python tests.pytest for test_status.test_batteryvoltage" />
+      <item itemvalue="Python tests.pytest in test_tsample.py" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.pytest in test_tsample.py" />
+        <item itemvalue="Python.tbufferdecoder" />
+        <item itemvalue="Python tests.pytest in test_cursorpos.py" />
         <item itemvalue="Python tests.pytest for test_status.test_batteryvoltage" />
         <item itemvalue="Python tests.pytest in test_ndef.py" />
-        <item itemvalue="Python tests.pytest in test_smplhist.py" />
-        <item itemvalue="Python tests.pytest in test_trhsample.py" />
-        <item itemvalue="Python tests.pytest in test_cursorpos.py" />
       </list>
     </recent_temporary>
   </component>
@@ -1148,31 +538,12 @@
       <workItem from="1554420770909" duration="443000" />
       <workItem from="1554421632564" duration="181000" />
       <workItem from="1554422138150" duration="100000" />
+      <workItem from="1554813603615" duration="2340000" />
+      <workItem from="1555442481635" duration="710000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="pytest_in_test_status_py - 2019.04.04 at 21h 57m 41s.xml">
-      <configuration name="pytest in test_status.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_in_test_trhsample_py - 2019.04.04 at 21h 57m 43s.xml">
-      <configuration name="pytest in test_trhsample.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_in_test_status_py - 2019.04.04 at 21h 57m 49s.xml">
-      <configuration name="pytest in test_status.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_in_test_tsample_py - 2019.04.04 at 21h 57m 56s.xml">
-      <configuration name="pytest in test_tsample.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_in_test_cursorpos_py - 2019.04.04 at 22h 32m 42s.xml">
-      <configuration name="pytest in test_cursorpos.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_in_test_trhsample_py - 2019.04.04 at 22h 32m 48s.xml">
-      <configuration name="pytest in test_trhsample.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_in_test_smplhist_py - 2019.04.04 at 22h 32m 53s.xml">
-      <configuration name="pytest in test_smplhist.py" configurationId="tests" />
-    </history-entry>
     <history-entry file="pytest_in_test_ndef_py - 2019.04.04 at 22h 32m 57s.xml">
       <configuration name="pytest in test_ndef.py" configurationId="tests" />
     </history-entry>
@@ -1182,9 +553,30 @@
     <history-entry file="pytest_for_test_status_test_batteryvoltage - 2019.04.05 at 00h 57m 04s.xml">
       <configuration name="pytest for test_status.test_batteryvoltage" configurationId="tests" />
     </history-entry>
+    <history-entry file="pytest_in_test_cursorpos_py - 2019.04.09 at 13h 45m 35s.xml">
+      <configuration name="pytest in test_cursorpos.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_test_cursorpos_py - 2019.04.09 at 13h 46m 37s.xml">
+      <configuration name="pytest in test_cursorpos.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_test_cursorpos_py - 2019.04.09 at 13h 46m 44s.xml">
+      <configuration name="pytest in test_cursorpos.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_test_cursorpos_py - 2019.04.09 at 13h 46m 51s.xml">
+      <configuration name="pytest in test_cursorpos.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_test_tsample_py - 2019.04.09 at 13h 47m 02s.xml">
+      <configuration name="pytest in test_tsample.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_test_tsample_py - 2019.04.09 at 13h 47m 55s.xml">
+      <configuration name="pytest in test_tsample.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_test_tsample_py - 2019.04.11 at 08h 33m 34s.xml">
+      <configuration name="pytest in test_tsample.py" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="170868000" />
+    <option name="totallyTimeSpent" value="173918000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1196,10 +588,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="24" width="1920" height="1001" extended-state="0" />
-    <editor active="true" />
+    <frame x="2187" y="402" width="1920" height="1001" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27635783" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28168264" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -1213,7 +604,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32893288" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32893288" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32893288" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -1347,23 +738,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pscodec/decoder/v1/htbufferdecoder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pscodec/decoder/v1/msgauth.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pscodec/decoder/v1/statdecoder.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -1374,23 +748,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pscodec/decoder/decoder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="37" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pscodec/decoder/v1/tbufferdecoder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="39" column="37" selection-start-line="39" selection-start-column="37" selection-end-line="39" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pscodec/decoder/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1398,23 +755,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pscodec/decoder/v1/paramdecoder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pscodec/decoder/v1/bufferdecoder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="57" column="21" selection-start-line="57" selection-start-column="21" selection-end-line="57" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -1484,20 +824,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_trhsample.py">
+    <entry file="file://$PROJECT_DIR$/tests/test_status.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" column="45" selection-start-line="36" selection-start-column="45" selection-end-line="36" selection-end-column="45" />
+        <state relative-caret-position="757">
+          <caret line="86" selection-start-line="86" selection-end-line="86" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_tsample.py">
+    <entry file="file://$PROJECT_DIR$/tests/test_trhsample.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
+        <state relative-caret-position="510">
+          <caret line="36" column="45" selection-start-line="36" selection-start-column="45" selection-end-line="36" selection-end-column="45" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
@@ -1506,7 +846,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pscodec/encoder/pyencoder/instrumented.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2460">
+        <state relative-caret-position="2430">
           <caret line="164" column="29" selection-start-line="164" selection-start-column="29" selection-end-line="164" selection-end-column="29" />
           <folding>
             <element signature="e#0#60#0" expanded="true" />
@@ -1519,7 +859,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pscodec/encoder/pyencoder/eeprom.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
+        <state relative-caret-position="810">
           <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
@@ -1534,23 +874,64 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_ndef.py">
+    <entry file="file://$PROJECT_DIR$/pscodec/decoder/decoder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
+        <state relative-caret-position="420">
+          <caret line="28" column="107" selection-start-line="28" selection-start-column="107" selection-end-line="28" selection-end-column="107" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pscodec/decoder/v1/paramdecoder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
           <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pscodec/decoder/v1/tbufferdecoder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_tsample.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_smplhist.py">
+    <entry file="file://$PROJECT_DIR$/pscodec/decoder/v1/bufferdecoder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="33" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
+        <state relative-caret-position="2175">
+          <caret line="149" column="24" selection-start-line="149" selection-start-column="24" selection-end-line="149" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pscodec/decoder/v1/msgauth.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
           <folding>
-            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#0#14#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pscodec/decoder/v1/htbufferdecoder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>
@@ -1561,10 +942,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_status.py">
+    <entry file="file://$PROJECT_DIR$/tests/test_ndef.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="757">
-          <caret line="86" selection-start-line="86" selection-end-line="86" />
+        <state relative-caret-position="210">
+          <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_smplhist.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="22" column="33" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>

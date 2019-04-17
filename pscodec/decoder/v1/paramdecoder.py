@@ -14,7 +14,7 @@ class ParamDecoder:
         :ivar buffer: initial value: par2
         """
 
-    def __init__(self, circformat, timeintb64, statb64, circb64, secretkey, usehmac):
+    def __init__(self, circformat, timeintb64, statb64, circb64, secretkey, usehmac, scandatetime):
         if circformat == '1':
             bufferdecoder = HTBufferDecoder
         elif circformat == '2':
@@ -25,7 +25,7 @@ class ParamDecoder:
         self.circformat = circformat
         self.timeintervalmins = ParamDecoder.decode_timeinterval(timeintb64)
         self.status = StatDecoder(statb64)
-        self.buffer = bufferdecoder(circb64, self.timeintervalmins, secretkey, self.status, usehmac)
+        self.buffer = bufferdecoder(circb64, self.timeintervalmins, secretkey, self.status, usehmac, scandatetime)
 
     @staticmethod
     def decode_timeinterval(enctimeint):
