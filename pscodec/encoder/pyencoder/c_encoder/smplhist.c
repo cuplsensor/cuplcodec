@@ -8,7 +8,7 @@ extern nv_t nv;
 const int buflensamples = BUFLEN_SAMPLES;
 static sdchars_t samplehistory[BUFLEN_SAMPLES];
 static int histpos = 0;
-static unsigned char md5block[64];
+unsigned char md5block[64];
 static const char ipadchar = 0x36;
 static const char opadchar = 0x5C;
 static MD5_CTX ctx;
