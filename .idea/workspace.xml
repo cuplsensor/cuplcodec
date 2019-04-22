@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e2a5e9f0-49cc-45a8-97b9-be9933b2b17b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/smplhist.c" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/c_encoder/smplhist.c" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -139,8 +138,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/setup.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="53" selection-start-line="15" selection-start-column="53" selection-end-line="15" selection-end-column="53" />
+            <state relative-caret-position="285">
+              <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -273,8 +272,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="2005" />
-    <option name="y" value="23" />
+    <option name="x" value="2001" />
+    <option name="y" value="64" />
     <option name="width" value="1920" />
     <option name="height" value="1001" />
   </component>
@@ -331,6 +330,11 @@
               <item name="PSCodec" type="b2602c69:ProjectViewProjectNode" />
               <item name="PSCodec" type="462c0819:PsiDirectoryNode" />
               <item name="pscodec" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PSCodec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PSCodec" type="462c0819:PsiDirectoryNode" />
+              <item name="PSCodec.egg-info" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -517,7 +521,7 @@
       <workItem from="1554421632564" duration="181000" />
       <workItem from="1554422138150" duration="100000" />
       <workItem from="1554813603615" duration="2340000" />
-      <workItem from="1555442481635" duration="1343000" />
+      <workItem from="1555442481635" duration="3228000" />
     </task>
     <servers />
   </component>
@@ -554,7 +558,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="174551000" />
+    <option name="totallyTimeSpent" value="176436000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -566,7 +570,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="2005" y="23" width="1920" height="1001" extended-state="0" />
+    <frame x="2001" y="64" width="1920" height="1001" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28168264" />
@@ -936,8 +940,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/setup.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="53" selection-start-line="15" selection-start-column="53" selection-end-line="15" selection-end-column="53" />
+        <state relative-caret-position="285">
+          <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
         </state>
       </provider>
     </entry>
