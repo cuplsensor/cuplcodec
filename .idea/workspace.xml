@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2a5e9f0-49cc-45a8-97b9-be9933b2b17b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pscodec/decoder/exceptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/decoder/exceptions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pscodec/decoder/v1/bufferdecoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/decoder/v1/bufferdecoder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pscodec/decoder/v1/paramdecoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/decoder/v1/paramdecoder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pscodec/encoder/pyencoder/instrumented.py" beforeDir="false" afterPath="$PROJECT_DIR$/pscodec/encoder/pyencoder/instrumented.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_ndef.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_ndef.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_trhsample.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_trhsample.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,7 +39,7 @@
     <SUITE FILE_PATH="coverage/PSCodec$tbufferdecoder.coverage" NAME="tbufferdecoder Coverage Results" MODIFIED="1554814012563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pscodec/decoder/v1" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_encodertb_test_ndef_test_timeinterval.coverage" NAME="pytest for encodertb.test_ndef.test_timeinterval Coverage Results" MODIFIED="1551298426325" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_status_test_resetsalltime.coverage" NAME="pytest for test_status.test_resetsalltime Coverage Results" MODIFIED="1553808142238" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
-    <SUITE FILE_PATH="coverage/PSCodec$pytest_in_tests.coverage" NAME="pytest in tests Coverage Results" MODIFIED="1557130068259" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/PSCodec$pytest_in_tests.coverage" NAME="pytest in tests Coverage Results" MODIFIED="1557157600396" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_in_test_sample_py.coverage" NAME="pytest in test_sample.py Coverage Results" MODIFIED="1552774756162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encoder" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_for_test_ndef_test_decode_raises_indexerrror.coverage" NAME="pytest for test_ndef.test_decode_raises_indexerrror Coverage Results" MODIFIED="1557153289611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/PSCodec$pytest_in_test_cursorpos_py.coverage" NAME="pytest in test_cursorpos.py Coverage Results" MODIFIED="1554814006892" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
@@ -68,11 +64,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pscodec/decoder/v1/paramdecoder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="105">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
               <folding>
                 <element signature="e#0#84#0" expanded="true" />
               </folding>
@@ -107,16 +103,16 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pscodec/decoder/exceptions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+            <state relative-caret-position="195">
+              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/test_trhsample.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="526">
+            <state relative-caret-position="441">
               <caret line="108" lean-forward="true" selection-start-line="108" selection-end-line="108" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
@@ -140,11 +136,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pscodec/decoder/v1/bufferdecoder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-              <folding>
-                <element signature="e#0#32#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="23">
+              <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -280,11 +273,11 @@
         <option value="$PROJECT_DIR$/pscodec/decoder/v1/statdecoder.py" />
         <option value="$PROJECT_DIR$/pscodec/encoder/pyencoder/sample_builder.py" />
         <option value="$PROJECT_DIR$/pscodec/decoder/exceptions.py" />
-        <option value="$PROJECT_DIR$/pscodec/decoder/v1/bufferdecoder.py" />
         <option value="$PROJECT_DIR$/pscodec/encoder/pyencoder/instrumented.py" />
         <option value="$PROJECT_DIR$/tests/test_ndef.py" />
         <option value="$PROJECT_DIR$/tests/test_trhsample.py" />
         <option value="$PROJECT_DIR$/pscodec/decoder/v1/paramdecoder.py" />
+        <option value="$PROJECT_DIR$/pscodec/decoder/v1/bufferdecoder.py" />
       </list>
     </option>
   </component>
@@ -411,7 +404,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.pytest for test_trhsample.test_errorcondition">
+  <component name="RunManager" selected="Python tests.pytest in tests">
     <configuration name="pytest for test_ndef.test_decode_raises_indexerrror" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="PSCodec" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -518,11 +511,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.pytest in tests" />
         <item itemvalue="Python tests.pytest for test_trhsample.test_errorcondition" />
         <item itemvalue="Python tests.pytest for test_trhsample.test_batteryvoltage" />
         <item itemvalue="Python tests.pytest for test_ndef.test_decode_raises_indexerrror" />
         <item itemvalue="Python tests.pytest for test_status.test_batteryvoltage" />
-        <item itemvalue="Python tests.pytest in tests" />
       </list>
     </recent_temporary>
   </component>
@@ -549,14 +542,11 @@
       <workItem from="1554422138150" duration="100000" />
       <workItem from="1554813603615" duration="2340000" />
       <workItem from="1555442481635" duration="4520000" />
-      <workItem from="1557130023077" duration="12853000" />
+      <workItem from="1557130023077" duration="13614000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="pytest_for_test_trhsample_test_errorcondition - 2019.05.06 at 16h 00m 44s.xml">
-      <configuration name="pytest for test_trhsample.test_errorcondition" configurationId="tests" />
-    </history-entry>
     <history-entry file="pytest_for_test_trhsample_test_errorcondition - 2019.05.06 at 16h 01m 18s.xml">
       <configuration name="pytest for test_trhsample.test_errorcondition" configurationId="tests" />
     </history-entry>
@@ -584,9 +574,12 @@
     <history-entry file="pytest_for_test_trhsample_test_errorcondition - 2019.05.06 at 16h 17m 13s.xml">
       <configuration name="pytest for test_trhsample.test_errorcondition" configurationId="tests" />
     </history-entry>
+    <history-entry file="pytest_in_tests - 2019.05.06 at 16h 46m 48s.xml">
+      <configuration name="pytest in tests" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="190581000" />
+    <option name="totallyTimeSpent" value="191342000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -932,39 +925,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_trhsample.py">
+    <entry file="file://$PROJECT_DIR$/pscodec/decoder/v1/paramdecoder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="526">
-          <caret line="108" lean-forward="true" selection-start-line="108" selection-end-line="108" />
+        <state relative-caret-position="105">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
           <folding>
-            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#0#84#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pscodec/decoder/exceptions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pscodec/decoder/v1/bufferdecoder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="23">
+          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pscodec/decoder/v1/paramdecoder.py">
+    <entry file="file://$PROJECT_DIR$/pscodec/decoder/exceptions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="195">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_trhsample.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="108" lean-forward="true" selection-start-line="108" selection-end-line="108" />
           <folding>
-            <element signature="e#0#84#0" expanded="true" />
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
