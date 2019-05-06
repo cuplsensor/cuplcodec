@@ -1,6 +1,8 @@
 import pytest
-from pscodec.encoder.pyencoder.instrumented import InstrumentedSampleTRH
+from pscodec.encoder.pyencoder.instrumented import InstrumentedSampleTRH, InstrumentedSample
 from pscodec.decoder import Decoder
+from pscodec.decoder.exceptions import NoCircularBufferError
+from pscodec.decoder.v1.statdecoder import SVSH_BIT
 
 INPUT_SERIAL = 'abcdabcd'
 INPUT_TIMEINT = 12
@@ -20,9 +22,9 @@ PADDING = 2
                         ])
 def instr_sample(request):
     return InstrumentedSampleTRH(baseurl=request.param['baseurl'],
-                                serial=INPUT_SERIAL,
-                                secretkey=request.param['secretkey'],
-                                smplintervalmins=INPUT_TIMEINT)
+                                 serial=INPUT_SERIAL,
+                                 secretkey=request.param['secretkey'],
+                                 smplintervalmins=INPUT_TIMEINT)
 
 
 def comparelists(urllist, inlist):
@@ -42,11 +44,11 @@ def test_lists_equal(instr_sample_populated):
 
 def test_md5():
     instr_md5 = InstrumentedSampleTRH(baseurl=INPUT_BASEURL,
-                                  serial=INPUT_SERIAL,
-                                  secretkey="",
-                                  smplintervalmins=INPUT_TIMEINT,
-                                  usehmac=False
-                                  )
+                                      serial=INPUT_SERIAL,
+                                      secretkey="",
+                                      smplintervalmins=INPUT_TIMEINT,
+                                      usehmac=False
+                                      )
 
     inlist = instr_md5.pushsamples(500)
 
@@ -63,5 +65,45 @@ def test_md5():
 
     comparelists(urllist, inlist)
 
+
+def test_batteryvoltage():
+    testbatv = 8
+
+    instr_batv = InstrumentedSampleTRH(baseurl=INPUT_BASEURL,
+                                       serial=INPUT_SERIAL,
+                                       secretkey="",
+                                       smplintervalmins=INPUT_TIMEINT,
+                                       usehmac=False,
+                                       batteryadc=testbatv)
+
+    instr_batv.pushsamples(3)
+
+    # Decode the URL
+    par = instr_batv.eepromba.get_url_parsedqs()
+    decodedurl = Decoder(secretkey="", statb64=par['x'][0], timeintb64=par['t'][0],
+                         circb64=par['q'][0], ver=par['v'][0], usehmac=False)
+
+    assert decodedurl.params.status.get_batvoltageraw() == testbatv
+
+
+def test_errorcondition():
+    instr = InstrumentedSample(baseurl=INPUT_BASEURL,
+                               serial=INPUT_SERIAL,
+                               secretkey="",
+                               smplintervalmins=INPUT_TIMEINT,
+                               usehmac=False,
+                               )
+
+    resetcause = SVSH_BIT
+    instr.ffimodule.lib.sample_init(resetcause, True)
+
+    par = instr.eepromba.get_url_parsedqs()
+
+    with pytest.raises(NoCircularBufferError) as excinfo:
+        # Attempt to decode the parameters
+        decodedurl = Decoder(secretkey="", statb64=par['x'][0], timeintb64=par['t'][0],
+                             circb64="", ver=par['v'][0], usehmac=False)
+
+    assert excinfo.value.status.status['supervisor'] == True
 
 

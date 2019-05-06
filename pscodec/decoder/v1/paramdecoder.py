@@ -1,4 +1,6 @@
+from pscodec.decoder.exceptions import InvalidCircFormatError, NoCircularBufferError
 from .statdecoder import StatDecoder
+from .bufferdecoder import DelimiterNotFoundError
 from .htbufferdecoder import HTBufferDecoder
 from .tbufferdecoder import TBufferDecoder
 from .b64decode import b64decode
@@ -20,12 +22,16 @@ class ParamDecoder:
         elif circformat == '2':
             bufferdecoder = TBufferDecoder
         else:
-            raise ValueError()
+            raise InvalidCircFormatError(circformat)
 
         self.circformat = circformat
         self.timeintervalmins = ParamDecoder.decode_timeinterval(timeintb64)
         self.status = StatDecoder(statb64)
-        self.buffer = bufferdecoder(circb64, self.timeintervalmins, secretkey, self.status, usehmac, scandatetime)
+        try:
+            self.buffer = bufferdecoder(circb64, self.timeintervalmins, secretkey, self.status, usehmac, scandatetime)
+        except DelimiterNotFoundError:
+            raise NoCircularBufferError(self.status)
+
 
     @staticmethod
     def decode_timeinterval(enctimeint):
