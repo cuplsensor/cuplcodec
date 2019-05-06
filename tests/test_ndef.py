@@ -1,6 +1,7 @@
 import pytest
 from base64 import urlsafe_b64decode
 from pscodec.encoder.pyencoder.instrumented import InstrumentedNDEF
+from pscodec.decoder.exceptions import NoCircularBufferError
 from pscodec.decoder.decoder import Decoder
 from urllib.parse import urlparse
 
@@ -88,7 +89,7 @@ def test_decode_raises_indexerrror(blankurlqs):
     statb64 = blankurlqs['x'][0]
     circb64 = blankurlqs['q'][0]
     ver = blankurlqs['v'][0]
-    with pytest.raises(IndexError):
+    with pytest.raises(NoCircularBufferError):
         # Attempt to decode the parameters
         decoded = Decoder(secretkey=INPUT_SECKEY,
                           timeintb64=timeintb64,
