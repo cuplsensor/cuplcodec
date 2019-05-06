@@ -1,6 +1,5 @@
-from pscodec.decoder.exceptions import InvalidCircFormatError, NoCircularBufferError
+from pscodec.decoder.exceptions import InvalidCircFormatError, NoCircularBufferError, DelimiterNotFoundError
 from .statdecoder import StatDecoder
-from .bufferdecoder import DelimiterNotFoundError
 from .htbufferdecoder import HTBufferDecoder
 from .tbufferdecoder import TBufferDecoder
 from .b64decode import b64decode

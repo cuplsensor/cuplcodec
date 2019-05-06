@@ -1,38 +1,8 @@
+from pscodec.decoder.exceptions import MessageIntegrityError, DelimiterNotFoundError
 from .b64decode import b64decode
 import struct
 from .msgauth import MsgAuth
-from datetime import datetime, timedelta
-from ..exceptions import PSCodecError
-
-
-class CircularBufferError(PSCodecError):
-    """Base application error class."""
-
-    def __init__(self):
-        super().__init__()
-
-
-class MessageIntegrityError(CircularBufferError):
-    errormsg = "MD5 checksum mismatch. Calculated MD5 = {}, URL MD5 = {}"
-
-    def __init__(self, calcmd5, urlmd5):
-        super().__init__()
-        self.calcmd5 = calcmd5
-        self.urlmd5 = urlmd5
-
-    def __str__(self):
-        return self.errormsg.format(self.calcmd5, self.urlmd5)
-
-
-class DelimiterNotFoundError(CircularBufferError):
-    errormsg = " No delimiting character found in the circular buffer string = {}. "
-
-    def __init__(self, encstr):
-        super().__init__()
-        self.encstr = encstr
-
-    def __str__(self):
-        return self.errormsg.format(self.encstr)
+from datetime import timedelta
 
 
 class BufferDecoder(MsgAuth):
