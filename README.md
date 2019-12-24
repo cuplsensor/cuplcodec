@@ -1,2 +1,2 @@
-# PSCodec
-Plotsensor Encoder and Decoder
+# wscodec
+Websensor Encoder and Decoder
