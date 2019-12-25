@@ -1,5 +1,5 @@
 import pytest
-from pscodec.decoder import Decoder
+from wscodec.decoder import Decoder
 
 
 @pytest.fixture(scope="function", params=[1, 10, 100, 1000, 1001])

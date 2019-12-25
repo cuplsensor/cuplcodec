@@ -21,8 +21,8 @@ sys.path.append("/Users/malcolm/Downloads/breathe/") # BREATHE PATH
 
 # -- Project information -----------------------------------------------------
 
-project = 'PSCodec'
-copyright = '2018, Malcolm Mackay'
+project = 'wscodec'
+copyright = '2019, Malcolm Mackay'
 author = 'Malcolm Mackay'
 
 # The short X.Y version
@@ -151,7 +151,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'pscodec', 'PSCodec Documentation',
+    (master_doc, 'wscodec', 'PSCodec Documentation',
      [author], 1)
 ]
 

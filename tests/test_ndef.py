@@ -1,8 +1,8 @@
 import pytest
 from base64 import urlsafe_b64decode
-from pscodec.encoder.pyencoder.instrumented import InstrumentedNDEF
-from pscodec.decoder.exceptions import NoCircularBufferError
-from pscodec.decoder.decoder import Decoder
+from wscodec.encoder.pyencoder.instrumented import InstrumentedNDEF
+from wscodec.decoder.exceptions import NoCircularBufferError
+from wscodec.decoder.decoder import Decoder
 from urllib.parse import urlparse
 
 INPUT_SERIAL = 'abcdabcd'

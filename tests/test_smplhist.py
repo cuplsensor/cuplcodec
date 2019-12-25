@@ -1,5 +1,5 @@
 import pytest
-from pscodec.encoder.pyencoder.instrumented import InstrumentedSmplHist
+from wscodec.encoder.pyencoder.instrumented import InstrumentedSmplHist
 import random
 import hmac
 import hashlib

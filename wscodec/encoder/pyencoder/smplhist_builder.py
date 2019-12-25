@@ -1,4 +1,4 @@
-from pscodec.encoder.pyencoder import unitc
+from wscodec.encoder.pyencoder import unitc
 
 ffibuilder = unitc.load('smplhist', ['eep', 'md5', 'nvtype'])
 

@@ -1,4 +1,4 @@
-from pscodec.decoder.exceptions import MessageIntegrityError, DelimiterNotFoundError
+from wscodec.decoder.exceptions import MessageIntegrityError, DelimiterNotFoundError
 from .b64decode import b64decode
 import struct
 from .msgauth import MsgAuth
