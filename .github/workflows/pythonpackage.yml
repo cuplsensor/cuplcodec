@@ -72,7 +72,7 @@ jobs:
       run: |
         cd wheelhouse
         mkdir wscodec_wheel
-        cp wscodec-0.0.4-cp36-cp36m-manylinux1_x86_64.whl wscodec_wheel/wscodec-0.0.4-cp36-cp36m-manylinux1_x86_64.whl
+        ls -1 | grep 'wscodec*cp36-cp36m-manylinux1_x86_64.whl' | xargs cp -t wscodec_wheel
 
     - name: Publish packages to TestPyPI.
       uses: pypa/gh-action-pypi-publish@master
