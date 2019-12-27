@@ -70,7 +70,7 @@ jobs:
         build-requirements: 'cython'
 
     - name: Delete non-wscodec binaries
-      run: ls -1 | grep -v 'wheelhouse/wscodec' | xargs rm -f
+      run: cd wheelhouse | ls -1 | grep -v 'wscodec' | xargs rm -f
 
     - name: Publish packages to TestPyPI.
       uses: pypa/gh-action-pypi-publish@master
