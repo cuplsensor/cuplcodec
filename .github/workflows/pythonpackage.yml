@@ -23,8 +23,9 @@ jobs:
         pip install -r requirements.txt
 
   test:
+    needs: build
+    steps:
     - name: Run setup
-      needs: build
       run: python setup.py develop
     - name: Test with pytest
       run: |
@@ -32,8 +33,9 @@ jobs:
         pytest
 
   release:
+    needs: test
+    steps:
     - name: Publish packages to TestPyPI.
-      needs: test
       uses: pypa/gh-action-pypi-publish@master
       with:
         user: __token__
