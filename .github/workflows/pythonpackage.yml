@@ -64,7 +64,7 @@ jobs:
         pip install -r requirements.txt
 
     - name: Build manylinux wheel
-      uses: actions/python-wheels-manylinux-build@v0.1
+      uses: RalfG/python-wheels-manylinux-build@v0.1
       with:
         python-versions: 'cp36-cp36m'
         build-requirements: 'cython'
