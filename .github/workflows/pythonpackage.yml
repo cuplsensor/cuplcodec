@@ -9,7 +9,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.6, 3.7]
+        python-version: [3.6]
 
     steps:
     - uses: actions/checkout@v1
@@ -70,7 +70,9 @@ jobs:
         build-requirements: 'cython'
 
     - name: Delete non-wscodec binaries
-      run: cd wheelhouse | ls -1 | grep -v 'wscodec' | xargs rm -f
+      run: |
+        cd wheelhouse
+        ls -1 | grep -v 'wscodec' | xargs rm -f
 
     - name: Publish packages to TestPyPI.
       uses: pypa/gh-action-pypi-publish@master

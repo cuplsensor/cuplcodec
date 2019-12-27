@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e2a5e9f0-49cc-45a8-97b9-be9933b2b17b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.github/workflows/pythonpackage.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/pythonpackage.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -268,7 +269,7 @@
       <workItem from="1554813603615" duration="2340000" />
       <workItem from="1555442481635" duration="4520000" />
       <workItem from="1557130023077" duration="13614000" />
-      <workItem from="1577202842064" duration="22310000" />
+      <workItem from="1577202842064" duration="22495000" />
     </task>
     <servers />
   </component>
