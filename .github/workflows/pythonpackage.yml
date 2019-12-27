@@ -69,11 +69,14 @@ jobs:
         python-versions: 'cp36-cp36m'
         build-requirements: 'cython'
 
+    - name: Delete non-wscodec binaries
+      run: ls -1 | grep -v 'wheelhouse/wscodec' | xargs rm -f
+
     - name: Publish packages to TestPyPI.
       uses: pypa/gh-action-pypi-publish@master
       with:
         user: __token__
         password: ${{ secrets.test_pypi_password }}
         repository_url: https://test.pypi.org/legacy/
-        packages_dir: wheelhouse/wscodec*
+        packages_dir: wheelhouse/
 
