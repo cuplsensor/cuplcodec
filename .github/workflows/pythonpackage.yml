@@ -71,8 +71,7 @@ jobs:
     - name: Delete non-wscodec binaries
       run: |
         cd wheelhouse
-        mkdir wscodec_wheel
-        ls -1 | grep 'wscodec*cp36-cp36m-manylinux1_x86_64.whl' | xargs cp -t wscodec_wheel
+        ls -1 | grep -v 'wscodec.*cp36-cp36m-manylinux1_x86_64' | sudo xargs rm -f
 
     - name: Publish packages to TestPyPI.
       uses: pypa/gh-action-pypi-publish@master
@@ -80,5 +79,5 @@ jobs:
         user: __token__
         password: ${{ secrets.test_pypi_password }}
         repository_url: https://test.pypi.org/legacy/
-        packages_dir: wheelhouse/wscodec_wheel
+        packages_dir: wheelhouse/
 
