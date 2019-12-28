@@ -51,7 +51,7 @@ jobs:
         python-version:
           - {number: 3.6, bldstring: 'cp36-cp36m'}
           - {number: 3.7, bldstring: 'cp37-cp37m'}
-          - {number: 3.8, bldstring: 'cp38-cp38m'}
+          - {number: 3.8, bldstring: 'cp38-cp38'}
 
     steps:
     - uses: actions/checkout@v1
@@ -103,6 +103,11 @@ jobs:
 
       - name: Run setup.py
         run: python setup.py sdist
+
+      - name: Delete non-tar.gz files
+          run: |
+            cd dist
+            ls -1 | grep -v '.*tar.gz' | sudo xargs rm -f
 
       - name: Publish source tar.gz to TestPyPI.
         uses: pypa/gh-action-pypi-publish@master
