@@ -47,15 +47,21 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.6]
+        python-version:
+          - 3.6
+              number: 3.6
+              bldstring: 'cp36-cp36m'
+          - 3.7
+              number: 3.7
+              bldstring: 'cp37-cp37m'
 
     steps:
     - uses: actions/checkout@v1
 
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python ${{ matrix.python-version.number }}
       uses: actions/setup-python@v1
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: ${{ matrix.python-version.number }}
 
     - name: Install dependencies
       run: |
@@ -65,13 +71,13 @@ jobs:
     - name: Build manylinux wheel
       uses: RalfG/python-wheels-manylinux-build@v0.1
       with:
-        python-versions: 'cp36-cp36m'
+        python-versions: ${{ matrix.python-version.bldstring }}
         build-requirements: 'cython'
 
     - name: Delete non-wscodec binaries
       run: |
         cd wheelhouse
-        ls -1 | grep -v 'wscodec.*cp36-cp36m-manylinux1_x86_64' | sudo xargs rm -f
+        ls -1 | grep -v 'wscodec.*'${{ matrix.python-version.bldstring }}'-manylinux1_x86_64' | sudo xargs rm -f
 
     - name: Publish packages to TestPyPI.
       uses: pypa/gh-action-pypi-publish@master
