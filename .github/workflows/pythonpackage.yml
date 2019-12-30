@@ -77,12 +77,11 @@ jobs:
         cd wheelhouse
         ls -1 | grep -v 'wscodec.*'${{ matrix.python-version.bldstring }}'-manylinux1_x86_64' | sudo xargs rm -f
 
-    - name: Publish packages to TestPyPI.
+    - name: Publish packages to PyPI.
       uses: pypa/gh-action-pypi-publish@master
       with:
         user: __token__
-        password: ${{ secrets.test_pypi_password }}
-        repository_url: https://test.pypi.org/legacy/
+        password: ${{ secrets.pypi_password }}
         packages_dir: wheelhouse/
 
   release_source:
@@ -114,6 +113,5 @@ jobs:
         with:
           user: __token__
           password: ${{ secrets.pypi_password }}
-          repository_url: https://pypi.org/legacy/
           packages_dir: dist/
 
