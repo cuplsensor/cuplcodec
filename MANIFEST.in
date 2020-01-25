@@ -1,2 +1,0 @@
-recursive-include encoder/pyencoder/c_encoder *.c *.h
-recursive-include encoder/pyencoder/pycparser *.*
