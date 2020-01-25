@@ -53,7 +53,7 @@ extensions = [
     'breathe',
 ]
 
-breathe_projects = { "encoderproject": "./encoder/pyencoder/c_encoder/doxygen/xml/"} # BREATHE
+breathe_projects = { "encoderproject": "wscodec/encoder/pyencoder/c_encoder/doxygen/xml/"} # BREATHE
 breathe_default_project = "encoderproject" # BREATHE
 
 # Add any paths that contain templates here, relative to this directory.
