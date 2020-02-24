@@ -1,5 +1,5 @@
 # wscodec
-Websensor Encoder and Decoder
+Websensor Encoder and Decoder -- in development, not recommended for production use yet.
 
 
 `pip install wscodec`
