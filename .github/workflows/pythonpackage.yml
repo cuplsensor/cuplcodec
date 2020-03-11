@@ -77,7 +77,8 @@ jobs:
         cd wheelhouse
         ls -1 | grep -v 'wscodec.*'${{ matrix.python-version.bldstring }}'-manylinux1_x86_64' | sudo xargs rm -f
 
-    - name: Publish packages to PyPI.
+    - name: Publish packages to PyPI if commit is Git tagged.
+      if: startsWith(github.event.ref, 'refs/tags')
       uses: pypa/gh-action-pypi-publish@master
       with:
         user: __token__
@@ -108,7 +109,8 @@ jobs:
           cd dist
           ls -1 | grep -v '.*tar.gz' | sudo xargs rm -f
 
-      - name: Publish source tar.gz to PyPI.
+      - name: Publish source tar.gz to PyPI if commit is Git tagged.
+        if: startsWith(github.event.ref, 'refs/tags')
         uses: pypa/gh-action-pypi-publish@master
         with:
           user: __token__
