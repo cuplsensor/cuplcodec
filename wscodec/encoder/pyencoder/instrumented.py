@@ -118,14 +118,24 @@ class InstrumentedSample(InstrumentedBase):
     def set_battery_adc(self, batteryadc):
         self.batteryadc = batteryadc
 
+    def get_url(self):
+        return self.eepromba.get_url()
 
+    def temp_degc_to_raw(self, degc):
+        """ Converts degrees C to a raw ADC value for the Texas HDC2010. """
+        return int((degc + 40) * 4096 / 165)
+
+
+    def rh_percent_to_raw(self, rhpc):
+        """ Converts from relative humidity in percent to a raw ADC value for the Texas HDC2010. """
+        return int((rhpc * 4096) / 100)
 
     def tempsample(self, countermax, counterstep):
         counter = 0
         while True:
             counter += counterstep
             counter = counter % countermax
-            rawtemp = int((counter + 40) * 4096 / 165)
+            rawtemp = self.temp_degc_to_raw(counter)
             yield {'adc': rawtemp, 'ref': counter}
 
     def rhsample(self, countermax, counterstep):
@@ -133,7 +143,7 @@ class InstrumentedSample(InstrumentedBase):
         while True:
             counter += counterstep
             counter = counter % countermax
-            rawrh = int((counter * 4096) / 100)
+            rawrh = self.rh_percent_to_raw(counter)
             yield {'adc': rawrh, 'ref': counter}
 
 
@@ -202,6 +212,27 @@ class InstrumentedSampleTRH(InstrumentedSample):
             inlist.insert(0, {'temp': tempsmpl['ref'], 'rh': rhsmpl['ref']})
             self.ffimodule.lib.sample_push(tempsmpl['adc'], rhsmpl['adc'])
         return inlist
+
+    def pushsamplelist(self, trhlist: list):
+        """
+
+        :param trhlist: a list of dictionaries each containing temperature and relative humidity keys.
+        :return: None
+        """
+        for smpldict in trhlist:
+            tempdegc = smpldict['temp']
+            rhpc = smpldict['rh']
+            tempraw = self.temp_degc_to_raw(tempdegc)
+            rhraw = self.rh_percent_to_raw(rhpc)
+            self.ffimodule.lib.sample_push(tempraw, rhraw)
+
+    def updateendstop(self, minutes: int):
+        """ Update the endstop with minutes elapsed since the most recent sample.
+
+        :param minutes: Minutes elapsed since the most recent sample.
+        :return: None
+        """
+        self.ffimodule.lib.sample_updateendstop(minutes)
 
     def geturlqs(self):
         return self.eepromba.get_url_parsedqs()
