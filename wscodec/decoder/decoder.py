@@ -26,7 +26,7 @@ class Decoder:
         self.scandatetime = scandatetime or datetime.now(timezone.utc)
 
         if majorversion == '1':
-            self.params = v1ParamDecoder(circformat, timeintb64, statb64, circb64, secretkey, usehmac, scandatetime)
+            self.params = v1ParamDecoder(circformat, timeintb64, statb64, circb64, secretkey, usehmac, self.scandatetime)
         else:
             raise InvalidMajorVersionError
 
