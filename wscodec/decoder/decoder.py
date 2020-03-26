@@ -18,12 +18,12 @@ class Decoder:
         A list of query string parameters
 
     """
-    def __init__(self, secretkey, statb64, timeintb64, circb64, ver, usehmac=True, scandatetime=datetime.now(timezone.utc)):
+    def __init__(self, secretkey, statb64, timeintb64, circb64, ver, usehmac=True, scandatetime=None):
         majorversion = ver[-2:-1]
         circformat = ver[-1:]
 
         self.majorversion = majorversion
-        self.scandatetime = scandatetime
+        self.scandatetime = scandatetime or datetime.now(timezone.utc)
 
         if majorversion == '1':
             self.params = v1ParamDecoder(circformat, timeintb64, statb64, circb64, secretkey, usehmac, scandatetime)
