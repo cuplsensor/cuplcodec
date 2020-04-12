@@ -22,6 +22,9 @@ read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
 if read_the_docs_build:
     subprocess.call('cd wscodec/encoder/pyencoder/c_encoder; doxygen', shell=True)
 
+if read_the_docs_build:
+    subprocess.call('python setup.py develop', shell=True)
+
 # -- Project information -----------------------------------------------------
 
 project = 'wscodec'
