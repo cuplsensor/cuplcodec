@@ -2,6 +2,9 @@ import ndef
 import urllib.parse as urlparse
 
 class Eeprom():
+    """
+     EEPROM class
+    """
     def __init__(self, sizeblocks):
         self.eepromba = bytearray(sizeblocks*16)
         self.sizeblocks = sizeblocks
