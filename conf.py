@@ -14,7 +14,6 @@
 #
 import subprocess, os
 import sys
-sys.path.insert(0, os.path.abspath('wscodec'))
 sys.path.append("/Users/malcolm/Downloads/breathe/") # BREATHE PATH
 
 # Run doxygen if we are running on read_the_docs

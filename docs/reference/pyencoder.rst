@@ -1,11 +1,11 @@
 Python Wrapped Encoder (PyEncoder) Reference
 =============================================
 
-.. autoclass:: encoder.pyencoder.eeprom.Eeprom
+.. autoclass:: wscodec.encoder.pyencoder.eeprom.Eeprom
     :members:
 
-.. automodule:: encoder.pyencoder.instrumented
+.. automodule:: wscodec.encoder.pyencoder.instrumented
     :members:
 
-.. automodule:: encoder.pyencoder.unitc
+.. automodule:: wscodec.encoder.pyencoder.unitc
     :members:
