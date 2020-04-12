@@ -86,6 +86,8 @@ Serial
 
 See non-volatile parameter :cpp:member:`serial`.
 
+.. _time-interval:
+
 Time interval
 ~~~~~~~~~~~~~~
 
@@ -95,6 +97,8 @@ This is to match with the format of the minutes `Elapsed`_ field.
 
 It is programmed as non-volatile parameter :cpp:member:`smplintervalmins`.
 
+.. _version:
+
 Version
 ~~~~~~~~
 The version parameter determines which :class:`.ParamDecoder` shall be used by :class:`.Decoder`:
@@ -103,6 +107,8 @@ The version parameter determines which :class:`.ParamDecoder` shall be used by :
 * :c:macro:`TEMPRH` :class:`.HTDecoder` Temperature and relative humidity measurands in a sample.
 
 This is programmed as non-volatile parameter :cpp:member:`version`.
+
+.. _status:
 
 Status
 ~~~~~~~
