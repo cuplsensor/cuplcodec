@@ -5,4 +5,6 @@ URL Encoder Reference
 
 :ref:`samplehist-c-reference`
 
+:ref:`octet-c-reference`
+
 :ref:`nvtype-c-reference`

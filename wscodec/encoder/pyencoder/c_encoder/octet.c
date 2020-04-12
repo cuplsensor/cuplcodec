@@ -47,6 +47,8 @@ void octet_restore(void)
 /*!
  * @brief Initialise a circular buffer comprised of 8-byte octets.
  *
+ * _cursoroctet is set to 0.
+ *
  * @param startblk EEPROM block to start the circular buffer.
  * @param lenblks Length of circular buffer in EEPROM blocks.
  */
