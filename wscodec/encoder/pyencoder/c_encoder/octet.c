@@ -44,7 +44,12 @@ void octet_restore(void)
   octet_read4(_cursorblk);
 }
 
-// Initialise a circular buffer of octets between startblk and endblk.
+/*!
+ * @brief Initialise a circular buffer comprised of 8-byte octets.
+ *
+ * @param startblk EEPROM block to start the circular buffer.
+ * @param lenblks Length of circular buffer in EEPROM blocks.
+ */
 int octet_init(const int startblk, const int lenblks)
 {
   _startblk = startblk;

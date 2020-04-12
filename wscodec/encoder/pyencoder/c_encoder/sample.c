@@ -69,9 +69,8 @@ static void sample_updatelc(void)
 /*!
  * @brief Initialise the sample state machine.
  *
- * @param stat 16-bit status value.
+ * @param resetcause 16-bit status value.
  * @param err Sets an error condition where data will not be logged to the URL circular buffer.
- * @param temponly When true only temperature measurands will be recorded to the circular buffer on each call of {@link sample_push()}.
  */
 void sample_init(unsigned int resetcause, bool err)
 {

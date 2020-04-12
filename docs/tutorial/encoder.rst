@@ -4,7 +4,10 @@ Encoder
 Initialise
 -----------
 
-The encoder is initialised with a call to :cpp:func:`sample_init()`
+Start with a call to :cpp:func:`sample_init()`. This creates an NDEF message with one URI record. The latter
+consists of the :ref:`baseurl` followed by a query string.
+
+The query string has several parameters, such as :ref:`time-interval`, :ref:`version` and a serial.
 
 Append Samples
 ---------------
