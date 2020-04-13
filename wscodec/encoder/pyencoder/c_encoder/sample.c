@@ -50,7 +50,7 @@ extern nv_t nv;                     /*!< Externally defined parameters stored in
 
 
 /*!
- * @brief Update loop counter and battery voltage in the preamble status field.
+ * @brief Update loop counter and battery voltage in the preamble status field. ::sample_init()
  */
 static void sample_updatelc(void)
 {
