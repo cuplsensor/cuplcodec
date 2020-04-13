@@ -116,7 +116,7 @@ int octet_commit2(void)
 }
 
 /*!
- * @brief Overwrite one octet in the RAM buffer. ::octet_read4()
+ * @brief Overwrite one octet in the RAM buffer. octet::octet_read4()
  *
  * This function takes octetindex as relative to _cursoroctet.
  * The function to modify the RAM buffer ::eep_cp requires an index relative to \link ::_cursorblk \endlink (it has no concept of octets).
