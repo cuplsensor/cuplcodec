@@ -60,7 +60,7 @@ void octet_restore(void)
 /*!
  * @brief Initialise a circular buffer of 8-byte octets.
  *
- * Sets counters to intial values and calls <octet_read4(const int)> to read the first 4
+ * Sets counters to intial values and calls ::octet_read4(const int) to read the first 4
  * octets into RAM.
  *
  * @param startblk EEPROM block to start the circular buffer.
@@ -87,8 +87,8 @@ int octet_init(const int startblk, const int lenblks)
 /*!
  * @brief Write 4 octets from RAM to the EEPROM.
  *
- * 2 octets are written from RAM buffer location 0 into the EEPROM block \sa _cursorblk.
- * 2 octets are written from RAM buffer location 1 into the EEPROM block \sa _nextblk.
+ * 2 octets are written from RAM buffer location 0 into the EEPROM block ::_cursorblk.
+ * 2 octets are written from RAM buffer location 1 into the EEPROM block ::_nextblk.
  * @returns 0
  */
 int octet_commit4(void)
@@ -119,7 +119,7 @@ int octet_commit2(void)
  * @brief Overwrite one octet in the RAM buffer.
  *
  * This function takes octetindex as relative to _cursoroctet.
- * The function to modify the RAM buffer \sa eep_cp requires an index relative to \sa _cursorblk (it has no concept of octets).
+ * The function to modify the RAM buffer ::eep_cp requires an index relative to ::_cursorblk (it has no concept of octets).
  * There are 2 8-byte octets per 16-byte block.
  * If cursoroctet is even, nothing is needs to be done because it lies on a block boundary.
  * If cursoroctet is odd then it is offset from the block boundary by one octet. Therefore one is added to octetindex.
