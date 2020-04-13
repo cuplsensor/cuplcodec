@@ -23,7 +23,7 @@ static OctState_t _octetstate = firstloop;
  * If cursor block is at the end of the buffer, then _nextblk will be at the start. This
  * makes the buffer circular.
  *
- * Static variables :cpp:member:_cursorblk and _nextblk are updated by this function.
+ * Static variables :cpp:member:`_cursorblk` and _nextblk are updated by this function.
  *
  * @param cursorblk EEPROM block number where the cursor is located.
  * @returns looparound 1 if a read has looped around from the end to the beginning of the buffer. 0 otherwise.
