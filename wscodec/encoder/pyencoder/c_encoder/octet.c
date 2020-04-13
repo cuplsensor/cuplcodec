@@ -26,7 +26,7 @@ static OctState_t _octetstate = firstloop;
  * Static variables _cursorblk and _nextblk are updated by this function.
  *
  * @param cursorblk EEPROM block number where the cursor is located.
- * @returns looparound 1 if a loop around has occurred. 0 otherwise.
+ * @returns looparound 1 if a read has looped around from the end to the beginning of the buffer. 0 otherwise.
  */
 static int octet_read4(const int cursorblk)
 {
@@ -60,7 +60,7 @@ void octet_restore(void)
 /*!
  * @brief Initialise a circular buffer of 8-byte octets.
  *
- * Sets counters to intial values and calls :ref:`octet_read4()` to read the first 4
+ * Sets counters to intial values and calls "::"<octet_read4> to read the first 4
  * octets into RAM.
  *
  * @param startblk EEPROM block to start the circular buffer.
@@ -104,7 +104,7 @@ int octet_commit4(void)
  * @brief Write the last 2 octets from RAM to the EEPROM.
  *
  * 2 octets are written from RAM buffer location 1 into the EEPROM block _nextblk.
- * Some functions only need to modify the last 2 octets so this saves time and energy over writing 4. 
+ * Some functions only need to modify the last 2 octets so this saves time and energy over writing 4.
  * @returns 0
  */
 int octet_commit2(void)
@@ -115,7 +115,18 @@ int octet_commit2(void)
   return 0;
 }
 
-// Octet index is relative to cursoroctet.
+/*!
+ * @brief Overwrite one octet in the RAM buffer.
+ *
+ * This function takes octetindex as relative to _cursoroctet.
+ * The function to modify the RAM buffer "::"<eep_cp> requires an index relative to cursorblk (it has no concept of octets).
+ * There are 2 8-byte octets per 16-byte block.
+ * If cursoroctet is even, nothing is needs to be done because it lies on a block boundary.
+ * If cursoroctet is odd then it is offset from the block boundary by one octet. Therefore one is added to octetindex.
+ *
+ * @param octetindex Octet index to overwrite, relative to _cursoroctet. Must be 0, 1 or 2.
+ * @param octetdata Pointer to an 8 byte array of new octet data.
+ */
 int octet_write(OctInd_t octetindex, char * octetdata)
 {
   int errflag = 1;
