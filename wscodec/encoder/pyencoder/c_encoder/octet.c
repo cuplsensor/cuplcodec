@@ -16,7 +16,18 @@ static int _lenoctets = 0;
 static int _cursoroctet = 0;
 static OctState_t _octetstate = firstloop;
 
-// Read 4 octets from cursor block.
+/*!
+ * @brief Read 4 octets (32 bytes) from EEPROM into RAM starting from the cursor block.
+ *
+ * This is 2 octets from the cursor block and 2 octets from the block after it (_nextblk).
+ * If cursor block is at the end of the buffer, then _nextblk will be at the start. This
+ * makes the buffer circular.
+ *
+ * Static variables _cursorblk and _nextblk are updated by this function.
+ *
+ * @param cursorblk EEPROM block number where the cursor is located.
+ * @returns looparound 1 if a loop around has occurred. 0 otherwise.
+ */
 static int octet_read4(const int cursorblk)
 {
   int looparound = 0;
@@ -33,7 +44,9 @@ static int octet_read4(const int cursorblk)
     _nextblk = _cursorblk + 1;
   }
 
+  // Read the contents of EEPROM block _cursorblk into RAM buffer location 0.
   eep_read(_cursorblk, 0);
+  // Read the contents of EEPROM block _nextblk into RAM buffer location 1.
   eep_read(_nextblk, 1);
 
   return looparound;
@@ -45,9 +58,10 @@ void octet_restore(void)
 }
 
 /*!
- * @brief Initialise a circular buffer comprised of 8-byte octets.
+ * @brief Initialise a circular buffer of 8-byte octets.
  *
- * _cursoroctet is set to 0.
+ * Sets counters to intial values and calls :ref:`octet_read4()` to read the first 4
+ * octets into RAM.
  *
  * @param startblk EEPROM block to start the circular buffer.
  * @param lenblks Length of circular buffer in EEPROM blocks.
@@ -70,6 +84,13 @@ int octet_init(const int startblk, const int lenblks)
   return 0;
 }
 
+/*!
+ * @brief Write 4 octets from RAM to the EEPROM.
+ *
+ * 2 octets are written from RAM buffer location 0 into the EEPROM block _cursorblk.
+ * 2 octets are written from RAM buffer location 1 into the EEPROM block _nextblk.
+ * @returns 0
+ */
 int octet_commit4(void)
 {
   eep_write(_cursorblk, 0);
@@ -79,6 +100,13 @@ int octet_commit4(void)
   return 0;
 }
 
+/*!
+ * @brief Write the last 2 octets from RAM to the EEPROM.
+ *
+ * 2 octets are written from RAM buffer location 1 into the EEPROM block _nextblk.
+ * Some functions only need to modify the last 2 octets so this saves time and energy over writing 4. 
+ * @returns 0
+ */
 int octet_commit2(void)
 {
   eep_write(_nextblk, 1);
