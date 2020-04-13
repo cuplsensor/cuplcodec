@@ -86,6 +86,8 @@ exclude_patterns = ['_doc_build', 'Thumbs.db', '.DS_Store']
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = None
 
+# Needed for links to work
+breathe_domain_by_extension = {"h" : "cpp"}
 
 # -- Options for HTML output -------------------------------------------------
 
