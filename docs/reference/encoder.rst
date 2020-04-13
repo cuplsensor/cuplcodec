@@ -1,16 +1,15 @@
 URL Encoder Reference
 =====================
 
-:ref:`sample-c-reference`
+.. toctree::
+   :hidden:
+   :maxdepth: 2
 
-:ref:`samplehist-c-reference`
+   sample
+   samplehist
+   octet
+   nvtype
+   eep
+   ndef
+   nt3h
 
-:ref:`octet-c-reference`
-
-:ref:`nvtype-c-reference`
-
-:ref:`eep-c-reference`
-
-:ref:`ndef-c-reference`
-
-:ref:`nt3h-c-reference`
