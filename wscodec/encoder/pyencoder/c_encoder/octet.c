@@ -119,7 +119,7 @@ int octet_commit2(void)
  * @brief Overwrite one octet in the RAM buffer.
  *
  * This function takes octetindex as relative to _cursoroctet.
- * The function to modify the RAM buffer ::eep_cp requires an index relative to \b _cursorblk (it has no concept of octets).
+ * The function to modify the RAM buffer ::eep_cp requires an index relative to \link ::_cursorblk \endlink (it has no concept of octets).
  * There are 2 8-byte octets per 16-byte block.
  * If cursoroctet is even, nothing is needs to be done because it lies on a block boundary.
  * If cursoroctet is odd then it is offset from the block boundary by one octet. Therefore one is added to octetindex.
