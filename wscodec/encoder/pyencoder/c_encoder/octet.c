@@ -60,7 +60,7 @@ void octet_restore(void)
 /*!
  * @brief Initialise a circular buffer of 8-byte octets.
  *
- * Sets counters to intial values and calls  <octet_read4()> to read the first 4
+ * Sets counters to intial values and calls <octet_read4(const int)> to read the first 4
  * octets into RAM.
  *
  * @param startblk EEPROM block to start the circular buffer.
