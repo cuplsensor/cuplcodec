@@ -39,7 +39,13 @@ How to build this documentation
    The message format is NDEF. This is used to transmit data to a phone using NFC.
    An NDEF message has 3 fields: Type, Length and Value.
 
-   Outgoing links of this spec: :need_outgoing:`CODEC_SPEC_1`.
+   +-----------+------+------------------+--------------------+
+   | NDEF Msg. | Type | Length           | Value              |
+   +-----------+------+------+-----+-----+--------------------+
+   | Byte      | 0    | 1    | 2   | 3   | 4...               |
+   +-----------+------+------+-----+-----+--------------------+
+   | Data      | 0x03 | 0xFF | MSB | LSB |:need:`CODEC_SPEC_3`|
+   +-----------+------+------+-----+-----+--------------------+
 
 .. feat:: NDEF message type
    :id: CODEC_FEATURE_1
