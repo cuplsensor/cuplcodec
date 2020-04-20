@@ -54,6 +54,7 @@ extensions = [
     'sphinx.ext.napoleon',
     'breathe',
     'sphinx_rtd_theme',
+    'sphinxcontrib-plantuml',
     'sphinxcontrib.needs'
 ]
 
@@ -86,6 +87,12 @@ exclude_patterns = ['_doc_build', 'Thumbs.db', '.DS_Store']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = None
+
+# Configure plant UML according to https://sphinxcontrib-needs.readthedocs.io/en/latest/installation.html
+on_rtd = os.environ.get('READTHEDOCS') == 'True'
+if on_rtd:
+    plantuml = 'java -Djava.awt.headless=true -jar /usr/share/plantuml/plantuml.jar'
+plantuml_output_format = 'png'
 
 # -- Options for HTML output -------------------------------------------------
 
