@@ -17,7 +17,11 @@ Plotsensor Codec Documentation
 
 How to build this documentation
 --------------------------------
+.. req:: A normal requirement
+   :id: EX_REQ_1
+   :status: open
 
+   This is how a normal requirement looks like
 
 
 Indices and tables

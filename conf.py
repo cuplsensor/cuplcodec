@@ -54,6 +54,7 @@ extensions = [
     'sphinx.ext.napoleon',
     'breathe',
     'sphinx_rtd_theme',
+    'sphinxcontrib.needs'
 ]
 
 breathe_projects = { "encoderproject": "wscodec/encoder/pyencoder/c_encoder/doxygen/xml/"} # BREATHE
