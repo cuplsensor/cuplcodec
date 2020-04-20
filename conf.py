@@ -94,6 +94,15 @@ if on_rtd:
     plantuml = 'java -Djava.awt.headless=true -jar /usr/share/plantuml/plantuml.jar'
 plantuml_output_format = 'png'
 
+needs_types = [dict(directive="req", title="Requirement", prefix="R_", color="#BFD8D2", style="node"),
+               dict(directive="spec", title="Specification", prefix="S_", color="#FEDCD2", style="node"),
+               dict(directive="impl", title="Implementation", prefix="I_", color="#DF744A", style="node"),
+               dict(directive="feat", title="Feature", prefix="F_", color="#DF744A", style="node"),
+               dict(directive="test", title="Test Case", prefix="T_", color="#DCB239", style="node"),
+               # Kept for backwards compatibility
+               dict(directive="need", title="Need", prefix="N_", color="#9856a5", style="node")
+           ]
+
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for

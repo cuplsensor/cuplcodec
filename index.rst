@@ -25,7 +25,7 @@ How to build this documentation
    The encoder takes environmental sensor data and writes it into a message
    that can be opened and read automatically by most mobile phones.
 
-.. spec:: Specification of the message
+.. spec:: NDEF message
    :id: CODEC_SPEC_1
    :links: CODEC_REQ_1
 
