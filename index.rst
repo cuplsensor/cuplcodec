@@ -17,11 +17,28 @@ Plotsensor Codec Documentation
 
 How to build this documentation
 --------------------------------
-.. req:: A normal requirement
-   :id: EX_REQ_1
+
+.. req:: Encoder writes a message
+   :id: CODEC_REQ_1
    :status: open
 
-   This is how a normal requirement looks like
+   The encoder takes environmental sensor data and writes it into a message
+   that can be opened and read automatically by most mobile phones.
+
+.. spec:: Specification of the message
+   :id: CODEC_SPEC_1
+   :links: CODEC_REQ_1
+
+   The message format is NDEF. This is used to transmit data to a phone using NFC.
+
+   Outgoing links of this spec: :need_outgoing:`CODEC_SPEC_1`.
+
+.. feature::
+   :id: CODEC_FEATURE_1
+   :links: CODEC_SPEC_1
+
+   The NDEF message has one URL record.
+
 
 
 Indices and tables
