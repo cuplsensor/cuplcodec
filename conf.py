@@ -54,7 +54,7 @@ extensions = [
     'sphinx.ext.napoleon',
     'breathe',
     'sphinx_rtd_theme',
-    'sphinxcontrib-plantuml',
+    'sphinxcontrib.plantuml',
     'sphinxcontrib.needs'
 ]
 
