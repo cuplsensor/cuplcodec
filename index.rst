@@ -39,31 +39,25 @@ How to build this documentation
    The message format is NDEF. This is used to transmit data to a phone using NFC.
    An NDEF message has 3 fields: Type, Length and Value.
 
-   +-----------+------+------------------+--------------------+
-   | NDEF Msg. | Type | Length           | Value              |
-   +-----------+------+------+-----+-----+--------------------+
-   | Byte      | 0    | 1    | 2   | 3   | 4...               |
-   +-----------+------+------+-----+-----+--------------------+
-   | Data      | 0x03 | 0xFF | MSB | LSB |:need:`CODEC_SPEC_3`|
-   +-----------+------+------+-----+-----+--------------------+
+   +-----------+------------------------+----------------------+----------------------+
+   | NDEF Msg. | :need:`CODEC_FEAT_1`   | :need:`CODEC_FEAT_3` | Value                |
+   +-----------+------------------------+------+-----+---------+----------------------+
+   | Byte      | 0                      | 1    | 2   | 3       | 4...                 |
+   +-----------+------------------------+------+-----+---------+----------------------+
+   | Data      | 0x03                   | 0xFF | MSB | LSB     | :need:`CODEC_SPEC_3` |
+   +-----------+------------------------+------+-----+---------+----------------------+
 
 .. feat:: NDEF message type
-   :id: CODEC_FEATURE_1
+   :id: CODEC_FEAT_1
    :links: CODEC_SPEC_1
 
    The message type is 0x03, corresponding to a known type.
 
 .. feat:: NDEF message length
-   :id: CODEC_FEATURE_3
+   :id: CODEC_FEAT_3
    :links: CODEC_SPEC_1
 
    The message length is 3 bytes.
-
-.. feat:: NDEF message value
-   :id: CODEC_FEATURE_4
-   :links: CODEC_SPEC_1
-
-   The value contains one NDEF record.
 
 .. spec:: NDEF URL record
    :id: CODEC_SPEC_3
