@@ -30,22 +30,55 @@ How to build this documentation
    :links: CODEC_REQ_3
 
    The encoder takes environmental sensor data and writes it into a message
-   that can be opened and read automatically by most mobile phones.
+   that is opened and read automatically by most mobile phones.
 
 .. spec:: Message format
    :id: CODEC_SPEC_1
    :links: CODEC_REQ_1
 
    The message format is NDEF. This is used to transmit data to a phone using NFC.
+   An NDEF message has 3 fields: Type, Length and Value.
 
    Outgoing links of this spec: :need_outgoing:`CODEC_SPEC_1`.
 
-.. feat::
+.. feat:: NDEF message type
    :id: CODEC_FEATURE_1
+   :links: CODEC_SPEC_1
+
+   The message type is 0x03, corresponding to a known type.
+
+.. feat:: NDEF message length
+   :id: CODEC_FEATURE_3
+   :links: CODEC_SPEC_1
+
+   The message length is 3 bytes.
+
+.. feat:: NDEF message value
+   :id: CODEC_FEATURE_4
+   :links: CODEC_SPEC_1
+
+   The value contains one NDEF record.
+
+.. spec:: NDEF URL record
+   :id: CODEC_SPEC_3
    :links: CODEC_SPEC_1
    :status: open
 
-   The NDEF message has one URL record.
+   Sensor data are stored in a URL record. As it is the only one in the message and of a known type,
+   a phone opens the URL automatically in its default web browser.
+
++-----------+------+------------------+-----------------------------------------------------------------------------+
+| NDEF Msg. | Type | Length           | Value                                                                       |
++-----------+------+------------------+----------------------------------------------------------------+------------+
+| NDEF Rec. |                         | Header                                                         | Payload    |
++-----------+------+------+-----+-----+--------+----------+---------------+----------------+-----------+------------+
+|           |      |      |     |     | Rec Hdr| Type Len | `Payload Length`_              | Rec. Type | URL Prefix |
++-----------+------+------+-----+-----+--------+----------+-------+-------+-------+--------+-----------+------------+
+| Byte      | 0    | 1    | 2   | 3   | 4      | 5        | 6     | 7     | 8     | 9      | 10        | 11         |
++-----------+------+------+-----+-----+--------+----------+-------+-------+-------+--------+-----------+------------+
+| Data      | 0x03 | 0xFF | MSB | LSB |        | 0x01     | PL[3] | PL[2] | PL[1] | PL[0]  | 0x55      | 0x03       |
++-----------+------+------+-----+-----+--------+----------+---+---+---+---+-------+--------+-----------+------------+
+
 
 .. req:: Decoder parses URL parameters
    :id: CODEC_REQ_2
@@ -60,7 +93,7 @@ How to build this documentation
    :status: open
    :links: CODEC_REQ_1
 
-.. spec:: Customisable NDEF fields
+.. spec:: Customisable NDEF properties
    :id: CODEC_SPEC_2
    :status: open
    :links: CODEC_REQ_4
@@ -74,7 +107,7 @@ How to build this documentation
    The base URL can be changed. It is recommended to keep this as short as possible to
    allow more room for environmental sensor data.
 
-
+..
 
 
 
