@@ -57,7 +57,7 @@ How to build this documentation
    :id: CODEC_FEAT_3
    :links: CODEC_SPEC_1
 
-   The message length is 3 bytes.
+   The message length is 3 bytes. It cannot change after the message has been created.
 
 .. spec:: NDEF URL record
    :id: CODEC_SPEC_3
@@ -107,9 +107,38 @@ How to build this documentation
    The base URL can be changed. It is recommended to keep this as short as possible to
    allow more room for environmental sensor data.
 
-..
+.. req:: Encoder must run on a low cost MSP430.
+   :id: CODEC_REQ_5
+   :status: open
 
+   The encoder must run with minimal resources and without an RTOS.
 
+.. spec:: Features for low resource use.
+   :id: CODEC_SPEC_4
+   :status: open
+   :links: CODEC_REQ_5
+
+.. feat:: Only static memory allocation is used.
+   :id: CODEC_FEAT_4
+   :status: open
+   :links: CODEC_SPEC_4
+
+   The stdio library needed for malloc takes a lot of available memory on the MSP430, so it is not used.
+   The size of the circular buffer is fixed at compile time (move).
+
+.. feat:: Encoder is written in C.
+   :id: CODEC_FEAT_6
+   :status: open
+   :links: CODEC_SPEC_4
+
+   There is little benefit to C++ given the low complexity of the encoder.
+
+.. req:: Encoder does not require an absolute timestamp
+   :id: CODEC_REQ_7
+   :status: complete
+   :links: CODEC_REQ_1
+
+   The base URL output from the encoder does not feature an absolute timestamp. 
 
 Indices and tables
 ==================
