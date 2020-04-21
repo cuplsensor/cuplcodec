@@ -5,6 +5,9 @@ Plotsensor Codec Documentation
 .. toctree::
    :maxdepth: 2
 
+   docs/specification/requirements
+   docs/specification/specs
+   docs/specification/features
    docs/tutorial/index
    docs/tutorial/encoder
    docs/tutorial/decoder
