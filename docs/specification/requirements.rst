@@ -19,6 +19,8 @@ Requirements
     .. uml::
        :scale: 50 %
        :align: left
+
+       @startuml
        skinparam componentStyle uml2
 
        interface "sample.h" as SMPL
@@ -29,6 +31,7 @@ Requirements
        NV -- [Encoder]
 
        [Encoder] --( NT3H
+       @enduml
 
 .. req:: Decoder parses URL parameters
    :id: CODEC_REQ_2
