@@ -17,18 +17,18 @@ Requirements
    that is opened and read automatically by most mobile phones.
 
     .. uml::
-    :scale: 50 %
-    :align: left
-    skinparam componentStyle uml2
+       :scale: 50 %
+       :align: left
+       skinparam componentStyle uml2
 
-    interface "sample.h" as SMPL
-    interface "nvstruct" as NV
-    interface "nt3h.h" as NT3H
+       interface "sample.h" as SMPL
+       interface "nvstruct" as NV
+       interface "nt3h.h" as NT3H
 
-    SMPL -- [Encoder]
-    NV -- [Encoder]
+       SMPL -- [Encoder]
+       NV -- [Encoder]
 
-    [Encoder] --( NT3H
+       [Encoder] --( NT3H
 
 .. req:: Decoder parses URL parameters
    :id: CODEC_REQ_2
