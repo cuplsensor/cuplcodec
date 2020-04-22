@@ -71,7 +71,7 @@ Specifications
 
 .. spec:: Zero user configuration
    :id: CODEC_SPEC_6
-   :links: CODEC_REQ_80
+   :links: CODEC_REQ_7
 
    The sensor must run without input from the user. This includes after the Power-on-Reset
    when a battery is replaced.
@@ -80,5 +80,5 @@ Specifications
    :id: CODEC_SPEC_7
    :links: CODEC_REQ_10
 
-   Informatio nsuch as time interval mo
+   Informatio nsuch as time interval between samples must be conveyed in the URL.
 

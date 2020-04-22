@@ -24,7 +24,7 @@ NDEF record
    :status: open
    :links: CODEC_SPEC_3
 
-   Length of the NDEF record payload length in bytes. Similar to :need:`CODEC_FEAT_3`,
+   Length of the NDEF record payload length in bytes. Similar to :need:`CODEC_FEAT_2`,
    it cannot change after the record has been created.
 
 .. feat:: Type length
