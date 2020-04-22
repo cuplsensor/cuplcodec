@@ -68,3 +68,17 @@ Specifications
    :status: open
    :links: CODEC_REQ_5
 
+
+.. spec:: Zero user configuration
+   :id: CODEC_SPEC_6
+   :links: CODEC_REQ_80
+
+   The sensor must run without input from the user. This includes after the Power-on-Reset
+   when a battery is replaced.
+
+.. spec:: URL stores all required data.
+   :id: CODEC_SPEC_7
+   :links: CODEC_REQ_10
+
+   Informatio nsuch as time interval mo
+

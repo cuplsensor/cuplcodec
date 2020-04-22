@@ -44,6 +44,13 @@ NDEF record
 Other
 ------
 
+.. feat:: No absolute timestamp
+   :id: CODEC_REQ_7
+   :status: complete
+   :links: CODEC_SPEC_6
+
+   The base URL output from the encoder does not feature an absolute timestamp.
+
 .. feat:: Base URL can be modified.
    :id: CODEC_FEAT_2
    :links: CODEC_SPEC_2
@@ -65,3 +72,34 @@ Other
    :links: CODEC_SPEC_4
 
    There is little benefit to C++ given the low complexity of the encoder.
+
+.. feat:: Time interval is conveyed in the URL.
+   :id: CODEC_FEAT_10
+   :status: complete
+   :links: CODEC_SPEC_6
+
+   The encoder will convert an integer time sample interval in minutes to a base64 string. Decoder
+   performs the reverse operation.
+
+.. feat:: The status string can be updated after startup.
+   :id: CODEC_FEAT_83
+
+   After startup the status string will sometimes need to be updated. To do this, there should be a function for
+   writing the first part few blocks in the NDEF message (up to the start of the circular buffer). It is
+   intended that this function not be called frequently (once per day or less).
+
+
+.. feat:: The encoder only writes the full-length NDEF message once upon startup.
+   :id: CODEC_FEAT_82
+   :status: complete
+   :links: CODEC_REQ_1
+
+   To minimise power consumption and reduce flash wear, the entire NDEF message is written once.
+
+.. feat:: Frequently changing data are written to a circular buffer.
+
+.. feat:: The encoder reads and writes a maximum of two circular buffer blocks at a time.
+   :id: CODEC_FEAT_8
+
+   This reduces the requirement for RAM on the MSP430 and reduces power consumption (it takes time to write
+   EEPROM blocks).
