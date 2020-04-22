@@ -17,7 +17,7 @@ Requirements
    that is opened and read automatically by most mobile phones.
 
 .. req:: Encoder message is written blockwise to EEPROM
-   :id: CODEC_REQ_9
+   :id: CODEC_REQ_6
 
    The encoder does not output a 1000 character string. 1K of RAM is a lot for a
    microcontroller. Instead it is designed to output an I2C EEPROM, which is arranged into
@@ -38,7 +38,7 @@ Requirements
    The encoder must run with minimal resources and without an RTOS.
 
 .. req:: No configuration from the user
-   :id: CODEC_REQ_80
+   :id: CODEC_REQ_7
    :status: complete
 
    The encoder must not require any set up or configuration from the user.
