@@ -122,7 +122,7 @@ Low resource utilisation
    a form of `Wear levelling <https://en.wikipedia.org/wiki/Wear_leveling>`.
 
 .. feat:: The encoder reads and writes a maximum of two circular buffer blocks at a time.
-   :id: CODEC_FEAT_13
+   :id: CODEC_FEAT_16
    :status: complete
    :links: CODEC_SPEC_4, CODEC_SPEC_2, CODEC_SPEC_8
 
