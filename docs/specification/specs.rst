@@ -95,14 +95,9 @@ Specifications
    3. Cause of the most recent microcontroller reset
    4. Total number of resets (this may eventually loop back to 0).
 
-.. spec:: Circular buffer decoding and timestamping
+.. spec:: Circular buffer is decoded
    :id: CODEC_SPEC_10
    :links: CODEC_REQ_2
 
-   1. Circular buffer is unwrapped. Samples are put in order of recency.
-   2. Minutes elapsed since the most recent sample is extracted from the URL.
-   3. Current time (now in UTC) is determined.
-   4. The first sample is assigned a timestamp = now - minutes elapsed.
-   5. Minutes between samples is extracted from the URL. This is used to timestamp each sample
-   relative to the first.
+   The circular buffer is unwrapped and decoded. Each sample is given a timestamp.
 

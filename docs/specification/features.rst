@@ -44,13 +44,20 @@ NDEF record
 Other
 ------
 
-.. feat:: No absolute timestamp
+.. feat:: Samples are timestamped without an absolute timestamp
    :id: CODEC_FEAT_6
-   :status: complete
-   :links: CODEC_SPEC_6
+   :links: CODEC_SPEC_10, CODEC_SPEC_6
 
    The base URL output from the encoder cannot include an absolute timestamp. This would
-   need to be set by the user after power-on.
+   need to be set by the user after powering on the microcontroller that runs the encoder.
+
+   Instead, all samples are timestamped relative to the time that the encoder is run:
+   1. Samples are put in order of recency.
+   2. Minutes elapsed since the most recent sample is extracted from the URL.
+   3. Current time (now in UTC) is determined.
+   4. The first sample is assigned a timestamp = now - minutes elapsed.
+   5. Minutes between samples is extracted from the URL. This is used to timestamp each sample
+   relative to the first.
 
 .. feat:: Base URL can be modified.
    :id: CODEC_FEAT_7
