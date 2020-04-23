@@ -110,7 +110,7 @@ Low resource utilisation
    parts of the message are modified at a time.
 
 .. feat:: Frequently changing data are written to a circular buffer.
-   :id: CODEC_FEAT_14
+   :id: CODEC_FEAT_15
    :status: complete
    :links: CODEC_SPEC_2
 
