@@ -65,16 +65,22 @@ Encoder
 
    Status information changes infrequently compared to environmental sensor data.
 
+.. req:: Fixed time interval between samples
+   :id: CODEC_REQ_12
+   :status: complete
+
+   The time interval between samples is assumed to be a constant. This removes the need to add
+   timing information to each sample.
 
 Decoder
 --------
 
-.. req:: Decoder parses URL parameters
+.. req:: Decoder outputs a timestamped sequence of samples
    :id: CODEC_REQ_2
    :status: open
 
-   The decoder performs the reverse operation of the encoder. It takes parameters from the URL
-   and returns environmental sensor data and metadata from them.
+   The decoder outputs a list of samples from the URL. Each will have a timestamp precise to one minute.
+   This corresponds to the time that the sample was added to the circular buffer.
 
 
 

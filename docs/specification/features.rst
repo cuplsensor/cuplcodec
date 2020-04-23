@@ -49,7 +49,8 @@ Other
    :status: complete
    :links: CODEC_SPEC_6
 
-   The base URL output from the encoder does not feature an absolute timestamp.
+   The base URL output from the encoder cannot include an absolute timestamp. This would
+   need to be set by the user after power-on.
 
 .. feat:: Base URL can be modified.
    :id: CODEC_FEAT_7
@@ -96,7 +97,7 @@ Low resource utilisation
 .. feat:: Time interval is conveyed in the URL.
    :id: CODEC_FEAT_10
    :status: complete
-   :links: CODEC_SPEC_6
+   :links: CODEC_SPEC_6, CODEC_SPEC_10
 
    The encoder will convert an integer time sample interval in minutes to a base64 string. Decoder
    performs the reverse operation.
