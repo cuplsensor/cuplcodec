@@ -51,12 +51,16 @@ Other
    The base URL output from the encoder cannot include an absolute timestamp. This would
    need to be set by the user after powering on the microcontroller that runs the encoder.
 
-   Instead, all samples are timestamped relative to the time that the encoder is run:
-   1. Samples are put in order of recency.
-   2. Minutes elapsed since the most recent sample is extracted from the URL.
-   3. Current time (now in UTC) is determined.
-   4. The first sample is assigned a timestamp = now - minutes elapsed.
-   5. Minutes between samples is extracted from the URL. This is used to timestamp each sample
+   All samples are timestamped relative to the time that the decoder is run. It
+   is assumed that the time difference between when the encoded message is read (by a phone) and
+   the time the decoder is run (on a web server) is much less than one minute.
+
+   The timestamping algorithm is as follows:
+   #. Samples are put in order of recency.
+   #. Minutes elapsed since the most recent sample is extracted from the URL.
+   #. Current time (now in UTC) is determined.
+   #. The first sample is assigned a timestamp = now - minutes elapsed.
+   #. Minutes between samples is extracted from the URL. This is used to timestamp each sample
    relative to the first.
 
 .. feat:: Base URL can be modified.
