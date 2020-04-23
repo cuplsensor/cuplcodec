@@ -56,29 +56,43 @@ Specifications
 
    TNF and flags for the NDEF record.
 
-.. spec:: Customisable NDEF properties
-   :id: CODEC_SPEC_2
-   :status: open
-   :links: CODEC_REQ_4
-
-   The NDEF message can be customised in several ways.
-
-.. spec:: Features for low resource use.
+.. spec:: Features for low memory utilisation
    :id: CODEC_SPEC_4
    :status: open
    :links: CODEC_REQ_5
 
+.. spec:: Features to reduce memory wear
+   :id: CODEC_SPEC_2
+   :status: open
+   :links: CODEC_REQ_8
+
+.. spec:: Features for low power consumption
+   :id: CODEC_SPEC_8
+   :status: open
+   :links: CODEC_REQ_9
 
 .. spec:: Zero user configuration
    :id: CODEC_SPEC_6
    :links: CODEC_REQ_7
 
-   The sensor must run without input from the user. This includes after the Power-on-Reset
+   The encoder must run without input from the user. This includes after the Power-on-Reset
    when a battery is replaced.
 
 .. spec:: URL stores all required data.
    :id: CODEC_SPEC_7
    :links: CODEC_REQ_10
 
-   Informatio nsuch as time interval between samples must be conveyed in the URL.
+   All data required by the decoder must be conveyed in the URL. This includes the time interval
+   between samples, the circular buffer format and the encoder version number.
+
+.. spec:: URL status information
+   :id: CODEC_SPEC_9
+   :links: CODEC_REQ_11
+
+   Status information will include
+   1. State of the circular buffer (how many times it has looped back to the start).
+   2. Battery voltage
+   3. Cause of the most recent microcontroller reset
+   4. Total number of resets (this may eventually loop back to 0).
+
 
