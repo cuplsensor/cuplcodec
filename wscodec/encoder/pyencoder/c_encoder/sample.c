@@ -259,7 +259,7 @@ int sample_push(int meas1, int meas2)
 
       md5length = smplhist_md5(lensmpls, nv.usehmac, urlstatus.loopcount, urlstatus.resetsalltime, urlstatus.batv_resetcause, cursorpos);
 
-      // 3 samples (6 bytes) per 8 base64 bytes.
+      // 2 samples (6 bytes) per 8 base64 bytes.
       Base64encode(encodedoctet, (char *)samplebuf, sizeof(samplebuf));
       // 9 bytes per 12 base64 bytes.
       Base64encode(endstop.md5lenb64, (char *)&md5length, sizeof(md5length));

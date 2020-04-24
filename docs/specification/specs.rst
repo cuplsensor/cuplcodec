@@ -44,11 +44,54 @@ Specifications
 
    **NDEF record payload continued**
 
-   +-----------+-------------+-------------+--------------------+-----------------+
-   | Desc.     | `Version`_  | `Status`_   | CircBufferStart    | Circular Buffer |
-   +-----------+-------------+-------------+--------------------+-----------------+
-   | Data      | &v=01       | &x=AAABALEK | &q=                | MDaWMDaW...     |
-   +-----------+-------------+-------------+--------------------+-----------------+
+   +-----------+-------------+-------------+--------------------+-----------------------+
+   | Desc.     | `Version`_  | `Status`_   | CircBufferStart    | :need:`CODEC_SPEC_12` |
+   +-----------+-------------+-------------+--------------------+-----------------------+
+   | Data      | &v=01       | &x=AAABALEK | &q=                | MDaWMDaW...           |
+   +-----------+-------------+-------------+--------------------+-----------------------+
+
+.. spec:: Circular Buffer
+   :id: CODEC_SPEC_12
+   :links: CODEC_SPEC_3
+
+   The circular buffer starts on a block boundary and occupies an integer number of 16-byte blocks.
+
+   1K of EEPROM is enough for 32 blocks.
+
+   Only two blocks are edited in RAM and written to EEPROM in any transaction:
+
+   +----------------------------+------------------------------+
+   | Cursor Block               | Next Block                   |
+   +---------------+------------+------------+-----------------+
+   | Cursor Octet  | Endstop Octets (0,1)    | Oldest Octet    |
+   +---------------+-------------------------+-----------------+
+   | S1    | S0    |                         |  SN    | SN-1   |
+   +---------------+-------------------------+-----------------+
+   |R3 |R2 |R1 |R0 |                         |RL|RL-1|RL-2|RL-3|
+   +---------------+-------------------------+-----------------+
+
+   Blocks are subdivided into two 8-byte octets. Each octet holds 2 sensor samples.
+
+   Each sample is a pair of base64 encoded sensor readings.
+
+   New sensor readings are written to Cursor Octet. Each time this occurs, contents of the subsequent 2 endstop
+   octets are updated.
+
+   When Cursor Octet is full, the cursor and endstop are moved forward:
+
+   +------------------------------+------------------------------+
+   | Cursor Block                 | Next Block                   |
+   +---------------+--------------+------------------------------+
+   | Octet         | Cursor Octet | Endstop Octets (2)           |
+   +---------------+-------+------+------------------------------+
+   | S2    | S1    | S0    | xxxx |                              |
+   +---------------+-------+-------------------------------------+
+   |R5 |R4 |R3 |R2 |R1 |R0 |                                     |
+   +---------------+-------+-------------------------------------+
+
+   The previous oldest octet is overwritten. Note there can be a gap between the most recent sample and
+   the start of the endstop octets. This is zero padded. The padding will not be decoded because the number
+   of valid samples in the buffer is included in the endstop.
 
 .. spec:: TNF + flags
    :id: CODEC_SPEC_5

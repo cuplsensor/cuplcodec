@@ -15,7 +15,7 @@ NDEF message
    :links: CODEC_SPEC_1
 
    Message length in bytes as a 16-bit value.
-   
+
    Byte 2 is unused so 0xFF.
    Byte 1 holds the Most Significant 8-bits.
    Byte 0 holds the Least Significant 8 bits.
@@ -46,6 +46,17 @@ NDEF record
    :links: CODEC_SPEC_3
 
    NDEF record type is 0x55, which corresponds to a URI record.
+
+Circular Buffer
+~~~~~~~~~~~~~~~~~
+
+.. feat:: Adjustable circular buffer length.
+   :id: CODEC_FEAT_23
+   :status: complete
+   :links: CODEC_SPEC_12
+
+   The length of the circular buffer can be adjusted. This has to be done with a compiler parameter,
+   because due to :need:`CODEC_FEAT_8`.
 
 Flags + TNF
 ~~~~~~~~~~~~
@@ -151,7 +162,6 @@ Low resource utilisation
    :links: CODEC_SPEC_4
 
    The stdio library needed for malloc takes a lot of available memory on the MSP430, so it is not used.
-   The size of the circular buffer is fixed at compile time (move).
 
 .. feat:: Encoder is written in C.
    :id: CODEC_FEAT_9
