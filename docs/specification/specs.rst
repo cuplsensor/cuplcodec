@@ -64,20 +64,20 @@ Specifications
    | Cursor Block               | Next Block                   |
    +---------------+------------+------------+-----------------+
    | Cursor Octet  | Endstop Octets (0,1)    | Oldest Octet    |
-   +-------+-------+-------------------------+-----------------+
+   +-------+-------+-------------------------+-------+---------+
    | S1    | S0    |                         |  SN   | SN-1    |
    +---+---+---+---+-------------------------+--+----+----+----+
    |R3 |R2 |R1 |R0 |                         |RL|RL-1|RL-2|RL-3|
    +---+---+---+---+-------------------------+--+----+----+----+
 
-   Blocks are subdivided into two 8-byte octets. Each octet holds 2 sensor samples.
+   Blocks are subdivided into two 8-byte octets. Each octet holds 2 samples.
 
    Each sample is a pair of base64 encoded sensor readings.
 
    New sensor readings are written to Cursor Octet. Each time this occurs, contents of the subsequent 2 endstop
    octets are updated.
 
-   When Cursor Octet is full, the cursor and endstop are moved forward:
+   When Cursor Octet is full, both it and the endstop are moved forward when the next sensor reading is added:
 
    +------------------------------+------------------------------+
    | Cursor Block                 | Next Block                   |
