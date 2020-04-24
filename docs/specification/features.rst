@@ -49,33 +49,54 @@ Flags + TNF
    :status: complete
    :links: CODEC_SPEC_5
 
+   Message Begin bit denotes the first record in an NDEF message.
+
+   This is set. The record is the first in the message.
+
 .. feat:: ME
    :id: CODEC_FEAT_18
    :status: complete
    :links: CODEC_SPEC_5
+
+   Message End bit denotes the last record in an NDEF message.
+
+   This is set. The record is the last in the message.
 
 .. feat:: CF
    :id: CODEC_FEAT_19
    :status: complete
    :links: CODEC_SPEC_5
 
+   Chunk Flag bit denotes a message comprised of several records chunked together (concatenated).
+
+   This is cleared. There is only one record in the message.
+
 .. feat:: SR
    :id: CODEC_FEAT_20
    :status: complete
    :links: CODEC_SPEC_5
 
-   Short Record bit.
+   Short Record bit. When set :need:`CODEC_FEAT_3` just one byte long. When cleared it is 4 bytes long.
+
+   This is cleared.
 
 .. feat:: IL
    :id: CODEC_FEAT_21
    :status: complete
    :links: CODEC_SPEC_5
 
+   ID Length bit. When set the ID length field is present. When cleared it is omitted.
+
+   This is cleared.
+
 .. feat:: TNF
    :id: CODEC_FEAT_22
    :status: complete
    :links: CODEC_SPEC_5
 
+   Type Name Format field. A 3-bit value that describes the record type.
+
+   This is set to 0x03, which corresponds to an Absolute URI Record.
 
 Other
 ------
