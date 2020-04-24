@@ -14,7 +14,13 @@ NDEF message
    :id: CODEC_FEAT_2
    :links: CODEC_SPEC_1
 
-   The message length is 3 bytes. It cannot change after the message has been created.
+   Message length in bytes as a 16-bit value.
+   
+   Byte 2 is unused so 0xFF.
+   Byte 1 holds the Most Significant 8-bits.
+   Byte 0 holds the Least Significant 8 bits.
+
+   There is no function to change this after the message has been created.
 
 NDEF record
 ^^^^^^^^^^^^
@@ -76,9 +82,9 @@ Flags + TNF
    :status: complete
    :links: CODEC_SPEC_5
 
-   Short Record bit. When set :need:`CODEC_FEAT_3` just one byte long. When cleared it is 4 bytes long.
+   Short Record bit. When set :need:`CODEC_FEAT_3` one byte long. When cleared it is 4 bytes long.
 
-   This is cleared.
+   This is cleared, because the message is longer than 255 bytes.
 
 .. feat:: IL
    :id: CODEC_FEAT_21
