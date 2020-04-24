@@ -17,7 +17,7 @@ NDEF message
    The message length is 3 bytes. It cannot change after the message has been created.
 
 NDEF record
---------------
+^^^^^^^^^^^^
 
 .. feat:: Payload length
    :id: CODEC_FEAT_3
