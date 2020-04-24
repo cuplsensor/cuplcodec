@@ -41,6 +41,42 @@ NDEF record
 
    NDEF record type is 0x55, which corresponds to a URI record.
 
+Flags + TNF
+~~~~~~~~~~~~
+
+.. feat:: MB
+   :id: CODEC_FEAT_17
+   :status: complete
+   :links: CODEC_SPEC_5
+
+.. feat:: ME
+   :id: CODEC_FEAT_18
+   :status: complete
+   :links: CODEC_SPEC_5
+
+.. feat:: CF
+   :id: CODEC_FEAT_19
+   :status: complete
+   :links: CODEC_SPEC_5
+
+.. feat:: SR
+   :id: CODEC_FEAT_20
+   :status: complete
+   :links: CODEC_SPEC_5
+
+   Short Record bit.
+
+.. feat:: IL
+   :id: CODEC_FEAT_21
+   :status: complete
+   :links: CODEC_SPEC_5
+
+.. feat:: TNF
+   :id: CODEC_FEAT_22
+   :status: complete
+   :links: CODEC_SPEC_5
+
+
 Other
 ------
 
