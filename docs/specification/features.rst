@@ -253,7 +253,7 @@ Flags + TNF
 Other
 ------
 
-.. feat:: There is no absolute timestamp
+.. feat:: No absolute timestamp
    :id: CODEC_FEAT_27
    :links: CODEC_SPEC_6, CODEC_SPEC_10
 
@@ -276,7 +276,16 @@ Other
    #. :need:`CODEC_FEAT_10` between samples is extracted from the URL. This is used to timestamp each sample
    relative to the first.
 
-.. feat:: Base URL can be modified.
+.. feat:: Self containment
+   :id: CODEC_FEAT_38
+   :status: complete
+
+   The URL contains all information needed by the decoder. There is no need to
+   store and retrieve data from an external source (database).
+
+   By consequence one decoder instance can be substituted for another.
+
+.. feat:: Base URL
    :id: CODEC_FEAT_7
 
    The base URL can be changed. It is recommended to keep this as short as possible to

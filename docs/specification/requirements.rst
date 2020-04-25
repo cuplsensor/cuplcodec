@@ -51,21 +51,13 @@ Encoder
 
    The encoder must not require any set up or configuration from the user.
 
-.. req:: Minimise EEPROM wear.
+.. req:: Message is written to EEPROM
    :id: CODEC_REQ_8
    :status: complete
+   :links: CODEC_REQ_1
 
    The encoder must not write to the same EEPROM block too frequently. Each has a write endurance of
    roughly 100,000 cycles.
-
-.. req:: Self containment
-   :id: CODEC_REQ_10
-   :status: complete
-
-   The URL must contain all information needed by the decoder. There will be no need to
-   store and retrieve data from an external source (database).
-
-   By consequence one decoder instance can be substituted for another.
 
 .. req:: Status information
    :id: CODEC_REQ_11
@@ -82,7 +74,7 @@ Decoder
 .. req:: Decoder outputs a timestamped sequence of samples
    :id: CODEC_REQ_2
    :status: open
-   :links: CODEC_REQ_1
+   :links: CODEC_REQ_3
 
    The decoder outputs a list of samples from the URL. Each will have a timestamp precise to one minute.
    This corresponds to the time that the sample was added to the circular buffer.
