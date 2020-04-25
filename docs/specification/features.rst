@@ -279,6 +279,7 @@ Other
 .. feat:: Self containment
    :id: CODEC_FEAT_38
    :status: complete
+   :links: CODEC_SPEC_3
 
    The URL contains all information needed by the decoder. There is no need to
    store and retrieve data from an external source (database).
@@ -287,6 +288,7 @@ Other
 
 .. feat:: Base URL
    :id: CODEC_FEAT_7
+   :links: CODEC_SPEC_3
 
    The base URL can be changed. It is recommended to keep this as short as possible to
    allow more room for environmental sensor data.
@@ -339,7 +341,7 @@ Low resource utilisation
 .. feat:: Frequently changing data are written to a circular buffer.
    :id: CODEC_FEAT_15
    :status: complete
-   :links: CODEC_SPEC_2
+   :links: CODEC_SPEC_2, CODEC_SPEC_12
 
    The list of environmental sensor readings (and its HMAC) will change at an interval of
    time interval minutes. If the time interval is set to 5 minutes, 100K writes will be

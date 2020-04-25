@@ -199,13 +199,6 @@ Specifications
    The encoder must run without input from the user. This includes after the Power-on-Reset
    when a battery is replaced.
 
-.. spec:: URL stores all required data.
-   :id: CODEC_SPEC_7
-   :links: CODEC_REQ_10
-
-   All data required by the decoder must be conveyed in the URL. This includes the time interval
-   between samples, the circular buffer format and the encoder version number.
-
 .. spec:: URL status information
    :id: CODEC_SPEC_9
    :links: CODEC_REQ_11
