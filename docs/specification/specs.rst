@@ -77,7 +77,7 @@ Specifications
    simultaneously by a temperature sensor and a humidity sensor.
 
    New sensor readings are written to Cursor Octet. Each time this occurs, the subsequent
-   :need:`endstop octets are updated.
+   :need:`CODEC_SPEC_13` is updated.
 
    When Cursor Octet is full, both it and the endstop are moved forward when the next sensor reading is added:
 
