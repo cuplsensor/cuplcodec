@@ -255,7 +255,7 @@ Other
 
 .. feat:: Decoded samples are timestamped precise to one minute
    :id: CODEC_FEAT_6
-   :links: CODEC_SPEC_10
+   :links: CODEC_SPEC_10, CODEC_FEAT_26
 
    All samples are timestamped relative to the time that the decoder is run. It
    is assumed that the time difference between when the encoded message is read (by a phone) and

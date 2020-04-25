@@ -116,7 +116,7 @@ Specifications
    valid samples it contains. These data are appended to the circular buffer to meet
    :need:`CODEC_SPEC_2`.
 
-.. feat:: Elapsed b64
+.. spec:: Elapsed b64
    :id: CODEC_SPEC_17
    :status: complete
    :links: CODEC_SPEC_13
