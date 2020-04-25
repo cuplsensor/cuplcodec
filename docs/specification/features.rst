@@ -170,7 +170,7 @@ Circular Buffer
    Populated from :cpp:var:`lensmpls`.
 
 .. feat:: Elapsed time update
-   :id: CODEC_FEAT_38
+   :id: CODEC_FEAT_39
    :status: complete
    :links: CODEC_SPEC_17
 
