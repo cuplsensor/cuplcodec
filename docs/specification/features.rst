@@ -58,6 +58,46 @@ Circular Buffer
    The length of the circular buffer can be adjusted. This has to be done with a compiler parameter,
    because due to :need:`CODEC_FEAT_8`.
 
+.. feat:: MD5
+   :id: CODEC_FEAT_24
+   :status: complete
+   :links: CODEC_SPEC_14
+
+   Least significant 7 bytes from the hash of all samples in the buffer. If HMAC is enabled, this
+   will be an MD5-HMAC hash. If not, it is MD5 only.
+
+.. feat:: LengthSamples
+   :id: CODEC_FEAT_25
+   :status: complete
+   :links: CODEC_SPEC_14
+
+   Number of valid samples in the circular buffer. This excludes samples used for padding.
+   Populated from :cpp:var:`lensmpls`.
+
+.. feat:: Elapsed
+   :id: CODEC_FEAT_26
+   :status: complete
+   :links: CODEC_SPEC_13
+
+   External to the codec will be a counter. This increases by 1 every minute after the previous
+   sample was written to the circular buffer. It resets to 0 when a new sample is written.
+
+   The decoder uses it to determine to the nearest minute when samples were collected. Without it,
+   the maximum resolution on the timestamp for each sample would be equal to the time interval, which
+   can be up to 60 minutes.
+
+   The unencoded minutes elapsed field is 16-bits wide. This is the same width
+   as the unencoded time interval in minutes field.
+
+   The minutes elapsed field occupies 4 bytes after base64 encoding, including one
+   padding byte. By convention this is 0x61 or '='.
+
+   The encoder replaces the padding byte with :c:macro:`ENDSTOP_BYTE`. This marks the last byte of the end stop.
+
+   The first step performed by the decoder is to locate :c:macro:`ENDSTOP_BYTE`. After it is
+   found, it can be replaced with an '=' before the minutes elapsed field is
+   decoded from base64 into its original 16-bit value.
+
 Flags + TNF
 ~~~~~~~~~~~~
 
@@ -118,12 +158,16 @@ Flags + TNF
 Other
 ------
 
-.. feat:: Samples are timestamped without an absolute timestamp
-   :id: CODEC_FEAT_6
-   :links: CODEC_SPEC_10, CODEC_SPEC_6
+.. feat:: There is no absolute timestamp
+   :id: CODEC_FEAT_27
+   :links: CODEC_SPEC_6, CODEC_SPEC_10
 
-   The base URL output from the encoder cannot include an absolute timestamp. This would
-   need to be set by the user after powering on the microcontroller that runs the encoder.
+   The URL from the encoder cannot include an absolute timestamp. This would
+   need to be set each time the microcontroller is powered on (e.g. when the battery is replaced).
+
+.. feat:: Samples are timestamped precise to one minute without an absolute timestamp
+   :id: CODEC_FEAT_6
+   :links: CODEC_SPEC_10
 
    All samples are timestamped relative to the time that the decoder is run. It
    is assumed that the time difference between when the encoded message is read (by a phone) and
@@ -131,7 +175,7 @@ Other
 
    The timestamping algorithm is as follows:
    #. Samples are put in order of recency.
-   #. Minutes elapsed since the most recent sample is extracted from the URL.
+   #. Minutes :need:`CODEC_FEAT_27` since the most recent sample is extracted from the URL.
    #. Current time (now in UTC) is determined.
    #. The first sample is assigned a timestamp = now - minutes elapsed.
    #. Minutes between samples is extracted from the URL. This is used to timestamp each sample

@@ -4,6 +4,7 @@ Specifications
 .. spec:: Message format
    :id: CODEC_SPEC_1
    :links: CODEC_REQ_1
+   :status: complete
 
    The message format is NDEF. This is used to transmit data to a phone using NFC.
    An NDEF message has 3 fields: Type, Length and Value.
@@ -19,7 +20,7 @@ Specifications
 .. spec:: NDEF URL record
    :id: CODEC_SPEC_3
    :links: CODEC_SPEC_1
-   :status: open
+   :status: complete
 
    Sensor data are stored in a URL record. As it is the only one in the message and of a known type,
    a phone opens the URL automatically in its default web browser.
@@ -52,13 +53,13 @@ Specifications
 
 .. spec:: Circular Buffer
    :id: CODEC_SPEC_12
+   :status: complete
    :links: CODEC_SPEC_3
 
    The circular buffer starts on a block boundary and occupies an integer number of 16-byte blocks.
-
    1K of EEPROM is enough for 32 blocks.
 
-   Only two blocks are edited in RAM and written to EEPROM in any transaction:
+   Only two blocks are edited in RAM at a time:
 
    +----------------------------+------------------------------+
    | Cursor Block               | Next Block                   |
@@ -72,10 +73,11 @@ Specifications
 
    Blocks are subdivided into two 8-byte octets. Each octet holds 2 samples.
 
-   Each sample is a pair of base64 encoded sensor readings.
+   Each sample is a pair of base64 encoded sensor readings. By default these will be captured
+   simultaneously by a temperature sensor and a humidity sensor.
 
-   New sensor readings are written to Cursor Octet. Each time this occurs, contents of the subsequent 2 endstop
-   octets are updated.
+   New sensor readings are written to Cursor Octet. Each time this occurs, the subsequent
+   :need:`endstop octets are updated.
 
    When Cursor Octet is full, both it and the endstop are moved forward when the next sensor reading is added:
 
@@ -93,8 +95,45 @@ Specifications
    the start of the endstop octets. This is zero padded. The padding will not be decoded because the number
    of valid samples in the buffer is included in the endstop.
 
+.. spec:: Endstop
+   :id: CODEC_SPEC_13
+   :status: complete
+   :links: CODEC_SPEC_12
+
+   The endstop occupies 2 octets (16 bytes) after the cursor octet. It is terminated with a unique character. This marks
+   the end of the circular buffer; the divide between new and old data. The decoder finds this in order to unwrap the circular buffer into a list of samples,
+   ordered newest to oldest.
+
+   +-------------+-------------------------------+--------------------------------------+
+   | Octet       | Endstop 0                     | Endstop 1                            |
+   +-------------+---+---+---+---+---+---+---+---+---+---+----+----+----+----+----+-----+
+   | Byte        | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15  |
+   +-------------+---+---+---+---+---+---+---+---+---+---+----+----+----+----+----+-----+
+   | Description | :need:`CODEC_SPEC_14`                           | Elapsed_ b64 | )   |
+   +-------------+-------------------------------------------------+--------------+-----+
+
+   The endstop contains data about the current state of the circular buffer, for example the number of
+   valid samples it contains. These data are put on the end of the circular buffer to meet
+   :need:`CODEC_SPEC_2`.
+
+.. spec:: MD5Length b64
+   :id: CODEC_SPEC_14
+   :status: complete
+   :links: CODEC_SPEC_13
+
+   This is a 9 byte structure that expands to 12 bytes after base64 encoding.
+
+   The unencoded structure is:
+
+   +-------------+---+---+---+---+---+---+---+---+-------------------+
+   | Byte        | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8                 |
+   +-------------+---+---+---+---+---+---+---+---+-------------------+
+   | Description | :need:`CODEC_FEAT_24`     | :need:`CODEC_FEAT_25` |
+   +-------------+---------------------------+-----------------------+
+
 .. spec:: TNF + flags
    :id: CODEC_SPEC_5
+   :status: complete
    :links: CODEC_SPEC_3
 
    TNF and flags for the NDEF record.

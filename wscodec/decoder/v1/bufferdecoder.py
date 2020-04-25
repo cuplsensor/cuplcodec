@@ -119,7 +119,7 @@ class BufferDecoder(MsgAuth):
             smpls = self.samplesfromchunk(chunk, rem)
             samplelist.extend(smpls)
 
-        # Process remaining full packets. These all contain 3 samples.
+        # Process remaining full packets. These all contain 2 samples.
         for i in range(full, 0, -1):
             chunk = linbuf8.pop()
             print(chunk)
