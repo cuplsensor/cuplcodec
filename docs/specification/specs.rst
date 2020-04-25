@@ -109,12 +109,36 @@ Specifications
    +-------------+---+---+---+---+---+---+---+---+---+---+----+----+----+----+-------------+-----+
    | Byte        | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14          | 15  |
    +-------------+---+---+---+---+---+---+---+---+---+---+----+----+----+----+-------------+-----+
-   | Description | :need:`CODEC_SPEC_14`                           | :need:`CODEC_FEAT_26` | )   |
+   | Description | :need:`CODEC_SPEC_14`                           | :need:`CODEC_SPEC_17` | )   |
    +-------------+-------------------------------------------------+-----------------------+-----+
 
    The endstop contains data about the current state of the circular buffer, for example the number of
    valid samples it contains. These data are appended to the circular buffer to meet
    :need:`CODEC_SPEC_2`.
+
+.. feat:: Elapsed b64
+   :id: CODEC_SPEC_17
+   :status: complete
+   :links: CODEC_SPEC_13
+
+   External to the codec is a counter. This increases by 1 every minute after the previous
+   sample was written to the circular buffer. It resets to 0 when a new sample is written.
+
+   The decoder uses it to determine to the nearest minute when samples were collected. Without it,
+   the maximum resolution on the timestamp for each sample would be equal to the time interval, which
+   can be up to 60 minutes.
+
+   The unencoded minutes elapsed field is 16-bits wide. This is the same width
+   as the unencoded time interval in minutes field.
+
+   The minutes elapsed field occupies 4 bytes after base64 encoding, including one
+   padding byte. By convention this is 0x61 or '='.
+
+   The encoder replaces the padding byte with :c:macro:`ENDSTOP_BYTE`. This marks the last byte of the end stop.
+
+   The first step performed by the decoder is to locate :c:macro:`ENDSTOP_BYTE`. After it is
+   found, it can be replaced with an '=' before the minutes elapsed field is
+   decoded from base64 into its original 16-bit value.
 
 .. spec:: MD5Length b64
    :id: CODEC_SPEC_14
@@ -138,7 +162,8 @@ Specifications
 
    This is a 6 byte structure that expands to 8 bytes after base64 encoding.
 
-   It corresponds to :cpp:member:`status`.
+   It corresponds to :cpp:member:`status`. Status information is used by the decoder
+   to determine if the encoder and its microcontroller host are running ok.
 
    The unencoded structure is:
 
@@ -180,7 +205,10 @@ Specifications
 .. spec:: Low memory utilisation
    :id: CODEC_SPEC_4
    :status: open
-   :links: CODEC_REQ_5
+   :links: CODEC_REQ_12
+
+   The encoder must use <2K of RAM and <16K of non-volatile FRAM, as can be found on an
+   MSP430FR2033 microcontroller.
 
 .. spec:: Reduce EEPROM wear
    :id: CODEC_SPEC_2
@@ -190,7 +218,9 @@ Specifications
 .. spec:: Low power consumption
    :id: CODEC_SPEC_8
    :status: open
-   :links: CODEC_REQ_9
+   :links: CODEC_REQ_12
+
+   The encoder will run for >2 years on a hardware powered by a CR1620 battery.
 
 .. spec:: Zero user configuration
    :id: CODEC_SPEC_6

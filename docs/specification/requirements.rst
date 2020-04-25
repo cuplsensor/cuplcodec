@@ -30,21 +30,6 @@ Encoder
    The encoder will run on an inexpensive microcontroller. This will be powered
    by a coin cell battery and should run for years.
 
-.. req:: Low memory utilisation
-   :id: CODEC_REQ_5
-   :status: open
-   :links: CODEC_REQ_12
-
-   The encoder must use <2K of RAM and <16K of non-volatile FRAM, as can be found on an
-   MSP430FR2033 microcontroller.
-
-.. req:: Minimal power consumption.
-   :id: CODEC_REQ_9
-   :status: complete
-   :links: CODEC_REQ_12
-
-   The encoder is designed to run on hardware that can run for years on a CR1620 battery.
-
 .. req:: No configuration from the user
    :id: CODEC_REQ_7
    :status: complete
@@ -58,13 +43,6 @@ Encoder
 
    The encoder must not write to the same EEPROM block too frequently. Each has a write endurance of
    roughly 100,000 cycles.
-
-.. req:: Status information
-   :id: CODEC_REQ_11
-   :status: complete
-
-   The URL must convey status information. This is used by the decoder and an end-user
-   to determine if the encoder and the microcontroller it is running on are ok.
 
    Status information changes infrequently compared to environmental sensor data.
 

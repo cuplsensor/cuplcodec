@@ -169,29 +169,22 @@ Circular Buffer
    Number of valid samples in the circular buffer. This excludes samples used for padding.
    Populated from :cpp:var:`lensmpls`.
 
-.. feat:: Elapsed
+.. feat:: Elapsed time update
+   :id: CODEC_FEAT_38
+   :status: complete
+   :links: CODEC_SPEC_17
+
+   There is a function for updating the elapsed time field, independent of the rest of the URL.
+   It is intended that this is called once for each minute after a sample is taken. The function
+   converts the elapsed time (as an integer) to base64.
+
+.. feat:: Elapsed time decode
    :id: CODEC_FEAT_26
    :status: complete
-   :links: CODEC_SPEC_13, CODEC_FEAT_6
+   :links: CODEC_SPEC_17
 
-   External to the codec will be a counter. This increases by 1 every minute after the previous
-   sample was written to the circular buffer. It resets to 0 when a new sample is written.
-
-   The decoder uses it to determine to the nearest minute when samples were collected. Without it,
-   the maximum resolution on the timestamp for each sample would be equal to the time interval, which
-   can be up to 60 minutes.
-
-   The unencoded minutes elapsed field is 16-bits wide. This is the same width
-   as the unencoded time interval in minutes field.
-
-   The minutes elapsed field occupies 4 bytes after base64 encoding, including one
-   padding byte. By convention this is 0x61 or '='.
-
-   The encoder replaces the padding byte with :c:macro:`ENDSTOP_BYTE`. This marks the last byte of the end stop.
-
-   The first step performed by the decoder is to locate :c:macro:`ENDSTOP_BYTE`. After it is
-   found, it can be replaced with an '=' before the minutes elapsed field is
-   decoded from base64 into its original 16-bit value.
+   The elapsed time in base64 is converted to an integer. This represents the number of minutes
+   since the most recent sample.
 
 Flags + TNF
 ~~~~~~~~~~~~
