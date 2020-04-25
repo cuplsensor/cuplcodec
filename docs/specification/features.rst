@@ -47,6 +47,101 @@ NDEF record
 
    NDEF record type is 0x55, which corresponds to a URI record.
 
+URL Parameters
+~~~~~~~~~~~~~~~
+.. feat:: Time interval
+   :id: CODEC_FEAT_10
+   :status: complete
+   :links: CODEC_SPEC_3, CODEC_FEAT_6
+
+   The time interval between samples must be constant.
+   The encoder converts an integer time sample interval in minutes to a base64 string.
+   Decoder performs the reverse operation.
+
+Status
+~~~~~~~~
+
+.. feat:: LoopCount
+   :id: CODEC_FEAT_28
+   :status: complete
+   :links: CODEC_SPEC_15
+
+   The number of times the circular buffer has looped from the last EEPROM block to
+   the first since initialisation. See :cpp:member:`loopcount`.
+
+.. feat:: ResetsAllTime
+   :id: CODEC_FEAT_29
+   :status: complete
+   :links: CODEC_SPEC_15
+
+   Number of times the microcontroller running the encoder has reset. Each reset causes a counter to be incremented in
+   non-volatile memory (:cpp:member:`resetsalltime`).
+
+.. feat:: BatV
+   :id: CODEC_FEAT_30
+   :status: complete
+   :links: CODEC_SPEC_15
+
+   The battery voltage in mV. See :cpp:member:`batvoltage`.
+
+ResetCause
+************
+
+.. feat:: BOR
+   :id: CODEC_FEAT_31
+   :status: complete
+   :links: CODEC_SPEC_16
+
+   Brown Out Reset flag.
+
+.. feat:: SVSH
+   :id: CODEC_FEAT_32
+   :status: complete
+   :links: CODEC_SPEC_16
+
+   Supply Voltage Supervisor error flag.
+
+.. feat:: WDT
+   :id: CODEC_FEAT_33
+   :status: complete
+   :links: CODEC_SPEC_16
+
+   Watchdog Timeout flag
+
+.. feat:: MISC
+   :id: CODEC_FEAT_34
+   :status: complete
+   :links: CODEC_SPEC_16
+
+   Miscellaneous Error flag
+
+.. feat:: LPM5WU
+   :id: CODEC_FEAT_35
+   :status: complete
+   :links: CODEC_SPEC_16
+
+   Low Power Mode x.5 wakeup flag.
+
+.. feat:: CLOCKFAIL
+   :id: CODEC_FEAT_36
+   :status: complete
+   :links: CODEC_SPEC_16
+
+   Clock failure flag.
+
+.. feat:: SCANTIMEOUT
+   :id: CODEC_FEAT_37
+   :status: complete
+   :links: CODEC_SPEC_16
+
+   Scan timeout flag.
+
+RstC
+^^^^^^
+
+Reset condition
+
+
 Circular Buffer
 ~~~~~~~~~~~~~~~~~
 
@@ -77,7 +172,7 @@ Circular Buffer
 .. feat:: Elapsed
    :id: CODEC_FEAT_26
    :status: complete
-   :links: CODEC_SPEC_13
+   :links: CODEC_SPEC_13, CODEC_FEAT_6
 
    External to the codec will be a counter. This increases by 1 every minute after the previous
    sample was written to the circular buffer. It resets to 0 when a new sample is written.
@@ -158,15 +253,6 @@ Flags + TNF
 Other
 ------
 
-.. feat:: Time interval
-   :id: CODEC_FEAT_10
-   :status: complete
-   :links: CODEC_FEAT_6,
-
-   The time interval between samples must be constant.
-   The encoder converts an integer time sample interval in minutes to a base64 string.
-   Decoder performs the reverse operation.
-
 .. feat:: There is no absolute timestamp
    :id: CODEC_FEAT_27
    :links: CODEC_SPEC_6, CODEC_SPEC_10
@@ -174,7 +260,7 @@ Other
    The URL from the encoder cannot include an absolute timestamp. This would
    need to be set each time the microcontroller is powered on (e.g. when the battery is replaced).
 
-.. feat:: Samples are timestamped precise to one minute
+.. feat:: Decoded samples are timestamped precise to one minute
    :id: CODEC_FEAT_6
    :links: CODEC_SPEC_10
 
@@ -184,7 +270,7 @@ Other
 
    The timestamping algorithm is as follows:
    #. Samples are put in order of recency.
-   #. Minutes :need:`CODEC_FEAT_27` since the most recent sample is extracted from the URL.
+   #. Minutes :need:`CODEC_FEAT_26` since the most recent sample is extracted from the URL.
    #. Current time (now in UTC) is determined.
    #. The first sample is assigned a timestamp = now - minutes elapsed.
    #. :need:`CODEC_FEAT_10` between samples is extracted from the URL. This is used to timestamp each sample

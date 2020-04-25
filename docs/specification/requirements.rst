@@ -23,24 +23,33 @@ Encoder
    The encoder takes environmental sensor data and writes it into a message
    that is opened and read automatically by most mobile phones.
 
+.. req:: Encoder shall run on a low cost, low power microcontroller
+   :id: CODEC_REQ_12
+   :status: open
+
+   The encoder will run on an inexpensive microcontroller. This will be powered
+   by a coin cell battery and should run for years.
+
 .. req:: Low memory utilisation
    :id: CODEC_REQ_5
    :status: open
+   :links: CODEC_REQ_12
 
    The encoder must use <2K of RAM and <16K of non-volatile FRAM, as can be found on an
    MSP430FR2033 microcontroller.
+
+.. req:: Minimal power consumption.
+   :id: CODEC_REQ_9
+   :status: complete
+   :links: CODEC_REQ_12
+
+   The encoder is designed to run on hardware that can run for years on a CR1620 battery.
 
 .. req:: No configuration from the user
    :id: CODEC_REQ_7
    :status: complete
 
    The encoder must not require any set up or configuration from the user.
-
-.. req:: Minimal power consumption.
-   :id: CODEC_REQ_9
-   :status: complete
-
-   The encoder is designed to run on hardware that can run for years on a CR1620 battery.
 
 .. req:: Minimise EEPROM wear.
    :id: CODEC_REQ_8
@@ -67,19 +76,13 @@ Encoder
 
    Status information changes infrequently compared to environmental sensor data.
 
-.. req:: Fixed time interval between samples
-   :id: CODEC_REQ_12
-   :status: complete
-
-   The time interval between samples is assumed to be a constant. This removes the need to add
-   timing information to each sample.
-
 Decoder
 --------
 
 .. req:: Decoder outputs a timestamped sequence of samples
    :id: CODEC_REQ_2
    :status: open
+   :links: CODEC_REQ_1
 
    The decoder outputs a list of samples from the URL. Each will have a timestamp precise to one minute.
    This corresponds to the time that the sample was added to the circular buffer.
