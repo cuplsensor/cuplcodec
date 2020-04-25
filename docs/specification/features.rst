@@ -356,7 +356,7 @@ Status information
 .. feat:: The status string can be updated after startup.
    :id: CODEC_FEAT_11
    :status: complete
-   :links: CODEC_SPEC_9
+   :links: CODEC_SPEC_15
 
    After startup the status string will sometimes need to be updated. To do this, there should be a function for
    writing the first part few blocks in the NDEF message (up to the start of the circular buffer). It is

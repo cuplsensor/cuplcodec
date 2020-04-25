@@ -229,16 +229,6 @@ Specifications
    The encoder must run without input from the user. This includes after the Power-on-Reset
    when a battery is replaced.
 
-.. spec:: URL status information
-   :id: CODEC_SPEC_9
-   :links: CODEC_REQ_11
-
-   Status information will include
-   1. State of the circular buffer (how many times it has looped back to the start).
-   2. Battery voltage
-   3. Cause of the most recent microcontroller reset
-   4. Total number of resets (this may eventually loop back to 0).
-
 .. spec:: Circular buffer is decoded
    :id: CODEC_SPEC_10
    :links: CODEC_REQ_2
