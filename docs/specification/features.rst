@@ -158,6 +158,15 @@ Flags + TNF
 Other
 ------
 
+.. feat:: Time interval
+   :id: CODEC_FEAT_10
+   :status: complete
+   :links: CODEC_FEAT_6,
+
+   The time interval between samples must be constant.
+   The encoder converts an integer time sample interval in minutes to a base64 string.
+   Decoder performs the reverse operation.
+
 .. feat:: There is no absolute timestamp
    :id: CODEC_FEAT_27
    :links: CODEC_SPEC_6, CODEC_SPEC_10
@@ -165,7 +174,7 @@ Other
    The URL from the encoder cannot include an absolute timestamp. This would
    need to be set each time the microcontroller is powered on (e.g. when the battery is replaced).
 
-.. feat:: Samples are timestamped precise to one minute without an absolute timestamp
+.. feat:: Samples are timestamped precise to one minute
    :id: CODEC_FEAT_6
    :links: CODEC_SPEC_10
 
@@ -178,7 +187,7 @@ Other
    #. Minutes :need:`CODEC_FEAT_27` since the most recent sample is extracted from the URL.
    #. Current time (now in UTC) is determined.
    #. The first sample is assigned a timestamp = now - minutes elapsed.
-   #. Minutes between samples is extracted from the URL. This is used to timestamp each sample
+   #. :need:`CODEC_FEAT_10` between samples is extracted from the URL. This is used to timestamp each sample
    relative to the first.
 
 .. feat:: Base URL can be modified.
@@ -222,13 +231,7 @@ Low resource utilisation
    An RTOS is not appropriate for this application. It will significantly increase the memory footprint.
    It will add complexity and make power consumption more difficult to control.
 
-.. feat:: Time interval is conveyed in the URL.
-   :id: CODEC_FEAT_10
-   :status: complete
-   :links: CODEC_SPEC_6, CODEC_SPEC_10
 
-   The encoder will convert an integer time sample interval in minutes to a base64 string. Decoder
-   performs the reverse operation.
 
 .. feat:: The encoder only writes the full-length NDEF message once upon startup.
    :id: CODEC_FEAT_12
