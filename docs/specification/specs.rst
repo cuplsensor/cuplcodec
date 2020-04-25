@@ -104,16 +104,16 @@ Specifications
    the end of the circular buffer; the divide between new and old data. The decoder finds this in order to unwrap the circular buffer into a list of samples,
    ordered newest to oldest.
 
-   +-------------+-------------------------------+--------------------------------------+
-   | Octet       | Endstop 0                     | Endstop 1                            |
-   +-------------+---+---+---+---+---+---+---+---+---+---+----+----+----+----+----+-----+
-   | Byte        | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15  |
-   +-------------+---+---+---+---+---+---+---+---+---+---+----+----+----+----+----+-----+
-   | Description | :need:`CODEC_SPEC_14`                           | Elapsed_ b64 | )   |
-   +-------------+-------------------------------------------------+--------------+-----+
+   +-------------+-------------------------------+-----------------------------------------------+
+   | Octet       | Endstop 0                     | Endstop 1                                     |
+   +-------------+---+---+---+---+---+---+---+---+---+---+----+----+----+----+-------------+-----+
+   | Byte        | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14          | 15  |
+   +-------------+---+---+---+---+---+---+---+---+---+---+----+----+----+----+-------------+-----+
+   | Description | :need:`CODEC_SPEC_14`                           | :need:`CODEC_FEAT_26` | )   |
+   +-------------+-------------------------------------------------+-----------------------+-----+
 
    The endstop contains data about the current state of the circular buffer, for example the number of
-   valid samples it contains. These data are put on the end of the circular buffer to meet
+   valid samples it contains. These data are appended to the circular buffer to meet
    :need:`CODEC_SPEC_2`.
 
 .. spec:: MD5Length b64
@@ -147,17 +147,17 @@ Specifications
    +-------+-------------------------+-------------------------+-------------------------+-------------------------+-------------------------+-------------------------+---+---+
 
 
-.. spec:: Features for low memory utilisation
+.. spec:: Low memory utilisation
    :id: CODEC_SPEC_4
    :status: open
    :links: CODEC_REQ_5
 
-.. spec:: Features to reduce memory wear
+.. spec:: Reduce EEPROM wear
    :id: CODEC_SPEC_2
    :status: open
    :links: CODEC_REQ_8
 
-.. spec:: Features for low power consumption
+.. spec:: Low power consumption
    :id: CODEC_SPEC_8
    :status: open
    :links: CODEC_REQ_9
