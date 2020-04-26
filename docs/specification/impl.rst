@@ -8,7 +8,8 @@ Implementation
 
    The time interval between samples (in minutes) is defined in the global variable :cpp:member:`smplintervalmins`.
 
-   :cpp:func:`ndef_writepreamble()` reads :cpp:member:`smplintervalmins` and converts it to a base64 string.
+   :cpp:func:`ndef_writepreamble()` converts :cpp:member:`smplintervalmins` into a base64 string and writes it
+   to URL parameter 't'.
 
    Decoder method :any:`decode_timeinterval` converts this back to an integer.
 
@@ -23,7 +24,7 @@ Implementation
 
    Base64 elapsed time is extracted in :any:`BufferDecoder` and converted back to an integer.
 
-.. impl:: Buffer length in blocks
+.. impl:: Length in blocks
    :id: CODEC_IMPL_3
    :status: complete
    :links: CODEC_FEAT_23
@@ -51,3 +52,32 @@ Implementation
    :cpp:func:`smplhist_push`. The hash (MD5 or HMAC) is calculated with :cpp:func:`smplhist_md5`.
    This outputs a 9 byte structure (:cpp:type:`md5len_t`). It is converted to base64 (:cpp:member:`md5lenb64`)
    before it is written to the endstop octets (:need:`CODEC_SPEC_13`).
+
+.. impl:: Append sample
+   :id: CODEC_IMPL_6
+   :status: complete
+   :links: CODEC_FEAT_15
+
+   Samples are added to the circular buffer with :cpp:func:`sample_push`. This takes one or two measurands,
+   depending on the circular buffer format.
+
+.. impl:: Initialisation
+   :id: CODEC_IMPL_7
+   :status: complete
+   :links: CODEC_FEAT_12
+
+   The NDEF message and its circular buffer are initialised with :cpp:func:`sample_init`. Given there are
+   no samples in the circular buffer, the endstop and cursor are omitted. All octets are set to MDaW
+   (all zeroes).
+
+   State machines in the ``sample`` and ``octet`` files are reset.
+
+.. impl:: Serial
+   :id: CODEC_IMPL_8
+   :status: complete
+   :links: CODEC_FEAT_38
+
+   The serial string is defined in the global variable :cpp:member:`serial`. This must be
+   :c:macro:`SERIAL_LENBYTES` long. It must contain only URL-safe characters.
+
+   :cpp:func:`ndef_writepreamble()` copies this into URL parameter 's'.

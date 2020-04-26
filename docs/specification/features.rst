@@ -282,16 +282,6 @@ Other
    #. :need:`CODEC_FEAT_10` between samples is extracted from the URL. This is used to timestamp each sample
    relative to the first.
 
-.. feat:: Self containment
-   :id: CODEC_FEAT_38
-   :status: complete
-   :links: CODEC_SPEC_3
-
-   The URL contains all information needed by the decoder. There is no need to
-   store and retrieve data from an external source (database).
-
-   By consequence one decoder instance can be substituted for another.
-
 .. feat:: Base URL
    :id: CODEC_FEAT_7
    :links: CODEC_SPEC_3
@@ -334,17 +324,36 @@ Low resource utilisation
    An RTOS is not appropriate for this application. It will significantly increase the memory footprint.
    It will add complexity and make power consumption more difficult to control.
 
+.. feat:: Serial
+   :id: CODEC_FEAT_38
+   :status: complete
+   :links: CODEC_SPEC_3
 
+   An 8 character serial string uniquely identifies the encoder instance. More generally this will
+   identify the hardware that the encoder is running on. Characters from the base64 dictionary are
+   recommended for these are URL safe.
 
-.. feat:: The encoder only writes the full-length NDEF message once upon startup.
+.. feat:: Status updates once per loop
+   :id: CODEC_FEAT_39
+   :status: complete
+   :links: CODEC_SPEC_15
+
+   Status contains some parameters that change infrequently. For these, :need:`CODEC_SPEC_2` is not a
+   concern. :need:`CODEC_FEAT_28` and :need:`CODEC_FEAT_30` are updated once, when cursorblk and nextblk
+   are at opposite ends of the circular buffer (e.g. cursorblk == 31 and nextblk == 0). This will
+   happen once per day.
+
+   :need:`CODEC_SPEC_16` is cleared when this happens, because a reset has not occurred recently.
+
+.. feat:: Full message written once.
    :id: CODEC_FEAT_12
    :status: complete
-   :links: CODEC_SPEC_2
+   :links: CODEC_SPEC_2, CODEC_SPEC_1
 
    The entire NDEF message only needs to be written once upon startup. Afterwards, small
    parts of the message are modified at a time.
 
-.. feat:: Frequently changing data are written to a circular buffer.
+.. feat:: List of samples written to circular buffer.
    :id: CODEC_FEAT_15
    :status: complete
    :links: CODEC_SPEC_2, CODEC_SPEC_12
@@ -363,14 +372,3 @@ Low resource utilisation
 
    This reduces the requirement for RAM on the MSP430 and reduces power consumption (it takes time to write
    EEPROM blocks).
-
-Status information
---------------------
-.. feat:: The status string can be updated after startup.
-   :id: CODEC_FEAT_11
-   :status: complete
-   :links: CODEC_SPEC_15
-
-   After startup the status string will sometimes need to be updated. To do this, there should be a function for
-   writing the first part few blocks in the NDEF message (up to the start of the circular buffer). It is
-   intended that this function not be called frequently (once per day or less).
