@@ -3,7 +3,7 @@ Requirements
 
 .. needflow:: My first needflow
    :scale: 30
-   :filter: ("bit" not in tags) and (type != Implementation)
+   :filter: ("bit" not in tags) and (type != "impl")
 
 .. req:: Codec comprises an encoder and decoder.
    :id: CODEC_REQ_3
