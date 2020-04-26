@@ -2,7 +2,6 @@
 #include "octet.h"
 #include "ndef.h"
 #include "smplhist.h"
-#include "prng.h"
 #include "defs.h"
 #include "batv.h"
 #include "base64.h"
@@ -112,7 +111,7 @@ static void makemarker(unsigned int minutes, char * endmarker)
     unsigned int minutesMsb;
 
     minutesLsb = minutes & 0xFF; // Select lower 6 bits of the minutes field.
-    minutesMsb = minutes >> 8; //prng_getrandom(10);
+    minutesMsb = minutes >> 8;
 
     *(endmarker) = minutesLsb;
     *(endmarker + 1) = minutesMsb;

@@ -143,13 +143,13 @@ Reset condition
 Circular Buffer
 ~~~~~~~~~~~~~~~~~
 
-.. feat:: Adjustable circular buffer length.
+.. feat:: Adjustable buffer length.
    :id: CODEC_FEAT_23
    :status: complete
    :links: CODEC_SPEC_12
 
-   The length of the circular buffer can be adjusted. This has to be done with a compiler parameter,
-   because due to :need:`CODEC_FEAT_8`.
+   The length of the circular buffer can be adjusted. This is done with a compiler parameter,
+   to meet :need:`CODEC_FEAT_8`.
 
 .. feat:: MD5
    :id: CODEC_FEAT_24
