@@ -96,7 +96,7 @@ plantuml_output_format = 'png'
 
 needs_types = [dict(directive="req", title="Requirement", prefix="R_", color="#BFD8D2", style="node"),
                dict(directive="spec", title="Specification", prefix="S_", color="#FEDCD2", style="node"),
-               dict(directive="impl", title="Implementation", prefix="I_", color="#DF744A", style="node"),
+               dict(directive="impl", title="Implementation", prefix="I_", color="#DCCCCD", style="node"),
                dict(directive="feat", title="Feature", prefix="F_", color="#DF744A", style="node"),
                dict(directive="test", title="Test Case", prefix="T_", color="#DCB239", style="node"),
                # Kept for backwards compatibility
