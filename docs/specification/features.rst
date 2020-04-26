@@ -295,13 +295,14 @@ Other
    The URL from the encoder cannot include an absolute timestamp. This would
    need to be set each time the microcontroller is powered on (e.g. when the battery is replaced).
 
-.. feat:: Samples timestamped precise to one minute
+.. feat:: Samples timestamped by decoder
    :id: CODEC_FEAT_6
    :links: CODEC_SPEC_10
 
    All samples are timestamped relative to the time that the decoder is run. It
    is assumed that the time difference between when the encoded message is read (by a phone) and
-   the time the decoder is run (on a web server) is much less than one minute.
+   the time the decoder is run (on a web server) is much less than one minute. Timestamp precision is one
+   minute.
 
    The timestamping algorithm is as follows:
    #. Samples are put in order of recency.
