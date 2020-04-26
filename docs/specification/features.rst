@@ -88,6 +88,7 @@ ResetCause
 .. feat:: BOR
    :id: CODEC_FEAT_31
    :status: complete
+   :tags: bit
    :links: CODEC_SPEC_16
 
    Brown Out Reset flag.
@@ -95,6 +96,7 @@ ResetCause
 .. feat:: SVSH
    :id: CODEC_FEAT_32
    :status: complete
+   :tags: bit
    :links: CODEC_SPEC_16
 
    Supply Voltage Supervisor error flag.
@@ -102,6 +104,7 @@ ResetCause
 .. feat:: WDT
    :id: CODEC_FEAT_33
    :status: complete
+   :tags: bit
    :links: CODEC_SPEC_16
 
    Watchdog Timeout flag
@@ -109,6 +112,7 @@ ResetCause
 .. feat:: MISC
    :id: CODEC_FEAT_34
    :status: complete
+   :tags: bit
    :links: CODEC_SPEC_16
 
    Miscellaneous Error flag
@@ -116,6 +120,7 @@ ResetCause
 .. feat:: LPM5WU
    :id: CODEC_FEAT_35
    :status: complete
+   :tags: bit
    :links: CODEC_SPEC_16
 
    Low Power Mode x.5 wakeup flag.
@@ -123,6 +128,7 @@ ResetCause
 .. feat:: CLOCKFAIL
    :id: CODEC_FEAT_36
    :status: complete
+   :tags: bit
    :links: CODEC_SPEC_16
 
    Clock failure flag.
@@ -130,6 +136,7 @@ ResetCause
 .. feat:: SCANTIMEOUT
    :id: CODEC_FEAT_37
    :status: complete
+   :tags: bit
    :links: CODEC_SPEC_16
 
    Scan timeout flag.
@@ -221,6 +228,7 @@ Flags + TNF
 .. feat:: MB
    :id: CODEC_FEAT_17
    :status: complete
+   :tags: bit
    :links: CODEC_SPEC_5
 
    Message Begin bit denotes the first record in an NDEF message.
@@ -230,6 +238,7 @@ Flags + TNF
 .. feat:: ME
    :id: CODEC_FEAT_18
    :status: complete
+   :tags: bit
    :links: CODEC_SPEC_5
 
    Message End bit denotes the last record in an NDEF message.
@@ -239,6 +248,7 @@ Flags + TNF
 .. feat:: CF
    :id: CODEC_FEAT_19
    :status: complete
+   :tags: bit
    :links: CODEC_SPEC_5
 
    Chunk Flag bit denotes a message comprised of several records chunked together (concatenated).
@@ -248,6 +258,7 @@ Flags + TNF
 .. feat:: SR
    :id: CODEC_FEAT_20
    :status: complete
+   :tags: bit
    :links: CODEC_SPEC_5
 
    Short Record bit. When set :need:`CODEC_FEAT_3` one byte long. When cleared it is 4 bytes long.
@@ -257,6 +268,7 @@ Flags + TNF
 .. feat:: IL
    :id: CODEC_FEAT_21
    :status: complete
+   :tags: bit
    :links: CODEC_SPEC_5
 
    ID Length bit. When set the ID length field is present. When cleared it is omitted.
@@ -266,6 +278,7 @@ Flags + TNF
 .. feat:: TNF
    :id: CODEC_FEAT_22
    :status: complete
+   :tags: bit
    :links: CODEC_SPEC_5
 
    Type Name Format field. A 3-bit value that describes the record type.
@@ -381,7 +394,7 @@ Low resource utilisation
    By using a circular buffer, these writes are distributed across many blocks. This is
    a form of `Wear levelling <https://en.wikipedia.org/wiki/Wear_leveling>`.
 
-.. feat:: The encoder reads and writes a maximum of two circular buffer blocks at a time.
+.. feat:: The encoder writes two circular buffer blocks at a time.
    :id: CODEC_FEAT_16
    :status: complete
    :links: CODEC_SPEC_4, CODEC_SPEC_2, CODEC_SPEC_8
