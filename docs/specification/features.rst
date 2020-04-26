@@ -185,7 +185,7 @@ Circular Buffer
    If HMAC is enabled, this will be an MD5-HMAC hash. If not, it is MD5 only. The is only room to
    store the least significant 7 bytes, but this should be ample.
 
-   This updates each time a sample is added to the buffer. It will not update when the
+   This does not update when the
    :need:`CODEC_FEAT_26` field changes in order to save power :need:`CODEC_SPEC_8`.
 
    The hash is calculated from unencoded sample data.
