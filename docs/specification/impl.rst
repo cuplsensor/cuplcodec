@@ -11,6 +11,6 @@ Implementation
 
    :cpp:func:`ndef_writepreamble()` reads :cpp:member:`smplintervalmins` and converts it to a base64 string.
 
-   :py:method:`decode_timeinterval(enctimeint)` takes the base64 encoded sample interval and converts it back into
+   :method:`decode_timeinterval(enctimeint)` takes the base64 encoded sample interval and converts it back into
    an integer.
 
