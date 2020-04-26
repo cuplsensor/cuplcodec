@@ -38,7 +38,8 @@ Implementation
 
    The function :cpp:func:`sample_push` uses integer :cpp:member:`lensmpls` to record how many valid samples
    are in the circular buffer. When an octet is overwritten, it is reduced by :c:macro:`SAMPLES_PER_OCTET`.
-   Otherwise it is incremented by one.
+   Otherwise it is incremented by one. When the buffer is full :cpp:member:`lensmpls` will equal
+   :cpp:member:`buflensamples`.
 
 .. impl:: MD5
    :id: CODEC_IMPL_5

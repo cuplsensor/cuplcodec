@@ -56,6 +56,15 @@ URL Parameters
 
    The time interval between samples in minutes. This must be constant.
 
+.. feat:: Serial
+   :id: CODEC_FEAT_38
+   :status: complete
+   :links: CODEC_SPEC_3
+
+   An 8 character serial string uniquely identifies the encoder instance. More generally this will
+   identify the hardware that the encoder is running on. Characters from the base64 dictionary are
+   recommended for these are URL safe.
+
 Status
 ~~~~~~~~
 
@@ -187,8 +196,6 @@ Circular Buffer
 
    This does not update when the
    :need:`CODEC_FEAT_26` field changes in order to save power :need:`CODEC_SPEC_8`.
-
-   The hash is calculated from unencoded sample data.
 
 .. feat:: LengthSamples
    :id: CODEC_FEAT_25
@@ -353,15 +360,6 @@ Low resource utilisation
 
    An RTOS is not appropriate for this application. It will significantly increase the memory footprint.
    It will add complexity and make power consumption more difficult to control.
-
-.. feat:: Serial
-   :id: CODEC_FEAT_38
-   :status: complete
-   :links: CODEC_SPEC_3
-
-   An 8 character serial string uniquely identifies the encoder instance. More generally this will
-   identify the hardware that the encoder is running on. Characters from the base64 dictionary are
-   recommended for these are URL safe.
 
 .. feat:: Status updates once per loop
    :id: CODEC_FEAT_39
