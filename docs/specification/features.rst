@@ -361,10 +361,10 @@ Low resource utilisation
 
    :need:`CODEC_SPEC_16` is cleared when this happens, because a reset has not occurred recently.
 
-.. feat:: Full message written once.
+.. feat:: Full message written on startup.
    :id: CODEC_FEAT_12
    :status: complete
-   :links: CODEC_SPEC_2, CODEC_SPEC_1
+   :links: CODEC_SPEC_1
 
    The entire NDEF message only needs to be written once upon startup. Afterwards, small
    parts of the message are modified at a time.
