@@ -48,6 +48,6 @@ Implementation
    It consumes a lot of RAM, but this is unavoidable.
 
    On each call to :cpp:func:`sample_push`, the sample is appended to :cpp:member:`samplehistory` by
-   cpp:func:`smplhist_push`. The hash (MD5 or HMAC) is calculated with :cpp:func:`smplhist_md5`.
-   This outputs a 9 byte structure (cpp:type:`md5len_t`). It is converted to base64 (:cpp:member:`md5lenb64`)
+   :cpp:func:`smplhist_push`. The hash (MD5 or HMAC) is calculated with :cpp:func:`smplhist_md5`.
+   This outputs a 9 byte structure (:cpp:type:`md5len_t`). It is converted to base64 (:cpp:member:`md5lenb64`)
    before it is written to the endstop octets (:need:`CODEC_SPEC_13`).
