@@ -9,7 +9,6 @@ Plotsensor Codec Documentation
    docs/specification/specs
    docs/specification/features
    docs/specification/impl
-   docs/tutorial/index
    docs/tutorial/encoder
    docs/tutorial/decoder
    docs/tutorial/test
