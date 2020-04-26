@@ -6,11 +6,20 @@ Implementation
    :status: complete
    :links: CODEC_FEAT_10, CODEC_FEAT_6
 
-   Set the sample interval in minutes in the :cpp:member:`smplintervalmins` member of the :cpp:member:`nv`
-   struct.
+   The time interval between samples (in minutes) is defined in the global variable :cpp:member:`smplintervalmins`.
 
    :cpp:func:`ndef_writepreamble()` reads :cpp:member:`smplintervalmins` and converts it to a base64 string.
 
-   :any:`decode_timeinterval` takes the base64 encoded sample interval and converts it back into
-   an integer.
+   Decoder method :any:`decode_timeinterval` converts this back to an integer.
 
+
+.. impl:: Elapsed time
+   :id: CODEC_IMPL_2
+   :status: complete
+   :links: CODEC_FEAT_26
+
+   The function :cpp:func:`sample_updateendstop` alters the elapsed time field, independent of the rest of the URL.
+   It is intended that this is called once for each minute after a sample is taken. Elapsed time (as an integer) is
+   converted to base64.
+
+   The elapsed time is extracted in :any:`BufferDecoder.__init__` and converted back to an integer. 

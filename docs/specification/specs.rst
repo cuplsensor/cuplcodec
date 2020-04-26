@@ -116,29 +116,7 @@ Specifications
    valid samples it contains. These data are appended to the circular buffer to meet
    :need:`CODEC_SPEC_2`.
 
-.. spec:: Elapsed b64
-   :id: CODEC_SPEC_17
-   :status: complete
-   :links: CODEC_SPEC_13
 
-   External to the codec is a counter. This increases by 1 every minute after the previous
-   sample was written to the circular buffer. It resets to 0 when a new sample is written.
-
-   The decoder uses it to determine to the nearest minute when samples were collected. Without it,
-   the maximum resolution on the timestamp for each sample would be equal to the time interval, which
-   can be up to 60 minutes.
-
-   The unencoded minutes elapsed field is 16-bits wide. This is the same width
-   as the unencoded time interval in minutes field.
-
-   The minutes elapsed field occupies 4 bytes after base64 encoding, including one
-   padding byte. By convention this is 0x61 or '='.
-
-   The encoder replaces the padding byte with :c:macro:`ENDSTOP_BYTE`. This marks the last byte of the end stop.
-
-   The first step performed by the decoder is to locate :c:macro:`ENDSTOP_BYTE`. After it is
-   found, it can be replaced with an '=' before the minutes elapsed field is
-   decoded from base64 into its original 16-bit value.
 
 .. spec:: MD5Length b64
    :id: CODEC_SPEC_14
