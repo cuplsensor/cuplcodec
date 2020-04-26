@@ -54,7 +54,7 @@ Specifications
 .. spec:: Circular Buffer
    :id: CODEC_SPEC_12
    :status: complete
-   :links: CODEC_SPEC_3
+   :links: CODEC_SPEC_3, CODEC_SPEC_2
 
    The circular buffer starts on a block boundary and occupies an integer number of 16-byte blocks.
    1K of EEPROM is enough for 32 blocks.

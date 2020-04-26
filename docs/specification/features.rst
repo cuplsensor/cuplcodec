@@ -382,10 +382,10 @@ Low resource utilisation
    The entire NDEF message only needs to be written once upon startup. Afterwards, small
    parts of the message are modified at a time.
 
-.. feat:: List of samples written to circular buffer.
+.. feat:: Append sample.
    :id: CODEC_FEAT_15
    :status: complete
-   :links: CODEC_SPEC_2, CODEC_SPEC_12
+   :links: CODEC_SPEC_12
 
    The list of environmental sensor readings (and its HMAC) will change at an interval of
    time interval minutes. If the time interval is set to 5 minutes, 100K writes will be
