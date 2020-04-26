@@ -49,7 +49,7 @@ Encoder
 Decoder
 --------
 
-.. req:: Decoder outputs a timestamped sequence of samples
+.. req:: Decoder outputs a list of samples
    :id: CODEC_REQ_2
    :status: open
    :links: CODEC_REQ_3
