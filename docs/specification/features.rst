@@ -143,6 +143,22 @@ Reset condition
 Circular Buffer
 ~~~~~~~~~~~~~~~~~
 
+.. feat:: Error raised if hash check fails
+   :id: CODEC_FEAT_40
+   :status: complete
+   :links: CODEC_SPEC_10
+
+   The decoder independently calculates the hash of the circular buffer and compares it with
+   the one contained in :need:`CODEC_SPEC_13`. If the check fails then no samples are returned
+   and an exception is raised.
+
+   If the MD5 hash is used then this indicates the decoded sample list does not correspond to that
+   fed into the encoder. Therefore :need:`CODEC_REQ_2` has not been met.
+
+   If the HMAC hash is used then there is an additional possibility: authentication has failed.
+   The secret key used by the encoder and the stored copy used by the decoder do not match. This occurs
+   when the software is run by an unauthorised 3rd party.
+
 .. feat:: Adjustable buffer length.
    :id: CODEC_FEAT_23
    :status: complete

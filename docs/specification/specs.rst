@@ -207,9 +207,10 @@ Specifications
    The encoder must run without input from the user. This includes after the Power-on-Reset
    when a battery is replaced.
 
-.. spec:: Circular buffer is decoded
+.. spec:: Circular buffer decoded
    :id: CODEC_SPEC_10
    :links: CODEC_REQ_2
 
-   The circular buffer is unwrapped and decoded. Each sample is given a timestamp.
+   The decoder outputs a list of samples from the URL. Each will have a timestamp precise to one minute.
+   This corresponds to the time that the sample was added to the circular buffer.
 

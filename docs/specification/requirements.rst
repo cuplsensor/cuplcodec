@@ -50,13 +50,12 @@ Encoder
 Decoder
 --------
 
-.. req:: Decoder outputs a list of samples
+.. req:: Decoder reproduces encoder data
    :id: CODEC_REQ_2
    :status: open
    :links: CODEC_REQ_3
 
-   The decoder outputs a list of samples from the URL. Each will have a timestamp precise to one minute.
-   This corresponds to the time that the sample was added to the circular buffer.
+   The decoder must reproduce data fed into the encoder.
 
 
 

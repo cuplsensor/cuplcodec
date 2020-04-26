@@ -43,7 +43,7 @@ Implementation
 .. impl:: MD5
    :id: CODEC_IMPL_5
    :status: complete
-   :links: CODEC_FEAT_24
+   :links: CODEC_FEAT_24, CODEC_FEAT_40
 
    The encoder maintains :cpp:member:`samplehistory`, a RAM-based shadow of the EEPROM circular buffer.
    It consumes a lot of RAM, but this is unavoidable.
