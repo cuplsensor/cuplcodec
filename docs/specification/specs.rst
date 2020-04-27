@@ -61,19 +61,19 @@ Specifications
 
    Only two blocks are edited in RAM at a time:
 
-   +----------------------------+------------------------------+
-   | Cursor Block               | Next Block                   |
-   +---------------+------------+------------+-----------------+
-   | Cursor Octet  | Endstop Octets (0,1)    | Oldest Octet    |
-   +-------+-------+-------------------------+-------+---------+
-   | S1    | S0    |                         |  SN   | SN-1    |
-   +---+---+---+---+-------------------------+--+----+----+----+
-   |R3 |R2 |R1 |R0 |                         |RL|RL-1|RL-2|RL-3|
-   +---+---+---+---+-------------------------+--+----+----+----+
+   +--------------------------------+--------------------------------------------------------------------------+
+   | Cursor Block                   | Next Block                                                               |
+   +-------------------+------------+--------------------------------+-----------------------------------------+
+   | Cursor Octet      | Endstop Octets (0,1)                        | Oldest Octet                            |
+   +-------------------+-------------------+-------------------------+-------------------+---------------------+
+   | P\ :sub:`64`\1    | P\ :sub:`64`\0    |                         |  P\ :sub:`64`\N   | P\ :sub:`64`\N-1    |
+   +---+---+---+-------+---------------------------------------------+--+----------------+----+----------------+
+   |R3 |R2 |R1 |R0     |                                             |RL|RL-1            |RL-2|RL-3            |
+   +---+---+---+-------+---------------------------------------------+--+----------------+----+----------------+
 
-   Blocks are subdivided into two 8-byte octets. Each octet holds 2 samples.
+   Blocks are subdivided into two 8-byte octets. Each octet holds 2 base64 encoded pairs.
 
-   Each sample is a pair of base64 encoded sensor readings. By default these will be captured
+   Each pair consists of 2 base64 encoded sensor readings. By default these will be captured
    simultaneously by a temperature sensor and a humidity sensor.
 
    New sensor readings are written to Cursor Octet. Each time this occurs, the subsequent
@@ -133,7 +133,7 @@ Specifications
    | Description | :need:`CODEC_FEAT_24`     | :need:`CODEC_FEAT_25` |
    +-------------+---------------------------+-----------------------+
 
-.. spec:: Status
+.. spec:: Status b64
    :id: CODEC_SPEC_15
    :status: complete
    :links: CODEC_SPEC_3
