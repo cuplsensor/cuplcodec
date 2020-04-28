@@ -1,6 +1,8 @@
 Specifications
 ===============
 
+.. |64| replace:: \ :sub:`64`\
+
 .. spec:: Message format
    :id: CODEC_SPEC_1
    :links: CODEC_REQ_1
@@ -45,11 +47,11 @@ Specifications
 
    **NDEF record payload continued**
 
-   +-----------+-------------+-----------------------+--------------------+-----------------------+
-   | Desc.     | `Version`_  | :need:`CODEC_SPEC_15` | CircBufferStart    | :need:`CODEC_SPEC_12` |
-   +-----------+-------------+-----------------------+--------------------+-----------------------+
-   | Data      | &v=01       | &x=AAABALEK           | &q=                | MDaWMDaW...           |
-   +-----------+-------------+-----------------------+--------------------+-----------------------+
+   +-----------+------------------------+-----------------------+--------------------+-----------------------+
+   | Desc.     | :need:`CODEC_SPEC_18`  | :need:`CODEC_SPEC_15` | CircBufferStart    | :need:`CODEC_SPEC_12` |
+   +-----------+------------------------+-----------------------+--------------------+-----------------------+
+   | Data      | &v=AAAA                | &x=AAABALEK           | &q=                | MDaWMDaW...           |
+   +-----------+------------------------+-----------------------+--------------------+-----------------------+
 
 .. spec:: Circular Buffer
    :id: CODEC_SPEC_12
@@ -61,15 +63,15 @@ Specifications
 
    Only two blocks are edited in RAM at a time:
 
-   +--------------------------------+--------------------------------------------------------------------------+
-   | Cursor Block                   | Next Block                                                               |
-   +-------------------+------------+--------------------------------+-----------------------------------------+
-   | Cursor Octet      | Endstop Octets (0,1)                        | Oldest Octet                            |
-   +-------------------+-------------------+-------------------------+-------------------+---------------------+
-   | P\ :sub:`64`\1    | P\ :sub:`64`\0    |                         |  P\ :sub:`64`\N   | P\ :sub:`64`\N-1    |
-   +---+---+---+-------+---------------------------------------------+--+----------------+----+----------------+
-   |R3 |R2 |R1 |R0     |                                             |RL|RL-1            |RL-2|RL-3            |
-   +---+---+---+-------+---------------------------------------------+--+----------------+----+----------------+
+   +------------------------------------------------+--------------------------------------------------------------------------+
+   | Cursor Block                                   | Next Block                                                               |
+   +-----------------------------------+------------+--------------------------------+-----------------------------------------+
+   | Cursor Octet                      | Endstop Octets (0,1)                        | Oldest Octet                            |
+   +-----------------+-----------------+---------------------------------------------+-------------------+---------------------+
+   | P|64|1          | P|64|0|         |                                             |  P|64|N           | P|64|N-1            |
+   +--------+--------+--------+--------+---------------------------------------------+--------+----------+----------+----------+
+   | R|64|3 | R|64|2 | R|64|1 | R|64|0 |                                             | R|64|L | R|64|L-1 | R|64|L-2 | R|64|L-3 |
+   +--------+--------+--------+--------+---------------------------------------------+--------+----------+----------+----------+
 
    Blocks are subdivided into two 8-byte octets. Each octet holds 2 base64 encoded pairs.
 
@@ -116,7 +118,20 @@ Specifications
    valid samples it contains. These data are appended to the circular buffer to meet
    :need:`CODEC_SPEC_2`.
 
+.. spec:: VFmt b64
+   :id: CODEC_SPEC_18
+   :status: open
+   :links: CODEC_SPEC_3
 
+   This is a 3 byte structure that expands to 4 bytes after base64 encoding.
+
+   The unencoded structure is:
+
+   +-------------+-----------+-----------+-----------------------+
+   | Byte        | 0         | 1         |  2                    |
+   +-------------+-----------+-----------+-----------------------+
+   | Description | :need:`CODEC_FEAT_41` | :need:`CODEC_FEAT_42` |
+   +-------------+-----------------------+-----------------------+
 
 .. spec:: MD5Length b64
    :id: CODEC_SPEC_14
@@ -207,10 +222,19 @@ Specifications
    The encoder must run without input from the user. This includes after the Power-on-Reset
    when a battery is replaced.
 
-.. spec:: Circular buffer decoded
-   :id: CODEC_SPEC_10
+.. spec:: URL parameters decoded
+   :id: CODEC_SPEC_19
    :links: CODEC_REQ_2
 
-   The decoder outputs a list of samples from the URL. Each will have a timestamp precise to one minute.
+   Before the circular buffer is decoded, URL parameters such as :need:`CODEC_SPEC_18` are needed.
+
+.. spec:: Circular buffer decoded
+   :id: CODEC_SPEC_10
+   :links: CODEC_SPEC_19
+
+   The decoder outputs a list of samples from the URL. Output
+   depends on :need:`CODEC_FEAT_42`. By default samples will contain temperature
+   and humidity readings, converted to degrees C and percent respectively.
+   Each will have a timestamp precise to one minute.
    This corresponds to the time that the sample was added to the circular buffer.
 

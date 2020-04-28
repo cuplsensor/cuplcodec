@@ -27,7 +27,7 @@ NDEF record
 
 .. feat:: Payload length
    :id: CODEC_FEAT_3
-   :status: open
+   :status: complete
    :links: CODEC_SPEC_3
 
    Length of the NDEF record payload length in bytes. Similar to :need:`CODEC_FEAT_2`,
@@ -35,14 +35,14 @@ NDEF record
 
 .. feat:: Type length
    :id: CODEC_FEAT_4
-   :status: open
+   :status: complete
    :links: CODEC_SPEC_3
 
    Length of the :need:`CODEC_FEAT_5` field in bytes. This is 1 byte.
 
 .. feat:: Record type
    :id: CODEC_FEAT_5
-   :status: open
+   :status: complete
    :links: CODEC_SPEC_3
 
    NDEF record type is 0x55, which corresponds to a URI record.
@@ -90,6 +90,37 @@ Status
    :links: CODEC_SPEC_15
 
    The battery voltage in mV. See :cpp:member:`batvoltage`.
+
+.. feat:: CodecVersion
+   :id: CODEC_FEAT_41
+   :status: open
+   :links: CODEC_SPEC_18
+
+   16-bit unsigned integer codec version. From this the decoder can raise an error
+   if it is not compatible.
+
+.. feat:: FormatCode
+   :id: CODEC_FEAT_42
+   :status: open
+   :links: CODEC_SPEC_18
+
+   Identifies the circular buffer format.
+
+   +------------+-------------------------------------+
+   | FormatCode | Definition                          |
+   +------------+-------------------------------------+
+   | 0          | HDC2021_TRH_OnePairPerSample        |
+   +------------+-------------------------------------+
+   | 1          | HDC2021_T_OneReadingPerSample       |
+   +------------+-------------------------------------+
+
+.. feat:: Error raised if versions mismatch
+   :id: CODEC_FEAT_43
+   :status: open
+   :links: CODEC_SPEC_19
+
+   If the decoder version does not match that of the encoder used to produce the URL, then :need:`CODEC_REQ_2`
+   cannot be guaranteed.
 
 ResetCause
 ************
@@ -330,7 +361,7 @@ Low resource utilisation
 -----------------------
 .. feat:: Encoder writes to EEPROM blocks.
    :id: CODEC_FEAT_13
-   :status: open
+   :status: complete
    :links: CODEC_SPEC_4
 
    The encoder cannot output the 1000 character NDEF message in one go. This would require
@@ -341,21 +372,21 @@ Low resource utilisation
 
 .. feat:: Only static memory allocation is used.
    :id: CODEC_FEAT_8
-   :status: open
+   :status: complete
    :links: CODEC_SPEC_4
 
    The stdio library needed for malloc takes a lot of available memory on the MSP430, so it is not used.
 
 .. feat:: Encoder is written in C.
    :id: CODEC_FEAT_9
-   :status: open
+   :status: complete
    :links: CODEC_SPEC_4
 
    There is little benefit to C++ given the low complexity of the encoder.
 
 .. feat:: No RTOS is required
    :id: CODEC_FEAT_14
-   :status: open
+   :status: complete
    :links: CODEC_SPEC_8, CODEC_SPEC_4
 
    An RTOS is not appropriate for this application. It will significantly increase the memory footprint.
