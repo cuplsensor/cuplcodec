@@ -102,9 +102,14 @@ Status
 .. feat:: FormatCode
    :id: CODEC_FEAT_42
    :status: open
-   :links: CODEC_SPEC_18
+   :links: CODEC_SPEC_18, CODEC_FEAT_43
 
-   Identifies the circular buffer format.
+   8-bit identifier of the circular buffer format. The circular buffer is arranged into pairs.
+   A sample either corresponds to a pair of readings (e.g. temperature and humidity), or a single reading
+   (temperature only). The latter option doubles the number of samples in the buffer.
+
+   By specifying a device (HDC2021) readings, the decoder can convert from a 12-bit integer
+   into floating point degrees C or percent.
 
    +------------+-------------------------------------+
    | FormatCode | Definition                          |
