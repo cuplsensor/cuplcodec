@@ -65,32 +65,6 @@ URL Parameters
    identify the hardware that the encoder is running on. Characters from the base64 dictionary are
    recommended for these are URL safe.
 
-Status
-~~~~~~~~
-
-.. feat:: LoopCount
-   :id: CODEC_FEAT_28
-   :status: complete
-   :links: CODEC_SPEC_15
-
-   The number of times the circular buffer has looped from the last EEPROM block to
-   the first since initialisation. See :cpp:member:`loopcount`.
-
-.. feat:: ResetsAllTime
-   :id: CODEC_FEAT_29
-   :status: complete
-   :links: CODEC_SPEC_15
-
-   Number of times the microcontroller running the encoder has reset. Each reset causes a counter to be incremented in
-   non-volatile memory (:cpp:member:`resetsalltime`).
-
-.. feat:: BatV
-   :id: CODEC_FEAT_30
-   :status: complete
-   :links: CODEC_SPEC_15
-
-   The battery voltage in mV. See :cpp:member:`batvoltage`.
-
 .. feat:: CodecVersion
    :id: CODEC_FEAT_41
    :status: open
@@ -127,8 +101,35 @@ Status
    If the decoder version does not match that of the encoder used to produce the URL, then :need:`CODEC_REQ_2`
    cannot be guaranteed.
 
+
+Status
+~~~~~~~~
+
+.. feat:: LoopCount
+   :id: CODEC_FEAT_28
+   :status: complete
+   :links: CODEC_SPEC_15
+
+   The number of times the circular buffer has looped from the last EEPROM block to
+   the first since initialisation. See :cpp:member:`loopcount`.
+
+.. feat:: ResetsAllTime
+   :id: CODEC_FEAT_29
+   :status: complete
+   :links: CODEC_SPEC_15
+
+   Number of times the microcontroller running the encoder has reset. Each reset causes a counter to be incremented in
+   non-volatile memory (:cpp:member:`resetsalltime`).
+
+.. feat:: BatV
+   :id: CODEC_FEAT_30
+   :status: complete
+   :links: CODEC_SPEC_15
+
+   The battery voltage in mV. See :cpp:member:`batvoltage`.
+
 ResetCause
-************
+"""""""""""
 
 .. feat:: BOR
    :id: CODEC_FEAT_31
@@ -185,11 +186,6 @@ ResetCause
    :links: CODEC_SPEC_16
 
    Scan timeout flag.
-
-RstC
-^^^^^^
-
-Reset condition
 
 
 Circular Buffer
