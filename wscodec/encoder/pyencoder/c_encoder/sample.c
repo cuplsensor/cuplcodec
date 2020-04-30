@@ -1,7 +1,7 @@
 #include "sample.h"
 #include "octet.h"
 #include "ndef.h"
-#include "smplhist.h"
+#include "pairhist.h"
 #include "defs.h"
 #include "batv.h"
 #include "base64.h"
@@ -212,7 +212,7 @@ int sample_push(int meas1, int meas2)
           }
           lensmpls++;
 
-          smplhist_push(samplebuf[0]);
+          pairhist_push(samplebuf[0]);
 
           if (nv.version[1] == TEMPONLY)
           {
@@ -226,7 +226,7 @@ int sample_push(int meas1, int meas2)
 
       case first_tock:
           loadm2(&samplebuf[0], meas1);
-          smplhist_ovr(samplebuf[0]);
+          pairhist_ovr(samplebuf[0]);
           nextstate = final_tick;
           break;
 
@@ -234,7 +234,7 @@ int sample_push(int meas1, int meas2)
           loadboth(&samplebuf[1], meas1, meas2);
           lensmpls++;
 
-          smplhist_push(samplebuf[1]);
+          pairhist_push(samplebuf[1]);
 
           if (nv.version[1] == TEMPONLY)
           {
@@ -248,7 +248,7 @@ int sample_push(int meas1, int meas2)
 
       case final_tock:
           loadm2(&samplebuf[1], meas1);
-          smplhist_ovr(samplebuf[1]);
+          pairhist_ovr(samplebuf[1]);
           nextstate = first_tick;
           break;
       }
@@ -256,7 +256,7 @@ int sample_push(int meas1, int meas2)
       cursorpos = octet_getendmarkerpos();
 
 
-      md5length = smplhist_md5(lensmpls, nv.usehmac, urlstatus.loopcount, urlstatus.resetsalltime, urlstatus.batv_resetcause, cursorpos);
+      md5length = pairhist_md5(lensmpls, nv.usehmac, urlstatus.loopcount, urlstatus.resetsalltime, urlstatus.batv_resetcause, cursorpos);
 
       // 2 samples (6 bytes) per 8 base64 bytes.
       Base64encode(encodedoctet, (char *)samplebuf, sizeof(samplebuf));

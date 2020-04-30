@@ -1,4 +1,4 @@
-from .sharedobj import ndefpy, octetpy, smplhistpy, samplepy
+from .sharedobj import ndefpy, octetpy, pairhistpy, samplepy
 from . import eeprom as eeprom
 from struct import pack
 
@@ -87,13 +87,13 @@ class InstrumentedOctet(InstrumentedBase):
         super(InstrumentedOctet, self).__init__(octetpy, baseurl, serial, secretkey, smplintervalmins)
 
 
-class InstrumentedSmplHist(InstrumentedBase):
+class InstrumentedPairhist(InstrumentedBase):
     def __init__(self,
                  baseurl='plotsensor.com',
                  serial='AAAACCCC',
                  secretkey='AAAACCCC',
                  smplintervalmins=12):
-        super(InstrumentedSmplHist, self).__init__(smplhistpy, baseurl, serial, secretkey, smplintervalmins)
+        super(InstrumentedPairhist, self).__init__(pairhistpy, baseurl, serial, secretkey, smplintervalmins)
 
 
 class InstrumentedSample(InstrumentedBase):

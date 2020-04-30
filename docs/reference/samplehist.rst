@@ -5,8 +5,8 @@ SampleHist C Reference
 
 Interface
 ----------
-.. doxygenfile:: smplhist.h
+.. doxygenfile:: pairhist.h
 
 Implementation
 ---------------
-.. doxygenfile:: smplhist.c
+.. doxygenfile:: pairhist.c
