@@ -155,10 +155,10 @@ URL Circular Buffer
 
 The sample arrays are ordered from the most recent at the top (element 0) to the oldest.
 
-Octets are placed onto a circular buffer.
+Demis are placed onto a circular buffer.
 The end of the buffer is marked by an endstop_. Immediately to the left of
-the endstop is the Octet containing the most recent sample data.
-The octet to the right contains the oldest sample data.
+the endstop is the demi containing the most recent sample data.
+The demi to the right contains the oldest sample data.
 
 
 Samples
@@ -222,18 +222,18 @@ is written to the Length field in the endstop of the URL.
 With this information the decoder discards the samples used for padding.
 
 
-Octets
+Demis
 ~~~~~~~
 
 +------------+---------------------------------------------------+
-| Octet      | 0                                                 |
+| Demi       | 0                                                 |
 +------------+-------------------------+-------------------------+
 | SampleB64  | 0                       | 1                       |
 +------------+-----+------+------+-----+-----+------+------+-----+
 | Byte       | 0   | 1    | 2    |  3  | 4   | 5    | 6    |  7  |
 +------------+-----+------+------+-----+-----+------+------+-----+
 
-6-byte chunks are base64 encoded into 8-byte octets. This is done using only URL-safe characters.
+6-byte chunks are base64 encoded into 8-byte demis. This is done using only URL-safe characters.
 
 Blocks
 ~~~~~~~
@@ -241,17 +241,17 @@ Blocks
 +------------+-------------------------+
 | Block      | 0                       |
 +------------+------------+------------+
-| Octet      | 0          | 1          |
+| Demi      | 0          | 1          |
 +------------+-----+------+------+-----+
 | SampleB64  | 0   | 1    | 2    |  3  |
 +------------+-----+------+------+-----+
 
-Each 16-byte block contains two octets_.
+Each 16-byte block contains two demis_.
 
 +------------+-------------------------+-------------------------+-------------------------+---------------------------+
 | Block      | 0                       | 1                       | ...                     | MSGLEN-1                  |
 +------------+------------+------------+------------+------------+------------+------------+--------------+------------+
-| Octet      | 0          | 1          | 2          | 3          | ...        | ...        | ...          | 2*MSGLEN-1 |
+| Demi       | 0          | 1          | 2          | 3          | ...        | ...        | ...          | 2*MSGLEN-1 |
 +------------+------------+------------+------------+------------+------------+------------+--------------+------------+
 
 
@@ -261,18 +261,18 @@ Endstop
 +----------------------------+------------------------------+
 | Cursor Block               | Next Block                   |
 +---------------+------------+------------+-----------------+
-| Newest Octet  | Endstop 1  | Endstop 2  | Oldest Octet    |
+| Newest Demi   | Endstop 1  | Endstop 2  | Oldest Demi     |
 +---------------+------------+------------+-----------------+
 
 
 The endstop marks the end of the circular buffer. It is 16-bytes wide and it can span 2 blocks as shown above.
 
-Immediately to the left of the endstop is the Octet containing the most recent sample data.
+Immediately to the left of the endstop is the Demi containing the most recent sample data.
 
-The octet to the right contains the oldest sample data or zero padding if the buffer is not full.
+The demi to the right contains the oldest sample data or zero padding if the buffer is not full.
 
 +-------------+-------------------------------+--------------------------------------+
-| Octet       | Endstop 0                     | Endstop 1                            |
+| Demi       | Endstop 0                     | Endstop 1                            |
 +-------------+---+---+---+---+---+---+---+---+---+---+----+----+----+----+----+-----+
 | Byte        | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15  |
 +-------------+---+---+---+---+---+---+---+---+---+---+----+----+----+----+----+-----+

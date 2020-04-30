@@ -7,7 +7,7 @@ URL Encoder Reference
 
    sample
    samplehist
-   octet
+   demi
    nvtype
    eep
    ndef

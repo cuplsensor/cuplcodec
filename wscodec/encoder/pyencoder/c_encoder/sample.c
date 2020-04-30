@@ -1,5 +1,5 @@
 #include "sample.h"
-#include "octet.h"
+#include "demi.h"
 #include "ndef.h"
 #include "pairhist.h"
 #include "defs.h"
@@ -24,7 +24,7 @@ typedef enum {
 
 typedef struct status
 {
-    uint16_t loopcount;  /*!< Number of times the last octet in the circular buffer endstop has wrapped from the end of the buffer to the beginning. */
+    uint16_t loopcount;  /*!< Number of times the last demi in the circular buffer endstop has wrapped from the end of the buffer to the beginning. */
     uint16_t resetsalltime;     /*!< 2-byte status. Bits are set according to stat_bits.h */
     uint16_t batv_resetcause;   /*!< Battery voltage in mV */
 } stat_t;
@@ -35,7 +35,7 @@ typedef struct endstop
   char markerb64[4];    /*!< End-stop marker comprised of base64 encoded minutes since the previous sample and ::ENDSTOP_BYTE */
 } endstop_t;
 
-static char encodedoctet[8];        /*!< Stores the base64 encoded \link samplebuf. */
+static char encodeddemi[8];        /*!< Stores the base64 encoded \link samplebuf. */
 static sdchars_t samplebuf[2];      /*!< Stores two 3-byte samples. */
 static unsigned int lensmpls = 0;   /*!< Number of valid samples in the circular buffer, starting from the endstop and counting backwards. */
 static urlstate state;
@@ -62,7 +62,7 @@ static void sample_updatelc(void)
 
   Base64encode(statusb64, (const char *)&urlstatus, sizeof(urlstatus));
   ndef_writepreamble(BUFLEN_BLKS, statusb64);
-  octet_restore();
+  demi_restore();
 }
 
 /*!
@@ -96,7 +96,7 @@ void sample_init(unsigned int resetcause, bool err)
   }
 
   ndef_writeblankurl(buflenblks, statusb64, &startblk);
-  octet_init(startblk, buflenblks);
+  demi_init(startblk, buflenblks);
 }
 
 /**
@@ -139,8 +139,8 @@ static void makeendstop(unsigned int minutes)
 void sample_updateendstop(unsigned int minutes)
 {
     makeendstop(minutes);
-    octet_write(Octet2, &endstop.md5lenb64[8]);
-    octet_commit2();
+    demi_write(Demi2, &endstop.md5lenb64[8]);
+    demi_commit2();
 }
 
 /**
@@ -192,21 +192,21 @@ int sample_push(int meas1, int meas2)
 
   if ((state == first_tick) && (lensmpls != 0))
   {
-      octet_movecursor();
+      demi_movecursor();
   }
 
-  OctState_t octetstate = octet_getstate();
+  OctState_t demistate = demi_getstate();
 
   switch(state)
       {
       case first_tick:
           loadboth(&samplebuf[0], meas1, meas2);
           loadboth(&samplebuf[1], 0, 0);
-          if (octetstate != firstloop)
+          if (demistate != firstloop)
           {
-              lensmpls -= SAMPLES_PER_OCTET;
+              lensmpls -= SAMPLES_PER_DEMI;
           }
-          if (octetstate == loopingaround)
+          if (demistate == loopingaround)
           {
             sample_updatelc();
           }
@@ -253,24 +253,24 @@ int sample_push(int meas1, int meas2)
           break;
       }
 
-      cursorpos = octet_getendmarkerpos();
+      cursorpos = demi_getendmarkerpos();
 
 
       md5length = pairhist_md5(lensmpls, nv.usehmac, urlstatus.loopcount, urlstatus.resetsalltime, urlstatus.batv_resetcause, cursorpos);
 
       // 2 samples (6 bytes) per 8 base64 bytes.
-      Base64encode(encodedoctet, (char *)samplebuf, sizeof(samplebuf));
+      Base64encode(encodeddemi, (char *)samplebuf, sizeof(samplebuf));
       // 9 bytes per 12 base64 bytes.
       Base64encode(endstop.md5lenb64, (char *)&md5length, sizeof(md5length));
 
       makeendstop(0);
 
-      octet_write(Octet0, encodedoctet);
-      octet_write(Octet1, &endstop.md5lenb64[0]);
-      octet_write(Octet2, &endstop.md5lenb64[8]);
-      octet_commit4();
+      demi_write(Demi0, encodeddemi);
+      demi_write(Demi1, &endstop.md5lenb64[0]);
+      demi_write(Demi2, &endstop.md5lenb64[8]);
+      demi_commit4();
 
       state = nextstate;
 
-      return (octetstate == loopingaround);
+      return (demistate == loopingaround);
 }

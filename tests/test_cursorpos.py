@@ -25,7 +25,7 @@ def instr_sample(request):
 @pytest.mark.parametrize('n', range(1, 150))
 def test_cursorpos(instr_sample, n):
     instr_sample.pushsamples(n)
-    encoder_cursorpos = instr_sample.ffimodule.lib.octet_getendmarkerpos()
+    encoder_cursorpos = instr_sample.ffimodule.lib.demi_getendmarkerpos()
 
     # Decode the URL
     par = instr_sample.eepromba.get_url_parsedqs()

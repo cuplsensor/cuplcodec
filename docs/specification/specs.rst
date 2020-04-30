@@ -66,35 +66,35 @@ Specifications
    +------------------------------------------------+--------------------------------------------------------------------------+
    | Cursor Block                                   | Next Block                                                               |
    +-----------------------------------+------------+--------------------------------+-----------------------------------------+
-   | Cursor Octet                      | Endstop Octets (0,1)                        | Oldest Octet                            |
+   | Cursor Demi                       | Endstop Demis (0,1)                         | Oldest Demi                             |
    +-----------------+-----------------+---------------------------------------------+-------------------+---------------------+
    | P|64|1          | P|64|0|         |                                             |  P|64|N           | P|64|N-1            |
    +--------+--------+--------+--------+---------------------------------------------+--------+----------+----------+----------+
    | R|64|3 | R|64|2 | R|64|1 | R|64|0 |                                             | R|64|L | R|64|L-1 | R|64|L-2 | R|64|L-3 |
    +--------+--------+--------+--------+---------------------------------------------+--------+----------+----------+----------+
 
-   Blocks are subdivided into two 8-byte octets. Each octet holds 2 base64 encoded pairs.
+   Blocks are subdivided into two 8-byte demis. Each demi holds 2 base64 encoded pairs.
 
    Each pair consists of 2 base64 encoded sensor readings. By default these will be captured
    simultaneously by a temperature sensor and a humidity sensor.
 
-   New sensor readings are written to Cursor Octet. Each time this occurs, the subsequent
+   New sensor readings are written to Cursor Demi. Each time this occurs, the subsequent
    :need:`CODEC_SPEC_13` is updated.
 
-   When Cursor Octet is full, both it and the endstop are moved forward when the next sensor reading is added:
+   When Cursor Demi is full, both it and the endstop are moved forward when the next sensor reading is added:
 
    +------------------------------+------------------------------+
    | Cursor Block                 | Next Block                   |
    +---------------+--------------+------------------------------+
-   | Octet         | Cursor Octet | Endstop Octets (0,1)         |
+   | Demi          | Cursor Demi  | Endstop Demis (0,1)          |
    +-------+-------+-------+------+------------------------------+
    | S2    | S1    | S0    | Spad |                              |
    +---+---+---+---+---+---+------+------------------------------+
    |R5 |R4 |R3 |R2 |R1 |R0 |                                     |
    +---+---+---+---+---+---+-------------------------------------+
 
-   The previous oldest octet is overwritten. Note there can be a gap between the most recent sample and
-   the start of the endstop octets. This is zero padded. The padding will not be decoded because the number
+   The previous oldest demi is overwritten. Note there can be a gap between the most recent sample and
+   the start of the endstop demis. This is zero padded. The padding will not be decoded because the number
    of valid samples in the buffer is included in the endstop.
 
 .. spec:: Endstop
@@ -102,12 +102,12 @@ Specifications
    :status: complete
    :links: CODEC_SPEC_12
 
-   The endstop occupies 2 octets (16 bytes) after the cursor octet. It is terminated with a unique character. This marks
+   The endstop occupies 2 demis (16 bytes) after the cursor demi. It is terminated with a unique character. This marks
    the end of the circular buffer; the divide between new and old data. The decoder finds this in order to unwrap the circular buffer into a list of samples,
    ordered newest to oldest.
 
    +-------------+-------------------------------+-----------------------------------------------+
-   | Octet       | Endstop 0                     | Endstop 1                                     |
+   | Demi       | Endstop 0                     | Endstop 1                                     |
    +-------------+---+---+---+---+---+---+---+---+---+---+----+----+----+----+-------------+-----+
    | Byte        | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14          | 15  |
    +-------------+---+---+---+---+---+---+---+---+---+---+----+----+----+----+-------------+-----+

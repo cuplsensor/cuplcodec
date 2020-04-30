@@ -1,6 +1,6 @@
-.. _octet-c-reference:
+.. _demi-c-reference:
 
-Octet C Reference
+Demi C Reference
 =====================
 
-.. doxygenfile:: octet.c
+.. doxygenfile:: demi.c

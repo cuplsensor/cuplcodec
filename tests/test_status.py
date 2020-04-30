@@ -24,7 +24,7 @@ def instr_sample(request):
 
 def test_status(instr_sample, n=1):
     instr_sample.pushsamples(n)
-    encoder_cursorpos = instr_sample.ffimodule.lib.octet_getendmarkerpos()
+    encoder_cursorpos = instr_sample.ffimodule.lib.demi_getendmarkerpos()
 
     # Decode the URL
     par = instr_sample.eepromba.get_url_parsedqs()

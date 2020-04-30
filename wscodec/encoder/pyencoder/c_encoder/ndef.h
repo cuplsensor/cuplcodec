@@ -14,7 +14,7 @@
   * \param qstartblk Pointer to an integer into which this function writes the start block of the q URL parameter.
   * \returns 1 if qlenblks is not even.
   *
-  * The circular buffer is zero-padded with a base64 octet
+  * The circular buffer is zero-padded with a base64 demi
   * that decodes to 0,0,0,0,0,0.
   */
 int ndef_writeblankurl(int qlenblks, char * statusb64, int * qstartblk);

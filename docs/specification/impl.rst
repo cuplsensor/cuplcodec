@@ -37,7 +37,7 @@ Implementation
    :links: CODEC_FEAT_25
 
    The function :cpp:func:`sample_push` uses integer :cpp:member:`lensmpls` to record how many valid samples
-   are in the circular buffer. When an octet is overwritten, it is reduced by :c:macro:`SAMPLES_PER_OCTET`.
+   are in the circular buffer. When an demi is overwritten, it is reduced by :c:macro:`SAMPLES_PER_DEMI`.
    Otherwise it is incremented by one. When the buffer is full :cpp:member:`lensmpls` will equal
    :cpp:member:`buflensamples`.
 
@@ -52,7 +52,7 @@ Implementation
    On each call to :cpp:func:`sample_push`, the sample is appended to :cpp:member:`samplehistory` by
    :cpp:func:`pairhist_push`. The hash (MD5 or HMAC) is calculated with :cpp:func:`pairhist_md5`.
    This outputs a 9 byte structure (:cpp:type:`md5len_t`). It is converted to base64 (:cpp:member:`md5lenb64`)
-   before it is written to the endstop octets (:need:`CODEC_SPEC_13`).
+   before it is written to the endstop demis (:need:`CODEC_SPEC_13`).
 
 .. impl:: Append sample
    :id: CODEC_IMPL_6
@@ -68,10 +68,10 @@ Implementation
    :links: CODEC_FEAT_12
 
    The NDEF message and its circular buffer are initialised with :cpp:func:`sample_init`. Given there are
-   no samples in the circular buffer, the endstop and cursor are omitted. All octets are set to MDaW
+   no samples in the circular buffer, the endstop and cursor are omitted. All demis are set to MDaW
    (all zeroes).
 
-   State machines in the ``sample`` and ``octet`` files are reset.
+   State machines in the ``sample`` and ``demi`` files are reset.
 
 .. impl:: Serial
    :id: CODEC_IMPL_8
