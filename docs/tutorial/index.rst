@@ -172,7 +172,7 @@ Each sample contains two 12-bit measurands. These are organised as follows
 | **Description** | M1MSB | M2MSB | LSB |
 +-----------------+-------+-------+-----+
 
-The encoder stores samples using the :cpp:type:`sdchars_t` type.
+The encoder stores samples using the :cpp:type:`pair_t` type.
 
 M1MSB
 ^^^^^^

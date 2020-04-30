@@ -6,7 +6,7 @@
 extern nv_t nv;
 
 const int buflensamples = BUFLEN_SAMPLES;
-static sdchars_t samplehistory[BUFLEN_SAMPLES];
+static pair_t samplehistory[BUFLEN_SAMPLES];
 static int histpos = 0;
 unsigned char md5block[64];
 static const char ipadchar = 0x36;
@@ -15,14 +15,14 @@ static MD5_CTX ctx;
 static int prevhistpos;
 
 
-int pairhist_ovr(sdchars_t sample)
+int pairhist_ovr(pair_t sample)
 {
   samplehistory[prevhistpos] = sample;
 
   return 0;
 }
 
-int pairhist_push(sdchars_t sample)
+int pairhist_push(pair_t sample)
 {
   samplehistory[histpos] = sample;
   prevhistpos = histpos;
@@ -39,10 +39,10 @@ int pairhist_push(sdchars_t sample)
   return 0;
 }
 
-sdchars_t pairhist_read(unsigned int index, int * error)
+pair_t pairhist_read(unsigned int index, int * error)
 {
     int readpos;
-    sdchars_t sample;
+    pair_t sample;
     *error = 0;
 
     readpos = (histpos - 1) - index;
@@ -72,7 +72,7 @@ sdchars_t pairhist_read(unsigned int index, int * error)
 
 md5len_t pairhist_md5(int lenpairs, int usehmac, unsigned int loopcount, unsigned int resetsalltime, unsigned int batv_resetcause, int cursorpos)
 {
-    sdchars_t prevsmpl;
+    pair_t prevsmpl;
     int error = 0;
     int smplindex = 0;
     md5len_t md5length;

@@ -45,7 +45,7 @@ def write_buffer(instr, n):
     for i in range(0, n):
         testsample = random.randrange(4095)
         m1Msb, m2Msb, Lsb = convertToSdChars(testsample, testsample)
-        sensordata = instr.ffimodule.ffi.new("sdchars_t *", {'m1Msb': m1Msb, 'm2Msb': m2Msb, 'Lsb': Lsb})
+        sensordata = instr.ffimodule.ffi.new("pair_t *", {'m1Msb': m1Msb, 'm2Msb': m2Msb, 'Lsb': Lsb})
         sdbytearray = bytearray([m1Msb, m2Msb, Lsb]) + sdbytearray
         sdlist.insert(0, sensordata[0])
         instr.ffimodule.lib.pairhist_push(sensordata[0])

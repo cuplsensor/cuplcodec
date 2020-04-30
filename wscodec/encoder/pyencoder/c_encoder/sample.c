@@ -36,7 +36,7 @@ typedef struct endstop
 } endstop_t;
 
 static char demib64[8];        /*!< Stores the base64 encoded \link pairbuf. */
-static sdchars_t pairbuf[2];      /*!< Stores two unencoded 3-byte pairs. */
+static pair_t pairbuf[2];      /*!< Stores two unencoded 3-byte pairs. */
 static unsigned int lenpairs = 0;   /*!< Number of valid samples in the circular buffer, starting from the endstop and counting backwards. */
 static urlstate state;
 #ifndef NOT_CFFI
@@ -150,7 +150,7 @@ void sample_updateendstop(unsigned int minutes)
  * @param meas1: Measurand 1. Only the 12 least sigificant bits will be used.
  * @param meas2: Measurand 2. Only the 12 least sigificant bits will be used.
  */
-static void loadboth(sdchars_t *sample, int meas1, int meas2)
+static void loadboth(pair_t *sample, int meas1, int meas2)
 {
     sample->m1Msb = ((meas1 >> 4) & 0xFF);
     sample->m2Msb = ((meas2 >> 4) & 0xFF);
@@ -163,7 +163,7 @@ static void loadboth(sdchars_t *sample, int meas1, int meas2)
  * @param sample: Pointer to the sample that will be modified.
  * @param meas2: Measurand 2. Only the 12 least sigificant bits will be used.
  */
-static void loadm2(sdchars_t *sample, int meas2)
+static void loadm2(pair_t *sample, int meas2)
 {
     sample->m2Msb = ((meas2 >> 4) & 0xFF);
     sample->Lsb &= ~0x0F; // Clear low nibble of LSB.
