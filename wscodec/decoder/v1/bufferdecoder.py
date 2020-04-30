@@ -44,7 +44,7 @@ class BufferDecoder(MsgAuth):
 
     """
     BYTES_PER_SAMPLE = 3
-    SAMPLES_PER_DEMI = 2
+    PAIRS_PER_DEMI = 2
     ENDSTOP_BYTE = '~'  # This must be URL Safe
 
     def __init__(self, encstr, secretkey, status, usehmac, scandatetime):
@@ -111,8 +111,8 @@ class BufferDecoder(MsgAuth):
         # The newest 8 byte chunk might only contain
         # 1 valid sample. If so, this is a
         # partial packet and it is processed first.
-        rem = smplcount % BufferDecoder.SAMPLES_PER_DEMI
-        full = int(smplcount / BufferDecoder.SAMPLES_PER_DEMI)
+        rem = smplcount % BufferDecoder.PAIRS_PER_DEMI
+        full = int(smplcount / BufferDecoder.PAIRS_PER_DEMI)
 
         if rem != 0:
             chunk = linbuf8.pop()

@@ -70,7 +70,7 @@ sdchars_t pairhist_read(unsigned int index, int * error)
     return sample;
 }
 
-md5len_t pairhist_md5(int lensmpls, int usehmac, unsigned int loopcount, unsigned int resetsalltime, unsigned int batv_resetcause, int cursorpos)
+md5len_t pairhist_md5(int lenpairs, int usehmac, unsigned int loopcount, unsigned int resetsalltime, unsigned int batv_resetcause, int cursorpos)
 {
     sdchars_t prevsmpl;
     int error = 0;
@@ -104,7 +104,7 @@ md5len_t pairhist_md5(int lensmpls, int usehmac, unsigned int loopcount, unsigne
     // Seperate sample history into 64 byte blocks and a partial block.
     i=0;
     // Start to take MD5 of the message.
-    while(smplindex<lensmpls)
+    while(smplindex<lenpairs)
     {
         prevsmpl = pairhist_read(smplindex++, &error);
         if (error == 1)
@@ -187,8 +187,8 @@ md5len_t pairhist_md5(int lensmpls, int usehmac, unsigned int loopcount, unsigne
     {
         md5length.md5[i] = md5result[i];
     }
-    md5length.lensmplsbytes[0] = (lensmpls & 0xFF00) >> 8;
-    md5length.lensmplsbytes[1] = (lensmpls & 0x00FF);
+    md5length.lenpairsbytes[0] = (lenpairs & 0xFF00) >> 8;
+    md5length.lenpairsbytes[1] = (lenpairs & 0x00FF);
 
     return md5length;
 }

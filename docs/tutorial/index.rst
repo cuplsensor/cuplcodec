@@ -320,7 +320,7 @@ Least significant 7 bytes of the MD5 checksum taken of all samples in the buffer
 LengthSamples
 ______________
 
-The number of valid samples in the circular buffer. This is populated from :cpp:var:`lensmpls`.
+The number of valid samples in the circular buffer. This is populated from :cpp:var:`lenpairs`.
 
 
 

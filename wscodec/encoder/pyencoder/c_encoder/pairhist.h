@@ -17,12 +17,12 @@ typedef struct sensordatachars
 typedef struct md5len
 {
     unsigned char md5[7];
-    unsigned char lensmplsbytes[2];
+    unsigned char lenpairsbytes[2];
 } md5len_t;
 
 int pairhist_ovr(sdchars_t sample);
 int pairhist_push(sdchars_t sample);
-md5len_t pairhist_md5(int lensmpls, int usehmac, unsigned int loopcount, unsigned int resetsalltime, unsigned int batv_resetcause, int cursorpos);
+md5len_t pairhist_md5(int lenpairs, int usehmac, unsigned int loopcount, unsigned int resetsalltime, unsigned int batv_resetcause, int cursorpos);
 sdchars_t pairhist_read(unsigned int index, int * error);
 
 #ifndef NOT_CFFI

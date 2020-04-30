@@ -36,9 +36,9 @@ Implementation
    :status: complete
    :links: CODEC_FEAT_25
 
-   The function :cpp:func:`sample_push` uses integer :cpp:member:`lensmpls` to record how many valid samples
-   are in the circular buffer. When an demi is overwritten, it is reduced by :c:macro:`SAMPLES_PER_DEMI`.
-   Otherwise it is incremented by one. When the buffer is full :cpp:member:`lensmpls` will equal
+   The function :cpp:func:`sample_push` uses integer :cpp:member:`lenpairs` to record how many valid samples
+   are in the circular buffer. When an demi is overwritten, it is reduced by :c:macro:`PAIRS_PER_DEMI`.
+   Otherwise it is incremented by one. When the buffer is full :cpp:member:`lenpairs` will equal
    :cpp:member:`buflensamples`.
 
 .. impl:: MD5

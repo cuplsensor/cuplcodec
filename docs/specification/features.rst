@@ -235,7 +235,7 @@ Circular Buffer
    :links: CODEC_SPEC_14
 
    Number of valid samples in the circular buffer. This excludes samples used for padding.
-   Populated from :cpp:var:`lensmpls`.
+   Populated from :cpp:var:`lenpairs`.
 
 .. feat:: Elapsed b64
    :id: CODEC_FEAT_26

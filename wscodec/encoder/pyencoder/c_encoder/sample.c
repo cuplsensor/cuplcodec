@@ -15,10 +15,10 @@
 #define BATV_RESETCAUSE(BATV, RSTC) ((BATV << 8) | (RSTC & 0xFF))
 
 typedef enum {
-    first_tick,     /*!< Write both meaurands in the first sample of samplebuf  */
-    first_tock,     /*!< Overwrite measurand 2 in the first sample of samplebuf. */
-    final_tick,     /*!< Write both measurands in the second sample of samplebuf. */
-    final_tock      /*!< Overwrite measurand 2 in the second sample of samplebuf. */
+    first_tick,     /*!< Write both meaurands in the first sample of pairbuf  */
+    first_tock,     /*!< Overwrite measurand 2 in the first sample of pairbuf. */
+    final_tick,     /*!< Write both measurands in the second sample of pairbuf. */
+    final_tock      /*!< Overwrite measurand 2 in the second sample of pairbuf. */
 } urlstate;
 
 
@@ -35,9 +35,9 @@ typedef struct endstop
   char markerb64[4];    /*!< End-stop marker comprised of base64 encoded minutes since the previous sample and ::ENDSTOP_BYTE */
 } endstop_t;
 
-static char encodeddemi[8];        /*!< Stores the base64 encoded \link samplebuf. */
-static sdchars_t samplebuf[2];      /*!< Stores two 3-byte samples. */
-static unsigned int lensmpls = 0;   /*!< Number of valid samples in the circular buffer, starting from the endstop and counting backwards. */
+static char demib64[8];        /*!< Stores the base64 encoded \link pairbuf. */
+static sdchars_t pairbuf[2];      /*!< Stores two unencoded 3-byte pairs. */
+static unsigned int lenpairs = 0;   /*!< Number of valid samples in the circular buffer, starting from the endstop and counting backwards. */
 static urlstate state;
 #ifndef NOT_CFFI
 stat_t urlstatus = {0};
@@ -83,7 +83,7 @@ void sample_init(unsigned int resetcause, bool err)
   urlstatus.batv_resetcause = BATV_RESETCAUSE(batv, resetcause);
   Base64encode(statusb64, (const char *)&urlstatus, sizeof(urlstatus));
 
-  lensmpls = 0;
+  lenpairs = 0;
   state = first_tick;
 
   if (err == true)
@@ -190,7 +190,7 @@ int sample_push(int meas1, int meas2)
       meas2 = -1;
   }
 
-  if ((state == first_tick) && (lensmpls != 0))
+  if ((state == first_tick) && (lenpairs != 0))
   {
       demi_movecursor();
   }
@@ -200,19 +200,19 @@ int sample_push(int meas1, int meas2)
   switch(state)
       {
       case first_tick:
-          loadboth(&samplebuf[0], meas1, meas2);
-          loadboth(&samplebuf[1], 0, 0);
+          loadboth(&pairbuf[0], meas1, meas2);
+          loadboth(&pairbuf[1], 0, 0);
           if (demistate != firstloop)
           {
-              lensmpls -= SAMPLES_PER_DEMI;
+              lenpairs -= PAIRS_PER_DEMI;
           }
           if (demistate == loopingaround)
           {
             sample_updatelc();
           }
-          lensmpls++;
+          lenpairs++;
 
-          pairhist_push(samplebuf[0]);
+          pairhist_push(pairbuf[0]);
 
           if (nv.version[1] == TEMPONLY)
           {
@@ -225,16 +225,16 @@ int sample_push(int meas1, int meas2)
           break;
 
       case first_tock:
-          loadm2(&samplebuf[0], meas1);
-          pairhist_ovr(samplebuf[0]);
+          loadm2(&pairbuf[0], meas1);
+          pairhist_ovr(pairbuf[0]);
           nextstate = final_tick;
           break;
 
       case final_tick:
-          loadboth(&samplebuf[1], meas1, meas2);
-          lensmpls++;
+          loadboth(&pairbuf[1], meas1, meas2);
+          lenpairs++;
 
-          pairhist_push(samplebuf[1]);
+          pairhist_push(pairbuf[1]);
 
           if (nv.version[1] == TEMPONLY)
           {
@@ -247,8 +247,8 @@ int sample_push(int meas1, int meas2)
           break;
 
       case final_tock:
-          loadm2(&samplebuf[1], meas1);
-          pairhist_ovr(samplebuf[1]);
+          loadm2(&pairbuf[1], meas1);
+          pairhist_ovr(pairbuf[1]);
           nextstate = first_tick;
           break;
       }
@@ -256,16 +256,16 @@ int sample_push(int meas1, int meas2)
       cursorpos = demi_getendmarkerpos();
 
 
-      md5length = pairhist_md5(lensmpls, nv.usehmac, urlstatus.loopcount, urlstatus.resetsalltime, urlstatus.batv_resetcause, cursorpos);
+      md5length = pairhist_md5(lenpairs, nv.usehmac, urlstatus.loopcount, urlstatus.resetsalltime, urlstatus.batv_resetcause, cursorpos);
 
       // 2 samples (6 bytes) per 8 base64 bytes.
-      Base64encode(encodeddemi, (char *)samplebuf, sizeof(samplebuf));
+      Base64encode(demib64, (char *)pairbuf, sizeof(pairbuf));
       // 9 bytes per 12 base64 bytes.
       Base64encode(endstop.md5lenb64, (char *)&md5length, sizeof(md5length));
 
       makeendstop(0);
 
-      demi_write(Demi0, encodeddemi);
+      demi_write(Demi0, demib64);
       demi_write(Demi1, &endstop.md5lenb64[0]);
       demi_write(Demi2, &endstop.md5lenb64[8]);
       demi_commit4();
