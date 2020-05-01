@@ -141,7 +141,7 @@ static void makeendstop(unsigned int minutes)
     endmarker.elapsedMSB = minutes >> 8;
     //char endmarker[2];
     //makemarker(minutes, endmarker);
-    Base64encode(endstop.markerb64, endmarker, sizeof(endmarker));
+    Base64encode(endstop.markerb64, (char *)&endmarker, sizeof(endmarker));
     // Change padding byte.
     endstop.markerb64[3] = ENDSTOP_BYTE;
 }
