@@ -15,54 +15,59 @@
 #define BATV_RESETCAUSE(BATV, RSTC) ((BATV << 8) | (RSTC & 0xFF))
 
 typedef enum {
-    first_tick,     /*!< Write both meaurands in the first sample of pairbuf  */
-    first_tock,     /*!< Overwrite measurand 2 in the first sample of pairbuf. */
-    final_tick,     /*!< Write both measurands in the second sample of pairbuf. */
-    final_tock      /*!< Overwrite measurand 2 in the second sample of pairbuf. */
-} urlstate;
+    pair0_both,         /*!< Write both meaurands in the first sample of pairbuf pair0_both */
+    pair0_reading1,     /*!< Overwrite measurand 2 in the first sample of pairbuf. pair0_reading1*/
+    pair1_both,         /*!< Write both measurands in the second sample of pairbuf. pair1_both */
+    pair1_reading1      /*!< Overwrite measurand 2 in the second sample of pairbuf. pair1_reading1 pairbufstate_t*/
+} pairbufstate_t;       /*!< Indicates which reading(s) in the \link pairbuf are being written.*/
 
-
-typedef struct status
+typedef struct
 {
     uint16_t loopcount;  /*!< Number of times the last demi in the circular buffer endstop has wrapped from the end of the buffer to the beginning. */
     uint16_t resetsalltime;     /*!< 2-byte status. Bits are set according to stat_bits.h */
     uint16_t batv_resetcause;   /*!< Battery voltage in mV */
 } stat_t;
 
-typedef struct endstop
+typedef struct
 {
   char md5lenb64[12];   /*!< MD5 length field containing a base64 encoded ::md5len_t. */
   char markerb64[4];    /*!< End-stop marker comprised of base64 encoded minutes since the previous sample and ::ENDSTOP_BYTE */
 } endstop_t;
 
-static char demib64[8];        /*!< Stores the base64 encoded \link pairbuf. */
-static pair_t pairbuf[2];      /*!< Stores two unencoded 3-byte pairs. */
-static unsigned int lenpairs = 0;   /*!< Number of valid samples in the circular buffer, starting from the endstop and counting backwards. */
-static urlstate state;
-#ifndef NOT_CFFI
-stat_t urlstatus = {0};
-#else
-static stat_t urlstatus = {0};
-#endif
+static char demib64[8];             /*!< Stores two pairs from \link pairbuf, after base64 encoding */
+static pair_t pairbuf[2];           /*!< Stores two unencoded 3-byte pairs. */
+static unsigned int lenpairs = 0;   /*!< Number of base64 encoded pairs in the circular buffer, starting from the endstop and counting backwards. */
+static pairbufstate_t state;        /*!< Pair buffer write state. */
 static endstop_t endstop;           /*!< The 16 byte end stop. */
 extern nv_t nv;                     /*!< Externally defined parameters stored in non-volatile memory. */
+
+#ifndef NOT_CFFI
+stat_t status = {0};
+#else
+static stat_t status = {0};
+#endif
+
+
 
 
 /*!
  * @brief Update loop counter and battery voltage in the preamble status field.
+ *
+ * Calls a function to measure battery voltage, increases loopcount and clears the battery reset field.
+ * These data are base64 encoded and written to EEPROM. ndef_writepreamble overwrites the bufferred circular buffer
+ * blocks so these must be read again after with demi_restore.
  */
 static void sample_updatelc(void)
 {
   char statusb64[9];
-  uint16_t batv = batv_measure();
+  uint16_t batv = batv_measure();                           // Measure battery voltage
 
-  urlstatus.loopcount += 1;
-  //urlstatus.status = stat_get(&err);
-  urlstatus.batv_resetcause = BATV_RESETCAUSE(batv, 0);
+  status.loopcount += 1;                                 // Increase loopcount by 1.
+  status.batv_resetcause = BATV_RESETCAUSE(batv, 0);     // Clear battery reset cause
 
-  Base64encode(statusb64, (const char *)&urlstatus, sizeof(urlstatus));
-  ndef_writepreamble(BUFLEN_BLKS, statusb64);
-  demi_restore();
+  Base64encode(statusb64, (const char *)&status, sizeof(status)); // Base64 encode status.
+  ndef_writepreamble(BUFLEN_BLKS, statusb64);               // Write URL in EEPROM up to the start of the circular buffer.
+  demi_restore();                                           // Re-read circular buffer blocks that were overwritten in the previous operation.
 }
 
 /*!
@@ -78,13 +83,13 @@ void sample_init(unsigned int resetcause, bool err)
   int buflenblks;
   uint16_t batv = batv_measure();
 
-  urlstatus.loopcount = 0;
-  urlstatus.resetsalltime = nv.resetsalltime;
-  urlstatus.batv_resetcause = BATV_RESETCAUSE(batv, resetcause);
-  Base64encode(statusb64, (const char *)&urlstatus, sizeof(urlstatus));
+  status.loopcount = 0;
+  status.resetsalltime = nv.resetsalltime;
+  status.batv_resetcause = BATV_RESETCAUSE(batv, resetcause);
+  Base64encode(statusb64, (const char *)&status, sizeof(status));
 
   lenpairs = 0;
-  state = first_tick;
+  state = pair0_both;
 
   if (err == true)
   {
@@ -181,7 +186,7 @@ static void loadm2(pair_t *sample, int meas2)
  */
 int sample_push(int meas1, int meas2)
 {
-  urlstate nextstate;
+  pairbufstate_t nextstate;
   md5len_t md5length;
   int cursorpos;
 
@@ -190,7 +195,7 @@ int sample_push(int meas1, int meas2)
       meas2 = -1;
   }
 
-  if ((state == first_tick) && (lenpairs != 0))
+  if ((state == pair0_both) && (lenpairs != 0))
   {
       demi_movecursor();
   }
@@ -199,7 +204,7 @@ int sample_push(int meas1, int meas2)
 
   switch(state)
       {
-      case first_tick:
+      case pair0_both:
           loadboth(&pairbuf[0], meas1, meas2);
           loadboth(&pairbuf[1], 0, 0);
           if (demistate != firstloop)
@@ -216,21 +221,21 @@ int sample_push(int meas1, int meas2)
 
           if (nv.version[1] == TEMPONLY)
           {
-              nextstate = first_tock;
+              nextstate = pair0_reading1;
           }
           else
           {
-              nextstate = final_tick;
+              nextstate = pair1_both;
           }
           break;
 
-      case first_tock:
+      case pair0_reading1:
           loadm2(&pairbuf[0], meas1);
           pairhist_ovr(pairbuf[0]);
-          nextstate = final_tick;
+          nextstate = pair1_both;
           break;
 
-      case final_tick:
+      case pair1_both:
           loadboth(&pairbuf[1], meas1, meas2);
           lenpairs++;
 
@@ -238,25 +243,25 @@ int sample_push(int meas1, int meas2)
 
           if (nv.version[1] == TEMPONLY)
           {
-              nextstate = final_tock;
+              nextstate = pair1_reading1;
           }
           else
           {
-              nextstate = first_tick;
+              nextstate = pair0_both;
           }
           break;
 
-      case final_tock:
+      case pair1_reading1:
           loadm2(&pairbuf[1], meas1);
           pairhist_ovr(pairbuf[1]);
-          nextstate = first_tick;
+          nextstate = pair0_both;
           break;
       }
 
       cursorpos = demi_getendmarkerpos();
 
 
-      md5length = pairhist_md5(lenpairs, nv.usehmac, urlstatus.loopcount, urlstatus.resetsalltime, urlstatus.batv_resetcause, cursorpos);
+      md5length = pairhist_md5(lenpairs, nv.usehmac, status.loopcount, status.resetsalltime, status.batv_resetcause, cursorpos);
 
       // 2 samples (6 bytes) per 8 base64 bytes.
       Base64encode(demib64, (char *)pairbuf, sizeof(pairbuf));
