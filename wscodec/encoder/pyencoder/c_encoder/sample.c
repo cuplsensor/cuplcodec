@@ -23,7 +23,7 @@ typedef enum {
 
 typedef struct
 {
-    uint16_t loopcount;  /*!< Number of times the last demi in the circular buffer endstop has wrapped from the end of the buffer to the beginning. */
+    uint16_t loopcount;         /*!< Number of times the last demi in the circular buffer endstop has wrapped from the end to the beginning. */
     uint16_t resetsalltime;     /*!< 2-byte status. Bits are set according to stat_bits.h */
     uint16_t batv_resetcause;   /*!< Battery voltage in mV */
 } stat_t;
@@ -34,7 +34,13 @@ typedef struct
   char markerb64[4];    /*!< End-stop marker comprised of base64 encoded minutes since the previous sample and ::ENDSTOP_BYTE */
 } endstop_t;
 
-static char demib64[8];             /*!< Stores two pairs from \link pairbuf, after base64 encoding */
+typedef struct
+{
+  char elapsedLSB;      /*!< Minutes elapsed since previous sample (Least Significant Byte). */
+  char elapsedMSB;      /*!< Minutes elapsed since previous sample (Most Signficant Byte). */
+} endmarker_t;
+
+static char demi[8];                /*!< Stores two pairs from \link pairbuf, after base64 encoding */
 static pair_t pairbuf[2];           /*!< Stores two unencoded 3-byte pairs. */
 static unsigned int lenpairs = 0;   /*!< Number of base64 encoded pairs in the circular buffer, starting from the endstop and counting backwards. */
 static pairbufstate_t state;        /*!< Pair buffer write state. */
@@ -42,9 +48,9 @@ static endstop_t endstop;           /*!< The 16 byte end stop. */
 extern nv_t nv;                     /*!< Externally defined parameters stored in non-volatile memory. */
 
 #ifndef NOT_CFFI
-stat_t status = {0};
+stat_t status = {0};                /*!< Structure to hold unencoded status data. */
 #else
-static stat_t status = {0};
+static stat_t status = {0};         /*!< Structure to hold unencoded status data. */
 #endif
 
 
@@ -115,22 +121,26 @@ static void makemarker(unsigned int minutes, char * endmarker)
     unsigned int minutesLsb;
     unsigned int minutesMsb;
 
-    minutesLsb = minutes & 0xFF; // Select lower 6 bits of the minutes field.
-    minutesMsb = minutes >> 8;
+    minutesLsb = minutes & 0xFF; // Lower 8 bits of the minutes field.
+    minutesMsb = minutes >> 8;   // Upper 8 bits of the minutes field.
 
     *(endmarker) = minutesLsb;
     *(endmarker + 1) = minutesMsb;
 }
 
 /**
- * @brief Update the endstop and encode it as base64.
+ * @brief Update the endmarker in the endstop.
  *
  * @param minutes: Minutes elapsed since the previous sample.
  */
 static void makeendstop(unsigned int minutes)
 {
-    char endmarker[2];
-    makemarker(minutes, endmarker);
+    endmarker_t endmarker;
+
+    endmarker.elapsedLSB = minutes & 0xFF;
+    endmarker.elapsedMSB = minutes >> 8;
+    //char endmarker[2];
+    //makemarker(minutes, endmarker);
     Base64encode(endstop.markerb64, endmarker, sizeof(endmarker));
     // Change padding byte.
     endstop.markerb64[3] = ENDSTOP_BYTE;
@@ -264,13 +274,13 @@ int sample_push(int meas1, int meas2)
       md5length = pairhist_md5(lenpairs, nv.usehmac, status.loopcount, status.resetsalltime, status.batv_resetcause, cursorpos);
 
       // 2 samples (6 bytes) per 8 base64 bytes.
-      Base64encode(demib64, (char *)pairbuf, sizeof(pairbuf));
+      Base64encode(demi, (char *)pairbuf, sizeof(pairbuf));
       // 9 bytes per 12 base64 bytes.
       Base64encode(endstop.md5lenb64, (char *)&md5length, sizeof(md5length));
 
       makeendstop(0);
 
-      demi_write(Demi0, demib64);
+      demi_write(Demi0, demi);
       demi_write(Demi1, &endstop.md5lenb64[0]);
       demi_write(Demi2, &endstop.md5lenb64[8]);
       demi_commit4();
