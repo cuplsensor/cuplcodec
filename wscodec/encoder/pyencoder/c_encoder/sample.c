@@ -91,30 +91,30 @@ static void set_elapsed(unsigned int minutes)
 }
 
 /**
- * @brief Write both measurands of a sample.
+ * @brief Write one pair
  *
- * @param sample: Pointer to the sample that will be modified.
- * @param meas1: Measurand 1. Only the 12 least sigificant bits will be used.
- * @param meas2: Measurand 2. Only the 12 least sigificant bits will be used.
+ * @param pair: Pointer to the pair that will be modified.
+ * @param rd0: Reading 0. Only the 12 least significant bits will be used.
+ * @param rd1: Reading 1. Only the 12 least significant bits will be used.
  */
-static void loadboth(pair_t *sample, int meas1, int meas2)
+static void set_pair(pair_t *pair, int rd0, int rd1)
 {
-    sample->m1Msb = ((meas1 >> 4) & 0xFF);
-    sample->m2Msb = ((meas2 >> 4) & 0xFF);
-    sample->Lsb = ((meas1 & 0xF) << 4) | (meas2 & 0xF);
+    pair->m1Msb = ((rd0 >> 4) & 0xFF);
+    pair->m2Msb = ((rd1 >> 4) & 0xFF);
+    pair->Lsb   = ((rd0 & 0xF) << 4) | (rd1 & 0xF);
 }
 
 /**
- * @brief Write measurand 2 of a sample
+ * @brief Write reading1 in a pair
  *
- * @param sample: Pointer to the sample that will be modified.
- * @param meas2: Measurand 2. Only the 12 least sigificant bits will be used.
+ * @param pair: Pointer to the pair that will be modified.
+ * @param rd1: Measurand 2. Only the 12 least sigificant bits will be used.
  */
-static void loadm2(pair_t *sample, int meas2)
+static void set_rd1(pair_t *pair, int rd1)
 {
-    sample->m2Msb = ((meas2 >> 4) & 0xFF);
-    sample->Lsb &= ~0x0F; // Clear low nibble of LSB.
-    sample->Lsb |= (meas2 & 0xF); // Set low nibble of LSB.
+    pair->m2Msb  = ((rd1 >> 4) & 0xFF);
+    pair->Lsb   &= ~0x0F;           // Clear low nibble of LSB.
+    pair->Lsb   |= (rd1 & 0xF);     // Set low nibble of LSB.
 }
 
 /*!
@@ -193,8 +193,8 @@ int sample_push(int meas1, int meas2)
   switch(state)
       {
       case pair0_both:
-          loadboth(&pairbuf[0], meas1, meas2);
-          loadboth(&pairbuf[1], 0, 0);
+          set_pair(&pairbuf[0], meas1, meas2);
+          set_pair(&pairbuf[1], 0, 0);
           if (demistate != firstloop)
           {
               lenpairs -= PAIRS_PER_DEMI;
@@ -218,13 +218,13 @@ int sample_push(int meas1, int meas2)
           break;
 
       case pair0_reading1:
-          loadm2(&pairbuf[0], meas1);
+          set_rd1(&pairbuf[0], meas1);
           pairhist_ovr(pairbuf[0]);
           nextstate = pair1_both;
           break;
 
       case pair1_both:
-          loadboth(&pairbuf[1], meas1, meas2);
+          set_pair(&pairbuf[1], meas1, meas2);
           lenpairs++;
 
           pairhist_push(pairbuf[1]);
@@ -240,15 +240,13 @@ int sample_push(int meas1, int meas2)
           break;
 
       case pair1_reading1:
-          loadm2(&pairbuf[1], meas1);
+          set_rd1(&pairbuf[1], meas1);
           pairhist_ovr(pairbuf[1]);
           nextstate = pair0_both;
           break;
       }
 
       cursorpos = demi_getendmarkerpos();
-
-
       md5length = pairhist_md5(lenpairs, nv.usehmac, status.loopcount, status.resetsalltime, status.batv_resetcause, cursorpos);
 
       // 2 samples (6 bytes) per 8 base64 bytes.
