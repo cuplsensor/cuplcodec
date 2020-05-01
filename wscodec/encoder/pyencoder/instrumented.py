@@ -232,7 +232,7 @@ class InstrumentedSampleTRH(InstrumentedSample):
         :param minutes: Minutes elapsed since the most recent sample.
         :return: None
         """
-        self.ffimodule.lib.sample_updateendstop(minutes)
+        self.ffimodule.lib.cbuf_setelapsed(minutes)
 
     def geturlqs(self):
         return self.eepromba.get_url_parsedqs()

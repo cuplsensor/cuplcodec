@@ -54,8 +54,6 @@ static stat_t status = {0};         /*!< Structure to hold unencoded status data
 #endif
 
 
-
-
 /*!
  * @brief Update loop counter and battery voltage in the preamble status field.
  *
@@ -63,7 +61,7 @@ static stat_t status = {0};         /*!< Structure to hold unencoded status data
  * These data are base64 encoded and written to EEPROM. ndef_writepreamble overwrites the bufferred circular buffer
  * blocks so these must be read again after with demi_restore.
  */
-static void sample_updatelc(void)
+static void incr_loopcounter(void)
 {
   char statusb64[9];
   uint16_t batv = batv_measure();                           // Measure battery voltage
@@ -74,6 +72,49 @@ static void sample_updatelc(void)
   Base64encode(statusb64, (const char *)&status, sizeof(status)); // Base64 encode status.
   ndef_writepreamble(BUFLEN_BLKS, statusb64);               // Write URL in EEPROM up to the start of the circular buffer.
   demi_restore();                                           // Re-read circular buffer blocks that were overwritten in the previous operation.
+}
+
+/**
+ * @brief Update the endmarker of the endstop with elapsed time in minutes.
+ *
+ * @param minutes: Minutes elapsed since the previous sample.
+ */
+static void set_elapsed(unsigned int minutes)
+{
+    endmarker_t marker;
+
+    marker.elapsedLSB = minutes & 0xFF; // Lower 8 bits of the minutes field.
+    marker.elapsedMSB = minutes >> 8;   // Upper 8 bits of the minutes field.
+
+    Base64encode(endstop.markerb64, (char *)&marker, sizeof(marker));
+    endstop.markerb64[3] = ENDSTOP_BYTE;    // Change padding byte.
+}
+
+/**
+ * @brief Write both measurands of a sample.
+ *
+ * @param sample: Pointer to the sample that will be modified.
+ * @param meas1: Measurand 1. Only the 12 least sigificant bits will be used.
+ * @param meas2: Measurand 2. Only the 12 least sigificant bits will be used.
+ */
+static void loadboth(pair_t *sample, int meas1, int meas2)
+{
+    sample->m1Msb = ((meas1 >> 4) & 0xFF);
+    sample->m2Msb = ((meas2 >> 4) & 0xFF);
+    sample->Lsb = ((meas1 & 0xF) << 4) | (meas2 & 0xF);
+}
+
+/**
+ * @brief Write measurand 2 of a sample
+ *
+ * @param sample: Pointer to the sample that will be modified.
+ * @param meas2: Measurand 2. Only the 12 least sigificant bits will be used.
+ */
+static void loadm2(pair_t *sample, int meas2)
+{
+    sample->m2Msb = ((meas2 >> 4) & 0xFF);
+    sample->Lsb &= ~0x0F; // Clear low nibble of LSB.
+    sample->Lsb |= (meas2 & 0xF); // Set low nibble of LSB.
 }
 
 /*!
@@ -111,78 +152,15 @@ void sample_init(unsigned int resetcause, bool err)
 }
 
 /**
- * @brief Write the endstop.
- *
- * @param minutes: Minutes elapsed since the previous sample.
- * @param endmarker: Pointer to the end marker byte array.
- */
-static void makemarker(unsigned int minutes, char * endmarker)
-{
-    unsigned int minutesLsb;
-    unsigned int minutesMsb;
-
-    minutesLsb = minutes & 0xFF; // Lower 8 bits of the minutes field.
-    minutesMsb = minutes >> 8;   // Upper 8 bits of the minutes field.
-
-    *(endmarker) = minutesLsb;
-    *(endmarker + 1) = minutesMsb;
-}
-
-/**
- * @brief Update the endmarker in the endstop.
- *
- * @param minutes: Minutes elapsed since the previous sample.
- */
-static void makeendstop(unsigned int minutes)
-{
-    endmarker_t endmarker;
-
-    endmarker.elapsedLSB = minutes & 0xFF;
-    endmarker.elapsedMSB = minutes >> 8;
-    //char endmarker[2];
-    //makemarker(minutes, endmarker);
-    Base64encode(endstop.markerb64, (char *)&endmarker, sizeof(endmarker));
-    // Change padding byte.
-    endstop.markerb64[3] = ENDSTOP_BYTE;
-}
-
-/**
  * @brief Update the base64 encoded endstop and write it to the tag.
  *
  * @param minutes: Minutes elapsed since the previous sample.
  */
-void sample_updateendstop(unsigned int minutes)
+void cbuf_setelapsed(unsigned int minutes)
 {
-    makeendstop(minutes);
+    set_elapsed(minutes);
     demi_write(Demi2, &endstop.md5lenb64[8]);
     demi_commit2();
-}
-
-/**
- * @brief Write both measurands of a sample.
- *
- * @param sample: Pointer to the sample that will be modified.
- * @param meas1: Measurand 1. Only the 12 least sigificant bits will be used.
- * @param meas2: Measurand 2. Only the 12 least sigificant bits will be used.
- */
-static void loadboth(pair_t *sample, int meas1, int meas2)
-{
-    sample->m1Msb = ((meas1 >> 4) & 0xFF);
-    sample->m2Msb = ((meas2 >> 4) & 0xFF);
-    sample->Lsb = ((meas1 & 0xF) << 4) | (meas2 & 0xF);
-}
-
-/**
- * @brief Write measurand 2 of a sample
- *
- * @param sample: Pointer to the sample that will be modified.
- * @param meas2: Measurand 2. Only the 12 least sigificant bits will be used.
- */
-static void loadm2(pair_t *sample, int meas2)
-{
-    sample->m2Msb = ((meas2 >> 4) & 0xFF);
-    sample->Lsb &= ~0x0F; // Clear low nibble of LSB.
-    sample->Lsb |= (meas2 & 0xF); // Set low nibble of LSB.
 }
 
 /**
@@ -223,7 +201,7 @@ int sample_push(int meas1, int meas2)
           }
           if (demistate == loopingaround)
           {
-            sample_updatelc();
+            incr_loopcounter();
           }
           lenpairs++;
 
@@ -278,7 +256,7 @@ int sample_push(int meas1, int meas2)
       // 9 bytes per 12 base64 bytes.
       Base64encode(endstop.md5lenb64, (char *)&md5length, sizeof(md5length));
 
-      makeendstop(0);
+      set_elapsed(0);
 
       demi_write(Demi0, demi);
       demi_write(Demi1, &endstop.md5lenb64[0]);

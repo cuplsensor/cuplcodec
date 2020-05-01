@@ -26,7 +26,7 @@ def test_minuteoffset(instr_sample):
     instr_sample.pushsamples(1)
 
     for i in range(0, INPUT_TIMEINT, 5000):
-        instr_sample.ffimodule.lib.sample_updateendstop(i)
+        instr_sample.ffimodule.lib.cbuf_setelapsed(i)
 
         # Decode the URL
         par = instr_sample.eepromba.get_url_parsedqs()

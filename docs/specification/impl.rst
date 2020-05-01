@@ -18,7 +18,7 @@ Implementation
    :status: complete
    :links: CODEC_FEAT_26
 
-   The function :cpp:func:`sample_updateendstop` alters the elapsed time field, independent of the rest of the URL.
+   The function :cpp:func:`cbuf_setelapsed` alters the elapsed time field, independent of the rest of the URL.
    It is intended that this is called once for each minute after a sample is taken. Elapsed time (as an integer) is
    converted to base64 and written to the end stop.
 
