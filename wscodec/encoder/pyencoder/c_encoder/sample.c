@@ -15,10 +15,10 @@
 #define BATV_RESETCAUSE(BATV, RSTC) ((BATV << 8) | (RSTC & 0xFF))
 
 typedef enum {
-    pair0_both,         /*!< Write both meaurands in the first sample of \link pairbuf */
-    pair0_reading1,     /*!< Overwrite measurand 2 in the first sample of \link pairbuf */
-    pair1_both,         /*!< Write both measurands in the second sample of \link pairbuf */
-    pair1_reading1      /*!< Overwrite measurand 2 in the second sample of \link pairbuf */
+    pair0_both,         /*!< Write pair0 */
+    pair0_reading1,     /*!< Overwrite reading1 of pair0 */
+    pair1_both,         /*!< Write pair1 */
+    pair1_reading1      /*!< Overwrite reading1 of pair1 */
 } pairbufstate_t;       /*!< Indicates which reading(s) in the \link pairbuf are being written.*/
 
 typedef struct
@@ -69,7 +69,7 @@ static void incr_loopcounter(void)
   status.loopcount += 1;                                 // Increase loopcount by 1.
   status.batv_resetcause = BATV_RESETCAUSE(batv, 0);     // Clear battery reset cause
 
-  Base64encode(statusb64, (const char *)&status, sizeof(status)); // Base64 encode status.
+  Base64encode(statusb64, (const char *)&status, sizeof(status)); // Base64 encode status. CHECK THIS.
   ndef_writepreamble(BUFLEN_BLKS, statusb64);               // Write URL in EEPROM up to the start of the circular buffer.
   demi_restore();                                           // Re-read circular buffer blocks that were overwritten in the previous operation.
 }
@@ -164,15 +164,15 @@ void cbuf_setelapsed(unsigned int minutes)
 }
 
 /**
- * @brief  Append a sample containing up to two measurands onto the circular buffer.
+ * @brief  Push a sample containing up to two readings onto the circular buffer.
  *
- * @param meas1 Measurand 1 e.g. temperature.
- * @param meas2 Measurand 2 e.g. relative humidity.
+ * @param rd0 First reading in the sample e.g. temperature.
+ * @param rd1 Second reading in the sample (optional) e.g. relative humidity.
  *
  * @returns 1 if the cursor has moved from the end to the start and data are being overwritten.
  * Otherwise 0.
  */
-int sample_push(int meas1, int meas2)
+int cbuf_pushsample(int rd0, int rd1)
 {
   pairbufstate_t nextstate;
   md5len_t md5length;
@@ -180,7 +180,7 @@ int sample_push(int meas1, int meas2)
 
   if (nv.version[1] == TEMPONLY)
   {
-      meas2 = -1;
+      rd1 = -1;
   }
 
   if ((state == pair0_both) && (lenpairs != 0))
@@ -193,7 +193,7 @@ int sample_push(int meas1, int meas2)
   switch(state)
       {
       case pair0_both:
-          set_pair(&pairbuf[0], meas1, meas2);
+          set_pair(&pairbuf[0], rd0, rd1);
           set_pair(&pairbuf[1], 0, 0);
           if (demistate != firstloop)
           {
@@ -218,13 +218,13 @@ int sample_push(int meas1, int meas2)
           break;
 
       case pair0_reading1:
-          set_rd1(&pairbuf[0], meas1);
+          set_rd1(&pairbuf[0], rd0);
           pairhist_ovr(pairbuf[0]);
           nextstate = pair1_both;
           break;
 
       case pair1_both:
-          set_pair(&pairbuf[1], meas1, meas2);
+          set_pair(&pairbuf[1], rd0, rd1);
           lenpairs++;
 
           pairhist_push(pairbuf[1]);
@@ -240,7 +240,7 @@ int sample_push(int meas1, int meas2)
           break;
 
       case pair1_reading1:
-          set_rd1(&pairbuf[1], meas1);
+          set_rd1(&pairbuf[1], rd0);
           pairhist_ovr(pairbuf[1]);
           nextstate = pair0_both;
           break;

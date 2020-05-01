@@ -5,7 +5,7 @@
 
 
 void sample_init(unsigned int status, bool err);
-int sample_push(int meas1, int meas2);
+int cbuf_pushsample(int meas1, int meas2);
 void cbuf_setelapsed(unsigned int minutes);
 
 #endif //_SAMPLE_H_

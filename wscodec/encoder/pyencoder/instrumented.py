@@ -175,7 +175,7 @@ class InstrumentedSampleT(InstrumentedSample):
         for i in range(0, num):
             tempsmpl = next(tempgen)
             inlist.insert(0, {'temp': tempsmpl['ref']})
-            self.ffimodule.lib.sample_push(tempsmpl['adc'], 0)
+            self.ffimodule.lib.cbuf_pushsample(tempsmpl['adc'], 0)
         return inlist
 
 
@@ -210,7 +210,7 @@ class InstrumentedSampleTRH(InstrumentedSample):
             tempsmpl = next(tempgen)
             rhsmpl = next(rhgen)
             inlist.insert(0, {'temp': tempsmpl['ref'], 'rh': rhsmpl['ref']})
-            self.ffimodule.lib.sample_push(tempsmpl['adc'], rhsmpl['adc'])
+            self.ffimodule.lib.cbuf_pushsample(tempsmpl['adc'], rhsmpl['adc'])
         return inlist
 
     def pushsamplelist(self, trhlist: list):
@@ -224,7 +224,7 @@ class InstrumentedSampleTRH(InstrumentedSample):
             rhpc = smpldict['rh']
             tempraw = self.temp_degc_to_raw(tempdegc)
             rhraw = self.rh_percent_to_raw(rhpc)
-            self.ffimodule.lib.sample_push(tempraw, rhraw)
+            self.ffimodule.lib.cbuf_pushsample(tempraw, rhraw)
 
     def updateendstop(self, minutes: int):
         """ Update the endstop with minutes elapsed since the most recent sample.
