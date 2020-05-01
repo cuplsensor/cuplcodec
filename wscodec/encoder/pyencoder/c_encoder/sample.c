@@ -15,10 +15,10 @@
 #define BATV_RESETCAUSE(BATV, RSTC) ((BATV << 8) | (RSTC & 0xFF))
 
 typedef enum {
-    pair0_both,         /*!< Write both meaurands in the first sample of pairbuf pair0_both */
-    pair0_reading1,     /*!< Overwrite measurand 2 in the first sample of pairbuf. pair0_reading1*/
-    pair1_both,         /*!< Write both measurands in the second sample of pairbuf. pair1_both */
-    pair1_reading1      /*!< Overwrite measurand 2 in the second sample of pairbuf. pair1_reading1 pairbufstate_t*/
+    pair0_both,         /*!< Write both meaurands in the first sample of \link pairbuf */
+    pair0_reading1,     /*!< Overwrite measurand 2 in the first sample of \link pairbuf */
+    pair1_both,         /*!< Write both measurands in the second sample of \link pairbuf */
+    pair1_reading1      /*!< Overwrite measurand 2 in the second sample of \link pairbuf */
 } pairbufstate_t;       /*!< Indicates which reading(s) in the \link pairbuf are being written.*/
 
 typedef struct
