@@ -26,7 +26,7 @@ md5len_t pairhist_md5(int lenpairs, int usehmac, unsigned int loopcount, unsigne
 pair_t pairhist_read(unsigned int index, int * error);
 
 #ifndef NOT_CFFI
-const int buflensamples;
+const int buflenpairs;
 #endif
 
 #endif //_PAIRHIST_H_

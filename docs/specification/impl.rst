@@ -39,7 +39,7 @@ Implementation
    The function :cpp:func:`cbuf_pushsample` uses integer :cpp:member:`lenpairs` to record how many valid samples
    are in the circular buffer. When an demi is overwritten, it is reduced by :c:macro:`PAIRS_PER_DEMI`.
    Otherwise it is incremented by one. When the buffer is full :cpp:member:`lenpairs` will equal
-   :cpp:member:`buflensamples`.
+   :cpp:member:`buflenpairs`.
 
 .. impl:: MD5
    :id: CODEC_IMPL_5

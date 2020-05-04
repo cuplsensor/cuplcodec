@@ -64,7 +64,7 @@ def check_buffer(instr, sdlist):
 @pytest.fixture(scope="function", params=[1, 10, 100, -1])
 def instr_pairhist_with_samples(instr_pairhist, request):
     if request.param is -1:
-        nsamples = instr_pairhist.ffimodule.lib.buflensamples
+        nsamples = instr_pairhist.ffimodule.lib.buflenpairs
     else:
         nsamples = request.param
     sdlist, sdba = write_buffer(instr_pairhist, n=nsamples)
