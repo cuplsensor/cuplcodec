@@ -1,6 +1,6 @@
 .. _sample-c-reference:
 
-Sample C Reference
+CBuf C Reference
 =====================
 
 .. doxygenfile:: sample.c

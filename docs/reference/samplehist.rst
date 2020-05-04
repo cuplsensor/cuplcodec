@@ -1,6 +1,6 @@
 .. _samplehist-c-reference:
 
-SampleHist C Reference
+PairHist C Reference
 =====================
 
 Interface

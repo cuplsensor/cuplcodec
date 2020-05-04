@@ -5,8 +5,8 @@
 
 extern nv_t nv;
 
-const int buflensamples = BUFLEN_SAMPLES;
-static pair_t samplehistory[BUFLEN_SAMPLES];
+const int buflenpairs= BUFLEN_PAIRS;
+static pair_t pairhistory[BUFLEN_PAIRS];
 static int histpos = 0;
 unsigned char md5block[64];
 static const char ipadchar = 0x36;
@@ -17,17 +17,17 @@ static int prevhistpos;
 
 int pairhist_ovr(pair_t sample)
 {
-  samplehistory[prevhistpos] = sample;
+  pairhistory[prevhistpos] = sample;
 
   return 0;
 }
 
 int pairhist_push(pair_t sample)
 {
-  samplehistory[histpos] = sample;
+  pairhistory[histpos] = sample;
   prevhistpos = histpos;
 
-  if (histpos == BUFLEN_SAMPLES-1)
+  if (histpos == BUFLEN_PAIRS-1)
   {
     histpos = 0;
   }
@@ -42,32 +42,32 @@ int pairhist_push(pair_t sample)
 pair_t pairhist_read(unsigned int index, int * error)
 {
     int readpos;
-    pair_t sample;
+    pair_t pair;
     *error = 0;
 
     readpos = (histpos - 1) - index;
 
     if (readpos < 0)
     {
-        readpos += (BUFLEN_SAMPLES);
+        readpos += (BUFLEN_PAIRS);
         if (readpos >= histpos)
         {
-            sample = samplehistory[readpos];
+            pair = pairhistory[readpos];
         }
         else
         {
-            sample.m1Msb = 0; // Not allowed to loop around the buffer more than once.
-            sample.m2Msb = 0;
-            sample.Lsb = 0;
+            pair.m1Msb = 0; // Not allowed to loop around the buffer more than once.
+            pair.m2Msb = 0;
+            pair.Lsb = 0;
             *error = 1;
         }
     }
     else
     {
-        sample = samplehistory[readpos];
+        pair = pairhistory[readpos];
     }
 
-    return sample;
+    return pair;
 }
 
 md5len_t pairhist_md5(int lenpairs, int usehmac, unsigned int loopcount, unsigned int resetsalltime, unsigned int batv_resetcause, int cursorpos)
@@ -101,7 +101,7 @@ md5len_t pairhist_md5(int lenpairs, int usehmac, unsigned int loopcount, unsigne
         MD5_Update(&ctx, md5block, sizeof(md5block));
     }
 
-    // Seperate sample history into 64 byte blocks and a partial block.
+    // Seperate pair history into 64 byte blocks and a partial block.
     i=0;
     // Start to take MD5 of the message.
     while(smplindex<lenpairs)
@@ -119,7 +119,7 @@ md5len_t pairhist_md5(int lenpairs, int usehmac, unsigned int loopcount, unsigne
         md5block[i++] = prevsmpl.m2Msb;
         md5block[i++] = prevsmpl.Lsb;
 
-        // When i is a multiple of 63 samples, the maximum number that can be store in a 64 byte block.
+        // When i is a multiple of 63 pairs, the maximum number that can be store in a 64 byte block.
         if (i == 63)
         {
             MD5_Update(&ctx, md5block, i);
@@ -142,7 +142,7 @@ md5len_t pairhist_md5(int lenpairs, int usehmac, unsigned int loopcount, unsigne
     md5block[i++] = cursorpos >> 8;
     md5block[i++] = cursorpos & 0xFF;
 
-    // Calculate MD5 checksum from sample history.
+    // Calculate MD5 checksum from pair history.
     MD5_Update(&ctx, md5block, i);
 
 

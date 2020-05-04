@@ -36,7 +36,7 @@ def test_status(instr_sample, n=1):
 
 @pytest.mark.parametrize('n', [1, 300])
 def test_loopcount(instr_sample, n):
-    instr_sample.pushsamples((instr_sample.ffimodule.lib.buflensamples + 4) * n + 1)
+    instr_sample.pushsamples((instr_sample.ffimodule.lib.buflenpairs+ 4) * n + 1)
 
     par = instr_sample.eepromba.get_url_parsedqs()
     decodedurl = Decoder(secretkey=instr_sample.secretkey, statb64=par['x'][0], timeintb64=par['t'][0],
