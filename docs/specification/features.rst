@@ -82,8 +82,9 @@ URL Parameters
    A sample either corresponds to a pair of readings (e.g. temperature and humidity), or a single reading
    (temperature only). The latter option doubles the number of samples in the buffer.
 
-   By specifying a device (HDC2021) readings, the decoder can convert from a 12-bit integer
-   into floating point degrees C or percent.
+   The device is specified (HDC2021). This allows the decoder to convert from a 12-bit integer (ADC value)
+   into floating point degrees C or percent. `Equations <https://www.ti.com/document-viewer/HDC2021/datasheet/address-0x02-humidity-lsb-snas6782213#SNAS6782213>`_
+   from the datasheet are used for this.
 
    +------------+-------------------------------------+
    | FormatCode | Definition                          |
