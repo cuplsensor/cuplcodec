@@ -117,7 +117,7 @@ html_theme = 'sphinx_rtd_theme'
 html_theme_options = {
     'navigation_depth': 4,
 }
-#html_logo = 'pslogo.png'
+html_logo = 'cupl_textonly_white_small.png'
 #html_favicon = 'pslogo.ico'
 
 # Theme options are theme-specific and customize the look and feel of a theme
