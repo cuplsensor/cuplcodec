@@ -1,4 +1,4 @@
-URL Encoder Reference
+Encoder Reference
 =====================
 
 .. toctree::
