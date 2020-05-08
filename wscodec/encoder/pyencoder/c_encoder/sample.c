@@ -12,7 +12,7 @@
 #define TEMPONLY        '2' /*!< Last character of the URL version string if the URL contains only temperature measurands. */
 #define ENDSTOP_BYTE    '~' /*!< Last character of the endstop. Must be URL safe according to RFC 1738. */
 
-#define BATV_RESETCAUSE(BATV, RSTC) ((BATV << 8) | (RSTC & 0xFF)) /*!< Macro for creating a 16-bit \link batv_resetcause value from 8-bit BATV (\link CODEC_FEAT_30) and RSTC (see \link CODEC_SPEC_16) values. */
+#define BATV_RESETCAUSE(BATV, RSTC) ((BATV << 8) | (RSTC & 0xFF)) /*!< Macro for creating a 16-bit \link batv_resetcause value from 8-bit BATV (:need:`CODEC_FEAT_30`) and RSTC (see :need:`CODEC_SPEC_16`) values. */
 
 typedef enum {
     pair0_both,         /*!< Write pair0 */
@@ -66,8 +66,8 @@ static void incr_loopcounter(void)
   char statusb64[9];
   uint16_t batv = batv_measure();                           // Measure battery voltage
 
-  status.loopcount += 1;                                 // Increase loopcount by 1.
-  status.batv_resetcause = BATV_RESETCAUSE(batv, 0);     // Clear battery reset cause
+  status.loopcount += 1;                                   // Increase loopcount by 1.
+  status.batv_resetcause = BATV_RESETCAUSE(batv, 0);       // Clear reset cause because there has not been a reset recently.
 
   Base64encode(statusb64, (const char *)&status, sizeof(status)); // Base64 encode status. CHECK THIS.
   ndef_writepreamble(BUFLEN_BLKS, statusb64);               // Write URL in EEPROM up to the start of the circular buffer.
@@ -94,8 +94,8 @@ static void set_elapsed(unsigned int minutes)
  * @brief Write one pair
  *
  * @param pair: Pointer to the pair that will be modified.
- * @param rd0: Reading 0. Only the 12 least significant bits will be used.
- * @param rd1: Reading 1. Only the 12 least significant bits will be used.
+ * @param rd0: Reading 0 (12 bits).
+ * @param rd1: Reading 1 (12 bits).
  */
 static void set_pair(pair_t *pair, int rd0, int rd1)
 {
@@ -105,10 +105,11 @@ static void set_pair(pair_t *pair, int rd0, int rd1)
 }
 
 /**
- * @brief Write reading1 in a pair
+ * @brief Overwrite reading1 in a pair
+ * This is used when the format stipulates one reading per pair (see \link CODEC_FEAT_42).
  *
  * @param pair: Pointer to the pair that will be modified.
- * @param rd1: Measurand 2. Only the 12 least sigificant bits will be used.
+ * @param rd1: Reading 1 (12 bits).
  */
 static void set_rd1(pair_t *pair, int rd1)
 {
