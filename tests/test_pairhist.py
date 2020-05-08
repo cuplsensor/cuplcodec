@@ -80,7 +80,7 @@ def get_uut_digest(instr_pairhist_with_samples, hmac=False):
                                                           LOOPCOUNT,
                                                           RESETSALLTIME,
                                                           BATV_RESETCAUSE,
-                                                          ENDMARKERPOS).md5
+                                                          ENDMARKERPOS).hash
     lendigest = len(uutdigest)
 
     uutdigeststr = ""
