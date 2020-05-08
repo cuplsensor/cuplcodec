@@ -12,7 +12,7 @@
 #define TEMPONLY        '2' /*!< Last character of the URL version string if the URL contains only temperature measurands. */
 #define ENDSTOP_BYTE    '~' /*!< Last character of the endstop. Must be URL safe according to RFC 1738. */
 
-#define BATV_RESETCAUSE(BATV, RSTC) ((BATV << 8) | (RSTC & 0xFF)) /*!< Macro for creating a 16-bit \link batv_resetcause value from 8-bit BATV (\link CODEC_FEAT_30) and RSTC (see \link CODEC_SPEC_16) values.
+#define BATV_RESETCAUSE(BATV, RSTC) ((BATV << 8) | (RSTC & 0xFF)) /*!< Macro for creating a 16-bit \link batv_resetcause value from 8-bit BATV (\link CODEC_FEAT_30) and RSTC (see \link CODEC_SPEC_16) values. */
 
 typedef enum {
     pair0_both,         /*!< Write pair0 */
