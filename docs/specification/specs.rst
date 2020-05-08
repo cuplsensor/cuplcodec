@@ -1,6 +1,8 @@
 Specifications
 ===============
 
+.. |64| replace:: \ :sub:`64`\
+
 .. spec:: Message format
    :id: CODEC_SPEC_1
    :links: CODEC_REQ_1
@@ -45,11 +47,11 @@ Specifications
 
    **NDEF record payload continued**
 
-   +-----------+-------------+-----------------------+--------------------+-----------------------+
-   | Desc.     | `Version`_  | :need:`CODEC_SPEC_15` | CircBufferStart    | :need:`CODEC_SPEC_12` |
-   +-----------+-------------+-----------------------+--------------------+-----------------------+
-   | Data      | &v=01       | &x=AAABALEK           | &q=                | MDaWMDaW...           |
-   +-----------+-------------+-----------------------+--------------------+-----------------------+
+   +-----------+------------------------+-----------------------+--------------------+-----------------------+
+   | Desc.     | :need:`CODEC_SPEC_18`  | :need:`CODEC_SPEC_15` | CircBufferStart    | :need:`CODEC_SPEC_12` |
+   +-----------+------------------------+-----------------------+--------------------+-----------------------+
+   | Data      | &v=AAAA                | &x=AAABALEK           | &q=                | MDaWMDaW...           |
+   +-----------+------------------------+-----------------------+--------------------+-----------------------+
 
 .. spec:: Circular Buffer
    :id: CODEC_SPEC_12
@@ -61,38 +63,38 @@ Specifications
 
    Only two blocks are edited in RAM at a time:
 
-   +--------------------------------+--------------------------------------------------------------------------+
-   | Cursor Block                   | Next Block                                                               |
-   +-------------------+------------+--------------------------------+-----------------------------------------+
-   | Cursor Octet      | Endstop Octets (0,1)                        | Oldest Octet                            |
-   +-------------------+-------------------+-------------------------+-------------------+---------------------+
-   | P\ :sub:`64`\1    | P\ :sub:`64`\0    |                         |  P\ :sub:`64`\N   | P\ :sub:`64`\N-1    |
-   +---+---+---+-------+---------------------------------------------+--+----------------+----+----------------+
-   |R3 |R2 |R1 |R0     |                                             |RL|RL-1            |RL-2|RL-3            |
-   +---+---+---+-------+---------------------------------------------+--+----------------+----+----------------+
+   +------------------------------------------------+--------------------------------------------------------------------------+
+   | Cursor Block                                   | Next Block                                                               |
+   +-----------------------------------+------------+--------------------------------+-----------------------------------------+
+   | Cursor Demi                       | Endstop Demis (0,1)                         | Oldest Demi                             |
+   +-----------------+-----------------+---------------------------------------------+-------------------+---------------------+
+   | P|64|1          | P|64|0|         |                                             |  P|64|N           | P|64|N-1            |
+   +--------+--------+--------+--------+---------------------------------------------+--------+----------+----------+----------+
+   | R|64|3 | R|64|2 | R|64|1 | R|64|0 |                                             | R|64|L | R|64|L-1 | R|64|L-2 | R|64|L-3 |
+   +--------+--------+--------+--------+---------------------------------------------+--------+----------+----------+----------+
 
-   Blocks are subdivided into two 8-byte octets. Each octet holds 2 base64 encoded pairs.
+   Blocks are subdivided into two 8-byte demis. Each demi holds 2 base64 encoded pairs.
 
    Each pair consists of 2 base64 encoded sensor readings. By default these will be captured
    simultaneously by a temperature sensor and a humidity sensor.
 
-   New sensor readings are written to Cursor Octet. Each time this occurs, the subsequent
+   New sensor readings are written to Cursor Demi. Each time this occurs, the subsequent
    :need:`CODEC_SPEC_13` is updated.
 
-   When Cursor Octet is full, both it and the endstop are moved forward when the next sensor reading is added:
+   When Cursor Demi is full, both it and the endstop are moved forward when the next sensor reading is added:
 
    +------------------------------+------------------------------+
    | Cursor Block                 | Next Block                   |
    +---------------+--------------+------------------------------+
-   | Octet         | Cursor Octet | Endstop Octets (0,1)         |
+   | Demi          | Cursor Demi  | Endstop Demis (0,1)          |
    +-------+-------+-------+------+------------------------------+
    | S2    | S1    | S0    | Spad |                              |
    +---+---+---+---+---+---+------+------------------------------+
    |R5 |R4 |R3 |R2 |R1 |R0 |                                     |
    +---+---+---+---+---+---+-------------------------------------+
 
-   The previous oldest octet is overwritten. Note there can be a gap between the most recent sample and
-   the start of the endstop octets. This is zero padded. The padding will not be decoded because the number
+   The previous oldest demi is overwritten. Note there can be a gap between the most recent sample and
+   the start of the endstop demis. This is zero padded. The padding will not be decoded because the number
    of valid samples in the buffer is included in the endstop.
 
 .. spec:: Endstop
@@ -100,12 +102,12 @@ Specifications
    :status: complete
    :links: CODEC_SPEC_12
 
-   The endstop occupies 2 octets (16 bytes) after the cursor octet. It is terminated with a unique character. This marks
+   The endstop occupies 2 demis (16 bytes) after the cursor demi. It is terminated with a unique character. This marks
    the end of the circular buffer; the divide between new and old data. The decoder finds this in order to unwrap the circular buffer into a list of samples,
    ordered newest to oldest.
 
    +-------------+-------------------------------+-----------------------------------------------+
-   | Octet       | Endstop 0                     | Endstop 1                                     |
+   | Demi       | Endstop 0                     | Endstop 1                                     |
    +-------------+---+---+---+---+---+---+---+---+---+---+----+----+----+----+-------------+-----+
    | Byte        | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14          | 15  |
    +-------------+---+---+---+---+---+---+---+---+---+---+----+----+----+----+-------------+-----+
@@ -116,7 +118,20 @@ Specifications
    valid samples it contains. These data are appended to the circular buffer to meet
    :need:`CODEC_SPEC_2`.
 
+.. spec:: VFmt b64
+   :id: CODEC_SPEC_18
+   :status: open
+   :links: CODEC_SPEC_3
 
+   This is a 3 byte structure that expands to 4 bytes after base64 encoding.
+
+   The unencoded structure is:
+
+   +-------------+-----------+-----------+-----------------------+
+   | Byte        | 0         | 1         |  2                    |
+   +-------------+-----------+-----------+-----------------------+
+   | Description | :need:`CODEC_FEAT_41` | :need:`CODEC_FEAT_42` |
+   +-------------+-----------------------+-----------------------+
 
 .. spec:: MD5Length b64
    :id: CODEC_SPEC_14
@@ -207,10 +222,19 @@ Specifications
    The encoder must run without input from the user. This includes after the Power-on-Reset
    when a battery is replaced.
 
-.. spec:: Circular buffer decoded
-   :id: CODEC_SPEC_10
+.. spec:: URL parameters decoded
+   :id: CODEC_SPEC_19
    :links: CODEC_REQ_2
 
-   The decoder outputs a list of samples from the URL. Each will have a timestamp precise to one minute.
+   Before the circular buffer is decoded, URL parameters such as :need:`CODEC_SPEC_18` are needed.
+
+.. spec:: Circular buffer decoded
+   :id: CODEC_SPEC_10
+   :links: CODEC_SPEC_19
+
+   The decoder outputs a list of samples from the URL. Output
+   depends on :need:`CODEC_FEAT_42`. By default samples will contain temperature
+   and humidity readings, converted to degrees C and percent respectively.
+   Each will have a timestamp precise to one minute.
    This corresponds to the time that the sample was added to the circular buffer.
 

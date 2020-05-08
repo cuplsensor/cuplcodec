@@ -1,12 +1,12 @@
 .. _samplehist-c-reference:
 
-SampleHist C Reference
+PairHist C Reference
 =====================
 
 Interface
 ----------
-.. doxygenfile:: smplhist.h
+.. doxygenfile:: pairhist.h
 
 Implementation
 ---------------
-.. doxygenfile:: smplhist.c
+.. doxygenfile:: pairhist.c

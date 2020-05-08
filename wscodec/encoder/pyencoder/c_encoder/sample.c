@@ -1,7 +1,7 @@
 #include "sample.h"
-#include "octet.h"
+#include "demi.h"
 #include "ndef.h"
-#include "smplhist.h"
+#include "pairhist.h"
 #include "defs.h"
 #include "batv.h"
 #include "base64.h"
@@ -15,54 +15,106 @@
 #define BATV_RESETCAUSE(BATV, RSTC) ((BATV << 8) | (RSTC & 0xFF))
 
 typedef enum {
-    first_tick,     /*!< Write both meaurands in the first sample of samplebuf  */
-    first_tock,     /*!< Overwrite measurand 2 in the first sample of samplebuf. */
-    final_tick,     /*!< Write both measurands in the second sample of samplebuf. */
-    final_tock      /*!< Overwrite measurand 2 in the second sample of samplebuf. */
-} urlstate;
+    pair0_both,         /*!< Write pair0 */
+    pair0_reading1,     /*!< Overwrite reading1 of pair0 */
+    pair1_both,         /*!< Write pair1 */
+    pair1_reading1      /*!< Overwrite reading1 of pair1 */
+} pairbufstate_t;       /*!< Indicates which reading(s) in the \link pairbuf are being written.*/
 
-
-typedef struct status
+typedef struct
 {
-    uint16_t loopcount;  /*!< Number of times the last octet in the circular buffer endstop has wrapped from the end of the buffer to the beginning. */
+    uint16_t loopcount;         /*!< Number of times the last demi in the circular buffer endstop has wrapped from the end to the beginning. */
     uint16_t resetsalltime;     /*!< 2-byte status. Bits are set according to stat_bits.h */
     uint16_t batv_resetcause;   /*!< Battery voltage in mV */
 } stat_t;
 
-typedef struct endstop
+typedef struct
 {
   char md5lenb64[12];   /*!< MD5 length field containing a base64 encoded ::md5len_t. */
   char markerb64[4];    /*!< End-stop marker comprised of base64 encoded minutes since the previous sample and ::ENDSTOP_BYTE */
 } endstop_t;
 
-static char encodedoctet[8];        /*!< Stores the base64 encoded \link samplebuf. */
-static sdchars_t samplebuf[2];      /*!< Stores two 3-byte samples. */
-static unsigned int lensmpls = 0;   /*!< Number of valid samples in the circular buffer, starting from the endstop and counting backwards. */
-static urlstate state;
-#ifndef NOT_CFFI
-stat_t urlstatus = {0};
-#else
-static stat_t urlstatus = {0};
-#endif
+typedef struct
+{
+  char elapsedLSB;      /*!< Minutes elapsed since previous sample (Least Significant Byte). */
+  char elapsedMSB;      /*!< Minutes elapsed since previous sample (Most Signficant Byte). */
+} endmarker_t;
+
+static char demi[8];                /*!< Stores two pairs from \link pairbuf, after base64 encoding */
+static pair_t pairbuf[2];           /*!< Stores two unencoded 3-byte pairs. */
+static unsigned int lenpairs = 0;   /*!< Number of base64 encoded pairs in the circular buffer, starting from the endstop and counting backwards. */
+static pairbufstate_t state;        /*!< Pair buffer write state. */
 static endstop_t endstop;           /*!< The 16 byte end stop. */
 extern nv_t nv;                     /*!< Externally defined parameters stored in non-volatile memory. */
+
+#ifndef NOT_CFFI
+stat_t status = {0};                /*!< Structure to hold unencoded status data. */
+#else
+static stat_t status = {0};         /*!< Structure to hold unencoded status data. */
+#endif
 
 
 /*!
  * @brief Update loop counter and battery voltage in the preamble status field.
+ *
+ * Calls a function to measure battery voltage, increases loopcount and clears the battery reset field.
+ * These data are base64 encoded and written to EEPROM. ndef_writepreamble overwrites the bufferred circular buffer
+ * blocks so these must be read again after with demi_restore.
  */
-static void sample_updatelc(void)
+static void incr_loopcounter(void)
 {
   char statusb64[9];
-  uint16_t batv = batv_measure();
+  uint16_t batv = batv_measure();                           // Measure battery voltage
 
-  urlstatus.loopcount += 1;
-  //urlstatus.status = stat_get(&err);
-  urlstatus.batv_resetcause = BATV_RESETCAUSE(batv, 0);
+  status.loopcount += 1;                                 // Increase loopcount by 1.
+  status.batv_resetcause = BATV_RESETCAUSE(batv, 0);     // Clear battery reset cause
 
-  Base64encode(statusb64, (const char *)&urlstatus, sizeof(urlstatus));
-  ndef_writepreamble(BUFLEN_BLKS, statusb64);
-  octet_restore();
+  Base64encode(statusb64, (const char *)&status, sizeof(status)); // Base64 encode status. CHECK THIS.
+  ndef_writepreamble(BUFLEN_BLKS, statusb64);               // Write URL in EEPROM up to the start of the circular buffer.
+  demi_restore();                                           // Re-read circular buffer blocks that were overwritten in the previous operation.
+}
+
+/**
+ * @brief Update the endmarker of the endstop with elapsed time in minutes.
+ *
+ * @param minutes: Minutes elapsed since the previous sample.
+ */
+static void set_elapsed(unsigned int minutes)
+{
+    endmarker_t marker;
+
+    marker.elapsedLSB = minutes & 0xFF; // Lower 8 bits of the minutes field.
+    marker.elapsedMSB = minutes >> 8;   // Upper 8 bits of the minutes field.
+
+    Base64encode(endstop.markerb64, (char *)&marker, sizeof(marker));
+    endstop.markerb64[3] = ENDSTOP_BYTE;    // Change padding byte.
+}
+
+/**
+ * @brief Write one pair
+ *
+ * @param pair: Pointer to the pair that will be modified.
+ * @param rd0: Reading 0. Only the 12 least significant bits will be used.
+ * @param rd1: Reading 1. Only the 12 least significant bits will be used.
+ */
+static void set_pair(pair_t *pair, int rd0, int rd1)
+{
+    pair->m1Msb = ((rd0 >> 4) & 0xFF);
+    pair->m2Msb = ((rd1 >> 4) & 0xFF);
+    pair->Lsb   = ((rd0 & 0xF) << 4) | (rd1 & 0xF);
+}
+
+/**
+ * @brief Write reading1 in a pair
+ *
+ * @param pair: Pointer to the pair that will be modified.
+ * @param rd1: Measurand 2. Only the 12 least sigificant bits will be used.
+ */
+static void set_rd1(pair_t *pair, int rd1)
+{
+    pair->m2Msb  = ((rd1 >> 4) & 0xFF);
+    pair->Lsb   &= ~0x0F;           // Clear low nibble of LSB.
+    pair->Lsb   |= (rd1 & 0xF);     // Set low nibble of LSB.
 }
 
 /*!
@@ -78,13 +130,13 @@ void sample_init(unsigned int resetcause, bool err)
   int buflenblks;
   uint16_t batv = batv_measure();
 
-  urlstatus.loopcount = 0;
-  urlstatus.resetsalltime = nv.resetsalltime;
-  urlstatus.batv_resetcause = BATV_RESETCAUSE(batv, resetcause);
-  Base64encode(statusb64, (const char *)&urlstatus, sizeof(urlstatus));
+  status.loopcount = 0;
+  status.resetsalltime = nv.resetsalltime;
+  status.batv_resetcause = BATV_RESETCAUSE(batv, resetcause);
+  Base64encode(statusb64, (const char *)&status, sizeof(status));
 
-  lensmpls = 0;
-  state = first_tick;
+  lenpairs = 0;
+  state = pair0_both;
 
   if (err == true)
   {
@@ -96,39 +148,7 @@ void sample_init(unsigned int resetcause, bool err)
   }
 
   ndef_writeblankurl(buflenblks, statusb64, &startblk);
-  octet_init(startblk, buflenblks);
-}
-
-/**
- * @brief Write the endstop.
- *
- * @param minutes: Minutes elapsed since the previous sample.
- * @param endmarker: Pointer to the end marker byte array.
- */
-static void makemarker(unsigned int minutes, char * endmarker)
-{
-    unsigned int minutesLsb;
-    unsigned int minutesMsb;
-
-    minutesLsb = minutes & 0xFF; // Select lower 6 bits of the minutes field.
-    minutesMsb = minutes >> 8;
-
-    *(endmarker) = minutesLsb;
-    *(endmarker + 1) = minutesMsb;
-}
-
-/**
- * @brief Update the endstop and encode it as base64.
- *
- * @param minutes: Minutes elapsed since the previous sample.
- */
-static void makeendstop(unsigned int minutes)
-{
-    char endmarker[2];
-    makemarker(minutes, endmarker);
-    Base64encode(endstop.markerb64, endmarker, sizeof(endmarker));
-    // Change padding byte.
-    endstop.markerb64[3] = ENDSTOP_BYTE;
+  demi_init(startblk, buflenblks);
 }
 
 /**
@@ -136,141 +156,112 @@ static void makeendstop(unsigned int minutes)
  *
  * @param minutes: Minutes elapsed since the previous sample.
  */
-void sample_updateendstop(unsigned int minutes)
+void cbuf_setelapsed(unsigned int minutes)
 {
-    makeendstop(minutes);
-    octet_write(Octet2, &endstop.md5lenb64[8]);
-    octet_commit2();
+    set_elapsed(minutes);
+    demi_write(Demi2, &endstop.md5lenb64[8]);
+    demi_commit2();
 }
 
 /**
- * @brief Write both measurands of a sample.
+ * @brief  Push a sample containing up to two readings onto the circular buffer.
  *
- * @param sample: Pointer to the sample that will be modified.
- * @param meas1: Measurand 1. Only the 12 least sigificant bits will be used.
- * @param meas2: Measurand 2. Only the 12 least sigificant bits will be used.
- */
-static void loadboth(sdchars_t *sample, int meas1, int meas2)
-{
-    sample->m1Msb = ((meas1 >> 4) & 0xFF);
-    sample->m2Msb = ((meas2 >> 4) & 0xFF);
-    sample->Lsb = ((meas1 & 0xF) << 4) | (meas2 & 0xF);
-}
-
-/**
- * @brief Write measurand 2 of a sample
- *
- * @param sample: Pointer to the sample that will be modified.
- * @param meas2: Measurand 2. Only the 12 least sigificant bits will be used.
- */
-static void loadm2(sdchars_t *sample, int meas2)
-{
-    sample->m2Msb = ((meas2 >> 4) & 0xFF);
-    sample->Lsb &= ~0x0F; // Clear low nibble of LSB.
-    sample->Lsb |= (meas2 & 0xF); // Set low nibble of LSB.
-}
-
-/**
- * @brief  Append a sample containing up to two measurands onto the circular buffer.
- *
- * @param meas1 Measurand 1 e.g. temperature.
- * @param meas2 Measurand 2 e.g. relative humidity.
+ * @param rd0 First reading in the sample e.g. temperature.
+ * @param rd1 Second reading in the sample (optional) e.g. relative humidity.
  *
  * @returns 1 if the cursor has moved from the end to the start and data are being overwritten.
  * Otherwise 0.
  */
-int sample_push(int meas1, int meas2)
+int cbuf_pushsample(int rd0, int rd1)
 {
-  urlstate nextstate;
+  pairbufstate_t nextstate;
   md5len_t md5length;
   int cursorpos;
 
   if (nv.version[1] == TEMPONLY)
   {
-      meas2 = -1;
+      rd1 = -1;
   }
 
-  if ((state == first_tick) && (lensmpls != 0))
+  if ((state == pair0_both) && (lenpairs != 0))
   {
-      octet_movecursor();
+      demi_movecursor();
   }
 
-  OctState_t octetstate = octet_getstate();
+  OctState_t demistate = demi_getstate();
 
   switch(state)
       {
-      case first_tick:
-          loadboth(&samplebuf[0], meas1, meas2);
-          loadboth(&samplebuf[1], 0, 0);
-          if (octetstate != firstloop)
+      case pair0_both:
+          set_pair(&pairbuf[0], rd0, rd1);
+          set_pair(&pairbuf[1], 0, 0);
+          if (demistate != firstloop)
           {
-              lensmpls -= SAMPLES_PER_OCTET;
+              lenpairs -= PAIRS_PER_DEMI;
           }
-          if (octetstate == loopingaround)
+          if (demistate == loopingaround)
           {
-            sample_updatelc();
+            incr_loopcounter();
           }
-          lensmpls++;
+          lenpairs++;
 
-          smplhist_push(samplebuf[0]);
+          pairhist_push(pairbuf[0]);
 
           if (nv.version[1] == TEMPONLY)
           {
-              nextstate = first_tock;
+              nextstate = pair0_reading1;
           }
           else
           {
-              nextstate = final_tick;
+              nextstate = pair1_both;
           }
           break;
 
-      case first_tock:
-          loadm2(&samplebuf[0], meas1);
-          smplhist_ovr(samplebuf[0]);
-          nextstate = final_tick;
+      case pair0_reading1:
+          set_rd1(&pairbuf[0], rd0);
+          pairhist_ovr(pairbuf[0]);
+          nextstate = pair1_both;
           break;
 
-      case final_tick:
-          loadboth(&samplebuf[1], meas1, meas2);
-          lensmpls++;
+      case pair1_both:
+          set_pair(&pairbuf[1], rd0, rd1);
+          lenpairs++;
 
-          smplhist_push(samplebuf[1]);
+          pairhist_push(pairbuf[1]);
 
           if (nv.version[1] == TEMPONLY)
           {
-              nextstate = final_tock;
+              nextstate = pair1_reading1;
           }
           else
           {
-              nextstate = first_tick;
+              nextstate = pair0_both;
           }
           break;
 
-      case final_tock:
-          loadm2(&samplebuf[1], meas1);
-          smplhist_ovr(samplebuf[1]);
-          nextstate = first_tick;
+      case pair1_reading1:
+          set_rd1(&pairbuf[1], rd0);
+          pairhist_ovr(pairbuf[1]);
+          nextstate = pair0_both;
           break;
       }
 
-      cursorpos = octet_getendmarkerpos();
-
-
-      md5length = smplhist_md5(lensmpls, nv.usehmac, urlstatus.loopcount, urlstatus.resetsalltime, urlstatus.batv_resetcause, cursorpos);
+      cursorpos = demi_getendmarkerpos();
+      md5length = pairhist_md5(lenpairs, nv.usehmac, status.loopcount, status.resetsalltime, status.batv_resetcause, cursorpos);
 
       // 2 samples (6 bytes) per 8 base64 bytes.
-      Base64encode(encodedoctet, (char *)samplebuf, sizeof(samplebuf));
+      Base64encode(demi, (char *)pairbuf, sizeof(pairbuf));
       // 9 bytes per 12 base64 bytes.
       Base64encode(endstop.md5lenb64, (char *)&md5length, sizeof(md5length));
 
-      makeendstop(0);
+      set_elapsed(0);
 
-      octet_write(Octet0, encodedoctet);
-      octet_write(Octet1, &endstop.md5lenb64[0]);
-      octet_write(Octet2, &endstop.md5lenb64[8]);
-      octet_commit4();
+      demi_write(Demi0, demi);
+      demi_write(Demi1, &endstop.md5lenb64[0]);
+      demi_write(Demi2, &endstop.md5lenb64[8]);
+      demi_commit4();
 
       state = nextstate;
 
-      return (octetstate == loopingaround);
+      return (demistate == loopingaround);
 }

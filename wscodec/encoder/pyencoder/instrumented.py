@@ -1,4 +1,4 @@
-from .sharedobj import ndefpy, octetpy, smplhistpy, samplepy
+from .sharedobj import ndefpy, demipy, pairhistpy, samplepy
 from . import eeprom as eeprom
 from struct import pack
 
@@ -78,22 +78,22 @@ class InstrumentedNDEF(InstrumentedBase):
         super(InstrumentedNDEF, self).__init__(ndefpy, baseurl, serial, secretkey, smplintervalmins)
 
 
-class InstrumentedOctet(InstrumentedBase):
+class InstrumentedDemi(InstrumentedBase):
     def __init__(self,
                  baseurl='plotsensor.com',
                  serial='AAAACCCC',
                  secretkey='AAAACCCC',
                  smplintervalmins=12):
-        super(InstrumentedOctet, self).__init__(octetpy, baseurl, serial, secretkey, smplintervalmins)
+        super(InstrumentedDemi, self).__init__(demipy, baseurl, serial, secretkey, smplintervalmins)
 
 
-class InstrumentedSmplHist(InstrumentedBase):
+class InstrumentedPairhist(InstrumentedBase):
     def __init__(self,
                  baseurl='plotsensor.com',
                  serial='AAAACCCC',
                  secretkey='AAAACCCC',
                  smplintervalmins=12):
-        super(InstrumentedSmplHist, self).__init__(smplhistpy, baseurl, serial, secretkey, smplintervalmins)
+        super(InstrumentedPairhist, self).__init__(pairhistpy, baseurl, serial, secretkey, smplintervalmins)
 
 
 class InstrumentedSample(InstrumentedBase):
@@ -175,7 +175,7 @@ class InstrumentedSampleT(InstrumentedSample):
         for i in range(0, num):
             tempsmpl = next(tempgen)
             inlist.insert(0, {'temp': tempsmpl['ref']})
-            self.ffimodule.lib.sample_push(tempsmpl['adc'], 0)
+            self.ffimodule.lib.cbuf_pushsample(tempsmpl['adc'], 0)
         return inlist
 
 
@@ -210,7 +210,7 @@ class InstrumentedSampleTRH(InstrumentedSample):
             tempsmpl = next(tempgen)
             rhsmpl = next(rhgen)
             inlist.insert(0, {'temp': tempsmpl['ref'], 'rh': rhsmpl['ref']})
-            self.ffimodule.lib.sample_push(tempsmpl['adc'], rhsmpl['adc'])
+            self.ffimodule.lib.cbuf_pushsample(tempsmpl['adc'], rhsmpl['adc'])
         return inlist
 
     def pushsamplelist(self, trhlist: list):
@@ -224,7 +224,7 @@ class InstrumentedSampleTRH(InstrumentedSample):
             rhpc = smpldict['rh']
             tempraw = self.temp_degc_to_raw(tempdegc)
             rhraw = self.rh_percent_to_raw(rhpc)
-            self.ffimodule.lib.sample_push(tempraw, rhraw)
+            self.ffimodule.lib.cbuf_pushsample(tempraw, rhraw)
 
     def updateendstop(self, minutes: int):
         """ Update the endstop with minutes elapsed since the most recent sample.
@@ -232,7 +232,7 @@ class InstrumentedSampleTRH(InstrumentedSample):
         :param minutes: Minutes elapsed since the most recent sample.
         :return: None
         """
-        self.ffimodule.lib.sample_updateendstop(minutes)
+        self.ffimodule.lib.cbuf_setelapsed(minutes)
 
     def geturlqs(self):
         return self.eepromba.get_url_parsedqs()

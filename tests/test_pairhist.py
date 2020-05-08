@@ -1,5 +1,5 @@
 import pytest
-from wscodec.encoder.pyencoder.instrumented import InstrumentedSmplHist
+from wscodec.encoder.pyencoder.instrumented import InstrumentedPairhist
 import random
 import hmac
 import hashlib
@@ -26,8 +26,8 @@ ZERO_STAT_AND_ENDMARKERPOS = bytearray(8)
                         {'baseurl': "plotsensor.com", 'secretkey': "masf349212345678"},
                         {'baseurl': "plotsensor.com", 'secretkey': "42r3223355778899"}
                         ])
-def instr_smplhist(request):
-    return InstrumentedSmplHist(baseurl=request.param['baseurl'],
+def instr_pairhist(request):
+    return InstrumentedPairhist(baseurl=request.param['baseurl'],
                                 serial=INPUT_SERIAL,
                                 secretkey=request.param['secretkey'],
                                 smplintervalmins=INPUT_TIMEINT)
@@ -45,10 +45,10 @@ def write_buffer(instr, n):
     for i in range(0, n):
         testsample = random.randrange(4095)
         m1Msb, m2Msb, Lsb = convertToSdChars(testsample, testsample)
-        sensordata = instr.ffimodule.ffi.new("sdchars_t *", {'m1Msb': m1Msb, 'm2Msb': m2Msb, 'Lsb': Lsb})
+        sensordata = instr.ffimodule.ffi.new("pair_t *", {'m1Msb': m1Msb, 'm2Msb': m2Msb, 'Lsb': Lsb})
         sdbytearray = bytearray([m1Msb, m2Msb, Lsb]) + sdbytearray
         sdlist.insert(0, sensordata[0])
-        instr.ffimodule.lib.smplhist_push(sensordata[0])
+        instr.ffimodule.lib.pairhist_push(sensordata[0])
     return sdlist, sdbytearray
 
 
@@ -56,26 +56,26 @@ def check_buffer(instr, sdlist):
     bufindex = 0
     errorflag = instr.ffimodule.ffi.new("int *", 0)
     for sensordata in sdlist:
-        bufsd = instr.ffimodule.lib.smplhist_read(bufindex, errorflag)
+        bufsd = instr.ffimodule.lib.pairhist_read(bufindex, errorflag)
         bufindex = bufindex + 1
         assert bufsd.m1Msb == sensordata.m1Msb and bufsd.m2Msb == sensordata.m2Msb and bufsd.Lsb == sensordata.Lsb
 
 
 @pytest.fixture(scope="function", params=[1, 10, 100, -1])
-def instr_smplhist_with_samples(instr_smplhist, request):
+def instr_pairhist_with_samples(instr_pairhist, request):
     if request.param is -1:
-        nsamples = instr_smplhist.ffimodule.lib.buflensamples
+        nsamples = instr_pairhist.ffimodule.lib.buflenpairs
     else:
         nsamples = request.param
-    sdlist, sdba = write_buffer(instr_smplhist, n=nsamples)
-    return {'instr_smplhist': instr_smplhist, 'sdlist': sdlist, 'sdba': sdba, 'nsamples': nsamples}
+    sdlist, sdba = write_buffer(instr_pairhist, n=nsamples)
+    return {'instr_pairhist': instr_pairhist, 'sdlist': sdlist, 'sdba': sdba, 'nsamples': nsamples}
 
 
-def get_uut_digest(instr_smplhist_with_samples, hmac=False):
-    instr_smplhist = instr_smplhist_with_samples['instr_smplhist']
-    nsamples = instr_smplhist_with_samples['nsamples']
+def get_uut_digest(instr_pairhist_with_samples, hmac=False):
+    instr_pairhist = instr_pairhist_with_samples['instr_pairhist']
+    nsamples = instr_pairhist_with_samples['nsamples']
 
-    uutdigest = instr_smplhist.ffimodule.lib.smplhist_md5(nsamples,
+    uutdigest = instr_pairhist.ffimodule.lib.pairhist_md5(nsamples,
                                                           hmac,
                                                           LOOPCOUNT,
                                                           RESETSALLTIME,
@@ -91,16 +91,16 @@ def get_uut_digest(instr_smplhist_with_samples, hmac=False):
     return uutdigeststr
 
 
-def test_buffer_load(instr_smplhist_with_samples):
-    check_buffer(instr_smplhist_with_samples['instr_smplhist'], instr_smplhist_with_samples['sdlist'])
+def test_buffer_load(instr_pairhist_with_samples):
+    check_buffer(instr_pairhist_with_samples['instr_pairhist'], instr_pairhist_with_samples['sdlist'])
 
 
-def test_hmac(instr_smplhist_with_samples):
-    secretkey = instr_smplhist_with_samples['instr_smplhist'].secretkey
+def test_hmac(instr_pairhist_with_samples):
+    secretkey = instr_pairhist_with_samples['instr_pairhist'].secretkey
     secretkeyba = bytearray(secretkey.encode('utf-8'))
 
-    uutdigest = get_uut_digest(instr_smplhist_with_samples, hmac=True)
-    sdba = instr_smplhist_with_samples['sdba'] + ZERO_STAT_AND_ENDMARKERPOS
+    uutdigest = get_uut_digest(instr_pairhist_with_samples, hmac=True)
+    sdba = instr_pairhist_with_samples['sdba'] + ZERO_STAT_AND_ENDMARKERPOS
 
     hmacobj = hmac.new(secretkeyba, sdba, 'md5')
     tbdigest = hmacobj.hexdigest()
@@ -109,11 +109,11 @@ def test_hmac(instr_smplhist_with_samples):
     assert tbdigest == uutdigest
 
 
-def test_hmac_fail(instr_smplhist_with_samples):
+def test_hmac_fail(instr_pairhist_with_samples):
     secretkey = bytes(b"12345678")
 
-    uutdigest = get_uut_digest(instr_smplhist_with_samples, hmac=True)
-    sdba = instr_smplhist_with_samples['sdba']
+    uutdigest = get_uut_digest(instr_pairhist_with_samples, hmac=True)
+    sdba = instr_pairhist_with_samples['sdba']
 
     hmacobj = hmac.new(secretkey, sdba, 'md5')
     tbdigest = hmacobj.hexdigest()
@@ -122,9 +122,9 @@ def test_hmac_fail(instr_smplhist_with_samples):
     assert tbdigest != uutdigest
 
 
-def test_md5(instr_smplhist_with_samples):
-    uutdigest = get_uut_digest(instr_smplhist_with_samples, hmac=False)
-    sdba = instr_smplhist_with_samples['sdba']
+def test_md5(instr_pairhist_with_samples):
+    uutdigest = get_uut_digest(instr_pairhist_with_samples, hmac=False)
+    sdba = instr_pairhist_with_samples['sdba']
 
     m = hashlib.md5()
     m.update(sdba)

@@ -1,12 +1,12 @@
-#include "smplhist.h"
+#include "pairhist.h"
 #include "defs.h"
 #include "md5.h"
 #include "nvtype.h"
 
 extern nv_t nv;
 
-const int buflensamples = BUFLEN_SAMPLES;
-static sdchars_t samplehistory[BUFLEN_SAMPLES];
+const int buflenpairs= BUFLEN_PAIRS;
+static pair_t pairhistory[BUFLEN_PAIRS];
 static int histpos = 0;
 unsigned char md5block[64];
 static const char ipadchar = 0x36;
@@ -15,19 +15,19 @@ static MD5_CTX ctx;
 static int prevhistpos;
 
 
-int smplhist_ovr(sdchars_t sample)
+int pairhist_ovr(pair_t sample)
 {
-  samplehistory[prevhistpos] = sample;
+  pairhistory[prevhistpos] = sample;
 
   return 0;
 }
 
-int smplhist_push(sdchars_t sample)
+int pairhist_push(pair_t sample)
 {
-  samplehistory[histpos] = sample;
+  pairhistory[histpos] = sample;
   prevhistpos = histpos;
 
-  if (histpos == BUFLEN_SAMPLES-1)
+  if (histpos == BUFLEN_PAIRS-1)
   {
     histpos = 0;
   }
@@ -39,40 +39,40 @@ int smplhist_push(sdchars_t sample)
   return 0;
 }
 
-sdchars_t smplhist_read(unsigned int index, int * error)
+pair_t pairhist_read(unsigned int index, int * error)
 {
     int readpos;
-    sdchars_t sample;
+    pair_t pair;
     *error = 0;
 
     readpos = (histpos - 1) - index;
 
     if (readpos < 0)
     {
-        readpos += (BUFLEN_SAMPLES);
+        readpos += (BUFLEN_PAIRS);
         if (readpos >= histpos)
         {
-            sample = samplehistory[readpos];
+            pair = pairhistory[readpos];
         }
         else
         {
-            sample.m1Msb = 0; // Not allowed to loop around the buffer more than once.
-            sample.m2Msb = 0;
-            sample.Lsb = 0;
+            pair.m1Msb = 0; // Not allowed to loop around the buffer more than once.
+            pair.m2Msb = 0;
+            pair.Lsb = 0;
             *error = 1;
         }
     }
     else
     {
-        sample = samplehistory[readpos];
+        pair = pairhistory[readpos];
     }
 
-    return sample;
+    return pair;
 }
 
-md5len_t smplhist_md5(int lensmpls, int usehmac, unsigned int loopcount, unsigned int resetsalltime, unsigned int batv_resetcause, int cursorpos)
+md5len_t pairhist_md5(int lenpairs, int usehmac, unsigned int loopcount, unsigned int resetsalltime, unsigned int batv_resetcause, int cursorpos)
 {
-    sdchars_t prevsmpl;
+    pair_t prevsmpl;
     int error = 0;
     int smplindex = 0;
     md5len_t md5length;
@@ -101,12 +101,12 @@ md5len_t smplhist_md5(int lensmpls, int usehmac, unsigned int loopcount, unsigne
         MD5_Update(&ctx, md5block, sizeof(md5block));
     }
 
-    // Seperate sample history into 64 byte blocks and a partial block.
+    // Seperate pair history into 64 byte blocks and a partial block.
     i=0;
     // Start to take MD5 of the message.
-    while(smplindex<lensmpls)
+    while(smplindex<lenpairs)
     {
-        prevsmpl = smplhist_read(smplindex++, &error);
+        prevsmpl = pairhist_read(smplindex++, &error);
         if (error == 1)
         {
           for (i=0; i<sizeof(md5length.md5); i++)
@@ -119,7 +119,7 @@ md5len_t smplhist_md5(int lensmpls, int usehmac, unsigned int loopcount, unsigne
         md5block[i++] = prevsmpl.m2Msb;
         md5block[i++] = prevsmpl.Lsb;
 
-        // When i is a multiple of 63 samples, the maximum number that can be store in a 64 byte block.
+        // When i is a multiple of 63 pairs, the maximum number that can be store in a 64 byte block.
         if (i == 63)
         {
             MD5_Update(&ctx, md5block, i);
@@ -142,7 +142,7 @@ md5len_t smplhist_md5(int lensmpls, int usehmac, unsigned int loopcount, unsigne
     md5block[i++] = cursorpos >> 8;
     md5block[i++] = cursorpos & 0xFF;
 
-    // Calculate MD5 checksum from sample history.
+    // Calculate MD5 checksum from pair history.
     MD5_Update(&ctx, md5block, i);
 
 
@@ -187,8 +187,8 @@ md5len_t smplhist_md5(int lensmpls, int usehmac, unsigned int loopcount, unsigne
     {
         md5length.md5[i] = md5result[i];
     }
-    md5length.lensmplsbytes[0] = (lensmpls & 0xFF00) >> 8;
-    md5length.lensmplsbytes[1] = (lensmpls & 0x00FF);
+    md5length.lenpairsbytes[0] = (lenpairs & 0xFF00) >> 8;
+    md5length.lenpairsbytes[1] = (lenpairs & 0x00FF);
 
     return md5length;
 }

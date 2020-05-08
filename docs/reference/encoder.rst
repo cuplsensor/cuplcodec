@@ -1,4 +1,4 @@
-URL Encoder Reference
+Encoder Reference
 =====================
 
 .. toctree::
@@ -7,7 +7,7 @@ URL Encoder Reference
 
    sample
    samplehist
-   octet
+   demi
    nvtype
    eep
    ndef

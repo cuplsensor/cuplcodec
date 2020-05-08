@@ -40,15 +40,15 @@ class Eeprom():
         return self.eepromba[ndefmsgstartbyte:]
 
     def decode_ndef(self):
-        sizeoctets = self.sizeblocks * 2
+        sizedemis = self.sizeblocks * 2
         ndefmessage = self.get_message()
-        ndefoctets = bytearray()
-        for i in range(0,sizeoctets):
+        ndefdemis = bytearray()
+        for i in range(0,sizedemis):
             startbyte = i*8
             endbyte = startbyte + 8
-            octet = ndefmessage[startbyte:endbyte]
-            ndefoctets += octet
-        ndefrecords = ndef.message_decoder(ndefoctets)
+            demi = ndefmessage[startbyte:endbyte]
+            ndefdemis += demi
+        ndefrecords = ndef.message_decoder(ndefdemis)
         # Use next to generate the first record from the ndefrecords generator
         return next(ndefrecords)
 
@@ -70,8 +70,8 @@ class Eeprom():
         q = parsedqs['q']
         return q[0]
 
-    def get_qoctets(self):
+    def get_qdemis(self):
         qstr = self.get_qparam()
         n = 8
-        qoctets = [qstr[i:i+n] for i in range(0, len(qstr), n)]
-        return qoctets
+        qdemis = [qstr[i:i+n] for i in range(0, len(qstr), n)]
+        return qdemis
