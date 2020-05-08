@@ -30,7 +30,7 @@ typedef struct
 
 typedef struct
 {
-  char md5lenb64[12];   /*!< MD5 length field containing a base64 encoded ::md5len_t. */
+  char hashnb64[12];   /*!< MD5 length field containing a base64 encoded ::hashn_t. */
   char markerb64[4];    /*!< End-stop marker comprised of base64 encoded minutes since the previous sample and ::ENDSTOP_BYTE */
 } endstop_t;
 
@@ -42,7 +42,7 @@ typedef struct
 
 static char demi[8];                /*!< Stores two pairs from \link pairbuf, after base64 encoding */
 static pair_t pairbuf[2];           /*!< Stores two unencoded 3-byte pairs. */
-static unsigned int lenpairs = 0;   /*!< Number of base64 encoded pairs in the circular buffer, starting from the endstop and counting backwards. */
+static unsigned int npairs = 0;   /*!< Number of base64 encoded pairs in the circular buffer, starting from the endstop and counting backwards. */
 static pairbufstate_t state;        /*!< Pair buffer write state. */
 static endstop_t endstop;           /*!< The 16 byte end stop. */
 extern nv_t nv;                     /*!< Externally defined parameters stored in non-volatile memory. */
@@ -136,7 +136,7 @@ void sample_init(unsigned int resetcause, bool err)
   status.batv_resetcause = BATV_RESETCAUSE(batv, resetcause);
   Base64encode(statusb64, (const char *)&status, sizeof(status));
 
-  lenpairs = 0;
+  npairs = 0;
   state = pair0_both;
 
   if (err == true)
@@ -160,7 +160,7 @@ void sample_init(unsigned int resetcause, bool err)
 void cbuf_setelapsed(unsigned int minutes)
 {
     set_elapsed(minutes);
-    demi_write(Demi2, &endstop.md5lenb64[8]);
+    demi_write(Demi2, &endstop.hashnb64[8]);
     demi_commit2();
 }
 
@@ -176,7 +176,7 @@ void cbuf_setelapsed(unsigned int minutes)
 int cbuf_pushsample(int rd0, int rd1)
 {
   pairbufstate_t nextstate;
-  md5len_t md5length;
+  hashn_t hashn;
   int cursorpos;
 
   if (nv.version[1] == TEMPONLY)
@@ -184,7 +184,7 @@ int cbuf_pushsample(int rd0, int rd1)
       rd1 = -1;
   }
 
-  if ((state == pair0_both) && (lenpairs != 0))
+  if ((state == pair0_both) && (npairs != 0))
   {
       demi_movecursor();
   }
@@ -198,13 +198,13 @@ int cbuf_pushsample(int rd0, int rd1)
           set_pair(&pairbuf[1], 0, 0);
           if (demistate != firstloop)
           {
-              lenpairs -= PAIRS_PER_DEMI;
+              npairs -= PAIRS_PER_DEMI;
           }
           if (demistate == loopingaround)
           {
             incr_loopcounter();
           }
-          lenpairs++;
+          npairs++;
 
           pairhist_push(pairbuf[0]);
 
@@ -226,7 +226,7 @@ int cbuf_pushsample(int rd0, int rd1)
 
       case pair1_both:
           set_pair(&pairbuf[1], rd0, rd1);
-          lenpairs++;
+          npairs++;
 
           pairhist_push(pairbuf[1]);
 
@@ -248,18 +248,18 @@ int cbuf_pushsample(int rd0, int rd1)
       }
 
       cursorpos = demi_getendmarkerpos();
-      md5length = pairhist_md5(lenpairs, nv.usehmac, status.loopcount, status.resetsalltime, status.batv_resetcause, cursorpos);
+      hashn = pairhist_hash(npairs, nv.usehmac, status.loopcount, status.resetsalltime, status.batv_resetcause, cursorpos);
 
       // 2 samples (6 bytes) per 8 base64 bytes.
       Base64encode(demi, (char *)pairbuf, sizeof(pairbuf));
       // 9 bytes per 12 base64 bytes.
-      Base64encode(endstop.md5lenb64, (char *)&md5length, sizeof(md5length));
+      Base64encode(endstop.hashnb64, (char *)&hashn, sizeof(hashn));
 
       set_elapsed(0);
 
       demi_write(Demi0, demi);
-      demi_write(Demi1, &endstop.md5lenb64[0]);
-      demi_write(Demi2, &endstop.md5lenb64[8]);
+      demi_write(Demi1, &endstop.hashnb64[0]);
+      demi_write(Demi2, &endstop.hashnb64[8]);
       demi_commit4();
 
       state = nextstate;

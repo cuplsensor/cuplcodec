@@ -36,9 +36,9 @@ Implementation
    :status: complete
    :links: CODEC_FEAT_25
 
-   The function :cpp:func:`cbuf_pushsample` uses integer :cpp:member:`lenpairs` to record how many valid samples
+   The function :cpp:func:`cbuf_pushsample` uses integer :cpp:member:`npairs` to record how many valid samples
    are in the circular buffer. When an demi is overwritten, it is reduced by :c:macro:`PAIRS_PER_DEMI`.
-   Otherwise it is incremented by one. When the buffer is full :cpp:member:`lenpairs` will equal
+   Otherwise it is incremented by one. When the buffer is full :cpp:member:`npairs` will equal
    :cpp:member:`buflenpairs`.
 
 .. impl:: MD5
@@ -50,8 +50,8 @@ Implementation
    It consumes a lot of RAM, but this is unavoidable.
 
    On each call to :cpp:func:`cbuf_pushsample`, the sample is appended to :cpp:member:`pairhistory` by
-   :cpp:func:`pairhist_push`. The hash (MD5 or HMAC) is calculated with :cpp:func:`pairhist_md5`.
-   This outputs a 9 byte structure (:cpp:type:`md5len_t`). It is converted to base64 (:cpp:member:`md5lenb64`)
+   :cpp:func:`pairhist_push`. The hash (MD5 or HMAC) is calculated with :cpp:func:`pairhist_hash`.
+   This outputs a 9 byte structure (:cpp:type:`hashn_t`). It is converted to base64 (:cpp:member:`hashnb64`)
    before it is written to the endstop demis (:need:`CODEC_SPEC_13`).
 
 .. impl:: Append sample

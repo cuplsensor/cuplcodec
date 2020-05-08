@@ -133,7 +133,7 @@ Specifications
    | Description | :need:`CODEC_FEAT_41` | :need:`CODEC_FEAT_42` |
    +-------------+-----------------------+-----------------------+
 
-.. spec:: MD5Length b64
+.. spec:: HashN b64
    :id: CODEC_SPEC_14
    :status: complete
    :links: CODEC_SPEC_13

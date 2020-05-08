@@ -75,7 +75,7 @@ def get_uut_digest(instr_pairhist_with_samples, hmac=False):
     instr_pairhist = instr_pairhist_with_samples['instr_pairhist']
     nsamples = instr_pairhist_with_samples['nsamples']
 
-    uutdigest = instr_pairhist.ffimodule.lib.pairhist_md5(nsamples,
+    uutdigest = instr_pairhist.ffimodule.lib.pairhist_hash(nsamples,
                                                           hmac,
                                                           LOOPCOUNT,
                                                           RESETSALLTIME,

@@ -276,7 +276,7 @@ The demi to the right contains the oldest sample data or zero padding if the buf
 +-------------+---+---+---+---+---+---+---+---+---+---+----+----+----+----+----+-----+
 | Byte        | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15  |
 +-------------+---+---+---+---+---+---+---+---+---+---+----+----+----+----+----+-----+
-| Description | MD5Length_ b64                                  | Elapsed_ b64 | )   |
+| Description | HashN_ b64                                  | Elapsed_ b64 | )   |
 +-------------+-------------------------------------------------+--------------+-----+
 
 _`Elapsed` (base64) and end marker
@@ -299,11 +299,11 @@ The first step performed by the decoder is to locate :c:macro:`ENDSTOP_BYTE`. Af
 found, it can be replaced with an '=' before the minutes elapsed field is
 decoded from base64 into its original 16-bit value.
 
-_`MD5Length`
+_`HashN`
 ^^^^^^^^^^^^^
 
 This is 9 bytes long unencoded and 12 bytes long encoded. The C structure to hold these data
-:cpp:type:`md5len_t` is shown below:
+:cpp:type:`hashn_t` is shown below:
 
 +-------------+---+---+---+---+---+---+---+---+------------+
 | Byte        | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8          |
@@ -320,7 +320,7 @@ Least significant 7 bytes of the MD5 checksum taken of all samples in the buffer
 LengthSamples
 ______________
 
-The number of valid samples in the circular buffer. This is populated from :cpp:var:`lenpairs`.
+The number of valid samples in the circular buffer. This is populated from :cpp:var:`npairs`.
 
 
 
