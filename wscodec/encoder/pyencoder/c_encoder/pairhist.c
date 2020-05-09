@@ -13,14 +13,28 @@ static const char ipadchar = 0x36;          /*!< Inner padding byte for HMAC as 
 static const char opadchar = 0x5C;          /*!< Outer padding byte for HMAC as defined in <a href="https://tools.ietf.org/html/rfc2104#section-2">RFC 2104</a>. */
 static MD5_CTX ctx;                         /*!< MD5 context. */
 
-int pairhist_ovr(pair_t sample)
+/*!
+ * @brief Overwrites the most recent pair in the history buffer.
+ * This is used when the format stipulates one reading per sample (rather than one pair per sample).
+ * For the first sample, a full pair is written with \link pairhist_push. The second reading is set to an invalid value.
+ * On the next sample, the second reading in the pair is overwritten, so the history buffer must be overwritten  with \link pairhist_ovr
+ *
+ * @param pair New value of the most recent pair.
+ */
+int pairhist_ovr(pair_t pair)
 {
-  hist[endindex] = sample;
+  hist[endindex] = pair;
 
   return 0;
 }
 
-int pairhist_push(pair_t sample)
+/*!
+ * @brief Pushes a new pair onto the history buffer.
+ * This operation overwrites an old pair if the circular buffer is full.
+ *
+ * @param pair Value of the new pair.
+ */
+int pairhist_push(pair_t pair)
 {
   if (endindex == BUFLEN_PAIRS-1)
   {
@@ -31,18 +45,25 @@ int pairhist_push(pair_t sample)
     endindex = endindex + 1; // Write next pair to the next index in the buffer
   }
 
-  hist[endindex] = sample;
+  hist[endindex] = pair;
 
   return 0;
 }
 
-pair_t pairhist_read(unsigned int index, int * error)
+/*!
+ * @brief Reads one pair at an offset from the end of the history buffer.
+ * This function makes it possible to read the circular history buffer as if it was linear.
+ *
+ * @param offset Integer offset of the pair to read from the end of the history buffer. When 0, the most recent pair is returned. When 1, the 2nd most recent pair is returned.
+ * @param error Pointer to an error variable. This is set to 1 when offset exceeds the length of the circular buffer. It is 0 otherwise.
+ */
+pair_t pairhist_read(unsigned int offset, int * error)
 {
     int readpos;
     pair_t pair;
     *error = 0;
 
-    readpos = endindex - index;
+    readpos = endindex - offset;
 
     if (readpos < 0)
     {

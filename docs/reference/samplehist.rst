@@ -3,10 +3,6 @@
 PairHist C Reference
 =====================
 
-Interface
-----------
 .. doxygenfile:: pairhist.h
 
-Implementation
----------------
 .. doxygenfile:: pairhist.c
