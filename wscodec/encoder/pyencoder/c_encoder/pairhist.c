@@ -7,7 +7,7 @@ extern nv_t nv;
 
 unsigned char hashblock[64];                /*!< Block of RAM for storing data to be passed to the MD5 algorithm. */
 const int buflenpairs= BUFLEN_PAIRS;        /*!< Length of the circular buffer in pairs. */
-static pair_t hist[BUFLEN_PAIRS];           /*!< Array of unencoded pairs. This mirrors the circular buffer of encoded pairs stored in EEPROM. */
+static pair_t pairhistory[BUFLEN_PAIRS];    /*!< Array of unencoded pairs. This mirrors the circular buffer of base64 encoded pairs stored in EEPROM. */
 static int endindex = -1;                   /*!< Index marking the end of the circular buffer. The most recent sample is stored here.  */
 static const char ipadchar = 0x36;          /*!< Inner padding byte for HMAC as defined in <a href="https://tools.ietf.org/html/rfc2104#section-2">RFC 2104</a>.*/
 static const char opadchar = 0x5C;          /*!< Outer padding byte for HMAC as defined in <a href="https://tools.ietf.org/html/rfc2104#section-2">RFC 2104</a>. */
@@ -23,7 +23,7 @@ static MD5_CTX ctx;                         /*!< MD5 context. */
  */
 int pairhist_ovr(pair_t pair)
 {
-  hist[endindex] = pair;
+  pairhistory[endindex] = pair;
 
   return 0;
 }
@@ -45,32 +45,32 @@ int pairhist_push(pair_t pair)
     endindex = endindex + 1; // Write next pair to the next index in the buffer
   }
 
-  hist[endindex] = pair;
+  pairhistory[endindex] = pair;
 
   return 0;
 }
 
 /*!
- * @brief Reads one pair at an offset from the end of the history buffer.
- * This function makes it possible to read the circular history buffer as if it was linear.
+ * @brief Reads one pair at an offset from the end of pairhistory.
+ * This function makes it possible to read pairhistory as if it was a linear buffer.
  *
- * @param offset Integer offset of the pair to read from the end of the history buffer. When 0, the most recent pair is returned. When 1, the 2nd most recent pair is returned.
- * @param error Pointer to an error variable. This is set to 1 when offset exceeds the length of the circular buffer. It is 0 otherwise.
+ * @param offset When 0, the most recent pair is returned. When 1, the 2nd most recent pair is returned. When BUFLEN_PAIRS-1, the oldest pair is returned. Any larger offset is invalid.
+ * @param error Pointer to an error variable. This is set to 1 when offset exceeds the length of the circular buffer (BUFLEN_PAIRS-1). It is 0 otherwise.
  */
 pair_t pairhist_read(unsigned int offset, int * error)
 {
-    int readpos;
+    int readindex;
     pair_t pair;
     *error = 0;
 
-    readpos = endindex - offset;
+    readindex = endindex - offset;
 
-    if (readpos < 0)
+    if (readindex < 0)
     {
-        readpos += (BUFLEN_PAIRS);
-        if (readpos >= endindex)
+        readindex += (BUFLEN_PAIRS);
+        if (readindex >= endindex)
         {
-            pair = hist[readpos];
+            pair = pairhistory[readindex];
         }
         else
         {
@@ -82,12 +82,24 @@ pair_t pairhist_read(unsigned int offset, int * error)
     }
     else
     {
-        pair = hist[readpos];
+        pair = pairhistory[readindex];
     }
 
     return pair;
 }
 
+/*!
+ * @brief Calculates MD5 or HMAC-MD5 of pairs in pairhistory.
+ *
+ * @param npairs
+ * @param usehmac When 1 the HMAC-MD5 hash is calculated. When 0 only the MD5 is calculated.
+ * @param loopcount Extra data to include in the hash.
+ * @param resetsalltime Extra data to include in the hash.
+ * @param batv_resetcause Extra data to include in the hash.
+ * @param cursorpos Extra data to include in the hash.
+ *
+ * @returns hashn
+ */
 hashn_t pairhist_hash(int npairs, int usehmac, unsigned int loopcount, unsigned int resetsalltime, unsigned int batv_resetcause, int cursorpos)
 {
     pair_t prevpair;
