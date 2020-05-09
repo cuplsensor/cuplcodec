@@ -5,36 +5,33 @@
 
 extern nv_t nv;
 
-const int buflenpairs= BUFLEN_PAIRS;
-static pair_t pairhistory[BUFLEN_PAIRS];
-static int histpos = 0;
+const int buflenpairs= BUFLEN_PAIRS;        /*!< Length of the circular buffer in pairs. */
+static pair_t hist[BUFLEN_PAIRS];           /*!< Array of unencoded pairs. This mirrors the circular buffer of encoded pairs stored in EEPROM. */
+static int endindex = -1;                   /*!< Index marking the end of the circular buffer. The most recent sample is stored here.  */
 unsigned char hashblock[64];
 static const char ipadchar = 0x36;
 static const char opadchar = 0x5C;
 static MD5_CTX ctx;
-static int prevhistpos;
-
 
 int pairhist_ovr(pair_t sample)
 {
-  pairhistory[prevhistpos] = sample;
+  hist[endindex] = sample;
 
   return 0;
 }
 
 int pairhist_push(pair_t sample)
 {
-  pairhistory[histpos] = sample;
-  prevhistpos = histpos;
-
-  if (histpos == BUFLEN_PAIRS-1)
+  if (endindex == BUFLEN_PAIRS-1)
   {
-    histpos = 0;
+    endindex = 0;   // Write next pair to the start of the buffer.
   }
   else
   {
-    histpos++;
+    endindex = endindex + 1; // Write next pair to the next index in the buffer
   }
+
+  hist[endindex] = sample;
 
   return 0;
 }
@@ -45,14 +42,14 @@ pair_t pairhist_read(unsigned int index, int * error)
     pair_t pair;
     *error = 0;
 
-    readpos = (histpos - 1) - index;
+    readpos = endindex - index;
 
     if (readpos < 0)
     {
         readpos += (BUFLEN_PAIRS);
-        if (readpos >= histpos)
+        if (readpos >= endindex)
         {
-            pair = pairhistory[readpos];
+            pair = hist[readpos];
         }
         else
         {
@@ -64,7 +61,7 @@ pair_t pairhist_read(unsigned int index, int * error)
     }
     else
     {
-        pair = pairhistory[readpos];
+        pair = hist[readpos];
     }
 
     return pair;
