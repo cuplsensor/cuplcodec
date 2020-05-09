@@ -5,19 +5,22 @@
 
 
 /**
- *  Structure to hold one sample consisting of two 12-bit measurands.
+ *  Structure to hold one sample consisting of two 12-bit readings.
  */
 typedef struct
 {
-        unsigned char m1Msb;    /*!< Measurand 1 Most significant byte.*/
-        unsigned char m2Msb;    /*!< Measurand 2 Most significant byte.*/
-        unsigned char Lsb;      /*!< Least significant 4-bit nibbles of measurand 1 and measurand 2. */
+        unsigned char rd0Msb;    /*!< Reading0 Most significant byte. */
+        unsigned char rd1Msb;    /*!< Reading1 Most significant byte. */
+        unsigned char Lsb;      /*!< Least significant 4-bit nibbles of reading0 and reading1. */
 } pair_t;
 
+/**
+ *  Structure to hold hash and npairs as per CODEC_SPEC_14.
+ */
 typedef struct
 {
-    unsigned char hash[7];
-    unsigned char npairs[2];
+    unsigned char hash[7];      /*!< Last 7 bytes of the MD5 or HMAC-MD5 hash. */
+    unsigned char npairs[2];    /*!< Number of valid pairs in the circular buffer. */
 } hashn_t;
 
 /// Have doxygen ignore this

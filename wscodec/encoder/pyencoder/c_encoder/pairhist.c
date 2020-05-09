@@ -74,8 +74,8 @@ pair_t pairhist_read(unsigned int offset, int * error)
         }
         else
         {
-            pair.m1Msb = 0; // Not allowed to loop around the buffer more than once.
-            pair.m2Msb = 0;
+            pair.rd0Msb = 0; // Not allowed to loop around the buffer more than once.
+            pair.rd1Msb = 0;
             pair.Lsb = 0;
             *error = 1;
         }
@@ -132,8 +132,8 @@ hashn_t pairhist_hash(int npairs, int usehmac, unsigned int loopcount, unsigned 
           }
           return hashn;
         }
-        hashblock[i++] = prevpair.m1Msb;
-        hashblock[i++] = prevpair.m2Msb;
+        hashblock[i++] = prevpair.rd0Msb;
+        hashblock[i++] = prevpair.rd1Msb;
         hashblock[i++] = prevpair.Lsb;
 
         // When i is a multiple of 63 pairs, the maximum number that can be store in a 64 byte block.

@@ -99,8 +99,8 @@ static void set_elapsed(unsigned int minutes)
  */
 static void set_pair(pair_t *pair, int rd0, int rd1)
 {
-    pair->m1Msb = ((rd0 >> 4) & 0xFF);
-    pair->m2Msb = ((rd1 >> 4) & 0xFF);
+    pair->rd0Msb = ((rd0 >> 4) & 0xFF);
+    pair->rd1Msb = ((rd1 >> 4) & 0xFF);
     pair->Lsb   = ((rd0 & 0xF) << 4) | (rd1 & 0xF);
 }
 
@@ -113,7 +113,7 @@ static void set_pair(pair_t *pair, int rd0, int rd1)
  */
 static void set_rd1(pair_t *pair, int rd1)
 {
-    pair->m2Msb  = ((rd1 >> 4) & 0xFF);
+    pair->rd1Msb  = ((rd1 >> 4) & 0xFF);
     pair->Lsb   &= ~0x0F;           // Clear low nibble of LSB.
     pair->Lsb   |= (rd1 & 0xF);     // Set low nibble of LSB.
 }

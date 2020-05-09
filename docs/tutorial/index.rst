@@ -169,20 +169,20 @@ Each sample contains two 12-bit measurands. These are organised as follows
 +-----------------+-------+-------+-----+
 | **Byte**        | 0     | 1     | 2   |
 +-----------------+-------+-------+-----+
-| **Description** | M1MSB | M2MSB | LSB |
+| **Description** | Rd0Msb | Rd1Msb | LSB |
 +-----------------+-------+-------+-----+
 
 The encoder stores samples using the :cpp:type:`pair_t` type.
 
-M1MSB
+Rd0Msb
 ^^^^^^
 
-Measurand 1 Most significant 8-bits (see :cpp:member:`m1Msb`).
+Measurand 1 Most significant 8-bits (see :cpp:member:`rd0Msb`).
 
-M2MSB
+Rd1Msb
 ^^^^^^
 
-Measurand 2 Most significant 8-bits (see :cpp:member:`m2Msb`).
+Measurand 2 Most significant 8-bits (see :cpp:member:`rd1Msb`).
 
 LSB
 ^^^^
@@ -207,7 +207,7 @@ Chunks
 +-----------------+-------+-------+-----+-------+-------+-----+
 | **Byte**        | 0     | 1     | 2   | 3     | 4     | 5   |
 +-----------------+-------+-------+-----+-------+-------+-----+
-| **Description** | M1MSB | M2MSB | LSB | M1MSB | M2MSB | LSB |
+| **Description** | Rd0Msb | Rd1Msb | LSB | Rd0Msb | Rd1Msb | LSB |
 +-----------------+-------+-------+-----+-------+-------+-----+
 
 Each 6-byte chunk contains two samples_.

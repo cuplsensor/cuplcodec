@@ -32,11 +32,11 @@ def instr_pairhist(request):
                                 secretkey=request.param['secretkey'],
                                 smplintervalmins=INPUT_TIMEINT)
 
-def convertToSdChars(meas1, meas2):
-    m1Msb = (meas1 >> 4)
-    m2Msb = (meas2 >> 4)
-    Lsb = (((meas1 & 0xF) << 4) & (meas2 & 0xF))
-    return m1Msb, m2Msb, Lsb
+def convertToSdChars(rd0, rd1):
+    rd0Msb = (rd0 >> 4)
+    rd1Msb = (rd1 >> 4)
+    Lsb = (((rd0 & 0xF) << 4) & (rd1 & 0xF))
+    return rd0Msb, rd1Msb, Lsb
 
 
 def write_buffer(instr, n):
@@ -44,9 +44,9 @@ def write_buffer(instr, n):
     sdbytearray = bytearray()
     for i in range(0, n):
         testsample = random.randrange(4095)
-        m1Msb, m2Msb, Lsb = convertToSdChars(testsample, testsample)
-        sensordata = instr.ffimodule.ffi.new("pair_t *", {'m1Msb': m1Msb, 'm2Msb': m2Msb, 'Lsb': Lsb})
-        sdbytearray = bytearray([m1Msb, m2Msb, Lsb]) + sdbytearray
+        rd0Msb, rd1Msb, Lsb = convertToSdChars(testsample, testsample)
+        sensordata = instr.ffimodule.ffi.new("pair_t *", {'rd0Msb': rd0Msb, 'rd1Msb': rd1Msb, 'Lsb': Lsb})
+        sdbytearray = bytearray([rd0Msb, rd1Msb, Lsb]) + sdbytearray
         sdlist.insert(0, sensordata[0])
         instr.ffimodule.lib.pairhist_push(sensordata[0])
     return sdlist, sdbytearray
@@ -58,7 +58,7 @@ def check_buffer(instr, sdlist):
     for sensordata in sdlist:
         bufsd = instr.ffimodule.lib.pairhist_read(bufindex, errorflag)
         bufindex = bufindex + 1
-        assert bufsd.m1Msb == sensordata.m1Msb and bufsd.m2Msb == sensordata.m2Msb and bufsd.Lsb == sensordata.Lsb
+        assert bufsd.rd0Msb == sensordata.rd0Msb and bufsd.rd1Msb == sensordata.rd1Msb and bufsd.Lsb == sensordata.Lsb
 
 
 @pytest.fixture(scope="function", params=[1, 10, 100, -1])
