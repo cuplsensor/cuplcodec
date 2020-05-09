@@ -42,7 +42,8 @@ def test_lists_equal(instr_sample_populated):
     comparelists(urllist, inlist)
 
 
-def test_md5():
+@pytest.mark.parametrize('n', range(1, 500, 1))
+def test_md5(n):
     instr_md5 = InstrumentedSampleTRH(baseurl=INPUT_BASEURL,
                                       serial=INPUT_SERIAL,
                                       secretkey="",
@@ -50,7 +51,7 @@ def test_md5():
                                       usehmac=False
                                       )
 
-    inlist = instr_md5.pushsamples(500)
+    inlist = instr_md5.pushsamples(n)
 
     # Decode the URL
     par = instr_md5.eepromba.get_url_parsedqs()
