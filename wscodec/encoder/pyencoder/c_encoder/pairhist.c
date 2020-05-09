@@ -5,13 +5,13 @@
 
 extern nv_t nv;
 
+unsigned char hashblock[64];                /*!< Block of RAM for storing data to be passed to the MD5 algorithm. */
 const int buflenpairs= BUFLEN_PAIRS;        /*!< Length of the circular buffer in pairs. */
 static pair_t hist[BUFLEN_PAIRS];           /*!< Array of unencoded pairs. This mirrors the circular buffer of encoded pairs stored in EEPROM. */
 static int endindex = -1;                   /*!< Index marking the end of the circular buffer. The most recent sample is stored here.  */
-unsigned char hashblock[64];
-static const char ipadchar = 0x36;
-static const char opadchar = 0x5C;
-static MD5_CTX ctx;
+static const char ipadchar = 0x36;          /*!< Inner padding byte for HMAC as defined in <a href="https://tools.ietf.org/html/rfc2104#section-2">RFC 2104</a>.*/
+static const char opadchar = 0x5C;          /*!< Outer padding byte for HMAC as defined in <a href="https://tools.ietf.org/html/rfc2104#section-2">RFC 2104</a>. */
+static MD5_CTX ctx;                         /*!< MD5 context. */
 
 int pairhist_ovr(pair_t sample)
 {
