@@ -61,9 +61,9 @@ def check_buffer(instr, sdlist):
         assert bufsd.m1Msb == sensordata.m1Msb and bufsd.m2Msb == sensordata.m2Msb and bufsd.Lsb == sensordata.Lsb
 
 
-@pytest.fixture(scope="function", params=[1, 10, 100, -1])
+@pytest.fixture(scope="function", params=[1, 10, 100, 500, -1])
 def instr_pairhist_with_samples(instr_pairhist, request):
-    if request.param is -1:
+    if request.param == -1:
         nsamples = instr_pairhist.ffimodule.lib.buflenpairs
     else:
         nsamples = request.param
