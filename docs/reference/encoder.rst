@@ -5,8 +5,8 @@ Encoder Reference
    :hidden:
    :maxdepth: 2
 
-   sample
-   samplehist
+   cbuf
+   pairhist
    demi
    nvtype
    eep
