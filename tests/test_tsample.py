@@ -1,5 +1,6 @@
 import pytest
 from wscodec.encoder.pyencoder.instrumented import InstrumentedSampleT
+from wscodec.decoder import Decoder
 
 INPUT_BASEURL = "cupl.uk"
 INPUT_SERIAL = 'abcdabcd'
