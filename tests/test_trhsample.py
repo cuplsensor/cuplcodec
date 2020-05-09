@@ -43,12 +43,13 @@ def test_lists_equal(instr_sample_populated):
 
 
 @pytest.mark.parametrize('n', range(1, 500, 1))
-def test_md5(n):
+@pytest.mark.parametrize('usehmac', (True, False))
+def test_md5(n, usehmac):
     instr_md5 = InstrumentedSampleTRH(baseurl=INPUT_BASEURL,
                                       serial=INPUT_SERIAL,
-                                      secretkey="",
+                                      secretkey=INPUT_SECKEY,
                                       smplintervalmins=INPUT_TIMEINT,
-                                      usehmac=False
+                                      usehmac=usehmac
                                       )
 
     inlist = instr_md5.pushsamples(n)
@@ -56,7 +57,7 @@ def test_md5(n):
     # Decode the URL
     par = instr_md5.eepromba.get_url_parsedqs()
     decodedurl = Decoder(secretkey="", statb64=par['x'][0], timeintb64=par['t'][0],
-                         circb64=par['q'][0], ver=par['v'][0], usehmac=False)
+                         circb64=par['q'][0], ver=par['v'][0], usehmac=usehmac)
 
     urllist = decodedurl.params.buffer.smpls
     for d in urllist:
