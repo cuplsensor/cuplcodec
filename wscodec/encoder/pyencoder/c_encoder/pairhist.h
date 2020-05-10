@@ -5,8 +5,8 @@
  * is stored in RAM, so its contents can be accessed quickly.
  *
  * This allows for a hash to be taken of the unencoded circular buffer pairs, each time this list changes. The decoder uses this
- * to verify that it has decoded the circular buffer faithfully: It must output the same list of pairs as supplied to the encoder
- * in multiple calls to cbuf_pushsample().
+ * to verify that it has decoded the circular buffer faithfully: It must output the same list of pairs, as fed to the encoder
+ * with multiple calls to cbuf_pushsample().
  *
  * After decoding the circular buffer, the hash is calculated. The decoder checks this equals the encoder hash, which is extracted from
  * #endstop_t::hashnb64 in the NDEF message. If it does not, an error is raised and no data are returned.
@@ -20,7 +20,7 @@
  * secret key. The output is an MD5 hash. The decoder can only obtain an identical result if it has the same circular
  * buffer data and secret key. The irreversibility of the hashing algorithm protects the secret key.
  *
- * When a pair is pushed to or overwritten in the NDEF message, then pairhistory must be updated with pairhist_push() and
+ * When a pair is pushed to or overwritten in the NDEF message, pairhistory must be updated with pairhist_push() and
  * pairhist_ovr() respectively. This ensures that the output of pairhist_hash() will be accurate.
  */
 

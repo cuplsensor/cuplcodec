@@ -216,19 +216,52 @@ Circular Buffer
    The length of the circular buffer can be adjusted. This is done with a compiler parameter,
    to meet :need:`CODEC_FEAT_8`.
 
-.. feat:: MD5
+.. feat:: Hash
    :id: CODEC_FEAT_24
    :status: complete
    :links: CODEC_SPEC_14
 
-   Each time a sample is added, a hash is taken of the unencoded data in the buffer. A hash of the
-   unencoded sample list is verification that the buffer has been unwrapped and decoded correctly.
+   The list of samples in the buffer must always be transmitted together with a hash. This is used
+   by the decoder to verify that it has unwrapped the circular buffer and decoded samples correctly.
 
-   If HMAC is enabled, this will be an MD5-HMAC hash. If not, it is MD5 only. The is only room to
-   store the least significant 7 bytes, but this should be ample.
+   The size of the URL is limited, so there is only room to store the least significant 7 bytes of the hash,
+   however, this should be ample.
 
-   This does not update when the
-   :need:`CODEC_FEAT_26` field changes in order to save power :need:`CODEC_SPEC_8`.
+   If Hash Based Message Authentication (HMAC) is enabled, then the last characters of the HMAC-MD5 will
+   be used. If not, these will be the output of MD5 only.
+
+   The hash is used as a checksum; a guard against unintentional data corruption. This may arise
+   because of a bug in the codec. The MD5 is sufficient for this purpose. It was chosen in order to adhere
+   with :need:`CODEC_SPEC_4`. The MD5 hash alone is useless for security purposes. If a bad actor
+   intends to find a collision (i.e. two sets of data that produce the same MD5 hash) then this can be done
+   with ease. MD5 is intended for debug and code development only.
+
+   HMAC-MD5 is considerably more secure than MD5 alone. It is recommended for production use. Each device with an encoder
+   should have a unique secret key. In addition to data integrity, HMAC-MD5 can be used to verify that the
+   decoder and encoder have access to the same shared secret key. It is therefore a check on authenticity.
+
+        The cryptographic strength of the HMAC depends upon the size of the secret key that is used.
+        The most common attack against HMACs is brute force to uncover the secret key.
+        HMACs are substantially less affected by collisions than their underlying hashing algorithms alone.[6][7]
+        In particular, in 2006 Mihir Bellare proved that HMAC is a PRF under the sole assumption
+        that the compression function is a PRF.[8] Therefore, HMAC-MD5 does not suffer from the same weaknesses
+        that have been found in MD5.
+
+        `Wikipedia <https://en.wikipedia.org/wiki/HMAC>`_
+
+   Furthermore the article states:
+        For HMAC-MD5 the RFC summarizes that – although the security of the MD5 hash function itself is
+        severely compromised – the currently known "attacks on HMAC-MD5 do not seem to indicate a practical
+        vulnerability when used as a message authentication code", but it also adds that
+        "for a new protocol design, a ciphersuite with HMAC-MD5 should not be included".
+
+   It is acknowledged that HMAC-MD5 has been used despite the counter-recommendation above. However, it was
+   decided that the increased complexity of HMAC-SHA3 cannot be justified. The algorithm has to run
+   with low energy consumption on an inexpensive microcontroller. The MSP430 itself is not designed for a
+   high degree of data security. Opting for a more robust hashing algorithm
+   may result in compromises elsewhere (e.g. on battery life). It is also the case that environmental sensor
+   data are being transmitted and not data that are highly sensitive. The reward to compromise this system
+   is sufficiently low to make HMAC-MD5 a good-enough deterrent.
 
 .. feat:: LengthSamples
    :id: CODEC_FEAT_25
