@@ -257,7 +257,7 @@ Circular Buffer
         "for a new protocol design, a ciphersuite with HMAC-MD5 should not be included".
 
    It is acknowledged that HMAC-MD5 has been used despite the counter-recommendation above. I
-   decided that the increased complexity of HMAC-SHA3 cannot be justified. The algorithm has to run
+   decided that the increased complexity of HMAC-SHA3 cannot be justified: The algorithm has to run
    with low energy consumption on an inexpensive microcontroller. The MSP430 itself is not designed for a
    high degree of data security. Opting for a more robust hashing algorithm
    may result in compromises elsewhere (e.g. on battery life). It is also the case that environmental sensor
