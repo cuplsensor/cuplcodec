@@ -241,6 +241,7 @@ Circular Buffer
    should have a unique secret key. In addition to data integrity, HMAC-MD5 can be used to verify that the
    decoder and encoder have access to the same shared secret key. It is therefore a check on authenticity.
 
+    From `Wikipedia <https://en.wikipedia.org/wiki/HMAC>`_:
         The cryptographic strength of the HMAC depends upon the size of the secret key that is used.
         The most common attack against HMACs is brute force to uncover the secret key.
         HMACs are substantially less affected by collisions than their underlying hashing algorithms alone.[6][7]
@@ -248,15 +249,14 @@ Circular Buffer
         that the compression function is a PRF.[8] Therefore, HMAC-MD5 does not suffer from the same weaknesses
         that have been found in MD5.
 
-        `Wikipedia <https://en.wikipedia.org/wiki/HMAC>`_
+        ...
 
-   Furthermore the article states:
         For HMAC-MD5 the RFC summarizes that – although the security of the MD5 hash function itself is
         severely compromised – the currently known "attacks on HMAC-MD5 do not seem to indicate a practical
         vulnerability when used as a message authentication code", but it also adds that
         "for a new protocol design, a ciphersuite with HMAC-MD5 should not be included".
 
-   It is acknowledged that HMAC-MD5 has been used despite the counter-recommendation above. However, it was
+   It is acknowledged that HMAC-MD5 has been used despite the counter-recommendation above. I
    decided that the increased complexity of HMAC-SHA3 cannot be justified. The algorithm has to run
    with low energy consumption on an inexpensive microcontroller. The MSP430 itself is not designed for a
    high degree of data security. Opting for a more robust hashing algorithm
