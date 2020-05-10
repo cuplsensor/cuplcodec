@@ -1,5 +1,6 @@
-/** @file pairhist.c
- * This file maintains a circular buffer named #pairhistory. This is stored in RAM. It contains all pairs that are
+/*!
+ * @file pairhist.c
+ * @brief This maintains a circular buffer named #pairhistory, which is stored in RAM. It contains all pairs that are
  * in the NDEF message circular buffer, which is stored on the NFC-readable EEPROM.
  * When a pair is added or changed in the NDEF message, then the same change must be made to pairhistory.
  */
