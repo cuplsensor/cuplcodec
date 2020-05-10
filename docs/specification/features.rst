@@ -226,7 +226,7 @@ Circular Buffer
 
    The size of the URL is limited, so there is only room to store the least significant 7 bytes of the hash,
    however, this should be ample. The hash does not contain :need:`CODEC_FEAT_26` and therefore it does not
-   need to be recalculated each time this changse. This is done in order to save power :need:`CODEC_SPEC_8`.
+   need to be recalculated each time this changes. This is done in order to save power :need:`CODEC_SPEC_8`.
 
    If Hash Based Message Authentication (HMAC) is enabled, then the last characters of the HMAC-MD5 will
    be used. If not, these will be the output of MD5 only.
@@ -258,15 +258,14 @@ Circular Buffer
 
    It is acknowledged that HMAC-MD5 has been used despite the counter-recommendation above. I
    decided that the increased complexity of HMAC-SHA3 cannot be justified: The algorithm has to run
-   with low energy consumption on an inexpensive microcontroller. The MSP430 itself is not designed for a
-   high degree of data security. Opting for a more robust hashing algorithm
-   may result in compromises elsewhere (e.g. on battery life). It is also the case that environmental sensor
+   with low energy consumption on an inexpensive microcontroller (see :need:`CODEC_REQ_12`).
+   The MSP430 itself is not designed for a high degree of data security. De-lidding and X-raying are possible.
+   This is why it is important not to share the secret key between devices.
+   Opting for a more robust hashing algorithm may result in compromises elsewhere (e.g. on battery life). It is also the case that environmental sensor
    data are being transmitted and not data that are highly sensitive. The reward to compromise this system
    is sufficiently low to make HMAC-MD5 a good-enough deterrent.
 
-
-
-.. feat:: LengthSamples
+.. feat:: NPairs
    :id: CODEC_FEAT_25
    :status: complete
    :links: CODEC_SPEC_14
