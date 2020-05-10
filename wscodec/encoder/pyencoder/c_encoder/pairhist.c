@@ -102,9 +102,9 @@ pair_t pairhist_read(unsigned int offset, int * error)
  */
 hashn_t pairhist_hash(int npairs, int usehmac, unsigned int loopcount, unsigned int resetsalltime, unsigned int batv_resetcause, int cursorpos)
 {
-    pair_t prevpair;
+    pair_t pair;
     int error = 0;
-    int pairindex = 0;
+    int offset = 0;
     hashn_t hashn;
     unsigned int i;
     unsigned char md5result[16];
@@ -133,20 +133,21 @@ hashn_t pairhist_hash(int npairs, int usehmac, unsigned int loopcount, unsigned 
     // Seperate pair history into 64 byte blocks and a partial block.
     i=0;
     // Start to take MD5 of the message.
-    while(pairindex<npairs)
+    while(offset<npairs)
     {
-        prevpair = pairhist_read(pairindex++, &error);
+        pair = pairhist_read(offset++, &error);
         if (error == 1)
         {
+          // Set hash to something distinctive and return immediately.
           for (i=0; i<sizeof(hashn.hash); i++)
           {
               hashn.hash[i] = 9;
           }
           return hashn;
         }
-        hashblock[i++] = prevpair.rd0Msb;
-        hashblock[i++] = prevpair.rd1Msb;
-        hashblock[i++] = prevpair.Lsb;
+        hashblock[i++] = pair.rd0Msb;
+        hashblock[i++] = pair.rd1Msb;
+        hashblock[i++] = pair.Lsb;
 
         // When i is a multiple of 63 pairs, the maximum number that can be store in a 64 byte block.
         if (i == 63)
