@@ -3,9 +3,14 @@
 #include "md5.h"
 #include "nvtype.h"
 
+
+
+#define MD5DIGESTLEN_BYTES  16              /*!< Length of the MD5 digest (output) in bytes. */
+#define MD5BLKLEN_BYTES     64              /*!< Length of the MD5 input message block in bytes. */
+
 extern nv_t nv;
 
-unsigned char hashblock[64];                /*!< Block of RAM for storing data to be passed to the MD5 algorithm. */
+unsigned char msgblock[MD5BLKLEN_BYTES];    /*!< Block to hold message data as an input to the MD5 algorithm. */
 const int buflenpairs= BUFLEN_PAIRS;        /*!< Length of the circular buffer in pairs. */
 static pair_t pairhistory[BUFLEN_PAIRS];    /*!< Array of unencoded pairs. This mirrors the circular buffer of base64 encoded pairs stored in EEPROM. */
 static int cursorindex = -1;                /*!< Index marking the end of the circular buffer. The most recent sample is stored here. The next index contains the oldest sample.  */
@@ -93,6 +98,7 @@ pair_t pairhist_read(unsigned int offset, int * error)
  * seven bytes of the HMAC-MD5 digest. If it is not then the hash is an MD5 checksum only. Note that the latter is
  * intended for debug purposes only.
  *
+ * The MD5 is calculated iteratively 64 bytes at a time with multiple calls to MD5_Update().
  *
  * @param npairs            The number of pairs from #pairhistory to include in the hash.
  * @param usehmac           When 0 the hash is MD5 only. Otherwise it is HMAC-MD5.
@@ -110,33 +116,40 @@ hashn_t pairhist_hash(int npairs, int usehmac, unsigned int loopcount, unsigned 
     int offset = 0;
     hashn_t hashn;
     unsigned int i;
-    unsigned char md5result[16];
+    unsigned char md5digest[MD5DIGESTLEN_BYTES];
     char * secretkey = nv.seckey;
 
+    // Initialise MD5 state.
     MD5_Init(&ctx);
 
+    // --------------------------------------------------------------------------
+    // HMAC Only: Create the 64-byte padded inner key and update the MD5 from it.
+    // ---------------------------------------------------------------------------
     if (usehmac)
     {
-        // Append inner key.
-        for(i=0; i<sizeof(hashblock); i++)
+        for(i=0; i<sizeof(msgblock); i++)
         {
             if (i<SECKEY_LENBYTES)
             {
-                hashblock[i] = secretkey[i] ^ ipadchar;
+                // First bytes contain the secret key XORed with the inner padding byte.
+                msgblock[i] = secretkey[i] ^ ipadchar;
             }
             else
             {
-                hashblock[i] = ipadchar;
+                // Remaining bytes contain the inner padding byte.
+                msgblock[i] = ipadchar;
             }
         }
 
-        MD5_Update(&ctx, hashblock, sizeof(hashblock));
+        MD5_Update(&ctx, msgblock, sizeof(msgblock));
     }
 
-    // Seperate pair history into 64 byte blocks and a partial block.
+    // ---------------------------------------------------------------------------------------------------
+    // Copy pairs from pairhist into the input message block, starting with the most recent pair first.
+    // This is done 63 bytes (21 pairs) at a time. Update MD5 when the message block is full.
+    // ---------------------------------------------------------------------------------------------------
     i=0;
-    // Start to take MD5 of the message.
-    while(offset<npairs)
+    while(offset < npairs)
     {
         pair = pairhist_read(offset++, &error);
         if (error == 1)
@@ -148,77 +161,83 @@ hashn_t pairhist_hash(int npairs, int usehmac, unsigned int loopcount, unsigned 
           }
           return hashn;
         }
-        hashblock[i++] = pair.rd0Msb;
-        hashblock[i++] = pair.rd1Msb;
-        hashblock[i++] = pair.Lsb;
+        msgblock[i++] = pair.rd0Msb;
+        msgblock[i++] = pair.rd1Msb;
+        msgblock[i++] = pair.Lsb;
 
-        // When i is a multiple of 63 pairs, the maximum number that can be store in a 64 byte block.
-        if (i == 63)
+        // When i is a multiple of 63 bytes, the maximum number that can be store in a 64 byte block.
+        if (i == MD5BLKLEN_BYTES-1)
         {
-            MD5_Update(&ctx, hashblock, i);
+            MD5_Update(&ctx, msgblock, i);
             i = 0;
         }
     }
 
-    if (i >= 63-8)
+    // ----------------------------------------
+    // MD5 of npairs from pairhist is complete.
+    // Update MD5 with the 8 status bytes.
+    // -----------------------------------------
+    if (i >= MD5BLKLEN_BYTES-1-8)
     {
-       MD5_Update(&ctx, hashblock, i);
+       MD5_Update(&ctx, msgblock, i);   // Update MD5 first if the message block will overflow.
        i = 0;
     }
 
-    hashblock[i++] = loopcount >> 8;
-    hashblock[i++] = loopcount & 0xFF;
-    hashblock[i++] = resetsalltime >> 8;
-    hashblock[i++] = resetsalltime & 0xFF;
-    hashblock[i++] = batv_resetcause >> 8;
-    hashblock[i++] = batv_resetcause & 0xFF;
-    hashblock[i++] = endstopindex >> 8;
-    hashblock[i++] = endstopindex & 0xFF;
+    msgblock[i++] = loopcount >> 8;
+    msgblock[i++] = loopcount & 0xFF;
+    msgblock[i++] = resetsalltime >> 8;
+    msgblock[i++] = resetsalltime & 0xFF;
+    msgblock[i++] = batv_resetcause >> 8;
+    msgblock[i++] = batv_resetcause & 0xFF;
+    msgblock[i++] = endstopindex >> 8;
+    msgblock[i++] = endstopindex & 0xFF;
 
-    // Calculate MD5 checksum from pair history.
-    MD5_Update(&ctx, hashblock, i);
+    // Update MD5 digest from the message block.
+    MD5_Update(&ctx, msgblock, i);
 
-
-
+    // -----------------------
+    // HMAC Only: Second pass
+    // -----------------------
     if (usehmac)
     {
-        // Obtain MD5 digest. Hash sum 1.
-        MD5_Final(md5result, &ctx);
+        // Read MD5 digest from the first pass (hash sum 1).
+        MD5_Final(md5digest, &ctx);
 
-        // Copy hash sum 1 to the start of a new MD5 block.
-        // Reinitialise MD5.
+        // Reinitialise MD5 state.
         MD5_Init(&ctx);
 
-        // Append outer key.
-        for(i=0; i<sizeof(hashblock); i++)
+        // Create the 64-byte padded outer key.
+        for(i=0; i<sizeof(msgblock); i++)
         {
             if (i<SECKEY_LENBYTES)
             {
-                hashblock[i] = secretkey[i] ^ opadchar;
+                msgblock[i] = secretkey[i] ^ opadchar;
             }
             else
             {
-                hashblock[i] = opadchar;
+                msgblock[i] = opadchar;
             }
         }
 
-        MD5_Update(&ctx, hashblock, sizeof(hashblock));
+        // Update MD5 from the padded outer key
+        MD5_Update(&ctx, msgblock, sizeof(msgblock));
 
-        for(i=0; i<sizeof(md5result); i++)
+        // Copy hash sum 1 to the message block and update MD5.
+        for(i=0; i<sizeof(md5digest); i++)
         {
-            hashblock[i] = md5result[i];
+            msgblock[i] = md5digest[i];
         }
 
-        MD5_Update(&ctx, hashblock, sizeof(md5result));
+        MD5_Update(&ctx, msgblock, sizeof(md5digest));
     }
 
-    // Obtain MD5 digest.
-    MD5_Final(md5result, &ctx);
+    // Read MD5 digest from the first pass (MD5) or second pass (HMAC-MD5)
+    MD5_Final(md5digest, &ctx);
 
-    // Place lower 6 bytes into hashn structure.
+    // Place lower 7 bytes into the hashn structure.
     for (i=0; i<sizeof(hashn.hash); i++)
     {
-        hashn.hash[i] = md5result[i];
+        hashn.hash[i] = md5digest[i];
     }
     hashn.npairs[0] = (npairs & 0xFF00) >> 8;
     hashn.npairs[1] = (npairs & 0x00FF);
