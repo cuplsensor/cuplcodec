@@ -1,3 +1,18 @@
+/*!
+ * @file pairhist.h
+ * @brief This maintains a circular buffer named #pairhistory, which is stored in RAM. It contains all pairs that are
+ * in the NDEF message circular buffer that is stored on the NFC-readable EEPROM.
+ *
+ * Its purpose is to allow a hash to be taken of the unencoded circular buffer contents. The decoder uses this hash
+ * to verify that it has decoded the circular buffer properly; outputting the same samples in the same order.
+ *
+ * The <a href="https://en.wikipedia.org/wiki/MD5">MD5</a> algorithm is used by default.
+ * It is simple enough to be used on a microcontroller with limited resources. As an option,
+ * the <a href="https://en.wikipedia.org/wiki/HMAC">HMAC-MD5</a> hash can be used instead.
+ *
+ * When a pair is added or changed in the NDEF message, then the same change must be made to pairhistory.
+ */
+
 #ifndef _PAIRHIST_H_
 #define _PAIRHIST_H_
 
