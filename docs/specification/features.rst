@@ -225,7 +225,8 @@ Circular Buffer
    by the decoder to verify that it has unwrapped the circular buffer and decoded samples correctly.
 
    The size of the URL is limited, so there is only room to store the least significant 7 bytes of the hash,
-   however, this should be ample.
+   however, this should be ample. The hash does not contain :need:`CODEC_FEAT_26` and therefore it does not
+   need to be recalculated each time this changse. This is done in order to save power :need:`CODEC_SPEC_8`.
 
    If Hash Based Message Authentication (HMAC) is enabled, then the last characters of the HMAC-MD5 will
    be used. If not, these will be the output of MD5 only.
@@ -262,6 +263,8 @@ Circular Buffer
    may result in compromises elsewhere (e.g. on battery life). It is also the case that environmental sensor
    data are being transmitted and not data that are highly sensitive. The reward to compromise this system
    is sufficiently low to make HMAC-MD5 a good-enough deterrent.
+
+
 
 .. feat:: LengthSamples
    :id: CODEC_FEAT_25
