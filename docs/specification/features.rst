@@ -265,7 +265,7 @@ Circular Buffer
    data are being transmitted and not data that are highly sensitive. The reward to compromise this system
    is sufficiently low to make HMAC-MD5 a good-enough deterrent.
 
-   The hash is taken of data as arranged in the table below:
+   Data are hashed in the following order:
 
     +------+-----------------------+--------------+
     | Byte | Field                 | Value        |

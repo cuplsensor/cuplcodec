@@ -8,7 +8,7 @@ extern nv_t nv;
 unsigned char hashblock[64];                /*!< Block of RAM for storing data to be passed to the MD5 algorithm. */
 const int buflenpairs= BUFLEN_PAIRS;        /*!< Length of the circular buffer in pairs. */
 static pair_t pairhistory[BUFLEN_PAIRS];    /*!< Array of unencoded pairs. This mirrors the circular buffer of base64 encoded pairs stored in EEPROM. */
-static int endindex = -1;                   /*!< Index marking the end of the circular buffer. The most recent sample is stored here.  */
+static int cursorindex = -1;                /*!< Index marking the end of the circular buffer. The most recent sample is stored here. The next index contains the oldest sample.  */
 static const char ipadchar = 0x36;          /*!< Inner padding byte for HMAC as defined in <a href="https://tools.ietf.org/html/rfc2104#section-2">RFC 2104</a>.*/
 static const char opadchar = 0x5C;          /*!< Outer padding byte for HMAC as defined in <a href="https://tools.ietf.org/html/rfc2104#section-2">RFC 2104</a>. */
 static MD5_CTX ctx;                         /*!< MD5 context. */
@@ -21,11 +21,9 @@ static MD5_CTX ctx;                         /*!< MD5 context. */
  *
  * @param pair New value of the most recent pair.
  */
-int pairhist_ovr(pair_t pair)
+void pairhist_ovr(pair_t pair)
 {
-  pairhistory[endindex] = pair;
-
-  return 0;
+  pairhistory[cursorindex] = pair;
 }
 
 /*!
@@ -34,20 +32,18 @@ int pairhist_ovr(pair_t pair)
  *
  * @param pair Value of the new pair.
  */
-int pairhist_push(pair_t pair)
+void pairhist_push(pair_t pair)
 {
-  if (endindex == BUFLEN_PAIRS-1)
+  if (cursorindex == BUFLEN_PAIRS-1)
   {
-    endindex = 0;   // Write next pair to the start of the buffer.
+    cursorindex = 0;   // Write next pair to the start of the buffer.
   }
   else
   {
-    endindex = endindex + 1; // Write next pair to the next index in the buffer
+    cursorindex = cursorindex + 1; // Write next pair to the next index in the buffer
   }
 
-  pairhistory[endindex] = pair;
-
-  return 0;
+  pairhistory[cursorindex] = pair;
 }
 
 /*!
@@ -56,6 +52,8 @@ int pairhist_push(pair_t pair)
  *
  * @param offset When 0, the most recent pair is returned. When 1, the 2nd most recent pair is returned. When BUFLEN_PAIRS-1, the oldest pair is returned. Any larger offset is invalid.
  * @param error Pointer to an error variable. This is set to 1 when offset exceeds the length of the circular buffer (BUFLEN_PAIRS-1). It is 0 otherwise.
+ *
+ * @returns A pair read from pairhistory or a struct containing 3 zeroes if an error has occurred.
  */
 pair_t pairhist_read(unsigned int offset, int * error)
 {
@@ -63,12 +61,12 @@ pair_t pairhist_read(unsigned int offset, int * error)
     pair_t pair;
     *error = 0;
 
-    readindex = endindex - offset;
+    readindex = cursorindex - offset;
 
     if (readindex < 0)
     {
         readindex += (BUFLEN_PAIRS);
-        if (readindex >= endindex)
+        if (readindex >= cursorindex)
         {
             pair = pairhistory[readindex];
         }
@@ -89,18 +87,23 @@ pair_t pairhist_read(unsigned int offset, int * error)
 }
 
 /*!
- * @brief Calculates MD5 or HMAC-MD5 of pairs in pairhistory.
+ * @brief Calculates a hash from #pairhistory and other state variables.
  *
- * @param npairs
- * @param usehmac When 1 the HMAC-MD5 hash is calculated. When 0 only the MD5 is calculated.
- * @param loopcount Extra data to include in the hash.
- * @param resetsalltime Extra data to include in the hash.
- * @param batv_resetcause Extra data to include in the hash.
- * @param cursorpos Extra data to include in the hash.
+ * The hash is calculated according to the table in CODEC_FEAT_24. If HMAC is enabled then the output is the last
+ * seven bytes of the HMAC-MD5 digest. If it is not then the hash is an MD5 checksum only. Note that the latter is
+ * intended for debug purposes only.
  *
- * @returns hashn
+ *
+ * @param npairs            The number of pairs from #pairhistory to include in the hash.
+ * @param usehmac           When 0 the hash is MD5 only. Otherwise it is HMAC-MD5.
+ * @param loopcount         Number of times the circular buffer cursor has looped (or wrapped) from the end to the beginning.
+ * @param resetsalltime     Number of times the host firmware has logged a Power-on-Reset.
+ * @param batv_resetcause   8-bit battery voltage concatenated with the 8-bit resetcause variable.
+ * @param endstopindex      Offset of the sample::ENDSTOP_BYTE relative to the start of the NDEF message circular buffer, measured in bytes.
+ *
+ * @returns A value of type hashn_t. This contains the last 7 hash bytes together with npairs.
  */
-hashn_t pairhist_hash(int npairs, int usehmac, unsigned int loopcount, unsigned int resetsalltime, unsigned int batv_resetcause, int cursorpos)
+hashn_t pairhist_hash(int npairs, int usehmac, unsigned int loopcount, unsigned int resetsalltime, unsigned int batv_resetcause, int endstopindex)
 {
     pair_t pair;
     int error = 0;
@@ -169,8 +172,8 @@ hashn_t pairhist_hash(int npairs, int usehmac, unsigned int loopcount, unsigned 
     hashblock[i++] = resetsalltime & 0xFF;
     hashblock[i++] = batv_resetcause >> 8;
     hashblock[i++] = batv_resetcause & 0xFF;
-    hashblock[i++] = cursorpos >> 8;
-    hashblock[i++] = cursorpos & 0xFF;
+    hashblock[i++] = endstopindex >> 8;
+    hashblock[i++] = endstopindex & 0xFF;
 
     // Calculate MD5 checksum from pair history.
     MD5_Update(&ctx, hashblock, i);
