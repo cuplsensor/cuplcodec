@@ -257,9 +257,9 @@ int cbuf_pushsample(int rd0, int rd1)
 
       set_elapsed(0);
 
-      demi_write(Demi0, demi);
-      demi_write(Demi1, &endstop.hashnb64[0]);
-      demi_write(Demi2, &endstop.hashnb64[8]);
+      demi_write(DEMI0, demi);
+      demi_write(DEMI1, &endstop.hashnb64[0]);
+      demi_write(DEMI2, &endstop.hashnb64[8]);
       demi_commit4();
 
       state = nextstate;
