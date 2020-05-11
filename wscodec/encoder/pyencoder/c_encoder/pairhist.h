@@ -11,14 +11,9 @@
  * After decoding the circular buffer, the hash is calculated. The decoder checks this equals the encoder hash, which is extracted from
  * #endstop_t::hashnb64 in the NDEF message. If it does not, an error is raised and no data are returned.
  *
- * The <a href="https://en.wikipedia.org/wiki/MD5">MD5</a> algorithm is used by default.
- * It is simple enough to be used on a microcontroller with limited resources.
- *
- * As an option, the <a href="https://en.wikipedia.org/wiki/HMAC">HMAC-MD5</a> hash can be used instead. This is used for
- * verifying authenticity in addition to message integrity. The encoder and decoder both possess a shared
- * #nvstruct::seckey. HMAC applies the MD5 in two rounds. On the second round, the first MD5 is concatenated with the
- * secret key. The output is an MD5 hash. The decoder can only obtain an identical result if it has the same circular
- * buffer data and secret key. The irreversibility of the hashing algorithm protects the secret key.
+ * The hash function can either be <a href="https://en.wikipedia.org/wiki/MD5">MD5</a> or <a href="https://en.wikipedia.org/wiki/HMAC">HMAC-MD5</a>
+ * The former is a simple checksum for debugging the codec. It should not be used in production, because it is no good as a hash function and
+ * collisions can be found easily. The HMAC-MD5 should be used instead. A detailed discussion can be found in the CODEC_FEAT_24.
  *
  * When a pair is pushed to or overwritten in the NDEF message, pairhistory must be updated with pairhist_push() and
  * pairhist_ovr() respectively. This ensures that the output of pairhist_hash() will be accurate.

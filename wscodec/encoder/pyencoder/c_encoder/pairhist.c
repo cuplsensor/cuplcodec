@@ -105,7 +105,7 @@ pair_t pairhist_read(unsigned int offset, int * error)
  * @param loopcount         Number of times the circular buffer cursor has looped (or wrapped) from the end to the beginning.
  * @param resetsalltime     Number of times the host firmware has logged a Power-on-Reset.
  * @param batv_resetcause   8-bit battery voltage concatenated with the 8-bit resetcause variable.
- * @param endstopindex      Offset of the sample::ENDSTOP_BYTE relative to the start of the NDEF message circular buffer, measured in bytes.
+ * @param endstopindex      Offset of the ::ENDSTOP_BYTE relative to the start of the NDEF message circular buffer.
  *
  * @returns A value of type hashn_t. This contains the last 7 hash bytes together with npairs.
  */
