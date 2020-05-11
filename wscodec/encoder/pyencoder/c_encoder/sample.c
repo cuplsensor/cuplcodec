@@ -160,7 +160,7 @@ void sample_init(unsigned int resetcause, bool err)
 void cbuf_setelapsed(unsigned int minutes)
 {
     set_elapsed(minutes);
-    demi_write(Demi2, &endstop.hashnb64[8]);
+    demi_write(DEMI2, &endstop.hashnb64[8]);
     demi_commit2();
 }
 
