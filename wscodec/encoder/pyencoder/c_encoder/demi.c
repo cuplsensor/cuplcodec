@@ -17,7 +17,7 @@ static int _cursordemi = 0;
 static OctState_t _demistate = firstloop;
 
 /*!
- * @brief Read 4 demis (32 bytes) from EEPROM into RAM starting from the cursor block.
+ * @brief Copy 4 demis from EEPROM into RAM.
  *
  * This is 2 demis from the cursor block and 2 demis from the block after it (_nextblk).
  * If cursor block is at the end of the buffer, then _nextblk will be at the start. This
@@ -44,13 +44,45 @@ static int demi_read4(const int cursorblk)
     _nextblk = _cursorblk + 1;
   }
 
-  // Read the contents of EEPROM block _cursorblk into RAM buffer location 0.
+  // Read 2 demis from EEPROM block _cursorblk into RAM buffer location 0.
   eep_read(_cursorblk, 0);
-  // Read the contents of EEPROM block _nextblk into RAM buffer location 1.
+  // Read 2 demis from EEPROM block _nextblk into RAM buffer location 1.
   eep_read(_nextblk, 1);
 
   return looparound;
 }
+
+/*!
+ * @brief Copy 4 demis from RAM to EEPROM.
+ *
+ * @returns 0
+ */
+int demi_commit4(void)
+{
+  // Write 2 demis from RAM buffer location 0 to _cursorblk.
+  eep_write(_cursorblk, 0);
+  // Write 2 demis from RAM buffer location 1 to _nextblk.
+  eep_write(_nextblk, 1);
+  eep_waitwritedone();
+
+  return 0;
+}
+
+/*!
+ * @brief Write the last 2 demis from RAM to the EEPROM.
+ *
+ * Some functions only need to modify the last 2 demis so this saves time and energy over writing 4.
+ * @returns 0
+ */
+int demi_commit2(void)
+{
+  // Write 2 demis from RAM buffer location 1 into _nextblk.
+  eep_write(_nextblk, 1);
+  eep_waitwritedone();
+
+  return 0;
+}
+
 
 void demi_restore(void)
 {
@@ -58,10 +90,9 @@ void demi_restore(void)
 }
 
 /*!
- * @brief Initialise a circular buffer of 8-byte demis.
+ * @brief Initialise the EEPROM circular buffer.
  *
- * Sets counters to intial values and calls ::demi_read4 to read the first 4
- * demis into RAM.
+ * Reads the first 4 demis in RAM.
  *
  * @param startblk EEPROM block to start the circular buffer.
  * @param lenblks Length of circular buffer in EEPROM blocks.
@@ -85,37 +116,6 @@ int demi_init(const int startblk, const int lenblks)
 }
 
 /*!
- * @brief Write 4 demis from RAM to the EEPROM.
- *
- * 2 demis are written from RAM buffer location 0 into the EEPROM block ::_cursorblk.
- * 2 demis are written from RAM buffer location 1 into the EEPROM block ::_nextblk.
- * @returns 0
- */
-int demi_commit4(void)
-{
-  eep_write(_cursorblk, 0);
-  eep_write(_nextblk, 1);
-  eep_waitwritedone();
-
-  return 0;
-}
-
-/*!
- * @brief Write the last 2 demis from RAM to the EEPROM.
- *
- * 2 demis are written from RAM buffer location 1 into the EEPROM block _nextblk.
- * Some functions only need to modify the last 2 demis so this saves time and energy over writing 4.
- * @returns 0
- */
-int demi_commit2(void)
-{
-  eep_write(_nextblk, 1);
-  eep_waitwritedone();
-
-  return 0;
-}
-
-/*!
  * @brief Overwrite one demi in the RAM buffer. demi::demi_read4()
  *
  * This function takes demiindex as relative to _cursordemi.
@@ -124,32 +124,29 @@ int demi_commit2(void)
  * If cursordemi is even, nothing is needs to be done because it lies on a block boundary.
  * If cursordemi is odd then it is offset from the block boundary by one demi. Therefore one is added to demiindex.
  *
- * @param demiindex Demi index to overwrite, relative to _cursordemi. Must be 0, 1 or 2.
+ * @param offset Demi index to overwrite, relative to _cursordemi. Must be 0, 1 or 2.
  * @param demidata Pointer to an 8 byte array of new demi data.
  */
-int demi_write(OctInd_t demiindex, char * demidata)
+int demi_write(int offsetdemis, char * demidata)
 {
-  int errflag = 1;
-  int demistart;
-  int octindex = (int)demiindex;
-  // If cursordemi is odd, then demistart is at 1.
-  // If cursordemi is even, then demistart is at 0.
-  // Demi index must be 0, 1 or 2.
+  int offsetbytes;
+
+  // If _cursordemi is odd, then offsetdemis is at 1.
+  // If _cursordemi is even, then offsetdemis is at 0.
   if ((_cursordemi & 0x01) > 0)
   {
-    // ODD. demiindex range is 1,2,3
-    octindex += 1;
+    // ODD. offsetdemis range is 1,2,3
+    offsetdemis += 1;
   }
 
-  errflag = 0;
-  demistart = octindex * BYTES_PER_DEMI;
-  // Copy data to the buffer
-  errflag = eep_cp(&demistart, demidata, BYTES_PER_DEMI);
+  // Convert offset from the block start in demis to offset in bytes.
+  offsetbytes = offsetdemis * BYTES_PER_DEMI;
 
-  return errflag;
+  // Copy demi to the buffer
+  return eep_cp(&offsetbytes, demidata, BYTES_PER_DEMI);
 }
 
-// Move cursor forward by 1. Add overwriting and looping around as parameters.
+// Move _cursordemi forward by 1.
 int demi_movecursor(void)
 {
   int cursorblk;
