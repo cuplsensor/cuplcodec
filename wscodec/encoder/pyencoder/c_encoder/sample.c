@@ -177,6 +177,7 @@ void cbuf_setelapsed(unsigned int minutes)
 int cbuf_pushsample(int rd0, int rd1)
 {
   pairbufstate_t nextstate;
+  DemiState_t demistate;
   hashn_t hashn;
   int cursorpos;
 
@@ -188,7 +189,8 @@ int cbuf_pushsample(int rd0, int rd1)
   switch(state)
       {
       case pair0_both:
-          switch(demi_movecursor())
+          demistate = demi_movecursor();
+          switch(demistate)
           {
           case ds_loopingaround:
             overwriting = 1;
