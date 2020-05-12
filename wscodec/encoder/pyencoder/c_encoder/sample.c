@@ -193,7 +193,7 @@ int cbuf_pushsample(int rd0, int rd1)
           demistate = demi_movecursor();
           switch(demistate)
           {
-          case ds_loopingaround:
+          case ds_looparound:
             overwriting = 1;
             break;
           case ds_newloop:
@@ -260,5 +260,5 @@ int cbuf_pushsample(int rd0, int rd1)
 
       state = nextstate;
 
-      return (demistate == ds_loopingaround);
+      return (demistate == ds_looparound);
 }
