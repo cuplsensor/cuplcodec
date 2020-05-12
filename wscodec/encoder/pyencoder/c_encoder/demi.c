@@ -128,8 +128,9 @@ int demi_write(int offsetdemis, char * demidata)
  *
  * @returns 1 if a new loop has started. 0 otherwise.
  */
-//DemiState_t demi_movecursor(void)
-//{
+DemiState_t demi_movecursor(void)
+{
+    return 0;
 //  DemiState_t demistate = ds_consecutive;
 //
 //  // Increment _cursordemi
@@ -155,7 +156,7 @@ int demi_write(int offsetdemis, char * demidata)
 //  }
 //
 //  return demistate;
-//}
+}
 
 void demi_readcursor(void)
 {

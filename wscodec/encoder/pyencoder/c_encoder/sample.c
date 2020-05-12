@@ -189,7 +189,7 @@ int cbuf_pushsample(int rd0, int rd1)
 
   switch(state)
       {
-      case pair0_both:
+     // case pair0_both:
 //          demistate = demi_movecursor();
 //          switch(demistate)
 //          {
@@ -200,8 +200,8 @@ int cbuf_pushsample(int rd0, int rd1)
 //            incr_loopcounter();
 //            break;
 //          }
-      break;
-      case initial:
+      //break;
+      case pair0_both:
           //demi_readcursor();
           set_pair(&pairbuf[0], rd0, rd1);
           set_pair(&pairbuf[1], 0, 0);
