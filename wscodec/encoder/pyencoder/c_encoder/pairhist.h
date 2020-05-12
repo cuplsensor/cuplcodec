@@ -48,7 +48,7 @@ typedef struct
 /// @cond
 void pairhist_ovr(pair_t pair);
 void pairhist_push(pair_t pair);
-hashn_t pairhist_hash(int npairs, int usehmac, unsigned int loopcount, unsigned int resetsalltime, unsigned int batv_resetcause, int endstopindex);
+hashn_t pairhist_hash(int npairs, int usehmac, unsigned int loopcount, unsigned int resetsalltime, unsigned int batv_resetcause, int cursorpos);
 pair_t pairhist_read(unsigned int index, int * error);
 
 #ifndef NOT_CFFI
