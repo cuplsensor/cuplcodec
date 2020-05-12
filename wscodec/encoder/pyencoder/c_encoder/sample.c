@@ -200,6 +200,7 @@ int cbuf_pushsample(int rd0, int rd1)
 //            incr_loopcounter();
 //            break;
 //          }
+      break;
       case initial:
           //demi_readcursor();
           set_pair(&pairbuf[0], rd0, rd1);
@@ -253,10 +254,10 @@ int cbuf_pushsample(int rd0, int rd1)
 
       set_elapsed(0);
 
-      demi_write(0, demi);
-      demi_write(1, &endstop.hashnb64[0]);
-      demi_write(2, &endstop.hashnb64[8]);
-      demi_commit4();
+//      demi_write(0, demi);
+//      demi_write(1, &endstop.hashnb64[0]);
+//      demi_write(2, &endstop.hashnb64[8]);
+//      demi_commit4();
 
       state = nextstate;
 
