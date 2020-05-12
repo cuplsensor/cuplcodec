@@ -1,9 +1,9 @@
 #ifndef _DEMI_H_
 #define _DEMI_H_
 
-#define DEMI0 0
-#define DEMI1 1
-#define DEMI2 2
+//#define DEMI0 0
+//#define DEMI1 1
+//#define DEMI2 2
 
 typedef enum DemiState {
   ds_consecutive,
