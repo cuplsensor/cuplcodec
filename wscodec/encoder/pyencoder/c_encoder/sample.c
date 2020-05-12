@@ -189,16 +189,16 @@ int cbuf_pushsample(int rd0, int rd1)
   switch(state)
       {
       case pair0_both:
-          demistate = demi_movecursor();
-          switch(demistate)
-          {
-          case ds_loopingaround:
-            overwriting = 1;
-            break;
-          case ds_newloop:
-            incr_loopcounter();
-            break;
-          }
+//          demistate = demi_movecursor();
+//          switch(demistate)
+//          {
+//          case ds_loopingaround:
+//            overwriting = 1;
+//            break;
+//          case ds_newloop:
+//            incr_loopcounter();
+//            break;
+//          }
       case initial:
           demi_readcursor();
           set_pair(&pairbuf[0], rd0, rd1);
@@ -259,5 +259,5 @@ int cbuf_pushsample(int rd0, int rd1)
 
       state = nextstate;
 
-      return (demistate == loopingaround);
+      return 0; // (demistate == loopingaround);
 }
