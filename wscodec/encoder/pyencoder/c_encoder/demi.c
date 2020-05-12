@@ -173,5 +173,5 @@ void demi_readcursor(void)
 int demi_getendmarkerpos(void)
 {
     // When cursordemi is ODD, the end marker byte is 8 bytes further back.
-    return (_nextblk - _startblk)*DEMIS_PER_BLK*BYTES_PER_DEMI + ENDMARKER_OFFSET_IN_ENDSTOP_1 + (_cursordemi & 0x01)*BYTES_PER_DEMI;
+    return 0;
 }
