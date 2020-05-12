@@ -26,7 +26,7 @@ static int _cursordemi = 0;
  * @param cursorblk EEPROM block number where the cursor is located.
  * @returns looparound 1 if a read has looped around from the end to the beginning of the buffer. 0 otherwise.
  */
-static int demi_read4(void)
+static void demi_read4(void)
 {
   // Read 2 demis from EEPROM block _cursorblk into RAM buffer location 0.
   eep_read(_cursorblk, 0);
@@ -47,15 +47,13 @@ static void demi_shift2read2(void)
  *
  * @returns 0
  */
-int demi_commit4(void)
+void demi_commit4(void)
 {
   // Write 2 demis from RAM buffer location 0 to _cursorblk.
   eep_write(_cursorblk, 0);
   // Write 2 demis from RAM buffer location 1 to _nextblk.
   eep_write(_nextblk, 1);
   eep_waitwritedone();
-
-  return 0;
 }
 
 /*!
@@ -64,13 +62,11 @@ int demi_commit4(void)
  * Some functions only need to modify the last 2 demis so this saves time and energy over writing 4.
  * @returns 0
  */
-int demi_commit2(void)
+void demi_commit2(void)
 {
   // Write 2 demis from RAM buffer location 1 into _nextblk.
   eep_write(_nextblk, 1);
   eep_waitwritedone();
-
-  return 0;
 }
 
 /*!
@@ -81,7 +77,7 @@ int demi_commit2(void)
  * @param startblk EEPROM block to start the circular buffer.
  * @param lenblks Length of circular buffer in EEPROM blocks.
  */
-int demi_init(const int startblk, const int lenblks)
+void demi_init(const int startblk, const int lenblks)
 {
   int lendemis;
 
@@ -96,8 +92,6 @@ int demi_init(const int startblk, const int lenblks)
   _enddemi =  lendemis - 1;
 
   _cursordemi = 0;
-
-  return 0;
 }
 
 /*!

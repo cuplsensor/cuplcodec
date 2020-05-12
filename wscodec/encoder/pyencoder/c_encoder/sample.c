@@ -162,7 +162,7 @@ void sample_init(unsigned int resetcause, bool err)
 void cbuf_setelapsed(unsigned int minutes)
 {
     set_elapsed(minutes);
-    demi_write(DEMI2, &endstop.hashnb64[8]);
+    demi_write(2, &endstop.hashnb64[8]);
     demi_commit2();
 }
 
@@ -253,9 +253,9 @@ int cbuf_pushsample(int rd0, int rd1)
 
       set_elapsed(0);
 
-      demi_write(DEMI0, demi);
-      demi_write(DEMI1, &endstop.hashnb64[0]);
-      demi_write(DEMI2, &endstop.hashnb64[8]);
+      demi_write(0, demi);
+      demi_write(1, &endstop.hashnb64[0]);
+      demi_write(2, &endstop.hashnb64[8]);
       demi_commit4();
 
       state = nextstate;
