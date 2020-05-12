@@ -110,11 +110,11 @@ int demi_write(int offsetdemis, char * demidata)
 {
   int offsetbytes;
 
-  if (IS_ODD(_cursordemi))
-  {
-    // ODD. offsetdemis range is 1,2,3
-    offsetdemis += 1;
-  }
+//  if (IS_ODD(_cursordemi))
+//  {
+//    // ODD. offsetdemis range is 1,2,3
+//    offsetdemis += 1;
+//  }
 
   // Convert offset from the block start in demis to offset in bytes.
   offsetbytes = offsetdemis * BYTES_PER_DEMI;
@@ -128,34 +128,34 @@ int demi_write(int offsetdemis, char * demidata)
  *
  * @returns 1 if a new loop has started. 0 otherwise.
  */
-DemiState_t demi_movecursor(void)
-{
-  DemiState_t demistate = ds_consecutive;
-
-  // Increment _cursordemi
-  if (_cursordemi == _enddemi)
-  {
-    _cursordemi = 0;
-    demistate = ds_newloop; // new loop started
-  }
-  else
-  {
-    _cursordemi = _cursordemi + 1;
-  }
-
-  _cursorblk = DEMI_TO_BLK(_cursordemi);
-  if (_cursorblk == _endblk)
-  {
-    _nextblk = _startblk;
-    demistate = ds_looparound;
-  }
-  else
-  {
-    _nextblk = _cursorblk + 1;
-  }
-
-  return demistate;
-}
+//DemiState_t demi_movecursor(void)
+//{
+//  DemiState_t demistate = ds_consecutive;
+//
+//  // Increment _cursordemi
+//  if (_cursordemi == _enddemi)
+//  {
+//    _cursordemi = 0;
+//    demistate = ds_newloop; // new loop started
+//  }
+//  else
+//  {
+//    _cursordemi = _cursordemi + 1;
+//  }
+//
+//  _cursorblk = DEMI_TO_BLK(_cursordemi);
+//  if (_cursorblk == _endblk)
+//  {
+//    _nextblk = _startblk;
+//    demistate = ds_looparound;
+//  }
+//  else
+//  {
+//    _nextblk = _cursorblk + 1;
+//  }
+//
+//  return demistate;
+//}
 
 void demi_readcursor(void)
 {
@@ -164,10 +164,10 @@ void demi_readcursor(void)
   {
     demi_read4();
   }
-  else if (!IS_ODD(_cursordemi))
-  {
-    demi_shift2read2();
-  }
+//  else if (!IS_ODD(_cursordemi))
+//  {
+//    demi_shift2read2();
+//  }
 }
 
 int demi_getendmarkerpos(void)
