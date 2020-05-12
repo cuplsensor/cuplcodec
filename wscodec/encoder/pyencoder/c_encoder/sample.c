@@ -41,6 +41,7 @@ typedef struct
   char elapsedMSB;      /*!< Minutes elapsed since previous sample (Most Signficant Byte). */
 } endmarker_t;
 
+static unsigned int overwriting = 0;
 static char demi[8];                /*!< Stores two pairs from \link pairbuf, after base64 encoding */
 static pair_t pairbuf[2];           /*!< Stores two unencoded 3-byte pairs. */
 static unsigned int npairs = 0;     /*!< Number of base64 encoded pairs in the circular buffer, starting from the endstop and counting backwards. */
@@ -189,16 +190,16 @@ int cbuf_pushsample(int rd0, int rd1)
   switch(state)
       {
       case pair0_both:
-//          demistate = demi_movecursor();
-//          switch(demistate)
-//          {
-//          case ds_loopingaround:
-//            overwriting = 1;
-//            break;
-//          case ds_newloop:
-//            incr_loopcounter();
-//            break;
-//          }
+          demistate = demi_movecursor();
+          switch(demistate)
+          {
+          case ds_loopingaround:
+            overwriting = 1;
+            break;
+          case ds_newloop:
+            incr_loopcounter();
+            break;
+          }
       case initial:
           demi_readcursor();
           set_pair(&pairbuf[0], rd0, rd1);
@@ -259,5 +260,5 @@ int cbuf_pushsample(int rd0, int rd1)
 
       state = nextstate;
 
-      return 0; // (demistate == loopingaround);
+      return (demistate == ds_loopingaround);
 }
