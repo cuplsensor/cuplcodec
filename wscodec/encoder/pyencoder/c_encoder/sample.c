@@ -178,7 +178,7 @@ void cbuf_setelapsed(unsigned int minutes)
 int cbuf_pushsample(int rd0, int rd1)
 {
   pairbufstate_t nextstate;
-  DemiState_t demistate;
+  //DemiState_t demistate;
   hashn_t hashn;
   int cursorpos;
 
@@ -190,18 +190,18 @@ int cbuf_pushsample(int rd0, int rd1)
   switch(state)
       {
       case pair0_both:
-          demistate = demi_movecursor();
-          switch(demistate)
-          {
-          case ds_looparound:
-            overwriting = 1;
-            break;
-          case ds_newloop:
-            incr_loopcounter();
-            break;
-          }
+//          demistate = demi_movecursor();
+//          switch(demistate)
+//          {
+//          case ds_looparound:
+//            overwriting = 1;
+//            break;
+//          case ds_newloop:
+//            incr_loopcounter();
+//            break;
+//          }
       case initial:
-          demi_readcursor();
+          //demi_readcursor();
           set_pair(&pairbuf[0], rd0, rd1);
           set_pair(&pairbuf[1], 0, 0);
           npairs = overwriting ? (npairs + 1 - PAIRS_PER_DEMI) : (npairs + 1);
@@ -243,7 +243,7 @@ int cbuf_pushsample(int rd0, int rd1)
           break;
       }
 
-      cursorpos = demi_getendmarkerpos();
+      cursorpos = 0; //demi_getendmarkerpos();
       hashn = pairhist_hash(npairs, nv.usehmac, status.loopcount, status.resetsalltime, status.batv_resetcause, cursorpos);
 
       // 2 samples (6 bytes) per 8 base64 bytes.
@@ -260,5 +260,5 @@ int cbuf_pushsample(int rd0, int rd1)
 
       state = nextstate;
 
-      return (demistate == ds_looparound);
+      return 0; // (demistate == ds_looparound);
 }

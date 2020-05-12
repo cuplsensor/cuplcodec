@@ -38,7 +38,7 @@ def convert_function_declarations(source, blacklist):
 class FunctionList(pycparser.c_ast.NodeVisitor):
     def __init__(self, source):
         self.funcs = set()
-        self.visit(pycparser.CParser().parse(source, debuglevel=2))
+        self.visit(pycparser.CParser().parse(source))
 
     def update(self, otherlist):
         self.funcs.update(otherlist)
