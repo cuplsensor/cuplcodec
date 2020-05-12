@@ -2,19 +2,17 @@
 #include "demi.h"
 #include "defs.h"
 
-#define DEMI_TO_BLK(demi) (_startblk + (demi >> 1))
-#define MAX_CURSORDEMI  (_lendemis - 1)
+#define DEMI_TO_BLK(demi)   (_startblk + (demi >> 1))
+#define IS_ODD(x)           ((x & 0x01) > 0)
 
 
 static int _endblk = 0;
 static int _startblk = 0;
-
 static int _cursorblk;
 static int _nextblk;
 
-static int _lendemis = 0;
+static int _enddemi = 0;
 static int _cursordemi = 0;
-static OctState_t _demistate = firstloop;
 
 /*!
  * @brief Copy 4 demis from EEPROM into RAM.
@@ -28,28 +26,20 @@ static OctState_t _demistate = firstloop;
  * @param cursorblk EEPROM block number where the cursor is located.
  * @returns looparound 1 if a read has looped around from the end to the beginning of the buffer. 0 otherwise.
  */
-static int demi_read4(const int cursorblk)
+static int demi_read4(void)
 {
-  int looparound = 0;
-
-  if (cursorblk == _endblk)
-  {
-    _cursorblk = cursorblk;
-    _nextblk = _startblk;
-    looparound = 1;
-  }
-  else
-  {
-    _cursorblk = cursorblk;
-    _nextblk = _cursorblk + 1;
-  }
-
   // Read 2 demis from EEPROM block _cursorblk into RAM buffer location 0.
   eep_read(_cursorblk, 0);
   // Read 2 demis from EEPROM block _nextblk into RAM buffer location 1.
   eep_read(_nextblk, 1);
+}
 
-  return looparound;
+static void demi_shift2read2(void)
+{
+  // Shift RAM buffer right by 2 demis by copying location 1 into location 0.
+  eep_swap(1, 0);
+  // Read 2 demis from EEPROM block _nextblk into RAM buffer location 1.
+  eep_read(_nextblk, 1);
 }
 
 /*!
@@ -83,12 +73,6 @@ int demi_commit2(void)
   return 0;
 }
 
-
-void demi_restore(void)
-{
-  demi_read4(_cursorblk);
-}
-
 /*!
  * @brief Initialise the EEPROM circular buffer.
  *
@@ -99,6 +83,8 @@ void demi_restore(void)
  */
 int demi_init(const int startblk, const int lenblks)
 {
+  int lendemis;
+
   _startblk = startblk;
   _endblk = startblk+lenblks-1;
 
@@ -106,11 +92,10 @@ int demi_init(const int startblk, const int lenblks)
   _nextblk = _cursorblk + 1;
 
   // Calculate the number of demis.
-  _lendemis = lenblks*DEMIS_PER_BLK;
-  _cursordemi = 0;
-  _demistate = firstloop;
+  lendemis = lenblks*DEMIS_PER_BLK;
+  _enddemi =  lendemis - 1;
 
-  demi_read4(startblk);
+  _cursordemi = 0;
 
   return 0;
 }
@@ -131,9 +116,7 @@ int demi_write(int offsetdemis, char * demidata)
 {
   int offsetbytes;
 
-  // If _cursordemi is odd, then offsetdemis is at 1.
-  // If _cursordemi is even, then offsetdemis is at 0.
-  if ((_cursordemi & 0x01) > 0)
+  if (IS_ODD(_cursordemi))
   {
     // ODD. offsetdemis range is 1,2,3
     offsetdemis += 1;
@@ -146,61 +129,55 @@ int demi_write(int offsetdemis, char * demidata)
   return eep_cp(&offsetbytes, demidata, BYTES_PER_DEMI);
 }
 
-// Move _cursordemi forward by 1.
-int demi_movecursor(void)
+/*!
+ * @brief Move _cursordemi forward by 1.
+ *
+ * @returns 1 if a new loop has started. 0 otherwise.
+ */
+DemiState_t demi_movecursor(void)
 {
-  int cursorblk;
-  int looparound = 0;
+  DemiState_t demistate = ds_consecutive;
 
   // Increment _cursordemi
-  if (_cursordemi == MAX_CURSORDEMI)
+  if (_cursordemi == _enddemi)
   {
     _cursordemi = 0;
+    demistate = ds_newloop; // new loop started
   }
   else
   {
     _cursordemi = _cursordemi + 1;
   }
 
+  _cursorblk = DEMI_TO_BLK(_cursordemi);
+  if (_cursorblk == _endblk)
+  {
+    _nextblk = _startblk;
+    demistate = ds_looparound;
+  }
+  else
+  {
+    _nextblk = _cursorblk + 1;
+  }
+
+  return demistate;
+}
+
+void demi_readcursor(void)
+{
   // Determine if a read is needed.
-  cursorblk = DEMI_TO_BLK(_cursordemi);
-  if (cursorblk != _cursorblk)
+  if (_cursordemi == 0)
   {
-    // Perform a read.
-    // Only raise the looparound flag once per loop,
-    // when the last demi will be written to the first demi of the first block.
-    looparound = demi_read4(cursorblk);
+    demi_read4();
   }
-
-  switch(_demistate)
+  else if (!IS_ODD(_cursordemi))
   {
-    case firstloop:
-    if (looparound == 1)
-    {
-      _demistate = loopingaround;
-    }
-    break;
-    case loopingaround:
-    _demistate = overwriting;
-    break;
-    case overwriting:
-    if (looparound == 1)
-    {
-      _demistate = loopingaround;
-    }
-    break;
+    demi_shift2read2();
   }
-
-  return 0;
 }
 
 int demi_getendmarkerpos(void)
 {
     // When cursordemi is ODD, the end marker byte is 8 bytes further back.
     return (_nextblk - _startblk)*DEMIS_PER_BLK*BYTES_PER_DEMI + ENDMARKER_OFFSET_IN_ENDSTOP_1 + (_cursordemi & 0x01)*BYTES_PER_DEMI;
-}
-
-OctState_t demi_getstate(void)
-{
-  return _demistate;
 }

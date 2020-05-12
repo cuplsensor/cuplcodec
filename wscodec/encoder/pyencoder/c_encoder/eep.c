@@ -65,12 +65,34 @@ int eep_read(const int eepblk, const unsigned int bufblk)
   return errflag;
 }
 
+/*!
+ * @brief Swap two buffer blocks
+ * @param srcblk    The buffer block to read from.
+ * @param destblk   The buffer block to write to.
+ */
+int eep_swap(const unsigned int srcblk, const unsigned int destblk)
+{
+    int errflag = 1;
+    int i=0;
+
+    if ((srcblk < BUFSIZE_BLKS) && (destblk < BUFSIZE_BLKS))
+    {
+        for (i=0; i<BUFSIZE_BLKS; i++)
+        {
+            _blkbuffer[destblk + i] = _blkbuffer[srcblk + i];
+        }
+        errflag = 0;
+    }
+
+    return errflag;
+}
+
 /*! \brief Copy data from a pointer into the buffer.
- *  \param indexptr Data are copied into the buffer starting from this index.
+ *  \param indexptr     Data are copied into the buffer starting from this index.
  *  An integer from 0 to N-1, where N is the size of the buffer.
  *  indexptr is overwritten by the index one greater than the last data to be written.
- *  \param dataptr Data are copied from this pointer.
- *  \param lenbytes The number of bytes to copy into the buffer from dataptr.
+ *  \param dataptr      Input data stored at this pointer.
+ *  \param lenbytes     The number of bytes to copy from dataptr.
  *  \returns 0 if the data to be copied will fit entirely in the buffer. Otherwise 1.
  */
 int eep_cp(int * indexptr, const char * dataptr, const int lenbytes)
