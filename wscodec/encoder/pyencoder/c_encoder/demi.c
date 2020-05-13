@@ -14,7 +14,6 @@ static int _nextblk;
 
 static int _lendemis = 0;
 static int _cursordemi = 0;
-static OctState_t _demistate = firstloop;
 
 /*!
  * @brief Copy 4 demis from EEPROM into RAM.
@@ -28,28 +27,20 @@ static OctState_t _demistate = firstloop;
  * @param cursorblk EEPROM block number where the cursor is located.
  * @returns looparound 1 if a read has looped around from the end to the beginning of the buffer. 0 otherwise.
  */
-static int demi_read4(const int cursorblk)
+static void demi_read4(void)
 {
-  int looparound = 0;
-
-  if (cursorblk == _endblk)
-  {
-    _cursorblk = cursorblk;
-    _nextblk = _startblk;
-    looparound = 1;
-  }
-  else
-  {
-    _cursorblk = cursorblk;
-    _nextblk = _cursorblk + 1;
-  }
-
   // Read 2 demis from EEPROM block _cursorblk into RAM buffer location 0.
   eep_read(_cursorblk, 0);
   // Read 2 demis from EEPROM block _nextblk into RAM buffer location 1.
   eep_read(_nextblk, 1);
+}
 
-  return looparound;
+static void demi_shift2read2(void)
+{
+  // Shift RAM buffer right by 2 demis by copying location 1 into location 0.
+  eep_swap(1, 0);
+  // Read 2 demis from EEPROM block _nextblk into RAM buffer location 1.
+  eep_read(_nextblk, 1);
 }
 
 /*!
@@ -91,7 +82,7 @@ int demi_commit2(void)
  * @param startblk EEPROM block to start the circular buffer.
  * @param lenblks Length of circular buffer in EEPROM blocks.
  */
-int demi_init(const int startblk, const int lenblks)
+void demi_init(const int startblk, const int lenblks)
 {
   _startblk = startblk;
   _endblk = startblk+lenblks-1;
@@ -102,11 +93,6 @@ int demi_init(const int startblk, const int lenblks)
   // Calculate the number of demis.
   _lendemis = lenblks*DEMIS_PER_BLK;
   _cursordemi = 0;
-  _demistate = firstloop;
-
-  demi_read4(startblk);
-
-  return 0;
 }
 
 /*!
@@ -163,26 +149,7 @@ int demi_movecursor(void)
     // Perform a read.
     // Only raise the looparound flag once per loop,
     // when the last demi will be written to the first demi of the first block.
-    looparound = demi_read4(cursorblk);
-  }
-
-  switch(_demistate)
-  {
-    case firstloop:
-    if (looparound == 1)
-    {
-      _demistate = loopingaround;
-    }
-    break;
-    case loopingaround:
-    _demistate = overwriting;
-    break;
-    case overwriting:
-    if (looparound == 1)
-    {
-      _demistate = loopingaround;
-    }
-    break;
+    looparound = demi_read4();
   }
 
   return 0;

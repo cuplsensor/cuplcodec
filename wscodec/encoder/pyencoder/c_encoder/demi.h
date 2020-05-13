@@ -12,7 +12,7 @@ typedef enum OctState {
 } OctState_t;
 
 /* Demi stores information on which demi indices are loaded into memory. */
-int demi_init(const int startblk, const int lenblks); // Initialise demi index to 0.
+void demi_init(const int startblk, const int lenblks); // Initialise demi index to 0.
 int demi_commit4(void); // Commit 4 demis from buffer to the NTAG.
 int demi_commit2(void);
 int demi_write(int offsetdemis, char * demidata); // offsetdemis must be 0, 1 or 2.
