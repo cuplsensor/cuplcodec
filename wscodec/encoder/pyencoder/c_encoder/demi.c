@@ -3,15 +3,18 @@
 #include "defs.h"
 
 #define DEMI_TO_BLK(demi) (_startblk + (demi >> 1))
-#define IS_ODD(x)           ((x & 0x01) > 0)
+#define MAX_CURSORDEMI  (_lendemis - 1)
+
 
 static int _endblk = 0;
 static int _startblk = 0;
+
 static int _cursorblk;
 static int _nextblk;
 
-static int _enddemi = 0;
+static int _lendemis = 0;
 static int _cursordemi = 0;
+static DemiState_t _demistate = firstloop;
 
 /*!
  * @brief Copy 4 demis from EEPROM into RAM.
@@ -25,20 +28,28 @@ static int _cursordemi = 0;
  * @param cursorblk EEPROM block number where the cursor is located.
  * @returns looparound 1 if a read has looped around from the end to the beginning of the buffer. 0 otherwise.
  */
-static void demi_read4()
+static int demi_read4(const int cursorblk)
 {
+  int looparound = 0;
+
+  if (cursorblk == _endblk)
+  {
+    _cursorblk = cursorblk;
+    _nextblk = _startblk;
+    looparound = 1;
+  }
+  else
+  {
+    _cursorblk = cursorblk;
+    _nextblk = _cursorblk + 1;
+  }
+
   // Read 2 demis from EEPROM block _cursorblk into RAM buffer location 0.
   eep_read(_cursorblk, 0);
   // Read 2 demis from EEPROM block _nextblk into RAM buffer location 1.
   eep_read(_nextblk, 1);
-}
 
-static void demi_shift2read2(void)
-{
-  // Shift RAM buffer right by 2 demis by copying location 1 into location 0.
-  eep_swap(1, 0);
-  // Read 2 demis from EEPROM block _nextblk into RAM buffer location 1.
-  eep_read(_nextblk, 1);
+  return looparound;
 }
 
 /*!
@@ -72,6 +83,12 @@ int demi_commit2(void)
   return 0;
 }
 
+
+void demi_restore(void)
+{
+  demi_read4(_cursorblk);
+}
+
 /*!
  * @brief Initialise the EEPROM circular buffer.
  *
@@ -82,7 +99,6 @@ int demi_commit2(void)
  */
 int demi_init(const int startblk, const int lenblks)
 {
-  int lendemis;
   _startblk = startblk;
   _endblk = startblk+lenblks-1;
 
@@ -90,9 +106,11 @@ int demi_init(const int startblk, const int lenblks)
   _nextblk = _cursorblk + 1;
 
   // Calculate the number of demis.
-  lendemis = lenblks*DEMIS_PER_BLK;
-  _enddemi =  lendemis - 1;
+  _lendemis = lenblks*DEMIS_PER_BLK;
   _cursordemi = 0;
+  _demistate = firstloop;
+
+  demi_read4(startblk);
 
   return 0;
 }
