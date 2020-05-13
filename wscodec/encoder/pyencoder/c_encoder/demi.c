@@ -160,7 +160,15 @@ DemiState_t demi_movecursor(void)
 
 void demi_readcursor(void)
 {
-
+  // Determine if a read is needed.
+  if (_cursordemi == 0)
+  {
+    demi_read4();
+  }
+  else if (_cursordemi)
+  {
+    demi_shift2read2();
+  }
 }
 
 int demi_getendmarkerpos(void)
