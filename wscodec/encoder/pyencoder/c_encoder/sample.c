@@ -41,7 +41,6 @@ typedef struct
   char elapsedMSB;      /*!< Minutes elapsed since previous sample (Most Signficant Byte). */
 } endmarker_t;
 
-static unsigned int overwriting;
 static char demi[8];                /*!< Stores two pairs from \link pairbuf, after base64 encoding */
 static pair_t pairbuf[2];           /*!< Stores two unencoded 3-byte pairs. */
 static unsigned int npairs = 0;   /*!< Number of base64 encoded pairs in the circular buffer, starting from the endstop and counting backwards. */
