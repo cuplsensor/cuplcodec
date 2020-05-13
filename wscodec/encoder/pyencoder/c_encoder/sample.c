@@ -72,6 +72,7 @@ static void incr_loopcounter(void)
 
   Base64encode(statusb64, (const char *)&status, sizeof(status)); // Base64 encode status. CHECK THIS.
   ndef_writepreamble(BUFLEN_BLKS, statusb64);               // Write URL in EEPROM up to the start of the circular buffer.
+  demi_restore();                                           // Re-read circular buffer blocks that were overwritten in the previous operation.
 }
 
 /**
@@ -131,7 +132,6 @@ void sample_init(unsigned int resetcause, bool err)
   int buflenblks;
   uint16_t batv = batv_measure();
 
-  overwriting = 0;
   status.loopcount = 0;
   status.resetsalltime = nv.resetsalltime;
   status.batv_resetcause = BATV_RESETCAUSE(batv, resetcause);
@@ -188,20 +188,11 @@ int cbuf_pushsample(int rd0, int rd1)
 
   switch(state)
       {
-      case pair0_both:
-          switch(demi_movecursor())
-          {
-          case ds_loopingaround:
-            overwriting = 1;
-            break;
-          case ds_newloop:
-            incr_loopcounter();
-            break;
-          }
       case initial:
+          demi_movecursor();
+      case pair0_both:
           set_pair(&pairbuf[0], rd0, rd1);
           set_pair(&pairbuf[1], 0, 0);
-          npairs = overwriting ? (npairs + 1 - PAIRS_PER_DEMI) : (npairs + 1);
           if (demistate != firstloop)
           {
               npairs -= PAIRS_PER_DEMI;
