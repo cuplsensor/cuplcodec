@@ -114,9 +114,7 @@ int demi_write(int offsetdemis, char * demidata)
 {
   int offsetbytes;
 
-  // If _cursordemi is odd, then offsetdemis is at 1.
-  // If _cursordemi is even, then offsetdemis is at 0.
-  if ((_cursordemi & 0x01) > 0)
+  if (IS_ODD(_cursordemi))
   {
     // ODD. offsetdemis range is 1,2,3
     offsetdemis += 1;
