@@ -2,17 +2,16 @@
 #include "demi.h"
 #include "defs.h"
 
-#define DEMI_TO_BLK(demi) (_startblk + (demi >> 1))
-#define MAX_CURSORDEMI  (_lendemis - 1)
+#define DEMI_TO_BLK(demi)   (_startblk + (demi >> 1))
+#define IS_ODD(x)           ((x & 0x01) > 0)
 
 
 static int _endblk = 0;
 static int _startblk = 0;
-
 static int _cursorblk;
 static int _nextblk;
 
-static int _lendemis = 0;
+static int _enddemi = 0;
 static int _cursordemi = 0;
 
 /*!
