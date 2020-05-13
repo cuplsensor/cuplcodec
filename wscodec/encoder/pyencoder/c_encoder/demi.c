@@ -47,15 +47,13 @@ static void demi_shift2read2(void)
  *
  * @returns 0
  */
-int demi_commit4(void)
+void demi_commit4(void)
 {
   // Write 2 demis from RAM buffer location 0 to _cursorblk.
   eep_write(_cursorblk, 0);
   // Write 2 demis from RAM buffer location 1 to _nextblk.
   eep_write(_nextblk, 1);
   eep_waitwritedone();
-
-  return 0;
 }
 
 /*!
@@ -64,13 +62,11 @@ int demi_commit4(void)
  * Some functions only need to modify the last 2 demis so this saves time and energy over writing 4.
  * @returns 0
  */
-int demi_commit2(void)
+void demi_commit2(void)
 {
   // Write 2 demis from RAM buffer location 1 into _nextblk.
   eep_write(_nextblk, 1);
   eep_waitwritedone();
-
-  return 0;
 }
 
 /*!
@@ -174,5 +170,5 @@ void demi_readcursor(void)
 int demi_getendmarkerpos(void)
 {
     // When cursordemi is ODD, the end marker byte is 8 bytes further back.
-    return (_nextblk - _startblk)*DEMIS_PER_BLK*BYTES_PER_DEMI + ENDMARKER_OFFSET_IN_ENDSTOP_1 + (_cursordemi & 0x01)*BYTES_PER_DEMI;
+    return (_nextblk - _startblk)*DEMIS_PER_BLK*BYTES_PER_DEMI + ENDMARKER_OFFSET_IN_ENDSTOP_1 + IS_ODD(_cursordemi)*BYTES_PER_DEMI;
 }
