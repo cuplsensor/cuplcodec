@@ -124,7 +124,7 @@ int demi_write(int offsetdemis, char * demidata)
 }
 
 // Move _cursordemi forward by 1.
-int demi_movecursor(void)
+DemiState_t demi_movecursor(void)
 {
     DemiState_t demistate = ds_consecutive;
 
@@ -150,7 +150,7 @@ int demi_movecursor(void)
     _nextblk = _cursorblk + 1;
   }
 
-  return (int)demistate;
+  return demistate;
 }
 
 int demi_getendmarkerpos(void)
