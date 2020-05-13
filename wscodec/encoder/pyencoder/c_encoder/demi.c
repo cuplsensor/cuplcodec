@@ -83,6 +83,8 @@ int demi_commit2(void)
  */
 void demi_init(const int startblk, const int lenblks)
 {
+  int lendemis;
+
   _startblk = startblk;
   _endblk = startblk+lenblks-1;
 
@@ -90,7 +92,9 @@ void demi_init(const int startblk, const int lenblks)
   _nextblk = _cursorblk + 1;
 
   // Calculate the number of demis.
-  _lendemis = lenblks*DEMIS_PER_BLK;
+  lendemis = lenblks * DEMIS_PER_BLK;
+  _enddemi =  lendemis - 1;
+
   _cursordemi = 0;
 }
 
