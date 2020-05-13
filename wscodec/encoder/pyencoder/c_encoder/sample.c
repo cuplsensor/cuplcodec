@@ -6,7 +6,7 @@
 #include "batv.h"
 #include "base64.h"
 #include "nvtype.h"
-//#include <stdint.h>
+#include <stdint.h>
 
 #define TEMPRH          '1' /*!< Last character of the URL version string if the URL contains both temperature and relative humidity measurands. */
 #define TEMPONLY        '2' /*!< Last character of the URL version string if the URL contains only temperature measurands. */
