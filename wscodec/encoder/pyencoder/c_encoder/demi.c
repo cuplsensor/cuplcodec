@@ -115,7 +115,7 @@ int demi_write(int offsetdemis, char * demidata)
 
   // If _cursordemi is odd, then offsetdemis is at 1.
   // If _cursordemi is even, then offsetdemis is at 0.
-  if (_cursordemi)
+  if (IS_ODD(_cursordemi))
   {
     // ODD. offsetdemis range is 1,2,3
     offsetdemis += 1;
@@ -165,7 +165,7 @@ void demi_readcursor(void)
   {
     demi_read4();
   }
-  else if (_cursordemi)
+  else if (!IS_ODD(_cursordemi))
   {
     demi_shift2read2();
   }
