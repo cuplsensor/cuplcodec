@@ -27,7 +27,7 @@ static DemiState_t _demistate = firstloop;
  * @param cursorblk EEPROM block number where the cursor is located.
  * @returns looparound 1 if a read has looped around from the end to the beginning of the buffer. 0 otherwise.
  */
-static void demi_read4()
+static void demi_read4(void)
 {
   // Read 2 demis from EEPROM block _cursorblk into RAM buffer location 0.
   eep_read(_cursorblk, 0);
