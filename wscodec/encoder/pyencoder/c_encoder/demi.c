@@ -129,30 +129,31 @@ int demi_write(int offsetdemis, char * demidata)
 // Move _cursordemi forward by 1.
 int demi_movecursor(void)
 {
-  int cursorblk;
-  int looparound = 0;
+  DemiState_t demistate = ds_consecutive;
 
   // Increment _cursordemi
-  if (_cursordemi == MAX_CURSORDEMI)
+  if (_cursordemi == _enddemi)
   {
     _cursordemi = 0;
+    demistate = ds_newloop; // new loop started
   }
   else
   {
     _cursordemi = _cursordemi + 1;
   }
 
-  // Determine if a read is needed.
-  cursorblk = DEMI_TO_BLK(_cursordemi);
-  if (cursorblk != _cursorblk)
+  _cursorblk = DEMI_TO_BLK(_cursordemi);
+  if (_cursorblk == _endblk)
   {
-    // Perform a read.
-    // Only raise the looparound flag once per loop,
-    // when the last demi will be written to the first demi of the first block.
-    demi_read4();
+    _nextblk = _startblk;
+    demistate = ds_looparound;
+  }
+  else
+  {
+    _nextblk = _cursorblk + 1;
   }
 
-  return 0;
+  return (int)demistate;
 }
 
 int demi_getendmarkerpos(void)
