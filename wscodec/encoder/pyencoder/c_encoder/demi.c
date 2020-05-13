@@ -149,7 +149,7 @@ int demi_movecursor(void)
     // Perform a read.
     // Only raise the looparound flag once per loop,
     // when the last demi will be written to the first demi of the first block.
-    looparound = demi_read4();
+    demi_read4();
   }
 
   return 0;
