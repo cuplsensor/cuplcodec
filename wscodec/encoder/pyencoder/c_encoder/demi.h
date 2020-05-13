@@ -11,6 +11,12 @@ typedef enum OctState {
   overwriting
 } OctState_t;
 
+typedef enum {
+  ds_consecutive,
+  ds_looparound,
+  ds_newloop
+} DemiState_t;
+
 /* Demi stores information on which demi indices are loaded into memory. */
 int demi_init(const int startblk, const int lenblks); // Initialise demi index to 0.
 int demi_commit4(void); // Commit 4 demis from buffer to the NTAG.
