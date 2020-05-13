@@ -157,6 +157,20 @@ int demi_movecursor(void)
   return (int)demistate;
 }
 
+void demi_readcursor(void)
+{
+  // Determine if a read is needed.
+  if (_cursordemi == 0)
+  {
+    demi_read4();
+  }
+  else if (!IS_ODD(_cursordemi))
+  {
+    demi_shift2read2();
+  }
+}
+
+
 int demi_getendmarkerpos(void)
 {
     // When cursordemi is ODD, the end marker byte is 8 bytes further back.

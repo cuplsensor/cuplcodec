@@ -190,6 +190,7 @@ int cbuf_pushsample(int rd0, int rd1)
       case pairbuf_initial:
           demi_movecursor();
       case pair0_both:
+          demi_readcursor();
           set_pair(&pairbuf[0], rd0, rd1);
           set_pair(&pairbuf[1], 0, 0);
           if (demistate != firstloop)
