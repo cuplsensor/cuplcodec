@@ -12,8 +12,6 @@ static int _nextblk;
 
 static int _enddemi = 0;
 static int _cursordemi = 0;
-static DemiState_t _demistate = firstloop;
-
 
 /*!
  * @brief Copy 4 demis from EEPROM into RAM.
