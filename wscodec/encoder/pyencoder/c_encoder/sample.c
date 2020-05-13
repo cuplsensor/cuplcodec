@@ -41,6 +41,7 @@ typedef struct
   char elapsedMSB;      /*!< Minutes elapsed since previous sample (Most Signficant Byte). */
 } endmarker_t;
 
+static int overwriting;
 static char demi[8];                /*!< Stores two pairs from \link pairbuf, after base64 encoding */
 static pair_t pairbuf[2];           /*!< Stores two unencoded 3-byte pairs. */
 static unsigned int npairs = 0;   /*!< Number of base64 encoded pairs in the circular buffer, starting from the endstop and counting backwards. */
@@ -131,6 +132,7 @@ void sample_init(unsigned int resetcause, bool err)
   int buflenblks;
   uint16_t batv = batv_measure();
 
+  overwriting = 0;
   status.loopcount = 0;
   status.resetsalltime = nv.resetsalltime;
   status.batv_resetcause = BATV_RESETCAUSE(batv, resetcause);
@@ -187,20 +189,20 @@ int cbuf_pushsample(int rd0, int rd1)
 
   switch(state)
       {
-      case pairbuf_initial:
-          demi_movecursor();
       case pair0_both:
+          switch(demi_movecursor())
+          {
+          case ds_loopingaround:
+            overwriting = 1;
+            break;
+          case ds_newloop:
+            incr_loopcounter();
+            break;
+          }
+      case pairbuf_initial:
           demi_readcursor();
           set_pair(&pairbuf[0], rd0, rd1);
           set_pair(&pairbuf[1], 0, 0);
-          if (demistate != firstloop)
-          {
-              npairs -= PAIRS_PER_DEMI;
-          }
-          if (demistate == loopingaround)
-          {
-            incr_loopcounter();
-          }
           npairs++;
 
           pairhist_push(pairbuf[0]);
