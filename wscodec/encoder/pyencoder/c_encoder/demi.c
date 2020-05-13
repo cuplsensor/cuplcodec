@@ -2,7 +2,7 @@
 #include "demi.h"
 #include "defs.h"
 
-//#define DEMI_TO_BLK(demi) (_startblk + (demi >> 1))
+#define DEMI_TO_BLK(demi) (_startblk + (demi >> 1))
 //#define IS_ODD(x)           ((x & 0x01) > 0)
 
 static int _endblk = 0;
@@ -139,7 +139,7 @@ DemiState_t demi_movecursor(void)
     _cursordemi = _cursordemi + 1;
   }
 
-  //_cursorblk = DEMI_TO_BLK(_cursordemi);
+  _cursorblk = DEMI_TO_BLK(_cursordemi);
   if (_cursorblk == _endblk)
   {
     _nextblk = _startblk;
