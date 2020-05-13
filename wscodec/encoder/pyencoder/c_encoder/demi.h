@@ -5,12 +5,6 @@
 #define DEMI1 1
 #define DEMI2 2
 
-typedef enum OctState {
-  firstloop,
-  loopingaround,
-  overwriting
-} OctState_t;
-
 
 typedef enum DemiState {
   ds_consecutive,

@@ -180,7 +180,7 @@ int cbuf_pushsample(int rd0, int rd1)
   pairbufstate_t nextstate;
   hashn_t hashn;
   int cursorpos;
-  OctState_t demistate = firstloop;
+  DemiState_t demistate = ds_consecutive;
 
   if (nv.version[1] == TEMPONLY)
   {
@@ -263,5 +263,5 @@ int cbuf_pushsample(int rd0, int rd1)
 
       state = nextstate;
 
-      return (demistate == loopingaround);
+      return (demistate == ds_consecutive);
 }
