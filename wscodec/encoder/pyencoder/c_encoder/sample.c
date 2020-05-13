@@ -15,7 +15,7 @@
 #define BATV_RESETCAUSE(BATV, RSTC) ((BATV << 8) | (RSTC & 0xFF)) /*!< Macro for creating a 16-bit batv_resetcause value from 8-bit CODEC_FEAT_30 and CODEC_SPEC_16 values. */
 
 typedef enum {
-    pairbuf_init,
+    initial,
     pair0_both,         /*!< Write pair0 */
     pair0_reading1,     /*!< Overwrite reading1 of pair0 */
     pair1_both,         /*!< Write pair1 */
@@ -139,7 +139,7 @@ void sample_init(unsigned int resetcause, bool err)
   Base64encode(statusb64, (const char *)&status, sizeof(status));
 
   npairs = 0;
-  state = pairbuf_init;
+  state = initial;
 
   if (err == true)
   {
@@ -190,8 +190,18 @@ int cbuf_pushsample(int rd0, int rd1)
   switch(state)
       {
       case pair0_both:
-          break;
-      case pairbuf_init:
+          switch(demi_movecursor())
+          {
+          case ds_looparound:
+            overwriting = 1;
+            break;
+          case ds_newloop:
+            incr_loopcounter();
+            break;
+          default:
+            break;
+          }
+      case initial:
           set_pair(&pairbuf[0], rd0, rd1);
           set_pair(&pairbuf[1], 0, 0);
           npairs = overwriting ? (npairs + 1 - PAIRS_PER_DEMI) : (npairs + 1);
