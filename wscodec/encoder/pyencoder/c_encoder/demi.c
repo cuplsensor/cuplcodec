@@ -14,7 +14,7 @@ static int _nextblk;
 
 static int _lendemis = 0;
 static int _cursordemi = 0;
-static DemiState_t _demistate = firstloop;
+static OctState_t _demistate = firstloop;
 
 /*!
  * @brief Copy 4 demis from EEPROM into RAM.
@@ -147,33 +147,51 @@ int demi_write(int offsetdemis, char * demidata)
 }
 
 // Move _cursordemi forward by 1.
-DemiState_t demi_movecursor(void)
+int demi_movecursor(void)
 {
-    DemiState_t demistate = ds_consecutive;
+  int cursorblk;
+  int looparound = 0;
 
   // Increment _cursordemi
-  if (_cursordemi == _enddemi)
+  if (_cursordemi == MAX_CURSORDEMI)
   {
     _cursordemi = 0;
-    demistate = ds_newloop; // new loop started
   }
   else
   {
     _cursordemi = _cursordemi + 1;
   }
 
-  _cursorblk = DEMI_TO_BLK(_cursordemi);
-  if (_cursorblk == _endblk)
+  // Determine if a read is needed.
+  cursorblk = DEMI_TO_BLK(_cursordemi);
+  if (cursorblk != _cursorblk)
   {
-    _nextblk = _startblk;
-    demistate = ds_looparound;
-  }
-  else
-  {
-    _nextblk = _cursorblk + 1;
+    // Perform a read.
+    // Only raise the looparound flag once per loop,
+    // when the last demi will be written to the first demi of the first block.
+    looparound = demi_read4(cursorblk);
   }
 
-  return demistate;
+  switch(_demistate)
+  {
+    case firstloop:
+    if (looparound == 1)
+    {
+      _demistate = loopingaround;
+    }
+    break;
+    case loopingaround:
+    _demistate = overwriting;
+    break;
+    case overwriting:
+    if (looparound == 1)
+    {
+      _demistate = loopingaround;
+    }
+    break;
+  }
+
+  return 0;
 }
 
 int demi_getendmarkerpos(void)
