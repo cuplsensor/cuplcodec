@@ -153,6 +153,11 @@ DemiState_t demi_movecursor(void)
   return demistate;
 }
 
+void demi_readcursor(void)
+{
+
+}
+
 int demi_getendmarkerpos(void)
 {
     // When cursordemi is ODD, the end marker byte is 8 bytes further back.
