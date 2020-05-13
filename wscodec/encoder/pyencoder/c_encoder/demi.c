@@ -83,12 +83,6 @@ int demi_commit2(void)
   return 0;
 }
 
-
-void demi_restore(void)
-{
-  demi_read4(_cursorblk);
-}
-
 /*!
  * @brief Initialise the EEPROM circular buffer.
  *
@@ -198,9 +192,4 @@ int demi_getendmarkerpos(void)
 {
     // When cursordemi is ODD, the end marker byte is 8 bytes further back.
     return (_nextblk - _startblk)*DEMIS_PER_BLK*BYTES_PER_DEMI + ENDMARKER_OFFSET_IN_ENDSTOP_1 + (_cursordemi & 0x01)*BYTES_PER_DEMI;
-}
-
-OctState_t demi_getstate(void)
-{
-  return _demistate;
 }

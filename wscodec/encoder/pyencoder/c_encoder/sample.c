@@ -71,7 +71,6 @@ static void incr_loopcounter(void)
 
   Base64encode(statusb64, (const char *)&status, sizeof(status)); // Base64 encode status. CHECK THIS.
   ndef_writepreamble(BUFLEN_BLKS, statusb64);               // Write URL in EEPROM up to the start of the circular buffer.
-  demi_restore();                                           // Re-read circular buffer blocks that were overwritten in the previous operation.
 }
 
 /**
@@ -178,21 +177,17 @@ int cbuf_pushsample(int rd0, int rd1)
   pairbufstate_t nextstate;
   hashn_t hashn;
   int cursorpos;
+  OctState_t demistate = firstloop;
 
   if (nv.version[1] == TEMPONLY)
   {
       rd1 = -1;
   }
 
-  if ((state == pair0_both) && (npairs != 0))
-  {
-      demi_movecursor();
-  }
-
-  OctState_t demistate = demi_getstate();
-
   switch(state)
       {
+      case pairbuf_initial:
+          demi_movecursor();
       case pair0_both:
           set_pair(&pairbuf[0], rd0, rd1);
           set_pair(&pairbuf[1], 0, 0);
