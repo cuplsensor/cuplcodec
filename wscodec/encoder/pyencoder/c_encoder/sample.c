@@ -192,29 +192,21 @@ int cbuf_pushsample(int rd0, int rd1)
       case pair0_both:
           switch(demi_movecursor())
           {
-          case ds_loopingaround:
+          case ds_looparound:
             overwriting = 1;
             break;
           case ds_newloop:
             incr_loopcounter();
+            break;
+          default:
             break;
           }
       case initial:
           set_pair(&pairbuf[0], rd0, rd1);
           set_pair(&pairbuf[1], 0, 0);
           npairs = overwriting ? (npairs + 1 - PAIRS_PER_DEMI) : (npairs + 1);
-          if (demistate != firstloop)
-          {
-              npairs -= PAIRS_PER_DEMI;
-          }
-          if (demistate == loopingaround)
-          {
-            incr_loopcounter();
-          }
           npairs++;
-
           pairhist_push(pairbuf[0]);
-
           if (nv.version[1] == TEMPONLY)
           {
               nextstate = pair0_reading1;
