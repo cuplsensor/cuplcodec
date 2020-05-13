@@ -33,6 +33,13 @@ static void demi_read4()
   eep_read(_nextblk, 1);
 }
 
+static void demi_shift2read2(void)
+{
+  // Shift RAM buffer right by 2 demis by copying location 1 into location 0.
+  eep_swap(1, 0);
+  // Read 2 demis from EEPROM block _nextblk into RAM buffer location 1.
+  eep_read(_nextblk, 1);
+}
 
 /*!
  * @brief Copy 4 demis from RAM to EEPROM.
