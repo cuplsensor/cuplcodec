@@ -203,10 +203,8 @@ int cbuf_pushsample(int rd0, int rd1)
           demi_readcursor();
           set_pair(&pairbuf[0], rd0, rd1);
           set_pair(&pairbuf[1], 0, 0);
-          npairs++;
-
+          npairs = overwriting ? (npairs + 1 - PAIRS_PER_DEMI) : (npairs + 1);
           pairhist_push(pairbuf[0]);
-
           if (nv.version[1] == TEMPONLY)
           {
               nextstate = pair0_reading1;
