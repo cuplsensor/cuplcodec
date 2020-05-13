@@ -3,7 +3,7 @@
 #include "defs.h"
 
 #define DEMI_TO_BLK(demi) (_startblk + (demi >> 1))
-//#define IS_ODD(x)           ((x & 0x01) > 0)
+#define IS_ODD(x)           ((x & 0x01) > 0)
 
 static int _endblk = 0;
 static int _startblk = 0;
