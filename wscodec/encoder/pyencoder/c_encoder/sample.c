@@ -190,12 +190,13 @@ int cbuf_pushsample(int rd0, int rd1)
   switch(state)
       {
       case pair0_both:
-          switch(demi_movecursor())
+          demistate = demi_movecursor();
+          switch(demistate)
           {
-          case 1:
+          case ds_looparound:
             overwriting = 1;
             break;
-          case 2:
+          case ds_newloop:
             incr_loopcounter();
             break;
           }

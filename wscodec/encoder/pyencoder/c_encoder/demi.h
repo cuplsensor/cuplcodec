@@ -17,7 +17,7 @@ void demi_init(const int startblk, const int lenblks); // Initialise demi index 
 int demi_commit4(void); // Commit 4 demis from buffer to the NTAG.
 int demi_commit2(void);
 int demi_write(int offsetdemis, char * demidata); // offsetdemis must be 0, 1 or 2.
-int demi_movecursor(void);
+DemiState_t demi_movecursor(void);
 void demi_readcursor(void);
 int demi_getendmarkerpos(void);
 
