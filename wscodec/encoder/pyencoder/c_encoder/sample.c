@@ -194,7 +194,7 @@ int cbuf_pushsample(int rd0, int rd1)
       case pairbuf_init:
           set_pair(&pairbuf[0], rd0, rd1);
           set_pair(&pairbuf[1], 0, 0);
-          //npairs = overwriting ? (npairs + 1 - PAIRS_PER_DEMI) : (npairs + 1);
+          npairs = overwriting ? (npairs + 1 - PAIRS_PER_DEMI) : (npairs + 1);
           npairs++;
           pairhist_push(pairbuf[0]);
           if (nv.version[1] == TEMPONLY)
