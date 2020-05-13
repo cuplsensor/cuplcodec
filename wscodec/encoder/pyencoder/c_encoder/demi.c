@@ -115,7 +115,7 @@ int demi_write(int offsetdemis, char * demidata)
 
   // If _cursordemi is odd, then offsetdemis is at 1.
   // If _cursordemi is even, then offsetdemis is at 0.
-  if (IS_ODD(_cursordemi))
+  if ((_cursordemi & 0x01) > 0)
   {
     // ODD. offsetdemis range is 1,2,3
     offsetdemis += 1;
@@ -158,21 +158,13 @@ DemiState_t demi_movecursor(void)
   return demistate;
 }
 
-void demi_readcursor(void)
-{
-  // Determine if a read is needed.
-  if (_cursordemi == 0)
-  {
-    demi_read4();
-  }
-  else if (!IS_ODD(_cursordemi))
-  {
-    demi_shift2read2();
-  }
-}
-
 int demi_getendmarkerpos(void)
 {
     // When cursordemi is ODD, the end marker byte is 8 bytes further back.
     return (_nextblk - _startblk)*DEMIS_PER_BLK*BYTES_PER_DEMI + ENDMARKER_OFFSET_IN_ENDSTOP_1 + (_cursordemi & 0x01)*BYTES_PER_DEMI;
+}
+
+OctState_t demi_getstate(void)
+{
+  return _demistate;
 }
