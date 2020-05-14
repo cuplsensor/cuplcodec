@@ -5,10 +5,14 @@
  * @copyright Plotsensor Ltd.
  * @brief A file for organising and accessing configuration data stored in Non-Volatile memory.
  *
- * These data are read by several parts of the encoder. nv is declared it as an external global variable. It is stored in 512 byte
- * <a href="https://www.ti.com/document-viewer/MSP430FR2155/datasheet/memory-organization-slasec43899#SLASEC43899">information FRAM</a>
- * on the MSP430. When running standalone (e.g. as part of PyEncoder) #nv is defined within the project.
+ * These data are read by several parts of the encoder, where it is declared as an external global variable.
  *
+ * The variable definition depends on how the encoder is being run:
+ * - When running under CFFI (see PyEncoder) #nv is defined in nvtype.c
+ * - When running as part of a larger project (e.g. the cupl Tag firmware) nv must be defined elsewhere.
+ *
+ * The intention is for nv to occupy the 512 byte MSP430 
+ * <a href="https://www.ti.com/document-viewer/MSP430FR2155/datasheet/memory-organization-slasec43899#SLASEC43899">information FRAM</a>.
  */
 
 #ifndef COMMS_NVTYPE_H_
