@@ -8,8 +8,8 @@
 
 static int _endblk = 0;     /*!< Last EEPROM block in the circular buffer. */
 static int _startblk = 0;   /*!< First EEPROM block in the circular buffer. */
-static int _cursorblk;      /*!< Cursor in terms of 16-byte EEPROM blocks. Must be >= #_startblk and <= #_endblk. */
-static int _nextblk;        /*!< Index of the next EEPROM block after the cursor block. The buffer is circular, so it can be < #_cursorblk. */
+static int _cursorblk;      /*!< Cursor address in terms of 16-byte EEPROM blocks. Must be >= #_startblk and <= #_endblk. */
+static int _nextblk;        /*!< Address of the next EEPROM block after cursor block. The buffer is circular, so it can be < #_cursorblk. */
 
 static int _enddemi = 0;    /*!< Largest possible value of _cursordemi. Always an odd integer. */
 static int _cursordemi = 0; /*!< Cursor in terms of 8-byte demis. Must be >= 0 and <= #_enddemi. */

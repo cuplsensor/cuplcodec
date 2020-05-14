@@ -1,8 +1,14 @@
-/*
- * nvtype.h
+/*!
+ * @file nvtype.h
+ * @date 6 Aug 2018
+ * @author Malcolm Mackay
+ * @copyright Plotsensor Ltd.
+ * @brief A file for organising and accessing configuration data stored in Non-Volatile memory.
  *
- *  Created on: 6 Aug 2018
- *      Author: malcolm
+ * These data are read by several parts of the encoder. nv is declared it as an external global variable. It is stored in 512 byte
+ * <a href="https://www.ti.com/document-viewer/MSP430FR2155/datasheet/memory-organization-slasec43899#SLASEC43899">information FRAM</a>
+ * on the MSP430. When running standalone (e.g. as part of PyEncoder) #nv is defined within the project.
+ *
  */
 
 #ifndef COMMS_NVTYPE_H_
