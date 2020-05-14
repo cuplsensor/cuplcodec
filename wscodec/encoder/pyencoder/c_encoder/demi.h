@@ -3,7 +3,7 @@
  * @brief Writes to a circular buffer of 8-byte demis. This is stored in an NFC readable EEPROM e.g. the
  * <a href="https://www.nxp.com/docs/en/data-sheet/NT3H2111_2211.pdf">NXP NT3H2111</a>.
  *
- * An EEPROM block is 16 bytes long. Demi is short for demi-block; it is 8 bytes long.
+ * @details An EEPROM block is 16 bytes long. Demi is short for demi-block; it is 8 bytes long.
  * A majority of transactions write 3 demis:
  * - Demi0: Two base64 encoded pairs (::pair_t) comprised of 4x sensor readings.
  * - Demis1 and 2: Circular buffer endstop (::endstop_t).
