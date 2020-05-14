@@ -12,19 +12,15 @@ static int _cursorblk;      /*!< Cursor in terms of 16-byte EEPROM blocks. Must 
 static int _nextblk;        /*!< Index of the next EEPROM block after the cursor block. The buffer is circular, so it can be < #_cursorblk. */
 
 static int _enddemi = 0;    /*!< Largest possible value of _cursordemi. Always an odd integer. */
-static int _cursordemi = 0; /*!< Cursor in terms of 8-byte demis. */
+static int _cursordemi = 0; /*!< Cursor in terms of 8-byte demis. Must be >= 0 and <= #_enddemi. */
 
 /*!
  * @brief Copy 4 demis from EEPROM into RAM.
  *
- * This is 2 demis from the cursor block and 2 demis from the block after it (_nextblk).
- * If cursor block is at the end of the buffer, then _nextblk will be at the start. This
+ * This is 2 demis from #_cursorblk and 2 demis from the block after it #_nextblk.
+ * If #_cursorblk is at the end of the buffer, then #_nextblk will be at the start. This
  * makes the buffer circular.
  *
- * Static variables ::_cursorblk and _nextblk are updated by this function.
- *
- * @param cursorblk EEPROM block number where the cursor is located.
- * @returns looparound 1 if a read has looped around from the end to the beginning of the buffer. 0 otherwise.
  */
 static void demi_read4(void)
 {
@@ -34,6 +30,14 @@ static void demi_read4(void)
   eep_read(_nextblk, 1);
 }
 
+/*!
+ * @brief Right shift the RAM buffer by 2 demis and append 2 demis read from the #_nextblk.
+ *
+ * First: RAM buffer is right shifted by one block, overwriting the previous cursor block with the new cursor block.
+ * Second: New contents of #_nextblk are copied out of EEPROM into the vacant RAM buffer block.
+ *
+ * The right shift saves a slow and unnecessary read of #_cursorblk from EEPROM.
+ */
 static void demi_shift2read2(void)
 {
   // Shift RAM buffer right by 2 demis by copying location 1 into location 0.
@@ -45,7 +49,6 @@ static void demi_shift2read2(void)
 /*!
  * @brief Copy 4 demis from RAM to EEPROM.
  *
- * @returns 0
  */
 void demi_commit4(void)
 {
@@ -60,7 +63,7 @@ void demi_commit4(void)
  * @brief Write the last 2 demis from RAM to the EEPROM.
  *
  * Some functions only need to modify the last 2 demis so this saves time and energy over writing 4.
- * @returns 0
+ *
  */
 void demi_commit2(void)
 {
@@ -95,13 +98,12 @@ void demi_init(const int startblk, const int lenblks)
 }
 
 /*!
- * @brief Overwrite one demi in the RAM buffer. demi::demi_read4()
+ * @brief Overwrite one demi in the RAM buffer.
  *
- * This function takes demiindex as relative to _cursordemi.
- * The function to modify the RAM buffer ::eep_cp requires an index relative to \link ::_cursorblk \endlink (it has no concept of demis).
- * There are 2 8-byte demis per 16-byte block.
- * If cursordemi is even, nothing is needs to be done because it lies on a block boundary.
- * If cursordemi is odd then it is offset from the block boundary by one demi. Therefore one is added to demiindex.
+ * The function to modify the RAM buffer eep_cp() requires a byte index relative to #_cursorblk.
+ *
+ * - When #_cursordemi is EVEN, nothing is needs to be done because it lies on a block boundary.
+ * - When #_cursordemi is ODD then it is offset from the block boundary by one demi. Therefore one is added to offsetdemis.
  *
  * @param offset Demi index to overwrite, relative to _cursordemi. Must be 0, 1 or 2.
  * @param demidata Pointer to an 8 byte array of new demi data.
@@ -153,6 +155,16 @@ DemiState_t demi_movecursor(void)
   return demistate;
 }
 
+/*!
+ * @brief Update RAM buffer to contain the 4 demis after _cursordemi.
+ *
+ * This function must be called each time the cursor position is changed.
+ *
+ * When #_cursordemi is 0 it is assumed that the RAM buffer is empty, so all 4 demis are read.
+ * When #_cursordemi is not 0, it is assumed that the RAM buffer has been populated before. It is also assumed that
+ * #_cursordemi has only moved once since the previous time this function was called. Therefore it is not necessary to read
+ * 4 more demis out of the EEPROM.  
+ */
 void demi_readcursor(void)
 {
   // Determine if a read is needed.
