@@ -163,7 +163,7 @@ DemiState_t demi_movecursor(void)
  * When #_cursordemi is 0 it is assumed that the RAM buffer is empty, so all 4 demis are read.
  * When #_cursordemi is not 0, it is assumed that the RAM buffer has been populated before. It is also assumed that
  * #_cursordemi has only moved once since the previous time this function was called. Therefore it is not necessary to read
- * 4 more demis out of the EEPROM.  
+ * 4 more demis out of the EEPROM.
  */
 void demi_readcursor(void)
 {
