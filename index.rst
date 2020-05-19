@@ -5,6 +5,7 @@ cupl Codec Documentation
 .. toctree::
    :maxdepth: 2
    :caption: Specification
+
    docs/specification/requirements
    docs/specification/specs
    docs/specification/features
@@ -13,6 +14,7 @@ cupl Codec Documentation
 .. toctree::
    :maxdepth: 2
    :caption: Reference
+
    docs/reference/decoder/index
    docs/reference/c_encoder/index
    docs/reference/pyencoder/index
