@@ -5,16 +5,18 @@ from ctypes import c_char_p
 
 class Eeprom():
     """
-    A Mock EEPROM class used for testing. This contains a bytearray with methods to read and write from it in 16-byte blocks.
-    There are also methods for parsing the contents of this mock EEPROM as an NDEF message.
+    A mock of the NT3H2111 EEPROM. It contains a bytearray. There are methods to read and write from it in 16-byte blocks.
+    Helper methods parse the entire EEPROM contents as an NDEF message. This mimics what a phone will do when it reads
+    the NT3H2111 using NFC.
 
     The EEPROM will normally contain the output of the cupl Encoder: an NDEF message containing one NDEF record.
     This itself will contain a URL. One of the parameters in the query string is 'q', which contains the circular
-    buffer of temperature and relative humidity samples. A method to extract the circular buffer string has been included.
+    buffer of temperature and relative humidity samples.
     """
     def __init__(self, sizeblocks: int):
         """
         Instatiate a mock EEPROM.
+
         :param sizeblocks: Size of the EEPROM in 16-byte blocks.
         """
         self.eepromba = bytearray(sizeblocks*16)
@@ -23,6 +25,7 @@ class Eeprom():
     def write_block(self, block: int, blkdata: c_char_p):
         """
         Write one block from a pointer.
+
         :param block: Address of the block to write
         :param blkdata: Pointer to an array of 16 bytes that will be written to the block.
         :return: None
@@ -34,6 +37,7 @@ class Eeprom():
     def read_block(self, block: int, blkdata: c_char_p):
         """
         Read one block into a pointer.
+
         :param block: Address if the block to read.
         :param blkdata: Pointer to an array of 16 bytes that the block will be read into.
         :return: None
@@ -46,6 +50,7 @@ class Eeprom():
     def display_block(self, block: int) -> bytearray:
         """
         Display one EEPROM block.
+
         :param block: Address of the block to display.
         :return: Block data as a list of 16 bytes.
         """
@@ -56,6 +61,7 @@ class Eeprom():
     def __repr__(self) -> str:
         """
         Display all EEPROM blocks.
+
         :return: The contents of all EEPROM blocks as a string.
         """
         retstr = "EEPROM with " + str(self.sizeblocks) + " blocks\n"
@@ -69,6 +75,7 @@ class Eeprom():
     def get_message(self) -> bytearray:
         """
         Extract the NDEF message bytes from EEPROM.
+
         :return: NDEF message bytearray
         """
         ndefmsgstartbyte = 16 + 4
@@ -77,6 +84,7 @@ class Eeprom():
     def decode_ndef(self) -> ndef.Record:
         """
         Decode the NDEF message.
+
         :return: First NDEF record in the message
         """
         sizedemis = self.sizeblocks * 2
@@ -96,6 +104,7 @@ class Eeprom():
     def get_url(self) -> str:
         """
         Obtain URL from the NDEF record stored in EEPROM.
+
         :return: URL string
         """
         ndefmessage = self.decode_ndef()
@@ -104,6 +113,7 @@ class Eeprom():
     def get_url_parsed(self) -> urlparse.ParseResult:
         """
         Parse URL in the EEPROM NDEF record.
+
         :return: Parsed URL
         """
         url = self.get_url()
@@ -112,6 +122,7 @@ class Eeprom():
     def get_url_parsedqs(self) -> dict:
         """
         Parse parameters in the `query string <https://en.wikipedia.org/wiki/Query_string>`_
+
         :return: A dictionary of URL parameters.
         """
         parsedurl = self.get_url_parsed()
