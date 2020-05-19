@@ -1,5 +1,5 @@
-Decoder Reference
-===================
+Decoder
+==========
 
 .. autoclass:: wscodec.decoder.v1.tbufferdecoder.TBufferDecoder
     :members:

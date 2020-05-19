@@ -1,5 +1,5 @@
-Encoder Reference
-=====================
+C Encoder
+===========
 
 .. toctree::
    :hidden:

@@ -20,6 +20,7 @@ SHAREDOBJ_PATH = pkg_resources.resource_filename(resource_package, sharedobj_pat
 
 global_weakkeydict = weakref.WeakKeyDictionary()
 
+
 class CFFIGenerator(pycparser.c_generator.CGenerator):
     def __init__(self, blacklist):
         super().__init__()
@@ -32,8 +33,10 @@ class CFFIGenerator(pycparser.c_generator.CGenerator):
                 return 'extern "Python+C" ' + result
         return result
 
+
 def convert_function_declarations(source, blacklist):
     return CFFIGenerator(blacklist).visit(pycparser.CParser().parse(source))
+
 
 class FunctionList(pycparser.c_ast.NodeVisitor):
     def __init__(self, source):
@@ -46,10 +49,12 @@ class FunctionList(pycparser.c_ast.NodeVisitor):
     def visit_FuncDef(self, node):
         self.funcs.add(node.decl.name)
 
+
 def preprocess(source):
     return subprocess.run(['gcc', '-E', '-P', '-', '-I'+ENCODER_CSOURCE_PATH, '-I'+PYCPARSER_PATH+'/utils/fake_libc_include'],
                           input=source, stdout=subprocess.PIPE,
                           universal_newlines=True, check=True).stdout
+
 
 def load(filename, depfilenames=list()):
  """
@@ -86,11 +91,3 @@ def load(filename, depfilenames=list()):
  ffibuilder.set_source(name, source, include_dirs=[ENCODER_CSOURCE_PATH])
 
  return ffibuilder
-
- #ffibuilder.compile()
-
- ## import and return resulting module
- #importlib.invalidate_caches()
- #module = importlib.import_module(name)
-
- #return module.lib, module.ffi, name
