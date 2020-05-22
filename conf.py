@@ -51,11 +51,11 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
+    'sphinxcontrib.plantuml',
+    'sphinxcontrib.needs',
     'sphinx.ext.napoleon',
     'breathe',
-    'sphinx_rtd_theme',
-    'sphinxcontrib.plantuml',
-    'sphinxcontrib.needs'
+    'sphinx_rtd_theme'
 ]
 
 breathe_projects = { "encoderproject": "wscodec/encoder/pyencoder/c_encoder/doxygen/xml/"} # BREATHE
