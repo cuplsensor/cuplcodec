@@ -67,7 +67,7 @@ Implementation
    :status: complete
    :links: CODEC_FEAT_12
 
-   The NDEF message and its circular buffer are initialised with :cpp:func:`sample_init`. Given there are
+   The NDEF message and its circular buffer are initialised with :cpp:func:`enc_init`. Given there are
    no samples in the circular buffer, the endstop and cursor are omitted. All demis are set to MDaW
    (all zeroes).
 

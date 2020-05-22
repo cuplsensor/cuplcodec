@@ -125,7 +125,7 @@ static void set_rd1(pair_t *pair, int rd1)
  * @param resetcause 16-bit status value.
  * @param err Sets an error condition where data will not be logged to the URL circular buffer.
  */
-void sample_init(unsigned int resetcause, bool err)
+void enc_init(unsigned int resetcause, bool err)
 {
   char statusb64[9];
   int startblk;

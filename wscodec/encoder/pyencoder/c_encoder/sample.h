@@ -4,7 +4,7 @@
 #include <stdbool.h>
 
 
-void sample_init(unsigned int status, bool err);
+void enc_init(unsigned int status, bool err);
 int cbuf_pushsample(int rd0, int rd1);
 void cbuf_setelapsed(unsigned int minutes);
 

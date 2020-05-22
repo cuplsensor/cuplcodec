@@ -167,7 +167,7 @@ class InstrumentedSampleT(InstrumentedSample):
                                                   resetsalltime=resetsalltime,
                                                   usehmac=usehmac,
                                                   httpsdisable=httpsdisable)
-        self.ffimodule.lib.sample_init(resetcause, False)
+        self.ffimodule.lib.enc_init(resetcause, False)
 
     def pushsamples(self, num):
         inlist = list()
@@ -200,7 +200,7 @@ class InstrumentedSampleTRH(InstrumentedSample):
                                                     resetsalltime=resetsalltime,
                                                     usehmac=usehmac,
                                                     httpsdisable=httpsdisable)
-        self.ffimodule.lib.sample_init(resetcause, False)
+        self.ffimodule.lib.enc_init(resetcause, False)
 
     def pushsamples(self, num):
         inlist = list()

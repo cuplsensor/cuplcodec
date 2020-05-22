@@ -97,7 +97,7 @@ def test_errorcondition():
                                )
 
     resetcause = SVSH_BIT
-    instr.ffimodule.lib.sample_init(resetcause, True)
+    instr.ffimodule.lib.enc_init(resetcause, True)
 
     par = instr.eepromba.get_url_parsedqs()
 

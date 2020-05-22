@@ -5,7 +5,7 @@ from ctypes import c_char_p
 
 class Eeprom():
     """
-    A mock of the NT3H2111 EEPROM. It contains a bytearray. There are methods to read and write from it in 16-byte blocks.
+    A mock of the NT3H2111 EEPROM, based on a bytearray. There are methods to read and write from this in 16-byte blocks.
     Helper methods parse the entire EEPROM contents as an NDEF message. This mimics what a phone will do when it reads
     the NT3H2111 using NFC.
 
