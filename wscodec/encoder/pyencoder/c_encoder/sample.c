@@ -14,7 +14,7 @@
 
 #define BATV_RESETCAUSE(BATV, RSTC) ((BATV << 8) | (RSTC & 0xFF)) /*!< Macro for creating a 16-bit batv_resetcause value from 8-bit
                                                                         \rst
-                                                                        :need:`CODEC_FEAT_30`
+                                                                        :any:`CODEC_FEAT_30`
                                                                         \endrst
 
                                                                         and CODEC_SPEC_16 values. */
