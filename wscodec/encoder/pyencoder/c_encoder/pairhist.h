@@ -6,7 +6,7 @@
  *
  * This allows for a hash to be taken of the unencoded circular buffer pairs, each time this list changes. The decoder uses this
  * to verify that it has decoded the circular buffer faithfully: It must output the same list of pairs, as fed to the encoder
- * with multiple calls to cbuf_pushsample().
+ * with multiple calls to enc_pushsample().
  *
  * After decoding the circular buffer, the hash is calculated. The decoder checks this equals the encoder hash, which is extracted from
  * #endstop_t::hashnb64 in the NDEF message. If it does not, an error is raised and no data are returned.

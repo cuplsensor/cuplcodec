@@ -5,7 +5,7 @@ C Encoder
    :hidden:
    :maxdepth: 2
 
-   cbuf
+   enc
    pairhist
    demi
    nvtype

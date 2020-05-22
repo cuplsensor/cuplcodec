@@ -40,7 +40,7 @@ concatenating this with a secret key (:cpp:member:`seckey`) and then taking the 
 At the provisioning stage, a random secret key is generated that is unique to each sensor. This is a shared secret:
 it is stored both by the web application and in the sensor.
 
-The encoder computes the HMAC every time a new sample is collected (i.e. for each call of cbuf_pushsample).
+The encoder computes the HMAC every time a new sample is collected (i.e. for each call of enc_pushsample).
 When PSCodec decodes a capture, it verifies the HMAC. If this fails an error is raised. The web application can
 respond by not storing the capture data and notifying the user with error 409.
 

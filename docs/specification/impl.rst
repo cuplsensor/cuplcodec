@@ -18,7 +18,7 @@ Implementation
    :status: complete
    :links: CODEC_FEAT_26
 
-   The function :cpp:func:`cbuf_setelapsed` alters the elapsed time field, independent of the rest of the URL.
+   The function :cpp:func:`enc_setelapsed` alters the elapsed time field, independent of the rest of the URL.
    It is intended that this is called once for each minute after a sample is taken. Elapsed time (as an integer) is
    converted to base64 and written to the end stop.
 
@@ -36,7 +36,7 @@ Implementation
    :status: complete
    :links: CODEC_FEAT_25
 
-   The function :cpp:func:`cbuf_pushsample` uses integer :cpp:member:`npairs` to record how many valid samples
+   The function :cpp:func:`enc_pushsample` uses integer :cpp:member:`npairs` to record how many valid samples
    are in the circular buffer. When an demi is overwritten, it is reduced by :c:macro:`PAIRS_PER_DEMI`.
    Otherwise it is incremented by one. When the buffer is full :cpp:member:`npairs` will equal
    :cpp:member:`buflenpairs`.
@@ -49,7 +49,7 @@ Implementation
    The encoder maintains :cpp:member:`pairhistory`, a RAM-based shadow of the EEPROM circular buffer.
    It consumes a lot of RAM, but this is unavoidable.
 
-   On each call to :cpp:func:`cbuf_pushsample`, the sample is appended to :cpp:member:`pairhistory` by
+   On each call to :cpp:func:`enc_pushsample`, the sample is appended to :cpp:member:`pairhistory` by
    :cpp:func:`pairhist_push`. The hash (MD5 or HMAC) is calculated with :cpp:func:`pairhist_hash`.
    This outputs a 9 byte structure (:cpp:type:`hashn_t`). It is converted to base64 (:cpp:member:`hashnb64`)
    before it is written to the endstop demis (:need:`CODEC_SPEC_13`).
@@ -59,7 +59,7 @@ Implementation
    :status: complete
    :links: CODEC_FEAT_15
 
-   Samples are added to the circular buffer with :cpp:func:`cbuf_pushsample`. This takes one or two measurands,
+   Samples are added to the circular buffer with :cpp:func:`enc_pushsample`. This takes one or two measurands,
    depending on the circular buffer format.
 
 .. impl:: Initialisation

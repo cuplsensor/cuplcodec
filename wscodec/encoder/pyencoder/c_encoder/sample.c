@@ -159,7 +159,7 @@ void enc_init(unsigned int resetcause, bool err)
  *
  * @param minutes: Minutes elapsed since the previous sample.
  */
-void cbuf_setelapsed(unsigned int minutes)
+void enc_setelapsed(unsigned int minutes)
 {
     set_elapsed(minutes);
     demi_write(DEMI2, &endstop.hashnb64[8]);
@@ -175,7 +175,7 @@ void cbuf_setelapsed(unsigned int minutes)
  * @returns 1 if the cursor has moved from the end to the start and data are being overwritten.
  * Otherwise 0.
  */
-int cbuf_pushsample(int rd0, int rd1)
+int enc_pushsample(int rd0, int rd1)
 {
   pairbufstate_t nextstate;
   hashn_t hashn;
