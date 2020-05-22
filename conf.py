@@ -17,13 +17,7 @@ import sys
 sys.path.insert(0, os.path.abspath('.'))
 sys.path.append("/Users/malcolm/Downloads/breathe/") # BREATHE PATH
 
-# Run doxygen if we are running on read_the_docs
-read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
-if read_the_docs_build:
-    subprocess.call('cd wscodec/encoder/pyencoder/c_encoder; doxygen', shell=True)
 
-if read_the_docs_build:
-    subprocess.call('python setup.py develop', shell=True)
 
 # -- Project information -----------------------------------------------------
 
@@ -230,3 +224,11 @@ intersphinx_mapping = {
     'python': ('http://docs.python.org/', None),
     'cffi': ('https://cffi.readthedocs.io/en/latest', None),
 }
+
+# Run doxygen if we are running on read_the_docs
+read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
+if read_the_docs_build:
+    subprocess.call('cd wscodec/encoder/pyencoder/c_encoder; doxygen', shell=True)
+
+if read_the_docs_build:
+    subprocess.call('python setup.py develop', shell=True)
