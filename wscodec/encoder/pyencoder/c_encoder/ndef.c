@@ -10,11 +10,11 @@ extern nv_t nv;
 #define URL_RECORDTYPE_LEN  1                   /*!< Length of the NDEF record type in bytes. */
 
 #define SMPLINTKEY_LEN  sizeof(smplintkey)-1    /*!< Length of the sample interval key string in bytes. */
-#define SMPLINTB64_LEN  4                       /*!< Length of the sample interval string in bytes. */
+#define SMPLINTB64_LEN  4                       /*!< Length of the encoded sample interval string in bytes. */
 #define SERIALKEY_LEN   sizeof(serialkey)-1     /*!< Length of the serial key string in bytes. */
 #define VERKEY_LEN      sizeof(verkey)-1        /*!< Length of the vfmt key string in bytes. */
 #define STATKEY_LEN     sizeof(statkey)-1       /*!< Length of the status key string in bytes. */
-#define STATB64_LEN     8                       /*!< Length of the base64 encoded \link #stat_t status \endlink string in bytes. */
+#define STATB64_LEN     8                       /*!< Length of the encoded \link #stat_t status \endlink string in bytes. */
 #define CBUFKEY_LEN     sizeof(cbufkey)-1       /*!< Length of the circular buffer key string in bytes. */
 
 #define URL_RECORD_HEADER_LEN   8
