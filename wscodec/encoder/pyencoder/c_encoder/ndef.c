@@ -22,24 +22,24 @@ extern nv_t nv;
 
 #define TAG_NDEF_MESSSAGE       0x03        /*!< Tag indicating the TLV block contains an NDEF message. */
 
-#define WELLKNOWN_TNF   0x01
+#define WELLKNOWN_TNF   0x01            /*!< Record Type follows the Record Type Definition (RTD) format. */
 
-#define URI_ID_HTTP     0x03
-#define URI_ID_HTTPS    0x04
+#define URI_ID_HTTP     0x03            /*!< URI Identifier Code for the HTTP protocol. */
+#define URI_ID_HTTPS    0x04            /*!< URI Identifier Code for the HTTPS protocol. */
 
 typedef union
 {
  unsigned char all;
  struct
  {
-     unsigned char tnf:3;
-     unsigned char idpresent:1;
-     unsigned char srecord:1;
-     unsigned char chunkflag:1;
-     unsigned char msgend:1;
-     unsigned char msgbegin:1;
+     unsigned char tnf:3;               /*!< Type Name Format field. */
+     unsigned char idpresent:1;         /*!< ID present flag. 1 if the ID field is present. */
+     unsigned char srecord:1;           /*!< Short record flag. 1 if the payload length field is 1 byte long. */
+     unsigned char chunkflag:1;         /*!< Chunk flag. 1 if this is the first or middle record in a chunked message. */
+     unsigned char msgend:1;            /*!< Message end flag. 1 if this is the last record in the message. */
+     unsigned char msgbegin:1;          /*!< Message begin flag. 1 if this is the first record in the message. */
  } byte;
-} TNFFlags_t;
+} TNFFlags_t;                           /*!< Union for storing the TNF + Flags byte. */
 
 typedef union
 {
