@@ -6,16 +6,16 @@
 
 extern nv_t nv;
 
-#define URL_RECORDTYPE      0x55                /*< NDEF record type for a URL. */
-#define URL_RECORDTYPE_LEN  1                   /*< Length of the NDEF record type in bytes. */
+#define URL_RECORDTYPE      0x55                /*!< NDEF record type for a URL. */
+#define URL_RECORDTYPE_LEN  1                   /*!< Length of the NDEF record type in bytes. */
 
-#define SMPLINTKEY_LEN  sizeof(smplintkey)-1    /*< Length of the sample interval key string in bytes. */
-#define SMPLINTB64_LEN  4                       /*< Length of the sample interval string in bytes. */
-#define SERIALKEY_LEN   sizeof(serialkey)-1     /*< Length of the serial key string in bytes. */
-#define VERKEY_LEN      sizeof(verkey)-1        /*< Length of the vfmt key string in bytes. */
-#define STATKEY_LEN     sizeof(statkey)-1       /*< Length of the status key string in bytes. */
-#define STATB64_LEN     8                       /*< Length of the base64 encoded \link #stat_t status \endlink string in bytes. */
-#define CBUFKEY_LEN     sizeof(cbufkey)-1       /*< Length of the circular buffer key string in bytes. */
+#define SMPLINTKEY_LEN  sizeof(smplintkey)-1    /*!< Length of the sample interval key string in bytes. */
+#define SMPLINTB64_LEN  4                       /*!< Length of the sample interval string in bytes. */
+#define SERIALKEY_LEN   sizeof(serialkey)-1     /*!< Length of the serial key string in bytes. */
+#define VERKEY_LEN      sizeof(verkey)-1        /*!< Length of the vfmt key string in bytes. */
+#define STATKEY_LEN     sizeof(statkey)-1       /*!< Length of the status key string in bytes. */
+#define STATB64_LEN     8                       /*!< Length of the base64 encoded \link #stat_t status \endlink string in bytes. */
+#define CBUFKEY_LEN     sizeof(cbufkey)-1       /*!< Length of the circular buffer key string in bytes. */
 
 #define URL_RECORD_HEADER_LEN   8
 #define TLV_TYPE_LEN_LEN        4
@@ -49,12 +49,12 @@ typedef union
     unsigned char bytes[4];
 } len_t;
 
-static const char serialkey[] = "&s=";             /*< Seperator, key and equals before the serial string. */
-static const char cbufkey[] = "&q=";               /*< Seperator, key and equals before the circular buffer string. */
-static const char verkey[] = "&v=";                /*< Seperator, key and equals before the vfmt string. */
-static const char statkey[] = "&x=";               /*< Seperator, key and equals before the status string. */
-static const char smplintkey[] = "/?t=";           /*< Start of parameters followed by a key and equals for the sample interval string. */
-static const char zeropad[] = "MDAw";              /*< 4 characters that base64 decode to 0,0,0 */
+static const char serialkey[] = "&s=";             /*!< Seperator, key and equals before the serial string. */
+static const char cbufkey[] = "&q=";               /*!< Seperator, key and equals before the circular buffer string. */
+static const char verkey[] = "&v=";                /*!< Seperator, key and equals before the vfmt string. */
+static const char statkey[] = "&x=";               /*!< Seperator, key and equals before the status string. */
+static const char smplintkey[] = "/?t=";           /*!< Start of parameters followed by a key and equals for the sample interval string. */
+static const char zeropad[] = "MDAw";              /*!< 4 characters that base64 decode to 0,0,0 */
 
 /*! @brief Create a URL NDEF Record.
  *  @param eepindex Position in the 64-byte array that buffers data to be written into EEPROM.
