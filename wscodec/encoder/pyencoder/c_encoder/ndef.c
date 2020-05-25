@@ -6,16 +6,16 @@
 
 extern nv_t nv;
 
-#define URL_RECORDTYPE      0x55
-#define URL_RECORDTYPE_LEN  1
+#define URL_RECORDTYPE      0x55                /*< NDEF record type for a URL. */
+#define URL_RECORDTYPE_LEN  1                   /*< Length of the NDEF record type in bytes. */
 
-#define TIMEINTKEY_LEN sizeof(timeintkey)-1
-#define TIMEINTB64_LEN  4
-#define SERIALKEY_LEN sizeof(serialkey)-1
-#define VERKEY_LEN    sizeof(verkey)-1
-#define STATKEY_LEN   sizeof(statkey)-1
-#define STATB64_LEN     8
-#define QKEY_LEN      sizeof(querykey)-1
+#define SMPLINTKEY_LEN  sizeof(smplintkey)-1    /*< Length of the sample interval key string in bytes. */
+#define SMPLINTB64_LEN  4                       /*< Length of the sample interval string in bytes. */
+#define SERIALKEY_LEN   sizeof(serialkey)-1     /*< Length of the serial key string in bytes. */
+#define VERKEY_LEN      sizeof(verkey)-1        /*< Length of the vfmt key string in bytes. */
+#define STATKEY_LEN     sizeof(statkey)-1       /*< Length of the status key string in bytes. */
+#define STATB64_LEN     8                       /*< Length of the base64 encoded \link #stat_t status \endlink string in bytes. */
+#define CBUFKEY_LEN     sizeof(cbufkey)-1       /*< Length of the circular buffer key string in bytes. */
 
 #define URL_RECORD_HEADER_LEN   8
 #define TLV_TYPE_LEN_LEN        4
@@ -49,12 +49,12 @@ typedef union
     unsigned char bytes[4];
 } len_t;
 
-char serialkey[] = "&s=";
-static const char querykey[] = "&q=";
-static const char verkey[] = "&v=";
-static const char statkey[] = "&x=";
-static const char timeintkey[] = "/?t=";
-static const char zeropad[] = "MDAw";
+static const char serialkey[] = "&s=";             /*< Seperator, key and equals before the serial string. */
+static const char cbufkey[] = "&q=";               /*< Seperator, key and equals before the circular buffer string. */
+static const char verkey[] = "&v=";                /*< Seperator, key and equals before the vfmt string. */
+static const char statkey[] = "&x=";               /*< Seperator, key and equals before the status string. */
+static const char smplintkey[] = "/?t=";           /*< Start of parameters followed by a key and equals for the sample interval string. */
+static const char zeropad[] = "MDAw";              /*< 4 characters that base64 decode to 0,0,0 */
 
 /*! @brief Create a URL NDEF Record.
  *  @param eepindex Position in the 64-byte array that buffers data to be written into EEPROM.
@@ -97,7 +97,7 @@ static void ndef_createurlrecord(int * eepindex, int msglenbytes, int httpsDisab
 void ndef_calclen(int * paddinglen, int * preamblenbytes, int * urllen)
 {
     const int preurllen = URL_RECORD_HEADER_LEN + TLV_TYPE_LEN_LEN;
-    const int posturllen_nopadding = TIMEINTKEY_LEN + TIMEINTB64_LEN + SERIALKEY_LEN + SERIAL_LENBYTES + VERKEY_LEN + VERSION_LENBYTES + STATKEY_LEN + STATB64_LEN + QKEY_LEN;
+    const int posturllen_nopadding = SMPLINTKEY_LEN + SMPLINTB64_LEN + SERIALKEY_LEN + SERIAL_LENBYTES + VERKEY_LEN + VERSION_LENBYTES + STATKEY_LEN + STATB64_LEN + CBUFKEY_LEN;
 
     volatile int urllen_nopadding = (posturllen_nopadding + *urllen + preurllen);
     *paddinglen = (BLKSIZE - (urllen_nopadding & 0xF)) & 0xF;
@@ -111,12 +111,12 @@ void ndef_calclen(int * paddinglen, int * preamblenbytes, int * urllen)
   */
 int ndef_writepreamble(int buflenblks, char * statusb64)
 {
-  char timeintb64[TIMEINTB64_LEN+1] = {0};
+  char smplintb64[SMPLINTB64_LEN+1] = {0};
   int blk = 0;
   int bufblk = 0;
   int eepindex = 0;
   char * serial = nv.serial;
-  char * timeinterval = nv.smplintervalmins;
+  char * smplinterval = nv.smplintervalmins;
   int blockremaining;
   int padding_remaining;
   int paddinglen;
@@ -143,7 +143,7 @@ int ndef_writepreamble(int buflenblks, char * statusb64)
       return -2; // FAULT
   }
 
-  Base64encode(timeintb64, timeinterval, SMPLINT_LENBYTES);
+  Base64encode(smplintb64, smplinterval, SMPLINT_LENBYTES);
 
   // TLV Message Type
   eep_cpbyte(&eepindex, TLV_START);
@@ -175,9 +175,9 @@ int ndef_writepreamble(int buflenblks, char * statusb64)
   }
 
   // Append time interval header
-  eep_cp(&eepindex, timeintkey, TIMEINTKEY_LEN);
+  eep_cp(&eepindex, smplintkey, SMPLINTKEY_LEN);
   // Append time interval value
-  eep_cp(&eepindex, timeintb64, TIMEINTB64_LEN);
+  eep_cp(&eepindex, smplintb64, SMPLINTB64_LEN);
   // Append serial key
   eep_cp(&eepindex, serialkey, SERIALKEY_LEN);
   // Append serial
@@ -197,8 +197,8 @@ int ndef_writepreamble(int buflenblks, char * statusb64)
   eep_cp(&eepindex, statkey, STATKEY_LEN);
   // Append status data
   eep_cp(&eepindex, statusb64, STATB64_LEN);
-  // Append query string
-  eep_cp(&eepindex, querykey, QKEY_LEN);
+  // Append circular buffer key
+  eep_cp(&eepindex, cbufkey, CBUFKEY_LEN);
 
   // Write the first 64 bytes to memory.
   while (eepindex > 0)
