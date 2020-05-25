@@ -120,7 +120,8 @@ static void set_rd1(pair_t *pair, int rd1)
 }
 
 /*!
- * @brief Initialise the sample state machine.
+ * @brief Initialise the encoder state machine.
+ * @detail Writes the
  *
  * @param resetcause 16-bit status value.
  * @param err Sets an error condition where data will not be logged to the URL circular buffer.

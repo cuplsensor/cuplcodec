@@ -17,7 +17,7 @@
   * The circular buffer is zero-padded with a base64 demi
   * that decodes to 0,0,0,0,0,0.
   */
-int ndef_writeblankurl(int qlenblks, char * statusb64, int * qstartblk);
+void ndef_writeblankurl(int qlenblks, char * statusb64, int * qstartblk);
 
 /** \brief Write the part of the URL before the circular buffer.
   * \param qlenblks Length of the circular buffer in blocks. This is used to calculate the NDEF message length.

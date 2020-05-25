@@ -56,9 +56,9 @@ static const char statparam[] = "&x=";
 static const char timeintparam[] = "/?t=";
 static const char zeropad[] = "MDAw";
 
-/*! \brief Create a URL NDEF Record.
- *  \param eepindex Position in the 64-byte array that buffers data to be written into EEPROM.
- *  \param msglenbytes NDEF Message Length in bytes.
+/*! @brief Create a URL NDEF Record.
+ *  @param eepindex Position in the 64-byte array that buffers data to be written into EEPROM.
+ *  @param msglenbytes NDEF Message Length in bytes.
  */
 static void ndef_createurlrecord(int * eepindex, int msglenbytes, int httpsDisable)
 {
@@ -214,35 +214,40 @@ int ndef_writepreamble(int qlenblks, char * statusb64)
   return preamblelenblks;
 }
 
-int ndef_writeblankurl(int qlenblks, char * statusb64, int * qstartblk)
+/*!
+ * @brief Write an NDEF message containing one URL record to EEPROM.
+ * @detail The URL contains a circular buffer. This is populated with a placeholder text - all zeroes - initially.
+ * @param buflenblks Circular buffer length in 16-byte EEPROM blocks.
+ * @param statusb64 Pointer to a base64 encoded status structure.
+ * @param bufstartblk Pointer to an integer that is used to store the buffer start block.
+ */
+void ndef_writeblankurl(int buflenblks, char * statusb64, int * bufstartblk)
 {
     int preamblelenblks;
     int eepindex;
     int i, blk;
 
-    preamblelenblks = ndef_writepreamble(qlenblks, statusb64);
+    preamblelenblks = ndef_writepreamble(buflenblks, statusb64);
 
     if (preamblelenblks < 0)
     {
         return preamblelenblks;
     }
 
-    *qstartblk = preamblelenblks;
+    *bufstartblk = preamblelenblks;
 
     // Write 2 blocks of padding.
     eepindex = 0;
     for(i=0; i<4; i++)
     {
-      eep_cp(&eepindex, zeropad, sizeof(zeropad)-1);
+      eep_cp(&eepindex, zeropad, sizeof(zeropad)-1); // BUG? Not sure about this.
     }
 
     // Populate the q parameter with padding.
-    for(blk=0; blk<qlenblks; blk++)
+    for(blk=0; blk<buflenblks; blk++)
     {
-        eep_write(*qstartblk + blk, 0);
+        eep_write(*bufstartblk + blk, 0);
     }
 
     eep_waitwritedone();
-
-    return 0;
 }
