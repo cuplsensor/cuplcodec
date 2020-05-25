@@ -102,6 +102,20 @@ URL Parameters
    If the decoder version does not match that of the encoder used to produce the URL, then :need:`CODEC_REQ_2`
    cannot be guaranteed.
 
+.. feat:: Protocol
+   :id: CODEC_FEAT_44
+   :status: open
+   :links: CODEC_SPEC_3
+
+   The HTTPS protocol is recommended for production use.
+
+   +----------+-------------+
+   | Protocol | Definition  |
+   +----------+-------------+
+   | 0x03     | http://     |
+   +----------+-------------+
+   | 0x04     | https://    |
+   +----------+-------------+
 
 Status
 ~~~~~~~~

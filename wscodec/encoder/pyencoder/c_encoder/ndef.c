@@ -217,7 +217,7 @@ int ndef_writepreamble(int buflenblks, char * statusb64)
  * @detail The URL contains a circular buffer. This is populated with a placeholder text - all zeroes - initially.
  * @param buflenblks Circular buffer length in 16-byte EEPROM blocks.
  * @param statusb64 Pointer to a base64 encoded  \link #stat_t status \endlink structure.
- * @param bufstartblk Pointer to an integer that is used to store the buffer start block.
+ * @param bufstartblk The circular buffer start block is written to this pointer.
  */
 void ndef_writeblankurl(int buflenblks, char * statusb64, int * bufstartblk)
 {
