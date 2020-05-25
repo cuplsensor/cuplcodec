@@ -68,7 +68,7 @@ URL Parameters
 .. feat:: CodecVersion
    :id: CODEC_FEAT_41
    :status: open
-   :links: CODEC_SPEC_18
+   :links: CODEC_SPEC_18, CODEC_FEAT_43
 
    16-bit unsigned integer codec version. From this the decoder can raise an error
    if it is not compatible.
@@ -76,7 +76,7 @@ URL Parameters
 .. feat:: FormatCode
    :id: CODEC_FEAT_42
    :status: open
-   :links: CODEC_SPEC_18, CODEC_FEAT_43
+   :links: CODEC_SPEC_18
 
    8-bit identifier of the circular buffer format. The circular buffer is arranged into pairs.
    A sample either corresponds to a pair of readings (e.g. temperature and humidity), or a single reading

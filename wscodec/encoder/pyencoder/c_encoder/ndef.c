@@ -9,13 +9,13 @@ extern nv_t nv;
 #define URL_RECORDTYPE      0x55
 #define URL_RECORDTYPE_LEN  1
 
-#define TIMEINTPARAM_LEN sizeof(timeintparam)-1
+#define TIMEINTKEY_LEN sizeof(timeintkey)-1
 #define TIMEINTB64_LEN  4
-#define SERIALPARAM_LEN sizeof(serialparam)-1
-#define VERPARAM_LEN    sizeof(verparam)-1
-#define STATPARAM_LEN   sizeof(statparam)-1
+#define SERIALKEY_LEN sizeof(serialkey)-1
+#define VERKEY_LEN    sizeof(verkey)-1
+#define STATKEY_LEN   sizeof(statkey)-1
 #define STATB64_LEN     8
-#define QPARAM_LEN      sizeof(queryparam)-1
+#define QKEY_LEN      sizeof(querykey)-1
 
 #define URL_RECORD_HEADER_LEN   8
 #define TLV_TYPE_LEN_LEN        4
@@ -49,11 +49,11 @@ typedef union
     unsigned char bytes[4];
 } len_t;
 
-char serialparam[] = "&s=";
-static const char queryparam[] = "&q=";
-static const char verparam[] = "&v=";
-static const char statparam[] = "&x=";
-static const char timeintparam[] = "/?t=";
+char serialkey[] = "&s=";
+static const char querykey[] = "&q=";
+static const char verkey[] = "&v=";
+static const char statkey[] = "&x=";
+static const char timeintkey[] = "/?t=";
 static const char zeropad[] = "MDAw";
 
 /*! @brief Create a URL NDEF Record.
@@ -97,7 +97,7 @@ static void ndef_createurlrecord(int * eepindex, int msglenbytes, int httpsDisab
 void ndef_calclen(int * paddinglen, int * preamblenbytes, int * urllen)
 {
     const int preurllen = URL_RECORD_HEADER_LEN + TLV_TYPE_LEN_LEN;
-    const int posturllen_nopadding = TIMEINTPARAM_LEN + TIMEINTB64_LEN + SERIALPARAM_LEN + SERIAL_LENBYTES + VERPARAM_LEN + VERSION_LENBYTES + STATPARAM_LEN + STATB64_LEN + QPARAM_LEN;
+    const int posturllen_nopadding = TIMEINTKEY_LEN + TIMEINTB64_LEN + SERIALKEY_LEN + SERIAL_LENBYTES + VERKEY_LEN + VERSION_LENBYTES + STATKEY_LEN + STATB64_LEN + QKEY_LEN;
 
     volatile int urllen_nopadding = (posturllen_nopadding + *urllen + preurllen);
     *paddinglen = (BLKSIZE - (urllen_nopadding & 0xF)) & 0xF;
@@ -175,15 +175,15 @@ int ndef_writepreamble(int buflenblks, char * statusb64)
   }
 
   // Append time interval header
-  eep_cp(&eepindex, timeintparam, TIMEINTPARAM_LEN);
+  eep_cp(&eepindex, timeintkey, TIMEINTKEY_LEN);
   // Append time interval value
   eep_cp(&eepindex, timeintb64, TIMEINTB64_LEN);
-  // Append serial param
-  eep_cp(&eepindex, serialparam, SERIALPARAM_LEN);
+  // Append serial key
+  eep_cp(&eepindex, serialkey, SERIALKEY_LEN);
   // Append serial
   eep_cp(&eepindex, serial, SERIAL_LENBYTES);
-  // Append version param
-  eep_cp(&eepindex, verparam, VERPARAM_LEN);
+  // Append version key
+  eep_cp(&eepindex, verkey, VERKEY_LEN);
   // Append padding
   padding_remaining = paddinglen;
   while(padding_remaining)
@@ -194,11 +194,11 @@ int ndef_writepreamble(int buflenblks, char * statusb64)
   // Append version
   eep_cp(&eepindex, nv.version, VERSION_LENBYTES);
   // Append status header
-  eep_cp(&eepindex, statparam, STATPARAM_LEN);
+  eep_cp(&eepindex, statkey, STATKEY_LEN);
   // Append status data
   eep_cp(&eepindex, statusb64, STATB64_LEN);
   // Append query string
-  eep_cp(&eepindex, queryparam, QPARAM_LEN);
+  eep_cp(&eepindex, querykey, QKEY_LEN);
 
   // Write the first 64 bytes to memory.
   while (eepindex > 0)
@@ -241,7 +241,7 @@ void ndef_writeblankurl(int buflenblks, char * statusb64, int * bufstartblk)
       eep_cp(&eepindex, zeropad, sizeof(zeropad)-1); // BUG? Not sure about this.
     }
 
-    // Populate the q parameter with padding.
+    // Populate the q key with padding.
     for(blk=0; blk<buflenblks; blk++)
     {
         eep_write(*bufstartblk + blk, 0);
