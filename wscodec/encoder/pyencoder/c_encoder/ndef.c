@@ -99,19 +99,17 @@ void ndef_calclen(int * paddinglen, int * preamblenbytes, int * urllen)
     const int preurllen = URL_RECORD_HEADER_LEN + TLV_TYPE_LEN_LEN;
     const int posturllen_nopadding = TIMEINTPARAM_LEN + TIMEINTB64_LEN + SERIALPARAM_LEN + SERIAL_LENBYTES + VERPARAM_LEN + VERSION_LENBYTES + STATPARAM_LEN + STATB64_LEN + QPARAM_LEN;
 
-//    printint(*urllen);
-//    printint(*preamblenbytes);
-//    printint(*paddinglen);
-//    printint(preurllen);
-//    printint(posturllen_nopadding);
     volatile int urllen_nopadding = (posturllen_nopadding + *urllen + preurllen);
     *paddinglen = (BLKSIZE - (urllen_nopadding & 0xF)) & 0xF;
     *preamblenbytes = urllen_nopadding + *paddinglen;
-//    printint(*paddinglen);
-//    printint(*preamblenbytes);
 }
 
-int ndef_writepreamble(int qlenblks, char * statusb64)
+/** @brief Write the part of the URL before the circular buffer.
+  * @param buflenblks Circular buffer length in 16-byte EEPROM blocks.
+  * @param statusb64 Pointer to a base64 encoded  \link #stat_t status \endlink structure.
+  * \returns 1 if buflenblks is not even.
+  */
+int ndef_writepreamble(int buflenblks, char * statusb64)
 {
   char timeintb64[TIMEINTB64_LEN+1] = {0};
   int blk = 0;
@@ -131,7 +129,7 @@ int ndef_writepreamble(int qlenblks, char * statusb64)
   // Calculate message length
   ndef_calclen(&paddinglen, &preamblenbytes, &urllen);
   int preamblelenblks = preamblenbytes >> 4;
-  int msglenbytes =  ((qlenblks + preamblelenblks) * BLKSIZE_BYTES) - TLSIZE_BYTES;
+  int msglenbytes =  ((buflenblks + preamblelenblks) * BLKSIZE_BYTES) - TLSIZE_BYTES;
 
   /* preamblenbytes must be a multiple of 16. */
   if (((preamblenbytes) & 0xF) > 0)
@@ -139,8 +137,8 @@ int ndef_writepreamble(int qlenblks, char * statusb64)
       return -1; // FAULT
   }
 
-  /* qlenblks must be even */
-  if ((qlenblks & 0x01) != 0)
+  /* buflenblks must be even */
+  if ((buflenblks & 0x01) != 0)
   {
       return -2; // FAULT
   }
@@ -218,7 +216,7 @@ int ndef_writepreamble(int qlenblks, char * statusb64)
  * @brief Write an NDEF message containing one URL record to EEPROM.
  * @detail The URL contains a circular buffer. This is populated with a placeholder text - all zeroes - initially.
  * @param buflenblks Circular buffer length in 16-byte EEPROM blocks.
- * @param statusb64 Pointer to a base64 encoded status structure.
+ * @param statusb64 Pointer to a base64 encoded  \link #stat_t status \endlink structure.
  * @param bufstartblk Pointer to an integer that is used to store the buffer start block.
  */
 void ndef_writeblankurl(int buflenblks, char * statusb64, int * bufstartblk)
