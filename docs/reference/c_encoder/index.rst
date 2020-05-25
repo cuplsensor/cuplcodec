@@ -11,5 +11,6 @@ C Encoder
    nvtype
    eep
    ndef
+   defs
    nt3h
 
