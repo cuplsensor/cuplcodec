@@ -17,14 +17,12 @@ extern nv_t nv;
 #define STATB64_LEN     8                       /*!< Length of the encoded \link #stat_t status \endlink string in bytes. */
 #define CBUFKEY_LEN     sizeof(cbufkey)-1       /*!< Length of the circular buffer key string in bytes. */
 
-#define URL_RECORD_HEADER_LEN   8
-#define TLV_TYPE_LEN_LEN        4
+#define NDEF_RECORD_HEADER_LEN   8           /*!< Length of the NDEF record header in bytes. */
+#define TL_LEN            4                  /*!< Length of the Tag and Length fields of the NDEF message TLV in bytes. */
 
-#define TLV_START       0x03
+#define TAG_NDEF_MESSSAGE       0x03        /*!< Tag indicating the TLV block contains an NDEF message. */
 
 #define WELLKNOWN_TNF   0x01
-#define ABSURI_TNF      0x03
-#define UNCHANGED_TNF   0x06
 
 #define URI_ID_HTTP     0x03
 #define URI_ID_HTTPS    0x04
@@ -41,7 +39,7 @@ typedef union
      unsigned char msgend:1;
      unsigned char msgbegin:1;
  } byte;
-} RecordHeader_t;
+} TNFFlags_t;
 
 typedef union
 {
@@ -62,7 +60,7 @@ static const char zeropad[] = "MDAw";              /*!< 4 characters that base64
  */
 static void ndef_createurlrecord(int * eepindex, int msglenbytes, int httpsDisable)
 {
-    RecordHeader_t rheader;
+    TNFFlags_t tnfflags;
     len_t payloadLength;
 
     int recordType = URL_RECORDTYPE;
@@ -73,18 +71,18 @@ static void ndef_createurlrecord(int * eepindex, int msglenbytes, int httpsDisab
         uriId = URI_ID_HTTP;
     }
 
-    rheader.all = 0xD1;
-    rheader.byte.chunkflag = 0;
-    rheader.byte.msgend = 1;
-    rheader.byte.idpresent = 0;
-    rheader.byte.srecord = 0;
-    rheader.byte.msgbegin = 1;
-    rheader.byte.tnf = WELLKNOWN_TNF;
+    tnfflags.all = 0xD1;
+    tnfflags.byte.chunkflag = 0;
+    tnfflags.byte.msgend = 1;
+    tnfflags.byte.idpresent = 0;
+    tnfflags.byte.srecord = 0;
+    tnfflags.byte.msgbegin = 1;
+    tnfflags.byte.tnf = WELLKNOWN_TNF;
     typeLength = URL_RECORDTYPE_LEN;
 
     payloadLength.all = msglenbytes-7;
 
-    eep_cpbyte(eepindex, rheader.all); // Record header
+    eep_cpbyte(eepindex, tnfflags.all); // Record header
     eep_cpbyte(eepindex, typeLength);
     eep_cpbyte(eepindex, payloadLength.bytes[3]);
     eep_cpbyte(eepindex, payloadLength.bytes[2]);
@@ -96,7 +94,7 @@ static void ndef_createurlrecord(int * eepindex, int msglenbytes, int httpsDisab
 
 void ndef_calclen(int * paddinglen, int * preamblenbytes, int * urllen)
 {
-    const int preurllen = URL_RECORD_HEADER_LEN + TLV_TYPE_LEN_LEN;
+    const int preurllen = NDEF_RECORD_HEADER_LEN + TL_LEN;
     const int posturllen_nopadding = SMPLINTKEY_LEN + SMPLINTB64_LEN + SERIALKEY_LEN + SERIAL_LENBYTES + VERKEY_LEN + VERSION_LENBYTES + STATKEY_LEN + STATB64_LEN + CBUFKEY_LEN;
 
     volatile int urllen_nopadding = (posturllen_nopadding + *urllen + preurllen);
@@ -129,7 +127,7 @@ int ndef_writepreamble(int buflenblks, char * statusb64)
   // Calculate message length
   ndef_calclen(&paddinglen, &preamblenbytes, &urllen);
   int preamblelenblks = preamblenbytes >> 4;
-  int msglenbytes =  ((buflenblks + preamblelenblks) * BLKSIZE_BYTES) - TLSIZE_BYTES;
+  int msglenbytes =  ((buflenblks + preamblelenblks) * BLKSIZE) - TL_LEN;
 
   /* preamblenbytes must be a multiple of 16. */
   if (((preamblenbytes) & 0xF) > 0)
@@ -145,8 +143,8 @@ int ndef_writepreamble(int buflenblks, char * statusb64)
 
   Base64encode(smplintb64, smplinterval, SMPLINT_LENBYTES);
 
-  // TLV Message Type
-  eep_cpbyte(&eepindex, TLV_START);
+  // Write TLV Tag field
+  eep_cpbyte(&eepindex, TAG_NDEF_MESSSAGE);
 
   // TLV Message Length
   eep_cpbyte(&eepindex, 0xFF);

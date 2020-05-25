@@ -1,10 +1,6 @@
 #ifndef _NDEF_H_
 #define _NDEF_H_
 
-#define BLKSIZE_BYTES   0x10
-#define BLKSIZE_POW2    4
-#define TLSIZE_BYTES    4
-
 #include <stdbool.h>
 
 
