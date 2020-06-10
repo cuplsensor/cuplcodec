@@ -1,4 +1,4 @@
-from .v1 import ParamDecoder as v1ParamDecoder
+from .paramdecoder import ParamDecoder
 from .exceptions import InvalidMajorVersionError
 from datetime import timezone, datetime
 
@@ -26,7 +26,7 @@ class Decoder:
         self.scandatetime = scandatetime or datetime.now(timezone.utc)
 
         if majorversion == '1':
-            self.params = v1ParamDecoder(circformat, timeintb64, statb64, circb64, secretkey, usehmac, self.scandatetime)
+            self.params = ParamDecoder(circformat, timeintb64, statb64, circb64, secretkey, usehmac, self.scandatetime)
         else:
             raise InvalidMajorVersionError
 

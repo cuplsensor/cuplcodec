@@ -2,7 +2,7 @@ import pytest
 from wscodec.encoder.pyencoder.instrumented import InstrumentedSampleTRH, InstrumentedSample
 from wscodec.decoder import Decoder
 from wscodec.decoder.exceptions import NoCircularBufferError
-from wscodec.decoder.v1.statdecoder import SVSH_BIT
+from wscodec.decoder.statdecoder import SVSH_BIT
 
 INPUT_SERIAL = 'abcdabcd'
 INPUT_TIMEINT = 12

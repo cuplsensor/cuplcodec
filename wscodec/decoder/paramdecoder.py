@@ -1,4 +1,4 @@
-from wscodec.decoder.exceptions import InvalidCircFormatError, NoCircularBufferError, DelimiterNotFoundError
+from .exceptions import InvalidCircFormatError, NoCircularBufferError, DelimiterNotFoundError
 from .statdecoder import StatDecoder
 from .htbufferdecoder import HTBufferDecoder
 from .tbufferdecoder import TBufferDecoder
