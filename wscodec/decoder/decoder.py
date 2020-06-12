@@ -9,25 +9,25 @@ class Decoder:
 
     Parameters
     -----------
-    secretkey:
+    secretkey (str):
         HMAC secret key as a string. Normally 16 bytes.
 
-    statb64:
+    statb64 (str):
         Value of the URL parameter that holds status information (after base64 encoding).
 
-    timeintb64:
+    timeintb64 (str):
         Value of the URL parameter that holds the time interval in minutes (after base64 encoding).
 
-    circb64:
+    circb64 (str):
         Value of the URL parameter that contains the circular buffer of base64 encoded samples.
 
-    ver:
+    ver (str):
         Value of the URL parameter that contains the version string.
 
-    usehmac:
+    usehmac (bool):
         True if the hash inside the circular buffer endstop is HMAC-MD5. False if it is MD5.
 
-    scandatetime:
+    scandatetime (datetime):
         The time that the tag was scanned. All decoded samples will be timestamped relative to this.
 
     """
