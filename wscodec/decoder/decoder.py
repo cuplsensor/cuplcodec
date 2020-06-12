@@ -7,18 +7,31 @@ class Decoder:
     """
     Construct a Decoder object
 
-    :ivar majorversion: initial value: par2
-
     Parameters
     -----------
-    secretkey
-        Secret Key string.
+    secretkey:
+        HMAC secret key as a string. Normally 16 bytes.
 
-    **reqargs
-        A list of query string parameters
+    statb64:
+        Value of the URL parameter that holds status information (after base64 encoding).
+
+    timeintb64:
+        Value of the URL parameter that holds the time interval in minutes (after base64 encoding).
+
+    circb64:
+        Value of the URL parameter that contains the circular buffer of base64 encoded samples.
+
+    ver:
+        Value of the URL parameter that contains the version string.
+
+    usehmac:
+        True if the hash inside the circular buffer endstop is HMAC-MD5. False if it is MD5.
+
+    scandatetime:
+        The time that the tag was scanned. All decoded samples will be timestamped relative to this.
 
     """
-    def __init__(self, secretkey, statb64, timeintb64, circb64, ver, usehmac=True, scandatetime=None):
+    def __init__(self, secretkey: str, statb64: str, timeintb64: str, circb64: str, ver: str, usehmac: bool = True, scandatetime: datetime = None):
         majorversion = ver[-2:-1]
         circformat = ver[-1:]
 
