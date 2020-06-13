@@ -22,23 +22,14 @@ class TBufferDecoder(PairsDecoder):
     def __init__(self, timeintminutes: int, circbuf64: str, secretkey: str, status: Status, usehmac: bool, scandatetime: datetime):
         super().__init__(circbuf64, secretkey, status, usehmac, scandatetime)
 
-        decsmpls = list()
+        samples = list()
 
         for pair in self.pairs:
-            tempMsb = pair['tempMsb']
-            rhMsb = pair['rhMsb']
-            Lsb = pair['Lsb']
+            if pair.rd1 != 4095:
+                temp2 = (pair.rd1 * 165)/4096 - 40
+                samples.append({'temp': temp2})
 
-            tempLsb = (Lsb >> 4) & 0xF
-            rhLsb = Lsb & 0xF
-            temp = ((tempMsb << 4) | tempLsb)
-            rh = ((rhMsb << 4) | rhLsb)
+            temp1 = (pair.rd0 * 165)/4096 - 40
+            samples.append({'temp': temp1})
 
-            if rh != 4095:
-                temp2 = (rh * 165)/4096 - 40
-                decsmpls.append({'temp': temp2})
-
-            temp1 = (temp * 165)/4096 - 40
-            decsmpls.append({'temp': temp1})
-
-        self.smpls = self.applytimestamp(decsmpls, timeintminutes)
+        self.samples = self.applytimestamp(samples, timeintminutes)

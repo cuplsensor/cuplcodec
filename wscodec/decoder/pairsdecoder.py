@@ -10,6 +10,21 @@ PAIRS_PER_DEMI = 2
 ENDSTOP_BYTE = '~'  # This must be URL Safe
 
 
+class Pair:
+    def __init__(self, rd0Msb: int, rd1Msb: int, Lsb: int):
+        self.rd0Msb = rd0Msb
+        self.rd1Msb = rd1Msb
+        self.Lsb = Lsb
+
+        rd0Lsb = (self.Lsb >> 4) & 0xF
+        rd1Lsb = self.Lsb & 0xF
+        self.rd0 = ((self.rd0Msb << 4) | rd0Lsb)
+        self.rd1 = ((self.rd1Msb << 4) | rd1Lsb)
+
+    def readings(self):
+        return {'rd0': self.rd0, 'rd1': self.rd1}
+
+
 class PairsDecoder:
     """
     Extract raw sample data from the circular buffer
@@ -126,9 +141,9 @@ class PairsDecoder:
         frame = bytearray()
 
         for pair in pairlist:
-            frame.append(pair['tempMsb'])
-            frame.append(pair['rhMsb'])
-            frame.append(pair['Lsb'])
+            frame.append(pair.rd0Msb)
+            frame.append(pair.rd1Msb)
+            frame.append(pair.Lsb)
 
         frame.append(status.loopcount >> 8)
         frame.append(status.loopcount & 0xFF)
@@ -171,7 +186,6 @@ class PairsDecoder:
         return smpls
 
     def chunkstring(self, string, length):
-        substrs = len(string)/length
         return (string[i:i+length] for i in range(0, len(string), length))
 
     # Obtain samples from a 4 byte base64 chunk. Chunk should be renamed to demi here.
@@ -179,12 +193,12 @@ class PairsDecoder:
         chunksamples = list()
         decodedchunk = b64decode(chunk)
         for i in range(0, (samplecount*2)-1, BYTES_PER_SAMPLE):
-            tempMsb = decodedchunk[i]
-            rhMsb = decodedchunk[i+1]
+            rd0Msb = decodedchunk[i]
+            rd1Msb = decodedchunk[i+1]
             Lsb = decodedchunk[i+2]
 
-            smpl = {'tempMsb': tempMsb, 'rhMsb': rhMsb, 'Lsb': Lsb}
-            chunksamples.append(smpl)
+            pair = Pair(rd0Msb, rd1Msb, Lsb)
+            chunksamples.append(pair)
         # Return newest sample first.
         chunksamples.reverse()
         return chunksamples
