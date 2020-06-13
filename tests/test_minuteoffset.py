@@ -33,7 +33,7 @@ def test_minuteoffset(instr_sample):
         decodedurl = Decoder(secretkey=instr_sample.secretkey, statb64=par['x'][0], timeintb64=par['t'][0],
                              circb64=par['q'][0], ver=par['v'][0])
 
-        assert i == decodedurl.params.buffer.minuteoffset
+        assert i == decodedurl.buffer.minuteoffset
 
 
 

@@ -32,4 +32,4 @@ def test_cursorpos(instr_sample, n):
     decodedurl = Decoder(secretkey=instr_sample.secretkey, statb64=par['x'][0], timeintb64=par['t'][0],
                          circb64=par['q'][0], ver=par['v'][0])
 
-    assert encoder_cursorpos == decodedurl.params.buffer.endmarkerpos
+    assert encoder_cursorpos == decodedurl.buffer.endmarkerpos

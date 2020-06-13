@@ -1,6 +1,10 @@
-from .paramdecoder import ParamDecoder
-from .exceptions import InvalidMajorVersionError
 from datetime import timezone, datetime
+from .exceptions import InvalidCircFormatError, NoCircularBufferError, DelimiterNotFoundError, InvalidMajorVersionError
+from .statdecoder import StatDecoder
+from .htbufferdecoder import HTBufferDecoder
+from .tbufferdecoder import TBufferDecoder
+from .b64decode import b64decode
+
 
 
 class Decoder:
@@ -9,25 +13,25 @@ class Decoder:
 
     Parameters
     -----------
-    secretkey (str):
+    secretkey:
         HMAC secret key as a string. Normally 16 bytes.
 
-    statb64 (str):
+    statb64:
         Value of the URL parameter that holds status information (after base64 encoding).
 
-    timeintb64 (str):
+    timeintb64:
         Value of the URL parameter that holds the time interval in minutes (after base64 encoding).
 
-    circb64 (str):
+    circb64:
         Value of the URL parameter that contains the circular buffer of base64 encoded samples.
 
-    ver (str):
+    ver:
         Value of the URL parameter that contains the version string.
 
-    usehmac (bool):
+    usehmac:
         True if the hash inside the circular buffer endstop is HMAC-MD5. False if it is MD5.
 
-    scandatetime (datetime):
+    scandatetime:
         The time that the tag was scanned. All decoded samples will be timestamped relative to this.
 
     """
@@ -38,10 +42,43 @@ class Decoder:
         self.majorversion = majorversion
         self.scandatetime = scandatetime or datetime.now(timezone.utc)
 
-        if majorversion == '1':
-            self.params = ParamDecoder(circformat, timeintb64, statb64, circb64, secretkey, usehmac, self.scandatetime)
-        else:
+        #self.params = ParamDecoder(circformat, timeintb64, statb64, circb64, secretkey, usehmac, self.scandatetime)
+        if majorversion != '1':
             raise InvalidMajorVersionError
+
+        if circformat == '1':
+            bufferdecoder = HTBufferDecoder
+        elif circformat == '2':
+            bufferdecoder = TBufferDecoder
+        else:
+            raise InvalidCircFormatError(circformat)
+
+        self.circformat = circformat
+        self.timeintervalmins = self.decode_timeinterval(timeintb64)
+        self.status = StatDecoder(statb64)
+        try:
+            self.buffer = bufferdecoder(circb64, self.timeintervalmins, secretkey, self.status, usehmac, scandatetime)
+        except DelimiterNotFoundError:
+            raise NoCircularBufferError(self.status)
+
+    def decode_timeinterval(enctimeint):
+        """
+        Get the time interval in minutes from a URL parameter.
+
+        Parameters
+        -----------
+        enctimeint
+            Time interval in little endian byte order encoded as base64.
+
+        Returns
+        --------
+        int
+            Time interval in minutes
+
+        """
+        timeintbytes = b64decode(enctimeint)
+        timeint = int.from_bytes(timeintbytes, byteorder='little')
+        return timeint
 
 
 

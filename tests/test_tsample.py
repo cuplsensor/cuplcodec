@@ -53,7 +53,7 @@ def test_md5(instr_sample, n):
     decodedurl = Decoder(secretkey="", statb64=par['x'][0], timeintb64=par['t'][0],
                          circb64=par['q'][0], ver=par['v'][0], usehmac=False)
 
-    urllist = decodedurl.params.buffer.smpls
+    urllist = decodedurl.buffer.smpls
     for d in urllist:
         del d['ts']
 

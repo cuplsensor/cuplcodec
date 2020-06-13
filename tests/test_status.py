@@ -31,7 +31,7 @@ def test_status(instr_sample, n=1):
     decodedurl = Decoder(secretkey=instr_sample.secretkey, statb64=par['x'][0], timeintb64=par['t'][0],
                          circb64=par['q'][0], ver=par['v'][0])
 
-    assert encoder_cursorpos == decodedurl.params.buffer.endmarkerpos
+    assert encoder_cursorpos == decodedurl.buffer.endmarkerpos
 
 
 @pytest.mark.parametrize('n', [1, 300])
@@ -42,7 +42,7 @@ def test_loopcount(instr_sample, n):
     decodedurl = Decoder(secretkey=instr_sample.secretkey, statb64=par['x'][0], timeintb64=par['t'][0],
                          circb64=par['q'][0], ver=par['v'][0])
 
-    assert decodedurl.params.status.loopcount == n
+    assert decodedurl.status.loopcount == n
 
 
 @pytest.mark.parametrize('resetsalltime', [1, 300])
@@ -59,7 +59,7 @@ def test_resetsalltime(resetsalltime):
     decodedurl = Decoder(secretkey=instr_sample.secretkey, statb64=par['x'][0], timeintb64=par['t'][0],
                          circb64=par['q'][0], ver=par['v'][0])
 
-    assert decodedurl.params.status.resetsalltime == resetsalltime
+    assert decodedurl.status.resetsalltime == resetsalltime
 
 
 @pytest.mark.parametrize('resetcause', [1, 100, 254])
@@ -83,5 +83,5 @@ def test_batteryvoltage(resetcause, batteryadc):
     decodedurl = Decoder(secretkey=instr_sample.secretkey, statb64=par['x'][0], timeintb64=par['t'][0],
                          circb64=par['q'][0], ver=par['v'][0])
 
-    assert decodedurl.params.status.get_batvoltageraw() == batteryadc
-    assert decodedurl.params.status.get_resetcause() == resetcause
+    assert decodedurl.status.get_batvoltageraw() == batteryadc
+    assert decodedurl.status.get_resetcause() == resetcause

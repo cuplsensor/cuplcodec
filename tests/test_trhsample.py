@@ -59,7 +59,7 @@ def test_md5(n, usehmac):
     decodedurl = Decoder(secretkey=INPUT_SECKEY, statb64=par['x'][0], timeintb64=par['t'][0],
                          circb64=par['q'][0], ver=par['v'][0], usehmac=usehmac)
 
-    urllist = decodedurl.params.buffer.smpls
+    urllist = decodedurl.buffer.smpls
     for d in urllist:
         del d['ts']
 
@@ -85,7 +85,7 @@ def test_batteryvoltage():
     decodedurl = Decoder(secretkey="", statb64=par['x'][0], timeintb64=par['t'][0],
                          circb64=par['q'][0], ver=par['v'][0], usehmac=False)
 
-    assert decodedurl.params.status.get_batvoltageraw() == testbatv
+    assert decodedurl.status.get_batvoltageraw() == testbatv
 
 
 def test_errorcondition():
