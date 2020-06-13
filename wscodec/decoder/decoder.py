@@ -42,7 +42,6 @@ class Decoder:
         self.majorversion = majorversion
         self.scandatetime = scandatetime or datetime.now(timezone.utc)
 
-        #self.params = ParamDecoder(circformat, timeintb64, statb64, circb64, secretkey, usehmac, self.scandatetime)
         if majorversion != '1':
             raise InvalidMajorVersionError
 
@@ -54,29 +53,30 @@ class Decoder:
             raise InvalidCircFormatError(circformat)
 
         self.circformat = circformat
-        self.timeintervalmins = self.decode_timeinterval(timeintb64)
+        self.timeintervalmins = Decoder.decode_timeinterval(timeintb64)
         self.status = StatDecoder(statb64)
         try:
             self.buffer = bufferdecoder(circb64, self.timeintervalmins, secretkey, self.status, usehmac, scandatetime)
         except DelimiterNotFoundError:
             raise NoCircularBufferError(self.status)
 
-    def decode_timeinterval(enctimeint):
+    @staticmethod
+    def decode_timeinterval(timeintb64):
         """
         Get the time interval in minutes from a URL parameter.
 
         Parameters
         -----------
-        enctimeint
-            Time interval in little endian byte order encoded as base64.
+        timeintb64
+            Time interval between samples in minutes, little endian byte order and encoded as base64.
 
         Returns
         --------
         int
-            Time interval in minutes
+            Time interval between samples in minutes
 
         """
-        timeintbytes = b64decode(enctimeint)
+        timeintbytes = b64decode(timeintb64)
         timeint = int.from_bytes(timeintbytes, byteorder='little')
         return timeint
 
