@@ -34,13 +34,13 @@ class Decoder:
 
     """
     def __init__(self, secretkey: str, statb64: str, timeintb64: str, circb64: str, ver: str, usehmac: bool = True, scandatetime: datetime = None):
-        majorversion = ver[-2:-1]
-        circformat = ver[-1:]
+        majorversion = int(ver[-2:-1])
+        circformat = int(ver[-1:])
 
         self.majorversion = majorversion
         self.scandatetime = scandatetime or datetime.now(timezone.utc)
 
-        if majorversion != '1':
+        if majorversion != 1:
             raise InvalidMajorVersionError
 
         self.circformat = circformat
