@@ -33,6 +33,7 @@ class Decoder:
         The time that the tag was scanned. All decoded samples will be timestamped relative to this.
 
     """
+
     def __init__(self, secretkey: str, statb64: str, timeintb64: str, circb64: str, ver: str, usehmac: bool = True, scandatetime: datetime = None):
         majorversion = int(ver[-2:-1])
         circformat = int(ver[-1:])
@@ -66,6 +67,7 @@ def decode_timeinterval(timeintb64):
         Time interval between samples in minutes
 
     """
+    
     timeintbytes = b64decode(timeintb64)
     timeint = int.from_bytes(timeintbytes, byteorder='little')
     return timeint
