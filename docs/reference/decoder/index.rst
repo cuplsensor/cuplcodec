@@ -1,18 +1,13 @@
 Decoder
 ==========
 
-
-
 .. autoclass:: wscodec.decoder.decoder.Decoder
     :members:
 
-.. autoclass:: wscodec.decoder.bufferdecoder
+.. automodule:: wscodec.decoder.pairsdecoder
     :members:
 
-.. autoclass:: wscodec.decoder.tbufferdecoder.TBufferDecoder
-    :members:
-
-.. autoclass:: wscodec.decoder.htbufferdecoder.HTBufferDecoder
+.. automodule:: wscodec.decoder.hdc2021
     :members:
 
 .. autoclass:: wscodec.decoder.status.Status

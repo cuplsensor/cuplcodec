@@ -45,14 +45,15 @@ class Decoder:
             raise InvalidMajorVersionError
 
         self.circformat = circformat
-        self.timeintervalmins = decode_timeinterval(timeintb64)
+        self.timeintervalmins = timeinterval(timeintb64)
         self.status = Status(statb64)
         try:
             self.buffer = CircularBufferDecoder.decode(self.circformat, self.timeintervalmins, circb64, secretkey, self.status, usehmac, self.scandatetime)
         except DelimiterNotFoundError:
             raise NoCircularBufferError(self.status)
 
-def decode_timeinterval(timeintb64):
+
+def timeinterval(timeintb64):
     """
     Get the time interval in minutes from a URL parameter.
 
@@ -67,7 +68,7 @@ def decode_timeinterval(timeintb64):
         Time interval between samples in minutes
 
     """
-    
+
     timeintbytes = b64decode(timeintb64)
     timeint = int.from_bytes(timeintbytes, byteorder='little')
     return timeint

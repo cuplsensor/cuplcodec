@@ -30,7 +30,7 @@ class Pair:
 
 class PairsDecoder:
     """
-    Extract raw sample data from the circular buffer
+    Unwrap the circular buffer and return a list of pairs
 
     First the endstop marker is found, which is the character '~'.
 

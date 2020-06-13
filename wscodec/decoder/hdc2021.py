@@ -13,7 +13,7 @@ class HDC2021Decoder(PairsDecoder):
         return (reading * 100)/4096
 
 
-class HTDecoder(HDC2021Decoder):
+class HDC2021DecoderHT(HDC2021Decoder):
     """
     Extracts samples containing 2 measurands (temperature and humidity) from the circular buffer.
 
@@ -46,7 +46,7 @@ class HTDecoder(HDC2021Decoder):
         self.samples = self.applytimestamp(samples, timeintminutes)
 
 
-class TDecoder(HDC2021Decoder):
+class HDC2021DecoderT(HDC2021Decoder):
     """
     Extracts temperature samples from the circular buffer.
 
