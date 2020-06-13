@@ -24,10 +24,10 @@ class HTBufferDecoder(PairsDecoder):
 
         decsmpls = list()
 
-        for rawsmpl in self.rawsmpls:
-            tempMsb = rawsmpl['tempMsb']
-            rhMsb = rawsmpl['rhMsb']
-            Lsb = rawsmpl['Lsb']
+        for pair in self.pairs:
+            tempMsb = pair['tempMsb']
+            rhMsb = pair['rhMsb']
+            Lsb = pair['Lsb']
 
             tempLsb = (Lsb >> 4) & 0xF
             rhLsb = Lsb & 0xF

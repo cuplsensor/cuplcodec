@@ -68,12 +68,9 @@ class PairsDecoder:
         decmarker = int.from_bytes(decmarkerbytes, byteorder='little')
         minuteoffset = decmarker
 
-        smplcounter = 0
-        smplcount = 0
-
         endbuf = list()
         declist = list()
-        samplelist = list()
+        pairlist = list()
         linbuf8 = list()
 
         # Linearise the circular buffer.
@@ -97,10 +94,10 @@ class PairsDecoder:
         endbytes = b''.join([dec for dec in declist])
 
         # Extract the number of samples and the HMAC/MD5 checksum from the endstop.
-        smplcountbytes = endbytes[7:9]
+        npairsbytes = endbytes[7:9]
         md5bytes = endbytes[0:7]
         urlMD5 = md5bytes.hex()
-        smplcount = struct.unpack(">H", smplcountbytes)[0]
+        npairs = struct.unpack(">H", npairsbytes)[0]
 
         # Convert 4 byte chunks into 8 byte chunks.
         # There should not be any 4 byte chunks left over,
@@ -110,29 +107,28 @@ class PairsDecoder:
             linbuf8.append(x)
 
         # The newest 8 byte chunk might only contain
-        # 1 valid sample. If so, this is a
+        # 1 valid pair. If so, this is a
         # partial packet and it is processed first.
-        rem = smplcount % PAIRS_PER_DEMI
-        full = int(smplcount / PAIRS_PER_DEMI)
+        rem = npairs % PAIRS_PER_DEMI
+        full = int(npairs / PAIRS_PER_DEMI)
 
         if rem != 0:
             chunk = linbuf8.pop()
-            smpls = self.samplesfromchunk(chunk, rem)
-            samplelist.extend(smpls)
+            pairs = self.pairsfromchunk(chunk, rem)
+            pairlist.extend(pairs)
 
-        # Process remaining full packets. These all contain 2 samples.
+        # Process remaining full demis. These all contain 2 pairs.
         for i in range(full, 0, -1):
             chunk = linbuf8.pop()
-            print(chunk)
-            smpls = self.samplesfromchunk(chunk, 3)
-            samplelist.extend(smpls)
+            pairs = self.pairsfromchunk(chunk, 3)
+            pairlist.extend(pairs)
 
         frame = bytearray()
 
-        for sample in samplelist:
-            frame.append(sample['tempMsb'])
-            frame.append(sample['rhMsb'])
-            frame.append(sample['Lsb'])
+        for pair in pairlist:
+            frame.append(pair['tempMsb'])
+            frame.append(pair['rhMsb'])
+            frame.append(pair['Lsb'])
 
         frame.append(status.loopcount >> 8)
         frame.append(status.loopcount & 0xFF)
@@ -154,8 +150,8 @@ class PairsDecoder:
         else:
             raise MessageIntegrityError(calcMD5, urlMD5)
 
-        self.rawsmpls = samplelist
-        self.rawsmplcount = smplcount
+        self.pairs = pairlist
+        self.npairs = len(pairlist)
         self.endmarkerpos = endmarkerpos
         self.minuteoffset = minuteoffset
         self.newestdatetime = scandatetime - timedelta(minutes=self.minuteoffset) # Timestamp of the newest sample
@@ -179,7 +175,7 @@ class PairsDecoder:
         return (string[i:i+length] for i in range(0, len(string), length))
 
     # Obtain samples from a 4 byte base64 chunk. Chunk should be renamed to demi here.
-    def samplesfromchunk(self, chunk, samplecount):
+    def pairsfromchunk(self, chunk, samplecount):
         chunksamples = list()
         decodedchunk = b64decode(chunk)
         for i in range(0, (samplecount*2)-1, BYTES_PER_SAMPLE):
