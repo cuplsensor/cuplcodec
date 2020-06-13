@@ -106,6 +106,6 @@ def test_errorcondition():
         decodedurl = Decoder(secretkey="", statb64=par['x'][0], timeintb64=par['t'][0],
                              circb64="", ver=par['v'][0], usehmac=False)
 
-    assert excinfo.value.status.status['supervisor'] == True
+    assert excinfo.value.status.resetcause['supervisor'] == True
 
 
