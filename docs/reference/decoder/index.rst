@@ -1,14 +1,18 @@
 Decoder
 ==========
 
-.. autoclass:: wscodec.decoder.v1.tbufferdecoder.TBufferDecoder
-    :members:
 
-.. autoclass:: wscodec.decoder.v1.htbufferdecoder.HTBufferDecoder
-    :members:
 
 .. autoclass:: wscodec.decoder.decoder.Decoder
     :members:
 
-.. autoclass:: wscodec.decoder.v1.paramdecoder.ParamDecoder
+.. automodule:: wscodec.decoder.bufferdecoder
+
+.. autoclass:: wscodec.decoder.tbufferdecoder.TBufferDecoder
+    :members:
+
+.. autoclass:: wscodec.decoder.htbufferdecoder.HTBufferDecoder
+    :members:
+
+.. automodule:: wscodec.decoder.status.Status
     :members:

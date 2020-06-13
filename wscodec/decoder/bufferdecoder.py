@@ -1,11 +1,12 @@
 from .exceptions import MessageIntegrityError, DelimiterNotFoundError
 from .b64decode import b64decode
 import struct
-from .msgauth import MsgAuth
 from datetime import timedelta
+import hashlib
+import hmac
 
 
-class BufferDecoder(MsgAuth):
+class BufferDecoder:
     """
     Extract raw sample data from the circular buffer
 
@@ -143,7 +144,7 @@ class BufferDecoder(MsgAuth):
         frame.append(endmarkerpos & 0xFF)
 
         # Perform message authentication.
-        calcMD5 = super().gethash(frame, usehmac, bytearray(secretkey, 'utf8'))
+        calcMD5 = self.gethash(frame, usehmac, bytearray(secretkey, 'utf8'))
 
         # Truncate calculated MD5 to the same length as the URL MD5.
         calcMD5 = calcMD5[0:len(urlMD5)]
@@ -191,3 +192,11 @@ class BufferDecoder(MsgAuth):
         # Return newest sample first.
         chunksamples.reverse()
         return chunksamples
+
+    def gethash(self, message, usehmac, secretkey=None):
+        if usehmac:
+            hmacobj = hmac.new(secretkey, message, "md5")
+            digest = hmacobj.hexdigest()
+        else:
+            digest = hashlib.md5(message).hexdigest()
+        return digest
