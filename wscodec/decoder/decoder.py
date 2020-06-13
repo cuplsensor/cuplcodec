@@ -1,10 +1,8 @@
 from datetime import timezone, datetime
-from .exceptions import InvalidCircFormatError, NoCircularBufferError, DelimiterNotFoundError, InvalidMajorVersionError
+from .exceptions import NoCircularBufferError, DelimiterNotFoundError, InvalidMajorVersionError
 from .status import Status
-from .htbufferdecoder import HTBufferDecoder
-from .tbufferdecoder import TBufferDecoder
 from .b64decode import b64decode
-
+from .circularbuffer import CircularBufferDecoder
 
 
 class Decoder:
@@ -45,40 +43,32 @@ class Decoder:
         if majorversion != '1':
             raise InvalidMajorVersionError
 
-        if circformat == '1':
-            bufferdecoder = HTBufferDecoder
-        elif circformat == '2':
-            bufferdecoder = TBufferDecoder
-        else:
-            raise InvalidCircFormatError(circformat)
-
         self.circformat = circformat
-        self.timeintervalmins = Decoder.decode_timeinterval(timeintb64)
+        self.timeintervalmins = decode_timeinterval(timeintb64)
         self.status = Status(statb64)
         try:
-            self.buffer = bufferdecoder(circb64, self.timeintervalmins, secretkey, self.status, usehmac, self.scandatetime)
+            self.buffer = CircularBufferDecoder.decode(self.circformat, self.timeintervalmins, circb64, self.timeintervalmins, secretkey, self.status, usehmac, self.scandatetime)
         except DelimiterNotFoundError:
             raise NoCircularBufferError(self.status)
 
-    @staticmethod
-    def decode_timeinterval(timeintb64):
-        """
-        Get the time interval in minutes from a URL parameter.
+def decode_timeinterval(timeintb64):
+    """
+    Get the time interval in minutes from a URL parameter.
 
-        Parameters
-        -----------
-        timeintb64
-            Time interval between samples in minutes, little endian byte order and encoded as base64.
+    Parameters
+    -----------
+    timeintb64
+        Time interval between samples in minutes, little endian byte order and encoded as base64.
 
-        Returns
-        --------
-        int
-            Time interval between samples in minutes
+    Returns
+    --------
+    int
+        Time interval between samples in minutes
 
-        """
-        timeintbytes = b64decode(timeintb64)
-        timeint = int.from_bytes(timeintbytes, byteorder='little')
-        return timeint
+    """
+    timeintbytes = b64decode(timeintb64)
+    timeint = int.from_bytes(timeintbytes, byteorder='little')
+    return timeint
 
 
 

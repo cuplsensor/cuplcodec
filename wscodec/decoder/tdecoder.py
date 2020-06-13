@@ -1,13 +1,15 @@
-from .bufferdecoder import BufferDecoder
+from .pairsdecoder import PairsDecoder
+from wscodec.decoder.status import Status
+from datetime import datetime
 
 
-class TBufferDecoder(BufferDecoder):
+class TBufferDecoder(PairsDecoder):
     """
     Extracts temperature samples from the circular buffer.
 
     Parameters
     ----------
-    encstr : str
+    circbuf64 : str
         Circular buffer string containing temperature samples encoded in base64.
 
     timeintminutes : int
@@ -17,8 +19,8 @@ class TBufferDecoder(BufferDecoder):
         Secret key used to verify the source of the samples.
 
     """
-    def __init__(self, encstr, timeintminutes, secretkey, status, usehmac, scandatetime):
-        super().__init__(encstr, secretkey, status, usehmac, scandatetime)
+    def __init__(self, timeintminutes: int, circbuf64: str, secretkey: str, status: Status, usehmac: bool, scandatetime: datetime):
+        super().__init__(circbuf64, secretkey, status, usehmac, scandatetime)
 
         decsmpls = list()
 

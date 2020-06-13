@@ -19,7 +19,7 @@ CLOCKFAIL_BIT = BIT5
 SCANTIMEOUT_BIT = BIT7
 
 
-class Status():
+class Status:
     """
         Decode the status string.
 

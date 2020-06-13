@@ -1,24 +1,26 @@
-from .bufferdecoder import BufferDecoder
+from .pairsdecoder import PairsDecoder
+from wscodec.decoder.status import Status
+from datetime import datetime
 
 
-class HTBufferDecoder(BufferDecoder):
+class HTBufferDecoder(PairsDecoder):
     """
     Extracts samples containing 2 measurands (temperature and humidity) from the circular buffer.
 
     Parameters
     ----------
-    encstr : str
-        Circular buffer string containing samples encoded in base64.
-
     timeintminutes : int
         Time interval between samples in minutes.
+
+    circbuf64 : str
+        Circular buffer string containing samples encoded in base64.
 
     secretkey : str
         Secret key used to verify the source of the samples.
 
     """
-    def __init__(self, encstr, timeintminutes, secretkey, status, usehmac, scandatetime):
-        super().__init__(encstr, secretkey, status, usehmac, scandatetime)
+    def __init__(self, timeintminutes: int, circbuf64: str, secretkey: str, status: Status, usehmac: bool, scandatetime: datetime):
+        super().__init__(circbuf64, secretkey, status, usehmac, scandatetime)
 
         decsmpls = list()
 

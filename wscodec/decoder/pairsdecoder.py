@@ -5,8 +5,12 @@ from datetime import timedelta
 import hashlib
 import hmac
 
+BYTES_PER_SAMPLE = 3
+PAIRS_PER_DEMI = 2
+ENDSTOP_BYTE = '~'  # This must be URL Safe
 
-class BufferDecoder:
+
+class PairsDecoder:
     """
     Extract raw sample data from the circular buffer
 
@@ -44,14 +48,10 @@ class BufferDecoder:
         Secret key used to verify that the circular buffer has originated from a trusted source.
 
     """
-    BYTES_PER_SAMPLE = 3
-    PAIRS_PER_DEMI = 2
-    ENDSTOP_BYTE = '~'  # This must be URL Safe
 
     def __init__(self, encstr, secretkey, status, usehmac, scandatetime):
-        super().__init__()
         # Split query string at the end of the endstop marker.
-        splitend = encstr.split(BufferDecoder.ENDSTOP_BYTE)
+        splitend = encstr.split(ENDSTOP_BYTE)
 
         if len(splitend) != 2:
             raise DelimiterNotFoundError(encstr)
@@ -112,8 +112,8 @@ class BufferDecoder:
         # The newest 8 byte chunk might only contain
         # 1 valid sample. If so, this is a
         # partial packet and it is processed first.
-        rem = smplcount % BufferDecoder.PAIRS_PER_DEMI
-        full = int(smplcount / BufferDecoder.PAIRS_PER_DEMI)
+        rem = smplcount % PAIRS_PER_DEMI
+        full = int(smplcount / PAIRS_PER_DEMI)
 
         if rem != 0:
             chunk = linbuf8.pop()
@@ -182,7 +182,7 @@ class BufferDecoder:
     def samplesfromchunk(self, chunk, samplecount):
         chunksamples = list()
         decodedchunk = b64decode(chunk)
-        for i in range(0, (samplecount*2)-1, BufferDecoder.BYTES_PER_SAMPLE):
+        for i in range(0, (samplecount*2)-1, BYTES_PER_SAMPLE):
             tempMsb = decodedchunk[i]
             rhMsb = decodedchunk[i+1]
             Lsb = decodedchunk[i+2]

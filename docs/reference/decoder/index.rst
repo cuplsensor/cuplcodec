@@ -3,10 +3,11 @@ Decoder
 
 
 
-.. autoclass:: wscodec.decoder.decoder.Decoder
+.. automodule:: wscodec.decoder.decoder.Decoder
     :members:
 
 .. automodule:: wscodec.decoder.bufferdecoder
+    :members:
 
 .. autoclass:: wscodec.decoder.tbufferdecoder.TBufferDecoder
     :members:
