@@ -47,7 +47,7 @@ class Decoder:
         self.timeintervalmins = decode_timeinterval(timeintb64)
         self.status = Status(statb64)
         try:
-            self.buffer = CircularBufferDecoder.decode(self.circformat, self.timeintervalmins, circb64, self.timeintervalmins, secretkey, self.status, usehmac, self.scandatetime)
+            self.buffer = CircularBufferDecoder.decode(self.circformat, self.timeintervalmins, circb64, secretkey, self.status, usehmac, self.scandatetime)
         except DelimiterNotFoundError:
             raise NoCircularBufferError(self.status)
 
