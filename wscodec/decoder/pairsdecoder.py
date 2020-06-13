@@ -21,6 +21,9 @@ class Pair:
         self.rd0 = ((self.rd0Msb << 4) | rd0Lsb)
         self.rd1 = ((self.rd1Msb << 4) | rd1Lsb)
 
+    def __repr__(self):
+        return self.readings()
+
     def readings(self):
         return {'rd0': self.rd0, 'rd1': self.rd1}
 

@@ -11,7 +11,7 @@ def instr_sample_populated(instr_sample, request):
     decodedurl = Decoder(secretkey=instr_sample.secretkey, statb64=par['x'][0], timeintb64=par['t'][0],
                          circb64=par['q'][0], ver=par['v'][0])
 
-    urllist = decodedurl.buffer.smpls
+    urllist = decodedurl.buffer.samples
     for d in urllist:
         del d['ts']
 
