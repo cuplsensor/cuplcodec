@@ -84,4 +84,4 @@ def test_batteryvoltage(resetcause, batteryadc):
                          circb64=par['q'][0], ver=par['v'][0])
 
     assert decodedurl.status.get_batvoltageraw() == batteryadc
-    assert decodedurl.status.get_resetcause() == resetcause
+    assert decodedurl.status.get_resetcauseraw() == resetcause

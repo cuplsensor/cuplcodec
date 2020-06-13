@@ -19,9 +19,18 @@ CLOCKFAIL_BIT = BIT5
 SCANTIMEOUT_BIT = BIT7
 
 
-class StatDecoder():
-    def __init__(self, encstr):
-        decstr = b64decode(encstr)
+class Status():
+    """
+        Decode the status string.
+
+        Parameters
+        -----------
+        statb64:
+            Value of the URL parameter that holds status information (after base64 encoding).
+
+    """
+    def __init__(self, statb64):
+        decstr = b64decode(statb64)
         declist = struct.unpack("HHH", decstr)
         self.loopcount = declist[0]
         self.resetsalltime = declist[1]
@@ -35,7 +44,7 @@ class StatDecoder():
         clockfail = (self.batv_resetcause & CLOCKFAIL_BIT) > 0
         scantimeout = (self.batv_resetcause & SCANTIMEOUT_BIT) > 0
 
-        self.status = {
+        self.resetcause = {
             "brownout": brownout,
             "supervisor": supervisor,
             "watchdog": watchdog,
@@ -46,17 +55,22 @@ class StatDecoder():
         }
 
     def get_batvoltageraw(self):
+        """
+
+        :return: Battery voltage as an 8-bit value.
+        """
         return self.batv_resetcause >> 8
 
-    def get_resetcause(self):
+    def get_resetcauseraw(self):
+        """
+
+        :return: Reset cause as an 8-bit value.
+        """
         return self.batv_resetcause & 0xFF
 
     def get_batvoltagemv(self):
+        """
+
+        :return: Battery voltage converted to mV.
+        """
         return (256 * 1500) / self.get_batvoltageraw()
-
-if __name__ == '__main__':
-    def x():
-        print(StatDecoder("AAABAUsM").status)
-
-
-    x()

@@ -1,6 +1,6 @@
 from datetime import timezone, datetime
 from .exceptions import InvalidCircFormatError, NoCircularBufferError, DelimiterNotFoundError, InvalidMajorVersionError
-from .statdecoder import StatDecoder
+from .status import Status
 from .htbufferdecoder import HTBufferDecoder
 from .tbufferdecoder import TBufferDecoder
 from .b64decode import b64decode
@@ -54,7 +54,7 @@ class Decoder:
 
         self.circformat = circformat
         self.timeintervalmins = Decoder.decode_timeinterval(timeintb64)
-        self.status = StatDecoder(statb64)
+        self.status = Status(statb64)
         try:
             self.buffer = bufferdecoder(circb64, self.timeintervalmins, secretkey, self.status, usehmac, self.scandatetime)
         except DelimiterNotFoundError:
