@@ -16,23 +16,11 @@ class HDC2021Decoder(PairsDecoder):
 class HDC2021DecoderHT(HDC2021Decoder):
     """
     Extracts samples containing 2 measurands (temperature and humidity) from the circular buffer.
-
-    Parameters
-    ----------
-    timeintminutes : int
-        Time interval between samples in minutes.
-
-    circbuf64 : str
-        Circular buffer string containing samples encoded in base64.
-
-    secretkey : str
-        Secret key used to verify the source of the samples.
-
     """
-    def __init__(self, timeintminutes: int, circbuf64: str, secretkey: str, status: Status, usehmac: bool, scandatetime: datetime):
-        super().__init__(circbuf64, secretkey, status, usehmac, scandatetime)
+    def decode(self):
+        super().decode()
 
-        samples = list()
+        self.samples.clear()
 
         for pair in self.pairs:
             temp = pair.rd0
@@ -41,38 +29,27 @@ class HDC2021DecoderHT(HDC2021Decoder):
             temp = HDC2021Decoder.reading_to_temp(temp)
             rh = HDC2021Decoder.reading_to_rh(rh)
 
-            samples.append({'temp': temp, 'rh': rh})
+            self.samples.append({'temp': temp, 'rh': rh})
 
-        self.samples = self.applytimestamp(samples, timeintminutes)
+        self.applytimestamp()
 
 
 class HDC2021DecoderT(HDC2021Decoder):
     """
     Extracts temperature samples from the circular buffer.
 
-    Parameters
-    ----------
-    circbuf64 : str
-        Circular buffer string containing temperature samples encoded in base64.
-
-    timeintminutes : int
-        Time interval between samples in minutes.
-
-    secretkey : str
-        Secret key used to verify the source of the samples.
-
     """
-    def __init__(self, timeintminutes: int, circbuf64: str, secretkey: str, status: Status, usehmac: bool, scandatetime: datetime):
-        super().__init__(circbuf64, secretkey, status, usehmac, scandatetime)
+    def decode(self):
+        super().decode()
 
-        samples = list()
+        self.samples.clear()
 
         for pair in self.pairs:
             if pair.rd1 != 4095:
                 temp2 = HDC2021Decoder.reading_to_temp(pair.rd1)
-                samples.append({'temp': temp2})
+                self.samples.append({'temp': temp2})
 
             temp1 = HDC2021Decoder.reading_to_temp(pair.rd0)
-            samples.append({'temp': temp1})
+            self.samples.append({'temp': temp1})
 
-        self.samples = self.applytimestamp(samples, timeintminutes)
+        self.applytimestamp()

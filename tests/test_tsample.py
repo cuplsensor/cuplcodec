@@ -1,6 +1,6 @@
 import pytest
 from wscodec.encoder.pyencoder.instrumented import InstrumentedSampleT
-from wscodec.decoder import Decoder
+from wscodec.decoder import DecoderFactory
 
 INPUT_BASEURL = "cupl.uk"
 INPUT_SERIAL = 'abcdabcd'
@@ -50,10 +50,10 @@ def test_md5(instr_sample, n):
 
     # Decode the URL
     par = instr_md5.eepromba.get_url_parsedqs()
-    decodedurl = Decoder(secretkey="", statb64=par['x'][0], timeintb64=par['t'][0],
-                         circb64=par['q'][0], ver=par['v'][0], usehmac=False)
+    decodedurl = DecoderFactory.decode(secretkey="", statb64=par['x'][0], timeintb64=par['t'][0],
+                                       circb64=par['q'][0], ver=par['v'][0], usehmac=False)
 
-    urllist = decodedurl.buffer.samples
+    urllist = decodedurl.samples
     for d in urllist:
         del d['ts']
 

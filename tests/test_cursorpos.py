@@ -1,6 +1,6 @@
 import pytest
 from wscodec.encoder.pyencoder.instrumented import InstrumentedSampleTRH
-from wscodec.decoder import Decoder
+from wscodec.decoder import DecoderFactory
 
 INPUT_SERIAL = 'abcdabcd'
 INPUT_TIMEINT = 12
@@ -29,7 +29,7 @@ def test_cursorpos(instr_sample, n):
 
     # Decode the URL
     par = instr_sample.eepromba.get_url_parsedqs()
-    decodedurl = Decoder(secretkey=instr_sample.secretkey, statb64=par['x'][0], timeintb64=par['t'][0],
-                         circb64=par['q'][0], ver=par['v'][0])
+    decodedurl = DecoderFactory.decode(secretkey=instr_sample.secretkey, statb64=par['x'][0], timeintb64=par['t'][0],
+                                       circb64=par['q'][0], ver=par['v'][0])
 
-    assert encoder_cursorpos == decodedurl.buffer.endmarkerpos
+    assert encoder_cursorpos == decodedurl.endmarkerpos

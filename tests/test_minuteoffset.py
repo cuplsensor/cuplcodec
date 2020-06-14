@@ -1,6 +1,6 @@
 import pytest
 from wscodec.encoder.pyencoder.instrumented import InstrumentedSampleTRH
-from wscodec.decoder import Decoder
+from wscodec.decoder import DecoderFactory
 
 INPUT_SERIAL = 'abcdabcd'
 INPUT_TIMEINT = 65535 # Maximum time interval
@@ -30,10 +30,10 @@ def test_minuteoffset(instr_sample):
 
         # Decode the URL
         par = instr_sample.eepromba.get_url_parsedqs()
-        decodedurl = Decoder(secretkey=instr_sample.secretkey, statb64=par['x'][0], timeintb64=par['t'][0],
-                             circb64=par['q'][0], ver=par['v'][0])
+        decodedurl = DecoderFactory.decode(secretkey=instr_sample.secretkey, statb64=par['x'][0], timeintb64=par['t'][0],
+                                           circb64=par['q'][0], ver=par['v'][0])
 
-        assert i == decodedurl.buffer.minuteoffset
+        assert i == decodedurl.minuteoffset
 
 
 

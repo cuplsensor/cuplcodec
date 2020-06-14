@@ -1,8 +1,8 @@
 import pytest
 from base64 import urlsafe_b64decode
 from wscodec.encoder.pyencoder.instrumented import InstrumentedNDEF
-from wscodec.decoder.exceptions import NoCircularBufferError
-from wscodec.decoder.decoder import Decoder
+from wscodec.decoder.exceptions import DelimiterNotFoundError
+from wscodec.decoder import DecoderFactory
 from urllib.parse import urlparse
 
 INPUT_SERIAL = 'abcdabcd'
@@ -89,10 +89,10 @@ def test_decode_raises_indexerrror(blankurlqs):
     statb64 = blankurlqs['x'][0]
     circb64 = blankurlqs['q'][0]
     ver = blankurlqs['v'][0]
-    with pytest.raises(NoCircularBufferError):
+    with pytest.raises(DelimiterNotFoundError):
         # Attempt to decode the parameters
-        decoded = Decoder(secretkey=INPUT_SECKEY,
-                          timeintb64=timeintb64,
-                          statb64=statb64,
-                          circb64=circb64,
-                          ver=ver)
+        decoded = DecoderFactory.decode(secretkey=INPUT_SECKEY,
+                                        timeintb64=timeintb64,
+                                        statb64=statb64,
+                                        circb64=circb64,
+                                        ver=ver)

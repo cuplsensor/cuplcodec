@@ -1,4 +1,5 @@
 from .exceptions import MessageIntegrityError, DelimiterNotFoundError
+from .paramdecoder import ParamDecoder
 from .b64decode import b64decode
 import struct
 from datetime import timedelta
@@ -28,7 +29,7 @@ class Pair:
         return {'rd0': self.rd0, 'rd1': self.rd1}
 
 
-class PairsDecoder:
+class PairsDecoder(ParamDecoder):
     """
     Unwrap the circular buffer and return a list of pairs
 
@@ -57,22 +58,25 @@ class PairsDecoder:
     values must match for the decoded data to be valid. If they are, it confirms
     that whatever generated the encoded list of samples must have the secret key.
 
-    Parameters
-    -----------
-    encstr
-        Circular buffer string containing samples and an endstop encoded as base64.
-
-    secretkey
-        Secret key used to verify that the circular buffer has originated from a trusted source.
-
     """
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.pairs = list()
+        self.samples = list()
+        self.md5 = None
+        self.npairs = None
+        self.endmarkerpos = None
+        self.minuteoffset = None
+        self.newestdatetime = None
 
-    def __init__(self, encstr, secretkey, status, usehmac, scandatetime):
+    def decode(self):
+        super().decode()
+
         # Split query string at the end of the endstop marker.
-        splitend = encstr.split(ENDSTOP_BYTE)
+        splitend = self.circb64.split(ENDSTOP_BYTE)
 
         if len(splitend) != 2:
-            raise DelimiterNotFoundError(encstr)
+            raise DelimiterNotFoundError(self.circb64)
 
         endmarkerpos = len(splitend[0])
 
@@ -148,17 +152,17 @@ class PairsDecoder:
             frame.append(pair.rd1Msb)
             frame.append(pair.Lsb)
 
-        frame.append(status.loopcount >> 8)
-        frame.append(status.loopcount & 0xFF)
-        frame.append(status.resetsalltime >> 8)
-        frame.append(status.resetsalltime & 0xFF)
-        frame.append(status.batv_resetcause >> 8)
-        frame.append(status.batv_resetcause & 0xFF)
+        frame.append(self.status.loopcount >> 8)
+        frame.append(self.status.loopcount & 0xFF)
+        frame.append(self.status.resetsalltime >> 8)
+        frame.append(self.status.resetsalltime & 0xFF)
+        frame.append(self.status.batv_resetcause >> 8)
+        frame.append(self.status.batv_resetcause & 0xFF)
         frame.append(endmarkerpos >> 8)
         frame.append(endmarkerpos & 0xFF)
 
         # Perform message authentication.
-        calcMD5 = self.gethash(frame, usehmac, bytearray(secretkey, 'utf8'))
+        calcMD5 = self.gethash(frame)
 
         # Truncate calculated MD5 to the same length as the URL MD5.
         calcMD5 = calcMD5[0:len(urlMD5)]
@@ -172,21 +176,19 @@ class PairsDecoder:
         self.npairs = len(pairlist)
         self.endmarkerpos = endmarkerpos
         self.minuteoffset = minuteoffset
-        self.newestdatetime = scandatetime - timedelta(minutes=self.minuteoffset) # Timestamp of the newest sample
+        self.newestdatetime = self.scandatetime - timedelta(minutes=self.minuteoffset) # Timestamp of the newest sample
 
-
-    def applytimestamp(self, smpls, timeintminutes):
+    def applytimestamp(self):
         # Append timestamps to each sample.
         # Start by ordering samples from newest to oldest.
         # The newest sample has the timestamp for now.
         # Each consecutive timestamp decrements the timestamp by the
         # time interval contained inside the URL.
-        intervalminutes = timedelta(minutes=timeintminutes)   # Time between samples in seconds
+        intervalminutes = timedelta(minutes=self.timeintervalmins)   # Time between samples in seconds
         sampleindex = 0
-        for smpl in smpls:
-            smpl['ts'] = self.newestdatetime - sampleindex * intervalminutes
+        for sample in self.samples:
+            sample['ts'] = self.newestdatetime - sampleindex * intervalminutes
             sampleindex = sampleindex + 1
-        return smpls
 
     def chunkstring(self, string, length):
         return (string[i:i+length] for i in range(0, len(string), length))
@@ -206,9 +208,10 @@ class PairsDecoder:
         chunksamples.reverse()
         return chunksamples
 
-    def gethash(self, message, usehmac, secretkey=None):
-        if usehmac:
-            hmacobj = hmac.new(secretkey, message, "md5")
+    def gethash(self, message):
+        secretkeyba = bytearray(self.secretkey, 'utf8')
+        if self.usehmac:
+            hmacobj = hmac.new(secretkeyba, message, "md5")
             digest = hmacobj.hexdigest()
         else:
             digest = hashlib.md5(message).hexdigest()
