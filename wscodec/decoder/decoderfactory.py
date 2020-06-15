@@ -1,5 +1,5 @@
 from datetime import datetime
-from .exceptions import NoCircularBufferError, DelimiterNotFoundError, InvalidMajorVersionError, InvalidCircFormatError
+from .exceptions import InvalidMajorVersionError, InvalidCircFormatError
 from .hdc2021 import HDC2021DecoderHT, HDC2021DecoderT
 
 def get_decoder(formatcode: int, statb64: str, timeintb64: str, circb64: str, usehmac: bool, secretkey: str,

@@ -37,14 +37,6 @@ class InvalidCircFormatError(ParamDecoderError):
         return self.errormsg.format(self.circformat)
 
 
-class NoCircularBufferError(ParamDecoderError):
-    errormsg = " No circular buffer to decode. There is an error with the microcontroller. "
-
-    def __init__(self, status):
-        super().__init__()
-        self.status = status
-
-
 class CircularBufferError(PSCodecError):
     """Base application error class."""
 
@@ -65,11 +57,12 @@ class MessageIntegrityError(CircularBufferError):
 
 
 class DelimiterNotFoundError(CircularBufferError):
-    errormsg = " No delimiting character found in the circular buffer string = {}. "
+    errormsg = " No delimiting character found in the circular buffer string = {}. There is an error with the microcontroller. "
 
-    def __init__(self, encstr):
+    def __init__(self, circb64, status):
         super().__init__()
-        self.encstr = encstr
+        self.circb64 = circb64
+        self.status = status
 
     def __str__(self):
-        return self.errormsg.format(self.encstr)
+        return self.errormsg.format('circb64='+self.circb64+' status='+self.status)

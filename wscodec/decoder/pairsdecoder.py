@@ -76,7 +76,7 @@ class PairsDecoder(ParamDecoder):
         splitend = self.circb64.split(ENDSTOP_BYTE)
 
         if len(splitend) != 2:
-            raise DelimiterNotFoundError(self.circb64)
+            raise DelimiterNotFoundError(self.circb64, self.status)
 
         endmarkerpos = len(splitend[0])
 
