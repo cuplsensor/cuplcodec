@@ -1,4 +1,4 @@
-from .exceptions import MessageIntegrityError, DelimiterNotFoundError
+from .exceptions import MessageIntegrityError
 from .paramdecoder import ParamDecoder
 from .b64decode import b64decode
 import struct
@@ -8,8 +8,6 @@ import hmac
 
 BYTES_PER_SAMPLE = 3
 PAIRS_PER_DEMI = 2
-ENDSTOP_BYTE = '~'  # This must be URL Safe
-
 
 class Pair:
     def __init__(self, rd0Msb: int, rd1Msb: int, Lsb: int):
@@ -30,35 +28,6 @@ class Pair:
 
 
 class PairsDecoder(ParamDecoder):
-    """
-    Unwrap the circular buffer and return a list of pairs
-
-    First the endstop marker is found, which is the character '~'.
-
-    Next the marker is replaced with '=' and combined with the 3 bytes preceeding it.
-    These are base64 decoded to yield the minutes elapsed since the
-    previous sample and a psuedorandom number.
-
-    The circular buffer is made linear by concatenating the two parts of the buffer
-    either side of the end stop.
-
-    3 bytes are popped from the end of the linear buffer. These contain information
-    such as the HMAC and the number of valid samples.
-
-    The remaining data in the linear buffer are shaped into a list of 8 byte chunks
-    (these should be renamed to Demis).
-
-    Starting from the newest demi, each is decoded into a 6 byte chunk.
-
-    Either 1 or 2 (3 byte) samples are extracted from every chunk and these
-    are written to a list.
-
-    When the complete list of samples have been obtained, the HMAC checksum is
-    calculated. This is compared to the HMAC supplied in the URL. These two
-    values must match for the decoded data to be valid. If they are, it confirms
-    that whatever generated the encoded list of samples must have the secret key.
-
-    """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.pairs = list()
@@ -69,41 +38,61 @@ class PairsDecoder(ParamDecoder):
         self.minuteoffset = None
         self.newestdatetime = None
 
+    def _decode_elapsedb64(self, elapsedb64):
+        decmarkerbytes = b64decode(elapsedb64)
+        decmarker = int.from_bytes(decmarkerbytes, byteorder='little')
+        self.minuteoffset = decmarker
+
     def decode(self):
+        """
+            Unwrap the circular buffer and return a list of pairs
+
+            First the endstop marker is found, which is the character '~'.
+
+            Next the marker is replaced with '=' and combined with the 3 bytes preceeding it.
+            These are base64 decoded to yield the minutes elapsed since the
+            previous sample and a psuedorandom number.
+
+            The circular buffer is made linear by concatenating the two parts of the buffer
+            either side of the end stop.
+
+            3 bytes are popped from the end of the linear buffer. These contain information
+            such as the HMAC and the number of valid samples.
+
+            The remaining data in the linear buffer are shaped into a list of 8 byte chunks
+            (these should be renamed to Demis).
+
+            Starting from the newest demi, each is decoded into a 6 byte chunk.
+
+            Either 1 or 2 (3 byte) samples are extracted from every chunk and these
+            are written to a list.
+
+            When the complete list of samples have been obtained, the HMAC checksum is
+            calculated. This is compared to the HMAC supplied in the URL. These two
+            values must match for the decoded data to be valid. If they are, it confirms
+            that whatever generated the encoded list of samples must have the secret key.
+
+            """
         super().decode()
 
-        # Split query string at the end of the endstop marker.
-        splitend = self.circb64.split(ENDSTOP_BYTE)
-
-        if len(splitend) != 2:
-            raise DelimiterNotFoundError(self.circb64, self.status)
-
-        endmarkerpos = len(splitend[0])
-
-        # Extract the rest of the 4 byte endstop marker xxx~. Replace the marker with '='
-        # to make this valid base64.
-        # https://stackoverflow.com/questions/7983820/get-the-last-4-characters-of-a-string
-        endmarker = splitend[0][-3:] + '='
-        splitend[0] = splitend[0][:-3]
-
-        decmarkerbytes = b64decode(endmarker)
-        decmarker = int.from_bytes(decmarkerbytes, byteorder='little')
-        minuteoffset = decmarker
+        # Extract elapsed minutes since the previous sample in minutes xxx~. Replace the '=' to make this valid base64.
+        elapsedb64 = self.linearbuf[-3:] + '='
+        # Remove elapsedb64 from the linear buffer.
+        self.linearbuf = self.linearbuf[:-3]
+        # Decode elapsedb64
+        self._decode_elapsedb64(elapsedb64)
 
         endbuf = list()
         declist = list()
         pairlist = list()
         linbuf8 = list()
 
-        # Linearise the circular buffer.
-        circbufstart = list(self.chunkstring(splitend[0], 4))
-        circbufend = list(self.chunkstring(splitend[1], 4))
-
-        linbuf = circbufend + circbufstart
+        # Convert the linear buffer into 4 byte chunks.
+        linbuf = list(self.chunkstring(self.linearbuf, 4))
 
         # Pop the 3 bytes from the end of the buffer.
         # These contain the MD5 hash and the number of valid samples
-        for i in range(0,3,1):
+        for i in range(0, 3, 1):
             endbuf.append(linbuf.pop())
         endbuf.reverse()
 
@@ -158,8 +147,8 @@ class PairsDecoder(ParamDecoder):
         frame.append(self.status.resetsalltime & 0xFF)
         frame.append(self.status.batv_resetcause >> 8)
         frame.append(self.status.batv_resetcause & 0xFF)
-        frame.append(endmarkerpos >> 8)
-        frame.append(endmarkerpos & 0xFF)
+        frame.append(self.endmarkerpos >> 8)
+        frame.append(self.endmarkerpos & 0xFF)
 
         # Perform message authentication.
         calcMD5 = self.gethash(frame)
@@ -174,8 +163,6 @@ class PairsDecoder(ParamDecoder):
 
         self.pairs = pairlist
         self.npairs = len(pairlist)
-        self.endmarkerpos = endmarkerpos
-        self.minuteoffset = minuteoffset
         self.newestdatetime = self.scandatetime - timedelta(minutes=self.minuteoffset) # Timestamp of the newest sample
 
     def applytimestamp(self):

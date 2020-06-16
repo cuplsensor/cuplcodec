@@ -1,6 +1,9 @@
 from datetime import timezone, datetime
+from .exceptions import DelimiterNotFoundError
 from .b64decode import b64decode
 from .status import Status
+
+ENDSTOP_BYTE = '~'  # This must be URL Safe
 
 
 class ParamDecoder:
@@ -13,13 +16,31 @@ class ParamDecoder:
         self.scandatetime = scandatetime or datetime.now(timezone.utc)
 
     def decode(self):
-        self.decode_timeinterval()
+        self._decode_timeinterval()
+        self._linearise_buffer()
         self.status = Status(self.statb64)
 
-    def decode_timeinterval(self):
+    def _decode_timeinterval(self):
         """
         Calculates the time interval in minutes from a URL parameter.
         """
 
         timeintbytes = b64decode(self.timeintb64)
         self.timeintervalmins = int.from_bytes(timeintbytes, byteorder='little')
+
+    def _linearise_buffer(self):
+        """
+        Linearise the circular buffer.
+        """
+
+        # Split query string at the end of the endstop marker.
+        splitend = self.circb64.split(ENDSTOP_BYTE)
+
+        if len(splitend) != 2:
+            raise DelimiterNotFoundError(self.circb64, self.status)
+
+        circbufstart = splitend[1]
+        circbufend = splitend[0]
+
+        self.endmarkerpos = len(circbufend)
+        self.linearbuf = circbufend + circbufstart
