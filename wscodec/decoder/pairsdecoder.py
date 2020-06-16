@@ -69,7 +69,7 @@ class PairsDecoder(ParamDecoder):
 
     def _decode_payload(self, payload):
         # Convert payload string into 8 byte demis.
-        demis = self.chunkstring(self.linearbuf, BYTES_PER_DEMI)
+        demis = self.chunkstring(payload, BYTES_PER_DEMI)
 
         # The newest 8 byte chunk might only contain
         # 1 valid pair. If so, this is a
