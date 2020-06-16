@@ -87,7 +87,7 @@ class PairsDecoder(ParamDecoder):
         pairlist = list()
         linbuf8 = list()
 
-        assert(type(self.linearbuf)==str)
+        assert(len(self.linearbuf) > 1)
 
         # Convert the linear buffer into 4 byte chunks.
         linbuf = list(self.chunkstring(self.linearbuf, 4))

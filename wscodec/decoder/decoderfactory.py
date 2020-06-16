@@ -53,7 +53,9 @@ class DecoderFactory:
             formatcode:
                 Value of the codec format field. Specifies which decoder shall be used.
 
-            :return: A decoder class for the given format code.
+            Return
+            -------
+            A decoder class for the given format code.
 
             """
         decoders = {
