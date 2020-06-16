@@ -105,6 +105,8 @@ class PairsDecoder(ParamDecoder):
         urlMD5 = md5bytes.hex()
         npairs = struct.unpack(">H", npairsbytes)[0]
 
+        assert(self.linearbuf == "akgfn")
+
         # Convert 4 byte chunks into 8 byte chunks.
         # There should not be any 4 byte chunks left over,
         # but these should be discarded.
