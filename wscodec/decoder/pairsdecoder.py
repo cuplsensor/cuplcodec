@@ -6,8 +6,16 @@ from datetime import timedelta
 import hashlib
 import hmac
 
-BYTES_PER_SAMPLE = 3
+BYTES_PER_PAIR = 3
+BYTES_PER_PAIRB64 = 4
 PAIRS_PER_DEMI = 2
+BYTES_PER_DEMI = BYTES_PER_PAIRB64 * PAIRS_PER_DEMI
+
+
+def _decode_elapsedb64(elapsedb64):
+    decmarkerbytes = b64decode(elapsedb64)
+    return int.from_bytes(decmarkerbytes, byteorder='little')
+
 
 class Pair:
     def __init__(self, rd0Msb: int, rd1Msb: int, Lsb: int):
@@ -22,6 +30,11 @@ class Pair:
 
     def __repr__(self):
         return self.readings()
+
+    @classmethod
+    def from_bytes(cls, bytes):
+        assert len(bytes) == BYTES_PER_PAIR
+        return cls(rd0Msb=bytes[0], rd1Msb=bytes[1], Lsb=bytes[2])
 
     def readings(self):
         return {'rd0': self.rd0, 'rd1': self.rd1}
@@ -38,10 +51,42 @@ class PairsDecoder(ParamDecoder):
         self.minuteoffset = None
         self.newestdatetime = None
 
-    def _decode_elapsedb64(self, elapsedb64):
-        decmarkerbytes = b64decode(elapsedb64)
-        decmarker = int.from_bytes(decmarkerbytes, byteorder='little')
-        self.minuteoffset = decmarker
+    def _decode_endstop(self, endstop):
+        # Extract elapsed minutes since the previous sample in minutes xxx~. Replace the '=' to make this valid base64.
+        elapsedb64 = endstop[-3:] + '='
+        # The remaining 12 bytes contain the MD5 hash and the number of valid pairs
+        hashnb64 = endstop[:-3]
+        # Decode elapsedb64
+        self.minuteoffset = _decode_elapsedb64(elapsedb64)
+        # Decode hashnb64
+        hashn = b64decode(hashnb64)
+
+        # Extract the number of samples and the HMAC/MD5 checksum from the endstop.
+        npairsbytes = hashn[7:9]
+        md5bytes = hashn[0:7]
+        self.urlMD5 = md5bytes.hex()
+        self.npairs = struct.unpack(">H", npairsbytes)[0]
+
+    def _decode_payload(self, payload):
+        # Convert payload string into 8 byte demis.
+        demis = self.chunkstring(self.linearbuf, BYTES_PER_DEMI)
+
+        # The newest 8 byte chunk might only contain
+        # 1 valid pair. If so, this is a
+        # partial demi and it is processed first.
+        rem = self.npairs % PAIRS_PER_DEMI
+        full = int(self.npairs / PAIRS_PER_DEMI)
+
+        if rem != 0:
+            demi = demis.pop()
+            demipairs = self.pairsfromdemi(demi)[0]
+            self.pairs.extend(demipairs)
+
+        # Process remaining full demis. These all contain 2 pairs.
+        for i in range(0, full, 1):
+            demi = demis.pop()
+            demipairs = self.pairsfromdemi(demi)
+            self.pairs.extend(demipairs)
 
     def decode(self):
         """
@@ -52,9 +97,6 @@ class PairsDecoder(ParamDecoder):
             Next the marker is replaced with '=' and combined with the 3 bytes preceeding it.
             These are base64 decoded to yield the minutes elapsed since the
             previous sample and a psuedorandom number.
-
-            The circular buffer is made linear by concatenating the two parts of the buffer
-            either side of the end stop.
 
             3 bytes are popped from the end of the linear buffer. These contain information
             such as the HMAC and the number of valid samples.
@@ -75,63 +117,15 @@ class PairsDecoder(ParamDecoder):
             """
         super().decode()
 
-        #assert self.linearbuf == "akgfn", {'linearbuf':self.linearbuf, 'circbuf':self.circb64}
+        endstop = self.linearbuf[-15:]
+        payload = self.linearbuf[:-15]
 
-        # Extract elapsed minutes since the previous sample in minutes xxx~. Replace the '=' to make this valid base64.
-        elapsedb64 = self.linearbuf[-3:] + '='
-        # Remove elapsedb64 from the linear buffer.
-        self.linearbuf = self.linearbuf[:-3]
-        # Decode elapsedb64
-        self._decode_elapsedb64(elapsedb64)
-
-        declist = list()
-        pairlist = list()
-
-        # Pop the 3 bytes from the end of the buffer.
-        # These contain the MD5 hash and the number of valid samples
-        endbuf = self.linearbuf[-12:]
-        self.linearbuf = self.linearbuf[:-12]
-        endbuf4 = self.chunkstring(endbuf, 4)
-
-        # Decode the endstop 4 bytes at a time.
-        for chunk in endbuf4:
-            decodedchunk = b64decode(chunk)
-            declist.append(decodedchunk)
-
-        # Concatenate the decoded endstop bytes.
-        endbytes = b''.join([dec for dec in declist])
-
-        # Extract the number of samples and the HMAC/MD5 checksum from the endstop.
-        npairsbytes = endbytes[7:9]
-        md5bytes = endbytes[0:7]
-        urlMD5 = md5bytes.hex()
-        npairs = struct.unpack(">H", npairsbytes)[0]
-
-        # Convert 4 byte chunks into 8 byte chunks.
-        # There should not be any 4 byte chunks left over,
-        # but these should be discarded.
-        linbuf8 = self.chunkstring(self.linearbuf, 8)
-
-        # The newest 8 byte chunk might only contain
-        # 1 valid pair. If so, this is a
-        # partial packet and it is processed first.
-        rem = npairs % PAIRS_PER_DEMI
-        full = int(npairs / PAIRS_PER_DEMI)
-
-        if rem != 0:
-            chunk = linbuf8.pop()
-            pairs = self.pairsfromchunk(chunk, rem)
-            pairlist.extend(pairs)
-
-        # Process remaining full demis. These all contain 2 pairs.
-        for i in range(full, 0, -1):
-            chunk = linbuf8.pop()
-            pairs = self.pairsfromchunk(chunk, 3)
-            pairlist.extend(pairs)
+        self._decode_endstop(endstop)
+        self._decode_payload(payload)
 
         frame = bytearray()
 
-        for pair in pairlist:
+        for pair in self.pairs:
             frame.append(pair.rd0Msb)
             frame.append(pair.rd1Msb)
             frame.append(pair.Lsb)
@@ -149,15 +143,15 @@ class PairsDecoder(ParamDecoder):
         calcMD5 = self.gethash(frame)
 
         # Truncate calculated MD5 to the same length as the URL MD5.
-        calcMD5 = calcMD5[0:len(urlMD5)]
+        calcMD5 = calcMD5[0:len(self.urlMD5)]
 
-        if urlMD5 == calcMD5:
-            self.md5 = urlMD5
+        if self.urlMD5 == calcMD5:
+            self.md5 = self.urlMD5
         else:
-            raise MessageIntegrityError(calcMD5, urlMD5)
+            raise MessageIntegrityError(calcMD5, self.urlMD5)
 
-        self.pairs = pairlist
-        self.npairs = len(pairlist)
+        assert self.npairs == len(self.pairs)
+
         self.newestdatetime = self.scandatetime - timedelta(minutes=self.minuteoffset) # Timestamp of the newest sample
 
     def applytimestamp(self):
@@ -176,19 +170,18 @@ class PairsDecoder(ParamDecoder):
         return list(string[i:i+n] for i in range(0, len(string), n))
 
     # Obtain samples from a 4 byte base64 chunk. Chunk should be renamed to demi here.
-    def pairsfromchunk(self, chunk, samplecount):
-        chunksamples = list()
-        decodedchunk = b64decode(chunk)
-        for i in range(0, (samplecount*2)-1, BYTES_PER_SAMPLE):
-            rd0Msb = decodedchunk[i]
-            rd1Msb = decodedchunk[i+1]
-            Lsb = decodedchunk[i+2]
+    def pairsfromdemi(self, demi):
+        pairs = list()
 
-            pair = Pair(rd0Msb, rd1Msb, Lsb)
-            chunksamples.append(pair)
+        for i in range(0, BYTES_PER_DEMI, BYTES_PER_PAIRB64):
+            pairb64 = demi[i:i+BYTES_PER_PAIRB64]
+            decoded = b64decode(pairb64)
+            pair = Pair.from_bytes(decoded)
+            pairs.append(pair)
+
         # Return newest sample first.
-        chunksamples.reverse()
-        return chunksamples
+        pairs.reverse()
+        return pairs
 
     def gethash(self, message):
         secretkeyba = bytearray(self.secretkey, 'utf8')

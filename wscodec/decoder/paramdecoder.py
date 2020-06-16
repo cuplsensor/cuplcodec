@@ -33,6 +33,9 @@ class ParamDecoder:
     def _linearise_buffer(self):
         """
         Linearise the circular buffer.
+
+        The circular buffer is made linear by concatenating the two parts of the buffer
+        either side of the end stop.
         """
 
         # Split query string at the end of the endstop marker.
