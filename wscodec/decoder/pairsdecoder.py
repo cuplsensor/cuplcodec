@@ -75,6 +75,8 @@ class PairsDecoder(ParamDecoder):
             """
         super().decode()
 
+        assert self.linearbuf == "akgfn", {'linearbuf':self.linearbuf, 'circbuf':self.circb64}
+
         # Extract elapsed minutes since the previous sample in minutes xxx~. Replace the '=' to make this valid base64.
         elapsedb64 = self.linearbuf[-3:] + '='
         # Remove elapsedb64 from the linear buffer.
