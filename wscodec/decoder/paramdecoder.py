@@ -14,12 +14,13 @@ class ParamDecoder:
         self.usehmac = usehmac
         self.secretkey = secretkey
         self.linearbuf = None
+        self.status = None
         self.scandatetime = scandatetime or datetime.now(timezone.utc)
 
     def decode(self):
+        self.status = Status(self.statb64)
         self._decode_timeinterval()
         self._linearise_buffer()
-        self.status = Status(self.statb64)
 
     def _decode_timeinterval(self):
         """
