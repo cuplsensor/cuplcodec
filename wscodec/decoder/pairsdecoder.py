@@ -92,6 +92,8 @@ class PairsDecoder(ParamDecoder):
         # Convert the linear buffer into 4 byte chunks.
         linbuf = list(self.chunkstring(self.linearbuf, 4))
 
+        assert (len(linbuf) > 1)
+
         # Pop the 3 bytes from the end of the buffer.
         # These contain the MD5 hash and the number of valid samples
         for i in range(0, 3, 1):
