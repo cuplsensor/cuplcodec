@@ -173,6 +173,8 @@ class PairsDecoder(ParamDecoder):
     def pairsfromdemi(self, demi):
         pairs = list()
 
+        assert len(demi) == BYTES_PER_DEMI, demi
+
         for i in range(0, BYTES_PER_DEMI, BYTES_PER_PAIRB64):
             pairb64 = demi[i:i+BYTES_PER_PAIRB64]
             decoded = b64decode(pairb64)
