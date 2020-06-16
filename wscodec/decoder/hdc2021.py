@@ -5,19 +5,30 @@ from datetime import datetime
 
 class HDC2021Decoder(PairsDecoder):
     @staticmethod
-    def reading_to_temp(reading):
+    def reading_to_temp(reading: int) -> float:
+        """
+
+        :param reading: Integer temperature ADC reading from the HDC2021.
+        :return: Temperature in degrees C
+        """
         return (reading * 165)/4096 - 40
 
     @staticmethod
-    def reading_to_rh(reading):
+    def reading_to_rh(reading: int) -> float:
+        """
+
+        :param reading: Integer Relative Humidity ADC reading from the HDC2021.
+        :return: Relative Humidity in percent.
+        """
         return (reading * 100)/4096
 
 
 class HDC2021DecoderHT(HDC2021Decoder):
-    """
-    Extracts samples containing 2 measurands (temperature and humidity) from the circular buffer.
-    """
     def decode(self):
+        """
+        :return: Decoded URL parameters with buffer data converted to a list of timestamped samples, each containing
+        temperature (degrees C) and relative humidity (%) readings.
+        """
         super().decode()
 
         self.samples.clear()
@@ -35,11 +46,12 @@ class HDC2021DecoderHT(HDC2021Decoder):
 
 
 class HDC2021DecoderT(HDC2021Decoder):
-    """
-    Extracts temperature samples from the circular buffer.
-
-    """
     def decode(self):
+        """
+
+        :return: Decoded URL parameters with buffer data converted to a list of timestamped samples, each containing one
+        temperature reading in degrees C.
+        """
         super().decode()
 
         self.samples.clear()
