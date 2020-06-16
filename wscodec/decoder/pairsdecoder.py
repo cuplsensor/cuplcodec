@@ -82,26 +82,17 @@ class PairsDecoder(ParamDecoder):
         # Decode elapsedb64
         self._decode_elapsedb64(elapsedb64)
 
-        endbuf = list()
         declist = list()
         pairlist = list()
-        linbuf8 = list()
-
-        assert(len(self.linearbuf) > 1)
-
-        # Convert the linear buffer into 4 byte chunks.
-        linbuf = list(self.chunkstring(self.linearbuf, 4))
-
-        assert (len(linbuf) > 1)
 
         # Pop the 3 bytes from the end of the buffer.
         # These contain the MD5 hash and the number of valid samples
-        for i in range(0, 3, 1):
-            endbuf.append(linbuf.pop())
-        endbuf.reverse()
+        endbuf = self.linearbuf[-12:]
+        self.linearbuf = self.linearbuf[:-12]
+        endbuf4 = self.chunkstring(endbuf, 4)
 
         # Decode the endstop 4 bytes at a time.
-        for chunk in endbuf:
+        for chunk in endbuf4:
             decodedchunk = b64decode(chunk)
             declist.append(decodedchunk)
 
@@ -117,9 +108,7 @@ class PairsDecoder(ParamDecoder):
         # Convert 4 byte chunks into 8 byte chunks.
         # There should not be any 4 byte chunks left over,
         # but these should be discarded.
-        for i in range(len(linbuf)%2, len(linbuf), 2):
-            x = linbuf[i] + linbuf[i+1]
-            linbuf8.append(x)
+        linbuf8 = self.chunkstring(self.linearbuf, 8)
 
         # The newest 8 byte chunk might only contain
         # 1 valid pair. If so, this is a
@@ -181,8 +170,8 @@ class PairsDecoder(ParamDecoder):
             sample['ts'] = self.newestdatetime - sampleindex * intervalminutes
             sampleindex = sampleindex + 1
 
-    def chunkstring(self, string, length):
-        return (string[i:i+length] for i in range(0, len(string), length))
+    def chunkstring(self, string, n):
+        return [(string[i:i+n] for i in range(0, len(string), n))]
 
     # Obtain samples from a 4 byte base64 chunk. Chunk should be renamed to demi here.
     def pairsfromchunk(self, chunk, samplecount):
