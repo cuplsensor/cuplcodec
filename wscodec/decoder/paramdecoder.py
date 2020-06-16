@@ -13,6 +13,7 @@ class ParamDecoder:
         self.circb64 = circb64
         self.usehmac = usehmac
         self.secretkey = secretkey
+        self.linearbuf = None
         self.scandatetime = scandatetime or datetime.now(timezone.utc)
 
     def decode(self):
