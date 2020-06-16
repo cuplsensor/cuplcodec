@@ -75,7 +75,7 @@ class PairsDecoder(ParamDecoder):
             """
         super().decode()
 
-        assert self.linearbuf == "akgfn", {'linearbuf':self.linearbuf, 'circbuf':self.circb64}
+        #assert self.linearbuf == "akgfn", {'linearbuf':self.linearbuf, 'circbuf':self.circb64}
 
         # Extract elapsed minutes since the previous sample in minutes xxx~. Replace the '=' to make this valid base64.
         elapsedb64 = self.linearbuf[-3:] + '='
@@ -106,8 +106,6 @@ class PairsDecoder(ParamDecoder):
         md5bytes = endbytes[0:7]
         urlMD5 = md5bytes.hex()
         npairs = struct.unpack(">H", npairsbytes)[0]
-
-        assert self.linearbuf == "akgfn", self.linearbuf
 
         # Convert 4 byte chunks into 8 byte chunks.
         # There should not be any 4 byte chunks left over,

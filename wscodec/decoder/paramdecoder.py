@@ -44,4 +44,4 @@ class ParamDecoder:
         circbufend = splitend[0]
 
         self.endmarkerpos = len(circbufend)
-        self.linearbuf = circbufend + circbufstart
+        self.linearbuf = circbufstart + circbufend
