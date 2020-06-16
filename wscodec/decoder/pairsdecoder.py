@@ -79,8 +79,8 @@ class PairsDecoder(ParamDecoder):
 
         if rem != 0:
             demi = demis.pop()
-            demipairs = self.pairsfromdemi(demi)[0]
-            self.pairs.extend(demipairs)
+            pair = self.pairsfromdemi(demi)[0]
+            self.pairs.append(pair)
 
         # Process remaining full demis. These all contain 2 pairs.
         for i in range(0, full, 1):
