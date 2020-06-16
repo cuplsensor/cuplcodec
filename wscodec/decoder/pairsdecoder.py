@@ -171,7 +171,7 @@ class PairsDecoder(ParamDecoder):
             sampleindex = sampleindex + 1
 
     def chunkstring(self, string, n):
-        return [(string[i:i+n] for i in range(0, len(string), n))]
+        return list(string[i:i+n] for i in range(0, len(string), n))
 
     # Obtain samples from a 4 byte base64 chunk. Chunk should be renamed to demi here.
     def pairsfromchunk(self, chunk, samplecount):
