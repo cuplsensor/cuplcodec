@@ -31,20 +31,20 @@ class DecoderFactory:
         The time that the tag was scanned. All decoded samples will be timestamped relative to this.
 
     """
-    @staticmethod
-    def decode(secretkey: str, statb64: str, timeintb64: str, circb64: str, ver: str, usehmac: bool = True, scandatetime: datetime = None):
+    @classmethod
+    def decode(cls, secretkey: str, statb64: str, timeintb64: str, circb64: str, ver: str, usehmac: bool = True, scandatetime: datetime = None):
         majorversion = int(ver[-2:-1])
         formatcode = int(ver[-1:])
 
         if majorversion != 1:
             raise InvalidMajorVersionError
 
-        decoder = DecoderFactory.get_decoder(formatcode)(statb64, timeintb64, circb64, usehmac, secretkey, scandatetime)
+        decoder = cls.get_decoder(formatcode)(statb64, timeintb64, circb64, usehmac, secretkey, scandatetime)
         decoder.decode()
         return decoder
 
-    @staticmethod
-    def get_decoder(formatcode: int):
+    @classmethod
+    def get_decoder(cls, formatcode: int):
         """
             Construct a Decoder object
 

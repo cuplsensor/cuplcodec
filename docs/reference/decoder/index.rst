@@ -1,10 +1,13 @@
 Decoder
 ==========
 
-.. autoclass:: wscodec.decoder.decoder.Decoder
+.. autoclass:: wscodec.decoder.DecoderFactory
     :members:
 
-.. automodule:: wscodec.decoder.pairsdecoder
+.. autoclass:: wscodec.decoder.pairsdecoder
+    :members:
+
+.. autoclass:: wscodec.decoder.paramdecoder
     :members:
 
 .. automodule:: wscodec.decoder.hdc2021
@@ -12,3 +15,5 @@ Decoder
 
 .. autoclass:: wscodec.decoder.status.Status
     :members:
+
+
