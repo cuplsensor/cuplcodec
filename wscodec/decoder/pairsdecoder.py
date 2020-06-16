@@ -79,7 +79,7 @@ class PairsDecoder(ParamDecoder):
 
         if rem != 0:
             demi = demis.pop()
-            pair = self.pairsfromdemi(demi)[0]
+            pair = self.pairsfromdemi(demi)[1]
             self.pairs.append(pair)
 
         # Process remaining full demis. These all contain 2 pairs.
