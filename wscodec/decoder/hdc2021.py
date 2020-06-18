@@ -1,17 +1,26 @@
-from .pairsdecoder import PairsDecoder
-from wscodec.decoder.status import Status
-from datetime import datetime
+from .samples import SamplesURL, Sample
 
 
-class HDC2021Decoder(PairsDecoder):
+class TempSample(Sample):
+    def __init__(self, rawtemp, timestamp=None):
+        super().__init__(timestamp)
+        self.rawtemp = rawtemp
+        self.temp = self.reading_to_temp(rawtemp)
+
     @staticmethod
     def reading_to_temp(reading: int) -> float:
         """
-
         :param reading: Integer temperature ADC reading from the HDC2021.
         :return: Temperature in degrees C
         """
-        return (reading * 165)/4096 - 40
+        return (reading * 165) / 4096 - 40
+
+
+class TempRHSample(TempSample):
+    def __init__(self, rawtemp, rawrh, timestamp=None):
+        super().__init__(rawtemp, timestamp)
+        self.rawrh = rawrh
+        self.rh = self.reading_to_rh(rawrh)
 
     @staticmethod
     def reading_to_rh(reading: int) -> float:
@@ -20,48 +29,42 @@ class HDC2021Decoder(PairsDecoder):
         :param reading: Integer Relative Humidity ADC reading from the HDC2021.
         :return: Relative Humidity in percent.
         """
-        return (reading * 100)/4096
+        return (reading * 100) / 4096
 
 
-class HDC2021DecoderHT(HDC2021Decoder):
-    def decode(self):
+class TempRH_URL(SamplesURL):
+    def __init__(self, *args, **kwargs):
         """
         :return: Decoded URL parameters with buffer data converted to a list of timestamped samples, each containing
         temperature (degrees C) and relative humidity (%) readings.
         """
-        super().decode()
-
-        self.samples.clear()
+        super().__init__(*args, **kwargs)
 
         for pair in self.pairs:
             temp = pair.rd0
             rh = pair.rd1
 
-            temp = HDC2021Decoder.reading_to_temp(temp)
-            rh = HDC2021Decoder.reading_to_rh(rh)
-
-            self.samples.append({'temp': temp, 'rh': rh})
+            sample = TempRHSample(temp, rh)
+            self.samples.append(sample)
 
         self.applytimestamp()
 
 
-class HDC2021DecoderT(HDC2021Decoder):
-    def decode(self):
+class Temp_URL(SamplesURL):
+    def __init__(self, *args, **kwargs):
         """
 
         :return: Decoded URL parameters with buffer data converted to a list of timestamped samples, each containing one
         temperature reading in degrees C.
         """
-        super().decode()
-
-        self.samples.clear()
+        super().__init__(*args, **kwargs)
 
         for pair in self.pairs:
             if pair.rd1 != 4095:
-                temp2 = HDC2021Decoder.reading_to_temp(pair.rd1)
-                self.samples.append({'temp': temp2})
+                sample = TempSample(pair.rd1)
+                self.samples.append(sample)
 
-            temp1 = HDC2021Decoder.reading_to_temp(pair.rd0)
-            self.samples.append({'temp': temp1})
+            sample = TempSample(pair.rd0)
+            self.samples.append(sample)
 
         self.applytimestamp()

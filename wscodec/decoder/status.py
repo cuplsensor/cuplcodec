@@ -1,4 +1,4 @@
-from .b64decode import b64decode
+from .b64decode import B64Decoder
 import struct
 
 BIT0 = 0x01
@@ -29,20 +29,20 @@ class Status:
             Value of the URL parameter that holds status information (after base64 encoding).
 
     """
-    def __init__(self, statb64):
-        decstr = b64decode(statb64)
+    def __init__(self, statb64: str):
+        decstr = B64Decoder.b64decode(statb64)
         declist = struct.unpack("HHH", decstr)
         self.loopcount = declist[0]
         self.resetsalltime = declist[1]
         self.batv_resetcause = declist[2]
 
-        brownout = (self.batv_resetcause & BOR_BIT) > 0
-        supervisor = (self.batv_resetcause & SVSH_BIT) > 0
-        watchdog = (self.batv_resetcause & WDT_BIT) > 0
-        misc = (self.batv_resetcause & MISC_BIT) > 0
-        lpm5wakeup = (self.batv_resetcause & LPM5WU_BIT) > 0
-        clockfail = (self.batv_resetcause & CLOCKFAIL_BIT) > 0
-        scantimeout = (self.batv_resetcause & SCANTIMEOUT_BIT) > 0
+        brownout = (self.get_resetcauseraw() & BOR_BIT) > 0
+        supervisor = (self.get_resetcauseraw() & SVSH_BIT) > 0
+        watchdog = (self.get_resetcauseraw() & WDT_BIT) > 0
+        misc = (self.get_resetcauseraw() & MISC_BIT) > 0
+        lpm5wakeup = (self.get_resetcauseraw() & LPM5WU_BIT) > 0
+        clockfail = (self.get_resetcauseraw() & CLOCKFAIL_BIT) > 0
+        scantimeout = (self.get_resetcauseraw() & SCANTIMEOUT_BIT) > 0
 
         self.resetcause = {
             "brownout": brownout,
@@ -74,3 +74,5 @@ class Status:
         :return: Battery voltage converted to mV.
         """
         return (256 * 1500) / self.get_batvoltageraw()
+
+
