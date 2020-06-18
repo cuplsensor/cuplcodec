@@ -15,7 +15,8 @@ def instr_sample_populated(instr_sample, request):
     for d in urllist:
         del d['timestamp']
         del d['rawtemp']
-        del d['rawrh']
+        if 'rawrh' in d:
+            del d['rawrh']
 
     inlist = inlist[:len(urllist)]
 
