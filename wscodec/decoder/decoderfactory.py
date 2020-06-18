@@ -39,7 +39,7 @@ def decode(secretkey: str, statb64: str, timeintb64: str, circb64: str, ver: str
     if majorversion != 1:
         raise InvalidMajorVersionError
 
-    decoder = _get_decoder(formatcode)(statb64, timeintb64, circb64, usehmac, secretkey, scandatetime)
+    decoder = _get_decoder(formatcode)(statb64=statb64, timeintb64=timeintb64, circb64=circb64, usehmac=usehmac, secretkey=secretkey, scandatetime=scandatetime)
     return decoder
 
 
