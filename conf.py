@@ -55,6 +55,7 @@ extensions = [
     'breathe',
     'sphinx_rtd_theme',
     'sphinxcontrib.plantuml',
+    'sphinx.ext.inheritance_diagram',
     'sphinxcontrib.needs'
 ]
 
