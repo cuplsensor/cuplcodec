@@ -1,3 +1,3 @@
-from .decoderfactory import DecoderFactory
+from .decoderfactory import decode
 
 name = "urldecoder"

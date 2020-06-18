@@ -1,6 +1,6 @@
 import pytest
 from wscodec.encoder.pyencoder.instrumented import InstrumentedSampleTRH, InstrumentedSample
-from wscodec.decoder import DecoderFactory
+from wscodec.decoder import decode
 from wscodec.decoder.exceptions import DelimiterNotFoundError
 from wscodec.decoder.status import SVSH_BIT
 
@@ -56,12 +56,14 @@ def test_md5(n, usehmac):
 
     # Decode the URL
     par = instr_md5.eepromba.get_url_parsedqs()
-    decodedurl = DecoderFactory.decode(secretkey=INPUT_SECKEY, statb64=par['x'][0], timeintb64=par['t'][0],
-                                       circb64=par['q'][0], ver=par['v'][0], usehmac=usehmac)
+    decodedurl = decode(secretkey=INPUT_SECKEY, statb64=par['x'][0], timeintb64=par['t'][0],
+                        circb64=par['q'][0], ver=par['v'][0], usehmac=usehmac)
 
-    urllist = decodedurl.samples
+    urllist = decodedurl.get_samples_list()
     for d in urllist:
-        del d['ts']
+        del d['timestamp']
+        del d['rawtemp']
+        del d['rawrh']
 
     inlist = inlist[:len(urllist)]
 
@@ -82,8 +84,8 @@ def test_batteryvoltage():
 
     # Decode the URL
     par = instr_batv.eepromba.get_url_parsedqs()
-    decodedurl = DecoderFactory.decode(secretkey="", statb64=par['x'][0], timeintb64=par['t'][0],
-                                       circb64=par['q'][0], ver=par['v'][0], usehmac=False)
+    decodedurl = decode(secretkey="", statb64=par['x'][0], timeintb64=par['t'][0],
+                        circb64=par['q'][0], ver=par['v'][0], usehmac=False)
 
     assert decodedurl.status.get_batvoltageraw() == testbatv
 
@@ -103,9 +105,7 @@ def test_errorcondition():
 
     with pytest.raises(DelimiterNotFoundError) as excinfo:
         # Attempt to decode the parameters
-        decodedurl = DecoderFactory.decode(secretkey="", statb64=par['x'][0], timeintb64=par['t'][0],
-                                           circb64="", ver=par['v'][0], usehmac=False)
+        decodedurl = decode(secretkey="", statb64=par['x'][0], timeintb64=par['t'][0],
+                            circb64="", ver=par['v'][0], usehmac=False)
 
     assert excinfo.value.status.resetcause['supervisor'] == True
-
-

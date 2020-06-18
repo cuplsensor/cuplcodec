@@ -22,6 +22,8 @@ class SamplesURL(PairsURL):
         self.newestdatetime = self.scandatetime - timedelta(minutes=self.elapsedmins)  # Timestamp of the newest sample
         self.samples = list()
 
+    def get_samples_list(self):
+        return [vars(sample) for sample in self.samples]
 
     def applytimestamp(self):
         # Append timestamps to each sample.
