@@ -5,11 +5,19 @@ from struct import unpack
 
 
 class CircularBufferURL:
+    """
+    t
+    """
     ELAPSED_LEN_BYTES = 4
     ENDSTOP_LEN_BYTES = 16
     ENDSTOP_BYTE = '~'  # This must be URL Safe
 
     def __init__(self, statb64: str, circb64: str = None):
+        """
+
+        :param statb64:
+        :param circb64:
+        """
         self.statb64 = statb64
         self.circb64 = circb64
 
@@ -43,9 +51,17 @@ class CircularBufferURL:
         self.linearbuf = circbufstart + circbufend + self.ENDSTOP_BYTE
 
     def _decode_status(self):
+        """
+
+        :return:
+        """
         self.status = Status(self.statb64)
 
     def _decode_endstop(self):
+        """
+        Decodes the endstop
+        :return:
+        """
         endstopstr = self.endstopstr
 
         assert len(endstopstr) == self.ENDSTOP_LEN_BYTES

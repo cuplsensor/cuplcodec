@@ -10,6 +10,13 @@ class Sample:
 
 class SamplesURL(PairsURL):
     def __init__(self, *args, timeintb64: str, scandatetime: datetime = None, **kwargs):
+        """
+
+        :param args:
+        :param timeintb64:
+        :param scandatetime:
+        :param kwargs:
+        """
         super().__init__(*args, **kwargs)
         self.timeintb64 = timeintb64
         self.scandatetime = scandatetime or datetime.now(timezone.utc)
@@ -23,13 +30,22 @@ class SamplesURL(PairsURL):
         self.samples = list()
 
     def get_samples_list(self):
+        """
+
+        :return:
+        """
         return [vars(sample) for sample in self.samples]
 
     def applytimestamp(self):
-        # Append timestamps to each sample.
-        # Start by ordering samples from newest to oldest.
-        # Each consecutive timestamp decrements the timestamp by the
-        # time interval contained inside the URL.
+        """
+        Append timestamps to each sample.
+        Start by ordering samples from newest to oldest.
+        Each consecutive timestamp decrements the timestamp by the
+        time interval contained inside the URL.
+
+        :return:
+        """
+        #
         sampleindex = 0
         for sample in self.samples:
             sample.timestamp = self.newestdatetime - sampleindex * self.intervalminutes

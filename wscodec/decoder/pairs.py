@@ -26,15 +26,31 @@ class Pair:
 
     @classmethod
     def from_bytes(cls, bytes):
+        """
+
+        :param bytes:
+        :return:
+        """
         assert len(bytes) == BYTES_PER_PAIR
         return cls(rd0Msb=bytes[0], rd1Msb=bytes[1], Lsb=bytes[2])
 
     def readings(self):
+        """
+
+        :return:
+        """
         return {'rd0': self.rd0, 'rd1': self.rd1}
 
 
 class PairsURL(CircularBufferURL):
     def __init__(self, *args, usehmac: bool = False, secretkey: str = None,  **kwargs):
+        """
+
+        :param args:
+        :param usehmac:
+        :param secretkey:
+        :param kwargs:
+        """
         super().__init__(*args, **kwargs)
 
         self.usehmac = usehmac
@@ -44,6 +60,10 @@ class PairsURL(CircularBufferURL):
         self._verify()
 
     def _verify(self):
+        """
+
+        :return:
+        """
         pairhist = bytearray()
 
         for pair in self.pairs:
@@ -73,6 +93,11 @@ class PairsURL(CircularBufferURL):
         assert self.npairs == len(self.pairs)
 
     def _gethash(self, message):
+        """
+
+        :param message:
+        :return:
+        """
         secretkeyba = bytearray(self.secretkey, 'utf8')
         if self.usehmac:
             hmacobj = hmac.new(secretkeyba, message, "md5")
@@ -82,6 +107,10 @@ class PairsURL(CircularBufferURL):
         return digest
 
     def _decode_pairs(self):
+        """
+
+        :return:
+        """
         self.pairs = list()
 
         # Convert payload string into 8 byte demis.
@@ -109,6 +138,11 @@ class PairsURL(CircularBufferURL):
 
     # Obtain samples from a 4 byte base64 chunk. Chunk should be renamed to demi here.
     def _pairsfromdemi(self, demi):
+        """
+
+        :param demi:
+        :return:
+        """
         pairs = list()
 
         assert len(demi) == BYTES_PER_DEMI, demi

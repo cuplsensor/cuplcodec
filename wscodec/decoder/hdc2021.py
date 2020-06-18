@@ -3,6 +3,11 @@ from .samples import SamplesURL, Sample
 
 class TempSample(Sample):
     def __init__(self, rawtemp, timestamp=None):
+        """
+
+        :param rawtemp:
+        :param timestamp:
+        """
         super().__init__(timestamp)
         self.rawtemp = rawtemp
         self.temp = self.reading_to_temp(rawtemp)
