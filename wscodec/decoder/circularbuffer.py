@@ -66,7 +66,7 @@ class CircularBufferURL:
 
         assert len(endstopstr) == self.ENDSTOP_LEN_BYTES
 
-        endstopstr.replace(self.ENDSTOP_BYTE, B64Decoder.RFC3548_PADDING_BYTE)
+        endstopstr = endstopstr.replace(self.ENDSTOP_BYTE, B64Decoder.RFC3548_PADDING_BYTE)
 
         # Extract elapsed minutes since the previous sample in minutes xxx~. Replace the '=' to make this valid base64.
         elapsedb64 = endstopstr[-self.ELAPSED_LEN_BYTES:]
