@@ -57,7 +57,6 @@ def test_md5(instr_sample, n):
     for d in urllist:
         del d['timestamp']
         del d['rawtemp']
-        del d['rawrh']
 
     inlist = inlist[:len(urllist)]
 
