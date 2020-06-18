@@ -22,7 +22,7 @@ def instr_sample(request):
                               smplintervalmins=INPUT_TIMEINT)
 
 
-def test_minuteoffset(instr_sample):
+def test_elapsedmins(instr_sample):
     instr_sample.pushsamples(1)
 
     for i in range(0, INPUT_TIMEINT, 5000):
@@ -33,7 +33,7 @@ def test_minuteoffset(instr_sample):
         decodedurl = decode(secretkey=instr_sample.secretkey, statb64=par['x'][0], timeintb64=par['t'][0],
                             circb64=par['q'][0], ver=par['v'][0])
 
-        assert i == decodedurl.minuteoffset
+        assert i == decodedurl.elapsedmins
 
 
 
