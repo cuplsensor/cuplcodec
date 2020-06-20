@@ -19,7 +19,7 @@ Get a list of samples from a cuplcodec URL
 .. autoclass:: wscodec.decoder.samples.SamplesURL
     :members:
 
-.. automodule:: wscodec.decoder.pairs
+.. autoclass:: wscodec.decoder.pairs.PairsURL
     :members:
 
 .. automodule:: wscodec.decoder.circularbuffer
@@ -40,6 +40,11 @@ Samples
 .. autoclass:: wscodec.decoder.samples.Sample
     :members:
 
+Pairs
+-----
+
+.. autoclass:: wscodec.decoder.pairs.Pairs
+    :members:
 
 Status
 -------
