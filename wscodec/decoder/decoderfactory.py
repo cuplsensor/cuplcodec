@@ -1,38 +1,50 @@
 from datetime import datetime
+from .samples import SamplesURL
 from .exceptions import InvalidMajorVersionError, InvalidCircFormatError
 from . import hdc2021
 
 
-def decode(secretkey: str, statb64: str, timeintb64: str, circb64: str, ver: str, usehmac: bool = True, scandatetime: datetime = None):
+def decode(secretkey: str,
+           statb64: str,
+           timeintb64: str,
+           circb64: str,
+           ver: str,
+           usehmac: bool = True,
+           scandatetime: datetime = None) -> SamplesURL:
     """
-       Decode the version string and extract codec version and format code. Raise an error if the codec version does not
-       match. The format code is used to select the decoder to return. An error is raised if no decoder is available for
-       the given code.
+    Decode the version string and extract codec version and format code. An error is raised if the codec version does
+    not match. A decoder object is returned based on the format code. An error is raised if no decoder is available
+    for the code.
 
-       Parameters
-       -----------
-       secretkey:
-           HMAC secret key as a string. Normally 16 bytes.
+    Parameters
+    -----------
+    secretkey:
+        HMAC secret key as a string. Normally 16 bytes.
 
-       statb64:
-           Value of the URL parameter that holds status information (after base64 encoding).
+    statb64:
+        Value of the URL parameter that holds status information (after base64 encoding).
 
-       timeintb64:
-           Value of the URL parameter that holds the time interval in minutes (after base64 encoding).
+    timeintb64:
+        Value of the URL parameter that holds the time interval in minutes (after base64 encoding).
 
-       circb64:
-           Value of the URL parameter that contains the circular buffer of base64 encoded samples.
+    circb64:
+        Value of the URL parameter that contains the circular buffer of base64 encoded samples.
 
-       ver:
-           Value of the URL parameter that contains the version string.
+    ver:
+        Value of the URL parameter that contains the version string.
 
-       usehmac:
-           True if the hash inside the circular buffer endstop is HMAC-MD5. False if it is MD5.
+    usehmac:
+        True if the hash inside the circular buffer endstop is HMAC-MD5. False if it is MD5.
 
-       scandatetime:
-           The time that the tag was scanned. All decoded samples will be timestamped relative to this.
+    scandatetime:
+        The time that the tag was scanned. All decoded samples will be timestamped relative to this.
 
-       """
+    Returns
+    --------
+    SamplesURL
+        A subclass instance of SamplesURL.
+
+    """
     majorversion = int(ver[-2:-1])
     formatcode = int(ver[-1:])
 
@@ -48,11 +60,11 @@ def _get_decoder(formatcode: int):
         Parameters
         -----------
         formatcode:
-            Value of the codec format field. Specifies which decoder shall be used.
+            Value of the codec format field. Specifies which decoder shall be returned.
 
         Return
         -------
-        A decoder class for the given format code.
+        Decoder class for the given format code.
 
         """
     decoders = {
