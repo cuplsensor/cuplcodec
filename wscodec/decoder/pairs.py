@@ -11,33 +11,84 @@ BYTES_PER_DEMI = BYTES_PER_PAIRB64 * PAIRS_PER_DEMI
 
 
 class Pair:
-    def __init__(self, rd0Msb: int, rd1Msb: int, Lsb: int):
-        self.rd0Msb = rd0Msb
-        self.rd1Msb = rd1Msb
+    """
+    Class representing a pair of 12-bit sensor readings.
+
+    In the URL each pair consists of a 4 byte (base64) string. These decode to 3 8-bit bytes. The last contains
+    4-bits from reading0 and 4-bits from reading 1.
+
+    When this class is instantiated, the 3 8-bit bytes are converted back into two 12-bit readings.
+
+    Parameters
+    ----------
+    rd0MSB : int
+        Most Signficant Byte of environmental sensor reading0.
+    rd1MSB : int
+        Most Significant Byte of environmental sensor reading1.
+    Lsb : int
+        Upper 4-bits are the least significant bits of reading0.
+        Lower 4-bits are the least significant bits of reading1.
+    """
+    def __init__(self, rd0MSB: int, rd1MSB: int, Lsb: int):
+
+        self.rd0MSB = rd0MSB
+        self.rd1MSB = rd1MSB
         self.Lsb = Lsb
 
         rd0Lsb = (self.Lsb >> 4) & 0xF
         rd1Lsb = self.Lsb & 0xF
-        self.rd0 = ((self.rd0Msb << 4) | rd0Lsb)
-        self.rd1 = ((self.rd1Msb << 4) | rd1Lsb)
+        self.rd0 = ((self.rd0MSB << 4) | rd0Lsb)
+        self.rd1 = ((self.rd1MSB << 4) | rd1Lsb)
 
     def __repr__(self):
-        return self.readings()
+        """
+
+        Returns
+        -------
+        A string containing both 12-bit readings.
+        """
+        return str(self.readings())
 
     @classmethod
-    def from_bytes(cls, bytes):
+    def from_bytes(cls, bytes: bytes):
         """
 
-        :param bytes:
-        :return:
+        Parameters
+        ----------
+        bytes : bytes
+            The 3 bytes that make up a pair rd0MSB, rd1MSB and Lsb.
+
+        Returns
+        -------
+        A pair instantiated from the 3 byte input.
+
         """
         assert len(bytes) == BYTES_PER_PAIR
-        return cls(rd0Msb=bytes[0], rd1Msb=bytes[1], Lsb=bytes[2])
+        return cls(rd0MSB=bytes[0], rd1MSB=bytes[1], Lsb=bytes[2])
+
+    @classmethod
+    def from_b64(cls, pairb64: str):
+        """
+
+        Parameters
+        ----------
+        str4: str
+            A 4 character string that represents a base64 encoded pair. These are extracted from the circular buffer.
+
+        Returns
+        -------
+        A pair instantiated from the 4 character string.
+        """
+        assert len(pairb64) == BYTES_PER_PAIRB64
+        pairbytes = B64Decoder.b64decode(pairb64)
+        return cls.from_bytes(pairbytes)
 
     def readings(self):
         """
 
-        :return:
+        Returns
+        --------
+        A dictionary containing both 12-bit readings.
         """
         return {'rd0': self.rd0, 'rd1': self.rd1}
 
@@ -67,8 +118,8 @@ class PairsURL(CircularBufferURL):
         pairhist = bytearray()
 
         for pair in self.pairs:
-            pairhist.append(pair.rd0Msb)
-            pairhist.append(pair.rd1Msb)
+            pairhist.append(pair.rd0MSB)
+            pairhist.append(pair.rd1MSB)
             pairhist.append(pair.Lsb)
 
         pairhist.append(self.status.loopcount >> 8)
@@ -149,8 +200,7 @@ class PairsURL(CircularBufferURL):
 
         for i in range(0, BYTES_PER_DEMI, BYTES_PER_PAIRB64):
             pairb64 = demi[i:i+BYTES_PER_PAIRB64]
-            decoded = B64Decoder.b64decode(pairb64)
-            pair = Pair.from_bytes(decoded)
+            pair = Pair.from_b64(pairb64)
             pairs.append(pair)
 
         # Return newest sample first.

@@ -42,7 +42,7 @@ def decode(secretkey: str,
     Returns
     --------
     SamplesURL
-        A subclass instance of SamplesURL.
+        An object containing a list of timestamped environmental sensor samples.
 
     """
     majorversion = int(ver[-2:-1])
