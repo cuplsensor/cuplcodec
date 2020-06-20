@@ -10,7 +10,7 @@ def decode(secretkey: str,
            circb64: str,
            ver: str,
            usehmac: bool = True,
-           scandatetime: datetime = None) -> SamplesURL:
+           scantimestamp: datetime = None) -> SamplesURL:
     """
     Decode the version string and extract codec version and format code. An error is raised if the codec version does
     not match. A decoder object is returned based on the format code. An error is raised if no decoder is available
@@ -36,7 +36,7 @@ def decode(secretkey: str,
     usehmac: bool
         True if the hash inside the circular buffer endstop is HMAC-MD5. False if it is MD5.
 
-    scandatetime: datetime
+    scantimestamp: datetime
         The time that the tag was scanned. All decoded samples will be timestamped relative to this.
 
     Returns
@@ -51,7 +51,7 @@ def decode(secretkey: str,
     if majorversion != 1:
         raise InvalidMajorVersionError
 
-    decoder = _get_decoder(formatcode)(statb64=statb64, timeintb64=timeintb64, circb64=circb64, usehmac=usehmac, secretkey=secretkey, scandatetime=scandatetime)
+    decoder = _get_decoder(formatcode)(statb64=statb64, timeintb64=timeintb64, circb64=circb64, usehmac=usehmac, secretkey=secretkey, scantimestamp=scantimestamp)
     return decoder
 
 
