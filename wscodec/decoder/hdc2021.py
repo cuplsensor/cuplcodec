@@ -1,8 +1,9 @@
+from datetime import datetime
 from .samples import SamplesURL, Sample
 
 
 class TempSample(Sample):
-    def __init__(self, rawtemp, timestamp=None):
+    def __init__(self, rawtemp: int, timestamp: datetime = None):
         """
 
         :param rawtemp:
@@ -22,7 +23,7 @@ class TempSample(Sample):
 
 
 class TempRHSample(TempSample):
-    def __init__(self, rawtemp, rawrh, timestamp=None):
+    def __init__(self, rawtemp: int, rawrh: int, timestamp: datetime = None):
         super().__init__(rawtemp, timestamp)
         self.rawrh = rawrh
         self.rh = self.reading_to_rh(rawrh)
