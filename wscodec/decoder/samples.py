@@ -19,29 +19,29 @@ class Sample:
 
 
 class SamplesURL(PairsURL):
+    """
+    This holds a list of decoded sensor samples. Each needs a timestamp, but this must be calculated. There
+    are no absolute timestamps in the URL. First, all times are relative to scantimestamp (when the tag was
+    scanned).
+
+    The URL does contain self.elapsedmins (the minutes elapsed since the newest sample was acquired). This makes it
+    possible to calculate self.newest_timestamp, the timestamp of the newest sample.
+
+    Every subsequent sample is taken at a fixed time interval relative to self.newest_timestamp. This time interval
+    is decoded from timeintb64 into self.timeinterval.
+
+    Parameters
+    ----------
+    *args
+        Variable length argument list
+    timeintb64 : str
+        Time interval between samples in minutes, base64 encoded into a 4 character string.
+    scantimestamp : datetime
+        Time the tag was scanned. It corresponds to the time the URL on the tag is requested from the web server.
+    **kwargs
+        Keyword arguments to be passed to parent class constructors.
+    """
     def __init__(self, *args, timeintb64: str, scantimestamp: datetime = None, **kwargs):
-        """
-        This object holds a list of decoded sensor samples. Each needs a timestamp, but this must be calculated. There
-        are no absolute timestamps in the URL. First, all times are relative to scantimestamp (when the tag was
-        scanned).
-
-        The URL does contain self.elapsedmins (the minutes elapsed since the newest sample was acquired). This makes it
-        possible to calculate self.newest_timestamp, the timestamp of the newest sample.
-
-        Every subsequent sample is taken at a fixed time interval relative to self.newest_timestamp. This time interval
-        is decoded from timeintb64 into self.timeinterval.
-
-        Parameters
-        ----------
-        *args
-            Variable length argument list
-        timeintb64 : str
-            Time interval between samples in minutes, base64 encoded into a 4 character string.
-        scantimestamp : datetime
-            Time the tag was scanned. It corresponds to the time the URL on the tag is requested from the web server.
-        **kwargs
-            Keyword arguments to be passed to parent class constructors.
-        """
         super().__init__(*args, **kwargs)
         self.timeintb64 = timeintb64
         self.scantimestamp = scantimestamp or datetime.now(timezone.utc)
