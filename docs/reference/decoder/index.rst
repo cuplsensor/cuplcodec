@@ -1,8 +1,10 @@
 Decoder
 ==========
 
-Get a list of samples from a cuplcodec URL
--------------------------------------------
+Decode a cuplcodec URL
+------------------------
+
+The decoder extracts a timestamped list of samples from a cuplcodec URL.
 
 .. automodule:: wscodec.decoder.decoderfactory
     :members:
@@ -25,7 +27,7 @@ Get a list of samples from a cuplcodec URL
 .. automodule:: wscodec.decoder.circularbuffer
     :members:
 
-Samples
+Sample
 --------
 
 .. inheritance-diagram:: wscodec.decoder.hdc2021.TempSample wscodec.decoder.hdc2021.TempRHSample
@@ -40,10 +42,10 @@ Samples
 .. autoclass:: wscodec.decoder.samples.Sample
     :members:
 
-Pairs
+Pair
 -----
 
-.. autoclass:: wscodec.decoder.pairs.Pairs
+.. autoclass:: wscodec.decoder.pairs.Pair
     :members:
 
 Status
