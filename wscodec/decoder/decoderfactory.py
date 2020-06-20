@@ -18,25 +18,25 @@ def decode(secretkey: str,
 
     Parameters
     -----------
-    secretkey:
+    secretkey: str
         HMAC secret key as a string. Normally 16 bytes.
 
-    statb64:
-        Value of the URL parameter that holds status information (after base64 encoding).
+    statb64: str
+        Value of the URL parameter that holds status information (base64 encoded).
 
-    timeintb64:
-        Value of the URL parameter that holds the time interval in minutes (after base64 encoding).
+    timeintb64: str
+        Value of the URL parameter that holds the time interval between samples in minutes (base64 encoded).
 
-    circb64:
+    circb64: str
         Value of the URL parameter that contains the circular buffer of base64 encoded samples.
 
-    ver:
-        Value of the URL parameter that contains the version string.
+    ver: str
+        Value of the URL parameter that contains the version string (base64 encoded).
 
-    usehmac:
+    usehmac: bool
         True if the hash inside the circular buffer endstop is HMAC-MD5. False if it is MD5.
 
-    scandatetime:
+    scandatetime: datetime
         The time that the tag was scanned. All decoded samples will be timestamped relative to this.
 
     Returns

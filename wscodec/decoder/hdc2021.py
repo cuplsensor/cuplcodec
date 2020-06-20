@@ -49,10 +49,8 @@ class TempRH_URL(SamplesURL):
             temp = pair.rd0
             rh = pair.rd1
 
-            sample = TempRHSample(temp, rh)
+            sample = TempRHSample(temp, rh, timestamp=self.generate_timestamp())
             self.samples.append(sample)
-
-        self.applytimestamp()
 
 
 class Temp_URL(SamplesURL):
@@ -69,7 +67,5 @@ class Temp_URL(SamplesURL):
                 sample = TempSample(pair.rd1)
                 self.samples.append(sample)
 
-            sample = TempSample(pair.rd0)
+            sample = TempSample(pair.rd0, timestamp=self.generate_timestamp())
             self.samples.append(sample)
-
-        self.applytimestamp()

@@ -4,49 +4,78 @@ from datetime import timedelta, timezone, datetime
 
 
 class Sample:
-    def __init__(self, timestamp):
+    """
+    Sample base class. All samples must contain a timestamp.
+    """
+    def __init__(self, timestamp: datetime):
+        """
+
+        Parameters
+        ----------
+        timestamp : datetime
+            Estimated sample collection time. Accurate to one minute.
+        """
         self.timestamp = timestamp
 
 
 class SamplesURL(PairsURL):
-    def __init__(self, *args, timeintb64: str, scandatetime: datetime = None, **kwargs):
+    def __init__(self, *args, timeintb64: str, scantimestamp: datetime = None, **kwargs):
         """
+        This object holds a list of decoded sensor samples. Each needs a timestamp, but this must be calculated. There
+        are no absolute timestamps in the URL. First, all times are relative to scantimestamp (when the tag was
+        scanned).
 
-        :param args:
-        :param timeintb64:
-        :param scandatetime:
-        :param kwargs:
+        The URL does contain self.elapsedmins (the minutes elapsed since the newest sample was acquired). This makes it
+        possible to calculate self.newest_timestamp, the timestamp of the newest sample.
+
+        Every subsequent sample is taken at a fixed time interval relative to self.newest_timestamp. This time interval
+        is decoded from timeintb64 into self.timeinterval.
+
+        Parameters
+        ----------
+        *args
+            Variable length argument list
+        timeintb64 : str
+            Time interval between samples in minutes, base64 encoded into a 4 character string.
+        scantimestamp : datetime
+            Time the tag was scanned. It corresponds to the time the URL on the tag is requested from the web server.
+        **kwargs
+            Keyword arguments to be passed to parent class constructors.
         """
         super().__init__(*args, **kwargs)
         self.timeintb64 = timeintb64
-        self.scandatetime = scandatetime or datetime.now(timezone.utc)
+        self.scantimestamp = scantimestamp or datetime.now(timezone.utc)
 
         # Calculates the time interval in minutes from a URL parameter.
-        timeintbytes = B64Decoder.b64decode(self.timeintb64)
-        self.timeintervalmins = int.from_bytes(timeintbytes, byteorder='little')
+        timeintmins_bytes = B64Decoder.b64decode(self.timeintb64)
+        self.timeintmins_int = int.from_bytes(timeintmins_bytes, byteorder='little')
 
-        self.intervalminutes = timedelta(minutes=self.timeintervalmins)  # Time between samples in seconds
-        self.newestdatetime = self.scandatetime - timedelta(minutes=self.elapsedmins)  # Timestamp of the newest sample
+        # Convert time interval into a timedelta object.
+        self.timeinterval = timedelta(minutes=self.timeintmins_int)
+        # Calculate the timestamp of the newest sample
+        self.newest_timestamp = self.scantimestamp - timedelta(minutes=self.elapsedmins)
+        # Define an empty list to hold samples.
         self.samples = list()
 
     def get_samples_list(self):
         """
 
-        :return:
+        Returns
+        -------
+        Samples as a list of dictionaries. This is done for compatibility purposes.
+
         """
         return [vars(sample) for sample in self.samples]
 
-    def applytimestamp(self):
+    def generate_timestamp(self):
         """
-        Append timestamps to each sample.
-        Start by ordering samples from newest to oldest.
-        Each consecutive timestamp decrements the timestamp by the
-        time interval contained inside the URL.
 
-        :return:
+        Yields
+        -------
+        A timestamp of a sample, calculated relative to that of the newest sample.
+
         """
-        #
         sampleindex = 0
-        for sample in self.samples:
-            sample.timestamp = self.newestdatetime - sampleindex * self.intervalminutes
+        while sampleindex < len(self.samples):
+            yield self.newest_timestamp - sampleindex * self.timeinterval
             sampleindex = sampleindex + 1
