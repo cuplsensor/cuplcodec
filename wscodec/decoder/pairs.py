@@ -1,6 +1,9 @@
+#  Copyright (c) Plotsensor Ltd. 2020.
 from .circularbuffer import CircularBufferURL
 from .exceptions import MessageIntegrityError
 from .b64decode import B64Decoder
+from typing import List
+from enum import Enum
 import hashlib
 import hmac
 
@@ -9,6 +12,9 @@ BYTES_PER_PAIRB64 = 4
 PAIRS_PER_DEMI = 2
 BYTES_PER_DEMI = BYTES_PER_PAIRB64 * PAIRS_PER_DEMI
 
+class HashType(Enum):
+    MD5 = 1
+    HMAC_MD5 = 2
 
 class Pair:
     """
@@ -96,24 +102,47 @@ class Pair:
 class PairsURL(CircularBufferURL):
     def __init__(self, *args, usehmac: bool = False, secretkey: str = None,  **kwargs):
         """
+        This takes the payload of the linearised buffer, which is a long string of base64 characters. It decodes this
+        into a list of pairs. The hash (MD5 or HMAC-MD5) is taken and compared with that supplied in the URL by the
+        encoder. If the hashes match then the decode has been successful. If not, an exception is raised.
 
-        :param args:
-        :param usehmac:
-        :param secretkey:
-        :param kwargs:
+        Parameters
+        ----------
+        *args
+            Variable length argument list.
+        usehmac: bool
+            True if the hash inside the circular buffer endstop is HMAC-MD5. False if it is MD5.
+        secretkey: str
+            HMAC secret key as a string. Normally 16 characters long.
+        **kwargs
+            Keyword arguments to be passed to parent class constructors.
         """
         super().__init__(*args, **kwargs)
 
-        self.usehmac = usehmac
-        self.secretkey = secretkey
-
         self._decode_pairs()
-        self._verify()
+        self._verify(usehmac, secretkey)
 
-    def _verify(self):
+    def _verify(self, usehmac : bool, secretkey : str):
         """
+        Calculate a hash from the list of pairs according to the same algorithm used
+        by the encoder (see :ref:`pairhist_hash`). Besides pairs, data from the status URL parameter
+        are included. This makes it very unlikely that the same data will be hashed twice, as well as 'protecting'
+        the status parameter from modification by a 3rd party.
 
-        :return:
+        A fragment of the calculated hash is compared with that supplied by the encoder. If the hashes agree then
+        verification is successful. If not, an exception is raised.
+
+        Parameters
+        ----------
+        usehmac : bool
+            True if the hash inside the circular buffer endstop is HMAC-MD5. False if it is MD5.
+        secretkey : str
+            HMAC secret key as a string. Normally 16 characters long.
+
+        Raises
+        -------
+            MessageIntegrityError: If the hash calculated by this decoder does not match the hash provided by the encoder.
+
         """
         pairhist = bytearray()
 
@@ -132,67 +161,114 @@ class PairsURL(CircularBufferURL):
         pairhist.append(self.endmarkerpos & 0xFF)
 
         # Perform message authentication.
-        calcMD5 = self._gethash(pairhist)
-        urlMD5 = self.urlMD5
+        calcHash, self.hashtype = self.__class__._gethash(pairhist, usehmac, secretkey)
+        urlHash = self.hash
 
         # Truncate calculated MD5 to the same length as the URL MD5.
-        calcMD5 = calcMD5[0:len(urlMD5)]
+        calcHash = calcHash[0:len(urlHash)]
 
-        if urlMD5 != calcMD5:
-            raise MessageIntegrityError(calcMD5, urlMD5)
+        if urlHash != calcHash:
+            raise MessageIntegrityError(calcHash, urlHash)
 
         assert self.npairs == len(self.pairs)
 
-    def _gethash(self, message):
+    @staticmethod
+    def _gethash(message: bytearray, usehmac: bool, secretkey: str):
         """
+        Calculates the hash of a message.
 
-        :param message:
-        :return:
+        Parameters
+        ----------
+        message : bytearray
+            Input data to the hashing algorithm.
+        usehmac : bool
+            When True the HMAC-MD5 algorithm is used. Otherwise MD5 is used (not recommended for production).
+        secretkey : str
+            HMAC secret key as a string. Normally 16 characters long.
+
+        Returns
+        -------
+        digest : str
+            The message hash.
+        hashtype : HashType
+            The hash algorithm used.
+
         """
-        secretkeyba = bytearray(self.secretkey, 'utf8')
-        if self.usehmac:
+        secretkeyba = bytearray(secretkey, 'utf8')
+        if usehmac:
             hmacobj = hmac.new(secretkeyba, message, "md5")
             digest = hmacobj.hexdigest()
+            hashtype = HashType.HMAC_MD5
         else:
             digest = hashlib.md5(message).hexdigest()
-        return digest
+            hashtype = HashType.MD5
+        return digest, hashtype
 
     def _decode_pairs(self):
         """
+        The payload string is converted into a list of 8-byte demis (see :ref:`demi`).
 
-        :return:
+        The first demi is the newest; its data have been written to the circular buffer most recently,
+        so it closest to the left of the endstop. It can contain either one or two pairs.
+        This is decoded first.
+
+        Subsequent (older) demis each contain 2 pairs. These are decoded. The final list of pairs is in
+        chronological order with the newest first and the oldest last.
         """
         self.pairs = list()
 
         # Convert payload string into 8 byte demis.
-        demis = self._chunkstring(self.payloadstr, BYTES_PER_DEMI)
+        demis = self._dividestring(self.payloadstr, BYTES_PER_DEMI)
 
-        # The newest 8 byte chunk might only contain
-        # 1 valid pair. If so, this is a
-        # partial demi and it is processed first.
-        rem = self.npairs % PAIRS_PER_DEMI
+        # The newest 8 byte demi might only contain 1 valid pair.
+        # If so, it is a partial one so it gets processed first.
+        partial = self.npairs % PAIRS_PER_DEMI
         full = int(self.npairs / PAIRS_PER_DEMI)
 
-        if rem != 0:
+        if partial != 0:
             demi = demis.pop()
-            pair = self._pairsfromdemi(demi)[1]
+            pair = self._pairsfromdemi(demi)[1]  # Only append the oldest pair, for the newest is invalid.
             self.pairs.append(pair)
 
         # Process remaining full demis. These all contain 2 pairs.
         for i in range(0, full, 1):
             demi = demis.pop()
-            demipairs = self._pairsfromdemi(demi)
+            demipairs = self._pairsfromdemi(demi)  # Append both pairs.
             self.pairs.extend(demipairs)
 
-    def _chunkstring(self, string, n):
-        return list(string[i:i+n] for i in range(0, len(string), n))
-
-    # Obtain samples from a 4 byte base64 chunk. Chunk should be renamed to demi here.
-    def _pairsfromdemi(self, demi):
+    @staticmethod
+    def _dividestring(source: str, n: int):
         """
 
-        :param demi:
-        :return:
+        Parameters
+        ----------
+        source : str
+            The string to be divided.
+        n
+            The number of characters in each substring.
+
+        Returns
+        -------
+        A list of substrings, each containing n characters.
+
+        """
+        return list(source[i:i+n] for i in range(0, len(source), n))
+
+    def _pairsfromdemi(self, demi: str) -> List[Pair]:
+        """
+        Decode a demi into 2 pairs.
+
+        Parameters
+        ----------
+        demi : str
+            A string containing 8 base64 characters.
+
+        Returns
+        -------
+        A list of 2 pairs:
+            Element 0 is the oldest pair, decoded from the first 4 demi characters.
+            Element 1 is the newest pair, decoded from the last 4 demi characters.
+
         """
         pairs = list()
 
@@ -203,6 +279,5 @@ class PairsURL(CircularBufferURL):
             pair = Pair.from_b64(pairb64)
             pairs.append(pair)
 
-        # Return newest sample first.
         pairs.reverse()
         return pairs

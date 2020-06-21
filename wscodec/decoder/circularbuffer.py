@@ -80,10 +80,10 @@ class CircularBufferURL:
 
         # Extract the number of samples and the HMAC/MD5 checksum from the endstop.
         npairsbytes = hashn[7:9]
-        md5bytes = hashn[0:7]
+        hashbytes = hashn[0:7]
 
         self.elapsedmins = int.from_bytes(elapsedbytes, byteorder='little')
         self.npairs = unpack(">H", npairsbytes)[0]
-        self.urlMD5 = md5bytes.hex()
+        self.hash = hashbytes.hex()
 
 

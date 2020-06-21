@@ -19,7 +19,7 @@ def decode(secretkey: str,
     Parameters
     -----------
     secretkey: str
-        HMAC secret key as a string. Normally 16 bytes.
+        HMAC secret key as a string. Normally 16 characters long.
 
     statb64: str
         Value of the URL parameter that holds status information (base64 encoded).
