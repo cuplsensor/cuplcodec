@@ -11,12 +11,27 @@ class CircularBufferURL:
     This includes at least a circular buffer with a long string of base64 encoded sample data and
     a short status field.
 
-    Instantiation decodes the status string. This must be done first because it contains error information.
+    Instantiation decodes the status string first. It contains error information from the microcontroller running
+    the encoder.
+
+    Next it locates the :ref:`ENDSTOP_BYTE` in the circular buffer string. Characters to its left are the newest.
+    Characters to its right are the oldest. The circular buffer is unwrapped into a string where :ref:`ENDSTOP_BYTE` is
+    the last character and the oldest data is in the first.
+
+    The linearised buffer is further divided into two parts:
+    The endstop string (including the endstop itself) are at the end. It contains metadata such as the number of
+    samples in the payload. This is preceded by the payload string, which contains a list base64-encocded
+    environmental sensor readings. These are in chronological order oldest-to-newest reading left-to-right.
+
+    The decoding of the payload string is handled elsewhere.
 
     Parameters
         ----------
         statb64 : str
+            Base64 encoded status string extract from a URL parameter.
         circb64 : str
+            A long string containing base64 encoded samples that are organised as a circular buffer.
+
     """
     ELAPSED_LEN_BYTES = 4   #: Length of the endstop elapsed minutes field in bytes (including the endstop itself).
     ENDSTOP_LEN_BYTES = 16  #: Length of the endstop in bytes.
@@ -57,15 +72,15 @@ class CircularBufferURL:
 
     def _decode_status(self):
         """
-
-        :return:
+        Instantiate a Status object. This can be over-ridden by a child of this class
+        if the Status data needs to change in future.
         """
         self.status = Status(self.statb64)
 
     def _decode_endstop(self):
         """
-        Decodes the endstop
-        :return:
+        Decode the circular buffer endstop. This can be over-ridden by a child of this class
+        if the endstop data needs to change in future.
         """
         endstopstr = self.endstopstr
 
