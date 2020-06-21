@@ -6,18 +6,23 @@ from struct import unpack
 
 class CircularBufferURL:
     """
+    Base class for a cuplcodec URL.
 
+    This includes at least a circular buffer with a long string of base64 encoded sample data and
+    a short status field.
+
+    Instantiation decodes the status string. This must be done first because it contains error information.
+
+    Parameters
+        ----------
+        statb64 : str
+        circb64 : str
     """
     ELAPSED_LEN_BYTES = 4   #: Length of the endstop elapsed minutes field in bytes (including the endstop itself).
     ENDSTOP_LEN_BYTES = 16  #: Length of the endstop in bytes.
     ENDSTOP_BYTE = '~'      #: The last character in the endstop and the end of the circular buffer. Must be URL safe.
 
     def __init__(self, statb64: str, circb64: str = None):
-        """
-
-        :param statb64:
-        :param circb64:
-        """
         self.statb64 = statb64
         self.circb64 = circb64
 
