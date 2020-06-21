@@ -7,14 +7,16 @@ from enum import Enum
 import hashlib
 import hmac
 
-BYTES_PER_PAIR = 3
-BYTES_PER_PAIRB64 = 4
-PAIRS_PER_DEMI = 2
-BYTES_PER_DEMI = BYTES_PER_PAIRB64 * PAIRS_PER_DEMI
+BYTES_PER_PAIR = 3                                      #: The number of bytes in each decoded Pair.
+BYTES_PER_PAIRB64 = 4                                   #: The number of bytes in each base64 encoded Pair.
+PAIRS_PER_DEMI = 2                                      #: The number of pairs in each 8-byte demi.
+BYTES_PER_DEMI = BYTES_PER_PAIRB64 * PAIRS_PER_DEMI     #: The number of bytes in each demi.
+
 
 class HashType(Enum):
     MD5 = 1
     HMAC_MD5 = 2
+
 
 class Pair:
     """
@@ -100,23 +102,23 @@ class Pair:
 
 
 class PairsURL(CircularBufferURL):
-    def __init__(self, *args, usehmac: bool = False, secretkey: str = None,  **kwargs):
-        """
-        This takes the payload of the linearised buffer, which is a long string of base64 characters. It decodes this
-        into a list of pairs. The hash (MD5 or HMAC-MD5) is taken and compared with that supplied in the URL by the
-        encoder. If the hashes match then the decode has been successful. If not, an exception is raised.
+    """
+    This takes the payload of the linearised buffer, which is a long string of base64 characters. It decodes this
+    into a list of pairs. The hash (MD5 or HMAC-MD5) is taken and compared with that supplied in the URL by the
+    encoder. If the hashes match then the decode has been successful. If not, an exception is raised.
 
-        Parameters
-        ----------
-        *args
-            Variable length argument list.
-        usehmac: bool
-            True if the hash inside the circular buffer endstop is HMAC-MD5. False if it is MD5.
-        secretkey: str
-            HMAC secret key as a string. Normally 16 characters long.
-        **kwargs
-            Keyword arguments to be passed to parent class constructors.
-        """
+    Parameters
+    ----------
+    *args
+        Variable length argument list.
+    usehmac: bool
+        True if the hash inside the circular buffer endstop is HMAC-MD5. False if it is MD5.
+    secretkey: str
+        HMAC secret key as a string. Normally 16 characters long.
+    **kwargs
+        Keyword arguments to be passed to parent class constructors.
+    """
+    def __init__(self, *args, usehmac: bool = False, secretkey: str = None,  **kwargs):
         super().__init__(*args, **kwargs)
 
         self._decode_pairs()

@@ -6,11 +6,11 @@ from struct import unpack
 
 class CircularBufferURL:
     """
-    t
+
     """
-    ELAPSED_LEN_BYTES = 4
-    ENDSTOP_LEN_BYTES = 16
-    ENDSTOP_BYTE = '~'  # This must be URL Safe
+    ELAPSED_LEN_BYTES = 4   #: Length of the endstop elapsed minutes field in bytes (including the endstop itself).
+    ENDSTOP_LEN_BYTES = 16  #: Length of the endstop in bytes.
+    ENDSTOP_BYTE = '~'      #: The last character in the endstop and the end of the circular buffer. Must be URL safe.
 
     def __init__(self, statb64: str, circb64: str = None):
         """
