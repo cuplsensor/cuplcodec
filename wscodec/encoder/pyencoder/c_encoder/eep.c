@@ -65,6 +65,28 @@ int eep_read(const int eepblk, const unsigned int bufblk)
   return errflag;
 }
 
+/*!
+ * @brief Swap two buffer blocks
+ * @param srcblk    The buffer block to read from.
+ * @param destblk   The buffer block to write to.
+ */
+int eep_swap(const unsigned int srcblk, const unsigned int destblk)
+{
+    int errflag = 1;
+    int i=0;
+
+    if ((srcblk < BUFSIZE_BLKS) && (destblk < BUFSIZE_BLKS))
+    {
+        for (i=0; i<BUFSIZE_BLKS; i++)
+        {
+            _blkbuffer[destblk + i] = _blkbuffer[srcblk + i];
+        }
+        errflag = 0;
+    }
+
+    return errflag;
+}
+
 /*! \brief Copy data from a pointer into the buffer.
  *  \param indexptr Data are copied into the buffer starting from this index.
  *  An integer from 0 to N-1, where N is the size of the buffer.

@@ -1,0 +1,3 @@
+.wy-table-bordered-all tbody>tr:last-child td, .rst-content table.docutils tbody>tr:last-child td {
+    border-bottom-width: 1px;
+}

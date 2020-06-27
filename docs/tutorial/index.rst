@@ -40,7 +40,7 @@ concatenating this with a secret key (:cpp:member:`seckey`) and then taking the 
 At the provisioning stage, a random secret key is generated that is unique to each sensor. This is a shared secret:
 it is stored both by the web application and in the sensor.
 
-The encoder computes the HMAC every time a new sample is collected (i.e. for each call of cbuf_pushsample).
+The encoder computes the HMAC every time a new sample is collected (i.e. for each call of enc_pushsample).
 When PSCodec decodes a capture, it verifies the HMAC. If this fails an error is raised. The web application can
 respond by not storing the capture data and notifying the user with error 409.
 
@@ -169,20 +169,20 @@ Each sample contains two 12-bit measurands. These are organised as follows
 +-----------------+-------+-------+-----+
 | **Byte**        | 0     | 1     | 2   |
 +-----------------+-------+-------+-----+
-| **Description** | M1MSB | M2MSB | LSB |
+| **Description** | Rd0Msb | Rd1Msb | LSB |
 +-----------------+-------+-------+-----+
 
 The encoder stores samples using the :cpp:type:`pair_t` type.
 
-M1MSB
+Rd0Msb
 ^^^^^^
 
-Measurand 1 Most significant 8-bits (see :cpp:member:`m1Msb`).
+Measurand 1 Most significant 8-bits (see :cpp:member:`rd0Msb`).
 
-M2MSB
+Rd1Msb
 ^^^^^^
 
-Measurand 2 Most significant 8-bits (see :cpp:member:`m2Msb`).
+Measurand 2 Most significant 8-bits (see :cpp:member:`rd1Msb`).
 
 LSB
 ^^^^
@@ -207,7 +207,7 @@ Chunks
 +-----------------+-------+-------+-----+-------+-------+-----+
 | **Byte**        | 0     | 1     | 2   | 3     | 4     | 5   |
 +-----------------+-------+-------+-----+-------+-------+-----+
-| **Description** | M1MSB | M2MSB | LSB | M1MSB | M2MSB | LSB |
+| **Description** | Rd0Msb | Rd1Msb | LSB | Rd0Msb | Rd1Msb | LSB |
 +-----------------+-------+-------+-----+-------+-------+-----+
 
 Each 6-byte chunk contains two samples_.
@@ -276,7 +276,7 @@ The demi to the right contains the oldest sample data or zero padding if the buf
 +-------------+---+---+---+---+---+---+---+---+---+---+----+----+----+----+----+-----+
 | Byte        | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15  |
 +-------------+---+---+---+---+---+---+---+---+---+---+----+----+----+----+----+-----+
-| Description | MD5Length_ b64                                  | Elapsed_ b64 | )   |
+| Description | HashN_ b64                                  | Elapsed_ b64 | )   |
 +-------------+-------------------------------------------------+--------------+-----+
 
 _`Elapsed` (base64) and end marker
@@ -299,11 +299,11 @@ The first step performed by the decoder is to locate :c:macro:`ENDSTOP_BYTE`. Af
 found, it can be replaced with an '=' before the minutes elapsed field is
 decoded from base64 into its original 16-bit value.
 
-_`MD5Length`
+_`HashN`
 ^^^^^^^^^^^^^
 
 This is 9 bytes long unencoded and 12 bytes long encoded. The C structure to hold these data
-:cpp:type:`md5len_t` is shown below:
+:cpp:type:`hashn_t` is shown below:
 
 +-------------+---+---+---+---+---+---+---+---+------------+
 | Byte        | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8          |
@@ -320,7 +320,7 @@ Least significant 7 bytes of the MD5 checksum taken of all samples in the buffer
 LengthSamples
 ______________
 
-The number of valid samples in the circular buffer. This is populated from :cpp:var:`lenpairs`.
+The number of valid samples in the circular buffer. This is populated from :cpp:var:`npairs`.
 
 
 

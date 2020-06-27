@@ -3,11 +3,6 @@
 NVType C Reference
 =====================
 
-Interface
-----------
 .. doxygenfile:: nvtype.h
-
-Implementation
----------------
 
 .. doxygenfile:: nvtype.c

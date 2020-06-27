@@ -3,4 +3,6 @@
 Demi C Reference
 =====================
 
+.. doxygenfile:: demi.h
+
 .. doxygenfile:: demi.c

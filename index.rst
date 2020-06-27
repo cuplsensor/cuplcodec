@@ -1,22 +1,23 @@
-Plotsensor Codec Documentation
+cupl Codec Documentation
 ===================================
 
 .. _index:
 .. toctree::
    :maxdepth: 2
+   :caption: Specification
 
    docs/specification/requirements
    docs/specification/specs
    docs/specification/features
    docs/specification/impl
-   docs/reference/decoder
-   docs/reference/encoder
-   docs/reference/pyencoder
 
-   :caption: Contents:
+.. toctree::
+   :maxdepth: 2
+   :caption: Reference
 
-How to build this documentation
---------------------------------
+   docs/reference/decoder/index
+   docs/reference/c_encoder/index
+   docs/reference/pyencoder/index
 
 
 Indices and tables

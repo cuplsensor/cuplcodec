@@ -1,8 +1,8 @@
 import pytest
 from wscodec.encoder.pyencoder.instrumented import InstrumentedSampleTRH, InstrumentedSample
-from wscodec.decoder import Decoder
-from wscodec.decoder.exceptions import NoCircularBufferError
-from wscodec.decoder.v1.statdecoder import SVSH_BIT
+from wscodec.decoder import decode
+from wscodec.decoder.exceptions import DelimiterNotFoundError
+from wscodec.decoder.status import SVSH_BIT
 
 INPUT_SERIAL = 'abcdabcd'
 INPUT_TIMEINT = 12
@@ -42,24 +42,28 @@ def test_lists_equal(instr_sample_populated):
     comparelists(urllist, inlist)
 
 
-def test_md5():
+@pytest.mark.parametrize('n', range(1, 500, 1))
+@pytest.mark.parametrize('usehmac', (True, False))
+def test_md5(n, usehmac):
     instr_md5 = InstrumentedSampleTRH(baseurl=INPUT_BASEURL,
                                       serial=INPUT_SERIAL,
-                                      secretkey="",
+                                      secretkey=INPUT_SECKEY,
                                       smplintervalmins=INPUT_TIMEINT,
-                                      usehmac=False
+                                      usehmac=usehmac
                                       )
 
-    inlist = instr_md5.pushsamples(500)
+    inlist = instr_md5.pushsamples(n)
 
     # Decode the URL
     par = instr_md5.eepromba.get_url_parsedqs()
-    decodedurl = Decoder(secretkey="", statb64=par['x'][0], timeintb64=par['t'][0],
-                         circb64=par['q'][0], ver=par['v'][0], usehmac=False)
+    decodedurl = decode(secretkey=INPUT_SECKEY, statb64=par['x'][0], timeintb64=par['t'][0],
+                        circb64=par['q'][0], ver=par['v'][0], usehmac=usehmac)
 
-    urllist = decodedurl.params.buffer.smpls
+    urllist = decodedurl.get_samples_list()
     for d in urllist:
-        del d['ts']
+        del d['timestamp']
+        del d['rawtemp']
+        del d['rawrh']
 
     inlist = inlist[:len(urllist)]
 
@@ -80,10 +84,10 @@ def test_batteryvoltage():
 
     # Decode the URL
     par = instr_batv.eepromba.get_url_parsedqs()
-    decodedurl = Decoder(secretkey="", statb64=par['x'][0], timeintb64=par['t'][0],
-                         circb64=par['q'][0], ver=par['v'][0], usehmac=False)
+    decodedurl = decode(secretkey="", statb64=par['x'][0], timeintb64=par['t'][0],
+                        circb64=par['q'][0], ver=par['v'][0], usehmac=False)
 
-    assert decodedurl.params.status.get_batvoltageraw() == testbatv
+    assert decodedurl.status.get_batvoltageraw() == testbatv
 
 
 def test_errorcondition():
@@ -95,15 +99,13 @@ def test_errorcondition():
                                )
 
     resetcause = SVSH_BIT
-    instr.ffimodule.lib.sample_init(resetcause, True)
+    instr.ffimodule.lib.enc_init(resetcause, True)
 
     par = instr.eepromba.get_url_parsedqs()
 
-    with pytest.raises(NoCircularBufferError) as excinfo:
+    with pytest.raises(DelimiterNotFoundError) as excinfo:
         # Attempt to decode the parameters
-        decodedurl = Decoder(secretkey="", statb64=par['x'][0], timeintb64=par['t'][0],
-                             circb64="", ver=par['v'][0], usehmac=False)
+        decodedurl = decode(secretkey="", statb64=par['x'][0], timeintb64=par['t'][0],
+                            circb64="", ver=par['v'][0], usehmac=False)
 
-    assert excinfo.value.status.status['supervisor'] == True
-
-
+    assert excinfo.value.status.resetcause['supervisor'] == True

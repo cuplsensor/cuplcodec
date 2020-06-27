@@ -167,7 +167,7 @@ class InstrumentedSampleT(InstrumentedSample):
                                                   resetsalltime=resetsalltime,
                                                   usehmac=usehmac,
                                                   httpsdisable=httpsdisable)
-        self.ffimodule.lib.sample_init(resetcause, False)
+        self.ffimodule.lib.enc_init(resetcause, False)
 
     def pushsamples(self, num):
         inlist = list()
@@ -175,7 +175,7 @@ class InstrumentedSampleT(InstrumentedSample):
         for i in range(0, num):
             tempsmpl = next(tempgen)
             inlist.insert(0, {'temp': tempsmpl['ref']})
-            self.ffimodule.lib.cbuf_pushsample(tempsmpl['adc'], 0)
+            self.ffimodule.lib.enc_pushsample(tempsmpl['adc'], 0)
         return inlist
 
 
@@ -200,7 +200,7 @@ class InstrumentedSampleTRH(InstrumentedSample):
                                                     resetsalltime=resetsalltime,
                                                     usehmac=usehmac,
                                                     httpsdisable=httpsdisable)
-        self.ffimodule.lib.sample_init(resetcause, False)
+        self.ffimodule.lib.enc_init(resetcause, False)
 
     def pushsamples(self, num):
         inlist = list()
@@ -210,7 +210,7 @@ class InstrumentedSampleTRH(InstrumentedSample):
             tempsmpl = next(tempgen)
             rhsmpl = next(rhgen)
             inlist.insert(0, {'temp': tempsmpl['ref'], 'rh': rhsmpl['ref']})
-            self.ffimodule.lib.cbuf_pushsample(tempsmpl['adc'], rhsmpl['adc'])
+            self.ffimodule.lib.enc_pushsample(tempsmpl['adc'], rhsmpl['adc'])
         return inlist
 
     def pushsamplelist(self, trhlist: list):
@@ -224,7 +224,7 @@ class InstrumentedSampleTRH(InstrumentedSample):
             rhpc = smpldict['rh']
             tempraw = self.temp_degc_to_raw(tempdegc)
             rhraw = self.rh_percent_to_raw(rhpc)
-            self.ffimodule.lib.cbuf_pushsample(tempraw, rhraw)
+            self.ffimodule.lib.enc_pushsample(tempraw, rhraw)
 
     def updateendstop(self, minutes: int):
         """ Update the endstop with minutes elapsed since the most recent sample.
@@ -232,7 +232,7 @@ class InstrumentedSampleTRH(InstrumentedSample):
         :param minutes: Minutes elapsed since the most recent sample.
         :return: None
         """
-        self.ffimodule.lib.cbuf_setelapsed(minutes)
+        self.ffimodule.lib.enc_setelapsed(minutes)
 
     def geturlqs(self):
         return self.eepromba.get_url_parsedqs()

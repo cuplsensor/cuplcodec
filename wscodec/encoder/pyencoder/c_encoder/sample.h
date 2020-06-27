@@ -4,8 +4,8 @@
 #include <stdbool.h>
 
 
-void sample_init(unsigned int status, bool err);
-int cbuf_pushsample(int meas1, int meas2);
-void cbuf_setelapsed(unsigned int minutes);
+void enc_init(unsigned int status, bool err);
+int enc_pushsample(int rd0, int rd1);
+void enc_setelapsed(unsigned int minutes);
 
 #endif //_SAMPLE_H_

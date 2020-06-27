@@ -68,7 +68,7 @@ URL Parameters
 .. feat:: CodecVersion
    :id: CODEC_FEAT_41
    :status: open
-   :links: CODEC_SPEC_18
+   :links: CODEC_SPEC_18, CODEC_FEAT_43
 
    16-bit unsigned integer codec version. From this the decoder can raise an error
    if it is not compatible.
@@ -76,7 +76,7 @@ URL Parameters
 .. feat:: FormatCode
    :id: CODEC_FEAT_42
    :status: open
-   :links: CODEC_SPEC_18, CODEC_FEAT_43
+   :links: CODEC_SPEC_18
 
    8-bit identifier of the circular buffer format. The circular buffer is arranged into pairs.
    A sample either corresponds to a pair of readings (e.g. temperature and humidity), or a single reading
@@ -102,6 +102,20 @@ URL Parameters
    If the decoder version does not match that of the encoder used to produce the URL, then :need:`CODEC_REQ_2`
    cannot be guaranteed.
 
+.. feat:: Protocol
+   :id: CODEC_FEAT_44
+   :status: open
+   :links: CODEC_SPEC_3
+
+   The HTTPS protocol is recommended for production use.
+
+   +----------+-------------+
+   | Protocol | Definition  |
+   +----------+-------------+
+   | 0x03     | http://     |
+   +----------+-------------+
+   | 0x04     | https://    |
+   +----------+-------------+
 
 Status
 ~~~~~~~~
@@ -216,27 +230,104 @@ Circular Buffer
    The length of the circular buffer can be adjusted. This is done with a compiler parameter,
    to meet :need:`CODEC_FEAT_8`.
 
-.. feat:: MD5
+.. feat:: Hash
    :id: CODEC_FEAT_24
    :status: complete
    :links: CODEC_SPEC_14
 
-   Each time a sample is added, a hash is taken of the unencoded data in the buffer. A hash of the
-   unencoded sample list is verification that the buffer has been unwrapped and decoded correctly.
+   The list of samples in the buffer must always be transmitted together with a hash. This is used
+   by the decoder to verify that it has unwrapped the circular buffer and decoded samples correctly.
 
-   If HMAC is enabled, this will be an MD5-HMAC hash. If not, it is MD5 only. The is only room to
-   store the least significant 7 bytes, but this should be ample.
+   The size of the URL is limited, so there is only room to store the least significant 7 bytes of the hash,
+   however, this should be ample. The hash does not contain :need:`CODEC_FEAT_26` and therefore it does not
+   need to be recalculated each time this changes. This is done in order to save power :need:`CODEC_SPEC_8`.
 
-   This does not update when the
-   :need:`CODEC_FEAT_26` field changes in order to save power :need:`CODEC_SPEC_8`.
+   If Hash Based Message Authentication (HMAC) is enabled, then the last characters of the HMAC-MD5 will
+   be used. If not, these will be the output of MD5 only.
 
-.. feat:: LengthSamples
+   The hash is used as a checksum; a guard against unintentional data corruption. This may arise
+   because of a bug in the codec. The MD5 is sufficient for this purpose. It was chosen in order to adhere
+   with :need:`CODEC_SPEC_4`. The MD5 hash alone is useless for security purposes. If a bad actor
+   intends to find a collision (i.e. two sets of data that produce the same MD5 hash) then this can be done
+   with ease. MD5 is intended for debug and code development only.
+
+   HMAC-MD5 is considerably more secure than MD5 alone. It is recommended for production use. Each device with an encoder
+   should have a unique secret key. In addition to data integrity, HMAC-MD5 can be used to verify that the
+   decoder and encoder have access to the same shared secret key. It is therefore a check on authenticity.
+
+    From `Wikipedia <https://en.wikipedia.org/wiki/HMAC>`_:
+        The cryptographic strength of the HMAC depends upon the size of the secret key that is used.
+        The most common attack against HMACs is brute force to uncover the secret key.
+        HMACs are substantially less affected by collisions than their underlying hashing algorithms alone.[6][7]
+        In particular, in 2006 Mihir Bellare proved that HMAC is a PRF under the sole assumption
+        that the compression function is a PRF.[8] Therefore, HMAC-MD5 does not suffer from the same weaknesses
+        that have been found in MD5.
+
+        ...
+
+        For HMAC-MD5 the RFC summarizes that – although the security of the MD5 hash function itself is
+        severely compromised – the currently known "attacks on HMAC-MD5 do not seem to indicate a practical
+        vulnerability when used as a message authentication code", but it also adds that
+        "for a new protocol design, a ciphersuite with HMAC-MD5 should not be included".
+
+   It is acknowledged that HMAC-MD5 has been used despite the counter-recommendation above. I
+   decided that the increased complexity of HMAC-SHA3 cannot be justified: The algorithm has to run
+   with low energy consumption on an inexpensive microcontroller (see :need:`CODEC_REQ_12`).
+   The MSP430 itself is not designed for a high degree of data security. De-lidding and X-raying are possible.
+   This is why it is important not to share the secret key between devices.
+   Opting for a more robust hashing algorithm may result in compromises elsewhere (e.g. on battery life). It is also the case that environmental sensor
+   data are being transmitted and not data that are highly sensitive. The reward to compromise this system
+   is sufficiently low to make HMAC-MD5 a good-enough deterrent.
+
+   Data are hashed in the following order:
+
+    +------+-----------------------+--------------+
+    | Byte | Field                 | Value        |
+    +======+=======================+==============+
+    | 0    | Pair[0]               | Reading0_MSB |
+    +------+                       +--------------+
+    | 1    |                       | Reading1_MSB |
+    +------+                       +--------------+
+    | 2    |                       | LSB          |
+    +------+-----------------------+--------------+
+    | 3    | Pair[1]               | Reading0_MSB |
+    +------+                       +--------------+
+    | 4    |                       | Reading1_MSB |
+    +------+                       +--------------+
+    | 5    |                       | LSB          |
+    +------+-----------------------+--------------+
+    | ...  | ...                   |              |
+    +------+-----------------------+--------------+
+    | L-11 | Pair[NPairs-1]        | Reading0_MSB |
+    +------+                       +--------------+
+    | L-10 |                       | Reading1_MSB |
+    +------+                       +--------------+
+    | L-9  |                       | LSB          |
+    +------+-----------------------+--------------+
+    | L-8  | :need:`CODEC_FEAT_28` | MSB          |
+    +------+                       +--------------+
+    | L-7  |                       | LSB          |
+    +------+-----------------------+--------------+
+    | L-6  | :need:`CODEC_FEAT_29` | MSB          |
+    +------+                       +--------------+
+    | L-5  |                       | LSB          |
+    +------+-----------------------+--------------+
+    | L-4  | :need:`CODEC_FEAT_30`                |
+    +------+--------------------------------------+
+    | L-3  | :need:`CODEC_SPEC_16`                |
+    +------+-----------------------+--------------+
+    | L-2  | endstopindex          | MSB          |
+    +------+                       +--------------+
+    | L-1  |                       | LSB          |
+    +------+-----------------------+--------------+
+
+.. feat:: NPairs
    :id: CODEC_FEAT_25
    :status: complete
    :links: CODEC_SPEC_14
 
    Number of valid samples in the circular buffer. This excludes samples used for padding.
-   Populated from :cpp:var:`lenpairs`.
+   Populated from :cpp:var:`npairs`.
 
 .. feat:: Elapsed b64
    :id: CODEC_FEAT_26

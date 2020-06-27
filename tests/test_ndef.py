@@ -1,8 +1,8 @@
 import pytest
 from base64 import urlsafe_b64decode
 from wscodec.encoder.pyencoder.instrumented import InstrumentedNDEF
-from wscodec.decoder.exceptions import NoCircularBufferError
-from wscodec.decoder.decoder import Decoder
+from wscodec.decoder.exceptions import DelimiterNotFoundError
+from wscodec.decoder import decode
 from urllib.parse import urlparse
 
 INPUT_SERIAL = 'abcdabcd'
@@ -11,14 +11,17 @@ INPUT_SECKEY = 'AAAABBBBCCCCDDDD'
 INPUT_STATUSB64 = 'MDAwMDAw'
 INPUT_CBUFLENBLKS = 32
 
+
 @pytest.fixture(scope="function",
                 params=["plotsensor.com",
                         "toastersrg.plotsensor.com",
                         "0202u390ur2309323232223233232u20392039209302.plotsensor.com"])
 def instr_ndef(request):
-    ndefobj = InstrumentedNDEF(baseurl=request.param, serial=INPUT_SERIAL, secretkey=INPUT_SECKEY, smplintervalmins=INPUT_TIMEINT)
+    ndefobj = InstrumentedNDEF(baseurl=request.param, serial=INPUT_SERIAL, secretkey=INPUT_SECKEY,
+                               smplintervalmins=INPUT_TIMEINT)
     ndefobj.baseurl = request.param
     return ndefobj
+
 
 @pytest.fixture
 def makeblankurl(instr_ndef):
@@ -30,10 +33,12 @@ def makeblankurl(instr_ndef):
     ndefobj.ffimodule.lib.ndef_writeblankurl(cbuflenblks, statusb64chars, startblkptr)
     return ndefobj
 
+
 @pytest.fixture
 def blankurlqs(makeblankurl):
     # Obtain the URL parameters dictionary from the Mock EEPROM
     return makeblankurl.eepromba.get_url_parsedqs()
+
 
 @pytest.fixture
 def blankurlraw(makeblankurl):
@@ -89,10 +94,10 @@ def test_decode_raises_indexerrror(blankurlqs):
     statb64 = blankurlqs['x'][0]
     circb64 = blankurlqs['q'][0]
     ver = blankurlqs['v'][0]
-    with pytest.raises(NoCircularBufferError):
+    with pytest.raises(DelimiterNotFoundError):
         # Attempt to decode the parameters
-        decoded = Decoder(secretkey=INPUT_SECKEY,
-                          timeintb64=timeintb64,
-                          statb64=statb64,
-                          circb64=circb64,
-                          ver=ver)
+        decoded = decode(secretkey=INPUT_SECKEY,
+                         timeintb64=timeintb64,
+                         statb64=statb64,
+                         circb64=circb64,
+                         ver=ver)

@@ -1,15 +1,16 @@
-Encoder Reference
-=====================
+C Encoder
+===========
 
 .. toctree::
    :hidden:
    :maxdepth: 2
 
-   sample
-   samplehist
+   enc
+   pairhist
    demi
    nvtype
    eep
    ndef
+   defs
    nt3h
 
