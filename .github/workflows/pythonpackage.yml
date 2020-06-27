@@ -45,7 +45,6 @@ jobs:
   release:
     runs-on: ubuntu-latest
     needs: build
-    if: startsWith(github.event.ref, 'refs/tags')
     strategy:
       max-parallel: 4
       matrix:
@@ -77,18 +76,19 @@ jobs:
       run: |
         cd wheelhouse
         ls -1 | grep -v 'wscodec.*'${{ matrix.python-version.bldstring }}'-manylinux1_x86_64' | sudo xargs rm -f
+        cd ..
 
     - name: Publish packages to PyPI if commit is Git tagged.
       uses: pypa/gh-action-pypi-publish@master
       with:
         user: __token__
         password: ${{ secrets.pypi_password }}
-        packages_dir: .
+        packages_dir: wheelhouse/
 
   release_source:
     runs-on: ubuntu-latest
     needs: build
-
+    if: startsWith(github.event.ref, 'refs/tags')
     steps:
       - uses: actions/checkout@v1
       - name: Set up Python 3.8
