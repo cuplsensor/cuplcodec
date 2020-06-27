@@ -75,14 +75,15 @@ jobs:
 
     - name: Delete non-wscodec binaries
       run: |
-        ls -1 | grep -v 'wheelhouse/wscodec.*'${{ matrix.python-version.bldstring }}'-manylinux1_x86_64' | sudo xargs rm -f
+        cd wheelhouse
+        ls -1 | grep -v 'wscodec.*'${{ matrix.python-version.bldstring }}'-manylinux1_x86_64' | sudo xargs rm -f
 
     - name: Publish packages to PyPI if commit is Git tagged.
       uses: pypa/gh-action-pypi-publish@master
       with:
         user: __token__
         password: ${{ secrets.pypi_password }}
-        packages_dir: wheelhouse/
+        packages_dir: .
 
   release_source:
     runs-on: ubuntu-latest
