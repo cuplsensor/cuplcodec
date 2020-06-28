@@ -3,7 +3,7 @@ from .samples import SamplesURL, Sample
 
 
 class TempSample(Sample):
-    def __init__(self, rawtemp: int, timestamp: datetime = None):
+    def __init__(self, rawtemp: int, timestamp: datetime):
         """
 
         :param rawtemp:
@@ -23,7 +23,7 @@ class TempSample(Sample):
 
 
 class TempRHSample(TempSample):
-    def __init__(self, rawtemp: int, rawrh: int, timestamp: datetime = None):
+    def __init__(self, rawtemp: int, rawrh: int, timestamp: datetime):
         super().__init__(rawtemp, timestamp)
         self.rawrh = rawrh
         self.rh = self.reading_to_rh(rawrh)
@@ -67,7 +67,7 @@ class Temp_URL(SamplesURL):
 
         for pair in self.pairs:
             if pair.rd1 != 4095:
-                sample = TempSample(pair.rd1)
+                sample = TempSample(pair.rd1, timestamp=next(timestamp_gen))
                 self.samples.append(sample)
 
             sample = TempSample(pair.rd0, timestamp=next(timestamp_gen))
