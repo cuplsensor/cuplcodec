@@ -45,12 +45,13 @@ class TempRH_URL(SamplesURL):
         temperature (degrees C) and relative humidity (%) readings.
         """
         super().__init__(*args, **kwargs)
+        timestamp_gen = self.generate_timestamp()
 
         for pair in self.pairs:
             temp = pair.rd0
             rh = pair.rd1
 
-            sample = TempRHSample(temp, rh, timestamp=self.generate_timestamp())
+            sample = TempRHSample(temp, rh, timestamp=next(timestamp_gen))
             self.samples.append(sample)
 
 
@@ -62,11 +63,12 @@ class Temp_URL(SamplesURL):
         temperature reading in degrees C.
         """
         super().__init__(*args, **kwargs)
+        timestamp_gen = self.generate_timestamp()
 
         for pair in self.pairs:
             if pair.rd1 != 4095:
                 sample = TempSample(pair.rd1)
                 self.samples.append(sample)
 
-            sample = TempSample(pair.rd0, timestamp=self.generate_timestamp())
+            sample = TempSample(pair.rd0, timestamp=next(timestamp_gen))
             self.samples.append(sample)
