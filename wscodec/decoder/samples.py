@@ -76,6 +76,6 @@ class SamplesURL(PairsURL):
 
         """
         sampleindex = 0
-        while sampleindex < len(self.samples):
+        while 1:
             yield self.newest_timestamp - sampleindex * self.timeinterval
             sampleindex = sampleindex + 1
