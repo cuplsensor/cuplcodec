@@ -12,55 +12,18 @@ volatile int adcvoltage = 0;
 
 static void adc_enable()
 {
-    //Initialize the ADC Module
-    /*
-     * Base Address for the ADC Module
-     * Use internal ADC bit as sample/hold signal to start conversion
-     * USE MODOSC 5MHZ Digital Oscillator as clock source
-     * Use default clock divider of 1
-     */
-    ADC_init(ADC_BASE,
-             ADC_SAMPLEHOLDSOURCE_SC,
-             ADC_CLOCKSOURCE_ADCOSC,
-             ADC_CLOCKDIVIDER_1);
 
-    ADC_enable(ADC_BASE);
-
-    /*
-     * Base Address for the ADC Module
-     * Sample/hold for 16 clock cycles
-     * Do not enable Multiple Sampling
-     */
-    ADC_setupSamplingTimer(ADC_BASE,
-                           ADC_CYCLEHOLD_16_CYCLES,
-                           ADC_MULTIPLESAMPLESDISABLE);
-
-    //Configure Memory Buffer
-    /*
-     * Base Address for the ADC Module
-     * Use input A7
-     * Use positive reference of Internally generated Vref
-     * Use negative reference of AVss
-     */
-    ADC_configureMemory(ADC_BASE,
-                        ADC_INPUT_REFVOLTAGE,
-                        ADC_VREFPOS_AVCC,
-                        ADC_VREFNEG_AVSS);
-
-    ADC_clearInterrupt(ADC_BASE,
-                       ADC_COMPLETED_INTERRUPT);
-
-    //Enable Memory Buffer interrupt
-    ADC_enableInterrupt(ADC_BASE,
-                        ADC_COMPLETED_INTERRUPT);
-
-    //Configure internal reference
-    //If ref voltage no ready, WAIT
-    while (PMM_REFGEN_NOTREADY ==
-            PMM_getVariableReferenceVoltageStatus()) ;
-
-    //Internal Reference ON
-    PMM_enableInternalReference();
+    // Configure ADC10
+    ADCCTL0 &= ~ADCENC;                     // Disable ADC
+    ADCCTL0 = ADCSHT_2 | ADCON;             // ADCON, S&H=16 ADC clks
+    ADCCTL1 = ADCSHP;                       // ADCCLK = MODOSC; sampling timer
+    ADCCTL2 = ADCRES_0;                     // 8-bit conversion results
+    ADCIE = ADCIE0;                         // Enable ADC conv complete interrupt
+    ADCMCTL0 = ADCINCH_13 | ADCSREF_0;      // A13 ADC input select = 1.5V Ref Vref = DVCC
+    // Configure reference module located in the PMM
+    PMMCTL0_H = PMMPW_H;                    // Unlock the PMM registers
+    PMMCTL2 = INTREFEN | REFVSEL_0;        // Enable internal 1.5V reference
+    while(!(PMMCTL2 & REFGENRDY));          // Poll till internal reference settles
 }
 
 static void adc_disable()
@@ -118,7 +81,7 @@ void ADC_ISR (void)
             //ADCMEM = A0 > 0.5V?
             adcresult = ADC_getResults(ADC_BASE);
             //adcresult = ((uint32_t)1024 * (uint32_t)1500)/adcresult;
-            adcvoltage = (int)adcresult >> 2; // Convert 10 bit value (1024) to 8 bits.
+            adcvoltage = adcresult; // Convert 10 bit value (1024) to 8 bits.
 
             //Clear CPUOFF bit from 0(SR)
             //Breakpoint here and watch ADC_Result
