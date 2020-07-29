@@ -66,8 +66,6 @@ class InstrumentedBase(object):
 
 
 
-
-
 class InstrumentedNDEF(InstrumentedBase):
     def __init__(self,
                  baseurl='plotsensor.com',
@@ -156,7 +154,9 @@ class InstrumentedSampleT(InstrumentedSample):
                  batteryadc=100,
                  resetcause=0,
                  usehmac=True,
-                 httpsdisable=False):
+                 httpsdisable=False,
+                 tagerror=False
+                 ):
         super(InstrumentedSampleT, self).__init__(baseurl,
                                                   serial,
                                                   secretkey,
@@ -166,7 +166,7 @@ class InstrumentedSampleT(InstrumentedSample):
                                                   resetsalltime=resetsalltime,
                                                   usehmac=usehmac,
                                                   httpsdisable=httpsdisable)
-        self.ffimodule.lib.enc_init(resetcause, False, 0)
+        self.ffimodule.lib.enc_init(resetcause, tagerror, 0)
 
     def pushsamples(self, num):
         inlist = list()
@@ -188,7 +188,8 @@ class InstrumentedSampleTRH(InstrumentedSample):
                  batteryadc=100,
                  resetcause=0,
                  usehmac=True,
-                 httpsdisable=False
+                 httpsdisable=False,
+                 tagerror=False
                  ):
         super(InstrumentedSampleTRH, self).__init__(baseurl,
                                                     serial,
@@ -199,7 +200,7 @@ class InstrumentedSampleTRH(InstrumentedSample):
                                                     resetsalltime=resetsalltime,
                                                     usehmac=usehmac,
                                                     httpsdisable=httpsdisable)
-        self.ffimodule.lib.enc_init(resetcause, False, 0)
+        self.ffimodule.lib.enc_init(resetcause, tagerror, 0)
 
     def pushsamples(self, num):
         inlist = list()
