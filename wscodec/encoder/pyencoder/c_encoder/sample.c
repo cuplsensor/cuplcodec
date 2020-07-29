@@ -8,9 +8,9 @@
 #include "nvtype.h"
 #include <stdint.h>
 
-#define TEMPRH          '1' /*!< Last character of the URL version string if the URL contains both temperature and relative humidity measurands. */
-#define TEMPONLY        '2' /*!< Last character of the URL version string if the URL contains only temperature measurands. */
-#define ENDSTOP_BYTE    '~' /*!< Last character of the endstop. Must be URL safe according to RFC 1738. */
+#define HDC2021_TEMPRH          1   /*!< Last character of the URL version string if the URL contains both temperature and relative humidity measurands. */
+#define HDC2021_TEMPONLY        2   /*!< Last character of the URL version string if the URL contains only temperature measurands. */
+#define ENDSTOP_BYTE            '~' /*!< Last character of the endstop. Must be URL safe according to RFC 1738. */
 
 #define BATV_RESETCAUSE(BATV, RSTC) ((BATV << 8) | (RSTC & 0xFF)) /*!< Macro for creating a 16-bit batv_resetcause value from 8-bit CODEC_FEAT_30 and CODEC_SPEC_16 values. */
 
@@ -54,6 +54,11 @@ stat_t status = {0};                /*!< Structure to hold unencoded status data
 #else
 static stat_t status = {0};         /*!< Structure to hold unencoded status data. */
 #endif
+
+static bool one_reading_per_sample(void)
+{
+    return (nv.format == HDC2021_TEMPONLY);
+}
 
 
 /*!
@@ -120,18 +125,31 @@ static void set_rd1(pair_t *pair, int rd1)
 }
 
 /*!
+ * @brief Get battery voltage from the status field.
+ * This is a value from 0-255. Step size increases exponentially. 255 corresponds to 1V5. 0 is infinity.
+ */
+unsigned int enc_getbatv(void)
+{
+    return status.batv_resetcause >> 8;
+}
+
+/*!
  * @brief Initialise the encoder state machine.
  * @detail Writes the
  *
  * @param resetcause 16-bit status value.
  * @param err Sets an error condition where data will not be logged to the URL circular buffer.
+ * @param batv Battery voltage from ADC (not in mv).
  */
-void enc_init(unsigned int resetcause, bool err)
+void enc_init(unsigned int resetcause, bool err, unsigned int batv)
 {
   char statusb64[9];
   int startblk;
   int buflenblks;
-  uint16_t batv = batv_measure();
+
+  if (batv == 0) {
+      batv = batv_measure();
+  }
 
   overwriting = 0;
   status.loopcount = 0;
@@ -183,7 +201,7 @@ int enc_pushsample(int rd0, int rd1)
   int cursorpos;
   DemiState_t demistate = ds_consecutive;
 
-  if (nv.version[1] == TEMPONLY)
+  if (one_reading_per_sample())
   {
       rd1 = -1;
   }
@@ -207,7 +225,7 @@ int enc_pushsample(int rd0, int rd1)
           set_pair(&pairbuf[1], 0, 0);
           npairs = overwriting ? (npairs + 1 - PAIRS_PER_DEMI) : (npairs + 1);
           pairhist_push(pairbuf[0]);
-          if (nv.version[1] == TEMPONLY)
+          if (one_reading_per_sample())
           {
               nextstate = pair0_reading1;
           }
@@ -229,7 +247,7 @@ int enc_pushsample(int rd0, int rd1)
 
           pairhist_push(pairbuf[1]);
 
-          if (nv.version[1] == TEMPONLY)
+          if (one_reading_per_sample())
           {
               nextstate = pair1_reading1;
           }

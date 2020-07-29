@@ -23,7 +23,10 @@
 #define SECKEY_LENBYTES       16      /*!< Length of the secret key used for HMAC-MD5 in bytes. */
 #define BASEURL_LENBYTES      64      /*!< Maximum length of the base URL string in bytes. */
 #define SMPLINT_LENBYTES      2       /*!< Length of the sample interval (minutes) integer in bytes. */
-#define VERSION_LENBYTES      2       /*!< Length of the version string in bytes. */
+#define VFMTINT_LENBYTES      3       /*!< VFmt character array length in bytes.*/
+#define FORMAT_ASCII_MAXLEN   3       /*!< Maximum length of the format ASCII string. */
+#define MINVOLTAGEMV_ASCII_MAXLEN   4       /*!< Maximum length of the minimum voltage (mV) ASCII string. */
+#define SMPLINTERVAL_ASCII_MAXLEN   5       /*!< Maximum length of the sample interval string. */
 
 /**
  *  Structure to hold configuration data held in non-volatile memory.
@@ -33,7 +36,8 @@ typedef struct nvstruct {
     char seckey[SECKEY_LENBYTES];   /*!< Secret key string used for HMAC-MD5. */
     char smplintervalmins[SMPLINT_LENBYTES]; /*!< Time interval betweeen samples in minutes. */
     char baseurl[BASEURL_LENBYTES];  /*!< URL of the cupl Web Application frontend. */
-    char version[VERSION_LENBYTES];  /*!< Version string. */
+    char format;                    /*!< Codec format byte. */
+    unsigned int minvoltagemv;      /*!< Minimum startup voltage in mV. */
     unsigned int usehmac;           /*!< When non-zero enable HMAC otherwise use MD5 only. */
     unsigned int httpsdisable;      /*!< When non-zero use HTTP in the URL otherwise use HTTPS. */
     unsigned int sleepintervaldays; /*!< Number of days to wait without scans before putting the cupl Tag into deep sleep mode. */

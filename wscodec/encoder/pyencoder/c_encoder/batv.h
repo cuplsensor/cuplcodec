@@ -8,6 +8,7 @@
 #ifndef BATV_H_
 #define BATV_H_
 
-int batv_measure(void);
+unsigned int batv_measure(void);
+unsigned int batv_to_mv(unsigned int batv);
 
 #endif /* BATV_H_ */

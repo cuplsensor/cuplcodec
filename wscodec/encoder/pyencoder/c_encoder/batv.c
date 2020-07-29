@@ -8,7 +8,7 @@
 #include "driverlib.h"
 #include "batv.h"
 
-volatile int adcvoltage = 0;
+volatile unsigned int adcvoltage = 0;
 
 static void adc_enable()
 {
@@ -39,7 +39,7 @@ static void adc_disable()
 }
 
 
-int batv_measure()
+unsigned int batv_measure()
 {
     adc_enable();
 
@@ -53,6 +53,11 @@ int batv_measure()
     adc_disable();
 
     return adcvoltage;
+}
+
+unsigned int batv_to_mv(unsigned int batv)
+{
+    return ((uint32_t)255 * (uint32_t)1500)/batv;
 }
 
 //******************************************************************************
@@ -81,7 +86,7 @@ void ADC_ISR (void)
             //ADCMEM = A0 > 0.5V?
             adcresult = ADC_getResults(ADC_BASE);
             //adcresult = ((uint32_t)1024 * (uint32_t)1500)/adcresult;
-            adcvoltage = adcresult; // Convert 10 bit value (1024) to 8 bits.
+            adcvoltage = adcresult;
 
             //Clear CPUOFF bit from 0(SR)
             //Breakpoint here and watch ADC_Result
