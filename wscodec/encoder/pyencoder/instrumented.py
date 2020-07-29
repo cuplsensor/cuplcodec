@@ -180,6 +180,17 @@ class InstrumentedSampleT(InstrumentedSample):
             self.ffimodule.lib.enc_pushsample(tempsmpl['adc'], 0)
         return inlist
 
+    def pushsamplelist(self, tlist: list):
+        """
+
+        :param tlist: a list of dictionaries each containing temperature keys.
+        :return: None
+        """
+        for smpldict in tlist:
+            tempdegc = smpldict['temp']
+            tempraw = self.temp_degc_to_raw(tempdegc)
+            self.ffimodule.lib.enc_pushsample(tempraw, 0)
+
 
 class InstrumentedSampleTRH(InstrumentedSample):
     FORMAT_HDC2021_TRH = 1
