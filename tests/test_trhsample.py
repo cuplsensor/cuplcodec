@@ -1,7 +1,8 @@
 import pytest
 from wscodec.encoder.pyencoder.instrumented import InstrumentedSampleTRH, InstrumentedSample
 from wscodec.decoder import decode
-from wscodec.decoder.exceptions import DelimiterNotFoundError, InvalidMajorVersionError
+from wscodec.decoder.exceptions import NoCircularBufferError, DelimiterNotFoundError, InvalidMajorVersionError, \
+    InvalidFormatError, MessageIntegrityError
 from wscodec.decoder.status import SVSH_BIT
 
 INPUT_SERIAL = 'abcdabcd'
@@ -90,7 +91,7 @@ def test_batteryvoltage():
     assert decodedurl.status.get_batvoltageraw() == testbatv
 
 
-def test_errorcondition():
+def test_error_nocircularbuffer():
     instr = InstrumentedSample(baseurl=INPUT_BASEURL,
                                serial=INPUT_SERIAL,
                                secretkey="",
@@ -103,7 +104,7 @@ def test_errorcondition():
 
     par = instr.eepromba.get_url_parsedqs()
 
-    with pytest.raises(DelimiterNotFoundError) as excinfo:
+    with pytest.raises(NoCircularBufferError) as excinfo:
         # Attempt to decode the parameters
         decodedurl = decode(secretkey="", statb64=par['x'][0], timeintb64=par['t'][0],
                             circb64="", vfmtb64=par['v'][0], usehmac=False)
@@ -111,7 +112,26 @@ def test_errorcondition():
     assert excinfo.value.status.resetcause['supervisor'] == True
 
 
-def test_version_mismatch(mocker):
+def test_error_delimiternotfound():
+    SECRETKEY = "12345678ABCDEFGH"
+    instr = InstrumentedSampleTRH(baseurl=INPUT_BASEURL,
+                                  serial=INPUT_SERIAL,
+                                  secretkey=SECRETKEY,
+                                  smplintervalmins=INPUT_TIMEINT,
+                                  usehmac=True,
+                                  )
+
+    instr.ffimodule.lib.enc_init(0, False, 0)
+
+    par = instr.eepromba.get_url_parsedqs()
+
+    with pytest.raises(DelimiterNotFoundError) as excinfo:
+        # Attempt to decode the parameters
+        decodedurl = decode(secretkey=SECRETKEY, statb64=par['x'][0], timeintb64=par['t'][0],
+                            circb64=par['q'][0], vfmtb64=par['v'][0], usehmac=True)
+
+
+def test_error_versionmismatch(mocker):
     instr = InstrumentedSample(baseurl=INPUT_BASEURL,
                                serial=INPUT_SERIAL,
                                secretkey="",
@@ -119,18 +139,80 @@ def test_version_mismatch(mocker):
                                usehmac=False,
                                )
 
+    BAD_VERSION = 65500
+
     def mock_version():
-        return 9
+        return BAD_VERSION
 
-
-    instr.ffimodule.lib.enc_init(0, True, 0)
+    instr.ffimodule.lib.enc_init(0, False, 0)
 
     par = instr.eepromba.get_url_parsedqs()
 
-    mocker.patch('wscodec.decoder.decoderfactory._get_version', mock_version)
+    mocker.patch('wscodec.decoder.decoderfactory._get_decoderversion', mock_version)
 
     with pytest.raises(InvalidMajorVersionError) as excinfo:
         # Attempt to decode the parameters
         decodedurl = decode(secretkey="", statb64=par['x'][0], timeintb64=par['t'][0],
                             circb64="", vfmtb64=par['v'][0], usehmac=False)
 
+    assert excinfo.value.decoderversion == BAD_VERSION
+
+
+def test_error_formatmismatch():
+    instr = InstrumentedSample(baseurl=INPUT_BASEURL,
+                               serial=INPUT_SERIAL,
+                               secretkey="",
+                               smplintervalmins=INPUT_TIMEINT,
+                               usehmac=False,
+                               )
+
+    BAD_FORMAT = 254
+    instr.ffimodule.lib.nv.format = bytes([BAD_FORMAT])
+    instr.ffimodule.lib.enc_init(0, False, 0)
+
+    par = instr.eepromba.get_url_parsedqs()
+
+    with pytest.raises(InvalidFormatError) as excinfo:
+        # Attempt to decode the parameters
+        decodedurl = decode(secretkey="", statb64=par['x'][0], timeintb64=par['t'][0],
+                            circb64=par['q'][0], vfmtb64=par['v'][0], usehmac=False)
+
+    assert excinfo.value.circformat == BAD_FORMAT
+
+
+def test_error_messageintegrity():
+    instr = InstrumentedSampleTRH(baseurl=INPUT_BASEURL,
+                                  serial=INPUT_SERIAL,
+                                  secretkey="12345678ABCDEFGH",
+                                  smplintervalmins=INPUT_TIMEINT,
+                                  usehmac=True,
+                                  )
+
+    instr.ffimodule.lib.enc_init(0, False, 0)
+    instr.pushsamples(100)
+
+    par = instr.eepromba.get_url_parsedqs()
+
+    with pytest.raises(MessageIntegrityError) as excinfo:
+        # Attempt to decode the parameters
+        decodedurl = decode(secretkey="notthekey", statb64=par['x'][0], timeintb64=par['t'][0],
+                            circb64=par['q'][0], vfmtb64=par['v'][0], usehmac=True)
+
+def test_error_messageintegrity_wrongalgorithm():
+    SECRETKEY = "12345678ABCDEFGH"
+    instr = InstrumentedSampleTRH(baseurl=INPUT_BASEURL,
+                                  serial=INPUT_SERIAL,
+                                  secretkey=SECRETKEY,
+                                  smplintervalmins=INPUT_TIMEINT,
+                                  usehmac=True,
+                                  )
+
+    instr.ffimodule.lib.enc_init(0, False, 0)
+    instr.pushsamples(100)
+
+    par = instr.eepromba.get_url_parsedqs()
+
+    with pytest.raises(MessageIntegrityError) as excinfo:
+        # Attempt to decode the parameters
+        decodedurl = decode(secretkey=SECRETKEY, statb64=par['x'][0], timeintb64=par['t'][0],
+                            circb64=par['q'][0], vfmtb64=par['v'][0], usehmac=False)

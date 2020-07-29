@@ -1,48 +1,57 @@
-class DecoderError(Exception):
-    """cupl Decoder error class."""
+# Helpful: https://julien.danjou.info/python-exceptions-guide/
 
-    def __init__(self):
-        super().__init__()
+class DecoderError(Exception):
+    """Base cupl Decoder error class."""
+
+    def __init__(self, msg="cupl Decoder Error"):
+        super().__init__(msg)
 
 
 class InvalidMajorVersionError(DecoderError):
-    """ Raised when there is no decoder for the supplied major version.  """
-
-    def __init__(self):
-        super().__init__()
+    def __init__(self, encoderversion, decoderversion, msg=None):
+        if msg is None:
+            # Set a default error messasge
+            msg = "There is a mismatch between the encoder version = {} " \
+                  "and decoder version = {} ".format(encoderversion, decoderversion)
+        super().__init__(msg)
+        self.encoderversion = encoderversion
+        self.decoderversion = decoderversion
 
 
 class InvalidFormatError(DecoderError):
-    errormsg = " Invalid circular buffer format = {}. "
-
-    def __init__(self, circformat, status):
-        super().__init__()
+    def __init__(self, circformat, msg=None):
+        if msg is None:
+            # Set a default error message
+            msg = "Invalid circular buffer format = {}.".format(circformat)
+        super().__init__(msg)
         self.circformat = circformat
-        self.status = status
-
-    def __str__(self):
-        return self.errormsg.format(self.circformat)
 
 
 class MessageIntegrityError(DecoderError):
-    errormsg = "MD5 checksum mismatch. Calculated MD5 = {}, URL MD5 = {}"
+    def __init__(self, calchash, urlhash, msg=None):
+        if msg is None:
+            # Set a default error message
+            msg = "Checksum mismatch. Calculated hash = {}, URL hash = {}".format(calchash, urlhash)
+        super().__init__(msg)
+        self.calchash = calchash
+        self.urlhash = urlhash
 
-    def __init__(self, calcmd5, urlmd5):
-        super().__init__()
-        self.calcmd5 = calcmd5
-        self.urlmd5 = urlmd5
 
-    def __str__(self):
-        return self.errormsg.format(self.calcmd5, self.urlmd5)
+class NoCircularBufferError(DecoderError):
+    def __init__(self, status, msg=None):
+        if msg is None:
+            # Set a default error message
+            msg = "There is no circular buffer. This is indicative of an error with the system running the encoder. " \
+                  "Status = {}".format(status)
+        super().__init__(msg)
+        self.status = status
 
 
 class DelimiterNotFoundError(DecoderError):
-    errormsg = " No delimiting character found in the circular buffer string = {}. There is an error with the microcontroller. "
-
-    def __init__(self, circb64, status):
-        super().__init__()
+    def __init__(self, circb64, status, msg=None):
+        if msg is None:
+            msg = " No delimiting character found in the circular buffer string = {}. The firmware has initialised " \
+                  "the encoder but not pushed data. Status = {}".format(circb64, status)
+        super().__init__(msg)
         self.circb64 = circb64
         self.status = status
-
-    def __str__(self):
-        return self.errormsg.format('circb64='+self.circb64+' status='+self.status)

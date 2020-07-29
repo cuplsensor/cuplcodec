@@ -149,7 +149,7 @@ class InstrumentedSample(InstrumentedBase):
 class InstrumentedSampleT(InstrumentedSample):
     def __init__(self,
                  serial='ABCDEFGH',
-                 secretkey='AAAACCCC',
+                 secretkey='AAAACCCC11112222',
                  baseurl='plotsensor.com',
                  smplintervalmins=12,
                  resetsalltime=0,
@@ -181,7 +181,7 @@ class InstrumentedSampleT(InstrumentedSample):
 class InstrumentedSampleTRH(InstrumentedSample):
     def __init__(self,
                  serial='ABCDEFGH',
-                 secretkey='AAAACCCC',
+                 secretkey='AAAACCCC11112222',
                  baseurl='plotsensor.com',
                  smplintervalmins=12,
                  resetsalltime=0,

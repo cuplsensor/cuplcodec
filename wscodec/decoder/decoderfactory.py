@@ -47,22 +47,27 @@ def decode(secretkey: str,
         An object containing a list of timestamped environmental sensor samples.
 
     """
-    vfmtb64 = vfmtb64[-4:]
-    vfmtbytes = B64Decoder.b64decode(vfmtb64)
-    encoderbytes = vfmtbytes[0:2]
-    encoderversion = int.from_bytes(encoderbytes, byteorder='big')
-    formatcode = vfmtbytes[2]
 
-    decodermajorversion = _get_version()
+    encodermajorversion, formatcode = _get_encoderversion(vfmtb64)
+    decodermajorversion = _get_decoderversion()
 
-    if encoderversion != decodermajorversion:
-        raise InvalidMajorVersionError
+    if encodermajorversion != decodermajorversion:
+        raise InvalidMajorVersionError(encodermajorversion, decodermajorversion)
 
     decoder = _get_decoder(formatcode)(statb64=statb64, timeintb64=timeintb64, circb64=circb64, usehmac=usehmac, secretkey=secretkey, scantimestamp=scantimestamp)
     return decoder
 
 
-def _get_version():
+def _get_encoderversion(vfmtb64):
+    vfmtb64 = vfmtb64[-4:]
+    vfmtbytes = B64Decoder.b64decode(vfmtb64)
+    encoderbytes = vfmtbytes[0:2]
+    encoderversion = int.from_bytes(encoderbytes, byteorder='big')
+    formatcode = vfmtbytes[2]
+    return encoderversion, formatcode
+
+
+def _get_decoderversion():
     decoderversionstr = pkg_resources.require("cuplcodec")[0].version
     decodermajorversion = int(decoderversionstr.split('.', 1)[0])
     return decodermajorversion

@@ -1,6 +1,6 @@
 from .b64decode import B64Decoder
 from .status import Status
-from .exceptions import DelimiterNotFoundError
+from .exceptions import DelimiterNotFoundError, NoCircularBufferError
 from struct import unpack
 
 
@@ -57,6 +57,9 @@ class CircularBufferURL:
         The circular buffer is made linear by concatenating the two parts of the buffer
         either side of the end stop.
         """
+
+        if len(self.circb64) == 0:
+            raise NoCircularBufferError(self.status)
 
         # Split query string at the end of the endstop marker.
         splitend = self.circb64.split(self.ENDSTOP_BYTE)
