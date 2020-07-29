@@ -3,7 +3,6 @@ from . import eeprom as eeprom
 from struct import pack
 
 
-
 class InstrumentedBase(object):
     """
     Put some documentation here
@@ -16,7 +15,7 @@ class InstrumentedBase(object):
                  secretkey,
                  smplintervalmins,
                  batteryadc=100,
-                 version='11',
+                 format=1,
                  resetsalltime=0,
                  usehmac=True,
                  httpsdisable=False
@@ -37,7 +36,7 @@ class InstrumentedBase(object):
         self.ffimodule.lib.nv.serial = serial.encode('ascii')
         self.ffimodule.lib.nv.seckey = secretkey.encode('ascii')
         self.ffimodule.lib.nv.baseurl = baseurl.encode('ascii')
-        self.ffimodule.lib.nv.version = version.encode('ascii')
+        self.ffimodule.lib.nv.format = bytes([format])
         self.ffimodule.lib.nv.usehmac = usehmac_int
         self.ffimodule.lib.nv.httpsdisable = httpsdisable_int
         self.ffimodule.lib.nv.resetsalltime = resetsalltime
@@ -103,12 +102,12 @@ class InstrumentedSample(InstrumentedBase):
                  secretkey='AAAACCCC',
                  smplintervalmins=12,
                  batteryadc=100,
-                 version='11',
+                 format=1,
                  resetsalltime=0,
                  usehmac=True,
                  httpsdisable=False
                  ):
-        super(InstrumentedSample, self).__init__(samplepy, baseurl, serial, secretkey, smplintervalmins, batteryadc, version, resetsalltime, usehmac, httpsdisable)
+        super(InstrumentedSample, self).__init__(samplepy, baseurl, serial, secretkey, smplintervalmins, batteryadc, format, resetsalltime, usehmac, httpsdisable)
         self.set_battery_adc(batteryadc)
 
         @self.ffimodule.ffi.def_extern()
@@ -163,11 +162,11 @@ class InstrumentedSampleT(InstrumentedSample):
                                                   secretkey,
                                                   smplintervalmins,
                                                   batteryadc=batteryadc,
-                                                  version='12',
+                                                  format=2,
                                                   resetsalltime=resetsalltime,
                                                   usehmac=usehmac,
                                                   httpsdisable=httpsdisable)
-        self.ffimodule.lib.enc_init(resetcause, False)
+        self.ffimodule.lib.enc_init(resetcause, False, 0)
 
     def pushsamples(self, num):
         inlist = list()
@@ -196,11 +195,11 @@ class InstrumentedSampleTRH(InstrumentedSample):
                                                     secretkey,
                                                     smplintervalmins,
                                                     batteryadc=batteryadc,
-                                                    version='11',
+                                                    format=1,
                                                     resetsalltime=resetsalltime,
                                                     usehmac=usehmac,
                                                     httpsdisable=httpsdisable)
-        self.ffimodule.lib.enc_init(resetcause, False)
+        self.ffimodule.lib.enc_init(resetcause, False, 0)
 
     def pushsamples(self, num):
         inlist = list()

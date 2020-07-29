@@ -1,7 +1,7 @@
 import pytest
 from wscodec.encoder.pyencoder.instrumented import InstrumentedSampleTRH, InstrumentedSample
 from wscodec.decoder import decode
-from wscodec.decoder.exceptions import DelimiterNotFoundError
+from wscodec.decoder.exceptions import DelimiterNotFoundError, InvalidMajorVersionError
 from wscodec.decoder.status import SVSH_BIT
 
 INPUT_SERIAL = 'abcdabcd'
@@ -57,7 +57,7 @@ def test_md5(n, usehmac):
     # Decode the URL
     par = instr_md5.eepromba.get_url_parsedqs()
     decodedurl = decode(secretkey=INPUT_SECKEY, statb64=par['x'][0], timeintb64=par['t'][0],
-                        circb64=par['q'][0], ver=par['v'][0], usehmac=usehmac)
+                        circb64=par['q'][0], vfmtb64=par['v'][0], usehmac=usehmac)
 
     urllist = decodedurl.get_samples_list()
     for d in urllist:
@@ -85,7 +85,7 @@ def test_batteryvoltage():
     # Decode the URL
     par = instr_batv.eepromba.get_url_parsedqs()
     decodedurl = decode(secretkey="", statb64=par['x'][0], timeintb64=par['t'][0],
-                        circb64=par['q'][0], ver=par['v'][0], usehmac=False)
+                        circb64=par['q'][0], vfmtb64=par['v'][0], usehmac=False)
 
     assert decodedurl.status.get_batvoltageraw() == testbatv
 
@@ -99,13 +99,38 @@ def test_errorcondition():
                                )
 
     resetcause = SVSH_BIT
-    instr.ffimodule.lib.enc_init(resetcause, True)
+    instr.ffimodule.lib.enc_init(resetcause, True, 0)
 
     par = instr.eepromba.get_url_parsedqs()
 
     with pytest.raises(DelimiterNotFoundError) as excinfo:
         # Attempt to decode the parameters
         decodedurl = decode(secretkey="", statb64=par['x'][0], timeintb64=par['t'][0],
-                            circb64="", ver=par['v'][0], usehmac=False)
+                            circb64="", vfmtb64=par['v'][0], usehmac=False)
 
     assert excinfo.value.status.resetcause['supervisor'] == True
+
+
+def test_version_mismatch(mocker):
+    instr = InstrumentedSample(baseurl=INPUT_BASEURL,
+                               serial=INPUT_SERIAL,
+                               secretkey="",
+                               smplintervalmins=INPUT_TIMEINT,
+                               usehmac=False,
+                               )
+
+    def mock_version():
+        return 9
+
+
+    instr.ffimodule.lib.enc_init(0, True, 0)
+
+    par = instr.eepromba.get_url_parsedqs()
+
+    mocker.patch('wscodec.decoder.decoderfactory._get_version', mock_version)
+
+    with pytest.raises(InvalidMajorVersionError) as excinfo:
+        # Attempt to decode the parameters
+        decodedurl = decode(secretkey="", statb64=par['x'][0], timeintb64=par['t'][0],
+                            circb64="", vfmtb64=par['v'][0], usehmac=False)
+
