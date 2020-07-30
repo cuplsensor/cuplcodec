@@ -100,4 +100,4 @@ def test_decode_raises_indexerrror(blankurlqs):
                          timeintb64=timeintb64,
                          statb64=statb64,
                          circb64=circb64,
-                         ver=ver)
+                         vfmtb64=ver)

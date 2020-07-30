@@ -51,7 +51,7 @@ def test_md5(instr_sample, n):
     # Decode the URL
     par = instr_md5.eepromba.get_url_parsedqs()
     decodedurl = decode(secretkey="", statb64=par['x'][0], timeintb64=par['t'][0],
-                        circb64=par['q'][0], ver=par['v'][0], usehmac=False)
+                        circb64=par['q'][0], vfmtb64=par['v'][0], usehmac=False)
 
     urllist = decodedurl.get_samples_list()
     for d in urllist:

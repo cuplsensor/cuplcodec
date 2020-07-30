@@ -54,6 +54,12 @@ class Status:
             "scantimeout": scantimeout
         }
 
+    def __str__(self):
+        return "Reset cause: {}, " \
+               "Loop count: {}, " \
+               "Resets all time: {}, " \
+               "Battery voltage: {}".format(self.resetcause, self.loopcount, self.resetsalltime, self.get_batvoltagemv())
+
     def get_batvoltageraw(self):
         """
 

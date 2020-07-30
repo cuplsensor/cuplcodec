@@ -29,7 +29,7 @@ def test_status(instr_sample, n=1):
     # Decode the URL
     par = instr_sample.eepromba.get_url_parsedqs()
     decodedurl = decode(secretkey=instr_sample.secretkey, statb64=par['x'][0], timeintb64=par['t'][0],
-                        circb64=par['q'][0], ver=par['v'][0])
+                        circb64=par['q'][0], vfmtb64=par['v'][0])
 
     assert encoder_cursorpos == decodedurl.endmarkerpos
 
@@ -40,7 +40,7 @@ def test_loopcount(instr_sample, n):
 
     par = instr_sample.eepromba.get_url_parsedqs()
     decodedurl = decode(secretkey=instr_sample.secretkey, statb64=par['x'][0], timeintb64=par['t'][0],
-                        circb64=par['q'][0], ver=par['v'][0])
+                        circb64=par['q'][0], vfmtb64=par['v'][0])
 
     assert decodedurl.status.loopcount == n
 
@@ -57,7 +57,7 @@ def test_resetsalltime(resetsalltime):
 
     par = instr_sample.eepromba.get_url_parsedqs()
     decodedurl = decode(secretkey=instr_sample.secretkey, statb64=par['x'][0], timeintb64=par['t'][0],
-                        circb64=par['q'][0], ver=par['v'][0])
+                        circb64=par['q'][0], vfmtb64=par['v'][0])
 
     assert decodedurl.status.resetsalltime == resetsalltime
 
@@ -80,7 +80,7 @@ def test_batteryvoltage(resetcause, batteryadc):
 
     par = instr_sample.eepromba.get_url_parsedqs()
     decodedurl = decode(secretkey=instr_sample.secretkey, statb64=par['x'][0], timeintb64=par['t'][0],
-                        circb64=par['q'][0], ver=par['v'][0])
+                        circb64=par['q'][0], vfmtb64=par['v'][0])
 
     assert decodedurl.status.get_batvoltageraw() == batteryadc
     assert decodedurl.status.get_resetcauseraw() == resetcause

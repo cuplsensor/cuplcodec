@@ -13,6 +13,7 @@ extern nv_t nv;
 #define SMPLINTB64_LEN  4                       /*!< Length of the encoded sample interval string in bytes. */
 #define SERIALKEY_LEN   sizeof(serialkey)-1     /*!< Length of the serial key string in bytes. */
 #define VERKEY_LEN      sizeof(verkey)-1        /*!< Length of the vfmt key string in bytes. */
+#define VFMTB64_LEN     4                       /*!< Length of the encoded VFmt data in bytes. */
 #define STATKEY_LEN     sizeof(statkey)-1       /*!< Length of the status key string in bytes. */
 #define STATB64_LEN     8                       /*!< Length of the encoded \link #stat_t status \endlink string in bytes. */
 #define CBUFKEY_LEN     sizeof(cbufkey)-1       /*!< Length of the circular buffer key string in bytes. */
@@ -95,7 +96,7 @@ static void ndef_createurlrecord(int * eepindex, int msglenbytes, int httpsDisab
 void ndef_calclen(int * paddinglen, int * preamblenbytes, int * urllen)
 {
     const int preurllen = NDEF_RECORD_HEADER_LEN + TL_LEN;
-    const int posturllen_nopadding = SMPLINTKEY_LEN + SMPLINTB64_LEN + SERIALKEY_LEN + SERIAL_LENBYTES + VERKEY_LEN + VERSION_LENBYTES + STATKEY_LEN + STATB64_LEN + CBUFKEY_LEN;
+    const int posturllen_nopadding = SMPLINTKEY_LEN + SMPLINTB64_LEN + SERIALKEY_LEN + SERIAL_LENBYTES + VERKEY_LEN + VFMTB64_LEN + STATKEY_LEN + STATB64_LEN + CBUFKEY_LEN;
 
     volatile int urllen_nopadding = (posturllen_nopadding + *urllen + preurllen);
     *paddinglen = (BLKSIZE - (urllen_nopadding & 0xF)) & 0xF;
@@ -110,6 +111,7 @@ void ndef_calclen(int * paddinglen, int * preamblenbytes, int * urllen)
 int ndef_writepreamble(int buflenblks, char * statusb64)
 {
   char smplintb64[SMPLINTB64_LEN+1] = {0};
+  char vfmtb64[VFMTB64_LEN+1] = {0};
   int blk = 0;
   int bufblk = 0;
   int eepindex = 0;
@@ -119,7 +121,7 @@ int ndef_writepreamble(int buflenblks, char * statusb64)
   int padding_remaining;
   int paddinglen;
   int preamblenbytes;
-
+  char vfmt[VFMTINT_LENBYTES];
   char * baseurl = nv.baseurl;
   int urllen = strlen(nv.baseurl); // Get this from the nvparams.
   int urlbytes_remaining = urllen;  // The url bytes still to write.
@@ -141,7 +143,14 @@ int ndef_writepreamble(int buflenblks, char * statusb64)
       return -2; // FAULT
   }
 
+  /* Encode the sample interval. */
   Base64encode(smplintb64, smplinterval, SMPLINT_LENBYTES);
+
+  /* Prepare the VFmt version, format array. */
+  vfmt[0] = (CODEC_VERSION & 0xFF00) >> 8;
+  vfmt[1] = (CODEC_VERSION & 0x00FF);
+  vfmt[2] = nv.format;
+  Base64encode(vfmtb64, vfmt, VFMTINT_LENBYTES);
 
   // Write TLV Tag field
   eep_cpbyte(&eepindex, TAG_NDEF_MESSSAGE);
@@ -190,7 +199,7 @@ int ndef_writepreamble(int buflenblks, char * statusb64)
       padding_remaining--;
   }
   // Append version
-  eep_cp(&eepindex, nv.version, VERSION_LENBYTES);
+  eep_cp(&eepindex, vfmtb64, VFMTB64_LEN);
   // Append status header
   eep_cp(&eepindex, statkey, STATKEY_LEN);
   // Append status data
