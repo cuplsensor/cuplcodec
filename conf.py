@@ -28,7 +28,7 @@ if read_the_docs_build:
 # -- Project information -----------------------------------------------------
 
 project = 'codec'
-copyright = '2019, Malcolm Mackay'
+copyright = '2019, Plotsensor Ltd.'
 author = 'Malcolm Mackay'
 
 # The short X.Y version
