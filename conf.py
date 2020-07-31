@@ -63,7 +63,7 @@ breathe_projects = { "encoderproject": "wscodec/encoder/pyencoder/c_encoder/doxy
 breathe_default_project = "encoderproject" # BREATHE
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_doc_templates']
+templates_path = ['docs/_doc_templates']
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
