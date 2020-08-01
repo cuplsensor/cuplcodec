@@ -28,7 +28,7 @@ if read_the_docs_build:
 # -- Project information -----------------------------------------------------
 
 project = 'codec'
-copyright = '2019, Malcolm Mackay'
+copyright = '2019, Plotsensor Ltd.'
 author = 'Malcolm Mackay'
 
 # The short X.Y version
@@ -63,7 +63,7 @@ breathe_projects = { "encoderproject": "wscodec/encoder/pyencoder/c_encoder/doxy
 breathe_default_project = "encoderproject" # BREATHE
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_doc_templates']
+templates_path = ['docs/_doc_templates']
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
