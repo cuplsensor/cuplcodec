@@ -145,6 +145,8 @@ class InstrumentedSample(InstrumentedBase):
 
 
 class InstrumentedSampleT(InstrumentedSample):
+    FORMAT_HDC2021_TEMPONLY = 2
+
     def __init__(self,
                  serial='ABCDEFGH',
                  secretkey='AAAACCCC11112222',
@@ -155,14 +157,15 @@ class InstrumentedSampleT(InstrumentedSample):
                  resetcause=0,
                  usehmac=True,
                  httpsdisable=False,
-                 tagerror=False
+                 tagerror=False,
+                 format=FORMAT_HDC2021_TEMPONLY
                  ):
         super(InstrumentedSampleT, self).__init__(baseurl,
                                                   serial,
                                                   secretkey,
                                                   smplintervalmins,
                                                   batteryadc=batteryadc,
-                                                  format=2,
+                                                  format=format,
                                                   resetsalltime=resetsalltime,
                                                   usehmac=usehmac,
                                                   httpsdisable=httpsdisable)
@@ -179,6 +182,8 @@ class InstrumentedSampleT(InstrumentedSample):
 
 
 class InstrumentedSampleTRH(InstrumentedSample):
+    FORMAT_HDC2021_TRH = 1
+
     def __init__(self,
                  serial='ABCDEFGH',
                  secretkey='AAAACCCC11112222',
@@ -189,14 +194,15 @@ class InstrumentedSampleTRH(InstrumentedSample):
                  resetcause=0,
                  usehmac=True,
                  httpsdisable=False,
-                 tagerror=False
+                 tagerror=False,
+                 format=FORMAT_HDC2021_TRH
                  ):
         super(InstrumentedSampleTRH, self).__init__(baseurl,
                                                     serial,
                                                     secretkey,
                                                     smplintervalmins,
                                                     batteryadc=batteryadc,
-                                                    format=1,
+                                                    format=format,
                                                     resetsalltime=resetsalltime,
                                                     usehmac=usehmac,
                                                     httpsdisable=httpsdisable)
