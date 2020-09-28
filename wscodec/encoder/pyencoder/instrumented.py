@@ -122,7 +122,6 @@ class InstrumentedSample(InstrumentedBase):
         """ Converts degrees C to a raw ADC value for the Texas HDC2010. """
         return int((degc + 40) * 4096 / 165)
 
-
     def rh_percent_to_raw(self, rhpc):
         """ Converts from relative humidity in percent to a raw ADC value for the Texas HDC2010. """
         return int((rhpc * 4096) / 100)
@@ -142,6 +141,28 @@ class InstrumentedSample(InstrumentedBase):
             counter = counter % countermax
             rawrh = self.rh_percent_to_raw(counter)
             yield {'adc': rawrh, 'ref': counter}
+
+    def pushsamplelist(self, trhlist: list):
+        """
+
+        :param trhlist: a list of dictionaries each containing temperature and relative humidity keys.
+        :return: None
+        """
+        for smpldict in trhlist:
+            tempdegc = smpldict['temp']
+            rhpc = smpldict['rh']
+            tempraw = self.temp_degc_to_raw(tempdegc)
+            rhraw = self.rh_percent_to_raw(rhpc)
+            # rhraw is ignored (set to -1) inside enc_pushsample if the format is temperature only.
+            self.ffimodule.lib.enc_pushsample(tempraw, rhraw)
+
+    def updateendstop(self, minutes: int):
+        """ Update the endstop with minutes elapsed since the most recent sample.
+
+        :param minutes: Minutes elapsed since the most recent sample.
+        :return: None
+        """
+        self.ffimodule.lib.enc_setelapsed(minutes)
 
 
 class InstrumentedSampleT(InstrumentedSample):
@@ -218,27 +239,6 @@ class InstrumentedSampleTRH(InstrumentedSample):
             inlist.insert(0, {'temp': tempsmpl['ref'], 'rh': rhsmpl['ref']})
             self.ffimodule.lib.enc_pushsample(tempsmpl['adc'], rhsmpl['adc'])
         return inlist
-
-    def pushsamplelist(self, trhlist: list):
-        """
-
-        :param trhlist: a list of dictionaries each containing temperature and relative humidity keys.
-        :return: None
-        """
-        for smpldict in trhlist:
-            tempdegc = smpldict['temp']
-            rhpc = smpldict['rh']
-            tempraw = self.temp_degc_to_raw(tempdegc)
-            rhraw = self.rh_percent_to_raw(rhpc)
-            self.ffimodule.lib.enc_pushsample(tempraw, rhraw)
-
-    def updateendstop(self, minutes: int):
-        """ Update the endstop with minutes elapsed since the most recent sample.
-
-        :param minutes: Minutes elapsed since the most recent sample.
-        :return: None
-        """
-        self.ffimodule.lib.enc_setelapsed(minutes)
 
     def geturlqs(self):
         return self.eepromba.get_url_parsedqs()
