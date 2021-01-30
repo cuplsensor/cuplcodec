@@ -1,18 +1,18 @@
 # cuplcodec
-[cuplcodec](https://cupl.co.uk/index.php/software/cuplcodec/) encodes environmental sensor data into a URL. Each sample can consist of one or two 12-bit readings (e.g. temperature and humidity). These are converted to base64 and written to a circular buffer. A HMAC is written after the most recent sample in the buffer. The URL can be rendered as a QR code or stored on an NFC tag. If the latter is tapped 
-with a mobile phone, it opens automatically in a web browser. A web application comprising [cuplfrontend](https://github.com/cuplsensor/cuplfrontend) and [cuplbackend](https://github.com/cuplsensor/cuplbackend) runs the decoder in cuplcodec, unwraps the circular buffer and displays a list of samples.
+[cuplcodec](https://cupl.co.uk/index.php/software/cuplcodec/) encodes environmental sensor data into a URL. Each sample includes two 12-bit readings (temperature and humidity). These are converted to base64 and written into a circular buffer. A HMAC is written after the most recent sample in the buffer. The URL can be rendered as a QR code or stored on an NFC tag. If a tag with a URL is tapped 
+by a mobile phone, it opens automatically in a web browser. This allows the user to view sensor data **without installing an app on their phones**. A web application comprising [cuplfrontend](https://github.com/cuplsensor/cuplfrontend) and [cuplbackend](https://github.com/cuplsensor/cuplbackend) runs the decoder in cuplcodec, unwraps the circular buffer and displays a list of samples in the browser.
 
 ## Tests
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/cuplsensor/cuplcodec/Install%20cuplcodec%20and%20run%20tests.)
+![GitHub Workflow Status](https://github.com/cuplsensor/cuplcodec/workflows/Python%20package/badge.svg)
 
-The codec is tested with [pytest](https://docs.pytest.org/en/stable/).[CFFI](https://cffi.readthedocs.io/en/latest/) provides a Python interface to the encoder written in C.
+The codec is tested with [pytest](https://docs.pytest.org/en/stable/). The encoder written in C can be tested with the decoder written in Python using [CFFI](https://cffi.readthedocs.io/en/latest/).
 
 ## Documentation 
 
-[![Documentation Status](https://readthedocs.org/projects/codec/badge/?version=latest)](https://cupl.readthedocs.io/projects/codec/en/latest/?badge=latest) 
+[![Documentation Status](https://readthedocs.org/projects/wscodec/badge/?version=latest)](https://readthedocs.org/projects/wscodec/badge/?version=latest) 
 
-Hosted on [ReadTheDocs](https://cupl.readthedocs.io/projects/codec/en/latest/). This includes information on how to run the encoder on an MSP430.
+Hosted on [ReadTheDocs](https://readthedocs.org/projects/wscodec/badge/?version=latest). This includes information on how to run the encoder on an MSP430.
 
 ## PyPI Package
 
