@@ -37,6 +37,16 @@
 
 #define BATV_RESETCAUSE(BATV, RSTC) ((BATV << 8) | (RSTC & 0xFF)) /*!< Macro for creating a 16-bit batv_resetcause value from 8-bit CODEC_FEAT_30 and CODEC_SPEC_16 values. */
 
+#ifndef NOT_CFFI
+#define FRAM_WRITE_ENABLE
+#define FRAM_WRITE_DISABLE
+#else
+#include <msp430.h>
+#define FRAM_WRITE_ENABLE       SYSCFG0 = FRWPPW | PFWP;
+#define FRAM_WRITE_DISABLE      SYSCFG0 = FRWPPW | DFWP | PFWP;
+#endif
+
+
 typedef enum {
     pairbuf_initial,
     pair0_both,         /*!< Write pair0 */
@@ -64,19 +74,26 @@ typedef struct
   char elapsedMSB;      /*!< Minutes elapsed since previous sample (Most Signficant Byte). */
 } endmarker_t;
 
-static int overwriting;
-static char demi[8];                /*!< Stores two pairs from \link pairbuf, after base64 encoding */
-static pair_t pairbuf[2];           /*!< Stores two unencoded 3-byte pairs. */
-static unsigned int npairs = 0;   /*!< Number of base64 encoded pairs in the circular buffer, starting from the endstop and counting backwards. */
-static pairbufstate_t state;        /*!< Pair buffer write state. */
-static endstop_t endstop;           /*!< The 16 byte end stop. */
+#pragma PERSISTENT(overwriting)
+int overwriting = 0;
+
+#pragma PERSISTENT(pairbuf)
+pair_t pairbuf[2] = {0};           /*!< Stores two unencoded 3-byte pairs. */
+
+#pragma PERSISTENT(npairs)
+unsigned int npairs = 0;            /*!< Number of base64 encoded pairs in the circular buffer, starting from the endstop and counting backwards. */
+
+#pragma PERSISTENT(state)
+pairbufstate_t state = 0;           /*!< Pair buffer write state. */
+
+#pragma PERSISTENT(endstop)
+endstop_t endstop = {0};            /*!< The 16 byte end stop. */
+
+#pragma PERSISTENT(status)
+stat_t status = {0};                /*!< Structure to hold unencoded status data. */
+
 extern nv_t nv;                     /*!< Externally defined parameters stored in non-volatile memory. */
 
-#ifndef NOT_CFFI
-stat_t status = {0};                /*!< Structure to hold unencoded status data. */
-#else
-static stat_t status = {0};         /*!< Structure to hold unencoded status data. */
-#endif
 
 static bool one_reading_per_sample(void)
 {
@@ -96,8 +113,10 @@ static void incr_loopcounter(void)
   char statusb64[9];
   uint16_t batv = batv_measure();                           // Measure battery voltage
 
+  FRAM_WRITE_ENABLE
   status.loopcount += 1;                                   // Increase loopcount by 1.
   status.batv_resetcause = BATV_RESETCAUSE(batv, 0);       // Clear reset cause because there has not been a reset recently.
+  FRAM_WRITE_DISABLE
 
   Base64encode(statusb64, (const char *)&status, sizeof(status)); // Base64 encode status. CHECK THIS.
   ndef_writepreamble(BUFLEN_BLKS, statusb64);               // Write URL in EEPROM up to the start of the circular buffer.
@@ -115,8 +134,10 @@ static void set_elapsed(unsigned int minutes)
     marker.elapsedLSB = minutes & 0xFF; // Lower 8 bits of the minutes field.
     marker.elapsedMSB = minutes >> 8;   // Upper 8 bits of the minutes field.
 
+    FRAM_WRITE_ENABLE
     Base64encode(endstop.markerb64, (char *)&marker, sizeof(marker));
     endstop.markerb64[3] = ENDSTOP_BYTE;    // Change padding byte.
+    FRAM_WRITE_DISABLE
 }
 
 /**
@@ -128,9 +149,11 @@ static void set_elapsed(unsigned int minutes)
  */
 static void set_pair(pair_t *pair, int rd0, int rd1)
 {
+    FRAM_WRITE_ENABLE
     pair->rd0Msb = ((rd0 >> 4) & 0xFF);
     pair->rd1Msb = ((rd1 >> 4) & 0xFF);
     pair->Lsb   = ((rd0 & 0xF) << 4) | (rd1 & 0xF);
+    FRAM_WRITE_DISABLE
 }
 
 /**
@@ -142,9 +165,11 @@ static void set_pair(pair_t *pair, int rd0, int rd1)
  */
 static void set_rd1(pair_t *pair, int rd1)
 {
+    FRAM_WRITE_ENABLE
     pair->rd1Msb  = ((rd1 >> 4) & 0xFF);
     pair->Lsb   &= ~0x0F;           // Clear low nibble of LSB.
     pair->Lsb   |= (rd1 & 0xF);     // Set low nibble of LSB.
+    FRAM_WRITE_DISABLE
 }
 
 /*!
@@ -174,14 +199,18 @@ void enc_init(unsigned int resetcause, bool err, unsigned int batv)
       batv = batv_measure();
   }
 
+  FRAM_WRITE_ENABLE
+  // Initialise state variables
   overwriting = 0;
+  npairs = 0;
+  state = pairbuf_initial;
+  // Initialise status
   status.loopcount = 0;
   status.resetsalltime = nv.resetsalltime;
   status.batv_resetcause = BATV_RESETCAUSE(batv, resetcause);
-  Base64encode(statusb64, (const char *)&status, sizeof(status));
+  FRAM_WRITE_DISABLE
 
-  npairs = 0;
-  state = pairbuf_initial;
+  Base64encode(statusb64, (const char *)&status, sizeof(status));
 
   if (err == true)
   {
@@ -222,6 +251,7 @@ int enc_pushsample(int rd0, int rd1)
   pairbufstate_t nextstate;
   hashn_t hashn;
   int cursorpos;
+  char demi[8];                /*!< Stores two pairs from \link pairbuf, after base64 encoding */
   DemiState_t demistate = ds_consecutive;
 
   if (one_reading_per_sample())
@@ -236,7 +266,9 @@ int enc_pushsample(int rd0, int rd1)
           switch(demistate)
           {
           case ds_looparound:
+            FRAM_WRITE_ENABLE
             overwriting = 1;
+            FRAM_WRITE_DISABLE
             break;
           case ds_newloop:
             incr_loopcounter();
@@ -246,7 +278,9 @@ int enc_pushsample(int rd0, int rd1)
           demi_readcursor();
           set_pair(&pairbuf[0], rd0, rd1);
           set_pair(&pairbuf[1], 0, 0);
+          FRAM_WRITE_ENABLE
           npairs = overwriting ? (npairs + 1 - PAIRS_PER_DEMI) : (npairs + 1);
+          FRAM_WRITE_DISABLE
           pairhist_push(pairbuf[0]);
           if (one_reading_per_sample())
           {
@@ -266,7 +300,9 @@ int enc_pushsample(int rd0, int rd1)
 
       case pair1_both:
           set_pair(&pairbuf[1], rd0, rd1);
+          FRAM_WRITE_ENABLE
           npairs++;
+          FRAM_WRITE_DISABLE
 
           pairhist_push(pairbuf[1]);
 
@@ -293,7 +329,9 @@ int enc_pushsample(int rd0, int rd1)
       // 2 samples (6 bytes) per 8 base64 bytes.
       Base64encode(demi, (char *)pairbuf, sizeof(pairbuf));
       // 9 bytes per 12 base64 bytes.
+      FRAM_WRITE_ENABLE
       Base64encode(endstop.hashnb64, (char *)&hashn, sizeof(hashn));
+      FRAM_WRITE_DISABLE
 
       set_elapsed(0);
 
@@ -302,7 +340,9 @@ int enc_pushsample(int rd0, int rd1)
       demi_write(DEMI2, &endstop.hashnb64[8]);
       demi_commit4();
 
+      FRAM_WRITE_ENABLE
       state = nextstate;
+      FRAM_WRITE_DISABLE
 
       return (demistate == ds_consecutive);
 }
