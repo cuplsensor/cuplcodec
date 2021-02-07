@@ -38,10 +38,9 @@
 #define BATV_RESETCAUSE(BATV, RSTC) ((BATV << 8) | (RSTC & 0xFF)) /*!< Macro for creating a 16-bit batv_resetcause value from 8-bit CODEC_FEAT_30 and CODEC_SPEC_16 values. */
 
 
-extern nv_t nv;                     /*!< Externally defined parameters stored in non-volatile memory. */
-extern void fram_write_enable(void);
-extern void fram_write_disable(void);
-
+extern nv_t nv;                         /*!< Externally defined parameters stored in non-volatile memory. */
+extern void fram_write_enable(void);    /*!< Enable writes to FRAM. Should be defined in the processor-specific cuplTag project. */
+extern void fram_write_disable(void);   /*!< Disable writes to FRAM. Should be defined in the processor-specific cuplTag project. */
 
 
 typedef enum {
@@ -81,14 +80,13 @@ pair_t pairbuf[2] = {0};           /*!< Stores two unencoded 3-byte pairs. */
 unsigned int npairs = 0;            /*!< Number of base64 encoded pairs in the circular buffer, starting from the endstop and counting backwards. */
 
 #pragma PERSISTENT(state)
-pairbufstate_t state = 0;           /*!< Pair buffer write state. */
+pairbufstate_t state = pairbuf_initial;  /*!< Pair buffer write state. */
 
 #pragma PERSISTENT(endstop)
 endstop_t endstop = {0};            /*!< The 16 byte end stop. */
 
 #pragma PERSISTENT(status)
 stat_t status = {0};                /*!< Structure to hold unencoded status data. */
-
 
 
 
@@ -219,6 +217,7 @@ void enc_init(unsigned int resetcause, bool err, unsigned int batv)
   }
 
   ndef_writeblankurl(buflenblks, statusb64, &startblk);
+  pairhist_init();
   demi_init(startblk, buflenblks);
 }
 

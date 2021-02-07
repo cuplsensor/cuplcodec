@@ -69,6 +69,7 @@ typedef struct
 
 /// Have doxygen ignore this
 /// @cond
+void pairhist_init(void);
 void pairhist_ovr(pair_t pair);
 void pairhist_push(pair_t pair);
 hashn_t pairhist_hash(int npairs, int usehmac, unsigned int loopcount, unsigned int resetsalltime, unsigned int batv_resetcause, int cursorpos);
