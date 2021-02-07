@@ -41,7 +41,7 @@
 #define FRAM_WRITE_ENABLE
 #define FRAM_WRITE_DISABLE
 #else
-#include <msp430.h>
+//#include <msp430.h>
 #define FRAM_WRITE_ENABLE       SYSCFG0 = FRWPPW | PFWP;
 #define FRAM_WRITE_DISABLE      SYSCFG0 = FRWPPW | DFWP | PFWP;
 #endif
