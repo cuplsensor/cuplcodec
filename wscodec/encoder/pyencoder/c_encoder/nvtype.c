@@ -33,4 +33,8 @@
 
 #ifndef NOT_CFFI
 nv_t nv = {.serial="AAAACCCC", .seckey="AAAACCCC"};
+
+void fram_write_enable() {}
+
+void fram_write_disable() {}
 #endif
