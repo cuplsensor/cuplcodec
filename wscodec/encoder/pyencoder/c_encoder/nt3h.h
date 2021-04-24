@@ -34,7 +34,8 @@
 int nt3h_writetag(int eepromBlock, char * blkdata);
 int nt3h_readtag(int eepromBlock, char * blkdata);
 int nt3h_eepromwritedone(void);
-void nt3h_check_address(void);
+int nt3h_check_address(void);
+void nt3h_update_cc(void);
 void nt3h_init_wrongaddress(void);
 
 int printint(int myint);
