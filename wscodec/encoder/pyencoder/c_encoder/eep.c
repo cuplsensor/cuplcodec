@@ -51,7 +51,7 @@ static inline int inbounds(int byteindex)
  *  \param eepblk Block of the EEPROM to write to.
  *  \param bufblk Block of the buffer to write from.
  *
- *  \returns 1 if the block to be written greater than the buffer size. Otherwise 0.
+ *  \returns 1 if the block to be written greater than the buffer size. 0 on success and -1 on write error.
  */
 int eep_write(const int eepblk, const unsigned int bufblk)
 {
@@ -59,8 +59,7 @@ int eep_write(const int eepblk, const unsigned int bufblk)
   int startbyte = bufblk * BLKSIZE;
   if (bufblk < BUFSIZE_BLKS)
   {
-    nt3h_writetag(eepblk+1, &_blkbuffer[startbyte]);
-    errflag = 0;
+    errflag = nt3h_writetag(eepblk+1, &_blkbuffer[startbyte]);
   }
 
   return errflag;
