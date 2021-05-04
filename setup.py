@@ -30,7 +30,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="cuplcodec",
-    version="2.0.9",
+    version="2.1.0",
     author="Malcolm Mackay",
     author_email="malcolm@plotsensor.com",
     description="Package for creating and decoding URLs that contain temperature and humidity samples.",
