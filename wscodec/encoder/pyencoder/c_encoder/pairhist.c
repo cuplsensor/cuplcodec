@@ -32,11 +32,17 @@
 #define MD5BLKLEN_BYTES     64              /*!< Length of the MD5 input message block in bytes. */
 
 extern nv_t nv;
+extern void fram_write_enable(void);        /*!< Enable writes to FRAM. Should be defined in the processor-specific cuplTag project. */
+extern void fram_write_disable(void);       /*!< Disable writes to FRAM. Should be defined in the processor-specific cuplTag project. */
+
+#pragma PERSISTENT(pairhistory)
+pair_t pairhistory[BUFLEN_PAIRS] = {0};     /*!< Array of unencoded pairs. This mirrors the circular buffer of base64 encoded pairs stored in EEPROM. */
+
+#pragma PERSISTENT(cursorindex)
+int cursorindex = -1;                       /*!< Index marking the end of the circular buffer. The most recent sample is stored here. The next index contains the oldest sample.  */
 
 unsigned char msgblock[MD5BLKLEN_BYTES];    /*!< Block to hold message data as an input to the MD5 algorithm. */
 const int buflenpairs= BUFLEN_PAIRS;        /*!< Length of the circular buffer in pairs. */
-static pair_t pairhistory[BUFLEN_PAIRS];    /*!< Array of unencoded pairs. This mirrors the circular buffer of base64 encoded pairs stored in EEPROM. */
-static int cursorindex = -1;                /*!< Index marking the end of the circular buffer. The most recent sample is stored here. The next index contains the oldest sample.  */
 static const char ipadchar = 0x36;          /*!< Inner padding byte for HMAC as defined in <a href="https://tools.ietf.org/html/rfc2104#section-2">RFC 2104</a>.*/
 static const char opadchar = 0x5C;          /*!< Outer padding byte for HMAC as defined in <a href="https://tools.ietf.org/html/rfc2104#section-2">RFC 2104</a>. */
 static MD5_CTX ctx;                         /*!< MD5 context. */
@@ -51,7 +57,19 @@ static MD5_CTX ctx;                         /*!< MD5 context. */
  */
 void pairhist_ovr(pair_t pair)
 {
-  pairhistory[cursorindex] = pair;
+    fram_write_enable();
+    pairhistory[cursorindex] = pair;
+    fram_write_disable();
+}
+
+/*!
+ * @brief Initialise the cursorindex
+ * The circular buffer itself (pairhistory) does not need to be initialised.
+ */
+void pairhist_init() {
+    fram_write_enable();
+    cursorindex = -1;
+    fram_write_disable();
 }
 
 /*!
@@ -62,6 +80,7 @@ void pairhist_ovr(pair_t pair)
  */
 void pairhist_push(pair_t pair)
 {
+  fram_write_enable();
   if (cursorindex == BUFLEN_PAIRS-1)
   {
     cursorindex = 0;   // Write next pair to the start of the buffer.
@@ -72,6 +91,7 @@ void pairhist_push(pair_t pair)
   }
 
   pairhistory[cursorindex] = pair;
+  fram_write_disable();
 }
 
 /*!

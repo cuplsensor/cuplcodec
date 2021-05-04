@@ -28,14 +28,26 @@
 #define DEMI_TO_BLK(demi)   (_startblk + (demi >> 1))       /*!< Maps a demi to its EEPROM block. */
 #define IS_ODD(x)           ((x & 0x01) > 0)                /*!< Returns 1 if x is ODD and 0 if x is EVEN. */
 
+extern void fram_write_enable(void);        /*!< Enable writes to FRAM. Should be defined in the processor-specific cuplTag project. */
+extern void fram_write_disable(void);       /*!< Disable writes to FRAM. Should be defined in the processor-specific cuplTag project. */
 
-static int _endblk = 0;     /*!< Last EEPROM block in the circular buffer. */
-static int _startblk = 0;   /*!< First EEPROM block in the circular buffer. */
-static int _cursorblk;      /*!< Cursor address in terms of 16-byte EEPROM blocks. Must be >= #_startblk and <= #_endblk. */
-static int _nextblk;        /*!< Address of the next EEPROM block after cursor block. The buffer is circular, so it can be < #_cursorblk. */
+#pragma PERSISTENT(_endblk)
+int _endblk = 0;            /*!< Last EEPROM block in the circular buffer. */
 
-static int _enddemi = 0;    /*!< Largest possible value of _cursordemi. Always an odd integer. */
-static int _cursordemi = 0; /*!< Cursor in terms of 8-byte demis. Must be >= 0 and <= #_enddemi. */
+#pragma PERSISTENT(_startblk)
+int _startblk = 0;          /*!< First EEPROM block in the circular buffer. */
+
+#pragma PERSISTENT(_cursorblk)
+int _cursorblk = 0;             /*!< Cursor address in terms of 16-byte EEPROM blocks. Must be >= #_startblk and <= #_endblk. */
+
+#pragma PERSISTENT(_nextblk)
+int _nextblk = 0;               /*!< Address of the next EEPROM block after cursor block. The buffer is circular, so it can be < #_cursorblk. */
+
+#pragma PERSISTENT(_enddemi)
+int _enddemi = 0;           /*!< Largest possible value of _cursordemi. Always an odd integer. */
+
+#pragma PERSISTENT(_cursordemi)
+int _cursordemi = 0;        /*!< Cursor in terms of 8-byte demis. Must be >= 0 and <= #_enddemi. */
 
 /*!
  * @brief Copy 4 demis from EEPROM into RAM.
@@ -107,6 +119,9 @@ void demi_init(const int startblk, const int lenblks)
 {
   int lendemis;
 
+  // --------- Enable FRAM writes -------------//
+  fram_write_enable();
+
   _startblk = startblk;
   _endblk = startblk+lenblks-1;
 
@@ -118,6 +133,9 @@ void demi_init(const int startblk, const int lenblks)
   _enddemi =  lendemis - 1;
 
   _cursordemi = 0;
+
+  // --------- Disable FRAM writes -------------//
+  fram_write_disable();
 }
 
 /*!
@@ -153,6 +171,9 @@ DemiState_t demi_movecursor(void)
 {
   DemiState_t demistate = ds_consecutive;
 
+  // --------- Enable FRAM writes -------------//
+  fram_write_enable();
+
   // Increment _cursordemi
   if (_cursordemi == _enddemi)
   {
@@ -174,6 +195,9 @@ DemiState_t demi_movecursor(void)
   {
     _nextblk = _cursorblk + 1;
   }
+
+  // --------- Disable FRAM writes -------------//
+  fram_write_disable();
 
   return demistate;
 }

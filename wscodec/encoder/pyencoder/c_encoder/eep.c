@@ -28,6 +28,10 @@
 #define BUFSIZE_BLKS  4
 #define BUFSIZE_BYTES (BUFSIZE_BLKS * BLKSIZE)
 
+extern void fram_write_enable(void);        /*!< Enable writes to FRAM. Should be defined in the processor-specific cuplTag project. */
+extern void fram_write_disable(void);       /*!< Disable writes to FRAM. Should be defined in the processor-specific cuplTag project. */
+
+#pragma PERSISTENT(_blkbuffer)
 char _blkbuffer[BUFSIZE_BLKS * BLKSIZE] = {0};
 
 /*! \brief Checks if a byte index is within the bounds the buffer array.
@@ -47,7 +51,7 @@ static inline int inbounds(int byteindex)
  *  \param eepblk Block of the EEPROM to write to.
  *  \param bufblk Block of the buffer to write from.
  *
- *  \returns 1 if the block to be written greater than the buffer size. Otherwise 0.
+ *  \returns 1 if the block to be written greater than the buffer size. 0 on success and -1 on write error.
  */
 int eep_write(const int eepblk, const unsigned int bufblk)
 {
@@ -55,8 +59,7 @@ int eep_write(const int eepblk, const unsigned int bufblk)
   int startbyte = bufblk * BLKSIZE;
   if (bufblk < BUFSIZE_BLKS)
   {
-    nt3h_writetag(eepblk+1, &_blkbuffer[startbyte]);
-    errflag = 0;
+    errflag = nt3h_writetag(eepblk+1, &_blkbuffer[startbyte]);
   }
 
   return errflag;
@@ -81,7 +84,9 @@ int eep_read(const int eepblk, const unsigned int bufblk)
   int startbyte = bufblk * BLKSIZE;
   if (bufblk < BUFSIZE_BLKS)
   {
+    fram_write_enable();
     nt3h_readtag(eepblk+1, &_blkbuffer[startbyte]);
+    fram_write_disable();
     errflag = 0;
   }
 
@@ -102,7 +107,9 @@ int eep_swap(const unsigned int srcblk, const unsigned int destblk)
     {
         for (i=0; i<BUFSIZE_BLKS; i++)
         {
+            fram_write_enable();
             _blkbuffer[destblk + i] = _blkbuffer[srcblk + i];
+            fram_write_disable();
         }
         errflag = 0;
     }
@@ -129,7 +136,9 @@ int eep_cp(int * indexptr, const char * dataptr, const int lenbytes)
   {
     for (i=0; i<lenbytes; i++)
     {
-      _blkbuffer[startbyte + i] = *(dataptr + i);
+        fram_write_enable();
+        _blkbuffer[startbyte + i] = *(dataptr + i);
+        fram_write_disable();
     }
     *indexptr = endbyte + 1;
     errflag = 0;
@@ -151,7 +160,9 @@ int eep_cpbyte(int * indexptr, const char bytedata)
 
   if (inbounds(*indexptr))
   {
+    fram_write_enable();
     _blkbuffer[*indexptr] = bytedata;
+    fram_write_disable();
     (*indexptr) = (*indexptr) + 1;
     errflag = 0;
   }
