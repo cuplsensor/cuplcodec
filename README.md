@@ -10,9 +10,9 @@ The codec is tested with [pytest](https://docs.pytest.org/en/stable/). The encod
 
 ## Documentation 
 
-[![Documentation Status](https://readthedocs.org/projects/wscodec/badge/?version=latest)](https://readthedocs.org/projects/wscodec/badge/?version=latest) 
+[![Documentation Status](https://readthedocs.org/projects/wscodec/badge/?version=latest)](https://cupl.readthedocs.io/projects/codec/en/latest/) 
 
-Hosted on [ReadTheDocs](https://readthedocs.org/projects/wscodec/badge/?version=latest). This includes information on how to run the encoder on an MSP430.
+Hosted on [ReadTheDocs](https://cupl.readthedocs.io/projects/codec/en/latest/). This includes information on how to run the encoder on an MSP430.
 
 ## PyPI Package
 
