@@ -2,6 +2,6 @@ breathe
 cffi==1.12.2
 ndeflib==0.3.3
 pycparser==2.19
-wheel==0.33.6
+wheel==0.38.1
 sphinxcontrib-plantuml
 sphinxcontrib-needs
